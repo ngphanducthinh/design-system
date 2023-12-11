@@ -1,0 +1,98 @@
+{
+  "name": "@7pmlabs/design-system",
+  "version": "0.3.3",
+  "sideEffects": [
+    "style.css"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/design-system.mjs",
+      "require": "./dist/design-system.js"
+    },
+    "./style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
+  },
+  "main": "./dist/design-system.js",
+  "module": "./dist/design-system.mjs",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "dev:host": "npm run dev -- --host",
+    "preview": "vite preview",
+    "publish-package": "npm run build && npm publish",
+    "publish-package:public": "npm run build && npm publish --access public",
+    "build": "run-p lint build:lib",
+    "build:lib": "vite build && npm run build:types",
+    "build:types": "vue-tsc --project tsconfig.build-types.json --declaration --emitDeclarationOnly --outDir dist/types ",
+    "test:unit": "vitest --environment jsdom --root src/",
+    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "lint": "run-s eslint type-check",
+    "format": "prettier .  --write",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "build-storybook:preview": "npx http-server ./storybook-static",
+    "chromatic": "npx chromatic --project-token=chpt_eab274113efb448 --auto-accept-changes"
+  },
+  "dependencies": {
+    "@babel/core": "^7.20.5",
+    "@vueuse/core": "^9.12.0",
+    "7pmlabs-icons": "^0.1.2",
+    "air-datepicker": "3.3.0",
+    "lodash-es": "^4.17.21",
+    "moment-mini": "^2.29.4",
+    "uuid": "^9.0.0",
+    "vue": "^3.3.4",
+    "vue-i18n": "^9.2.2"
+  },
+  "devDependencies": {
+    "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
+    "@rushstack/eslint-patch": "^1.3.3",
+    "@storybook/addon-essentials": "^7.5.3",
+    "@storybook/addon-interactions": "^7.5.3",
+    "@storybook/addon-links": "^7.5.3",
+    "@storybook/blocks": "^7.5.3",
+    "@storybook/manager-api": "^7.5.3",
+    "@storybook/testing-library": "^0.2.2",
+    "@storybook/theming": "^7.5.3",
+    "@storybook/vue3": "^7.5.3",
+    "@storybook/vue3-vite": "^7.5.3",
+    "@types/jsdom": "^20.0.0",
+    "@types/lodash-es": "^4.17.7",
+    "@types/node": "^16.18.4",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/eslint-config-prettier": "^8.0.0",
+    "@vue/eslint-config-typescript": "^11.0.3",
+    "@vue/test-utils": "^2.1.0",
+    "@vue/tsconfig": "^0.1.3",
+    "@vue/typescript": "^1.8.8",
+    "autoprefixer": "^10.4.13",
+    "eslint": "^8.48.0",
+    "eslint-plugin-cypress": "^2.14.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-vue": "^9.17.0",
+    "jsdom": "^20.0.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.19",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.56.0",
+    "storybook": "^7.5.3",
+    "tailwindcss": "^3.3.1",
+    "typescript": "~4.7.4",
+    "vite": "^4.3.5",
+    "vitest": "^0.31.1",
+    "vue-eslint-parser": "^9.1.0",
+    "vue-tsc": "^1.6.4"
+  }
+}

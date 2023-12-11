@@ -1,0 +1,87 @@
+{
+  "ds": {
+    "global": {
+      "field_required": "Vui lòng nhập thông tin này"
+    },
+    "components": {
+      "base": {
+        "text_editor": {
+          "add_youtube": "Thêm video Youtube",
+          "word_count": "{numberOfWords} từ"
+        },
+        "date_picker": {
+          "days": {
+            "sunday": "Chủ Nhật",
+            "monday": "Thứ Hai",
+            "tuesday": "Thứ Ba",
+            "wednesday": "Thứ Tư",
+            "thursday": "Thứ Năm",
+            "friday": "Thứ Sáu",
+            "saturday": "Thứ Bảy"
+          },
+          "days_short": {
+            "sunday": "CN",
+            "monday": "Hai",
+            "tuesday": "Ba",
+            "wednesday": "Tư",
+            "thursday": "Năm",
+            "friday": "Sáu",
+            "saturday": "Bảy"
+          },
+          "days_min": {
+            "sunday": "CN",
+            "monday": "2",
+            "tuesday": "3",
+            "wednesday": "4",
+            "thursday": "5",
+            "friday": "6",
+            "saturday": "7"
+          },
+          "months": {
+            "january": "Tháng Một",
+            "february": "Tháng Hai",
+            "march": "Tháng Ba",
+            "april": "Tháng Tư",
+            "may": "Tháng Năm",
+            "june": "Tháng Sáu",
+            "july": "Tháng Bảy",
+            "august": "Tháng Tám",
+            "september": "Tháng Chín",
+            "october": "Tháng Mười",
+            "november": "Tháng Mười Một",
+            "december": "Tháng Mười Hai"
+          },
+          "months_short": {
+            "january": "Một",
+            "february": "Hai",
+            "march": "Ba",
+            "april": "Tư",
+            "may": "Năm",
+            "june": "Sáu",
+            "july": "Bảy",
+            "august": "Tám",
+            "september": "Chín",
+            "october": "Mười",
+            "november": "Mười Một",
+            "december": "Mười Hai"
+          },
+          "buttons": {
+            "today": "Hôm nay",
+            "clear": "Xoá chọn",
+            "cancel": "Đóng",
+            "confirm": "Xác nhận"
+          },
+          "today": "Hôm nay"
+        },
+        "multi_select": {
+          "selected_item_count": "Đã chọn {count}"
+        },
+        "image_picker": {
+          "file_types_valid": "Cho phép định dạng {types}",
+          "file_size_valid": "Kích thước file tối đa là {size}",
+          "select_image": "Chọn ảnh"
+        }
+      }
+    }
+  }
+}

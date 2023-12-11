@@ -1,0 +1,23 @@
+{
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "**/*.cy.ts",
+    "**/*.spec.ts",
+    "**/__tests__/**/*",
+    "src/App.vue",
+    "src/main.ts",
+    "src/locales/index.ts",
+    ".storybook/**/*",
+    "src/stories/**/*"
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "types": ["vite/client"],
+    "lib": ["ES2018", "DOM"]
+  }
+}
