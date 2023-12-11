@@ -1,0 +1,47 @@
+name: Deploy to Another Repository
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: |
+          npm install
+
+      - name: Build
+        run: |
+          npm run build-storybook
+
+      - name: Checkout Another Repository
+        uses: actions/checkout@v2
+        with:
+          repository: ngphanducthinh/7pmlabs-design-system # replace with the actual repository URL
+          token: ${{ secrets.DESIGN_SYSTEM_STORYBOOK }}
+          path: 7pmlabs-design-system # replace with the desired path in your workspace
+
+      - name: Copy Built Files
+        run: |
+          cp -R storybook-static/* 7pmlabs-design-system/
+
+      - name: Commit and Push Changes to Another Repository
+        run: |
+          cd 7pmlabs-design-system
+          git config user.email "ngphanducthinh@gmail.com"
+          git config user.name "Thinh Nguyen"
+          git add .
+          git commit -m "Update built files"
+          git push
