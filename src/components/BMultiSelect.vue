@@ -300,12 +300,17 @@ defineExpose({ validate, selectMenu });
         class="ds-relative ds-flex ds-flex-wrap ds-items-center ds-gap-x-1 ds-rounded-lg ds-border ds-bg-white ds-px-3 ds-py-1 ds-drop-shadow-light"
       >
         <div class="ds-absolute ds-right-3 ds-z-[1]">
-          <i
-            :class="`fa-solid fa-caret-down ds-transition-transform ${
-              selectMenu ? 'ds-rotate-180' : ''
-            }`"
+          <svg
+            :class="[selectMenu ? 'ds-rotate-180' : '']"
+            class="ds-h-4 ds-w-4 ds-transition-transform"
+            viewBox="0 0 320 512"
+            xmlns="http://www.w3.org/2000/svg"
             @click="inputRef?.focus()"
-          />
+          >
+            <path
+              d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+            />
+          </svg>
         </div>
         <div
           v-for="(item, i) in selectedItems"
@@ -313,10 +318,16 @@ defineExpose({ validate, selectMenu });
           class="ds-my-0.5 ds-flex-initial ds-space-x-1 ds-rounded-lg ds-bg-black/10 ds-px-2"
         >
           <span>{{ item.text }}</span>
-          <i
-            class="fa-solid fa-circle-xmark ds-cursor-pointer ds-text-black/60 hover:ds-text-black/40"
+          <svg
+            class="ds-mb-1 ds-inline ds-h-4 ds-w-4 ds-cursor-pointer ds-fill-black/60 hover:ds-fill-black/40"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
             @click="deselectItem(item)"
-          />
+          >
+            <path
+              d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"
+            />
+          </svg>
         </div>
         <BTextField
           v-if="props.allowInput"
@@ -354,11 +365,16 @@ defineExpose({ validate, selectMenu });
           {{ props.placeholder }}
         </span>
         &nbsp;
-        <span
-          :class="`${selectMenu ? 'ds-rotate-180' : ''}`"
-          class="fa-solid fa-caret-down ds-text-base ds-transition-transform"
+        <svg
+          :class="[selectMenu ? 'ds-rotate-180' : '']"
+          class="ds-h-4 ds-w-4 ds-transition-transform"
+          viewBox="0 0 320 512"
+          xmlns="http://www.w3.org/2000/svg"
         >
-        </span>
+          <path
+            d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+          />
+        </svg>
       </button>
 
       <div
@@ -404,7 +420,6 @@ defineExpose({ validate, selectMenu });
       v-if="!hideDetails"
       :error-message="validationResult.errorMessage()"
       class="ds-mt-1"
-      prepend-icon="fa-solid fa-circle-exclamation"
     />
   </div>
 </template>

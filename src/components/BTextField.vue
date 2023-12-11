@@ -191,16 +191,17 @@ defineExpose({ validate, focus, blur });
     <BLabel :id="id" :label="label" :required="required" />
     <div class="ds-relative">
       <div
-        v-if="prependIcon"
+        v-if="$slots.prependIcon || prependIcon"
         v-show="!hidePrependIcon"
         class="ds-absolute ds-left-3 ds-top-0 ds-z-[1] ds-flex ds-h-full ds-cursor-pointer ds-items-center hover:ds-text-primary-t"
       >
-        <span
-          :id="`${id}prependIcon`"
-          :class="prependIcon"
-          @click="onClickPrependIcon"
-        >
-        </span>
+        <slot name="prependIcon">
+          <span
+            :id="`${id}prependIcon`"
+            :class="prependIcon"
+            @click="onClickPrependIcon"
+          />
+        </slot>
       </div>
       <input
         :id="id"
@@ -221,16 +222,17 @@ defineExpose({ validate, focus, blur });
         @keyup.enter="onKeyUpEnter"
       />
       <div
-        v-if="appendIcon"
+        v-if="$slots.appendIcon || appendIcon"
         v-show="!hideAppendIcon"
         class="ds-absolute ds-right-3 ds-top-0 ds-z-[1] ds-flex ds-h-full ds-cursor-pointer ds-items-center hover:ds-text-primary-t"
       >
-        <span
-          :id="`${id}appendIcon`"
-          :class="appendIcon"
-          @click="onClickAppendIcon"
-        >
-        </span>
+        <slot name="appendIcon">
+          <span
+            :id="`${id}appendIcon`"
+            :class="appendIcon"
+            @click="onClickAppendIcon"
+          />
+        </slot>
       </div>
     </div>
 

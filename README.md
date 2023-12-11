@@ -1,7 +1,5 @@
 # 7pmlabs-design-system
 
-Require `7pmlabs-icons` package installed or using CDN: https://unpkg.com/7pmlabs-icons/dist/style.css
-
 DON'T NEED to import `@import 'tailwindcss/base';` (https://tailwindcss.com/docs/installation) if you also use Tailwind CSS in your project unless it causes broken styles.
 
 ## Getting started

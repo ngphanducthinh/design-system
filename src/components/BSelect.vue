@@ -255,16 +255,26 @@ defineExpose({ validate, selectMenu });
         :id="id"
         ref="inputRef"
         v-model="inputText"
-        :append-icon="`fa-solid fa-caret-down ds-transition-transform ${
-          selectMenu ? 'ds-rotate-180' : ''
-        }`"
         :disabled="props.disabled"
         :placeholder="props.placeholder"
         hide-details
         @focus="selectMenu = true"
         @click:append="inputRef?.focus()"
         @update:model-value="onChangeInputText"
-      />
+      >
+        <template #appendIcon>
+          <svg
+            :class="[selectMenu ? 'ds-rotate-180' : '']"
+            class="ds-h-4 ds-w-4 ds-transition-transform"
+            viewBox="0 0 320 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+            />
+          </svg>
+        </template>
+      </BTextField>
       <button
         v-else
         :id="id"
@@ -280,11 +290,16 @@ defineExpose({ validate, selectMenu });
           </span>
         </span>
         &nbsp;
-        <span
-          :class="`${selectMenu ? 'ds-rotate-180' : ''}`"
-          class="fa-solid fa-caret-down ds-text-base ds-transition-transform"
+        <svg
+          :class="[selectMenu ? 'ds-rotate-180' : '']"
+          class="ds-h-4 ds-w-4 ds-transition-transform"
+          viewBox="0 0 320 512"
+          xmlns="http://www.w3.org/2000/svg"
         >
-        </span>
+          <path
+            d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
+          />
+        </svg>
       </button>
 
       <div
@@ -325,7 +340,6 @@ defineExpose({ validate, selectMenu });
       v-if="!hideDetails"
       :error-message="validationResult.errorMessage()"
       class="ds-mt-1"
-      prepend-icon="fa-solid fa-circle-exclamation"
     />
   </div>
 </template>

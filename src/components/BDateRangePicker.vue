@@ -251,6 +251,14 @@ const datePickerOptions = computed(() => {
     position: props.position,
     range: true,
     multipleDatesSeparator: ' - ',
+    prevHtml: `<svg xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 320 512">
+                  <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
+              </svg>`,
+    nextHtml: `<svg xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 320 512">
+                  <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
+              </svg>`,
   } as any; // AirDatepickerOptions
 });
 const vRules = computed(() => {
@@ -396,22 +404,27 @@ onBeforeUnmount(() => {
 
       <label
         :for="`${id}Picker`"
-        class="ds-absolute ds-right-3 ds-top-2 ds-z-[3]"
+        class="ds-absolute ds-right-3 ds-top-3 ds-z-[3]"
       >
-        <i
+        <svg
           :class="[
-            props.disabled ? 'ds-text-black/[0.4]' : 'ds-text-black/[0.85]',
+            props.disabled ? 'ds-fill-black/40' : 'ds-text-black/[0.85]',
           ]"
-          class="fa-solid fa-calendar-lines"
-        ></i>
+          class="ds-h-4 ds-w-4"
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM96 296c0-13.3 10.7-24 24-24H328c13.3 0 24 10.7 24 24s-10.7 24-24 24H120c-13.3 0-24-10.7-24-24zm24 72H232c13.3 0 24 10.7 24 24s-10.7 24-24 24H120c-13.3 0-24-10.7-24-24s10.7-24 24-24z"
+          />
+        </svg>
       </label>
     </div>
 
-    <b-error-message
+    <BErrorMessage
       v-if="!hideDetails"
       :error-message="validationResult.errorMessage()"
       class="ds-mt-1"
-      prepend-icon="fa-solid fa-circle-exclamation"
     />
   </div>
 </template>

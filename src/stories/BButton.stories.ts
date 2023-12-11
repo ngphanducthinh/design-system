@@ -18,6 +18,21 @@ const meta: Meta<typeof BButton> = {
       control: 'select',
       options: Object.values(BButtonSize) as string[],
     },
+    prependIcon: {
+      control: 'text',
+      description: 'Prepend icon',
+      defaultValue: '',
+    },
+    default: {
+      control: 'text',
+      description: "Button's content",
+      defaultValue: '',
+    },
+    appendIcon: {
+      control: 'text',
+      description: 'Append icon',
+      defaultValue: '',
+    },
   },
   args: { type: 'primary' }, // default value
 };
@@ -31,10 +46,16 @@ export const Primary: Story = {
     setup() {
       return { args };
     },
-    template: '<BButton v-bind="args">Primary</BButton>',
+    template: `
+      <BButton v-bind="args">
+        <template v-if="args.prependIcon" #prependIcon><span v-html="args.prependIcon" /></template>
+        <span v-html="args.default" />
+        <template v-if="args.appendIcon" #appendIcon><span v-html="args.appendIcon" /></template>
+      </BButton>`,
   }),
   args: {
     type: 'primary',
+    default: 'Primary',
   },
 };
 
@@ -44,10 +65,16 @@ export const Secondary: Story = {
     setup() {
       return { args };
     },
-    template: '<BButton v-bind="args">Secondary</BButton>',
+    template: `
+      <BButton v-bind="args">
+        <template v-if="args.prependIcon" #prependIcon><span v-html="args.prependIcon" /></template>
+        <span v-html="args.default" />
+        <template v-if="args.appendIcon" #appendIcon><span v-html="args.appendIcon" /></template>
+      </BButton>`,
   }),
   args: {
     type: 'secondary',
+    default: 'Secondary',
   },
 };
 
@@ -57,10 +84,16 @@ export const Additional: Story = {
     setup() {
       return { args };
     },
-    template: '<BButton v-bind="args">Additional</BButton>',
+    template: `
+      <BButton v-bind="args">
+        <template v-if="args.prependIcon" #prependIcon><span v-html="args.prependIcon" /></template>
+        <span v-html="args.default" />
+        <template v-if="args.appendIcon" #appendIcon><span v-html="args.appendIcon" /></template>
+      </BButton>`,
   }),
   args: {
     type: 'additional',
+    default: 'Additional',
   },
 };
 
@@ -70,10 +103,16 @@ export const Clear: Story = {
     setup() {
       return { args };
     },
-    template: '<BButton v-bind="args">Clear</BButton>',
+    template: `
+      <BButton v-bind="args">
+        <template v-if="args.prependIcon" #prependIcon><span v-html="args.prependIcon" /></template>
+        <span v-html="args.default" />
+        <template v-if="args.appendIcon" #appendIcon><span v-html="args.appendIcon" /></template>
+      </BButton>`,
   }),
   args: {
     type: 'clear',
+    default: 'Clear',
   },
 };
 
@@ -83,10 +122,15 @@ export const Icon: Story = {
     setup() {
       return { args };
     },
-    template:
-      '<BButton v-bind="args"><i class="fa-solid fa-circle-check" /></BButton>',
+    template: `
+      <BButton v-bind="args">
+        <template v-if="args.prependIcon" #prependIcon><span v-html="args.prependIcon" /></template>
+        <span v-html="args.default" />
+        <template v-if="args.appendIcon" #appendIcon><span v-html="args.appendIcon" /></template>
+      </BButton>`,
   }),
   args: {
     type: 'icon',
+    default: '<i class="fa-solid fa-circle-check" />',
   },
 };

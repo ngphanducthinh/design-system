@@ -227,14 +227,38 @@ onBeforeUnmount(() => {
         class="carousel-navigation--left"
         @click="prevItem"
       >
-        <i class="fa-solid fa-chevron-left ds-bg-primary-f/50" />
+        <div
+          class="ds-cursor-pointer ds-rounded-full ds-bg-primary-f/40 ds-p-2 hover:ds-bg-primary-f/70"
+        >
+          <svg
+            class="ds-h-5 ds-w-5 ds-fill-white"
+            viewBox="0 0 320 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
+            />
+          </svg>
+        </div>
       </div>
       <div
         v-if="showNextNav"
         class="carousel-navigation--right"
         @click="nextItem"
       >
-        <i class="fa-solid fa-chevron-right ds-bg-primary-f/50" />
+        <div
+          class="ds-cursor-pointer ds-rounded-full ds-bg-primary-f/40 ds-p-2 hover:ds-bg-primary-f/70"
+        >
+          <svg
+            class="ds-h-5 ds-w-5 ds-fill-white"
+            viewBox="0 0 320 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+            />
+          </svg>
+        </div>
       </div>
     </template>
 
@@ -270,17 +294,6 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  i {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    color: #fff;
-  }
 }
 
 .carousel-navigation--right {

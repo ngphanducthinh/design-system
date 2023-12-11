@@ -7,21 +7,11 @@ import { computed } from 'vue';
  */
 export interface BButtonProps {
   type?: `${BButtonType}`;
-  /**
-   * FontAwesome v6.1.0 - Solid.
-   */
-  prependIcon?: string;
-  /**
-   * FontAwesome v6.1.0 - Solid.
-   */
-  appendIcon?: string;
   size?: `${BButtonSize}`;
   disabled?: boolean;
 }
 const props = withDefaults(defineProps<BButtonProps>(), {
   type: BButtonType.Secondary,
-  prependIcon: '',
-  appendIcon: '',
   size: BButtonSize.Medium,
   disabled: false,
 });
@@ -103,16 +93,13 @@ const iconCssClass = computed(() => {
   <button :class="btnCssClass" :disabled="disabled" type="button">
     <div class="ds-flex ds-items-center ds-justify-center">
       <div
-        v-if="prependIcon || $slots['prepend-icon']"
+        v-if="$slots['prependIcon']"
         :class="iconCssClass"
         class="ds-relative ds-mr-2"
       >
-        <slot name="prepend-icon">
-          <span
-            :class="prependIcon"
-            class="ds-absolute -ds-bottom-[3px] ds-left-0 ds-text-[16px]"
-          />
-        </slot>
+        <span class="ds-absolute -ds-bottom-[3px] ds-left-0 ds-text-[16px]">
+          <slot name="prependIcon" />
+        </span>
       </div>
 
       <div class="ds-flex ds-items-center">
@@ -120,16 +107,13 @@ const iconCssClass = computed(() => {
       </div>
 
       <div
-        v-if="appendIcon || $slots['append-icon']"
+        v-if="$slots['appendIcon']"
         :class="iconCssClass"
         class="ds-relative ds-ml-2"
       >
-        <slot name="append-icon">
-          <span
-            :class="appendIcon"
-            class="ds-absolute -ds-bottom-[3px] ds-left-0 ds-text-[16px]"
-          />
-        </slot>
+        <span class="ds-absolute -ds-bottom-[3px] ds-left-0 ds-text-[16px]">
+          <slot name="appendIcon" />
+        </span>
       </div>
     </div>
   </button>

@@ -26,17 +26,11 @@
   }
   .air-datepicker-nav--action {
     svg {
-      display: none;
-    }
-    &[data-action='prev']::before {
-      font: var(--fa-font-solid);
-      content: '\f053'; // fa-solid fa-chevron-left
-      color: theme('colors.primary-t');
-    }
-    &[data-action='next']::before {
-      font: var(--fa-font-solid);
-      content: '\f054'; // fa-solid fa-chevron-right
-      color: theme('colors.primary-t');
+      width: 1rem;
+      height: 1rem;
+      path {
+        fill: theme('colors.primary-t');
+      }
     }
   }
   .air-datepicker-nav--action.-disabled- {
