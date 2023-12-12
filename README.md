@@ -1,11 +1,13 @@
 # 7pmlabs-design-system
 
-DON'T NEED to import `@import 'tailwindcss/base';` (https://tailwindcss.com/docs/installation) if you also use Tailwind CSS in your project unless it causes broken styles.
+Documentation (Storybook): https://ngphanducthinh.github.io/7pmlabs-design-system
+
+In case, you also use Tailwind CSS in your project, do not import `@import 'tailwindcss/base';` (https://tailwindcss.com/docs/installation) unless it causes broken styles.
 
 ## Getting started
 
 ```
-npm i 7pmlabs-design-system
+npm i @7pmlabs/design-system
 ```
 
 ## Usage
@@ -13,7 +15,7 @@ npm i 7pmlabs-design-system
 Import CSS & plugin in main.ts:
 
 ```
-import '7pmlabs-design-system/style.css';
+import '@7pmlabs/design-system/style.css';
 
 const app = createApp(App);
 ...
@@ -23,7 +25,7 @@ app.use(ds, { i18n });
 Import & use component:
 
 ```
-import { BButton } from '7pmlabs-design-system';
+import { BButton } from '@7pmlabs/design-system';
 
 <BButton>Click me!</BButton>
 ```
