@@ -1,4 +1,4 @@
-# 7pmlabs-design-system
+# @7pmlabs/design-system
 
 Documentation (Storybook): https://ngphanducthinh.github.io/7pmlabs-design-system
 
