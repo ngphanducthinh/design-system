@@ -23,10 +23,6 @@ export interface BDropdownProps {
   modelValue?: boolean;
   label?: string;
   /**
-   * Toggle's content text
-   */
-  text?: string;
-  /**
    * CSS of toggle
    */
   toggleCssClass?: string;
@@ -48,7 +44,6 @@ const props = withDefaults(defineProps<BDropdownProps>(), {
   inputId: '',
   modelValue: undefined,
   label: '',
-  text: '',
   toggleCssClass: '',
   menuCssClass: '',
   noCloseOnClickOutside: false,
@@ -208,24 +203,11 @@ provide(PIKey.CloseDropdown, close);
       :id="id"
       ref="toggle"
       :class="toggleCssClass"
-      class="ds-inline-flex ds-w-full ds-items-center ds-justify-between ds-rounded-lg ds-bg-gray-200 ds-px-3 ds-py-2 ds-text-gray-700 focus:ds-ring-1 focus:ds-ring-primary-t"
+      class="focus:ds-ring-1 focus:ds-ring-primary-t"
       type="button"
       @click="onClickToggle"
     >
-      <slot name="toggle">
-        <span class="ds-truncate">{{ props.text }}</span>
-        &nbsp;
-        <svg
-          :class="`${value ? 'ds-rotate-180' : ''}`"
-          class="ds-h-4 ds-w-4 ds-transition-transform"
-          viewBox="0 0 320 512"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
-          />
-        </svg>
-      </slot>
+      <slot name="toggle" />
     </button>
     <div
       v-show="value"
@@ -236,7 +218,7 @@ provide(PIKey.CloseDropdown, close);
       :data-ut="$attrs['data-ut'] ? `${$attrs['data-ut']}Menu` : undefined"
       class="ds-z-50 ds-py-1"
     >
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

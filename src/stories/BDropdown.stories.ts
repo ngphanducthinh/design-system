@@ -10,7 +10,6 @@ const meta: Meta<typeof BDropdown> = {
   args: {
     inputId: '',
     label: '',
-    text: '',
     toggleCssClass: '',
     menuCssClass: '',
     noCloseOnClickOutside: false,
@@ -40,9 +39,9 @@ export const Default: Story = {
       return { args, items };
     },
     template: `
-      <BDropdown v-bind="args" class="ds-w-fit">
+      <BDropdown v-bind="args" toggle-css-class="ds-rounded-xl ds-bg-gray-200 ds-px-4 ds-py-2 ">
         <template #toggle>
-          Dropdown
+          <i class="fa fa-chevron-double-down" />
         </template>
         
         <template #default>
