@@ -125,8 +125,6 @@ const value = computed({
 });
 const inputCssClassValue = computed(() => [
   {
-    'ds-pl-9': props.prependIcon,
-    'ds-pr-9': props.appendIcon,
     'ds-cursor-not-allowed ds-bg-[#f2f2f2] ds-text-black/[0.4]': props.disabled,
     'ds-text-black/[0.85]': !props.disabled,
     'ds-border-error focus:ds-ring-1 focus:ds-ring-error':
@@ -208,7 +206,13 @@ defineExpose({ validate, focus, blur });
         ref="inputRef"
         v-model="value"
         :autocomplete="props.autocomplete ? 'on' : 'off'"
-        :class="inputCssClassValue"
+        :class="[
+          inputCssClassValue,
+          {
+            'ds-pl-9': $slots.prependIcon || props.prependIcon,
+            'ds-pr-9': $slots.appendIcon || props.appendIcon,
+          },
+        ]"
         :disabled="props.disabled"
         :inputmode="props.inputmode"
         :placeholder="props.placeholder"
