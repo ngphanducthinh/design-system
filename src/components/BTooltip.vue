@@ -2,9 +2,7 @@
 import { BTooltipOpenEvent, BTooltipPosition } from '@/constants/Enums';
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BTooltipProps {
   modelValue?: boolean;
   /**
@@ -21,17 +19,15 @@ const props = withDefaults(defineProps<BTooltipProps>(), {
   position: BTooltipPosition.Top,
   openEvent: BTooltipOpenEvent.Hover,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
   'update:modelValue': [value: boolean];
 }>();
+//#endregion
 
-/**
- * Data
- */
+//region Data
 const toggleRef = ref<HTMLDivElement | null>(null);
 const contentRef = ref<HTMLDivElement | null>(null);
 const mValue = ref(false);
@@ -47,10 +43,9 @@ const value = computed({
     }
   },
 });
+//endregion
 
-/**
- * Watch
- */
+//region Watchers
 watch(
   () => props.position,
   () => {
@@ -65,10 +60,9 @@ watch(
     ensureEventListeners();
   },
 );
+//#endregion
 
-/**
- * Methods
- */
+//region Methods
 const onClick = () => {
   value.value = !value.value;
 };
@@ -130,10 +124,9 @@ const clearEventListeners = () => {
   toggleRef.value?.removeEventListener('mouseover', onHover);
   toggleRef.value?.removeEventListener('mouseleave', onHoverOut);
 };
+//#endregion
 
-/**
- * Lifecycle hooks
- */
+//#region Lifecycle hooks
 onMounted(() => {
   ensureEventListeners();
   ensureContentPosition();
@@ -141,6 +134,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   clearEventListeners();
 });
+//#endregion
 </script>
 
 <template>
