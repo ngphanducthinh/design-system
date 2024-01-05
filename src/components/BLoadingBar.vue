@@ -1,24 +1,22 @@
 <script lang="ts" setup>
 import { computed, type StyleValue } from 'vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BLoadingBarProps {
   loading: boolean;
   height?: string;
   borderRadius?: string;
   absolute?: boolean;
 }
+
 const props = withDefaults(defineProps<BLoadingBarProps>(), {
   height: '',
   borderRadius: '',
   absolute: false,
 });
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const cssStyle = computed(() => {
   const result: StyleValue = {
     opacity: +props.loading,
@@ -39,6 +37,7 @@ const cssStyle = computed(() => {
 
   return result;
 });
+//#endregion
 </script>
 
 <template>
@@ -57,6 +56,7 @@ const cssStyle = computed(() => {
 
   .b-loading-bar-indeterminate {
     background-color: rgb(59 130 246);
+
     &:before {
       content: '';
       position: absolute;
@@ -69,6 +69,7 @@ const cssStyle = computed(() => {
       animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395)
         infinite;
     }
+
     &:after {
       content: '';
       position: absolute;

@@ -10,10 +10,11 @@ import { useI18n } from 'vue-i18n';
 import BErrorMessage from './BErrorMessage.vue';
 import BLabel from './BLabel.vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BTextFieldProps {
+  /**
+   * ID of input element
+   */
   inputId?: string;
   inputCssClass?: string;
   /**
@@ -22,22 +23,6 @@ export interface BTextFieldProps {
   validationRules?: ValidationRule[];
   modelValue: string | number;
   label?: string;
-  /**
-   * FontAwesome v6.1.0 - Solid.
-   */
-  prependIcon?: string;
-  /**
-   * Hide prepended icon.
-   */
-  hidePrependIcon?: boolean;
-  /**
-   * FontAwesome v6.1.0 - Solid.
-   */
-  appendIcon?: string;
-  /**
-   * Hide appended icon.
-   */
-  hideAppendIcon?: boolean;
   placeholder?: string;
   autocomplete?: boolean;
   disabled?: boolean;
@@ -56,6 +41,9 @@ export interface BTextFieldProps {
    * Function is executed on input event.
    */
   inputHandler?: any;
+  /**
+   * Value of input element's inputmode
+   */
   inputmode?:
     | 'none'
     | 'text'
@@ -66,15 +54,12 @@ export interface BTextFieldProps {
     | 'decimal'
     | 'search'; // This allows a browser to display an appropriate virtual keyboard
 }
+
 const props = withDefaults(defineProps<BTextFieldProps>(), {
   inputId: '',
   inputCssClass: '',
   validationRules: undefined,
   label: '',
-  prependIcon: '',
-  hidePrependIcon: false,
-  appendIcon: '',
-  hideAppendIcon: false,
   placeholder: '',
   autocomplete: false,
   disabled: false,
@@ -86,22 +71,37 @@ const props = withDefaults(defineProps<BTextFieldProps>(), {
   inputHandler: undefined,
   inputmode: 'text',
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
+// https://vuejs.org/api/sfc-script-setup.html#defineprops-defineemits
+// new "defineEmits" way of Vue 3.3+ doesn't work with Storybook's autodocs yet
 const emit = defineEmits<{
-  focus: [];
-  blur: [];
-  'click:prepend': [];
-  'click:append': [];
-  'press:enter': [];
-  'update:modelValue': [value: string | number];
+  /**
+   * Text field is focused
+   * @param e
+   */
+  (e: 'focus'): void;
+  /**
+   * Text field lost focus
+   * @param e
+   */
+  (e: 'blur'): void;
+  /**
+   * User presses "enter" key
+   * @param e
+   */
+  (e: 'press:enter'): void;
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: string | number): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const { t } = useI18n();
 const inputRef = ref<HTMLInputElement | null>(null);
 const validateRequired: ValidationRule = {
@@ -152,16 +152,9 @@ const { validate, validationResult } = useValidationField(
   value,
   vRules.value,
 );
+//#endregion
 
-/**
- * Methods
- */
-const onClickPrependIcon = () => {
-  emit('click:prepend');
-};
-const onClickAppendIcon = () => {
-  emit('click:append');
-};
+//#region Methods
 const onKeyUpEnter = () => {
   emit('press:enter');
 };
@@ -180,44 +173,32 @@ const focus = () => {
 const blur = () => {
   inputRef.value?.blur();
 };
+//#endregion
 
 defineExpose({ validate, focus, blur });
 </script>
 
 <template>
-  <div>
+  <div class="b-text-field">
     <BLabel :id="id" :label="label" :required="required" />
     <div class="ds-relative">
       <div
-        v-if="$slots.prependIcon || prependIcon"
-        v-show="!hidePrependIcon"
-        class="ds-absolute ds-left-3 ds-top-0 ds-z-[1] ds-flex ds-h-full ds-cursor-pointer ds-items-center hover:ds-text-primary-t"
+        v-if="$slots.prependIcon"
+        class="b-text-field__prepend-icon ds-absolute ds-left-3 ds-top-0 ds-z-[1] ds-flex ds-h-full ds-cursor-pointer ds-items-center hover:ds-text-primary-t"
       >
-        <slot name="prependIcon">
-          <span
-            :id="`${id}prependIcon`"
-            :class="prependIcon"
-            @click="onClickPrependIcon"
-          />
-        </slot>
+        <slot name="prependIcon" />
       </div>
       <input
         :id="id"
         ref="inputRef"
         v-model="value"
         :autocomplete="props.autocomplete ? 'on' : 'off'"
-        :class="[
-          inputCssClassValue,
-          {
-            'ds-pl-9': $slots.prependIcon || props.prependIcon,
-            'ds-pr-9': $slots.appendIcon || props.appendIcon,
-          },
-        ]"
         :disabled="props.disabled"
         :inputmode="props.inputmode"
         :placeholder="props.placeholder"
         :readonly="props.readonly"
         :type="props.type"
+        :class="[inputCssClassValue]"
         class="ds-block ds-h-[40px] ds-w-full ds-rounded-lg ds-border ds-px-3 ds-text-sm ds-drop-shadow-light"
         @blur="onBlur"
         @focus="onFocus"
@@ -226,17 +207,10 @@ defineExpose({ validate, focus, blur });
         @keyup.enter="onKeyUpEnter"
       />
       <div
-        v-if="$slots.appendIcon || appendIcon"
-        v-show="!hideAppendIcon"
-        class="ds-absolute ds-right-3 ds-top-0 ds-z-[1] ds-flex ds-h-full ds-cursor-pointer ds-items-center hover:ds-text-primary-t"
+        v-if="$slots.appendIcon"
+        class="b-text-field__append-icon ds-absolute ds-right-3 ds-top-0 ds-z-[1] ds-flex ds-h-full ds-cursor-pointer ds-items-center hover:ds-text-primary-t"
       >
-        <slot name="appendIcon">
-          <span
-            :id="`${id}appendIcon`"
-            :class="appendIcon"
-            @click="onClickAppendIcon"
-          />
-        </slot>
+        <slot name="appendIcon" />
       </div>
     </div>
 
@@ -247,3 +221,19 @@ defineExpose({ validate, focus, blur });
     />
   </div>
 </template>
+
+<style scoped lang="scss">
+.b-text-field {
+  &:has(.b-text-field__prepend-icon) {
+    input {
+      padding-left: theme('padding.9');
+    }
+  }
+
+  &:has(.b-text-field__append-icon) {
+    input {
+      padding-right: theme('padding.9');
+    }
+  }
+}
+</style>

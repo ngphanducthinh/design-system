@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
-/**
- * Props
- */
+//#region Props
 interface BCarouselProps {
   /**
    * Index of slide.
@@ -30,6 +28,7 @@ interface BCarouselProps {
    */
   continuous?: boolean;
 }
+
 const props = withDefaults(defineProps<BCarouselProps>(), {
   modelValue: undefined,
   autoplay: false,
@@ -38,17 +37,20 @@ const props = withDefaults(defineProps<BCarouselProps>(), {
   pagination: false,
   continuous: true,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: number];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: number): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 let autoplayIntervalFn: any;
 const mValue = ref(0);
 const itemCount = ref(0);
@@ -70,10 +72,9 @@ const showNextNav = computed(
   () => props.continuous || value.value < itemCount.value - 1,
 );
 const showPrevNav = computed(() => props.continuous || value.value > 0);
+//#endregion
 
-/**
- * Watch
- */
+//#region Watchers
 watch(value, (val, oldVal) => {
   selectCarouselItem(val, oldVal);
 });
@@ -105,10 +106,9 @@ watch(
     }
   },
 );
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const goToItem = (index: number) => {
   value.value = index;
 };
@@ -186,10 +186,9 @@ const init = () => {
 };
 
 init();
+//#endregion
 
-/**
- * Lifecycle Hooks
- */
+//#region Lifecycle Hooks
 onMounted(() => {
   if (container.value) {
     const oldValue = value.value;
@@ -210,6 +209,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   clearInterval(autoplayIntervalFn);
 });
+//#endregion
 </script>
 
 <template>
@@ -218,7 +218,7 @@ onBeforeUnmount(() => {
     class="ds-relative ds-min-h-[6rem] ds-w-full ds-overflow-x-hidden ds-rounded-lg"
   >
     <div class="carousel-content">
-      <slot> </slot>
+      <slot></slot>
     </div>
 
     <template v-if="props.navigation">
@@ -286,6 +286,7 @@ onBeforeUnmount(() => {
   max-height: 100%;
   height: 100%;
 }
+
 .carousel-navigation--left,
 .carousel-navigation--right {
   padding: 0 1rem;

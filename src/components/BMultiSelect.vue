@@ -26,9 +26,7 @@ import BLabel from './BLabel.vue';
 import BTextField from './BTextField.vue';
 import type { DisplayItem } from '@/types';
 
-/**
- * Props
- */
+//#region Props
 export interface BMultiSelectProps {
   inputId?: string;
   modelValue: Array<string | number>;
@@ -60,6 +58,7 @@ export interface BMultiSelectProps {
    */
   allowInput?: boolean;
 }
+
 const props = withDefaults(defineProps<BMultiSelectProps>(), {
   inputId: '',
   label: '',
@@ -74,21 +73,42 @@ const props = withDefaults(defineProps<BMultiSelectProps>(), {
   showSelectedItemCount: false,
   allowInput: false,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  change: [value: string | number];
-  open: [];
-  close: [];
-  'change:input': [inputValue: string];
-  'update:modelValue': [value: Array<string | number>];
+  /**
+   * Value is changed
+   * @param e
+   * @param value
+   */
+  (e: 'change', value: string | number): void;
+  /**
+   * Menu is opened
+   * @param e
+   */
+  (e: 'open'): void;
+  /**
+   * Menu is closed
+   * @param e
+   */
+  (e: 'close'): void;
+  /**
+   * Input value for searching is changed
+   * @param e
+   * @param inputValue
+   */
+  (e: 'change:input', inputValue: string): void;
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: Array<string | number>): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const selectEl = ref<HTMLElement | null>(null);
 const inputRef = ref<InstanceType<typeof BTextField> | null>(null);
 const selectMenuEl = ref<HTMLElement | null>(null);
@@ -150,10 +170,9 @@ const { validate, validationResult } = useValidationField(
   value,
   vRules.value,
 );
+//#endregion
 
-/**
- * Watch
- */
+//#region Watchers
 watch(selectMenu, (val) => {
   if (val) {
     lockScrollBody();
@@ -185,10 +204,9 @@ watch(
     deep: true,
   },
 );
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const ensureSelectedItems = () => {
   selectedItems.value = value.value.map((v) => {
     let item = selectedItems.value.find((i) => i.value === v);
@@ -264,10 +282,9 @@ const init = () => {
   }
 };
 init();
+//#endregion
 
-/**
- * Lifecycle Hooks
- */
+//#region Lifecycle Hooks
 onMounted(() => {
   initPressEscapeEventListener();
   initClickOutsideEventListener();
@@ -279,6 +296,7 @@ onBeforeUnmount(() => {
   // Make sure dropdown menu unmounted with itself
   resetMenuPosition();
 });
+//#endregion
 
 defineExpose({ validate, selectMenu });
 </script>

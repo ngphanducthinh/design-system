@@ -3,9 +3,7 @@ import type { BTabsHeader } from '@/types';
 import { v4 as uuid } from 'uuid';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BTabsProps {
   /**
    * Array of header objects.
@@ -20,21 +18,25 @@ export interface BTabsProps {
    */
   headerCssClass?: string;
 }
+
 const props = withDefaults(defineProps<BTabsProps>(), {
   modelValue: undefined,
   headerCssClass: '',
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: number];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: number): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const tabContainer = ref<HTMLElement | null>(null);
 const tabHeaders = ref<HTMLElement[] | null>(null);
 const tabs = ref<Element[] | null>(null);
@@ -53,10 +55,9 @@ const value = computed({
   },
 });
 const tabBodyId = computed(() => `id-${uuid()}`);
+//#endregion
 
-/**
- * Watch
- */
+//#region Watchers
 watch(value, (val) => {
   selectTab(val);
 });
@@ -68,10 +69,9 @@ watch(
     });
   },
 );
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const onClickTabHeader = (index: number) => {
   value.value = index;
 };
@@ -116,13 +116,13 @@ const initTabs = () => {
     selectTab(activeTabIndex.value);
   }
 };
+//#endregion
 
-/**
- * Lifecycle Hooks
- */
+//#region Lifecycle Hooks
 onMounted(() => {
   initTabs();
 });
+//#endregion
 </script>
 
 <template>

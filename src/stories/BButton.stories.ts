@@ -5,6 +5,14 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 const meta: Meta<typeof BButton> = {
   title: 'Components/Button',
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The BButton component with multitude of options replaces the standard html button.',
+      },
+    },
+  },
   component: BButton,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   // https://storybook.js.org/blog/storybook-7-docs/
@@ -21,20 +29,19 @@ const meta: Meta<typeof BButton> = {
     prependIcon: {
       control: 'text',
       description: 'Prepend icon',
-      defaultValue: '',
     },
     default: {
       control: 'text',
       description: "Button's content",
-      defaultValue: '',
     },
     appendIcon: {
       control: 'text',
       description: 'Append icon',
-      defaultValue: '',
     },
   },
-  args: { type: 'primary' }, // default value
+  args: {
+    type: BButtonType.Primary,
+  }, // default value
 };
 
 export default meta;
@@ -51,11 +58,17 @@ export const Primary: Story = {
         <template v-if="args.prependIcon" #prependIcon><span v-html="args.prependIcon" /></template>
         <span v-html="args.default" />
         <template v-if="args.appendIcon" #appendIcon><span v-html="args.appendIcon" /></template>
-      </BButton>`,
+      </BButton>
+      <div style="font-size: 0.75rem; color: gray; margin-top: 1rem">
+        <b>FontAwesome v6.1.0 - Solid</b> has been imported already & can be used for demo.
+      </div>
+    `,
   }),
   args: {
     type: 'primary',
     default: 'Primary',
+    prependIcon: '',
+    appendIcon: '<i class="fa-solid fa-floppy-disk" />',
   },
 };
 

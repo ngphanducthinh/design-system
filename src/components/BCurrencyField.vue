@@ -8,33 +8,12 @@ import BErrorMessage from '@/components/BErrorMessage.vue';
 import { useI18n } from 'vue-i18n';
 import IMask from '@/vendor/imask-7.1.3.js';
 
-/**
- * Props
- */
+//#region Props
 export interface BCurrencyFieldProps {
   inputId?: string;
   inputCssClass?: string;
   modelValue: number;
   label?: string;
-  /**
-   * FontAwesome v6.1.0 - Solid.
-   */
-  prependIcon?: string;
-  /**
-   * Hide prepended icon.
-   */
-  hidePrependIcon?: boolean;
-  /**
-   * FontAwesome v6.1.0 - Solid.
-   */
-  appendIcon?: string;
-  /**
-   * Hide appended icon.
-   */
-  hideAppendIcon?: boolean;
-  /**
-   * Array of custom validation rules.
-   */
   validationRules?: ValidationRule[];
   placeholder?: string;
   autocomplete?: boolean;
@@ -49,14 +28,11 @@ export interface BCurrencyFieldProps {
    */
   hideDetails?: boolean;
 }
+
 const props = withDefaults(defineProps<BCurrencyFieldProps>(), {
   inputId: '',
   inputCssClass: '',
   label: '',
-  prependIcon: '',
-  hidePrependIcon: false,
-  appendIcon: '',
-  hideAppendIcon: false,
   validationRules: undefined,
   placeholder: '',
   autocomplete: false,
@@ -66,20 +42,25 @@ const props = withDefaults(defineProps<BCurrencyFieldProps>(), {
   readonly: false,
   hideDetails: false,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'click:prepend': [];
-  'click:append': [];
-  'press:enter': [];
-  'update:modelValue': [value: number];
+  /**
+   * User presses "enter" key
+   * @param e
+   */
+  (e: 'press:enter'): void;
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: number): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 let mask: any;
 const { t, locale } = useI18n();
 const inputRef = ref<HTMLInputElement | null>(null);
@@ -99,8 +80,6 @@ const value = computed({
 });
 const inputCssClassValue = computed(() => [
   {
-    'ds-pl-9': props.prependIcon,
-    'ds-pr-9': props.appendIcon,
     'ds-cursor-not-allowed ds-bg-[#f2f2f2] ds-text-black/[0.4]': props.disabled,
     'ds-text-black/[0.85]': !props.disabled,
     'ds-border-error focus:ds-ring-1 focus:ds-ring-error':
@@ -153,23 +132,15 @@ const { validate, validationResult } = useValidationField(
   value,
   vRules.value,
 );
+//#endregion
 
-/**
- * Watch
- */
+//#region Watchers
 watch(locale, () => {
   initMask();
 });
+//#endregion
 
-/**
- * Methods
- */
-const onClickPrependIcon = () => {
-  emit('click:prepend');
-};
-const onClickAppendIcon = () => {
-  emit('click:append');
-};
+//#region Methods
 const onKeyUp = () => {
   validate();
 };
@@ -186,30 +157,24 @@ const initMask = () => {
   mask = IMask(inputRef.value!, maskOptions.value);
   mask.on('accept', onAccept);
 };
+//#endregion
 
-/**
- * Lifecycle hooks
- */
+//#region Lifecycle Hooks
 onMounted(() => {
   initMask();
 });
+//#endregion
 </script>
 
 <template>
-  <div>
+  <div class="b-currency-field">
     <BLabel :id="id" :label="label" :required="required" />
     <div class="ds-relative">
       <div
-        v-if="prependIcon"
-        v-show="!hidePrependIcon"
-        class="ds-absolute ds-left-3 ds-top-0 ds-z-[1] ds-flex ds-h-full ds-cursor-pointer ds-items-center hover:ds-text-primary-t"
+        v-if="$slots.prependIcon"
+        class="b-currency-field__prepend-icon ds-absolute ds-left-3 ds-top-0 ds-z-[1] ds-flex ds-h-full ds-cursor-pointer ds-items-center hover:ds-text-primary-t"
       >
-        <span
-          :id="`${id}prependIcon`"
-          :class="prependIcon"
-          @click="onClickPrependIcon"
-        >
-        </span>
+        <slot name="prependIcon" />
       </div>
       <input
         :id="id"
@@ -224,16 +189,10 @@ onMounted(() => {
         @keyup.enter="onKeyUpEnter"
       />
       <div
-        v-if="appendIcon"
-        v-show="!hideAppendIcon"
-        class="ds-absolute ds-right-3 ds-top-0 ds-z-[1] ds-flex ds-h-full ds-cursor-pointer ds-items-center hover:ds-text-primary-t"
+        v-if="$slots.appendIcon"
+        class="b-currency-field__append-icon ds-absolute ds-right-3 ds-top-0 ds-z-[1] ds-flex ds-h-full ds-cursor-pointer ds-items-center hover:ds-text-primary-t"
       >
-        <span
-          :id="`${id}appendIcon`"
-          :class="appendIcon"
-          @click="onClickAppendIcon"
-        >
-        </span>
+        <slot name="appendIcon" />
       </div>
     </div>
 
@@ -244,3 +203,19 @@ onMounted(() => {
     />
   </div>
 </template>
+
+<style scoped lang="scss">
+.b-currency-field {
+  &:has(.b-currency-field__prepend-icon) {
+    input {
+      padding-left: theme('padding.9');
+    }
+  }
+
+  &:has(.b-currency-field__append-icon) {
+    input {
+      padding-right: theme('padding.9');
+    }
+  }
+}
+</style>

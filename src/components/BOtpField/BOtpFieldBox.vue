@@ -1,42 +1,38 @@
 <script lang="ts" setup>
 import { onMounted, ref, type Ref, watch } from 'vue';
 
-/**
- * Props
- */
+//#region Props
 export interface Props {
   value?: string;
   focus?: boolean;
   isDisabled?: boolean;
 }
+
 const props = withDefaults(defineProps<Props>(), {
   value: '',
   focus: false,
   isDisabled: false,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'on-change': [value: string];
-  'on-keydown': [keyboardEvent: KeyboardEvent];
-  'on-keyup': [keyboardEvent: KeyboardEvent];
-  'on-paste': [clipboardEvent: ClipboardEvent];
-  'on-focus': [];
-  'on-blur': [];
+  (e: 'on-change', value: string): void;
+  (e: 'on-keydown', keyboardEvent: KeyboardEvent): void;
+  (e: 'on-keyup', keyboardEvent: KeyboardEvent): void;
+  (e: 'on-paste', clipboardEvent: ClipboardEvent): void;
+  (e: 'on-focus'): void;
+  (e: 'on-blur'): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const model = ref(props.value || '');
 const inputRef = ref<HTMLInputElement | null>(null) as Ref<HTMLInputElement>;
 const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const handleOnChange = () => {
   if (!digits.includes(model.value)) {
     model.value = '';
@@ -88,10 +84,9 @@ const focusFn = () => {
   inputRef.value.focus();
   inputRef.value.select();
 };
+//#endregion
 
-/**
- * Watch
- */
+//#region Watchers
 watch(
   () => props.value,
   (newValue, oldValue) => {
@@ -111,16 +106,16 @@ watch(
     }
   },
 );
+//#endregion
 
-/**
- * Lifecycle Hooks
- */
+//#region Lifecycle Hooks
 onMounted(() => {
   if (inputRef.value && props.focus) {
     inputRef.value.focus();
     inputRef.value.select();
   }
 });
+//#endregion
 
 defineExpose({ focus: focusFn });
 </script>

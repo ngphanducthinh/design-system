@@ -11,9 +11,7 @@ import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import BOtpFieldBox from './BOtpFieldBox.vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BOtpFieldProps {
   inputId?: string;
   modelValue?: string;
@@ -54,20 +52,38 @@ const props = withDefaults(defineProps<BOtpFieldProps>(), {
   requiredErrorMessage: '',
   hideDetails: false,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  complete: [value: string];
-  change: [value: string];
-  'update:modelValue': [value: string];
-  'update:focusIndex': [index: number];
+  /**
+   * OTP is completed
+   * @param e
+   * @param value
+   */
+  (e: 'complete', value: string): void;
+  /**
+   * OTP is changed
+   * @param e
+   * @param value
+   */
+  (e: 'change', value: string): void;
+  /**
+   * Update focus index
+   * @param e
+   * @param index
+   */
+  (e: 'update:focusIndex', index: number): void;
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: string): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const { t } = useI18n();
 const validateRequired: ValidationRule = {
   validateRule: (val: string) => !!val,
@@ -134,10 +150,9 @@ const { validate, validationResult } = useValidationField(
   originalValue,
   vRules.value,
 );
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const focus = () => {
   boxRefs.value![focusIndexValue.value].focus();
 };
@@ -230,6 +245,7 @@ const handleOnKeyDown = (event: KeyboardEvent) => {
 const handleOnKeyUp = () => {
   validate();
 };
+//#endregion
 
 defineExpose({ validate, focus });
 </script>

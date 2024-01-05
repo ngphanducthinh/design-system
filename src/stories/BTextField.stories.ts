@@ -4,19 +4,33 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BTextField> = {
   title: 'Components/TextField',
+  // https://storybook.js.org/docs/api/doc-block-description#writing-descriptions
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Text field components are used for collecting user provided information.',
+      },
+    },
+  },
   component: BTextField,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls
-  argTypes: {},
+  argTypes: {
+    prependIcon: {
+      control: 'text',
+      description: 'Prepend icon',
+    },
+    appendIcon: {
+      control: 'text',
+      description: 'Append icon',
+    },
+  },
   args: {
     inputId: '',
     inputCssClass: '',
     validationRules: undefined,
     label: '',
-    prependIcon: '',
-    hidePrependIcon: false,
-    appendIcon: '',
-    hideAppendIcon: false,
     placeholder: '',
     autocomplete: false,
     disabled: false,
@@ -41,10 +55,18 @@ export const Default: Story = {
       return { args, text };
     },
     template: `
-      <BTextField v-bind="args"  v-model="text" />
+      <BTextField v-bind="args" v-model="text">
+        <template v-if="args.prependIcon" #prependIcon><span v-html="args.prependIcon" /></template>
+        <template v-if="args.appendIcon" #appendIcon><span v-html="args.appendIcon" /></template>
+      </BTextField>
+      <div style="font-size: 0.75rem; color: gray; margin-top: 1rem">
+        <b>FontAwesome v6.1.0 - Solid</b> has been imported already & can be used for demo.
+      </div>
     `,
   }),
   args: {
     modelValue: '',
+    prependIcon: '',
+    appendIcon: '<i class="fa-solid fa-magnifying-glass" />',
   },
 };

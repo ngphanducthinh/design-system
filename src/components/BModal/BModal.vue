@@ -4,11 +4,12 @@ import { lockScrollBody, unlockScrollBody } from '@/helpers/ComponentHelper';
 import { computed, onBeforeUnmount, watch } from 'vue';
 import BModalContainer from './BModalContainer.vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BModalProps {
   modelValue: boolean;
+  /**
+   * Modal size.
+   */
   size?: BModalSize;
   /**
    * Fullscreen modal.
@@ -19,22 +20,26 @@ export interface BModalProps {
    */
   persistent?: boolean;
 }
+
 const props = withDefaults(defineProps<BModalProps>(), {
   size: BModalSize.Medium,
   fullscreen: false,
   persistent: false,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: boolean];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: boolean): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const value = computed({
   get() {
     return props.modelValue;
@@ -43,10 +48,9 @@ const value = computed({
     emit('update:modelValue', val);
   },
 });
+//#endregion
 
-/**
- * Watch
- */
+//#region Watchers
 watch(
   value,
   (val) => {
@@ -58,13 +62,13 @@ watch(
   },
   { immediate: true },
 );
+//#endregion
 
-/**
- * Lifecycle hooks
- */
+//#region Lifecycle Hooks
 onBeforeUnmount(() => {
   unlockScrollBody();
 });
+//#endregion
 </script>
 
 <script lang="ts">

@@ -2,22 +2,27 @@
 import { inject } from 'vue';
 import { PIKey } from '@/constants/Common';
 
-/**
- * Props
- */
+//#region Props
 export interface Props {
   closeOnClick?: boolean;
 }
+
 const props = withDefaults(defineProps<Props>(), {
   closeOnClick: false,
 });
-const closeDropdown = inject(PIKey.CloseDropdown);
+//#endregion
 
+//#region Data
+const closeDropdown = inject(PIKey.CloseDropdown);
+//#endregion
+
+//#region Methods
 const onClick = () => {
   if (props.closeOnClick && closeDropdown) {
     closeDropdown();
   }
 };
+//#endregion
 </script>
 
 <template>

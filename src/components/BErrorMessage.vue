@@ -2,27 +2,26 @@
 import type { ErrorMessageFunction } from '@/types';
 import { computed } from 'vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BErrorMessageProps {
   /**
    * A text or a function returning a text.
    */
   errorMessage?: string | ErrorMessageFunction;
 }
+
 const props = withDefaults(defineProps<BErrorMessageProps>(), {
   errorMessage: '',
 });
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const message = computed(() =>
   typeof props.errorMessage === 'function'
     ? props.errorMessage()
     : props.errorMessage,
 );
+//#endregion
 </script>
 
 <template>

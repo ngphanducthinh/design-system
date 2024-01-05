@@ -9,9 +9,7 @@ import { useI18n } from 'vue-i18n';
 import BErrorMessage from './BErrorMessage.vue';
 import BLabel from './BLabel.vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BTextareaProps {
   inputId?: string;
   inputCssClass?: string;
@@ -39,6 +37,7 @@ export interface BTextareaProps {
    */
   hideDetails?: boolean;
 }
+
 const props = withDefaults(defineProps<BTextareaProps>(), {
   inputId: '',
   inputCssClass: '',
@@ -53,17 +52,20 @@ const props = withDefaults(defineProps<BTextareaProps>(), {
   requiredErrorMessage: '',
   hideDetails: false,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: string];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: string): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const { t } = useI18n();
 const validateRequired: ValidationRule = {
   validateRule: (val: string | number) => {
@@ -112,6 +114,7 @@ const { validate, validationResult } = useValidationField(
   value,
   vRules.value,
 );
+//#endregion
 
 defineExpose({ validate });
 </script>

@@ -2,23 +2,27 @@
 import { BButtonSize, BButtonType } from '@/constants/Enums';
 import { computed } from 'vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BButtonProps {
+  /**
+   * Button type.
+   */
   type?: `${BButtonType}`;
+  /**
+   * Button size.
+   */
   size?: `${BButtonSize}`;
   disabled?: boolean;
 }
+
 const props = withDefaults(defineProps<BButtonProps>(), {
   type: BButtonType.Secondary,
   size: BButtonSize.Medium,
   disabled: false,
 });
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const btnCssClass = computed(() => {
   let result = 'ds-font-semibold ds-text-center ';
   result += 'disabled:ds-cursor-not-allowed ';
@@ -87,6 +91,7 @@ const iconCssClass = computed(() => {
 
   return result;
 });
+//#endregion
 </script>
 
 <template>

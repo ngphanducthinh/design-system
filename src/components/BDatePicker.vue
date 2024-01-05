@@ -35,9 +35,7 @@ import { v4 as uuid } from 'uuid';
 import BErrorMessage from './BErrorMessage.vue';
 import BLabel from './BLabel.vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BDatePickerProps {
   inputId?: string;
   modelValue: any;
@@ -79,6 +77,7 @@ export interface BDatePickerProps {
    */
   position?: string;
 }
+
 const props = withDefaults(defineProps<BDatePickerProps>(), {
   inputId: '',
   label: '',
@@ -95,17 +94,20 @@ const props = withDefaults(defineProps<BDatePickerProps>(), {
   hideDetails: false,
   position: 'bottom left',
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: any];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: any): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const { t, locale } = useI18n();
 const dateFormat = `DD${DateDelimiter}MM${DateDelimiter}YYYY`; // moment's date format
 const currentDate = new Date();
@@ -119,9 +121,6 @@ const validateRequired: ValidationRule = {
 };
 const selectedDate = ref();
 
-/**
- * Computed
- */
 // The "Failed to execute 'querySelector' on Document" error occurs when using querySelector method with an identifier that starts with a digit
 const id = computed(() => props.inputId || `id-${uuid()}`);
 const value = computed({
@@ -345,10 +344,9 @@ const { validate, validationResult } = useValidationField(
   value,
   vRules.value,
 );
+//#endregion
 
-/**
- * Watch
- */
+//#region Watchers
 watch(
   () => props.modelValue,
   () => {
@@ -379,10 +377,9 @@ watch(
     datePicker.update(datePickerOptions.value);
   },
 );
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const formatDate = (date: string | Date) =>
   checkIfISOFormat(date) ? moment(date).format(dateFormat) : date;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -445,10 +442,9 @@ const toggleButtonCofirm = (enabled: boolean) => {
     btnEl?.setAttribute('disabled', '');
   }
 };
+//#endregion
 
-/**
- * Lifecycle hooks
- */
+//#region Lifecycle Hooks
 onMounted(() => {
   // Picker
   datePicker = new AirDatepicker<HTMLInputElement>(
@@ -464,6 +460,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   unlockScrollBody();
 });
+//#endregion
 </script>
 
 <template>

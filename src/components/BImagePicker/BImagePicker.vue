@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-/**
- * Drag & Drop: https://www.w3schools.com/jsref/event_ondragover.asp
- */
+// Drag & Drop: https://www.w3schools.com/jsref/event_ondragover.asp
 import { FileImageTypes } from '@/constants/Common';
 import type { FileItemRead } from '@/types';
 import { isEmpty } from 'lodash-es';
@@ -16,9 +14,7 @@ import BLabel from '../BLabel.vue';
 import BButton from '../BButton.vue';
 import BErrorMessage from '../BErrorMessage.vue';
 
-/**
- * Props
- */
+//#region Props
 export interface Props {
   inputId?: string;
   modelValue: FileItemRead[];
@@ -30,6 +26,7 @@ export interface Props {
   requiredErrorMessage?: string;
   validationRules?: ValidationRule[];
 }
+
 const props = withDefaults(defineProps<Props>(), {
   inputId: '',
   label: '',
@@ -40,18 +37,25 @@ const props = withDefaults(defineProps<Props>(), {
   requiredErrorMessage: '',
   validationRules: undefined,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  change: [];
-  'update:modelValue': [value: FileItemRead[]];
+  /**
+   * Value has been changed
+   * @param e
+   */
+  (e: 'change'): void;
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: FileItemRead[]): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const { t } = useI18n();
 const inputRef = ref<HTMLInputElement | null>(null);
 const draggedIndex = ref(0);
@@ -109,11 +113,9 @@ const { validate, validationResult } = useValidationField(
   value,
   vRules.value,
 );
-defineExpose({ validate });
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 /* Events fired on the drag target */
 const handleDragStart = (index: number, e: DragEvent) => {
   draggedIndex.value = index;
@@ -210,6 +212,9 @@ const preview = (item: FileItemRead) => {
   previewImage.value.url = item.url;
   previewImage.value.visible = true;
 };
+//#endregion
+
+defineExpose({ validate });
 </script>
 
 <template>
@@ -301,17 +306,20 @@ const preview = (item: FileItemRead) => {
     border-radius: theme('borderRadius.lg');
   }
 }
+
 @media (min-width: 640px) {
   .draggable {
     // Minus "gap-2"
     width: calc((100% / 3) - (0.5rem * 2 / 3));
   }
 }
+
 @media (min-width: 768px) {
   .draggable {
     width: calc(25% - (0.5rem * 3 / 4));
   }
 }
+
 @media (min-width: 1280px) {
   .draggable {
     width: calc(20% - (0.5rem * 4 / 5));
@@ -321,6 +329,7 @@ const preview = (item: FileItemRead) => {
 .dragging {
   opacity: theme('opacity.50');
 }
+
 .dropped-target {
   @apply ds-border-2 ds-border-primary-f;
 }

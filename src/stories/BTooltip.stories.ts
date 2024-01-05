@@ -17,6 +17,14 @@ const meta: Meta<typeof BTooltip> = {
       control: 'select',
       options: Object.values(BTooltipOpenEvent) as string[],
     },
+    toggle: {
+      control: 'text',
+      description: 'Toggle',
+    },
+    default: {
+      control: 'text',
+      description: "Tooltip's content",
+    },
   },
   args: {
     position: BTooltipPosition.Top,
@@ -37,15 +45,15 @@ export const Default: Story = {
     template: `
       <div style="height: 200px; padding-top: 16px">
         <BTooltip v-bind="args" v-model="tooltip">
-          <template #toggle>
-            Hover me
-          </template>
-          <template #default>
-            Hello world!
-          </template>
+          <template v-if="args.toggle" #toggle><span v-html="args.toggle" /></template>
+          <template v-if="args.default" #default><span v-html="args.default" /></template>
         </BTooltip>
       </div>
     `,
   }),
-  args: {},
+  args: {
+    toggle: '<b>Hover me!</b>',
+    default:
+      '<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>',
+  },
 };

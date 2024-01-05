@@ -15,9 +15,7 @@ import {
 } from 'vue';
 import { PIKey } from '@/constants/Common';
 
-/**
- * Props
- */
+//#region Props
 export interface BDropdownProps {
   inputId?: string;
   modelValue?: boolean;
@@ -38,8 +36,12 @@ export interface BDropdownProps {
    * Prevent menu from closing when "Esc" pressed
    */
   noCloseOnEsc?: boolean;
+  /**
+   * Enable "fix" position for menu
+   */
   menuFixed?: boolean; // menu position should be fixed when toggle position is fixed
 }
+
 const props = withDefaults(defineProps<BDropdownProps>(), {
   inputId: '',
   modelValue: undefined,
@@ -50,19 +52,30 @@ const props = withDefaults(defineProps<BDropdownProps>(), {
   noCloseOnEsc: false,
   menuFixed: false,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: boolean];
-  hidden: [];
-  shown: [];
+  /**
+   * Menu is hidden
+   * @param e
+   */
+  (e: 'hidden'): void;
+  /**
+   * Menu is shown
+   * @param e
+   */
+  (e: 'shown'): void;
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: boolean): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const toggle = ref<HTMLElement | null>(null);
 const dropdown = ref<HTMLElement | null>(null);
 const dropdownMenu = ref<HTMLElement | null>(null);
@@ -80,10 +93,9 @@ const value = computed({
     }
   },
 });
+//#endregion
 
-/**
- * Watch
- */
+//#region Watchers
 watch(value, (val) => {
   if (val) {
     ensureMenuPosition();
@@ -92,10 +104,6 @@ watch(value, (val) => {
     toggle.value?.blur();
   }
 });
-
-/**
- * Watch
- */
 watch(
   () => props.noCloseOnClickOutside,
   (val) => {
@@ -106,7 +114,6 @@ watch(
     }
   },
 );
-
 watch(
   () => props.noCloseOnEsc,
   (val) => {
@@ -117,10 +124,9 @@ watch(
     }
   },
 );
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const initPressEscapeEventListener = () => {
   document.addEventListener('keydown', closeOnEscapePressed);
 };
@@ -165,10 +171,9 @@ const removePressEscapeEventListener = () => {
 const removeClickOutsideEventListener = () => {
   document.removeEventListener('click', closeOnClickOutside);
 };
+//#endregion
 
-/**
- * Lifecycle Hooks
- */
+//#region Lifecycle Hooks
 onMounted(() => {
   if (!props.noCloseOnEsc) {
     initPressEscapeEventListener();
@@ -183,10 +188,8 @@ onBeforeUnmount(() => {
   // Make sure dropdown menu unmounted with itself
   resetMenuPosition();
 });
+//#endregion
 
-/**
- * Provide
- */
 provide(PIKey.CloseDropdown, close);
 </script>
 

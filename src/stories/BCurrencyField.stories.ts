@@ -6,17 +6,21 @@ const meta: Meta<typeof BCurrencyField> = {
   title: 'Components/CurrencyField',
   component: BCurrencyField,
   tags: ['autodocs'],
-  // https://storybook.js.org/docs/react/essentials/controls
-  argTypes: {},
+  argTypes: {
+    prependIcon: {
+      control: 'text',
+      description: 'Prepend icon',
+    },
+    appendIcon: {
+      control: 'text',
+      description: 'Append icon',
+    },
+  },
   args: {
     inputId: '',
     inputCssClass: '',
     validationRules: undefined,
     label: '',
-    prependIcon: '',
-    hidePrependIcon: false,
-    appendIcon: '',
-    hideAppendIcon: false,
     placeholder: '',
     autocomplete: false,
     disabled: false,
@@ -38,10 +42,18 @@ export const Default: Story = {
       return { args, amount };
     },
     template: `
-      <BCurrencyField v-bind="args"  v-model="amount" />
+      <BCurrencyField v-bind="args" v-model="amount">
+        <template v-if="args.prependIcon" #prependIcon><span v-html="args.prependIcon" /></template>
+        <template v-if="args.appendIcon" #appendIcon><span v-html="args.appendIcon" /></template>
+      </BCurrencyField>
+      <div style="font-size: 0.75rem; color: gray; margin-top: 1rem">
+        <b>FontAwesome v6.1.0 - Solid</b> has been imported already & can be used for demo.
+      </div>
     `,
   }),
   args: {
     modelValue: '',
+    prependIcon: '<i class="fa-solid fa-money-bills" />',
+    appendIcon: '',
   },
 };

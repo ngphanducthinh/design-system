@@ -8,9 +8,7 @@ import { v4 as uuid } from 'uuid';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-/**
- * Props
- */
+//#region Props
 export interface BRadioProps {
   inputId?: string;
   modelValue?: string | number | boolean;
@@ -32,6 +30,7 @@ export interface BRadioProps {
   required?: boolean;
   requiredErrorMessage?: string;
 }
+
 const props = withDefaults(defineProps<BRadioProps>(), {
   inputId: '',
   modelValue: '',
@@ -44,18 +43,21 @@ const props = withDefaults(defineProps<BRadioProps>(), {
   required: false,
   requiredErrorMessage: '',
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  change: [];
-  'update:modelValue': [value: string | number | boolean];
+  (e: 'change'): void;
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: string | number | boolean): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const { t } = useI18n();
 const validateRequired: ValidationRule = {
   validateRule: (val: string) => !!(val && val.trim()),
@@ -89,14 +91,14 @@ const { validate, validationResult } = useValidationField(
   value,
   vRules.value,
 );
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const onChange = () => {
   emit('change');
   validate();
 };
+//#endregion
 </script>
 
 <template>

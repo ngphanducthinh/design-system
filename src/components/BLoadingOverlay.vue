@@ -3,22 +3,20 @@ import { BLoadingOverlaySpinnerSize } from '@/constants/Enums';
 import { computed } from 'vue';
 import BOverlay from './BOverlay.vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BLoadingOverlayProps {
   loading: boolean;
   absolute?: boolean;
   spinnerSize?: `${BLoadingOverlaySpinnerSize}`;
 }
+
 const props = withDefaults(defineProps<BLoadingOverlayProps>(), {
   absolute: false,
   spinnerSize: BLoadingOverlaySpinnerSize.Medium,
 });
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const overlayCssClass = computed(() => {
   let result = props.absolute ? `ds-absolute ` : `ds-fixed `;
   return result;
@@ -40,6 +38,7 @@ const spinnerCssClass = computed(() => {
 
   return result;
 });
+//#endregion
 </script>
 <template>
   <Teleport v-if="!props.absolute" to="body">

@@ -2,30 +2,31 @@
 import { BToastItemType } from '@/constants/Enums';
 import { computed } from 'vue';
 
-/**
- * Props
- */
+//#region Props
 export interface Props {
   text?: string;
   type?: `${BToastItemType}`;
   hideClose?: boolean;
 }
+
 const props = withDefaults(defineProps<Props>(), {
   text: '',
   type: BToastItemType.Default,
   hideClose: false,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  close: [];
+  /**
+   * Item is closed
+   * @param e
+   */
+  (e: 'close'): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const cssClass = computed<string>(() => {
   let result = `ds-flex ds-items-center ds-w-80 ds-px-4 ds-py-5 ds-rounded-lg ds-shadow-2xl `;
 
@@ -43,6 +44,7 @@ const cssClass = computed<string>(() => {
 
   return result;
 });
+//#endregion
 </script>
 
 <template>

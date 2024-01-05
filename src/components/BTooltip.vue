@@ -14,6 +14,7 @@ export interface BTooltipProps {
    */
   openEvent?: `${BTooltipOpenEvent}`;
 }
+
 const props = withDefaults(defineProps<BTooltipProps>(), {
   modelValue: false,
   position: BTooltipPosition.Top,
@@ -23,7 +24,12 @@ const props = withDefaults(defineProps<BTooltipProps>(), {
 
 //#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: boolean];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: boolean): void;
 }>();
 //#endregion
 
@@ -126,7 +132,7 @@ const clearEventListeners = () => {
 };
 //#endregion
 
-//#region Lifecycle hooks
+//#region Lifecycle Hooks
 onMounted(() => {
   ensureEventListeners();
   ensureContentPosition();
@@ -139,7 +145,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="toggleRef" class="ds-inline">
-    <slot name="toggle"> </slot>
+    <slot name="toggle"></slot>
   </div>
 
   <div v-show="value" class="ds-relative">

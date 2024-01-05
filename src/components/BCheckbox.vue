@@ -3,9 +3,7 @@ import { BCheckboxSize } from '@/constants/Enums';
 import { v4 as uuid } from 'uuid';
 import { computed } from 'vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BCheckboxProps {
   inputId?: string;
   inputCssClass?: string;
@@ -18,6 +16,7 @@ export interface BCheckboxProps {
   disabled?: boolean;
   size?: `${BCheckboxSize}`;
 }
+
 const props = withDefaults(defineProps<BCheckboxProps>(), {
   inputId: '',
   inputCssClass: '',
@@ -27,17 +26,20 @@ const props = withDefaults(defineProps<BCheckboxProps>(), {
   disabled: false,
   size: BCheckboxSize.Medium,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: boolean | Array<string | number>];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: boolean | Array<string | number>): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const SiblingCssClass = `
   peer-checked:ds-text-transparent peer-checked:ds-bg-gradient-to-r peer-checked:ds-from-primary-f-stop peer-checked:ds-from-primary-f peer-checked:ds-to-primary-t
   peer-checked:after:ds-opacity-100
@@ -72,6 +74,7 @@ const inputCssClassValue = computed(() => [
     'ds-cursor-not-allowed': props.disabled,
   },
 ]);
+//#endregion
 
 /**
  * Customize checkbox styles, need to hide input tag and style an label which stands for that input
@@ -146,6 +149,7 @@ const inputCssClassValue = computed(() => [
       min-width: theme('width.5');
       min-height: theme('height.5');
     }
+
     .input-label {
       width: theme('width.5');
       height: theme('height.5');

@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { RequiredSymbol } from '@/constants/Common';
 
-/**
- * Props
- */
+//#region Props
 export interface BLabelProps {
   id?: string;
   label?: string;
@@ -12,11 +10,13 @@ export interface BLabelProps {
    */
   required?: boolean;
 }
+
 const props = withDefaults(defineProps<BLabelProps>(), {
   id: '',
   label: '',
   required: false,
 });
+//#endregion
 </script>
 
 <template>

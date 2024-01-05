@@ -3,17 +3,15 @@ import type { BToastItemModel } from '@/types';
 import { computed } from 'vue';
 import BToastItem from './BToastItem.vue';
 
-/**
- * Props
- */
+//#region Props
 export interface Props {
   modelValue: BToastItemModel[];
 }
-const props = withDefaults(defineProps<Props>(), {});
 
-/**
- * Data
- */
+const props = withDefaults(defineProps<Props>(), {});
+//#endregion
+
+//#region Data
 const value = computed({
   get() {
     return props.modelValue;
@@ -22,20 +20,24 @@ const value = computed({
     emit('update:modelValue', val);
   },
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: BToastItemModel[]];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: BToastItemModel[]): void;
 }>();
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const onCloseToastItem = (i: number) => {
   value.value.splice(i, 1);
 };
+//#endregion
 </script>
 
 <template>

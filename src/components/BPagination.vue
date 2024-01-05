@@ -2,9 +2,7 @@
 import { BPaginationSize } from '@/constants/Enums';
 import { computed } from 'vue';
 
-/**
- * Props
- */
+//#region Props
 export interface BPaginationProps {
   /**
    * Start by 1.
@@ -21,23 +19,32 @@ export interface BPaginationProps {
   transparent?: boolean;
   size?: `${BPaginationSize}`;
 }
+
 const props = withDefaults(defineProps<BPaginationProps>(), {
   border: false,
   transparent: false,
   size: BPaginationSize.Medium,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  change: [value: number];
-  'update:modelValue': [value: number];
+  /**
+   * Value is changed
+   * @param e
+   * @param value
+   */
+  (e: 'change', value: number): void;
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: number): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const First = 1;
 const EllipsisText = '...';
 const value = computed({
@@ -69,10 +76,9 @@ const paginationItemClass = computed(() => {
 
   return result;
 });
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const clickPage = (page: number) => {
   value.value = page;
   // Emitted when page changes via user interaction
@@ -97,6 +103,7 @@ const getActiveClass = (isActive: boolean = true) => {
         props.transparent ? 'ds-bg-transparent' : 'ds-bg-white'
       }`;
 };
+//#endregion
 </script>
 
 <template>

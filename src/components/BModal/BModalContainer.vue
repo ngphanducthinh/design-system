@@ -3,30 +3,27 @@ import { BModalSize } from '@/constants/Enums';
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import BOverlay from '../BOverlay.vue';
 
-/**
- * Props
- */
+//#region Props
 export interface Props {
   size?: BModalSize;
   fullscreen?: boolean;
   persistent?: boolean;
 }
+
 const props = withDefaults(defineProps<Props>(), {
   size: BModalSize.Medium,
   fullscreen: false,
   persistent: false,
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  close: [];
+  (e: 'close'): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const modalWrapperContentRef = ref<HTMLDivElement | null>(null);
 const modalWrapperCssClass = computed(() => {
   let result = `ds-relative ds-w-full ds-h-auto ds-m-auto ds-flex ds-items-center `;
@@ -57,10 +54,9 @@ const modalWrapperContentCssClass = computed(() => {
 
   return result;
 });
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const initPressEscapeEventListener = () => {
   document.addEventListener('keydown', closeOnEscapePressed);
 };
@@ -79,10 +75,9 @@ const closeOnClickOutside = (event: any) => {
     emit('close');
   }
 };
+//#endregion
 
-/**
- * Lifecycle Hooks
- */
+//#region Lifecycle Hooks
 onMounted(() => {
   if (!props.persistent) {
     setTimeout(() => {
@@ -97,6 +92,7 @@ onBeforeUnmount(() => {
     document.removeEventListener('click', closeOnClickOutside);
   }
 });
+//#endregion
 </script>
 
 <template>

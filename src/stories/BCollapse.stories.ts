@@ -27,11 +27,13 @@ export const Default: Story = {
       <BCollapse v-bind="args" v-model="expansion">
         <div style="
           margin-top: 1rem;
-          padding: 1rem; 
-          border-radius: 0.5rem; 
-          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06)"
+          padding: 1rem;
+          border: 1px solid gray;
+          border-radius: 1rem;
+        "
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis dolores exercitationem in ipsum mollitia
+          officiis quos unde. Beatae earum, iure libero non nulla omnis quasi quia, ratione reprehenderit totam vel?
         </div>
       </BCollapse>
     `,

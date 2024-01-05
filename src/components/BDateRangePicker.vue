@@ -34,9 +34,7 @@ import { checkIfISOFormat } from '@/helpers/DateHelper';
 import moment from 'moment-mini';
 import { DateDelimiter } from '@/constants/Common';
 
-/**
- * Props
- */
+//#region Props
 export interface BDateRangePickerProps {
   inputId?: string;
   modelValue: Date[];
@@ -74,6 +72,7 @@ export interface BDateRangePickerProps {
    */
   position?: string;
 }
+
 const props = withDefaults(defineProps<BDateRangePickerProps>(), {
   inputId: '',
   label: '',
@@ -89,17 +88,20 @@ const props = withDefaults(defineProps<BDateRangePickerProps>(), {
   hideDetails: false,
   position: 'bottom left',
 });
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: Date[]];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: Date[]): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const { t, locale } = useI18n();
 const dateFormat = `DD${DateDelimiter}MM${DateDelimiter}YYYY`; // moment's date format
 let datePicker: AirDatepicker<HTMLInputElement>;
@@ -110,9 +112,6 @@ const validateRequired: ValidationRule = {
 };
 const selectedDate = ref();
 
-/**
- * Computed
- */
 // The "Failed to execute 'querySelector' on Document" error occurs when using querySelector method with an identifier that starts with a digit
 const id = computed(() => props.inputId || `id-${uuid()}`);
 const value = computed({
@@ -296,10 +295,9 @@ const { validate, validationResult } = useValidationField(
   value,
   vRules.value,
 );
+//#endregion
 
-/**
- * Watch
- */
+//#region Watchers
 watch(
   () => props.modelValue,
   () => {
@@ -325,10 +323,9 @@ watch(
     datePicker.update(datePickerOptions.value);
   },
 );
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const checkIfValidDateValue = (d: Date[]) => d?.length === 2;
 const formatDate = (date: string | Date) =>
   checkIfISOFormat(date) ? moment(date).format(dateFormat) : date;
@@ -364,10 +361,9 @@ const toggleButtonConfirm = (enabled: boolean) => {
     btnEl?.setAttribute('disabled', '');
   }
 };
+//#endregion
 
-/**
- * Lifecycle hooks
- */
+//#region Lifecycle Hooks
 onMounted(() => {
   datePicker = new AirDatepicker<HTMLInputElement>(
     `#${id.value}Picker`,
@@ -377,6 +373,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   unlockScrollBody();
 });
+//#endregion
 </script>
 
 <template>

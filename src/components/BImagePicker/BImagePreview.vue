@@ -10,25 +10,27 @@ import BImagePickerCloseButton from './BImagePickerCloseButton.vue';
 import { lockScrollBody, unlockScrollBody } from '@/helpers/ComponentHelper';
 import BOverlay from '../BOverlay.vue';
 
-/**
- * Props
- */
+//#region Props
 export interface Props {
   modelValue: boolean;
   url: string;
 }
+
 const props = withDefaults(defineProps<Props>(), {});
+//#endregion
 
-/**
- * Events
- */
+//#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: boolean];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: boolean): void;
 }>();
+//#endregion
 
-/**
- * Data
- */
+//#region Data
 const value = computed({
   get() {
     return props.modelValue;
@@ -37,10 +39,9 @@ const value = computed({
     emit('update:modelValue', val);
   },
 });
+//#endregion
 
-/**
- * Watch
- */
+//#region Watchers
 watch(value, (val: boolean) => {
   if (val) {
     lockScrollBody();
@@ -48,10 +49,9 @@ watch(value, (val: boolean) => {
     unlockScrollBody();
   }
 });
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const closePreview = () => {
   value.value = false;
 };
@@ -60,16 +60,16 @@ const closeOnEscapePressed = (event: KeyboardEvent) => {
     closePreview();
   }
 };
+//#endregion
 
-/**
- * Lifecycle hooks
- */
+//#region Lifecycle Hooks
 onMounted(() => {
   document.addEventListener('keydown', closeOnEscapePressed);
 });
 onBeforeUnmount(() => {
   document.removeEventListener('keydown', closeOnEscapePressed);
 });
+//#endregion
 </script>
 
 <template>

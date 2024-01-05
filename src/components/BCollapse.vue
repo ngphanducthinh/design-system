@@ -6,12 +6,18 @@ import { computed } from 'vue';
 export interface BCollapseProps {
   modelValue: boolean;
 }
+
 const props = defineProps<BCollapseProps>();
 //#endregion
 
 //#region Events
 const emit = defineEmits<{
-  'update:modelValue': [value: boolean];
+  /**
+   * Update value
+   * @param e
+   * @param value
+   */
+  (e: 'update:modelValue', value: boolean): void;
 }>();
 //#endregion
 

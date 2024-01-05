@@ -6,7 +6,16 @@ const meta: Meta<typeof BDropdown> = {
   component: BDropdown,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls
-  // argTypes: {},
+  argTypes: {
+    toggle: {
+      control: 'text',
+      description: 'Toggle',
+    },
+    default: {
+      control: 'text',
+      description: 'Content',
+    },
+  },
   args: {
     inputId: '',
     label: '',
@@ -40,13 +49,11 @@ export const Default: Story = {
     },
     template: `
       <BDropdown v-bind="args" toggle-css-class="ds-rounded-xl ds-bg-gray-200 ds-px-4 ds-py-2 ">
-        <template #toggle>
-          <i class="fa fa-chevron-double-down" />
-        </template>
-        
+        <template v-if="args.toggle" #toggle><span v-html="args.toggle" /></template>
+
         <template #default>
           <BDropdownContent>
-            <BDropdownItem v-for="(item, i) in items" :key="'item' + i"  close-on-click class="ds-space-x-2">
+            <BDropdownItem v-for="(item, i) in items" :key="'item' + i" close-on-click class="ds-space-x-2">
               <i :class="item.icon" class="w-6"></i>
               <span class="font-bold"> {{ item.text }} </span>
             </BDropdownItem>
@@ -55,5 +62,7 @@ export const Default: Story = {
       </BDropdown>
     `,
   }),
-  args: {},
+  args: {
+    toggle: '<i class="fa-solid fa-chevron-down" />',
+  },
 };
