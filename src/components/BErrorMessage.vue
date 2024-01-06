@@ -26,8 +26,10 @@ const message = computed(() =>
 
 <template>
   <div class="ds-min-h-[1rem]">
-    <div v-if="message" class="ds-text-xs ds-text-red-500">
-      {{ message }}
+    <div v-if="message || $slots.default" class="ds-text-xs ds-text-red-500">
+      <slot>
+        {{ message }}
+      </slot>
     </div>
   </div>
 </template>

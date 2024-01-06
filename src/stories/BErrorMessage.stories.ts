@@ -13,7 +13,12 @@ const meta: Meta<typeof BErrorMessage> = {
   component: BErrorMessage,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls
-  // argTypes: {},
+  argTypes: {
+    default: {
+      control: 'text',
+      description: 'Error message',
+    },
+  },
   args: {
     errorMessage: 'This is an error message.',
   },
@@ -29,7 +34,10 @@ export const Default: Story = {
       return { args };
     },
     template: `
-      <BErrorMessage v-bind="args"  />
+      <BErrorMessage v-if="args.default" v-bind="args">
+        <span v-html="args.default" />
+      </BErrorMessage>
+      <BErrorMessage v-else v-bind="args" />
     `,
   }),
   args: {},

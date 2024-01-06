@@ -30,7 +30,7 @@ export const Default: Story = {
       <div style="height: 400px">
         <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</div>
         <BOverlay v-bind="args">
-          <span class="ds-text-white">Overlay's content...</span>
+          <i class="fa-solid fa-wrench ds-text-4xl ds-text-white" />
         </BOverlay>
       </div>
     `,
