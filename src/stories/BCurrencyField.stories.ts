@@ -4,6 +4,14 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BCurrencyField> = {
   title: 'Components/CurrencyField',
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The <code>BCurrencyField</code> component is used for inputting money.',
+      },
+    },
+  },
   component: BCurrencyField,
   tags: ['autodocs'],
   argTypes: {

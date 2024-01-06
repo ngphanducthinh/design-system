@@ -4,6 +4,14 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BTimeline> = {
   title: 'Components/Timeline',
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The <code>BTimeline</code> component is used for stylistically displaying chronological information.',
+      },
+    },
+  },
   component: BTimeline,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

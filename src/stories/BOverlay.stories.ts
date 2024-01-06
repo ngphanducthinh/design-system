@@ -3,6 +3,13 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof BOverlay> = {
   title: 'Components/Overlay',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BOverlay</code> is used for displaying an overlay.`,
+      },
+    },
+  },
   component: BOverlay,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

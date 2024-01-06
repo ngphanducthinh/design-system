@@ -3,6 +3,13 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof BDropdown> = {
   title: 'Components/Dropdown',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BDropdown</code> component is used for opening a custom menu by user's click.`,
+      },
+    },
+  },
   component: BDropdown,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

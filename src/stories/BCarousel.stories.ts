@@ -3,6 +3,13 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof BCarousel> = {
   title: 'Components/Carousel',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BCarousel</code> component is used to display large numbers of visual content on a rotating timer.`,
+      },
+    },
+  },
   component: BCarousel,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls
@@ -28,18 +35,21 @@ export const Default: Story = {
   render: (args: any) => ({
     components: { BCarousel, BCarouselItem },
     setup() {
-      const carouselSlides = [
-        'https://wallpapers.com/images/hd/river-and-trees-nature-227nqf2r0aa2xguq.webp',
-        'https://wallpapers.com/images/hd/lake-in-the-forest-nature-xavnq3nwry0es5if.webp',
-        'https://wallpapers.com/images/hd/attractive-lake-nature-pczghhhvhzi0yf7t.webp',
-      ];
-
-      return { args, carouselSlides };
+      return { args };
     },
     template: `
       <BCarousel v-bind="args" style="height: 400px">
-        <BCarouselItem v-for="(slide, index) in carouselSlides" :key="index">
-          <img :src="slide" class="rounded-lg object-cover" alt="" />
+        <BCarouselItem>
+          <div class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/hd/elegant-feline-in-soft-natural-light-00nbm86akvtczty6.webp')]" />
+        </BCarouselItem>
+        <BCarouselItem>
+          <div class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/hd/colorful-love-birds-0ctuhn6r2rubq7v3.webp')]" />
+        </BCarouselItem>
+        <BCarouselItem>
+          <div class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/high/dog-underwater-swimming-2siawk4nemp214kj.webp')]" />
+        </BCarouselItem>
+        <BCarouselItem>
+          <div class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/high/three-teen-lions-9xiimjysh7htjow3.webp')]" />
         </BCarouselItem>
       </BCarousel>
     `,

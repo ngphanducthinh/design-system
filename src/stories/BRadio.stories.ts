@@ -4,6 +4,13 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BRadio> = {
   title: 'Components/Radio',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BRadio</code> component is a simple radio button.`,
+      },
+    },
+  },
   component: BRadio,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

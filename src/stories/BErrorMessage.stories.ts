@@ -3,6 +3,13 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof BErrorMessage> = {
   title: 'Components/ErrorMessage',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BErrorMessage</code> component is used for displaying error message.`,
+      },
+    },
+  },
   component: BErrorMessage,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

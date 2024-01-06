@@ -4,6 +4,13 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BMultiSelect> = {
   title: 'Components/MultiSelect',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BMultiSelect</code> is used for collecting user provided information by picking multiple items from a list of options.`,
+      },
+    },
+  },
   component: BMultiSelect,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

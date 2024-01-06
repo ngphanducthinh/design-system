@@ -4,6 +4,13 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BTextarea> = {
   title: 'Components/Textarea',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BTextarea</code> component is used for collecting large amounts of textual data.`,
+      },
+    },
+  },
   component: BTextarea,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

@@ -5,6 +5,13 @@ import { watch } from 'vue';
 
 const meta: Meta<typeof BLoadingOverlay> = {
   title: 'Components/LoadingOverlay',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BLoadingOverlay</code> component is used for displaying a loading overlay.`,
+      },
+    },
+  },
   component: BLoadingOverlay,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

@@ -4,6 +4,13 @@ import { ref, watch } from 'vue';
 
 const meta: Meta<typeof BOtpField> = {
   title: 'Components/OtpField',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BOtpField</code> is used for inputting OTP.`,
+      },
+    },
+  },
   component: BOtpField,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

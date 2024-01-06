@@ -4,6 +4,13 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BTabs> = {
   title: 'Components/Tabs',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BTabs</code> component is used for hiding content behind a selectable item.`,
+      },
+    },
+  },
   component: BTabs,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

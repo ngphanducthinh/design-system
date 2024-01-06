@@ -9,7 +9,7 @@ const meta: Meta<typeof BTextField> = {
     docs: {
       description: {
         component:
-          'Text field components are used for collecting user provided information.',
+          'The <code>BTextField</code> component is used for collecting user provided information.',
       },
     },
   },

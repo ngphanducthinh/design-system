@@ -5,6 +5,13 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BPagination> = {
   title: 'Components/Pagination',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BPagination</code> component is used to separate long sets of data so that it is easier for a user to consume information.`,
+      },
+    },
+  },
   component: BPagination,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

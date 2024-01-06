@@ -5,6 +5,13 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
 const meta: Meta<typeof BCheckbox> = {
   title: 'Components/Checkbox',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BCheckbox</code> component provides users the ability to choose between two distinct values. These are very similar to a switch and can be used in complex forms and checklists.`,
+      },
+    },
+  },
   component: BCheckbox,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   tags: ['autodocs'],

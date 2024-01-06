@@ -5,6 +5,14 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BTooltip> = {
   title: 'Components/Tooltip',
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The <code>BTooltip</code> component is used for conveying information when a user hovers over an element.',
+      },
+    },
+  },
   component: BTooltip,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

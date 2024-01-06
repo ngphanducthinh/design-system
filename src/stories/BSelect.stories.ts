@@ -4,6 +4,13 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BSelect> = {
   title: 'Components/Select',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BSelect</code> is used for collecting user provided information by picking single item from a list of options.`,
+      },
+    },
+  },
   component: BSelect,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

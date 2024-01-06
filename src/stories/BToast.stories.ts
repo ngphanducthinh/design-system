@@ -5,6 +5,14 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BToast> = {
   title: 'Components/Toast',
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'The <code>BToast</code> component is used for displaying a quick message to a user.',
+      },
+    },
+  },
   component: BToast,
   tags: ['autodocs'],
   // argTypes: {},

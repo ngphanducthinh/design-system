@@ -5,6 +5,13 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BDateRangePicker> = {
   title: 'Components/DateRangePicker',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BDateRangePicker</code> component is a fully featured date selection component that lets users select a range of dates.`,
+      },
+    },
+  },
   component: BDateRangePicker,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

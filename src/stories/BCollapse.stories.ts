@@ -4,6 +4,13 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BCollapse> = {
   title: 'Components/Collapse',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BCollapse</code> component is useful for reducing vertical space with large amounts of information.`,
+      },
+    },
+  },
   component: BCollapse,
   tags: ['autodocs'],
   // argTypes: {},

@@ -11,6 +11,13 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BModal> = {
   title: 'Components/Modal',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BModal</code> component inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.`,
+      },
+    },
+  },
   component: BModal,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

@@ -5,6 +5,13 @@ import { ref } from 'vue';
 
 const meta: Meta<typeof BDatePicker> = {
   title: 'Components/DatePicker',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BDatePicker</code> component is a fully featured date selection component that lets users select a date.`,
+      },
+    },
+  },
   component: BDatePicker,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

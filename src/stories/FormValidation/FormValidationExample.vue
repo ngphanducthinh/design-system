@@ -19,7 +19,7 @@ const submit = () => {
 </script>
 
 <template>
-  <div class="ds-flex ds-flex-wrap ds-gap-1">
+  <div class="ds-flex ds-flex-wrap ds-gap-3">
     <slot />
 
     <div class="ds-flex ds-w-full ds-justify-end">

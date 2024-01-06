@@ -3,6 +3,13 @@ import type { Meta, StoryObj } from '@storybook/vue3';
 
 const meta: Meta<typeof BLoadingBar> = {
   title: 'Components/LoadingBar',
+  parameters: {
+    docs: {
+      description: {
+        component: `The <code>BLoadingBar</code> component is used for displaying a loading bar.`,
+      },
+    },
+  },
   component: BLoadingBar,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls

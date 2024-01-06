@@ -8,8 +8,7 @@ const meta: Meta<typeof BButton> = {
   parameters: {
     docs: {
       description: {
-        component:
-          'The BButton component with multitude of options replaces the standard html button.',
+        component: `The <code>BButton</code> component with multitude of options replaces the standard html button.`,
       },
     },
   },
