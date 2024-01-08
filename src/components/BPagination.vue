@@ -30,13 +30,13 @@ const props = withDefaults(defineProps<BPaginationProps>(), {
 //#region Events
 const emit = defineEmits<{
   /**
-   * Value is changed
+   * Value is changed, param: <code>value: number</code>
    * @param e
    * @param value
    */
   (e: 'change', value: number): void;
   /**
-   * Update value
+   * Update value, param: <code>value: number</code>
    * @param e
    * @param value
    */

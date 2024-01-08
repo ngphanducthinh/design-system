@@ -10,6 +10,7 @@
 .tab {
   display: none;
 }
+
 .tab.active {
   display: block;
 }

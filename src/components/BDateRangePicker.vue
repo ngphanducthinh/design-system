@@ -93,7 +93,7 @@ const props = withDefaults(defineProps<BDateRangePickerProps>(), {
 //#region Events
 const emit = defineEmits<{
   /**
-   * Update value
+   * Update value, param <code>value: Date[]</code>
    * @param e
    * @param value
    */

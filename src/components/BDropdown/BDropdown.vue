@@ -67,7 +67,7 @@ const emit = defineEmits<{
    */
   (e: 'shown'): void;
   /**
-   * Update value
+   * Update value, param: <code>value: boolean</code>
    * @param e
    * @param value
    */

@@ -99,7 +99,7 @@ const props = withDefaults(defineProps<BDatePickerProps>(), {
 //#region Events
 const emit = defineEmits<{
   /**
-   * Update value
+   * Update value, param <code>value: any</code>
    * @param e
    * @param value
    */

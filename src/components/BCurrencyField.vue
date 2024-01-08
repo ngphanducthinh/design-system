@@ -52,7 +52,7 @@ const emit = defineEmits<{
    */
   (e: 'press:enter'): void;
   /**
-   * Update value
+   * Update value, param <code>value: number</code>
    * @param e
    * @param value
    */

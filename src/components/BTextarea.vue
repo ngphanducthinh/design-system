@@ -57,7 +57,7 @@ const props = withDefaults(defineProps<BTextareaProps>(), {
 //#region Events
 const emit = defineEmits<{
   /**
-   * Update value
+   * Update value, param: <code>value: string</code>
    * @param e
    * @param value
    */

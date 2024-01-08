@@ -13,7 +13,7 @@ const props = defineProps<BCollapseProps>();
 //#region Events
 const emit = defineEmits<{
   /**
-   * Update value
+   * Update value, param <code>value: boolean</code>
    * @param e
    * @param value
    */

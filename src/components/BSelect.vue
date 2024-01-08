@@ -71,7 +71,7 @@ const props = withDefaults(defineProps<BSelectProps>(), {
 //#region Events
 const emit = defineEmits<{
   /**
-   * Value is changed
+   * Value is changed, param: <code>value: string | number</code>
    * @param e
    * @param value
    */
@@ -87,13 +87,13 @@ const emit = defineEmits<{
    */
   (e: 'close'): void;
   /**
-   * Input value for searching is changed
+   * Input value for searching is changed, param: <code>inputValue: string</code>
    * @param e
    * @param inputValue
    */
   (e: 'change:input', inputValue: string): void;
   /**
-   * Update value
+   * Update value, param: <code>value: string | number</code>
    * @param e
    * @param value
    */

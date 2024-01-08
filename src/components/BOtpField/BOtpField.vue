@@ -57,25 +57,25 @@ const props = withDefaults(defineProps<BOtpFieldProps>(), {
 //#region Events
 const emit = defineEmits<{
   /**
-   * OTP is completed
+   * OTP is completed, param: <code>value: string</code>
    * @param e
    * @param value
    */
   (e: 'complete', value: string): void;
   /**
-   * OTP is changed
+   * OTP is changed, param: <code>value: string</code>
    * @param e
    * @param value
    */
   (e: 'change', value: string): void;
   /**
-   * Update focus index
+   * Update focus index, param: <code>index: number</code>
    * @param e
    * @param index
    */
   (e: 'update:focusIndex', index: number): void;
   /**
-   * Update value
+   * Update value, param: <code>value: string</code>
    * @param e
    * @param value
    */

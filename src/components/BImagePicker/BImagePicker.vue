@@ -47,7 +47,7 @@ const emit = defineEmits<{
    */
   (e: 'change'): void;
   /**
-   * Update value
+   * Update value, param: <code>value: FileItemRead[]</code>
    * @param e
    * @param value
    */

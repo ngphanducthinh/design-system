@@ -7,6 +7,8 @@
         class="-ds-ml-[25px] ds-h-4 ds-w-4 ds-rounded-full ds-bg-primary-f"
       />
     </div>
-    <div class="ds-flex-auto"><slot /></div>
+    <div class="ds-flex-auto">
+      <slot />
+    </div>
   </li>
 </template>

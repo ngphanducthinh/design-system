@@ -94,13 +94,13 @@ const emit = defineEmits<{
    */
   (e: 'close'): void;
   /**
-   * Input value for searching is changed
+   * Input value for searching is changed, param: <code>inputValue: string</code>
    * @param e
    * @param inputValue
    */
   (e: 'change:input', inputValue: string): void;
   /**
-   * Update value
+   * Update value, param: <code>value: Array<string | number></code>
    * @param e
    * @param value
    */

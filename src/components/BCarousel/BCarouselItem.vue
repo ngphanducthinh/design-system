@@ -27,14 +27,17 @@
 .slide-in {
   animation: slide-in 0.5s forwards;
 }
+
 .slide-out {
   animation: slide-out 0.5s forwards;
 }
+
 @keyframes slide-in {
   100% {
     transform: translateX(0%);
   }
 }
+
 @keyframes slide-out {
   0% {
     transform: translateX(0%);
@@ -47,14 +50,17 @@
 .slide-in-reverse {
   animation: slide-in-reverse 0.5s forwards;
 }
+
 .slide-out-reverse {
   animation: slide-out-reverse 0.5s forwards;
 }
+
 @keyframes slide-in-reverse {
   100% {
     transform: translateX(0%);
   }
 }
+
 @keyframes slide-out-reverse {
   0% {
     transform: translateX(0%);

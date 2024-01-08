@@ -31,7 +31,7 @@ const props = withDefaults(defineProps<BCheckboxProps>(), {
 //#region Events
 const emit = defineEmits<{
   /**
-   * Update value
+   * Update value, param: <code>value: boolean | Array<string | number></code>
    * @param e
    * @param value
    */

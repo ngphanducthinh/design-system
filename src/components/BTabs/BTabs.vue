@@ -28,7 +28,7 @@ const props = withDefaults(defineProps<BTabsProps>(), {
 //#region Events
 const emit = defineEmits<{
   /**
-   * Update value
+   * Update value, param: <code>value: number</code>
    * @param e
    * @param value
    */

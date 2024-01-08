@@ -16,7 +16,7 @@ const meta: Meta<typeof BCarousel> = {
   argTypes: {
     modelValue: {
       control: 'select',
-      options: [0, 1, 2],
+      options: [0, 1, 2, 3],
     },
   },
   args: {
@@ -40,16 +40,20 @@ export const Default: Story = {
     template: `
       <BCarousel v-bind="args" style="height: 400px">
         <BCarouselItem>
-          <div class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/hd/elegant-feline-in-soft-natural-light-00nbm86akvtczty6.webp')]" />
+          <div
+            class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/hd/elegant-feline-in-soft-natural-light-00nbm86akvtczty6.webp')]" />
         </BCarouselItem>
         <BCarouselItem>
-          <div class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/hd/colorful-love-birds-0ctuhn6r2rubq7v3.webp')]" />
+          <div
+            class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/hd/colorful-love-birds-0ctuhn6r2rubq7v3.webp')]" />
         </BCarouselItem>
         <BCarouselItem>
-          <div class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/high/dog-underwater-swimming-2siawk4nemp214kj.webp')]" />
+          <div
+            class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/high/dog-underwater-swimming-2siawk4nemp214kj.webp')]" />
         </BCarouselItem>
         <BCarouselItem>
-          <div class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/high/three-teen-lions-9xiimjysh7htjow3.webp')]" />
+          <div
+            class="ds-h-full ds-bg-no-repeat ds-bg-cover ds-bg-[url('https://wallpapers.com/images/high/three-teen-lions-9xiimjysh7htjow3.webp')]" />
         </BCarouselItem>
       </BCarousel>
     `,

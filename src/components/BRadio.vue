@@ -49,7 +49,7 @@ const props = withDefaults(defineProps<BRadioProps>(), {
 const emit = defineEmits<{
   (e: 'change'): void;
   /**
-   * Update value
+   * Update value, param: <code>value: string | number | boolean</code>
    * @param e
    * @param value
    */
