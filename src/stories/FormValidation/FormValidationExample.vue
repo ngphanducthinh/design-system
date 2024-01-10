@@ -2,20 +2,18 @@
 import BButton from '@/components/BButton.vue';
 import { useValidationForm } from '@/composables/Validation';
 
-/**
- * Data
- */
+//#region Data
 const { validateAll } = useValidationForm();
 const submitText = 'Submit';
+//#endregion
 
-/**
- * Methods
- */
+//#region Methods
 const submit = () => {
   if (validateAll()) {
     alert('All fields are validated!');
   }
 };
+//#endregion
 </script>
 
 <template>

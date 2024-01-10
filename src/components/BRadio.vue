@@ -11,7 +11,7 @@ import { useI18n } from 'vue-i18n';
 //#region Props
 export interface BRadioProps {
   inputId?: string;
-  modelValue?: string | number | boolean;
+  modelValue: string | number | boolean;
   inputName?: string;
   label?: string;
   disabled?: boolean;

@@ -7,7 +7,7 @@ import { computed } from 'vue';
 export interface BCheckboxProps {
   inputId?: string;
   inputCssClass?: string;
-  modelValue?: boolean | Array<string | number>;
+  modelValue: boolean | Array<string | number>;
   label?: string;
   /**
    * Clicking on label will not check on checkbox.
@@ -77,8 +77,10 @@ const inputCssClassValue = computed(() => [
 //#endregion
 
 /**
- * Customize checkbox styles, need to hide input tag and style an label which stands for that input
+ * Customize checkbox styles, need to hide input tag and style a label which stands for that input
  * Example: https://codepen.io/AllThingsSmitty/pen/WjZVjo
+ * Support input type=checkbox in Vue
+ * https://vuejs.org/guide/essentials/forms#checkbox-1
  */
 </script>
 <template>
@@ -88,7 +90,7 @@ const inputCssClassValue = computed(() => [
       v-model="value"
       :class="inputCssClassValue"
       :disabled="disabled"
-      :value="$attrs.value || value"
+      :value="$attrs.value"
       class="ds-peer ds-invisible"
       type="checkbox"
     />

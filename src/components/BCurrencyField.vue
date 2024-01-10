@@ -7,12 +7,16 @@ import { v4 as uuid } from 'uuid';
 import BErrorMessage from '@/components/BErrorMessage.vue';
 import { useI18n } from 'vue-i18n';
 import IMask from '@/vendor/imask-7.1.3.js';
+import { SupportedLocale } from '@/constants/Enums';
 
 //#region Props
 export interface BCurrencyFieldProps {
   inputId?: string;
   inputCssClass?: string;
-  modelValue: number;
+  /**
+   * Value can be number or string
+   */
+  modelValue: number | string;
   label?: string;
   validationRules?: ValidationRule[];
   placeholder?: string;
@@ -23,10 +27,15 @@ export interface BCurrencyFieldProps {
   required?: boolean;
   requiredErrorMessage?: string;
   disabled?: boolean;
+  readonly?: boolean;
   /**
    * Hide the validation error message.
    */
   hideDetails?: boolean;
+  /**
+   * Locale of the currency
+   */
+  locale?: `${SupportedLocale}`;
 }
 
 const props = withDefaults(defineProps<BCurrencyFieldProps>(), {
@@ -41,6 +50,7 @@ const props = withDefaults(defineProps<BCurrencyFieldProps>(), {
   disabled: false,
   readonly: false,
   hideDetails: false,
+  locale: SupportedLocale['vi-VN'],
 });
 //#endregion
 
@@ -52,17 +62,17 @@ const emit = defineEmits<{
    */
   (e: 'press:enter'): void;
   /**
-   * Update value, param <code>value: number</code>
+   * Update value, param <code>value: number | string</code>
    * @param e
    * @param value
    */
-  (e: 'update:modelValue', value: number): void;
+  (e: 'update:modelValue', value: number | string): void;
 }>();
 //#endregion
 
 //#region Data
 let mask: any;
-const { t, locale } = useI18n();
+const { t } = useI18n();
 const inputRef = ref<HTMLInputElement | null>(null);
 const validateRequired: ValidationRule = {
   validateRule: (val: string) => !!(val && val?.trim()),
@@ -102,7 +112,7 @@ const vRules = computed(() => {
   return result.length ? result : undefined;
 });
 const maskOptions = computed(() =>
-  locale.value === 'en-US'
+  props.locale === 'en-US'
     ? {
         mask: '$num',
         blocks: {
@@ -135,9 +145,20 @@ const { validate, validationResult } = useValidationField(
 //#endregion
 
 //#region Watchers
-watch(locale, () => {
-  initMask();
-});
+watch(
+  () => props.locale,
+  () => {
+    initMask();
+  },
+);
+watch(
+  () => props.modelValue,
+  (val) => {
+    if (val != mask.unmaskedValue) {
+      mask.unmaskedValue = val.toString();
+    }
+  },
+);
 //#endregion
 
 //#region Methods
@@ -148,7 +169,8 @@ const onKeyUpEnter = () => {
   emit('press:enter');
 };
 const onAccept = () => {
-  value.value = +mask.unmaskedValue;
+  value.value =
+    typeof value.value === 'number' ? +mask.unmaskedValue : mask.unmaskedValue;
 };
 const initMask = () => {
   if (mask) {
@@ -162,6 +184,7 @@ const initMask = () => {
 //#region Lifecycle Hooks
 onMounted(() => {
   initMask();
+  mask.unmaskedValue = value.value.toString();
 });
 //#endregion
 </script>

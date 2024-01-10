@@ -14,7 +14,7 @@ import BOtpFieldBox from './BOtpFieldBox.vue';
 //#region Props
 export interface BOtpFieldProps {
   inputId?: string;
-  modelValue?: string;
+  modelValue: string;
   /**
    * Number of input boxes.
    */

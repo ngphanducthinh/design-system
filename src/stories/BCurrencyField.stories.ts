@@ -1,6 +1,7 @@
 import { BCurrencyField } from '@/components';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { ref } from 'vue';
+import { SupportedLocale } from '@/constants/Enums';
 
 const meta: Meta<typeof BCurrencyField> = {
   title: 'Components/CurrencyField',
@@ -15,6 +16,10 @@ const meta: Meta<typeof BCurrencyField> = {
   component: BCurrencyField,
   tags: ['autodocs'],
   argTypes: {
+    locale: {
+      control: 'select',
+      options: Object.values(SupportedLocale) as string[],
+    },
     prependIcon: {
       control: 'text',
       description: 'Prepend icon',
@@ -46,7 +51,7 @@ export const Default: Story = {
   render: (args: any) => ({
     components: { BCurrencyField },
     setup() {
-      const amount = ref(0);
+      const amount = ref(1000000);
       return { args, amount };
     },
     template: `
@@ -60,7 +65,6 @@ export const Default: Story = {
     `,
   }),
   args: {
-    modelValue: '',
     prependIcon: '<i class="fa-solid fa-money-bills" />',
     appendIcon: '',
   },

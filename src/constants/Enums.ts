@@ -8,6 +8,7 @@ export enum BButtonType {
   Clear = 'clear',
   Icon = 'icon',
 }
+
 export enum BButtonSize {
   Small = 'sm',
   Medium = 'md',
@@ -64,6 +65,7 @@ export enum BTooltipPosition {
   Top = 'top',
   Bottom = 'bottom',
 }
+
 export enum BTooltipOpenEvent {
   Click = 'click',
   Focus = 'focus',
@@ -113,4 +115,9 @@ export enum BDatePickerView {
   Days = 'days',
   Months = 'months',
   Years = 'years',
+}
+
+export enum SupportedLocale {
+  'vi-VN' = 'vi-VN',
+  'en-US' = 'en-US',
 }
