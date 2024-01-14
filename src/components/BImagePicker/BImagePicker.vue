@@ -218,7 +218,7 @@ defineExpose({ validate });
 </script>
 
 <template>
-  <div class="ds-w-full">
+  <div class="b-image-picker ds-w-full">
     <BLabel :label="props.label" />
 
     <div
@@ -231,7 +231,7 @@ defineExpose({ validate });
         <div
           v-for="(item, index) in value"
           :key="index"
-          class="draggable ds-h-full ds-cursor-pointer ds-rounded-lg ds-transition-all hover:ds-ring-2 hover:ds-ring-primary-t"
+          class="b-image-picker__draggable ds-h-full ds-cursor-pointer ds-rounded-lg ds-transition-all hover:ds-ring-2 hover:ds-ring-primary-t"
           draggable="true"
           @click="preview(item)"
           @dragend="handleDragEnd"
@@ -258,7 +258,7 @@ defineExpose({ validate });
           <template #default>
             {{ $t('ds.components.base.image_picker.select_image') }}
           </template>
-          <template #append-icon>
+          <template #appendIcon>
             <svg
               class="ds-absolute -ds-bottom-[3px] ds-left-0 ds-h-4 ds-w-4 ds-fill-primary-t"
               viewBox="0 0 512 512"
@@ -292,7 +292,12 @@ defineExpose({ validate });
 </template>
 
 <style lang="scss" scoped>
-.draggable {
+.b-image-picker {
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/@container
+  container-type: inline-size;
+}
+
+.b-image-picker__draggable {
   width: 100%;
   position: relative;
 
@@ -307,21 +312,21 @@ defineExpose({ validate });
   }
 }
 
-@media (min-width: 640px) {
-  .draggable {
+@container (min-width: 640px) {
+  .b-image-picker__draggable {
     // Minus "gap-2"
     width: calc((100% / 3) - (0.5rem * 2 / 3));
   }
 }
 
-@media (min-width: 768px) {
-  .draggable {
+@container (min-width: 768px) {
+  .b-image-picker__draggable {
     width: calc(25% - (0.5rem * 3 / 4));
   }
 }
 
-@media (min-width: 1280px) {
-  .draggable {
+@container (min-width: 1280px) {
+  .b-image-picker__draggable {
     width: calc(20% - (0.5rem * 4 / 5));
   }
 }
