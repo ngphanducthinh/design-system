@@ -166,6 +166,11 @@ const onChangeInput = (e: any) => {
     return;
   }
   createFileImages(fileList);
+
+  // Clear input's value so onChange event can work for the same files next picks
+  if (inputRef.value) {
+    inputRef.value.value = null as any;
+  }
 };
 const createFileImages = (fileList: FileList) => {
   Array.from(fileList).forEach((file) => {
