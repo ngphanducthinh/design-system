@@ -186,7 +186,7 @@ watch(
 
 //#region Methods
 const ensureSelectedItem = () => {
-  selectedItem.value = props.items.find((i) => i.value === value.value);
+  selectedItem.value = props.items?.find((i) => i.value === value.value);
 };
 const ensureInputText = () => {
   if (props.allowInput) {

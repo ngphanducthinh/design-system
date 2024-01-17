@@ -277,7 +277,7 @@ const deselectItem = (item: DisplayItem) => {
   }
 };
 const init = () => {
-  if (props.items.length > 0) {
+  if (props.items?.length > 0) {
     ensureSelectedItems();
   }
 };
