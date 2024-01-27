@@ -1,8 +1,12 @@
-// Tailwind
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-//
-@import '_resetUAS.scss';
-@import '_custom.scss';
-@import '_datePicker.scss';
+@layer design-system {
+  // Tailwind
+  @import 'tailwindcss/base';
+  @import 'tailwindcss/components';
+  @import 'tailwindcss/utilities';
+  //
+  @import '_resetUAS.scss';
+  @import '_custom.scss';
+  @import '_datePicker.scss';
+}
+
+
