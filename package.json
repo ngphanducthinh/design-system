@@ -1,6 +1,6 @@
 {
   "name": "@7pmlabs/design-system",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "homepage": "https://github.com/ngphanducthinh/design-system",
   "sideEffects": [
     "style.css"
