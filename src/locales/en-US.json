@@ -78,7 +78,7 @@
         },
         "image_picker": {
           "file_types_valid": "Format {types} allowed",
-          "file_size_valid": "Maximum file size is {size}",
+          "file_size_valid": "Maximum file size is {size}MB",
           "select_image": "Select image"
         }
       }

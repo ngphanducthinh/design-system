@@ -17,9 +17,18 @@ import BErrorMessage from '../BErrorMessage.vue';
 //#region Props
 export interface Props {
   inputId?: string;
-  modelValue: FileItemRead[];
+  /**
+   * Empty object <code>multiple: false</code> or empty array <code>multiple: true</code>.
+   */
+  modelValue: FileItemRead | FileItemRead[];
   label?: string;
+  /**
+   * Allow to pick multiple images, v-model expects an array.
+   */
   multiple?: boolean;
+  /**
+   * Maximum file size in MB.
+   */
   maxFileSize?: number;
   hideDetails?: boolean;
   required?: boolean;
@@ -47,11 +56,11 @@ const emit = defineEmits<{
    */
   (e: 'change'): void;
   /**
-   * Update value, param: <code>value: FileItemRead[]</code>
+   * Update value, param: <code>value: FileItemRead | FileItemRead[]</code>
    * @param e
    * @param value
    */
-  (e: 'update:modelValue', value: FileItemRead[]): void;
+  (e: 'update:modelValue', value: FileItemRead | FileItemRead[]): void;
 }>();
 //#endregion
 
@@ -150,9 +159,9 @@ const handleDrop = (index: number, e: DragEvent) => {
   const target = e.target as HTMLDivElement;
   target.classList.remove('dropped-target');
   const draggedIndex = parseInt(e.dataTransfer!.getData('index'));
-  const draggedImg = value.value[draggedIndex];
-  value.value.splice(draggedIndex, 1);
-  value.value.splice(index, 0, draggedImg);
+  const draggedImg = (value.value as FileItemRead[])[draggedIndex];
+  (value.value as FileItemRead[]).splice(draggedIndex, 1);
+  (value.value as FileItemRead[]).splice(index, 0, draggedImg);
 
   emit('change');
   validate();
@@ -160,7 +169,7 @@ const handleDrop = (index: number, e: DragEvent) => {
 const openFileDialog = () => {
   inputRef.value?.click();
 };
-const onChangeInput = (e: any) => {
+const handleChangeInput = (e: any) => {
   let fileList: FileList = e.target.files || e.dataTransfer.files;
   if (!fileList.length) {
     return;
@@ -182,17 +191,18 @@ const createFileImages = (fileList: FileList) => {
 
       reader.onload = (f: any) => {
         if (props.multiple) {
-          value.value.push({
+          (value.value as FileItemRead[]).push({
             url: f.target.result,
             file,
             type: file.type,
           });
         } else {
-          value.value.splice(0, 1, {
+          // splice(index, how-many, item1, item2,...);
+          value.value = {
             url: f.target.result,
             file,
             type: file.type,
-          });
+          };
         }
 
         emit('change');
@@ -205,16 +215,19 @@ const createFileImages = (fileList: FileList) => {
     }
   });
 };
-const removeFileImage = (e: Event, index: number) => {
-  e.stopPropagation();
-  value.value.splice(index, 1);
-
+const removeFileImage = (index: number) => {
+  (value.value as FileItemRead[]).splice(index, 1);
+  emit('change');
+  validate();
+};
+const removeFileImageSingle = () => {
+  value.value = {};
   emit('change');
   validate();
 };
 const convertToMB = (numberOfBytes: number) => numberOfBytes / 1024 ** 2;
 const preview = (item: FileItemRead) => {
-  previewImage.value.url = item.url;
+  previewImage.value.url = item.url || '';
   previewImage.value.visible = true;
 };
 //#endregion
@@ -233,29 +246,52 @@ defineExpose({ validate });
         v-if="!isEmpty(value)"
         class="ds-flex ds-flex-wrap ds-justify-center ds-gap-1"
       >
-        <div
-          v-for="(item, index) in value"
-          :key="index"
-          class="b-image-picker__draggable ds-h-full ds-cursor-pointer ds-rounded-lg ds-transition-all hover:ds-ring-2 hover:ds-ring-primary-t"
-          draggable="true"
-          @click="preview(item)"
-          @dragend="handleDragEnd"
-          @dragenter="handleDragEnter(index, $event)"
-          @dragleave="handleDragLeave"
-          @dragover="handleDragOver"
-          @dragstart="handleDragStart(index, $event)"
-          @drop="handleDrop(index, $event)"
-        >
-          <img
-            :src="item.url"
-            alt="image"
-            class="ds-h-full ds-w-full ds-rounded-lg"
-          />
-          <BImagePickerCloseButton
-            class="ds-right-1 ds-top-1 ds-h-8 ds-w-8"
-            @click="(e) => removeFileImage(e, index)"
-          />
-        </div>
+        <!--Multiple-->
+        <template v-if="props.multiple">
+          <div
+            v-for="(item, index) in value as FileItemRead[]"
+            :key="item.url"
+            class="b-image-picker__draggable ds-h-full ds-cursor-pointer ds-rounded-lg ds-transition-all hover:ds-ring-2 hover:ds-ring-primary-t"
+            draggable="true"
+            @click="preview(item)"
+            @dragend="handleDragEnd"
+            @dragenter="handleDragEnter(index, $event)"
+            @dragleave="handleDragLeave"
+            @dragover="handleDragOver"
+            @dragstart="handleDragStart(index, $event)"
+            @drop="handleDrop(index, $event)"
+          >
+            <img
+              :src="item.url"
+              alt="image"
+              class="ds-h-full ds-w-full ds-rounded-lg"
+            />
+            <BImagePickerCloseButton
+              class="ds-right-1 ds-top-1 ds-h-8 ds-w-8"
+              @click.stop="removeFileImage(index)"
+            />
+          </div>
+        </template>
+        <!---->
+        <!--Single-->
+        <template v-else>
+          <div
+            class="b-image-picker__draggable ds-h-full ds-cursor-pointer ds-rounded-lg ds-transition-all hover:ds-ring-2 hover:ds-ring-primary-t"
+            draggable="true"
+            @click="preview(value as FileItemRead)"
+          >
+            <img
+              :src="(value as FileItemRead).url"
+              alt="image"
+              class="ds-h-full ds-w-full ds-rounded-lg"
+            />
+            <BImagePickerCloseButton
+              class="ds-right-1 ds-top-1 ds-h-8 ds-w-8"
+              @click.stop="removeFileImageSingle"
+            />
+          </div>
+        </template>
+        <!---->
       </div>
 
       <div class="ds-flex ds-flex-wrap ds-justify-center">
@@ -281,7 +317,7 @@ defineExpose({ validate });
           :multiple="props.multiple"
           class="ds-hidden"
           type="file"
-          @change="onChangeInput"
+          @change="handleChangeInput"
         />
       </div>
     </div>
@@ -289,7 +325,7 @@ defineExpose({ validate });
     <BErrorMessage
       v-if="!props.hideDetails"
       :error-message="validationResult.errorMessage()"
-      class="mt-1"
+      class="ds-mt-1"
     />
 
     <ImagePreview v-model="previewImage.visible" :url="previewImage.url" />

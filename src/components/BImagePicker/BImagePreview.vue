@@ -73,22 +73,24 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Transition name="fade">
-    <BOverlay v-if="value">
-      <BImagePickerCloseButton
-        class="ds-right-4 ds-top-4 ds-h-8 ds-w-8"
-        @click="closePreview"
-      />
-      <div
-        :style="
-          {
-            backgroundImage: `url('${props.url}')`,
-            height: 'calc(100vh - 16px)',
-            width: 'calc(100vw - 16px)',
-          } as StyleValue
-        "
-        class="ds-bg-contain ds-bg-center ds-bg-no-repeat"
-      />
-    </BOverlay>
-  </Transition>
+  <Teleport to="body">
+    <Transition name="fade">
+      <BOverlay v-if="value">
+        <BImagePickerCloseButton
+          class="ds-right-4 ds-top-4 ds-h-8 ds-w-8"
+          @click="closePreview"
+        />
+        <div
+          :style="
+            {
+              backgroundImage: `url('${props.url}')`,
+              height: 'calc(100vh - 16px)',
+              width: 'calc(100vw - 16px)',
+            } as StyleValue
+          "
+          class="ds-bg-contain ds-bg-center ds-bg-no-repeat"
+        />
+      </BOverlay>
+    </Transition>
+  </Teleport>
 </template>

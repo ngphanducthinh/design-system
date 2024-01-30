@@ -78,7 +78,7 @@
         },
         "image_picker": {
           "file_types_valid": "Cho phép định dạng {types}",
-          "file_size_valid": "Kích thước file tối đa là {size}",
+          "file_size_valid": "Kích thước file tối đa là {size}MB",
           "select_image": "Chọn ảnh"
         }
       }
