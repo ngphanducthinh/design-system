@@ -1,12 +1,13 @@
 {
   "name": "@7pmlabs/design-system",
-  "version": "0.4.10",
+  "version": "0.4.11",
   "homepage": "https://github.com/ngphanducthinh/design-system",
   "sideEffects": [
     "style.css"
   ],
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/design-system.mjs",
       "require": "./dist/design-system.js"
     },
@@ -15,9 +16,9 @@
       "require": "./dist/style.css"
     }
   },
+  "types": "./dist/types/index.d.ts",
   "main": "./dist/design-system.js",
   "module": "./dist/design-system.mjs",
-  "types": "./dist/types/index.d.ts",
   "files": [
     "dist"
   ],
