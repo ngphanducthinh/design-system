@@ -1,8 +1,8 @@
-# @7pmlabs/design-system
+# 7PMLabs Design System
 
 Documentation (Storybook): https://ngphanducthinh.github.io/7pmlabs-design-system
 
-In case, you also use Tailwind CSS in your project, do not import `@import 'tailwindcss/base';` (https://tailwindcss.com/docs/installation) unless it causes broken styles.
+In case, you also use [Tailwind CSS](https://tailwindcss.com/docs/installation) in your project, do not import `@import 'tailwindcss/base';` unless it causes broken styles.
 
 ## Getting started
 

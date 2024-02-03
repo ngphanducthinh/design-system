@@ -1,5 +1,5 @@
-import { BButton } from '@/components';
-import { BButtonSize, BButtonType } from '@/constants/Enums';
+import { BButton } from '../../components';
+import { BButtonSize, BButtonType } from '../../constants/Enums';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
