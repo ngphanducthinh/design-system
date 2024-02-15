@@ -6,7 +6,6 @@ import { computed } from 'vue';
 //#region Props
 export interface BCheckboxProps {
   inputId?: string;
-  inputCssClass?: string;
   modelValue: boolean | Array<string | number>;
   label?: string;
   /**
@@ -19,7 +18,6 @@ export interface BCheckboxProps {
 
 const props = withDefaults(defineProps<BCheckboxProps>(), {
   inputId: '',
-  inputCssClass: '',
   modelValue: false,
   label: '',
   labelOrphan: false,
@@ -68,12 +66,6 @@ const cssClassValue = computed(() => {
 
   return result;
 });
-const inputCssClassValue = computed(() => [
-  props.inputCssClass,
-  {
-    'ds-cursor-not-allowed': props.disabled,
-  },
-]);
 //#endregion
 
 /**
@@ -88,7 +80,6 @@ const inputCssClassValue = computed(() => [
     <input
       :id="id"
       v-model="value"
-      :class="inputCssClassValue"
       :disabled="disabled"
       :value="$attrs.value"
       class="ds-peer ds-invisible"
@@ -116,6 +107,14 @@ const inputCssClassValue = computed(() => [
     height: theme('height.6');
     min-width: theme('width.6');
     min-height: theme('height.6');
+
+    &:disabled + .input-label {
+      background-color: theme('colors.gray.100');
+    }
+
+    &:disabled + .input-label::after {
+      border-color: theme('colors.gray.100');
+    }
   }
 
   .input-label {
