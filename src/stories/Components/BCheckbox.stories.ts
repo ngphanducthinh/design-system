@@ -21,7 +21,14 @@ const meta: Meta<typeof BCheckbox> = {
       options: Object.values(BCheckboxSize) as string[],
     },
   },
-  args: { size: BCheckboxSize.Medium },
+  args: {
+    inputId: '',
+    modelValue: false,
+    label: '',
+    labelOrphan: false,
+    disabled: false,
+    size: BCheckboxSize.Medium,
+  },
 };
 
 export default meta;
@@ -33,7 +40,10 @@ export const Medium: Story = {
     setup() {
       return { args };
     },
-    template: '<BCheckbox v-bind="args">Medium</BCheckbox>',
+    template: `
+      <BCheckbox v-bind="args">
+        {{ args.label || 'Medium' }}
+      </BCheckbox>`,
   }),
   args: {
     size: BCheckboxSize.Medium,
@@ -46,7 +56,10 @@ export const Small: Story = {
     setup() {
       return { args };
     },
-    template: '<BCheckbox v-bind="args">Small</BCheckbox>',
+    template: `
+      <BCheckbox v-bind="args">
+        {{ args.label || 'Small' }}
+      </BCheckbox>`,
   }),
   args: {
     size: BCheckboxSize.Small,

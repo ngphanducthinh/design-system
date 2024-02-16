@@ -129,7 +129,7 @@ const cssClassValue = computed(() => {
     top: 0;
 
     &:after {
-      border: 3px solid #fff;
+      border: 3px solid theme('colors.white');
       border-top: none;
       border-right: none;
       content: '';

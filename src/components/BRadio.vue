@@ -110,7 +110,7 @@ const onChange = () => {
       :disabled="disabled"
       :name="inputName"
       :value="$attrs.value"
-      class="ds-h-6 ds-min-h-[1.5rem] ds-w-6 ds-min-w-[1.5rem] ds-border-gray-300 ds-bg-gray-100 ds-text-primary-t focus:ds-ring-primary-t"
+      class="ds-h-6 ds-min-h-[1.5rem] ds-w-6 ds-min-w-[1.5rem] ds-bg-gray-100 ds-text-primary-t focus:ds-ring-primary-t"
       type="radio"
       @change="onChange"
     />

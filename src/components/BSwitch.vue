@@ -8,7 +8,7 @@ export interface BCheckboxProps {
   modelValue: boolean | Array<string | number>;
   label?: string;
   /**
-   * Clicking on label will not check on checkbox.
+   * Clicking on label will not turn on/off the switch.
    */
   labelOrphan?: boolean;
   disabled?: boolean;
