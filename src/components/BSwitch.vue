@@ -74,7 +74,7 @@ const value = computed({
   display: none;
 
   &:checked + .b-switch__input-label {
-    background-color: theme('colors.blue.600');
+    background-color: theme('colors.primary-t');
   }
 
   &:checked + .b-switch__input-label::before {

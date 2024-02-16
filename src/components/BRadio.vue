@@ -14,6 +14,10 @@ export interface BRadioProps {
   modelValue: string | number | boolean;
   inputName?: string;
   label?: string;
+  /**
+   * Clicking on label will not select the radio.
+   */
+  labelOrphan?: boolean;
   disabled?: boolean;
   labelCssClass?: string;
   /**
@@ -36,6 +40,7 @@ const props = withDefaults(defineProps<BRadioProps>(), {
   modelValue: '',
   inputName: '',
   label: '',
+  labelOrphan: false,
   disabled: false,
   labelCssClass: '',
   hideDetails: false,
@@ -102,25 +107,27 @@ const onChange = () => {
 </script>
 
 <template>
-  <div class="ds-flex ds-items-center">
+  <div class="b-radio ds-flex ds-items-center">
     <input
       :id="id"
       v-model="value"
-      :class="{ 'ds-cursor-not-allowed': disabled }"
       :disabled="disabled"
       :name="inputName"
       :value="$attrs.value"
-      class="ds-h-6 ds-min-h-[1.5rem] ds-w-6 ds-min-w-[1.5rem] ds-bg-gray-100 ds-text-primary-t focus:ds-ring-primary-t"
+      class="b-radio__input"
       type="radio"
       @change="onChange"
     />
+    <label :for="id" class="b-radio__input-label" />
     <label
-      v-if="label"
+      v-if="props.label || $slots.default"
+      :for="props.labelOrphan ? undefined : id"
       :class="labelCssClass"
-      :for="id"
       class="ds-ml-2 ds-text-sm ds-font-medium ds-text-gray-900"
     >
-      {{ label }}
+      <slot>
+        {{ props.label }}
+      </slot>
     </label>
   </div>
   <b-error-message
@@ -129,3 +136,42 @@ const onChange = () => {
     class="ds-mt-1"
   />
 </template>
+<style scoped lang="scss">
+.b-radio__input {
+  display: none;
+
+  &:checked + .b-radio__input-label::before {
+    background-color: theme('colors.primary-t');
+  }
+
+  &:disabled + .b-radio__input-label {
+    background-color: theme('colors.gray.100');
+  }
+
+  &:disabled + .b-radio__input-label::before {
+    background-color: theme('colors.gray.100');
+  }
+}
+
+.b-radio__input-label {
+  position: relative;
+  width: theme('width.6');
+  height: theme('height.6');
+  background-color: theme('colors.gray.200');
+  border-radius: theme('borderRadius.full');
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: theme('colors.transparent');
+    height: theme('height.4');
+    width: theme('width.4');
+    border-radius: theme('borderRadius.full');
+    transition: theme('transitionProperty.all') theme('transitionDuration.150')
+      theme('transitionTimingFunction.linear');
+  }
+}
+</style>

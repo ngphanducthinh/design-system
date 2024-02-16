@@ -38,10 +38,6 @@ const emit = defineEmits<{
 //#endregion
 
 //#region Data
-const SiblingCssClass = `
-  peer-checked:ds-text-transparent peer-checked:ds-bg-gradient-to-r peer-checked:ds-from-primary-f-stop peer-checked:ds-from-primary-f peer-checked:ds-to-primary-t
-  peer-checked:after:ds-opacity-100
-`;
 const id = computed(() => props.inputId || `id-${uuid()}`);
 const value = computed({
   get() {
@@ -82,10 +78,10 @@ const cssClassValue = computed(() => {
       v-model="value"
       :disabled="disabled"
       :value="$attrs.value"
-      class="ds-peer ds-invisible"
       type="checkbox"
+      class="b-checkbox__input"
     />
-    <label :class="SiblingCssClass" :for="id" class="input-label" />
+    <label :for="id" class="b-checkbox__input-label" />
     <label
       v-if="label || $slots.default"
       :for="labelOrphan ? undefined : id"
@@ -100,63 +96,70 @@ const cssClassValue = computed(() => {
 
 <style lang="scss" scoped>
 .b-checkbox {
-  position: relative;
-
-  input {
+  .b-checkbox__input {
+    display: none;
     width: theme('width.6');
     height: theme('height.6');
     min-width: theme('width.6');
     min-height: theme('height.6');
 
-    &:disabled + .input-label {
+    &:checked + .b-checkbox__input-label {
+      background-color: theme('colors.primary-t');
+    }
+
+    &:checked + .b-checkbox__input-label::after {
+      border-color: theme('colors.white');
+    }
+
+    &:disabled + .b-checkbox__input-label {
       background-color: theme('colors.gray.100');
     }
 
-    &:disabled + .input-label::after {
+    &:disabled + .b-checkbox__input-label::after {
       border-color: theme('colors.gray.100');
     }
   }
 
-  .input-label {
-    background-color: theme('colors.white');
-    border: 1px solid theme('colors.gray.200');
+  .b-checkbox__input-label {
+    position: relative;
+    background-color: theme('colors.gray.200');
     border-radius: theme('borderRadius.lg');
     cursor: pointer;
     width: theme('width.6');
     height: theme('height.6');
-    left: 0;
-    position: absolute;
-    top: 0;
+    transition: theme('transitionProperty.all') theme('transitionDuration.150')
+      theme('transitionTimingFunction.linear');
 
     &:after {
-      border: 3px solid theme('colors.white');
+      border: 3px solid theme('colors.transparent');
       border-top: none;
       border-right: none;
       content: '';
       height: 7px;
       left: 5px;
-      // opacity: 0;
       position: absolute;
       top: 7px;
       transform: rotate(-45deg);
       width: theme('width.3');
+      transition: theme('transitionProperty.all')
+        theme('transitionDuration.150') theme('transitionTimingFunction.linear');
     }
   }
 
   &.size-sm {
-    input {
+    .b-checkbox__input {
       width: theme('width.5');
       height: theme('height.5');
       min-width: theme('width.5');
       min-height: theme('height.5');
     }
 
-    .input-label {
+    .b-checkbox__input-label {
       width: theme('width.5');
       height: theme('height.5');
 
       &:after {
-        border: 2.5px solid white;
+        border: 2.5px solid theme('colors.transparent');
         border-top: none;
         border-right: none;
         left: 3px;
@@ -164,18 +167,5 @@ const cssClassValue = computed(() => {
       }
     }
   }
-
-  // input[type='checkbox'] {
-  //   visibility: hidden;
-  // }
-
-  // input[type='checkbox']:checked + .input-label {
-  //   background-color: #66bb6a;
-  //   border-color: #66bb6a;
-  // }
-
-  // input[type='checkbox']:checked + .input-label:after {
-  //   opacity: 1;
-  // }
 }
 </style>
