@@ -35,3 +35,4 @@ export { default as BImagePicker } from './BImagePicker/BImagePicker.vue';
 export { default as BImagePreview } from './BImagePicker/BImagePreview.vue';
 export { default as BCurrencyField } from './BCurrencyField.vue';
 export { default as BSwitch } from './BSwitch.vue';
+export { default as BStepper } from './BStepper.vue';

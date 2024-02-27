@@ -13,6 +13,7 @@ interface Props {
    */
   modelValue: number;
 }
+
 const props = withDefaults(defineProps<Props>(), {});
 //#region
 
