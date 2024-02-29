@@ -1,6 +1,6 @@
 # 7PMLabs Design System
 
-Documentation (Storybook): https://ngphanducthinh.github.io/7pmlabs-design-system
+Documentation: https://ngphanducthinh.github.io/7pmlabs-design-system
 
 In case, you also use [Tailwind CSS](https://tailwindcss.com/docs/installation) in your project, do not import `@import 'tailwindcss/base';` unless it causes broken styles.
 
@@ -36,9 +36,12 @@ CSS Variables:
 
 ```
 --ds-colors-primary-f: 6 182 212; // #06b6d4
+
 --ds-colors-primary-t: 59 130 246; // #3b82f6
+
 --ds-colors-focus: 86 221 214; // #56ddd6
 
 --ds-colors-primary-f-stop: 0%;
+
 --ds-colors-primary-t-stop: 100%;
 ```
