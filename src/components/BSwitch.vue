@@ -56,7 +56,10 @@ const value = computed({
       type="checkbox"
       class="b-switch__input"
     />
-    <label :for="id" class="b-switch__input-label" />
+    <label
+      :for="id"
+      class="b-switch__input-label ds-border ds-border-black/[0.1] ds-drop-shadow-light"
+    />
     <label
       v-if="props.label || $slots.default"
       :for="props.labelOrphan ? undefined : id"
@@ -103,7 +106,8 @@ const value = computed({
     height: theme('height.5');
     background-color: theme('colors.white');
     border-radius: theme('borderRadius.full');
-    left: theme('padding[0.5]');
+    left: calc(theme('padding[0.5]') - 1px);
+    top: calc(theme('padding[0.5]') - 1px);
     transition: theme('transitionProperty.all') theme('transitionDuration.150')
       theme('transitionTimingFunction.linear');
   }

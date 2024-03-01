@@ -81,7 +81,10 @@ const cssClassValue = computed(() => {
       type="checkbox"
       class="b-checkbox__input"
     />
-    <label :for="id" class="b-checkbox__input-label" />
+    <label
+      :for="id"
+      class="b-checkbox__input-label ds-border ds-border-black/[0.1] ds-drop-shadow-light"
+    />
     <label
       v-if="label || $slots.default"
       :for="labelOrphan ? undefined : id"
@@ -122,7 +125,7 @@ const cssClassValue = computed(() => {
 
   .b-checkbox__input-label {
     position: relative;
-    background-color: theme('colors.gray.200');
+    background-color: theme('colors.white');
     border-radius: theme('borderRadius.lg');
     cursor: pointer;
     width: theme('width.6');
@@ -136,7 +139,7 @@ const cssClassValue = computed(() => {
       border-right: none;
       content: '';
       height: 7px;
-      left: 5px;
+      left: 5.5px;
       position: absolute;
       top: 7px;
       transform: rotate(-45deg);
@@ -162,7 +165,7 @@ const cssClassValue = computed(() => {
         border: 2.5px solid theme('colors.transparent');
         border-top: none;
         border-right: none;
-        left: 3px;
+        left: 3.5px;
         top: 4.5px;
       }
     }

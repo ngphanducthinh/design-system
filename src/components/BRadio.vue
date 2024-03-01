@@ -118,7 +118,10 @@ const onChange = () => {
       type="radio"
       @change="onChange"
     />
-    <label :for="id" class="b-radio__input-label" />
+    <label
+      :for="id"
+      class="b-radio__input-label ds-border ds-border-black/[0.1] ds-drop-shadow-light"
+    />
     <label
       v-if="props.label || $slots.default"
       :for="props.labelOrphan ? undefined : id"
@@ -157,7 +160,7 @@ const onChange = () => {
   position: relative;
   width: theme('width.6');
   height: theme('height.6');
-  background-color: theme('colors.gray.200');
+  background-color: theme('colors.white');
   border-radius: theme('borderRadius.full');
 
   &::before {
