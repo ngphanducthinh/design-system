@@ -75,7 +75,6 @@ const menuId = computed(() => `menu-id-${uuid()}`);
 
 //#region Methods
 const toggleCollapedBreadcrumbMenu = () => {
-  console.log('...');
   collapsedBreadcrumbMenu.value = !collapsedBreadcrumbMenu.value;
 };
 const initClickOutsideEventListener = () => {
@@ -132,7 +131,11 @@ onUnmounted(() => {
       <template v-if="index === 0">
         <li ref="liRefs" class="ds-whitespace-nowrap ds-text-black/[0.85]">
           <slot :item="item" :name="`item-${index}`">
-            <a :href="item.href" :title="item.href">
+            <a
+              :href="item.href"
+              :title="item.href"
+              class="hover:ds-text-primary-t"
+            >
               {{ item.text }}
             </a>
           </slot>
@@ -154,7 +157,8 @@ onUnmounted(() => {
           <button
             v-show="isCollapsed"
             ref="ellipsisRefs"
-            class="ds-ml-2 ds-rounded-lg ds-bg-slate-100 ds-px-2 ds-text-primary-t"
+            :class="{ 'ds-bg-slate-50': collapsedBreadcrumbMenu }"
+            class="ds-ml-2 ds-rounded-lg ds-bg-slate-100 ds-px-2 ds-text-primary-t hover:ds-bg-slate-50"
             @click="toggleCollapedBreadcrumbMenu"
           >
             ...
@@ -175,7 +179,11 @@ onUnmounted(() => {
             class="ds-whitespace-nowrap ds-pl-2 ds-text-black/[0.85]"
           >
             <slot :item="item" :name="`item-${index}`">
-              <a :href="item.href" :title="item.href">
+              <a
+                :href="item.href"
+                :title="item.href"
+                class="hover:ds-text-primary-t"
+              >
                 {{ item.text }}
               </a>
             </slot>

@@ -28,10 +28,12 @@ export const Default: Story = {
       return { args };
     },
     template: `
-      <BBreadcrumb v-bind="args">
-      </BBreadcrumb>
+      <div class="ds-shadow ds-rounded-lg ds-p-5">
+          <BBreadcrumb v-bind="args">
+          </BBreadcrumb>
+      </div>
       <div style="font-size: 0.75rem; color: gray; margin-top: 1rem; margin-bottom: 60px">
-        Breadcrumb items will be hidden selectively & a dropdown menu will be shown on smaller screen.
+        Breadcrumb items will be hidden selectively on smaller screen.
       </div>
     `,
   }),
