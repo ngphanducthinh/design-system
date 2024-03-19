@@ -297,11 +297,11 @@ defineExpose({ validate });
       <div class="ds-flex ds-flex-wrap ds-justify-center">
         <BButton @click="openFileDialog">
           <template #default>
-            {{ $t('ds.components.base.image_picker.select_image') }}
+            {{ t('ds.components.base.image_picker.select_image') }}
           </template>
           <template #appendIcon>
             <svg
-              class="ds-absolute -ds-bottom-[3px] ds-left-0 ds-h-4 ds-w-4 ds-fill-primary-t"
+              class="ds-h-4 ds-w-4 ds-fill-primary-t"
               viewBox="0 0 512 512"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -335,6 +335,7 @@ defineExpose({ validate });
 <style lang="scss" scoped>
 .b-image-picker {
   // https://developer.mozilla.org/en-US/docs/Web/CSS/@container
+  container-name: image-picker;
   container-type: inline-size;
 }
 
@@ -353,20 +354,20 @@ defineExpose({ validate });
   }
 }
 
-@container (min-width: 640px) {
+@container image-picker (min-width: 640px) {
   .b-image-picker__draggable {
     // Minus "gap-2"
     width: calc((100% / 3) - (0.5rem * 2 / 3));
   }
 }
 
-@container (min-width: 768px) {
+@container image-pbnicker (min-width: 768px) {
   .b-image-picker__draggable {
     width: calc(25% - (0.5rem * 3 / 4));
   }
 }
 
-@container (min-width: 1280px) {
+@container image-picker (min-width: 1280px) {
   .b-image-picker__draggable {
     width: calc(20% - (0.5rem * 4 / 5));
   }

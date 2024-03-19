@@ -10,7 +10,6 @@ module.exports = {
     'plugin:vue/vue3-strongly-recommended',
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier',
-    'plugin:@intlify/vue-i18n/base',
     'plugin:storybook/recommended',
   ],
   parserOptions: {
@@ -26,16 +25,9 @@ module.exports = {
         extensions: ['.ts', '.js', '.jsx', '.json'],
       },
     },
-    'vue-i18n': {
-      localeDir: './src/locales/*.{json,json5,yaml,yml}',
-      messageSyntaxVersion: '^9.0.0',
-    },
   },
   rules: {
-    'vue/no-v-html': 'off',
-    // DO NOT use the HTML content from end users and always sanitize the HTML content
-    '@intlify/vue-i18n/no-missing-keys': 'error',
-    '@intlify/vue-i18n/no-raw-text': 'warn',
+    'vue/no-v-html': 'off', // DO NOT use the HTML content from end users and always sanitize the HTML content
   },
   // https://eslint.org/docs/latest/use/configure/ignore
   ignorePatterns: ['**/vendor/**'],

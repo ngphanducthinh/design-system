@@ -1,6 +1,6 @@
 {
   "name": "@7pmlabs/design-system",
-  "version": "0.4.17",
+  "version": "0.5.0",
   "homepage": "https://github.com/ngphanducthinh/design-system",
   "sideEffects": [
     "style.css"
@@ -51,11 +51,10 @@
     "lodash-es": "^4.17.21",
     "moment-mini": "^2.29.4",
     "uuid": "^9.0.0",
-    "vue": "^3.3.4",
+    "vue": "^3.4.21",
     "vue-i18n": "^9.2.2"
   },
   "devDependencies": {
-    "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
     "@playwright/test": "^1.41.2",
     "@rushstack/eslint-patch": "^1.3.3",
     "@storybook/addon-essentials": "^7.6.10",

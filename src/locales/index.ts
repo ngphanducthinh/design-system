@@ -17,4 +17,4 @@ export const i18nOptions = {
   warnHtmlMessage: false,
 };
 
-export default createI18n(i18nOptions);
+export default createI18n<false, typeof i18nOptions>(i18nOptions);

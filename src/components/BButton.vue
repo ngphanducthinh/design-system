@@ -76,50 +76,26 @@ const btnCssClass = computed(() => {
 
   return result;
 });
-const iconCssClass = computed(() => {
-  let result = '';
-
-  switch (props.size) {
-    case BButtonSize.Small:
-      result += `ds-h-[8px] ds-w-[16px] `;
-      break;
-    case BButtonSize.Medium:
-    default:
-      result += `ds-h-[8px] ds-w-[16px] `;
-      break;
-  }
-
-  return result;
-});
 //#endregion
 </script>
 
 <template>
-  <button :class="btnCssClass" :disabled="disabled" type="button">
-    <div class="ds-flex ds-items-center ds-justify-center">
-      <div
-        v-if="$slots['prependIcon']"
-        :class="iconCssClass"
-        class="ds-relative ds-mr-2"
-      >
-        <span class="ds-absolute -ds-bottom-[3px] ds-left-0 ds-text-[16px]">
-          <slot name="prependIcon" />
-        </span>
-      </div>
+  <button
+    :class="btnCssClass"
+    :disabled="disabled"
+    class="ds-inline-flex ds-items-center ds-justify-center ds-gap-x-2"
+    type="button"
+  >
+    <span v-if="$slots['prependIcon']">
+      <slot name="prependIcon" />
+    </span>
 
-      <div class="ds-flex ds-items-center">
-        <slot />
-      </div>
+    <span class="ds-flex-auto">
+      <slot />
+    </span>
 
-      <div
-        v-if="$slots['appendIcon']"
-        :class="iconCssClass"
-        class="ds-relative ds-ml-2"
-      >
-        <span class="ds-absolute -ds-bottom-[3px] ds-left-0 ds-text-[16px]">
-          <slot name="appendIcon" />
-        </span>
-      </div>
-    </div>
+    <span v-if="$slots['appendIcon']">
+      <slot name="appendIcon" />
+    </span>
   </button>
 </template>

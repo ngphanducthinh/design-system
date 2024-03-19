@@ -489,7 +489,7 @@ onBeforeUnmount(() => {
         :for="id"
         class="ds-absolute ds-left-[98px] ds-top-2.5 ds-z-[3] ds-text-sm"
       >
-        {{ `(${$t('ds.components.base.date_picker.today')})` }}
+        {{ `(${t('ds.components.base.date_picker.today')})` }}
       </label>
 
       <label
