@@ -39,16 +39,12 @@ export const Default: Story = {
   }),
   args: {
     items: [
-      { text: 'My web app', href: '/' },
-      { text: 'Category', href: '#category' },
-      { text: 'Subcategory', href: '#category/subcategory' },
+      { text: 'Home', href: '/' },
+      { text: 'Location', href: '#location' },
+      { text: 'North America', href: '#location/north-america' },
       {
-        text: 'Subcategory level 02',
-        href: '#category/subcategory/subcategory-level-02',
-      },
-      {
-        text: 'Subcategory level 03',
-        href: '#category/subcategory/subcategory-level-02/subcategory-level-03',
+        text: 'United States of America',
+        href: '#location/north-america/usa',
       },
     ],
   },

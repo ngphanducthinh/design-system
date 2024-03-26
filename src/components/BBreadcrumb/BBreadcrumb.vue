@@ -27,7 +27,7 @@ const collapsedBreadcrumbMenu = ref(false);
 const ulRef = ref<HTMLUListElement | null>(null);
 const liRefs = ref<HTMLLIElement[] | null>(null);
 const ellipsisRefs = ref<HTMLSpanElement[] | null>(null);
-const menuRefs = ref<HTMLUListElement[] | null>(null);
+const ellipsisMenuRefs = ref<HTMLUListElement[] | null>(null);
 const breadcrumbItems = ref<BBreadcrumbItemInternal[]>([]);
 const resizeObserver = new ResizeObserver(() => {
   if (breadcrumbItems.value.length <= 1) {
@@ -71,7 +71,7 @@ const resizeObserver = new ResizeObserver(() => {
   }
 });
 const isCollapsed = computed(() => breadcrumbItems.value.some((i) => i.hidden));
-const menuId = computed(() => `menu-id-${uuid()}`);
+const ellipsisMenuId = computed(() => `menu-id-${uuid()}`);
 //#region
 
 //#region Methods
@@ -85,7 +85,7 @@ const removeClickOutsideEventListener = () => {
   document.removeEventListener('click', closeOnClickOutside);
 };
 const closeOnClickOutside = (event: any) => {
-  const refs = [ellipsisRefs.value![0], menuRefs.value![0]];
+  const refs = [ellipsisRefs.value![0], ellipsisMenuRefs.value![0]];
   const withinBoundaries = refs.some((r) => event.composedPath().includes(r));
   if (!withinBoundaries) {
     collapsedBreadcrumbMenu.value = false;
@@ -135,7 +135,7 @@ onUnmounted(() => {
             <a
               :href="item.href"
               :title="item.href"
-              class="hover:ds-text-primary-t"
+              class="ds-transition-colors hover:ds-text-primary-t"
             >
               {{ item.text }}
             </a>
@@ -147,26 +147,27 @@ onUnmounted(() => {
             </slot>
           </span>
 
-          <button
-            v-show="isCollapsed"
-            ref="ellipsisRefs"
-            :class="{ 'ds-bg-slate-50': collapsedBreadcrumbMenu }"
-            class="ds-ml-2 ds-rounded-lg ds-bg-slate-100 ds-px-2 ds-text-primary-t hover:ds-bg-slate-50"
-            @click="toggleCollapedBreadcrumbMenu"
-          >
-            ...
-          </button>
-          <ul
-            v-show="isCollapsed && collapsedBreadcrumbMenu"
-            :id="menuId"
-            ref="menuRefs"
-            class="ds-absolute ds-space-y-2 ds-rounded-lg ds-bg-white ds-p-4 ds-shadow"
-          />
+          <div ref="ellipsisRefs" class="ds-inline-block">
+            <button
+              v-show="isCollapsed"
+              :class="{ 'ds-bg-slate-50': collapsedBreadcrumbMenu }"
+              class="ds-ml-2 ds-rounded-lg ds-bg-slate-100 ds-px-2 ds-text-primary-t ds-transition-colors hover:ds-bg-slate-50"
+              @click="toggleCollapedBreadcrumbMenu"
+            >
+              ...
+            </button>
+            <ul
+              v-show="isCollapsed && collapsedBreadcrumbMenu"
+              :id="ellipsisMenuId"
+              ref="ellipsisMenuRefs"
+              class="ds-absolute ds-mt-1 ds-space-y-2 ds-rounded-lg ds-bg-white ds-p-4 ds-shadow"
+            />
+          </div>
         </li>
       </template>
 
       <template v-else>
-        <Teleport :disabled="!item.hidden" :to="`#${menuId}`">
+        <Teleport :disabled="!item.hidden" :to="`#${ellipsisMenuId}`">
           <li
             ref="liRefs"
             class="ds-whitespace-nowrap ds-pl-2 ds-text-black/[0.85]"
@@ -175,7 +176,7 @@ onUnmounted(() => {
               <a
                 :href="item.href"
                 :title="item.href"
-                class="hover:ds-text-primary-t"
+                class="ds-transition-colors hover:ds-text-primary-t"
               >
                 {{ item.text }}
               </a>
