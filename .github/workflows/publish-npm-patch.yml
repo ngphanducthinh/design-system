@@ -35,7 +35,7 @@ jobs:
 
       - name: Publish to npm
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Set your npm authentication token as a secret
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Set your npm authentication token as a secret
         run: |
           npm version ${{ steps.bump-version.outputs.new_version }} --no-git-tag-version
           npm publish --access public --tag latest
