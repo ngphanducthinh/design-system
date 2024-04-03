@@ -9,10 +9,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -34,8 +34,8 @@ jobs:
           echo "::set-output name=new_version::$patch_version"
 
       - name: Publish to npm
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Set your npm authentication token as a secret
         run: |
           npm version ${{ steps.bump-version.outputs.new_version }} --no-git-tag-version
           npm publish --access public --tag latest
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Set your npm authentication token as a secret
