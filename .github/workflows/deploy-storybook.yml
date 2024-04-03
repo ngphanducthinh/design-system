@@ -1,4 +1,4 @@
-name: Deploy to Another Repository
+name: Deploy to Storybook Repository
 
 on:
   push:
