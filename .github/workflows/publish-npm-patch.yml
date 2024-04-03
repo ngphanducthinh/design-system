@@ -15,6 +15,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install Dependencies
         run: npm install
@@ -34,8 +35,8 @@ jobs:
           echo "::set-output name=new_version::$patch_version"
 
       - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Set your npm authentication token as a secret
         run: |
           npm version ${{ steps.bump-version.outputs.new_version }} --no-git-tag-version
           npm publish --access public --tag latest
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Set your npm authentication token as a secret
