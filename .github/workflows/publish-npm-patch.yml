@@ -22,10 +22,20 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Determine Current Version
+        id: get-version
+        run: echo "::set-output name=current_version::$(npm show @7pmlabs/design-system version)"
+
       - name: Bump Patch Version
-        run: npm version patch --no-git-tag-version
+        id: bump-version
+        run: |
+          current_version="${{ steps.get-version.outputs.current_version }}"
+          patch_version=$(echo "$current_version" | awk -F. '{print $1"."$2"."$3 + 1}')
+          echo "::set-output name=new_version::$patch_version"
 
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # Set your npm authentication token as a secret
-        run: npm publish --access public
+        run: |
+          npm version ${{ steps.bump-version.outputs.new_version }} --no-git-tag-version
+          npm publish --access public --tag latest
