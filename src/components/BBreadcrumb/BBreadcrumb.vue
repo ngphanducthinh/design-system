@@ -120,58 +120,18 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <ul
-    ref="ulRef"
-    :class="{ collapsed: isCollapsed }"
-    class="ds-relative ds-flex"
-  >
-    <template
-      v-for="(item, index) in breadcrumbItems"
-      :key="`item${item.text}`"
+  <nav>
+    <ol
+      ref="ulRef"
+      :class="{ collapsed: isCollapsed }"
+      class="ds-relative ds-flex"
     >
-      <template v-if="index === 0">
-        <li ref="liRefs" class="ds-whitespace-nowrap ds-text-black/[0.85]">
-          <slot :item="item" :name="`item-${index}`">
-            <a
-              :href="item.href"
-              :title="item.href"
-              class="ds-transition-colors hover:ds-text-primary-t"
-            >
-              {{ item.text }}
-            </a>
-          </slot>
-
-          <span aria-hidden="true" class="ds-pl-2">
-            <slot :item="item" :name="`separator-${index}`">
-              <BBreadcrumbSeparator />
-            </slot>
-          </span>
-
-          <div ref="ellipsisRefs" class="ds-inline-block">
-            <button
-              v-show="isCollapsed"
-              :class="{ 'ds-bg-slate-50': collapsedBreadcrumbMenu }"
-              class="ds-ml-2 ds-rounded-lg ds-bg-slate-100 ds-px-2 ds-text-primary-t ds-transition-colors hover:ds-bg-slate-50"
-              @click="toggleCollapedBreadcrumbMenu"
-            >
-              ...
-            </button>
-            <ul
-              v-show="isCollapsed && collapsedBreadcrumbMenu"
-              :id="ellipsisMenuId"
-              ref="ellipsisMenuRefs"
-              class="ds-absolute ds-mt-1 ds-space-y-2 ds-rounded-lg ds-bg-white ds-p-4 ds-shadow"
-            />
-          </div>
-        </li>
-      </template>
-
-      <template v-else>
-        <Teleport :disabled="!item.hidden" :to="`#${ellipsisMenuId}`">
-          <li
-            ref="liRefs"
-            class="ds-whitespace-nowrap ds-pl-2 ds-text-black/[0.85]"
-          >
+      <template
+        v-for="(item, index) in breadcrumbItems"
+        :key="`item${item.text}`"
+      >
+        <template v-if="index === 0">
+          <li ref="liRefs" class="ds-whitespace-nowrap ds-text-black/[0.85]">
             <slot :item="item" :name="`item-${index}`">
               <a
                 :href="item.href"
@@ -182,18 +142,60 @@ onUnmounted(() => {
               </a>
             </slot>
 
-            <span
-              v-if="index < items?.length - 1"
-              aria-hidden="true"
-              class="ds-pl-2"
-            >
+            <span aria-hidden="true" class="ds-pl-2">
               <slot :item="item" :name="`separator-${index}`">
                 <BBreadcrumbSeparator />
               </slot>
             </span>
+
+            <div ref="ellipsisRefs" class="ds-inline-block">
+              <button
+                v-show="isCollapsed"
+                :class="{ 'ds-bg-slate-50': collapsedBreadcrumbMenu }"
+                class="ds-ml-2 ds-rounded-lg ds-bg-slate-100 ds-px-2 ds-text-primary-t ds-transition-colors hover:ds-bg-slate-50"
+                @click="toggleCollapedBreadcrumbMenu"
+              >
+                ...
+              </button>
+              <ol
+                v-show="isCollapsed && collapsedBreadcrumbMenu"
+                :id="ellipsisMenuId"
+                ref="ellipsisMenuRefs"
+                class="ds-absolute ds-mt-1 ds-space-y-2 ds-rounded-lg ds-bg-white ds-p-4 ds-shadow"
+              />
+            </div>
           </li>
-        </Teleport>
+        </template>
+
+        <template v-else>
+          <Teleport :disabled="!item.hidden" :to="`#${ellipsisMenuId}`">
+            <li
+              ref="liRefs"
+              class="ds-whitespace-nowrap ds-pl-2 ds-text-black/[0.85]"
+            >
+              <slot :item="item" :name="`item-${index}`">
+                <a
+                  :href="item.href"
+                  :title="item.href"
+                  class="ds-transition-colors hover:ds-text-primary-t"
+                >
+                  {{ item.text }}
+                </a>
+              </slot>
+
+              <span
+                v-if="index < items?.length - 1"
+                aria-hidden="true"
+                class="ds-pl-2"
+              >
+                <slot :item="item" :name="`separator-${index}`">
+                  <BBreadcrumbSeparator />
+                </slot>
+              </span>
+            </li>
+          </Teleport>
+        </template>
       </template>
-    </template>
-  </ul>
+    </ol>
+  </nav>
 </template>
