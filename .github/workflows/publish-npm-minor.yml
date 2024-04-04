@@ -1,4 +1,4 @@
-name: Publish NPM Patch Version
+name: Publish NPM Minor Version
 
 on:
   workflow_dispatch:
