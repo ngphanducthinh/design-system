@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - '.github/workflows/*'
+      - 'tests/**'
+      - 'src/__tests__/**'
 
 jobs:
   build:
