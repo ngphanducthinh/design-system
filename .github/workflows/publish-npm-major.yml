@@ -1,4 +1,4 @@
-name: Publish NPM Major Version
+name: Publish NPM Major
 
 on:
   workflow_dispatch:
@@ -25,14 +25,14 @@ jobs:
 
       - name: Determine Current Version
         id: get-version
-        run: echo "::set-output name=current_version::$(npm show @7pmlabs/design-system version)"
+        run: echo "current_version=$(npm show @7pmlabs/design-system version)" >> $GITHUB_OUTPUT
 
       - name: Bump Patch Version
         id: bump-version
         run: |
           current_version="${{ steps.get-version.outputs.current_version }}"
           major_version=$(echo "$current_version" | awk -F. '{print $1 + 1"."$2"."$3}')
-          echo "::set-output name=new_version::$major_version"
+          echo "new_version=$major_version" >> $GITHUB_OUTPUT
 
       - name: Publish to npm
         env:
