@@ -25,15 +25,20 @@ jobs:
 
       - name: Determine Current Version
         id: get-version
-        run: echo "::set-output name=current_version::$(npm show @7pmlabs/design-system version)"
+        run: echo "current_version=$(npm show @7pmlabs/design-system version)" >> $GITHUB_OUTPUT
 
       - name: Bump Patch Version
         id: bump-version
         run: |
           current_version="${{ steps.get-version.outputs.current_version }}"
           echo "$current_version"
-          patch_beta_version=$(echo "$current_version" | awk -F. '{print $1"."$2"."$3 + 1"-beta."$4 + 1}')
-          echo "::set-output name=new_version::$patch_beta_version"
+          $value_3=$(echo "$current_version" | awk -F. '{print $3}')
+          if [ "$value_3" -ge 1 ]; then
+          patch_beta_version="${current_version}.${value_3}-beta.$(( ${current_version##*.} + 1 ))"
+          else
+          patch_beta_version="${current_version}.$(( ${current_version##*.} + 1 ))-beta.$(( ${current_version##*.} + 1 ))"
+          fi
+          echo "new_version=$patch_beta_version" >> $GITHUB_OUTPUT
 
       - name: Publish to npm
         env:
