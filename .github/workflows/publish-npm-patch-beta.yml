@@ -31,8 +31,9 @@ jobs:
         id: bump-version
         run: |
           current_version="${{ steps.get-version.outputs.current_version }}"
-          patch_version=$(echo "$current_version" | awk -F. '{print $1"."$2"."$3 + 1"-beta."$4 + 1}')
-          echo "::set-output name=new_version::$patch_version"
+          echo "$current_version"
+          patch_beta_version=$(echo "$current_version" | awk -F. '{print $1"."$2"."$3 + 1"-beta."$4 + 1}')
+          echo "::set-output name=new_version::$patch_beta_version"
 
       - name: Publish to npm
         env:
