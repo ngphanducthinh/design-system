@@ -32,7 +32,7 @@ jobs:
         run: |
           current_version="${{ steps.get-version.outputs.current_version }}"
           echo "$current_version"
-          $value_3=$(echo "$current_version" | awk -F. '{print $3}')
+          value_3=$(echo "$current_version" | awk -F. '{print $3}')
           if [ "$value_3" -ge 1 ]; then
           patch_beta_version="${current_version}.${value_3}-beta.$(( ${current_version##*.} + 1 ))"
           else
