@@ -1,4 +1,4 @@
-name: Publish NPM Patch Version
+name: Publish NPM Patch Beta Version
 
 on:
   workflow_dispatch:
