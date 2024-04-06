@@ -8,6 +8,7 @@ on:
       - '.github/workflows/*'
       - 'tests/**'
       - 'src/__tests__/**'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,23 +16,29 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: 18
+          bun-version: latest
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Dependencies
         run: |
-          npm install
+          bun ci
 
       - name: Build
         run: |
-          npm run build-storybook
+          bun build-storybook
 
       - name: Checkout Another Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           repository: ngphanducthinh/7pmlabs-design-system # replace with the actual repository URL
           token: ${{ secrets.DESIGN_SYSTEM_STORYBOOK }}
