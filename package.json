@@ -100,7 +100,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ngphanducthinh/design-system.git"
+    "url": "git+https://github.com/ngphanducthinh/design-system.git"
   },
   "keywords": [
     "vue",
