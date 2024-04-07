@@ -3,8 +3,8 @@ import App from './App.vue';
 
 // CSS
 import '@/assets/styles/main.scss';
-// Icons
-import '7pmlabs-icons/style.css';
+// Icon
+import '@/assets/styles-demo/icon.css';
 // Localizations
 import i18n from '@/locales';
 
