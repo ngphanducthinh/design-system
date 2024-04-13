@@ -31,7 +31,7 @@
     "build": "run-p lint build:lib",
     "build:lib": "vite build && npm run build:types",
     "build:types": "vue-tsc --project tsconfig.build-types.json --declaration --emitDeclarationOnly --outDir dist/types ",
-    "test:unit": "vitest --environment jsdom --root src/",
+    "test:unit": "vitest --environment jsdom --root src/tests",
     "test:e2e:local": "BASE_URL=http://127.0.0.1:6006/ WEBSERVER=true bunx playwright test",
     "test:e2e:prod": "BASE_URL=https://ngphanducthinh.github.io/7pmlabs-design-system/ bunx playwright test --ui",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
