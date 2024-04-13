@@ -12,9 +12,42 @@ on:
   workflow_dispatch:
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Get & cache dependencies
+        uses: ./.github/actions/get-dependencies
+
+      - name: Lint code
+        run: bun lint
+
+  test-e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Get & cache dependencies
+        uses: ./.github/actions/get-dependencies
+
+      - name: Run e2e tests
+        run: bun test:e2e:local
+
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
