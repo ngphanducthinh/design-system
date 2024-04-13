@@ -1,5 +1,5 @@
 name: 'Bump to newer version'
-description: 'Get latest version number from NPM & bump to newer patch|minor|major version'
+description: 'Get latest version number from NPM & bump patch|minor|major version'
 inputs:
   version-type:
     description: 'Version type: patch|minor|major'
