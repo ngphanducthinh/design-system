@@ -1,0 +1,68 @@
+name: 'Bump to newer version'
+description: 'Get latest version number from NPM & bump to newer patch|minor|major version'
+inputs:
+  version-type:
+    description: 'Version type: patch|minor|major'
+    required: false
+    default: 'patch'
+runs:
+  using: 'composite'
+  steps:
+    - name: Determine current version
+      id: get-version
+      run: echo "current_version=$(npm view @7pmlabs/design-system version)" >> $GITHUB_OUTPUT
+      shell: 'bash'
+
+    - name: Bump patch version
+      id: bump-version-patch
+      if: inputs.version-type == 'patch'
+      run: |
+        current_version="${{ steps.get-version.outputs.current_version }}"
+        patch_version=$(echo "$current_version" | awk -F. '{print $1"."$2"."$3 + 1}')
+        echo "new_version=$patch_version" >> $GITHUB_OUTPUT
+      shell: 'bash'
+
+    - name: Bump patch version
+      id: bump-version-minor
+      if: inputs.version-type == 'minor'
+      run: |
+        current_version="${{ steps.get-version.outputs.current_version }}"
+        minor_version=$(echo "$current_version" | awk -F. '{print $1"."$2 + 1".0"}')
+        echo "new_version=$minor_version" >> $GITHUB_OUTPUT
+      shell: 'bash'
+
+    - name: Bump patch version
+      id: bump-version-major
+      if: inputs.version-type == 'major'
+      run: |
+        current_version="${{ steps.get-version.outputs.current_version }}"
+        major_version=$(echo "$current_version" | awk -F. '{print $1 + 1".0.0"}')
+        echo "new_version=$major_version" >> $GITHUB_OUTPUT
+      shell: 'bash'
+
+    - name: Publish to npm
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # set your npm authentication token as a secret
+      if: inputs.version-type == 'patch'
+      run: |
+        npm version ${{ steps.bump-version-patch.outputs.new_version }} --no-git-tag-version
+        npm publish --access public --tag latest
+      shell: 'bash'
+
+    - name: Publish to npm
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # set your npm authentication token as a secret
+      if: inputs.version-type == 'minor'
+      run: |
+        npm version ${{ steps.bump-version-minor.outputs.new_version }} --no-git-tag-version
+        npm publish --access public --tag latest
+      shell: 'bash'
+
+    - name: Publish to npm
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # set your npm authentication token as a secret
+      if: inputs.version-type == 'major'
+      run: |
+        npm version ${{ steps.bump-version-major.outputs.new_version }} --no-git-tag-version
+        npm publish --access public --tag latest
+      shell: 'bash'
