@@ -4,9 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-publish:
+  lint:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -14,7 +13,25 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
+
+      - name: Get & cache dependencies
+        uses: ./.github/actions/get-dependencies
+
+      - name: Lint code
+        run: bun lint
+
+  build-and-publish:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
 
       - name: Get & cache dependencies
