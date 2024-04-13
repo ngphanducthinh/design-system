@@ -19,7 +19,7 @@ jobs:
         uses: ./.github/actions/get-dependencies
 
       - name: Lint code
-        run: bun lint
+        run: npm run lint
 
   build-and-publish:
     runs-on: ubuntu-latest
