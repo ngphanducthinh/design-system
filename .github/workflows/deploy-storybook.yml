@@ -40,6 +40,9 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Install Playwright browsers
+        run: bun playwright install --with-deps
+
       - name: Get & cache dependencies
         uses: ./.github/actions/get-dependencies
 
