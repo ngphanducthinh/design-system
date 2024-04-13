@@ -9,16 +9,12 @@ inputs:
     description: 'Whether to cache dependencies or not.'
     required: false
     default: 'true'
-outputs:
-  used-cache:
-    description: 'Whether the cache was used.'
-    value: ${{ steps.install.outputs.cache }}
 runs:
   using: 'composite'
   steps:
     - name: Cache dependencies
       if: inputs.npm == 'true' && inputs.caching == 'true'
-      id: cache
+      id: cache-npm
       uses: actions/cache@v4
       with:
         path: node_modules
@@ -26,24 +22,22 @@ runs:
 
     - name: Cache dependencies
       if: inputs.npm == 'false' && inputs.caching == 'true'
-      id: cache
+      id: cache-bun
       uses: actions/cache@v4
       with:
         path: node_modules
         key: deps-node-modules-${{ hashFiles('**/bun.lockb') }}
 
     - name: Install dependencies
-      id: install
-      if: inputs.npm == 'true' && (steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true')
+      id: install-npm
+      if: inputs.npm == 'true' && (steps.cache-npm.outputs.cache-hit != 'true' || inputs.caching != 'true')
       run: |
         npm ci
-        echo "used-cache=${{ steps.cache.outputs.cache-hit == 'true' && inputs.caching == 'true' }}" >> $GITHUB_OUTPUT
       shell: bash
 
     - name: Install dependencies
-      id: install
-      if: inputs.npm == 'false' && (steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true')
+      id: install-bun
+      if: inputs.npm == 'false' && (steps.cache-bun.outputs.cache-hit != 'true' || inputs.caching != 'true')
       run: |
         bun install --frozen-lockfile
-        echo "used-cache=${{ steps.cache.outputs.cache-hit == 'true' && inputs.caching == 'true' }}" >> $GITHUB_OUTPUT
       shell: bash
