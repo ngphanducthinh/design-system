@@ -45,4 +45,5 @@ jobs:
       - name: Bump version & publish package
         uses: ./.github/actions/bump-version
         with:
+          npm-token: ${{ secrets.NPM_TOKEN }}
           version-type: 'minor'

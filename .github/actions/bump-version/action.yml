@@ -1,6 +1,9 @@
 name: 'Bump to newer version'
 description: 'Get latest version number from NPM & bump patch|minor|major version'
 inputs:
+  npm-token:
+    description: 'NPM token for authorization'
+    required: true
   version-type:
     description: 'Version type: patch|minor|major'
     required: false
@@ -42,7 +45,7 @@ runs:
 
     - name: Publish to npm
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # set your npm authentication token as a secret
+        NODE_AUTH_TOKEN: ${{ inputs.npm-token }} # set your npm authentication token as a secret
       if: inputs.version-type == 'patch'
       run: |
         npm version ${{ steps.bump-version-patch.outputs.new_version }} --no-git-tag-version
@@ -51,7 +54,7 @@ runs:
 
     - name: Publish to npm
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # set your npm authentication token as a secret
+        NODE_AUTH_TOKEN: ${{ inputs.npm-token }} # set your npm authentication token as a secret
       if: inputs.version-type == 'minor'
       run: |
         npm version ${{ steps.bump-version-minor.outputs.new_version }} --no-git-tag-version
@@ -60,7 +63,7 @@ runs:
 
     - name: Publish to npm
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # set your npm authentication token as a secret
+        NODE_AUTH_TOKEN: ${{ inputs.npm-token }} # set your npm authentication token as a secret
       if: inputs.version-type == 'major'
       run: |
         npm version ${{ steps.bump-version-major.outputs.new_version }} --no-git-tag-version
