@@ -44,7 +44,7 @@ jobs:
         uses: ./.github/actions/get-dependencies
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+        run: bunx playwright install --with-deps
 
       - name: Run Playwright tests
         run: bun test:e2e:local
