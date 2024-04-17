@@ -7,12 +7,14 @@ test.describe('Breadcrumb', () => {
   });
 
   test('has title', async ({ page }) => {
+    const iframe = page.frameLocator(
+      'iframe[title="storybook-preview-iframe"]',
+    );
+
     await expect(
-      page
-        .frameLocator('iframe[title="storybook-preview-iframe"]')
-        .getByRole('heading', {
-          name: 'Breadcrumb',
-        }),
+      iframe.getByRole('heading', {
+        name: 'Breadcrumb',
+      }),
     ).toBeVisible();
   });
 });
