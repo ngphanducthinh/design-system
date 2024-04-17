@@ -20,7 +20,8 @@ setup((app) => {
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: '^on[A-Z].*' },
+    // https://storybook.js.org/docs/essentials/actions#via-storybooktest-fn-spy-function
+    actions: { argTypesRegex: '^on.*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
