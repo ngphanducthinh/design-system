@@ -34,6 +34,7 @@
     "test:unit": "vitest --environment jsdom --root src/tests",
     "test:e2e:local": "BASE_URL=http://127.0.0.1:6006/ WEBSERVER=true bunx playwright test --ui",
     "test:e2e:prod": "BASE_URL=https://ngphanducthinh.github.io/7pmlabs-design-system/ bunx playwright test --ui",
+    "test:e2e:ci": "BASE_URL=http://127.0.0.1:6006/ WEBSERVER=true bunx playwright test",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "eslint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint": "run-s eslint type-check",
