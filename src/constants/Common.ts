@@ -8,5 +8,6 @@ export const PIKey = {
     Record<string, Ref<ValidationResult>>
   >,
   CloseDropdown: Symbol() as InjectionKey<() => void>,
+  Carousel: Symbol() as InjectionKey<Ref<HTMLDivElement[]>>,
 };
 export const FileImageTypes = ['image/png', 'image/jpeg', 'image/webp'];

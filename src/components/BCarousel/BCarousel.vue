@@ -1,5 +1,14 @@
 <script lang="ts" setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import {
+  computed,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  provide,
+  ref,
+  watch,
+} from 'vue';
+import { PIKey } from '@/constants/Common';
 
 //#region Props
 interface BCarouselProps {
@@ -53,9 +62,8 @@ const emit = defineEmits<{
 //#region Data
 let autoplayIntervalFn: any;
 const mValue = ref(0);
-const itemCount = ref(0);
-const container = ref<HTMLElement | null>(null);
-const carouselItems = ref<Element[] | null>(null);
+const carouselItems = ref<HTMLDivElement[]>([]);
+const itemCount = computed(() => carouselItems.value.length);
 const value = computed({
   get() {
     return props.modelValue !== undefined ? props.modelValue : mValue.value;
@@ -77,6 +85,12 @@ const showPrevNav = computed(() => props.continuous || value.value > 0);
 //#region Watchers
 watch(value, (val, oldVal) => {
   selectCarouselItem(val, oldVal);
+});
+watch(itemCount, () => {
+  const lastIndex = itemCount.value - 1;
+  if (value.value > lastIndex) {
+    selectCarouselItem(lastIndex, lastIndex);
+  }
 });
 watch(
   () => props.autoplay,
@@ -140,10 +154,15 @@ const clearAutoPlay = () => {
     clearInterval(autoplayIntervalFn);
   }
 };
-const selectCarouselItem = (index: number, oldIndex: number) => {
-  if (carouselItems.value) {
-    // Set activeIndex
+const selectCarouselItem = async (index: number, oldIndex: number) => {
+  if (
+    itemCount.value > 0 &&
+    itemCount.value > index &&
+    itemCount.value > oldIndex
+  ) {
+    // Set active index
     value.value = index;
+    await nextTick(); // wait until 'value.value' updated
 
     // Ensure reverse css classes
     const isReverse = index < oldIndex;
@@ -190,31 +209,18 @@ init();
 
 //#region Lifecycle Hooks
 onMounted(() => {
-  if (container.value) {
-    const oldValue = value.value;
-    const items = container.value.querySelectorAll('.carousel-item') as any;
-    if (items.length) {
-      itemCount.value = items.length;
-      carouselItems.value = [...items];
-
-      carouselItems.value.forEach((carouselItem) => {
-        if (carouselItem.classList.contains('active')) {
-          value.value = carouselItems.value!.indexOf(carouselItem);
-        }
-      });
-      selectCarouselItem(value.value, oldValue);
-    }
-  }
+  selectCarouselItem(value.value, value.value);
 });
 onBeforeUnmount(() => {
   clearInterval(autoplayIntervalFn);
 });
 //#endregion
+
+provide(PIKey.Carousel, carouselItems);
 </script>
 
 <template>
   <div
-    ref="container"
     class="ds-relative ds-min-h-[6rem] ds-w-full ds-overflow-x-hidden ds-rounded-lg"
   >
     <div class="carousel-content">

@@ -1,7 +1,29 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { inject, onBeforeUnmount, onMounted, ref } from 'vue';
+import { PIKey } from '@/constants/Common';
+
+//#region Data
+const carouselItem = ref<HTMLDivElement | null>(null);
+const tabItems = inject(PIKey.Carousel);
+//#endregion
+
+//#region Lifecycle Hooks
+onMounted(() => {
+  if (tabItems && carouselItem.value) {
+    tabItems.value.push(carouselItem.value);
+  }
+});
+onBeforeUnmount(() => {
+  if (tabItems && carouselItem.value) {
+    const index = tabItems.value.indexOf(carouselItem.value);
+    tabItems.value.splice(index, 1);
+  }
+});
+//#endregion
+</script>
 
 <template>
-  <div class="carousel-item">
+  <div ref="carouselItem" class="carousel-item">
     <slot />
   </div>
 </template>
