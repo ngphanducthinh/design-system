@@ -29,7 +29,7 @@
     "publish-package": "npm run test:e2e:local && npm run build && npm publish",
     "publish-package:public": "npm run test:e2e:local && npm run build && npm publish --access public",
     "build": "run-p lint build:lib",
-    "build:lib": "vite build && bun run build:types",
+    "build:lib": "vite build && npm run build:types",
     "build:types": "vue-tsc --project tsconfig.build-types.json --declaration --emitDeclarationOnly --outDir dist/types",
     "test:unit": "vitest --environment jsdom --root src/tests",
     "test:e2e:local": "BASE_URL=http://127.0.0.1:6006/ WEBSERVER=true bunx playwright test --ui",
