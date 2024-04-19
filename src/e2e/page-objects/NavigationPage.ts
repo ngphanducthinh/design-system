@@ -8,14 +8,17 @@ export class NavigationPage {
   }
 
   async introductionPage() {
+    await this.page.goto('./');
     await this.page.getByRole('link', { name: 'Introduction' }).click();
   }
 
   async breadcrumbPage() {
+    await this.page.goto('./');
     await this.page.getByRole('button', { name: 'Breadcrumb' }).click();
   }
 
   async carouselPage() {
+    await this.page.goto('./');
     await this.page.getByRole('button', { name: 'Carousel' }).click();
   }
 }

@@ -301,17 +301,17 @@
       return end != null ? end : this.value.length;
     }
 
+    /** */
+    get isActive() {
+      return false;
+    }
+
     /** Safely sets element selection */
     select(start, end) {
       if (start == null || end == null || start === this.selectionStart && end === this.selectionEnd) return;
       try {
         this._unsafeSelect(start, end);
       } catch {}
-    }
-
-    /** */
-    get isActive() {
-      return false;
     }
     /** */
 
@@ -398,15 +398,17 @@
       return this.input.selectionEnd;
     }
 
-    /** Sets InputElement selection */
-    _unsafeSelect(start, end) {
-      this.input.setSelectionRange(start, end);
-    }
     get value() {
       return this.input.value;
     }
+
     set value(value) {
       this.input.value = value;
+    }
+
+    /** Sets InputElement selection */
+    _unsafeSelect(start, end) {
+      this.input.setSelectionRange(start, end);
     }
   }
   IMask.HTMLMaskElement = HTMLMaskElement;
@@ -436,6 +438,15 @@
       return focusOffset;
     }
 
+    /** HTMLElement value */
+    get value() {
+      return this.input.textContent || '';
+    }
+
+    set value(value) {
+      this.input.textContent = value;
+    }
+
     /** Sets HTMLElement selection */
     _unsafeSelect(start, end) {
       if (!this.rootElement.createRange) return;
@@ -448,14 +459,6 @@
         selection.removeAllRanges();
         selection.addRange(range);
       }
-    }
-
-    /** HTMLElement value */
-    get value() {
-      return this.input.textContent || '';
-    }
-    set value(value) {
-      this.input.textContent = value;
     }
   }
   IMask.HTMLContenteditableMaskElement = HTMLContenteditableMaskElement;
@@ -488,15 +491,12 @@
       this.updateValue();
       this._onChange();
     }
-    maskEquals(mask) {
-      var _this$masked;
-      return mask == null || ((_this$masked = this.masked) == null ? void 0 : _this$masked.maskEquals(mask));
-    }
 
     /** Masked */
     get mask() {
       return this.masked.mask;
     }
+
     set mask(mask) {
       if (this.maskEquals(mask)) return;
       if (!(mask instanceof IMask.Masked) && this.masked.constructor === maskedClass(mask)) {
@@ -517,6 +517,7 @@
     get value() {
       return this._value;
     }
+
     set value(str) {
       if (this.value === str) return;
       this.masked.value = str;
@@ -528,6 +529,7 @@
     get unmaskedValue() {
       return this._unmaskedValue;
     }
+
     set unmaskedValue(str) {
       if (this.unmaskedValue === str) return;
       this.masked.unmaskedValue = str;
@@ -539,6 +541,7 @@
     get typedValue() {
       return this.masked.typedValue;
     }
+
     set typedValue(val) {
       if (this.masked.typedValueEquals(val)) return;
       this.masked.typedValue = val;
@@ -549,6 +552,27 @@
     /** Display value */
     get displayValue() {
       return this.masked.displayValue;
+    }
+
+    /** Current selection start */
+    get selectionStart() {
+      return this._cursorChanging ? this._changingCursorPos : this.el.selectionStart;
+    }
+
+    /** Current cursor position */
+    get cursorPos() {
+      return this._cursorChanging ? this._changingCursorPos : this.el.selectionEnd;
+    }
+
+    set cursorPos(pos) {
+      if (!this.el || !this.el.isActive) return;
+      this.el.select(pos, pos);
+      this._saveSelection();
+    }
+
+    maskEquals(mask) {
+      var _this$masked;
+      return mask == null || ((_this$masked = this.masked) == null ? void 0 : _this$masked.maskEquals(mask));
     }
 
     /** Starts listening to element events */
@@ -573,21 +597,6 @@
       const listeners = this._listeners[ev];
       if (!listeners) return;
       listeners.forEach(l => l(e));
-    }
-
-    /** Current selection start */
-    get selectionStart() {
-      return this._cursorChanging ? this._changingCursorPos : this.el.selectionStart;
-    }
-
-    /** Current cursor position */
-    get cursorPos() {
-      return this._cursorChanging ? this._changingCursorPos : this.el.selectionEnd;
-    }
-    set cursorPos(pos) {
-      if (!this.el || !this.el.isActive) return;
-      this.el.select(pos, pos);
-      this._saveSelection();
     }
 
     /** Stores current selection */
@@ -773,11 +782,6 @@
 
     /** Additional offset if any changes occurred before tail */
 
-    /** Raw inserted is used by dynamic mask */
-
-    static normalize(prep) {
-      return Array.isArray(prep) ? prep : [prep, new ChangeDetails()];
-    }
     constructor(details) {
       Object.assign(this, {
         inserted: '',
@@ -787,6 +791,17 @@
       }, details);
     }
 
+    /** Total offset considering all changes */
+    get offset() {
+      return this.tailShift + this.inserted.length;
+    }
+
+    /** Raw inserted is used by dynamic mask */
+
+    static normalize(prep) {
+      return Array.isArray(prep) ? prep : [prep, new ChangeDetails()];
+    }
+
     /** Aggregate changes */
     aggregate(details) {
       this.rawInserted += details.rawInserted;
@@ -794,11 +809,6 @@
       this.inserted += details.inserted;
       this.tailShift += details.tailShift;
       return this;
-    }
-
-    /** Total offset considering all changes */
-    get offset() {
-      return this.tailShift + this.inserted.length;
     }
   }
   IMask.ChangeDetails = ChangeDetails;
@@ -822,17 +832,7 @@
       this.from = from;
       this.stop = stop;
     }
-    toString() {
-      return this.value;
-    }
-    extend(tail) {
-      this.value += String(tail);
-    }
-    appendTo(masked) {
-      return masked.append(this.toString(), {
-        tail: true
-      }).aggregate(masked._appendPlaceholder());
-    }
+
     get state() {
       return {
         value: this.value,
@@ -840,9 +840,25 @@
         stop: this.stop
       };
     }
+
     set state(state) {
       Object.assign(this, state);
     }
+
+    toString() {
+      return this.value;
+    }
+
+    extend(tail) {
+      this.value += String(tail);
+    }
+
+    appendTo(masked) {
+      return masked.append(this.toString(), {
+        tail: true
+      }).aggregate(masked._appendPlaceholder());
+    }
+
     unshift(beforePos) {
       if (!this.value.length || beforePos != null && this.from >= beforePos) return '';
       const shiftChar = this.value[0];
@@ -898,17 +914,6 @@
       this._initialized = true;
     }
 
-    /** Sets and applies new options */
-    updateOptions(opts) {
-      if (!Object.keys(opts).length) return;
-      this.withValueRefresh(this._update.bind(this, opts));
-    }
-
-    /** Sets new options */
-    _update(opts) {
-      Object.assign(this, opts);
-    }
-
     /** Mask state */
     get state() {
       return {
@@ -916,43 +921,33 @@
         _rawInputValue: this.rawInputValue
       };
     }
+
     set state(state) {
       this._value = state._value;
     }
 
-    /** Resets value */
-    reset() {
-      this._value = '';
-    }
     get value() {
       return this._value;
     }
+
     set value(value) {
       this.resolve(value, {
         input: true
       });
     }
 
-    /** Resolve new value */
-    resolve(value, flags) {
-      if (flags === void 0) {
-        flags = {
-          input: true
-        };
-      }
-      this.reset();
-      this.append(value, flags, '');
-      this.doCommit();
-    }
     get unmaskedValue() {
       return this.value;
     }
+
     set unmaskedValue(value) {
       this.resolve(value, {});
     }
+
     get typedValue() {
       return this.parse ? this.parse(this.value, this) : this.unmaskedValue;
     }
+
     set typedValue(value) {
       if (this.format) {
         this.value = this.format(value, this);
@@ -967,19 +962,51 @@
         raw: true
       });
     }
+
     set rawInputValue(value) {
       this.resolve(value, {
         raw: true
       });
     }
+
     get displayValue() {
       return this.value;
     }
+
     get isComplete() {
       return true;
     }
+
     get isFilled() {
       return this.isComplete;
+    }
+
+    /** Sets and applies new options */
+    updateOptions(opts) {
+      if (!Object.keys(opts).length) return;
+      this.withValueRefresh(this._update.bind(this, opts));
+    }
+
+    /** Sets new options */
+    _update(opts) {
+      Object.assign(this, opts);
+    }
+
+    /** Resets value */
+    reset() {
+      this._value = '';
+    }
+
+    /** Resolve new value */
+    resolve(value, flags) {
+      if (flags === void 0) {
+        flags = {
+          input: true
+        };
+      }
+      this.reset();
+      this.append(value, flags, '');
+      this.doCommit();
     }
 
     /** Finds nearest input position in direction */
@@ -1250,9 +1277,33 @@
       this.chunks = chunks;
       this.from = from;
     }
+
+    get state() {
+      return {
+        chunks: this.chunks.map(c => c.state),
+        from: this.from,
+        stop: this.stop,
+        blockIndex: this.blockIndex
+      };
+    }
+
+    set state(state) {
+      const {
+        chunks,
+        ...props
+      } = state;
+      Object.assign(this, props);
+      this.chunks = chunks.map(cstate => {
+        const chunk = "chunks" in cstate ? new ChunksTailDetails() : new ContinuousTailDetails();
+        chunk.state = cstate;
+        return chunk;
+      });
+    }
+
     toString() {
       return this.chunks.map(String).join('');
     }
+
     extend(tailChunk) {
       if (!String(tailChunk)) return;
       tailChunk = isString(tailChunk) ? new ContinuousTailDetails(String(tailChunk)) : tailChunk;
@@ -1290,6 +1341,7 @@
         }
       }
     }
+
     appendTo(masked) {
       if (!(masked instanceof IMask.MaskedPattern)) {
         const tail = new ContinuousTailDetails(this.toString());
@@ -1331,26 +1383,7 @@
       }
       return details;
     }
-    get state() {
-      return {
-        chunks: this.chunks.map(c => c.state),
-        from: this.from,
-        stop: this.stop,
-        blockIndex: this.blockIndex
-      };
-    }
-    set state(state) {
-      const {
-        chunks,
-        ...props
-      } = state;
-      Object.assign(this, props);
-      this.chunks = chunks.map(cstate => {
-        const chunk = "chunks" in cstate ? new ChunksTailDetails() : new ContinuousTailDetails();
-        chunk.state = cstate;
-        return chunk;
-      });
-    }
+
     unshift(beforePos) {
       if (!this.chunks.length || beforePos != null && this.from >= beforePos) return '';
       const chunkShiftPos = beforePos != null ? beforePos - this.from : beforePos;
@@ -1551,10 +1584,32 @@
     get displayValue() {
       return this.value;
     }
+
+    get isComplete() {
+      return true;
+    }
+
+    get isFilled() {
+      return Boolean(this._value);
+    }
+
+    get state() {
+      return {
+        _value: this._value,
+        _rawInputValue: this.rawInputValue
+      };
+    }
+
+    set state(state) {
+      this._value = state._value;
+      this._isRawInput = Boolean(state._rawInputValue);
+    }
+
     reset() {
       this._isRawInput = false;
       this._value = '';
     }
+
     remove(fromPos, toPos) {
       if (fromPos === void 0) {
         fromPos = 0;
@@ -1566,6 +1621,7 @@
       if (!this._value) this._isRawInput = false;
       return new ChangeDetails();
     }
+
     nearestInputPos(cursorPos, direction) {
       if (direction === void 0) {
         direction = DIRECTION.NONE;
@@ -1583,6 +1639,7 @@
           return maxPos;
       }
     }
+
     totalInputPositions(fromPos, toPos) {
       if (fromPos === void 0) {
         fromPos = 0;
@@ -1592,6 +1649,7 @@
       }
       return this._isRawInput ? toPos - fromPos : 0;
     }
+
     extractInput(fromPos, toPos, flags) {
       if (fromPos === void 0) {
         fromPos = 0;
@@ -1604,12 +1662,7 @@
       }
       return flags.raw && this._isRawInput && this._value.slice(fromPos, toPos) || '';
     }
-    get isComplete() {
-      return true;
-    }
-    get isFilled() {
-      return Boolean(this._value);
-    }
+
     _appendChar(ch, flags) {
       if (flags === void 0) {
         flags = {};
@@ -1624,24 +1677,29 @@
       this._isRawInput = isResolved && (flags.raw || flags.input);
       return details;
     }
+
     _appendEager() {
       return this._appendChar(this.char, {
         tail: true
       });
     }
+
     _appendPlaceholder() {
       const details = new ChangeDetails();
       if (this.isFilled) return details;
       this._value = details.inserted = this.char;
       return details;
     }
+
     extractTail() {
       return new ContinuousTailDetails('');
     }
+
     appendTail(tail) {
       if (isString(tail)) tail = new ContinuousTailDetails(String(tail));
       return tail.appendTo(this);
     }
+
     append(str, flags, tail) {
       const details = this._appendChar(str[0], flags);
       if (tail != null) {
@@ -1649,17 +1707,8 @@
       }
       return details;
     }
+
     doCommit() {}
-    get state() {
-      return {
-        _value: this._value,
-        _rawInputValue: this.rawInputValue
-      };
-    }
-    set state(state) {
-      this._value = state._value;
-      this._isRawInput = Boolean(state._rawInputValue);
-    }
   }
 
   class PatternInputDefinition {
@@ -1699,10 +1748,46 @@
         eager
       });
     }
+
+    get value() {
+      return this.masked.value || (this.isFilled && !this.isOptional ? this.placeholderChar : '');
+    }
+
+    get unmaskedValue() {
+      return this.masked.unmaskedValue;
+    }
+
+    get rawInputValue() {
+      return this.masked.rawInputValue;
+    }
+
+    get displayValue() {
+      return this.masked.value && this.displayChar || this.value;
+    }
+
+    get isComplete() {
+      return Boolean(this.masked.value) || this.isOptional;
+    }
+
+    get state() {
+      return {
+        _value: this.value,
+        _rawInputValue: this.rawInputValue,
+        masked: this.masked.state,
+        isFilled: this.isFilled
+      };
+    }
+
+    set state(state) {
+      this.masked.state = state.masked;
+      this.isFilled = state.isFilled;
+    }
+
     reset() {
       this.isFilled = false;
       this.masked.reset();
     }
+
     remove(fromPos, toPos) {
       if (fromPos === void 0) {
         fromPos = 0;
@@ -1716,21 +1801,7 @@
       }
       return new ChangeDetails();
     }
-    get value() {
-      return this.masked.value || (this.isFilled && !this.isOptional ? this.placeholderChar : '');
-    }
-    get unmaskedValue() {
-      return this.masked.unmaskedValue;
-    }
-    get rawInputValue() {
-      return this.masked.rawInputValue;
-    }
-    get displayValue() {
-      return this.masked.value && this.displayChar || this.value;
-    }
-    get isComplete() {
-      return Boolean(this.masked.value) || this.isOptional;
-    }
+
     _appendChar(ch, flags) {
       if (flags === void 0) {
         flags = {};
@@ -1750,10 +1821,12 @@
       this.isFilled = Boolean(details.inserted);
       return details;
     }
+
     append(str, flags, tail) {
       // TODO probably should be done via _appendChar
       return this.masked.append(str, this.currentMaskFlags(flags), tail);
     }
+
     _appendPlaceholder() {
       const details = new ChangeDetails();
       if (this.isFilled || this.isOptional) return details;
@@ -1761,15 +1834,19 @@
       details.inserted = this.placeholderChar;
       return details;
     }
+
     _appendEager() {
       return new ChangeDetails();
     }
+
     extractTail(fromPos, toPos) {
       return this.masked.extractTail(fromPos, toPos);
     }
+
     appendTail(tail) {
       return this.masked.appendTail(tail);
     }
+
     extractInput(fromPos, toPos, flags) {
       if (fromPos === void 0) {
         fromPos = 0;
@@ -1779,6 +1856,7 @@
       }
       return this.masked.extractInput(fromPos, toPos, flags);
     }
+
     nearestInputPos(cursorPos, direction) {
       if (direction === void 0) {
         direction = DIRECTION.NONE;
@@ -1798,6 +1876,7 @@
           return boundPos;
       }
     }
+
     totalInputPositions(fromPos, toPos) {
       if (fromPos === void 0) {
         fromPos = 0;
@@ -1807,24 +1886,15 @@
       }
       return this.value.slice(fromPos, toPos).length;
     }
+
     doValidate(flags) {
       return this.masked.doValidate(this.currentMaskFlags(flags)) && (!this.parent || this.parent.doValidate(this.currentMaskFlags(flags)));
     }
+
     doCommit() {
       this.masked.doCommit();
     }
-    get state() {
-      return {
-        _value: this.value,
-        _rawInputValue: this.rawInputValue,
-        masked: this.masked.state,
-        isFilled: this.isFilled
-      };
-    }
-    set state(state) {
-      this.masked.state = state.masked;
-      this.isFilled = state.isFilled;
-    }
+
     currentMaskFlags(flags) {
       var _flags$_beforeTailSta;
       return {
@@ -1886,14 +1956,94 @@
         definitions: Object.assign({}, PatternInputDefinition.DEFAULT_DEFINITIONS, opts == null ? void 0 : opts.definitions)
       });
     }
+
+    get state() {
+      return {
+        ...super.state,
+        _blocks: this._blocks.map(b => b.state)
+      };
+    }
+
+    set state(state) {
+      const {
+        _blocks,
+        ...maskedState
+      } = state;
+      this._blocks.forEach((b, bi) => b.state = _blocks[bi]);
+      super.state = maskedState;
+    }
+
+    get isComplete() {
+      return this.exposeBlock ? this.exposeBlock.isComplete : this._blocks.every(b => b.isComplete);
+    }
+
+    get isFilled() {
+      return this._blocks.every(b => b.isFilled);
+    }
+
+    get isFixed() {
+      return this._blocks.every(b => b.isFixed);
+    }
+
+    get isOptional() {
+      return this._blocks.every(b => b.isOptional);
+    }
+
+    get unmaskedValue() {
+      return this.exposeBlock ? this.exposeBlock.unmaskedValue : this._blocks.reduce((str, b) => str += b.unmaskedValue, '');
+    }
+
+    set unmaskedValue(unmaskedValue) {
+      if (this.exposeBlock) {
+        const tail = this.extractTail(this._blockStartPos(this._blocks.indexOf(this.exposeBlock)) + this.exposeBlock.displayValue.length);
+        this.exposeBlock.unmaskedValue = unmaskedValue;
+        this.appendTail(tail);
+        this.doCommit();
+      } else super.unmaskedValue = unmaskedValue;
+    }
+
+    get value() {
+      return this.exposeBlock ? this.exposeBlock.value :
+        // TODO return _value when not in change?
+        this._blocks.reduce((str, b) => str += b.value, '');
+    }
+
+    set value(value) {
+      if (this.exposeBlock) {
+        const tail = this.extractTail(this._blockStartPos(this._blocks.indexOf(this.exposeBlock)) + this.exposeBlock.displayValue.length);
+        this.exposeBlock.value = value;
+        this.appendTail(tail);
+        this.doCommit();
+      } else super.value = value;
+    }
+
+    get typedValue() {
+      return this.exposeBlock ? this.exposeBlock.typedValue : super.typedValue;
+    }
+
+    set typedValue(value) {
+      if (this.exposeBlock) {
+        const tail = this.extractTail(this._blockStartPos(this._blocks.indexOf(this.exposeBlock)) + this.exposeBlock.displayValue.length);
+        this.exposeBlock.typedValue = value;
+        this.appendTail(tail);
+        this.doCommit();
+      } else super.typedValue = value;
+    }
+
+    get displayValue() {
+      return this._blocks.reduce((str, b) => str += b.displayValue, '');
+    }
+
     updateOptions(opts) {
       super.updateOptions(opts);
     }
+
     _update(opts) {
       opts.definitions = Object.assign({}, this.definitions, opts.definitions);
       super._update(opts);
       this._rebuildMask();
     }
+
     _rebuildMask() {
       const defs = this.definitions;
       this._blocks = [];
@@ -1974,78 +2124,17 @@
         this._blocks.push(def);
       }
     }
-    get state() {
-      return {
-        ...super.state,
-        _blocks: this._blocks.map(b => b.state)
-      };
-    }
-    set state(state) {
-      const {
-        _blocks,
-        ...maskedState
-      } = state;
-      this._blocks.forEach((b, bi) => b.state = _blocks[bi]);
-      super.state = maskedState;
-    }
+
     reset() {
       super.reset();
       this._blocks.forEach(b => b.reset());
     }
-    get isComplete() {
-      return this.exposeBlock ? this.exposeBlock.isComplete : this._blocks.every(b => b.isComplete);
-    }
-    get isFilled() {
-      return this._blocks.every(b => b.isFilled);
-    }
-    get isFixed() {
-      return this._blocks.every(b => b.isFixed);
-    }
-    get isOptional() {
-      return this._blocks.every(b => b.isOptional);
-    }
+
     doCommit() {
       this._blocks.forEach(b => b.doCommit());
       super.doCommit();
     }
-    get unmaskedValue() {
-      return this.exposeBlock ? this.exposeBlock.unmaskedValue : this._blocks.reduce((str, b) => str += b.unmaskedValue, '');
-    }
-    set unmaskedValue(unmaskedValue) {
-      if (this.exposeBlock) {
-        const tail = this.extractTail(this._blockStartPos(this._blocks.indexOf(this.exposeBlock)) + this.exposeBlock.displayValue.length);
-        this.exposeBlock.unmaskedValue = unmaskedValue;
-        this.appendTail(tail);
-        this.doCommit();
-      } else super.unmaskedValue = unmaskedValue;
-    }
-    get value() {
-      return this.exposeBlock ? this.exposeBlock.value :
-        // TODO return _value when not in change?
-        this._blocks.reduce((str, b) => str += b.value, '');
-    }
-    set value(value) {
-      if (this.exposeBlock) {
-        const tail = this.extractTail(this._blockStartPos(this._blocks.indexOf(this.exposeBlock)) + this.exposeBlock.displayValue.length);
-        this.exposeBlock.value = value;
-        this.appendTail(tail);
-        this.doCommit();
-      } else super.value = value;
-    }
-    get typedValue() {
-      return this.exposeBlock ? this.exposeBlock.typedValue : super.typedValue;
-    }
-    set typedValue(value) {
-      if (this.exposeBlock) {
-        const tail = this.extractTail(this._blockStartPos(this._blocks.indexOf(this.exposeBlock)) + this.exposeBlock.displayValue.length);
-        this.exposeBlock.typedValue = value;
-        this.appendTail(tail);
-        this.doCommit();
-      } else super.typedValue = value;
-    }
-    get displayValue() {
-      return this._blocks.reduce((str, b) => str += b.displayValue, '');
-    }
+
     appendTail(tail) {
       return super.appendTail(tail).aggregate(this._appendPlaceholder());
     }
@@ -2313,18 +2402,24 @@
 
     /** Max bound */
 
+    constructor(opts) {
+      super(opts); // mask will be created in _update
+    }
+
     /** */
 
     get _matchFrom() {
       return this.maxLength - String(this.from).length;
     }
-    constructor(opts) {
-      super(opts); // mask will be created in _update
+
+    get isComplete() {
+      return super.isComplete && Boolean(this.value);
     }
 
     updateOptions(opts) {
       super.updateOptions(opts);
     }
+
     _update(opts) {
       const {
         to = this.to || 0,
@@ -2344,9 +2439,7 @@
       patternOpts.mask = toStr.slice(0, sameCharsCount).replace(/0/g, '\\0') + '0'.repeat(this.maxLength - sameCharsCount);
       super._update(patternOpts);
     }
-    get isComplete() {
-      return super.isComplete && Boolean(this.value);
-    }
+
     boundaries(str) {
       let minstr = '';
       let maxstr = '';
@@ -2418,9 +2511,28 @@
         mask: isString(mask) ? mask : pattern
       });
     }
+
+    /** Parsed Date */
+    get date() {
+      return this.typedValue;
+    }
+
+    set date(date) {
+      this.typedValue = date;
+    }
+
+    get typedValue() {
+      return this.isComplete ? super.typedValue : null;
+    }
+
+    set typedValue(value) {
+      super.typedValue = value;
+    }
+
     updateOptions(opts) {
       super.updateOptions(opts);
     }
+
     _update(opts) {
       const {
         mask,
@@ -2456,6 +2568,7 @@
         blocks: patternBlocks
       });
     }
+
     doValidate(flags) {
       const date = this.date;
       return super.doValidate(flags) && (!this.isComplete || this.isDateExist(this.value) && date != null && (this.min == null || this.min <= date) && (this.max == null || date <= this.max));
@@ -2466,19 +2579,6 @@
       return this.format(this.parse(str, this), this).indexOf(str) >= 0;
     }
 
-    /** Parsed Date */
-    get date() {
-      return this.typedValue;
-    }
-    set date(date) {
-      this.typedValue = date;
-    }
-    get typedValue() {
-      return this.isComplete ? super.typedValue : null;
-    }
-    set typedValue(value) {
-      super.typedValue = value;
-    }
     maskEquals(mask) {
       return mask === Date || super.maskEquals(mask);
     }
@@ -2536,9 +2636,120 @@
       });
       this.currentMask = undefined;
     }
+
+    get value() {
+      return this.exposeMask ? this.exposeMask.value : this.currentMask ? this.currentMask.value : '';
+    }
+
+    set value(value) {
+      if (this.exposeMask) {
+        this.exposeMask.value = value;
+        this.currentMask = this.exposeMask;
+        this._applyDispatch();
+      } else super.value = value;
+    }
+
+    get unmaskedValue() {
+      return this.exposeMask ? this.exposeMask.unmaskedValue : this.currentMask ? this.currentMask.unmaskedValue : '';
+    }
+
+    set unmaskedValue(unmaskedValue) {
+      if (this.exposeMask) {
+        this.exposeMask.unmaskedValue = unmaskedValue;
+        this.currentMask = this.exposeMask;
+        this._applyDispatch();
+      } else super.unmaskedValue = unmaskedValue;
+    }
+
+    get typedValue() {
+      return this.exposeMask ? this.exposeMask.typedValue : this.currentMask ? this.currentMask.typedValue : '';
+    }
+
+    set typedValue(typedValue) {
+      if (this.exposeMask) {
+        this.exposeMask.typedValue = typedValue;
+        this.currentMask = this.exposeMask;
+        this._applyDispatch();
+        return;
+      }
+      let unmaskedValue = String(typedValue);
+
+      // double check it
+      if (this.currentMask) {
+        this.currentMask.typedValue = typedValue;
+        unmaskedValue = this.currentMask.unmaskedValue;
+      }
+      this.unmaskedValue = unmaskedValue;
+    }
+
+    get displayValue() {
+      return this.currentMask ? this.currentMask.displayValue : '';
+    }
+
+    get isComplete() {
+      var _this$currentMask2;
+      return Boolean((_this$currentMask2 = this.currentMask) == null ? void 0 : _this$currentMask2.isComplete);
+    }
+
+    get isFilled() {
+      var _this$currentMask3;
+      return Boolean((_this$currentMask3 = this.currentMask) == null ? void 0 : _this$currentMask3.isFilled);
+    }
+
+    get state() {
+      var _this$currentMask4;
+      return {
+        ...super.state,
+        _rawInputValue: this.rawInputValue,
+        compiledMasks: this.compiledMasks.map(m => m.state),
+        currentMaskRef: this.currentMask,
+        currentMask: (_this$currentMask4 = this.currentMask) == null ? void 0 : _this$currentMask4.state
+      };
+    }
+
+    set state(state) {
+      const {
+        compiledMasks,
+        currentMaskRef,
+        currentMask,
+        ...maskedState
+      } = state;
+      if (compiledMasks) this.compiledMasks.forEach((m, mi) => m.state = compiledMasks[mi]);
+      if (currentMaskRef != null) {
+        this.currentMask = currentMaskRef;
+        this.currentMask.state = currentMask;
+      }
+      super.state = maskedState;
+    }
+
+    get overwrite() {
+      return this.currentMask ? this.currentMask.overwrite : this._overwrite;
+    }
+
+    set overwrite(overwrite) {
+      this._overwrite = overwrite;
+    }
+
+    get eager() {
+      return this.currentMask ? this.currentMask.eager : this._eager;
+    }
+
+    set eager(eager) {
+      this._eager = eager;
+    }
+
+    get skipInvalid() {
+      return this.currentMask ? this.currentMask.skipInvalid : this._skipInvalid;
+    }
+
+    set skipInvalid(skipInvalid) {
+      this._skipInvalid = skipInvalid;
+    }
+
     updateOptions(opts) {
       super.updateOptions(opts);
     }
+
     _update(opts) {
       super._update(opts);
       if ('mask' in opts) {
@@ -2573,6 +2784,7 @@
       }
       return details;
     }
+
     _applyDispatch(appended, flags, tail) {
       if (appended === void 0) {
         appended = '';
@@ -2621,6 +2833,7 @@
       }
       return details;
     }
+
     _appendPlaceholder() {
       const details = this._applyDispatch();
       if (this.currentMask) {
@@ -2628,6 +2841,7 @@
       }
       return details;
     }
+
     _appendEager() {
       const details = this._applyDispatch();
       if (this.currentMask) {
@@ -2635,11 +2849,13 @@
       }
       return details;
     }
+
     appendTail(tail) {
       const details = new ChangeDetails();
       if (tail) details.aggregate(this._applyDispatch('', {}, tail));
       return details.aggregate(this.currentMask ? this.currentMask.appendTail(tail) : super.appendTail(tail));
     }
+
     currentMaskFlags(flags) {
       var _flags$_beforeTailSta, _flags$_beforeTailSta2;
       return {
@@ -2647,6 +2863,7 @@
         _beforeTailState: ((_flags$_beforeTailSta = flags._beforeTailState) == null ? void 0 : _flags$_beforeTailSta.currentMaskRef) === this.currentMask && ((_flags$_beforeTailSta2 = flags._beforeTailState) == null ? void 0 : _flags$_beforeTailSta2.currentMask) || flags._beforeTailState
       };
     }
+
     doDispatch(appended, flags, tail) {
       if (flags === void 0) {
         flags = {};
@@ -2656,9 +2873,11 @@
       }
       return this.dispatch(appended, this, flags, tail);
     }
+
     doValidate(flags) {
       return super.doValidate(flags) && (!this.currentMask || this.currentMask.doValidate(this.currentMaskFlags(flags)));
     }
+
     doPrepare(str, flags) {
       if (flags === void 0) {
         flags = {};
@@ -2671,6 +2890,7 @@
       }
       return [s, details];
     }
+
     doPrepareChar(str, flags) {
       if (flags === void 0) {
         flags = {};
@@ -2683,61 +2903,13 @@
       }
       return [s, details];
     }
+
     reset() {
       var _this$currentMask;
       (_this$currentMask = this.currentMask) == null ? void 0 : _this$currentMask.reset();
       this.compiledMasks.forEach(m => m.reset());
     }
-    get value() {
-      return this.exposeMask ? this.exposeMask.value : this.currentMask ? this.currentMask.value : '';
-    }
-    set value(value) {
-      if (this.exposeMask) {
-        this.exposeMask.value = value;
-        this.currentMask = this.exposeMask;
-        this._applyDispatch();
-      } else super.value = value;
-    }
-    get unmaskedValue() {
-      return this.exposeMask ? this.exposeMask.unmaskedValue : this.currentMask ? this.currentMask.unmaskedValue : '';
-    }
-    set unmaskedValue(unmaskedValue) {
-      if (this.exposeMask) {
-        this.exposeMask.unmaskedValue = unmaskedValue;
-        this.currentMask = this.exposeMask;
-        this._applyDispatch();
-      } else super.unmaskedValue = unmaskedValue;
-    }
-    get typedValue() {
-      return this.exposeMask ? this.exposeMask.typedValue : this.currentMask ? this.currentMask.typedValue : '';
-    }
-    set typedValue(typedValue) {
-      if (this.exposeMask) {
-        this.exposeMask.typedValue = typedValue;
-        this.currentMask = this.exposeMask;
-        this._applyDispatch();
-        return;
-      }
-      let unmaskedValue = String(typedValue);
 
-      // double check it
-      if (this.currentMask) {
-        this.currentMask.typedValue = typedValue;
-        unmaskedValue = this.currentMask.unmaskedValue;
-      }
-      this.unmaskedValue = unmaskedValue;
-    }
-    get displayValue() {
-      return this.currentMask ? this.currentMask.displayValue : '';
-    }
-    get isComplete() {
-      var _this$currentMask2;
-      return Boolean((_this$currentMask2 = this.currentMask) == null ? void 0 : _this$currentMask2.isComplete);
-    }
-    get isFilled() {
-      var _this$currentMask3;
-      return Boolean((_this$currentMask3 = this.currentMask) == null ? void 0 : _this$currentMask3.isFilled);
-    }
     remove(fromPos, toPos) {
       const details = new ChangeDetails();
       if (this.currentMask) {
@@ -2747,61 +2919,24 @@
       }
       return details;
     }
-    get state() {
-      var _this$currentMask4;
-      return {
-        ...super.state,
-        _rawInputValue: this.rawInputValue,
-        compiledMasks: this.compiledMasks.map(m => m.state),
-        currentMaskRef: this.currentMask,
-        currentMask: (_this$currentMask4 = this.currentMask) == null ? void 0 : _this$currentMask4.state
-      };
-    }
-    set state(state) {
-      const {
-        compiledMasks,
-        currentMaskRef,
-        currentMask,
-        ...maskedState
-      } = state;
-      if (compiledMasks) this.compiledMasks.forEach((m, mi) => m.state = compiledMasks[mi]);
-      if (currentMaskRef != null) {
-        this.currentMask = currentMaskRef;
-        this.currentMask.state = currentMask;
-      }
-      super.state = maskedState;
-    }
+
     extractInput(fromPos, toPos, flags) {
       return this.currentMask ? this.currentMask.extractInput(fromPos, toPos, flags) : '';
     }
+
     extractTail(fromPos, toPos) {
       return this.currentMask ? this.currentMask.extractTail(fromPos, toPos) : super.extractTail(fromPos, toPos);
     }
+
     doCommit() {
       if (this.currentMask) this.currentMask.doCommit();
       super.doCommit();
     }
+
     nearestInputPos(cursorPos, direction) {
       return this.currentMask ? this.currentMask.nearestInputPos(cursorPos, direction) : super.nearestInputPos(cursorPos, direction);
     }
-    get overwrite() {
-      return this.currentMask ? this.currentMask.overwrite : this._overwrite;
-    }
-    set overwrite(overwrite) {
-      this._overwrite = overwrite;
-    }
-    get eager() {
-      return this.currentMask ? this.currentMask.eager : this._eager;
-    }
-    set eager(eager) {
-      this._eager = eager;
-    }
-    get skipInvalid() {
-      return this.currentMask ? this.currentMask.skipInvalid : this._skipInvalid;
-    }
-    set skipInvalid(skipInvalid) {
-      this._skipInvalid = skipInvalid;
-    }
+
     maskEquals(mask) {
       return Array.isArray(mask) ? this.compiledMasks.every((m, mi) => {
         if (!mask[mi]) return;
@@ -2937,13 +3072,55 @@
         ...opts
       });
     }
+
+    get unmaskedValue() {
+      return this._removeThousandsSeparators(this._normalizeZeros(this.value)).replace(this.radix, MaskedNumber.UNMASKED_RADIX);
+    }
+
+    set unmaskedValue(unmaskedValue) {
+      super.unmaskedValue = unmaskedValue;
+    }
+
+    get typedValue() {
+      return this.parse(this.unmaskedValue, this);
+    }
+
+    set typedValue(n) {
+      this.rawInputValue = this.format(n, this).replace(MaskedNumber.UNMASKED_RADIX, this.radix);
+    }
+
+    /** Parsed Number */
+    get number() {
+      return this.typedValue;
+    }
+
+    set number(number) {
+      this.typedValue = number;
+    }
+
+    /**
+     Is negative allowed
+     */
+    get allowNegative() {
+      return this.min != null && this.min < 0 || this.max != null && this.max < 0;
+    }
+
+    /**
+     Is positive allowed
+     */
+    get allowPositive() {
+      return this.min != null && this.min > 0 || this.max != null && this.max > 0;
+    }
+
     updateOptions(opts) {
       super.updateOptions(opts);
     }
+
     _update(opts) {
       super._update(opts);
       this._updateRegExps();
     }
+
     _updateRegExps() {
       const start = '^' + (this.allowNegative ? '[+|\\-]?' : '');
       const mid = '\\d*';
@@ -2952,15 +3129,18 @@
       this._mapToRadixRegExp = new RegExp("[" + this.mapToRadix.map(escapeRegExp).join('') + "]", 'g');
       this._thousandsSeparatorRegExp = new RegExp(escapeRegExp(this.thousandsSeparator), 'g');
     }
+
     _removeThousandsSeparators(value) {
       return value.replace(this._thousandsSeparatorRegExp, '');
     }
+
     _insertThousandsSeparators(value) {
       // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
       const parts = value.split(this.radix);
       parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, this.thousandsSeparator);
       return parts.join(this.radix);
     }
+
     doPrepareChar(ch, flags) {
       if (flags === void 0) {
         flags = {};
@@ -2979,6 +3159,7 @@
       if (prepCh && !this.allowPositive && !this.value && prepCh !== '-') details.aggregate(this._appendChar('-'));
       return [prepCh, details];
     }
+
     _separatorsCount(to, extendOnSeparators) {
       if (extendOnSeparators === void 0) {
         extendOnSeparators = false;
@@ -2992,12 +3173,14 @@
       }
       return count;
     }
+
     _separatorsCountFromSlice(slice) {
       if (slice === void 0) {
         slice = this._value;
       }
       return this._separatorsCount(this._removeThousandsSeparators(slice).length, true);
     }
+
     extractInput(fromPos, toPos, flags) {
       if (fromPos === void 0) {
         fromPos = 0;
@@ -3008,6 +3191,7 @@
       [fromPos, toPos] = this._adjustRangeWithSeparators(fromPos, toPos);
       return this._removeThousandsSeparators(super.extractInput(fromPos, toPos, flags));
     }
+
     _appendCharRaw(ch, flags) {
       if (flags === void 0) {
         flags = {};
@@ -3024,6 +3208,7 @@
       appendDetails.skip = !appendDetails.rawInserted && ch === this.thousandsSeparator;
       return appendDetails;
     }
+
     _findSeparatorAround(pos) {
       if (this.thousandsSeparator) {
         const searchFrom = pos - this.thousandsSeparator.length + 1;
@@ -3032,6 +3217,7 @@
       }
       return -1;
     }
+
     _adjustRangeWithSeparators(from, to) {
       const separatorAroundFromPos = this._findSeparatorAround(from);
       if (separatorAroundFromPos >= 0) from = separatorAroundFromPos;
@@ -3039,6 +3225,7 @@
       if (separatorAroundToPos >= 0) to = separatorAroundToPos + this.thousandsSeparator.length;
       return [from, to];
     }
+
     remove(fromPos, toPos) {
       if (fromPos === void 0) {
         fromPos = 0;
@@ -3056,6 +3243,7 @@
         tailShift: (beforeTailSeparatorsCount - prevBeforeTailSeparatorsCount) * this.thousandsSeparator.length
       });
     }
+
     nearestInputPos(cursorPos, direction) {
       if (!this.thousandsSeparator) return cursorPos;
       switch (direction) {
@@ -3083,6 +3271,7 @@
       }
       return cursorPos;
     }
+
     doValidate(flags) {
       // validate as string
       let valid = Boolean(this._removeThousandsSeparators(this.value).match(this._numberRegExp));
@@ -3097,6 +3286,7 @@
       }
       return valid && super.doValidate(flags);
     }
+
     doCommit() {
       if (this.value) {
         const number = this.number;
@@ -3113,6 +3303,7 @@
       }
       super.doCommit();
     }
+
     _normalizeZeros(value) {
       const parts = this._removeThousandsSeparators(value).split(this.radix);
 
@@ -3127,6 +3318,7 @@
 
       return this._insertThousandsSeparators(parts.join(this.radix));
     }
+
     _padFractionalZeros(value) {
       if (!value) return value;
       const parts = value.split(this.radix);
@@ -3134,6 +3326,7 @@
       parts[1] = parts[1].padEnd(this.scale, '0');
       return parts.join(this.radix);
     }
+
     doSkipInvalid(ch, flags, checkTail) {
       if (flags === void 0) {
         flags = {};
@@ -3141,40 +3334,7 @@
       const dropFractional = this.scale === 0 && ch !== this.thousandsSeparator && (ch === this.radix || ch === MaskedNumber.UNMASKED_RADIX || this.mapToRadix.includes(ch));
       return super.doSkipInvalid(ch, flags, checkTail) && !dropFractional;
     }
-    get unmaskedValue() {
-      return this._removeThousandsSeparators(this._normalizeZeros(this.value)).replace(this.radix, MaskedNumber.UNMASKED_RADIX);
-    }
-    set unmaskedValue(unmaskedValue) {
-      super.unmaskedValue = unmaskedValue;
-    }
-    get typedValue() {
-      return this.parse(this.unmaskedValue, this);
-    }
-    set typedValue(n) {
-      this.rawInputValue = this.format(n, this).replace(MaskedNumber.UNMASKED_RADIX, this.radix);
-    }
 
-    /** Parsed Number */
-    get number() {
-      return this.typedValue;
-    }
-    set number(number) {
-      this.typedValue = number;
-    }
-
-    /**
-     Is negative allowed
-     */
-    get allowNegative() {
-      return this.min != null && this.min < 0 || this.max != null && this.max < 0;
-    }
-
-    /**
-     Is positive allowed
-     */
-    get allowPositive() {
-      return this.min != null && this.min > 0 || this.max != null && this.max > 0;
-    }
     typedValueEquals(value) {
       // handle  0 -> '' case (typed = 0 even if value = '')
       // for details see https://github.com/uNmAnNeR/imaskjs/issues/134
@@ -3264,7 +3424,7 @@
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-//# sourceMappingURL=imask.js.map
+//# sourceMappingURL=imask-7.1.3.js.map
 
 /**
  * NOTE: Export for usage

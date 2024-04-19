@@ -1,3 +1,4 @@
 # Set end of line character to CRLF
 [*]
 end_of_line = lf
+indent_size = 2
