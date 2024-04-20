@@ -6,223 +6,100 @@ test.beforeEach(async ({ page }) => {
   await pm.navigateTo().carouselPage();
 });
 
-test('has title', async ({ page }) => {
+test('has heading', async ({ page }) => {
   const pm = new PageManager(page);
-  await expect(
-    pm.onCarouselPage().sbFrame().getByRole('heading', {
-      name: 'Carousel',
-    }),
-  ).toBeVisible();
+  await pm.onCarouselPage().hasHeading();
 });
 
 test('adjust duration', async ({ page }) => {
   const pm = new PageManager(page);
-
-  const autoplayToggle = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'autoplay' })
-    .locator('input[id="control-autoplay"]');
-  await autoplayToggle.click();
-
-  const durationInput = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'duration' })
-    .locator('input[id="control-duration"]');
-
-  await durationInput.fill('3000');
-  await autoplayToggle.click();
-  await page.waitForTimeout(3000);
-  const carouselItems = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-content .carousel-item');
-  await expect(carouselItems.nth(1)).toHaveClass(/active/);
+  await pm.onCarouselPage().getAutoplayInput().click();
+  await pm.onCarouselPage().getDurationInput().fill('2000');
+  await pm.onCarouselPage().getAutoplayInput().click();
+  await page.waitForTimeout(2000);
+  await expect(pm.onCarouselPage().getCarouselItem(1)).toHaveClass(/active/);
 });
 
-test('toggle continuous with autoplay on', async ({ page }) => {
+test('turn off continuous with autoplay on', async ({ page }) => {
   const pm = new PageManager(page);
-
-  const continuousToggle = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'continuous' })
-    .locator('input[id="control-continuous"]');
-  await continuousToggle.click();
-
-  const autoplayToggle = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'autoplay' })
-    .locator('input[id="control-autoplay"]');
-  await autoplayToggle.click();
-
-  const durationInput = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'duration' })
-    .locator('input[id="control-duration"]');
-
-  await durationInput.fill('1000'); // 1s
-  await autoplayToggle.click();
-
-  await page.waitForTimeout(4000); // After 4 item switches
-  const carouselItems = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-content .carousel-item');
-  await expect(carouselItems.nth(3)).toHaveClass(/active/);
+  await pm.onCarouselPage().getContinuousInput().click();
+  await pm.onCarouselPage().getAutoplayInput().click();
+  await pm.onCarouselPage().getDurationInput().fill('500'); // 1s
+  await pm.onCarouselPage().getAutoplayInput().click();
+  await page.waitForTimeout(2000); // The last item should be active now
+  await expect(pm.onCarouselPage().getCarouselItem(3)).toHaveClass(/active/);
 });
 
-test('toggle continuous with autoplay off', async ({ page }) => {
+test('turn off continuous with autoplay off', async ({ page }) => {
   const pm = new PageManager(page);
-
-  const continuousToggle = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'continuous' })
-    .locator('input[id="control-continuous"]');
-  await continuousToggle.click();
-
-  const autoplayToggle = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'autoplay' })
-    .locator('input[id="control-autoplay"]');
-  await autoplayToggle.click();
-
-  const navigationRight = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-navigation--right');
-  await navigationRight.click();
-  await navigationRight.click();
-  await navigationRight.click();
-
-  await expect(navigationRight).toBeHidden();
-  const carouselItems = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-content .carousel-item');
-  await expect(carouselItems.nth(3)).toHaveClass(/active/);
+  await pm.onCarouselPage().getContinuousInput().click();
+  await pm.onCarouselPage().getAutoplayInput().click();
+  await pm.onCarouselPage().getCarouselNavigationRight().click();
+  await pm.onCarouselPage().getCarouselNavigationRight().click();
+  await pm.onCarouselPage().getCarouselNavigationRight().click();
+  await expect(pm.onCarouselPage().getCarouselNavigationRight()).toBeHidden();
+  await expect(pm.onCarouselPage().getCarouselItem(3)).toHaveClass(/active/);
 });
 
-test('toggle autoplay', async ({ page }) => {
+test('turn off autoplay', async ({ page }) => {
   const pm = new PageManager(page);
-
-  const autoplayToggle = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'autoplay' })
-    .locator('input[id="control-autoplay"]');
-  await autoplayToggle.click();
-
-  await page.waitForTimeout(6000);
-  const carouselItems = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-content .carousel-item');
-  await expect(carouselItems.nth(1)).not.toHaveClass(/active/);
+  await pm.onCarouselPage().getAutoplayInput().click();
+  await pm.onCarouselPage().getDurationInput().fill('500');
+  await page.waitForTimeout(500);
+  await expect(pm.onCarouselPage().getCarouselItem(1)).not.toHaveClass(
+    /active/,
+  );
 });
 
-test('toggle pagination', async ({ page }) => {
+test('turn on autoplay', async ({ page }) => {
   const pm = new PageManager(page);
-
-  const paginationToggle = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'pagination' })
-    .locator('input[id="control-pagination"]');
-  const pagination = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-pagination');
-
-  // Default
-  await expect(pagination).toBeVisible();
-
-  // Turn off
-  await paginationToggle.click();
-  await expect(pagination).toBeHidden();
-
-  // Turn on
-  await paginationToggle.click();
-  await expect(pagination).toBeVisible();
-
-  const paginationItems = pagination.locator('span');
-  await paginationItems.nth(2).click();
-  const carouselItems = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-content .carousel-item');
-  await expect(carouselItems.nth(2)).toHaveClass(/active/);
+  await pm.onCarouselPage().getAutoplayInput().click();
+  await pm.onCarouselPage().getDurationInput().fill('500');
+  await pm.onCarouselPage().getAutoplayInput().click();
+  await page.waitForTimeout(500);
+  await expect(pm.onCarouselPage().getCarouselItem(1)).toHaveClass(/active/);
 });
 
-test('toggle navigation', async ({ page }) => {
+test('turn off pagination', async ({ page }) => {
   const pm = new PageManager(page);
+  await pm.onCarouselPage().getPaginationInput().click();
+  await expect(pm.onCarouselPage().getCarouselPagination()).toBeHidden();
+});
 
-  const navigationToggle = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'navigation' })
-    .locator('input[id="control-navigation"]');
-  const navigationLeft = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-navigation--left');
-  const navigationRight = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-navigation--right');
+test('turn on pagination', async ({ page }) => {
+  const pm = new PageManager(page);
+  await pm.onCarouselPage().getPaginationInput().click();
+  await pm.onCarouselPage().getPaginationInput().click();
+  await expect(pm.onCarouselPage().getCarouselPagination()).toBeVisible();
 
-  // Default
-  await expect(navigationLeft).toBeVisible();
-  await expect(navigationRight).toBeVisible();
+  await pm.onCarouselPage().getCarouselPaginationItem(2).click();
+  await expect(pm.onCarouselPage().getCarouselItem(2)).toHaveClass(/active/);
 
-  // Turn off
-  await navigationToggle.click();
-  await expect(navigationLeft).toBeHidden();
-  await expect(navigationRight).toBeHidden();
+  await pm.onCarouselPage().getCarouselPaginationItem(3).click();
+  await expect(pm.onCarouselPage().getCarouselItem(3)).toHaveClass(/active/);
+});
 
-  // Turn on
-  await navigationToggle.click();
-  await expect(navigationLeft).toBeVisible();
-  await expect(navigationRight).toBeVisible();
+test('turn off navigation', async ({ page }) => {
+  const pm = new PageManager(page);
+  await pm.onCarouselPage().getNavigationInput().click();
+  await expect(pm.onCarouselPage().getCarouselNavigationLeft()).toBeHidden();
+  await expect(pm.onCarouselPage().getCarouselNavigationRight()).toBeHidden();
+});
 
-  await navigationRight.click();
-  await navigationRight.click();
-  const carouselItems = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-content .carousel-item');
-  await expect(carouselItems.nth(2)).toHaveClass(/active/);
+test('turn on navigation', async ({ page }) => {
+  const pm = new PageManager(page);
+  await pm.onCarouselPage().getNavigationInput().click();
+  await pm.onCarouselPage().getNavigationInput().click();
+  await expect(pm.onCarouselPage().getCarouselNavigationLeft()).toBeVisible();
+  await expect(pm.onCarouselPage().getCarouselNavigationRight()).toBeVisible();
+
+  await pm.onCarouselPage().getCarouselNavigationRight().click();
+  await pm.onCarouselPage().getCarouselNavigationRight().click();
+  await expect(pm.onCarouselPage().getCarouselItem(2)).toHaveClass(/active/);
 });
 
 test('select the third carousel item', async ({ page }) => {
   const pm = new PageManager(page);
-
-  const modelValueSelect = pm
-    .onCarouselPage()
-    .sbFrame()
-    .getByRole('table')
-    .locator('tr', { hasText: 'modelValue' })
-    .locator('select[id="control-modelValue"]');
-  await modelValueSelect.selectOption('2');
-
-  const carouselItems = pm
-    .onCarouselPage()
-    .sbFrame()
-    .locator('.carousel-content .carousel-item');
-  await expect(carouselItems.nth(2)).toHaveClass(/active/);
+  await pm.onCarouselPage().getModelValueSelect().selectOption('2');
+  await expect(pm.onCarouselPage().getCarouselItem(2)).toHaveClass(/active/);
 });

@@ -5,4 +5,8 @@ export class BreadcrumbPage extends HelperBase {
   constructor(page: Page) {
     super(page);
   }
+
+  async hasHeading() {
+    await super.hasHeading('Breadcrumb');
+  }
 }
