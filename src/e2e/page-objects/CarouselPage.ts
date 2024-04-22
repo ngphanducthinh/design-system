@@ -1,4 +1,4 @@
-import type { Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 import { HelperBase } from '@/e2e/page-objects/HelperBase';
 
 export class CarouselPage extends HelperBase {
@@ -10,53 +10,93 @@ export class CarouselPage extends HelperBase {
     await super.hasHeading('Carousel');
   }
 
-  getAutoplayInput() {
-    return this.getInput('autoplay');
+  async clickAutoplayInput() {
+    await this.getInput('autoplay').click();
   }
 
-  getDurationInput() {
-    return this.getInput('duration');
+  async fillDurationInput(duration: string) {
+    await this.getInput('duration').fill(duration);
   }
 
-  getContinuousInput() {
-    return this.getInput('continuous');
+  async clickContinuousInput() {
+    await this.getInput('continuous').click();
   }
 
-  getPaginationInput() {
-    return this.getInput('pagination');
+  async clickNavigationInput() {
+    await this.getInput('navigation').click();
   }
 
-  getNavigationInput() {
-    return this.getInput('navigation');
+  async clickPaginationInput() {
+    await this.getInput('pagination').click();
   }
 
-  getModelValueSelect() {
-    return this.frame()
+  async selectModelValue(option: string) {
+    await this.frame()
       .getByRole('table')
       .locator('tr', { hasText: 'modelValue' })
-      .locator('select[id="control-modelValue"]');
+      .locator('select[id="control-modelValue"]')
+      .selectOption(option);
   }
 
-  getCarouselPaginationItem(index: number) {
-    return this.getCarouselPagination().locator('span').nth(index);
-  }
-
-  getCarouselItem(index: number) {
-    return this.frame()
+  async hasActiveCarouselItem(index: number) {
+    const carouselItem = this.frame()
       .locator('.carousel-content')
       .locator('.carousel-item')
       .nth(index);
+    await expect(carouselItem).toHaveClass(/active/);
   }
 
-  getCarouselNavigationLeft() {
-    return this.frame().locator('.carousel-navigation--left');
+  async clickCarouselPaginationItem(index: number) {
+    await this.frame()
+      .locator('.carousel-pagination')
+      .locator('span')
+      .nth(index)
+      .click();
   }
 
-  getCarouselNavigationRight() {
-    return this.frame().locator('.carousel-navigation--right');
+  async hasCarouselPagination() {
+    const carouselPagination = this.frame().locator('.carousel-pagination');
+    await expect(carouselPagination).toBeVisible();
   }
 
-  getCarouselPagination() {
-    return this.frame().locator('.carousel-pagination');
+  async hasNoCarouselPagination() {
+    const carouselPagination = this.frame().locator('.carousel-pagination');
+    await expect(carouselPagination).toBeHidden();
+  }
+
+  async hasCarouselNavigationLeft() {
+    const carouselNavigationLeft = this.frame().locator(
+      '.carousel-navigation--left',
+    );
+    await expect(carouselNavigationLeft).toBeVisible();
+  }
+
+  async hasNoCarouselNavigationLeft() {
+    const carouselNavigationLeft = this.frame().locator(
+      '.carousel-navigation--left',
+    );
+    await expect(carouselNavigationLeft).toBeHidden();
+  }
+
+  async clickCarouselNavigationLeft() {
+    await this.frame().locator('.carousel-navigation--left').click();
+  }
+
+  async hasCarouselNavigationRight() {
+    const carouselNavigationLeft = this.frame().locator(
+      '.carousel-navigation--right',
+    );
+    await expect(carouselNavigationLeft).toBeVisible();
+  }
+
+  async hasNoCarouselNavigationRight() {
+    const carouselNavigationLeft = this.frame().locator(
+      '.carousel-navigation--right',
+    );
+    await expect(carouselNavigationLeft).toBeHidden();
+  }
+
+  async clickCarouselNavigationRight() {
+    await this.frame().locator('.carousel-navigation--right').click();
   }
 }
