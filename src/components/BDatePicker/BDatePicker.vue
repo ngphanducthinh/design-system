@@ -1,12 +1,5 @@
 <script lang="ts" setup>
-import {
-  computed,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-  shallowRef,
-  watch,
-} from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import BButton from '../BButton.vue';
 import BLabel from '../BLabel.vue';
 import {
@@ -33,6 +26,7 @@ import BDatePickerPreviousButton from '@/components/BDatePicker/BDatePickerPrevi
 import BDatePickerNextButton from '@/components/BDatePicker/BDatePickerNextButton.vue';
 import BDatePickerHeading from '@/components/BDatePicker/BDatePickerHeading.vue';
 import BDatePickerIcon from '@/components/BDatePicker/BDatePickerIcon.vue';
+import { useDate } from '@/composables/Date';
 
 interface BDate {
   date: number;
@@ -110,32 +104,17 @@ const emit = defineEmits<{
 //#region Data
 let mask: any;
 const DATE_FORMAT = `DD${DateDelimiter}MM${DateDelimiter}YYYY`; // moment's date format
+const { formatMonthYear } = useDate();
 const { t } = useI18n();
 const dates = ref<BDate[]>([]);
-const viewMonth = ref(new Date());
-const viewMonthPreview = ref(new Date());
+const viewDate = ref(new Date());
+const viewDatePreview = ref(new Date());
 const valuePreview = ref<Date | string>(new Date());
-const viewYear = ref(new Date());
-const viewYearPreview = ref(new Date());
 const isVisibleMenu = ref(false);
 const view = ref<BDatePickerView>(BDatePickerView.Dates);
 const inputMaskRef = ref<HTMLInputElement | null>(null);
 const datePickerRef = ref<HTMLDivElement | null>(null);
 const datePickerMenuRef = ref<HTMLDivElement | null>(null);
-const monthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
 const months = ref<BDatePickerDateItem[]>([]);
 const validateRequired: ValidationRule = {
   validateRule: (val) => !!val,
@@ -220,6 +199,26 @@ const inputMaskOptions = computed(() => {
 
   return result;
 });
+const viewData = computed<Record<BDatePickerView, any>>(() => ({
+  [BDatePickerView.Years]: {
+    heading: '',
+    handleClickHeading: () => {},
+    handleClickPreview: () => {},
+    handleClickNext: () => {},
+  },
+  [BDatePickerView.Months]: {
+    heading: viewDatePreview.value.getFullYear(),
+    handleClickHeading: handleSwitchToYearsView,
+    handleClickPreview: handleSwitchToPreviousYear,
+    handleClickNext: handleSwitchToNextYear,
+  },
+  [BDatePickerView.Dates]: {
+    heading: formatMonthYear(viewDatePreview.value),
+    handleClickHeading: handleSwitchToMonthsView,
+    handleClickPreview: handleSwitchToPreviousMonth,
+    handleClickNext: handleSwitchToNextMonth,
+  },
+}));
 //#endregion
 
 //#region Watchers
@@ -237,9 +236,9 @@ watch(
   (val) => {
     if (isUnsyncedModelValue(val)) {
       value.value = val;
-      viewMonth.value = val;
+      viewDate.value = val;
       valuePreview.value = val;
-      viewMonthPreview.value = val;
+      viewDatePreview.value = val;
     }
     if (isUnsyncedModelValue(getInputMaskDate())) {
       mask.value = formatDate(props.modelValue);
@@ -249,8 +248,11 @@ watch(
 //#endregion
 
 //#region Methods
-const handleSwitchToView = (v: BDatePickerView) => {
-  view.value = v;
+const handleSwitchToMonthsView = () => {
+  view.value = BDatePickerView.Months;
+};
+const handleSwitchToYearsView = () => {
+  view.value = BDatePickerView.Years;
 };
 const isUnsyncedModelValue = (date: any) => {
   const ruleEngine = [
@@ -263,23 +265,23 @@ const isUnsyncedModelValue = (date: any) => {
 };
 const handleCancel = () => {
   valuePreview.value = structuredClone(value.value);
-  viewMonthPreview.value = structuredClone(viewMonth.value);
+  viewDatePreview.value = structuredClone(viewDate.value);
   isVisibleMenu.value = false;
   generateDates();
 };
 const handleConfirm = () => {
   value.value = structuredClone(valuePreview.value);
-  viewMonth.value = structuredClone(viewMonthPreview.value);
+  viewDate.value = structuredClone(viewDatePreview.value);
   isVisibleMenu.value = false;
 };
 const handleSelectYear = () => {};
 const handleSelectMonth = (selectedDate: Date) => {
   console.log(selectedDate);
-  console.log(viewMonthPreview.value);
+  console.log(viewDatePreview.value);
   const selectedDateYear = selectedDate.getFullYear();
   const selectedDateMonth = selectedDate.getMonth();
-  const viewMonthPreviewYear = viewMonthPreview.value.getFullYear();
-  const viewMonthPreviewMonth = viewMonthPreview.value.getMonth();
+  const viewMonthPreviewYear = viewDatePreview.value.getFullYear();
+  const viewMonthPreviewMonth = viewDatePreview.value.getMonth();
   const yearCount = Math.abs(selectedDateYear - viewMonthPreviewYear);
   let monthCount = 0;
 
@@ -306,11 +308,11 @@ const handleSelectMonth = (selectedDate: Date) => {
 };
 const handleSelectDate = (selectedDate: Date) => {
   console.log(selectedDate);
-  console.log(viewMonthPreview.value);
+  console.log(viewDatePreview.value);
   const selectedDateYear = selectedDate.getFullYear();
   const selectedDateMonth = selectedDate.getMonth();
-  const viewMonthPreviewYear = viewMonthPreview.value.getFullYear();
-  const viewMonthPreviewMonth = viewMonthPreview.value.getMonth();
+  const viewMonthPreviewYear = viewDatePreview.value.getFullYear();
+  const viewMonthPreviewMonth = viewDatePreview.value.getMonth();
   const yearCount = Math.abs(selectedDateYear - viewMonthPreviewYear);
   let monthCount = 0;
 
@@ -333,6 +335,20 @@ const handleSelectDate = (selectedDate: Date) => {
     switchToMonth(monthCount);
   }
 };
+const handleSwitchToPreviousYear = () => {
+  switchToYear(-1);
+};
+const handleSwitchToNextYear = () => {
+  switchToYear(1);
+};
+const switchToYear = (yearCount: number) => {
+  viewDatePreview.value = new Date(
+    viewDatePreview.value.setFullYear(
+      viewDatePreview.value.getFullYear() + yearCount,
+    ),
+  );
+  generateMonths();
+};
 const handleSwitchToPreviousMonth = () => {
   switchToMonth(-1);
 };
@@ -340,26 +356,23 @@ const handleSwitchToNextMonth = () => {
   switchToMonth(1);
 };
 const switchToMonth = (monthCount: number) => {
-  viewMonthPreview.value.setMonth(
-    viewMonthPreview.value.getMonth() + monthCount,
+  // Vue: updating the existing Date object directly won’t trigger reactivity, so creating a new Date object to ensure reactivity
+  viewDatePreview.value = new Date(
+    viewDatePreview.value.setMonth(
+      viewDatePreview.value.getMonth() + monthCount,
+    ),
   );
   generateDates();
 };
 const handleToggleMenu = () => {
   isVisibleMenu.value = !isVisibleMenu.value;
 };
-const formatDateToMonthYear = (date: Date) => {
-  const month = monthNames[date.getMonth()];
-  const year = date.getFullYear();
-
-  return `${month} ${year}`;
-};
 const generateDates = () => {
   dates.value = [];
 
-  let d = structuredClone(viewMonthPreview.value);
+  let d = structuredClone(viewDatePreview.value);
   d = structuredClone(new Date(d.setDate(1)));
-  let endOfMonth = structuredClone(viewMonthPreview.value);
+  let endOfMonth = structuredClone(viewDatePreview.value);
   endOfMonth = new Date(
     new Date(endOfMonth.setMonth(endOfMonth.getMonth() + 1)).setDate(0),
   );
@@ -424,9 +437,9 @@ const onComplete = () => {
   // return date ? emit('update:modelValue', date) : emit('update:modelValue', '');
   if (date) {
     value.value = date;
-    viewMonth.value = date;
+    viewDate.value = date;
     valuePreview.value = date;
-    viewMonthPreview.value = date;
+    viewDatePreview.value = date;
   } else {
     value.value = '';
     valuePreview.value = '';
@@ -441,9 +454,9 @@ const onBlur = () => {
   // emit('update:modelValue', date === undefined ? '' : date);
   if (date) {
     value.value = date;
-    viewMonth.value = date;
+    viewDate.value = date;
     valuePreview.value = date;
-    viewMonthPreview.value = date;
+    viewDatePreview.value = date;
   } else {
     value.value = '';
     valuePreview.value = '';
@@ -451,13 +464,19 @@ const onBlur = () => {
 };
 const formatDate = (date: string | Date) =>
   checkIfISOFormat(date) ? moment(date).format(DATE_FORMAT) : date;
-const initMonths = () => {
-  for (let i = 0; i < 11; i++) {
-    months.value.push({ year: value.value.getFullYear(), month: i, date: 1 });
+const generateMonths = () => {
+  months.value = [];
+
+  for (let i = 0; i < 12; i++) {
+    months.value.push({
+      year: viewDatePreview.value.getFullYear(),
+      month: i,
+      date: 1,
+    });
   }
 };
 const init = () => {
-  initMonths();
+  generateMonths();
   generateDates();
 };
 
@@ -475,21 +494,6 @@ onBeforeUnmount(() => {
   unlockScrollBody();
 });
 //#endregion
-
-const headingData = shallowRef<Record<BDatePickerView, any>>({
-  [BDatePickerView.Years]: {
-    text: '',
-    handleClick: () => {},
-  },
-  [BDatePickerView.Months]: {
-    text: viewMonthPreview.value.getFullYear(),
-    handleClick: () => handleSwitchToView(BDatePickerView.Years),
-  },
-  [BDatePickerView.Dates]: {
-    text: formatDateToMonthYear(viewMonthPreview.value),
-    handleClick: () => handleSwitchToView(BDatePickerView.Months),
-  },
-});
 </script>
 
 <template>
@@ -517,11 +521,13 @@ const headingData = shallowRef<Record<BDatePickerView, any>>({
         class="ds-absolute ds-z-50 ds-mt-1 ds-grid ds-w-80 ds-gap-4 ds-rounded-lg ds-bg-white ds-p-4 ds-shadow-2xl"
       >
         <div class="ds-flex ds-w-full ds-items-center ds-justify-between">
-          <BDatePickerPreviousButton @click="handleSwitchToPreviousMonth" />
-          <BDatePickerHeading @click="headingData[view].handleClick">
-            {{ headingData[view].text }}
+          <BDatePickerPreviousButton
+            @click="viewData[view].handleClickPreview()"
+          />
+          <BDatePickerHeading @click="viewData[view].handleClickHeading()">
+            {{ viewData[view].heading }}
           </BDatePickerHeading>
-          <BDatePickerNextButton @click="handleSwitchToNextMonth" />
+          <BDatePickerNextButton @click="viewData[view].handleClickNext()" />
         </div>
 
         <BDatePickerMonthGrid
