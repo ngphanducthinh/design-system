@@ -5,3 +5,4 @@ export * from './components/BImagePicker';
 export * from './components/BTabs';
 export * from './components/BStepper';
 export * from './components/BBreadcrumb';
+export * from './components/BDatePicker';
