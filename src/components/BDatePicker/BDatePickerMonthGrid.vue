@@ -1,11 +1,11 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { BDatePickerDateItem } from '@/types';
 import { computed } from 'vue';
 import { useDate } from '@/composables/Date';
 
 //#region Props
 interface BDatePickerDateGridProps {
-  modelValue: Date;
+  modelValue: Date | string;
   months: BDatePickerDateItem[];
 }
 
@@ -19,7 +19,7 @@ const emit = defineEmits<{
 //#endregion
 
 //#region Data
-const { monthNames } = useDate();
+const { monthShortNames } = useDate();
 const value = computed({
   get() {
     return props.modelValue;
@@ -48,7 +48,9 @@ const handleSelectMonth = ({ year, month, date }: BDatePickerDateItem) => {
 </script>
 
 <template>
-  <div class="ds-grid ds-w-full ds-grid-cols-3 ds-grid-rows-4 ds-gap-1">
+  <div
+    class="ds-grid ds-w-full ds-grid-cols-3 ds-grid-rows-4 ds-gap-x-1 ds-gap-y-3"
+  >
     <div
       v-for="i in months"
       :key="i.month"
@@ -60,7 +62,7 @@ const handleSelectMonth = ({ year, month, date }: BDatePickerDateItem) => {
       class="ds-flex ds-h-9 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg"
       @click="handleSelectMonth(i)"
     >
-      {{ monthNames[i.month] }}
+      {{ monthShortNames[i.month] }}
     </div>
   </div>
 </template>

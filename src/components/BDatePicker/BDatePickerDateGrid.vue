@@ -1,10 +1,11 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import type { BDatePickerDateItem } from '@/types';
 import { computed } from 'vue';
+import { useDate } from '@/composables/Date';
 
 //#region Props
 interface BDatePickerDateGridProps {
-  modelValue: Date;
+  modelValue: Date | string;
   dates: BDatePickerDateItem[];
 }
 
@@ -18,6 +19,7 @@ const emit = defineEmits<{
 //#endregion
 
 //#region Data
+const { dayShortNames } = useDate();
 const value = computed({
   get() {
     return props.modelValue;
@@ -47,6 +49,18 @@ const handleSelectDate = ({ year, month, date }: BDatePickerDateItem) => {
 </script>
 
 <template>
+  <div
+    class="ds-grid ds-w-full ds-grid-cols-7 ds-gap-1 ds-text-xs ds-text-gray-400"
+  >
+    <div
+      v-for="i in Object.keys(dayShortNames).length"
+      :key="i"
+      class="ds-flex ds-justify-center"
+    >
+      {{ i - 1 === 6 ? dayShortNames[0] : dayShortNames[i] }}
+    </div>
+  </div>
+
   <div class="ds-grid ds-w-full ds-grid-cols-7 ds-gap-1">
     <div
       v-for="i in dates"

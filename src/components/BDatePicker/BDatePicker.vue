@@ -1,12 +1,18 @@
 <script lang="ts" setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import {
+  computed,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  shallowRef,
+  watch,
+} from 'vue';
 import BButton from '../BButton.vue';
 import BLabel from '../BLabel.vue';
 import {
   useValidationField,
   type ValidationRule,
 } from '@/composables/Validation';
-import { BDatePickerView } from '@/constants/Enums';
 import { v4 as uuid } from 'uuid';
 import BErrorMessage from '../BErrorMessage.vue';
 import { useI18n } from 'vue-i18n';
@@ -16,14 +22,17 @@ import {
   resetPosition,
   unlockScrollBody,
 } from '@/helpers/ComponentHelper';
-// https://imask.js.org/guide.html#getting-started
-import IMask from '@/vendor/imask-7.1.3.js';
+import IMask from '@/vendor/imask-7.1.3.js'; // https://imask.js.org/guide.html#getting-started
 import moment from 'moment-mini';
 import { DateDelimiter } from '@/constants/Common';
 import { checkIfISOFormat } from '@/helpers/DateHelper';
 import BDatePickerDateGrid from '@/components/BDatePicker/BDatePickerDateGrid.vue';
 import BDatePickerMonthGrid from '@/components/BDatePicker/BDatePickerMonthGrid.vue';
 import type { BDatePickerDateItem } from '@/types';
+import BDatePickerPreviousButton from '@/components/BDatePicker/BDatePickerPreviousButton.vue';
+import BDatePickerNextButton from '@/components/BDatePicker/BDatePickerNextButton.vue';
+import BDatePickerHeading from '@/components/BDatePicker/BDatePickerHeading.vue';
+import BDatePickerIcon from '@/components/BDatePicker/BDatePickerIcon.vue';
 
 interface BDate {
   date: number;
@@ -32,7 +41,7 @@ interface BDate {
   cssClass?: string;
 }
 
-enum BDateView {
+enum BDatePickerView {
   Dates = 'dates',
   Months = 'months',
   Years = 'years',
@@ -63,10 +72,6 @@ export interface BDatePickerProps {
    */
   maxDate?: any;
   /**
-   * Default view mode when open picker dropdown
-   */
-  view?: BDatePickerView;
-  /**
    * Hide the validation error message.
    */
   hideDetails?: boolean;
@@ -87,7 +92,6 @@ const props = withDefaults(defineProps<BDatePickerProps>(), {
   inputCssClass: '',
   minDate: '',
   maxDate: '',
-  view: BDatePickerView.Days,
   hideDetails: false,
   position: 'bottom left',
 });
@@ -114,11 +118,10 @@ const valuePreview = ref<Date | string>(new Date());
 const viewYear = ref(new Date());
 const viewYearPreview = ref(new Date());
 const isVisibleMenu = ref(false);
-const view = ref<BDateView>(BDateView.Dates);
+const view = ref<BDatePickerView>(BDatePickerView.Dates);
 const inputMaskRef = ref<HTMLInputElement | null>(null);
 const datePickerRef = ref<HTMLDivElement | null>(null);
 const datePickerMenuRef = ref<HTMLDivElement | null>(null);
-const days = ref(['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA']);
 const monthNames = [
   'January',
   'February',
@@ -180,17 +183,6 @@ const inputCssClassValue = computed(() => [
   },
   props.inputCssClass,
 ]);
-const isToday = computed(() => {
-  if (!props.modelValue) {
-    return false;
-  }
-  const currentDate = new Date();
-  return (
-    currentDate.getDate() === props.modelValue.getDate() &&
-    currentDate.getMonth() === props.modelValue.getMonth() &&
-    currentDate.getFullYear() === props.modelValue.getFullYear()
-  );
-});
 const inputMaskOptions = computed(() => {
   const result: any = {
     mask: IMask.MaskedDate,
@@ -257,7 +249,7 @@ watch(
 //#endregion
 
 //#region Methods
-const handleSwitchToView = (v: BDateView) => {
+const handleSwitchToView = (v: BDatePickerView) => {
   view.value = v;
 };
 const isUnsyncedModelValue = (date: any) => {
@@ -280,6 +272,7 @@ const handleConfirm = () => {
   viewMonth.value = structuredClone(viewMonthPreview.value);
   isVisibleMenu.value = false;
 };
+const handleSelectYear = () => {};
 const handleSelectMonth = (selectedDate: Date) => {
   console.log(selectedDate);
   console.log(viewMonthPreview.value);
@@ -309,7 +302,7 @@ const handleSelectMonth = (selectedDate: Date) => {
     switchToMonth(monthCount);
   }
 
-  view.value = BDateView.Dates;
+  view.value = BDatePickerView.Dates;
 };
 const handleSelectDate = (selectedDate: Date) => {
   console.log(selectedDate);
@@ -459,17 +452,14 @@ const onBlur = () => {
 const formatDate = (date: string | Date) =>
   checkIfISOFormat(date) ? moment(date).format(DATE_FORMAT) : date;
 const initMonths = () => {
-  const currentDate = new Date();
   for (let i = 0; i < 11; i++) {
-    months.value.push({ year: currentDate.getFullYear(), month: i, date: 1 });
+    months.value.push({ year: value.value.getFullYear(), month: i, date: 1 });
   }
 };
 const init = () => {
   initMonths();
   generateDates();
 };
-
-const label = ref('');
 
 init();
 //#endregion
@@ -485,6 +475,21 @@ onBeforeUnmount(() => {
   unlockScrollBody();
 });
 //#endregion
+
+const headingData = shallowRef<Record<BDatePickerView, any>>({
+  [BDatePickerView.Years]: {
+    text: '',
+    handleClick: () => {},
+  },
+  [BDatePickerView.Months]: {
+    text: viewMonthPreview.value.getFullYear(),
+    handleClick: () => handleSwitchToView(BDatePickerView.Years),
+  },
+  [BDatePickerView.Dates]: {
+    text: formatDateToMonthYear(viewMonthPreview.value),
+    handleClick: () => handleSwitchToView(BDatePickerView.Months),
+  },
+});
 </script>
 
 <template>
@@ -492,7 +497,6 @@ onBeforeUnmount(() => {
     <div ref="datePickerRef">
       <BLabel :id="id" :label="label" :required="required" />
 
-      <!--Input-->
       <div class="ds-relative">
         <input
           :id="id"
@@ -500,129 +504,48 @@ onBeforeUnmount(() => {
           :class="inputCssClassValue"
           :disabled="disabled"
           :placeholder="placeholder"
-          class="ds-relative ds-z-[2] ds-drop-shadow-light"
+          class="ds-drop-shadow-light"
           @blur="onBlur"
         />
-
         <!--NOTE: Remove ds.components.base.date_picker.today-->
-
-        <label
-          :for="`${id}Picker`"
-          class="ds-absolute ds-right-3 ds-top-0 ds-z-[3] ds-flex ds-h-10 ds-cursor-pointer ds-items-center"
-          @click="handleToggleMenu"
-        >
-          <svg
-            :class="[props.disabled ? 'ds-fill-black/40' : 'ds-fill-black/80']"
-            class="ds-h-5 ds-w-5"
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M96 32V64H48C21.5 64 0 85.5 0 112v48H448V112c0-26.5-21.5-48-48-48H352V32c0-17.7-14.3-32-32-32s-32 14.3-32 32V64H160V32c0-17.7-14.3-32-32-32S96 14.3 96 32zM448 192H0V464c0 26.5 21.5 48 48 48H400c26.5 0 48-21.5 48-48V192zM96 296c0-13.3 10.7-24 24-24H328c13.3 0 24 10.7 24 24s-10.7 24-24 24H120c-13.3 0-24-10.7-24-24zm24 72H232c13.3 0 24 10.7 24 24s-10.7 24-24 24H120c-13.3 0-24-10.7-24-24s10.7-24 24-24z"
-            />
-          </svg>
-        </label>
+        <BDatePickerIcon :disabled="props.disabled" @click="handleToggleMenu" />
       </div>
-      <!---->
 
-      <!--Menu-->
       <div
         v-show="isVisibleMenu"
         ref="datePickerMenuRef"
         class="ds-absolute ds-z-50 ds-mt-1 ds-grid ds-w-80 ds-gap-4 ds-rounded-lg ds-bg-white ds-p-4 ds-shadow-2xl"
       >
         <div class="ds-flex ds-w-full ds-items-center ds-justify-between">
-          <button
-            class="ds-cursor-pointer ds-rounded-lg ds-fill-primary-t ds-p-3 hover:ds-bg-gray-150"
-            @click="handleSwitchToPreviousMonth"
-          >
-            <svg
-              class="ds-h-4 ds-w-4"
-              viewBox="0 0 320 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"
-              ></path>
-            </svg>
-          </button>
-
-          <div
-            v-if="view === BDateView.Months"
-            class="ds-cursor-pointer"
-            @click="handleSwitchToView(BDateView.Years)"
-          >
-            {{ viewMonth.getFullYear() }}
-          </div>
-          <div
-            v-if="view === BDateView.Dates"
-            class="ds-cursor-pointer"
-            @click="handleSwitchToView(BDateView.Months)"
-          >
-            {{ formatDateToMonthYear(viewMonthPreview) }}
-          </div>
-
-          <button
-            class="ds-cursor-pointer ds-rounded-lg ds-fill-primary-t ds-p-3 hover:ds-bg-gray-150"
-            @click="handleSwitchToNextMonth"
-          >
-            <svg
-              class="ds-h-4 ds-w-4"
-              viewBox="0 0 320 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
-              ></path>
-            </svg>
-          </button>
+          <BDatePickerPreviousButton @click="handleSwitchToPreviousMonth" />
+          <BDatePickerHeading @click="headingData[view].handleClick">
+            {{ headingData[view].text }}
+          </BDatePickerHeading>
+          <BDatePickerNextButton @click="handleSwitchToNextMonth" />
         </div>
 
-        <div
-          class="ds-grid ds-w-full ds-grid-cols-7 ds-gap-1 ds-text-xs ds-text-gray-400"
-        >
-          <div
-            v-for="i in days.length"
-            :key="i"
-            class="ds-flex ds-justify-center"
-          >
-            {{ i - 1 === 6 ? days[0] : days[i] }}
-          </div>
-        </div>
-
-        <!--Months-->
-        <!--        <div-->
-        <!--          v-if="view === 'months'"-->
-        <!--          class="ds-grid ds-w-full ds-grid-cols-3 ds-grid-rows-4 ds-gap-1"-->
-        <!--        >-->
-        <!--          <div-->
-        <!--            v-for="month in months"-->
-        <!--            :key="month"-->
-        <!--            class="ds-flex ds-h-9 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg"-->
-        <!--          >-->
-        <!--            {{ month }}-->
-        <!--          </div>-->
-        <!--        </div>-->
         <BDatePickerMonthGrid
-          v-if="view === BDateView.Months"
-          :months
+          v-if="view === BDatePickerView.Months"
           v-model="valuePreview"
+          :months
           @update:model-value="handleSelectMonth"
         />
         <BDatePickerDateGrid
-          v-if="view === BDateView.Dates"
+          v-if="view === BDatePickerView.Dates"
           v-model="valuePreview"
           :dates
           @update:model-value="handleSelectDate"
         />
 
         <div class="ds-grid ds-w-full ds-grid-cols-2 ds-gap-2">
-          <BButton @click="handleCancel">Cancel</BButton>
-          <BButton type="primary" @click="handleConfirm">Confirm</BButton>
+          <BButton @click="handleCancel">
+            {{ t('ds.components.base.date_picker.buttons.cancel') }}
+          </BButton>
+          <BButton type="primary" @click="handleConfirm">
+            {{ t('ds.components.base.date_picker.buttons.confirm') }}
+          </BButton>
         </div>
       </div>
-
-      <!---->
     </div>
 
     <BErrorMessage
