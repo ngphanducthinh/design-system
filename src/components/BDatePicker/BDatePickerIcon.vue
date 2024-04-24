@@ -3,6 +3,7 @@
 interface BDatePickerIconProps {
   disabled: boolean;
 }
+
 const props = withDefaults(defineProps<BDatePickerIconProps>(), {});
 //#endregion
 </script>
@@ -14,7 +15,7 @@ const props = withDefaults(defineProps<BDatePickerIconProps>(), {});
     <svg
       :class="[
         props.disabled
-          ? 'ds-cursor-none ds-fill-black/40'
+          ? 'ds-cursor-not-allowed ds-fill-black/40'
           : 'ds-cursor-pointer ds-fill-black/80',
       ]"
       class="ds-h-[18px] ds-w-[18px]"

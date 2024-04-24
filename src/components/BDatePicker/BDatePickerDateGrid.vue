@@ -42,39 +42,49 @@ const isSelectedDate = ({ year, month, date }: BDatePickerDateItem) => {
     date === (value.value as Date).getDate()
   );
 };
-const handleSelectDate = ({ year, month, date }: BDatePickerDateItem) => {
+const handleSelectDate = ({
+  year,
+  month,
+  date,
+  disabled,
+}: BDatePickerDateItem) => {
+  if (disabled) {
+    return;
+  }
   value.value = new Date(year, month, date, 0, 0, 0, 0);
 };
 //#endregion
 </script>
 
 <template>
-  <div
-    class="ds-grid ds-w-full ds-grid-cols-7 ds-gap-1 ds-text-xs ds-text-gray-400"
-  >
+  <div class="ds-space-y-3">
     <div
-      v-for="i in Object.keys(dayShortNames).length"
-      :key="i"
-      class="ds-flex ds-justify-center"
+      class="ds-grid ds-w-full ds-grid-cols-7 ds-gap-1 ds-text-xs ds-text-gray-400"
     >
-      {{ i - 1 === 6 ? dayShortNames[0] : dayShortNames[i] }}
+      <div
+        v-for="i in Object.keys(dayShortNames).length"
+        :key="i"
+        class="ds-flex ds-justify-center"
+      >
+        {{ i - 1 === 6 ? dayShortNames[0] : dayShortNames[i] }}
+      </div>
     </div>
-  </div>
 
-  <div class="ds-grid ds-w-full ds-grid-cols-7 ds-gap-1">
-    <div
-      v-for="i in dates"
-      :key="`${i.date}${i.month}`"
-      :class="[
-        i.cssClass,
-        isSelectedDate(i)
-          ? 'ds-bg-primary-t ds-text-white'
-          : 'hover:ds-bg-gray-150',
-      ]"
-      class="ds-flex ds-h-9 ds-w-9 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg"
-      @click="handleSelectDate(i)"
-    >
-      {{ i.date }}
+    <div class="ds-grid ds-w-full ds-grid-cols-7 ds-gap-1">
+      <div
+        v-for="i in dates"
+        :key="`${i.date}${i.month}${i.year}`"
+        :class="{
+          'hover:ds-bg-gray-150': !i.disabled && !isSelectedDate(i),
+          'ds-text-gray-400': !i.disabled && i.secondary,
+          'ds-text-gray-200': i.disabled,
+          'ds-bg-primary-t ds-text-white': isSelectedDate(i),
+        }"
+        class="ds-flex ds-h-10 ds-w-10 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg"
+        @click="handleSelectDate(i)"
+      >
+        {{ i.date }}
+      </div>
     </div>
   </div>
 </template>
