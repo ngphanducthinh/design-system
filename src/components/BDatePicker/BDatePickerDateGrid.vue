@@ -1,11 +1,10 @@
 <script lang="ts" setup>
 import type { BDatePickerDateItem } from '@/types';
-import { computed } from 'vue';
 import { useDate } from '@/composables/Date';
 
 //#region Props
 interface BDatePickerDateGridProps {
-  modelValue: Date | string;
+  date: BDatePickerDateItem;
   dates: BDatePickerDateItem[];
 }
 
@@ -14,32 +13,27 @@ const props = withDefaults(defineProps<BDatePickerDateGridProps>(), {});
 
 //#region Events
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: any): void;
+  (e: 'select:date', value: BDatePickerDateItem): void;
 }>();
 //#endregion
 
 //#region Data
 const { dayShortNames } = useDate();
-const value = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(val) {
-    emit('update:modelValue', val);
-  },
-});
 //#endregion
 
 //#region Methods
 const isSelected = ({ year, month, date }: BDatePickerDateItem) => {
-  if (!value.value) {
+  if (
+    props.date.year === -1 &&
+    props.date.month === -1 &&
+    props.date.date === -1
+  ) {
     return false;
   }
-
   return (
-    year === (value.value as Date).getFullYear() &&
-    month === (value.value as Date).getMonth() &&
-    date === (value.value as Date).getDate()
+    year === props.date.year &&
+    month === props.date.month &&
+    date === props.date.date
   );
 };
 const handleSelectDate = ({
@@ -51,7 +45,7 @@ const handleSelectDate = ({
   if (disabled) {
     return;
   }
-  value.value = new Date(year, month, date, 0, 0, 0, 0);
+  emit('select:date', { year, month, date });
 };
 //#endregion
 </script>

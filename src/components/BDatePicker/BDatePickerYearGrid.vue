@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import type { BDatePickerDateItem } from '@/types';
-import { computed } from 'vue';
 
 //#region Props
 interface BDatePickerDateGridProps {
-  modelValue: Date | string;
+  year: BDatePickerDateItem;
   years: BDatePickerDateItem[];
 }
 
@@ -13,28 +12,16 @@ const props = withDefaults(defineProps<BDatePickerDateGridProps>(), {});
 
 //#region Events
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: any): void;
+  (e: 'select:year', value: BDatePickerDateItem): void;
 }>();
-//#endregion
-
-//#region Data
-const value = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(val) {
-    emit('update:modelValue', val);
-  },
-});
 //#endregion
 
 //#region Methods
 const isSelected = ({ year, month }: BDatePickerDateItem) => {
-  if (!value.value) {
+  if (props.year.year === -1) {
     return false;
   }
-
-  return year === (value.value as Date).getFullYear();
+  return year === props.year.year;
 };
 const handleSelectYear = ({
   year,
@@ -43,10 +30,10 @@ const handleSelectYear = ({
   disabled,
 }: BDatePickerDateItem) => {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-  if (year < 1970 || disabled) {
+  if (disabled) {
     return;
   }
-  value.value = new Date(year, month, date, 0, 0, 0, 0);
+  emit('select:year', { year, month, date });
 };
 //#endregion
 </script>

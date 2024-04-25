@@ -35,6 +35,7 @@ enum BDatePickerView {
   Years = 'years',
 }
 
+//#region Props
 export interface BDatePickerProps {
   /**
    * ID of input field.
@@ -43,7 +44,7 @@ export interface BDatePickerProps {
   /**
    * Value v-model: <code>Date | string</code>
    */
-  modelValue: any;
+  modelValue?: Date;
   /**
    * Label of the field.
    */
@@ -97,6 +98,7 @@ const props = withDefaults(defineProps<BDatePickerProps>(), {
   inputCssClass: '',
   hideDetails: false,
 });
+//#endregion
 
 //#region Events
 const emit = defineEmits<{
@@ -105,7 +107,7 @@ const emit = defineEmits<{
    * @param e
    * @param value
    */
-  (e: 'update:modelValue', value: any): void;
+  (e: 'update:modelValue', value?: Date): void;
 }>();
 //#endregion
 
@@ -120,9 +122,21 @@ const CURRENT_DATE = new Date(
 
 const { t } = useI18n();
 const { formatMonthYear } = useDate();
-const viewDate = ref(CURRENT_DATE);
-const viewDatePreview = ref(CURRENT_DATE);
-const valuePreview = ref<Date | string>(CURRENT_DATE);
+const viewDate = ref<BDatePickerDateItem>({
+  year: CURRENT_DATE.getFullYear(),
+  month: CURRENT_DATE.getMonth(),
+  date: -1, // -1 stands for empty value
+});
+const viewDateDisplay = ref<BDatePickerDateItem>({
+  year: CURRENT_DATE.getFullYear(),
+  month: CURRENT_DATE.getMonth(),
+  date: -1, // -1 stands for empty value
+});
+const valueDisplay = ref<BDatePickerDateItem>({
+  year: CURRENT_DATE.getFullYear(),
+  month: CURRENT_DATE.getMonth(),
+  date: -1, // -1 stands for empty value
+});
 const isVisibleMenu = ref(false);
 const view = ref<BDatePickerView>(BDatePickerView.Dates);
 const inputMaskRef = ref<HTMLInputElement | null>(null);
@@ -164,7 +178,7 @@ const vRules = computed(() => {
 });
 const { validate, validationResult } = useValidationField(
   id.value,
-  valuePreview,
+  value,
   vRules.value,
 );
 const inputCssClassValue = computed(() => [
@@ -243,6 +257,9 @@ watch(isVisibleMenu, (val) => {
   if (val) {
     lockScrollBody();
     ensureVisiblePosition(datePickerRef.value!, datePickerMenuRef.value!);
+
+    valueDisplay.value = cloneItemFromDate(value.value as Date);
+    viewDateDisplay.value = cloneItem(viewDate.value);
   } else {
     unlockScrollBody();
     resetPosition(datePickerRef.value!, datePickerMenuRef.value!);
@@ -252,22 +269,16 @@ watch(
   () => props.modelValue,
   (val) => {
     if (isNotSyncedModelValue(val)) {
-      value.value = val;
-      viewDate.value = val;
-      valuePreview.value = val;
-      viewDatePreview.value = val;
+      // value.value = val;
+      valueDisplay.value = cloneItemFromDate(val);
+      viewDate.value = cloneItemFromDate(val);
+      viewDateDisplay.value = cloneItemFromDate(val);
     }
     if (isNotSyncedModelValue(getInputMaskDate())) {
-      mask.value = formatDateMoment(props.modelValue);
+      mask.value = formatDateMoment(props.modelValue || '');
     }
   },
 );
-watch(isVisibleMenu, (val) => {
-  if (val) {
-    valuePreview.value = structuredClone(value.value);
-    viewDatePreview.value = structuredClone(viewDate.value);
-  }
-});
 //#endregion
 
 //#region Methods
@@ -281,7 +292,9 @@ const isNotSyncedModelValue = (date: any) => {
   const ruleEngine = [
     !props.modelValue && date,
     !date && props.modelValue,
-    props.modelValue && date && props.modelValue.getTime() !== date.getTime(),
+    props.modelValue &&
+      date &&
+      (props.modelValue as Date).getTime() !== date.getTime(),
   ];
 
   return ruleEngine.some((r) => r);
@@ -291,22 +304,68 @@ const handleCancel = () => {
 };
 const handleConfirm = () => {
   isVisibleMenu.value = false;
-  value.value = structuredClone(valuePreview.value);
-  viewDate.value = structuredClone(viewDatePreview.value);
+  if (
+    valueDisplay.value.year === -1 &&
+    valueDisplay.value.month === -1 &&
+    valueDisplay.value.date === -1
+  ) {
+    value.value = undefined;
+  } else {
+    value.value = new Date(
+      valueDisplay.value.year,
+      valueDisplay.value.month,
+      valueDisplay.value.date,
+    );
+  }
+  viewDate.value = cloneItem(viewDateDisplay.value);
 };
-const handleSelectYear = (selectedDate: Date) => {
-  viewDatePreview.value = structuredClone(selectedDate);
+const cloneItem = (item?: BDatePickerDateItem): BDatePickerDateItem =>
+  item
+    ? {
+        year: item.year,
+        month: item.month,
+        date: item.date,
+      }
+    : {
+        year: -1,
+        month: -1,
+        date: -1,
+      };
+const cloneItemFromDate = (date?: Date): BDatePickerDateItem =>
+  date
+    ? {
+        year: date.getFullYear(),
+        month: date.getMonth(),
+        date: date.getDate(),
+      }
+    : {
+        year: -1,
+        month: -1,
+        date: -1,
+      };
+const handleSelectYear = (item: BDatePickerDateItem) => {
+  viewDateDisplay.value = cloneItem(item);
   generateMonths();
   view.value = BDatePickerView.Months;
 };
-const handleSelectMonth = (selectedDate: Date) => {
-  viewDatePreview.value = structuredClone(selectedDate);
+const handleSelectMonth = (item: BDatePickerDateItem) => {
+  viewDateDisplay.value = cloneItem(item);
   generateDates();
   view.value = BDatePickerView.Dates;
 };
-const handleSelectDate = (selectedDate: Date) => {
-  viewDatePreview.value = structuredClone(selectedDate);
-  generateDates();
+const handleSelectDate = (item: BDatePickerDateItem) => {
+  if (
+    item.year === valueDisplay.value.year &&
+    item.month === valueDisplay.value.month &&
+    item.date === valueDisplay.value.date
+  ) {
+    // Item will be unselected when clicking again on it
+    valueDisplay.value = cloneItem();
+  } else {
+    valueDisplay.value = cloneItem(item);
+    viewDateDisplay.value = cloneItem(item);
+    generateDates();
+  }
 };
 const handleSwitchToPreviousDecade = () => {
   switchToDecade(-1);
@@ -317,11 +376,7 @@ const handleSwitchToNextDecade = () => {
   generateYears();
 };
 const switchToDecade = (decadeCount: number) => {
-  viewDatePreview.value = new Date(
-    viewDatePreview.value.getFullYear() + decadeCount * 10,
-    viewDatePreview.value.getMonth(),
-    viewDatePreview.value.getDate(),
-  );
+  viewDateDisplay.value.year += decadeCount * 10;
 };
 const handleSwitchToPreviousYear = () => {
   switchToYear(-1);
@@ -332,11 +387,7 @@ const handleSwitchToNextYear = () => {
   generateMonths();
 };
 const switchToYear = (yearCount: number) => {
-  viewDatePreview.value = new Date(
-    viewDatePreview.value.getFullYear() + yearCount,
-    viewDatePreview.value.getMonth(),
-    viewDatePreview.value.getDate(),
-  );
+  viewDateDisplay.value.year += yearCount;
 };
 const handleSwitchToPreviousMonth = () => {
   switchToMonth(-1);
@@ -348,11 +399,7 @@ const handleSwitchToNextMonth = () => {
 };
 const switchToMonth = (monthCount: number) => {
   // Vue: updating the existing Date object directly won’t trigger reactivity, so creating a new Date object to ensure reactivity
-  viewDatePreview.value = new Date(
-    viewDatePreview.value.getFullYear(),
-    viewDatePreview.value.getMonth() + monthCount,
-    viewDatePreview.value.getDate(),
-  );
+  viewDateDisplay.value.month += monthCount;
 };
 const handleToggleMenu = () => {
   if (props.disabled) {
@@ -374,29 +421,23 @@ const isOutOfRangeMonth = (year: number, month: number) =>
         props.maxDate.getMonth() < month) ||
       props.maxDate.getFullYear() < year
     : false);
-
 const isOutOfRange = (date: Date) =>
   (props.minDate ? props.minDate > date : false) ||
   (props.maxDate ? date > props.maxDate : false);
-
-const getStartOfMonth = (date: Date) => {
-  const d = structuredClone(date);
-  return new Date(d.getFullYear(), d.getMonth(), 1);
-};
-const getEndOfMonth = (date: Date) => {
-  const d = structuredClone(date);
-  return new Date(d.getFullYear(), d.getMonth() + 1, 0);
-};
+const getStartOfMonth = ({ year, month }: BDatePickerDateItem) =>
+  new Date(year, month, 1);
+const getEndOfMonth = ({ year, month }: BDatePickerDateItem) =>
+  new Date(year, month + 1, 0);
 const generateYears = () => {
   years.value = [];
 
-  const decade = viewDatePreview.value.getFullYear().toString().slice(0, -1);
+  const decade = viewDateDisplay.value.year.toString().slice(0, -1);
   const startYear = +`${decade}0`;
   const endYear = +`${decade}9`;
 
   years.value.push({
     year: startYear - 1,
-    month: 1,
+    month: 0,
     date: 1,
     secondary: true,
     disabled: isOutOfRangeYear(startYear - 1),
@@ -404,14 +445,14 @@ const generateYears = () => {
   for (let i = startYear; i <= endYear; i++) {
     years.value.push({
       year: i,
-      month: 1,
+      month: 0,
       date: 1,
       disabled: isOutOfRangeYear(i),
     });
   }
   years.value.push({
     year: endYear + 1,
-    month: 1,
+    month: 0,
     date: 1,
     secondary: true,
     disabled: isOutOfRangeYear(endYear + 1),
@@ -422,23 +463,22 @@ const generateYears = () => {
 const generateMonths = () => {
   months.value = [];
 
-  const year = viewDatePreview.value.getFullYear();
   for (let i = 0; i < 12; i++) {
     months.value.push({
-      year: year,
+      year: viewDateDisplay.value.year,
       month: i,
       date: 1,
-      disabled: isOutOfRangeMonth(year, i),
+      disabled: isOutOfRangeMonth(viewDateDisplay.value.year, i),
     });
   }
 
-  monthsViewHeading.value = year.toString();
+  monthsViewHeading.value = viewDateDisplay.value.year.toString();
 };
 const generateDates = () => {
   dates.value = [];
 
-  const d = getStartOfMonth(viewDatePreview.value);
-  const endOfMonth = getEndOfMonth(viewDatePreview.value);
+  const d = getStartOfMonth(viewDateDisplay.value);
+  const endOfMonth = getEndOfMonth(viewDateDisplay.value);
 
   let preDateCount = d.getDay() === 0 ? 6 : d.getDay() - 1; // Sunday -> d.getDay() === 0
   while (preDateCount > 0) {
@@ -481,7 +521,13 @@ const generateDates = () => {
     }
   }
 
-  datesViewHeading.value = formatMonthYear(viewDatePreview.value).toString();
+  datesViewHeading.value = formatMonthYear(
+    new Date(
+      viewDateDisplay.value.year,
+      viewDateDisplay.value.month,
+      viewDateDisplay.value.date,
+    ),
+  ).toString();
 };
 const getInputMaskDate = () => {
   const arr = mask.value.split('/');
@@ -495,22 +541,29 @@ const getInputMaskDate = () => {
 };
 const onAccept = () => {
   if (!mask.unmaskedValue) {
-    // emit('update:modelValue', '');
-    value.value = '';
-    valuePreview.value = '';
+    value.value = undefined;
+    valueDisplay.value = {
+      year: CURRENT_DATE.getFullYear(),
+      month: CURRENT_DATE.getMonth(),
+      date: -1,
+    };
   }
 };
 const onComplete = () => {
   const date = getInputMaskDate();
   if (date) {
-    value.value = structuredClone(date);
-    viewDate.value = structuredClone(date);
-    valuePreview.value = structuredClone(date);
-    viewDatePreview.value = structuredClone(date);
+    value.value = date;
+    viewDate.value = cloneItemFromDate(date);
+    valueDisplay.value = cloneItemFromDate(date);
+    viewDateDisplay.value = cloneItemFromDate(date);
     generateDates();
   } else {
-    value.value = '';
-    valuePreview.value = '';
+    value.value = undefined;
+    valueDisplay.value = {
+      year: CURRENT_DATE.getFullYear(),
+      month: CURRENT_DATE.getMonth(),
+      date: -1,
+    };
   }
 };
 const onBlur = () => {
@@ -520,14 +573,18 @@ const onBlur = () => {
     return;
   }
   if (date) {
-    value.value = structuredClone(date);
-    viewDate.value = structuredClone(date);
-    valuePreview.value = structuredClone(date);
-    viewDatePreview.value = structuredClone(date);
+    value.value = date;
+    viewDate.value = cloneItemFromDate(date);
+    valueDisplay.value = cloneItemFromDate(date);
+    viewDateDisplay.value = cloneItemFromDate(date);
     generateDates();
   } else {
-    value.value = '';
-    valuePreview.value = '';
+    value.value = undefined;
+    valueDisplay.value = {
+      year: CURRENT_DATE.getFullYear(),
+      month: CURRENT_DATE.getMonth(),
+      date: -1,
+    };
   }
 };
 const formatDateMoment = (date: string | Date) =>
@@ -544,7 +601,7 @@ init();
 //#region Lifecycle Hooks
 onMounted(() => {
   mask = IMask(inputMaskRef.value!, inputMaskOptions.value);
-  mask.value = formatDateMoment(props.modelValue);
+  mask.value = formatDateMoment(props.modelValue || '');
   mask.on('accept', onAccept);
   mask.on('complete', onComplete);
 });
@@ -607,21 +664,21 @@ onBeforeUnmount(() => {
 
           <BDatePickerYearGrid
             v-if="view === BDatePickerView.Years"
-            v-model="valuePreview"
+            :year="valueDisplay"
             :years
-            @update:model-value="handleSelectYear"
+            @select:year="handleSelectYear"
           />
           <BDatePickerMonthGrid
             v-if="view === BDatePickerView.Months"
-            v-model="valuePreview"
+            :month="valueDisplay"
             :months
-            @update:model-value="handleSelectMonth"
+            @select:month="handleSelectMonth"
           />
           <BDatePickerDateGrid
             v-if="view === BDatePickerView.Dates"
-            v-model="valuePreview"
+            :date="valueDisplay"
             :dates
-            @update:model-value="handleSelectDate"
+            @select:date="handleSelectDate"
           />
 
           <div class="ds-grid ds-w-full ds-grid-cols-2 ds-gap-2">
