@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import BButton from '../BButton.vue';
-import BLabel from '../BLabel.vue';
+import BButton from '@/components/BButton.vue';
+import BLabel from '@/components/BLabel.vue';
 import {
   useValidationField,
   type ValidationRule,
@@ -36,20 +36,41 @@ enum BDatePickerView {
 }
 
 export interface BDatePickerProps {
+  /**
+   * ID of input field.
+   */
   inputId?: string;
+  /**
+   * Value v-model: <code>Date | string</code>
+   */
   modelValue: any;
+  /**
+   * Label of the field.
+   */
   label?: string;
   /**
    * Array of custom validation rules.
    */
   validationRules?: ValidationRule[];
+  /**
+   * Placeholder of input field.
+   */
   placeholder?: string;
   /**
    * Validate if the field is left empty.
    */
   required?: boolean;
+  /**
+   * Error message when the field is empty.
+   */
   requiredErrorMessage?: string;
+  /**
+   * Disabled state.
+   */
   disabled?: boolean;
+  /**
+   * Custom CSS of input field.
+   */
   inputCssClass?: string;
   /**
    * Minimum selectable date
@@ -74,8 +95,6 @@ const props = withDefaults(defineProps<BDatePickerProps>(), {
   requiredErrorMessage: '',
   disabled: false,
   inputCssClass: '',
-  minDate: '',
-  maxDate: '',
   hideDetails: false,
 });
 
@@ -201,7 +220,6 @@ const inputMaskOptions = computed(() => {
 const viewData = computed<Record<BDatePickerView, any>>(() => ({
   [BDatePickerView.Years]: {
     heading: yearsViewHeading.value,
-    handleClickHeading: () => {},
     handleClickPreview: handleSwitchToPreviousDecade,
     handleClickNext: handleSwitchToNextDecade,
   },
@@ -342,12 +360,25 @@ const handleToggleMenu = () => {
   }
   isVisibleMenu.value = !isVisibleMenu.value;
 };
-const isOutOfValidRange = (d: Date) => {
-  return (
-    (props.minDate ? props.minDate > d : true) ||
-    (props.maxDate ? d > props.maxDate : true)
-  );
-};
+const isOutOfRangeYear = (year: number) =>
+  (props.minDate ? props.minDate.getFullYear() > year : false) ||
+  (props.maxDate ? year > props.maxDate.getFullYear() : false);
+const isOutOfRangeMonth = (year: number, month: number) =>
+  (props.minDate
+    ? (props.minDate.getFullYear() === year &&
+        props.minDate.getMonth() > month) ||
+      props.minDate.getFullYear() > year
+    : false) ||
+  (props.maxDate
+    ? (props.maxDate.getFullYear() === year &&
+        props.maxDate.getMonth() < month) ||
+      props.maxDate.getFullYear() < year
+    : false);
+
+const isOutOfRange = (date: Date) =>
+  (props.minDate ? props.minDate > date : false) ||
+  (props.maxDate ? date > props.maxDate : false);
+
 const getStartOfMonth = (date: Date) => {
   const d = structuredClone(date);
   return new Date(d.getFullYear(), d.getMonth(), 1);
@@ -355,6 +386,53 @@ const getStartOfMonth = (date: Date) => {
 const getEndOfMonth = (date: Date) => {
   const d = structuredClone(date);
   return new Date(d.getFullYear(), d.getMonth() + 1, 0);
+};
+const generateYears = () => {
+  years.value = [];
+
+  const decade = viewDatePreview.value.getFullYear().toString().slice(0, -1);
+  const startYear = +`${decade}0`;
+  const endYear = +`${decade}9`;
+
+  years.value.push({
+    year: startYear - 1,
+    month: 1,
+    date: 1,
+    secondary: true,
+    disabled: isOutOfRangeYear(startYear - 1),
+  });
+  for (let i = startYear; i <= endYear; i++) {
+    years.value.push({
+      year: i,
+      month: 1,
+      date: 1,
+      disabled: isOutOfRangeYear(i),
+    });
+  }
+  years.value.push({
+    year: endYear + 1,
+    month: 1,
+    date: 1,
+    secondary: true,
+    disabled: isOutOfRangeYear(endYear + 1),
+  });
+
+  yearsViewHeading.value = `${decade}0 - ${decade}9`;
+};
+const generateMonths = () => {
+  months.value = [];
+
+  const year = viewDatePreview.value.getFullYear();
+  for (let i = 0; i < 12; i++) {
+    months.value.push({
+      year: year,
+      month: i,
+      date: 1,
+      disabled: isOutOfRangeMonth(year, i),
+    });
+  }
+
+  monthsViewHeading.value = year.toString();
 };
 const generateDates = () => {
   dates.value = [];
@@ -371,7 +449,7 @@ const generateDates = () => {
       month: preD.getMonth(),
       year: preD.getFullYear(),
       secondary: true,
-      disabled: isOutOfValidRange(preD),
+      disabled: isOutOfRange(preD),
     });
     preDateCount--;
   }
@@ -381,7 +459,7 @@ const generateDates = () => {
       date: d.getDate(),
       month: d.getMonth(),
       year: d.getFullYear(),
-      disabled: isOutOfValidRange(d),
+      disabled: isOutOfRange(d),
     });
     d.setDate(d.getDate() + 1);
   }
@@ -397,7 +475,7 @@ const generateDates = () => {
         month: postD.getMonth(),
         year: postD.getFullYear(),
         secondary: true,
-        disabled: isOutOfValidRange(postD),
+        disabled: isOutOfRange(postD),
       });
       i++;
     }
@@ -454,48 +532,6 @@ const onBlur = () => {
 };
 const formatDateMoment = (date: string | Date) =>
   checkIfISOFormat(date) ? moment(date).format(DATE_FORMAT) : date;
-const generateYears = () => {
-  years.value = [];
-
-  const decade = viewDatePreview.value.getFullYear().toString().slice(0, -1);
-  const startYear = +`${decade}0`;
-  const endYear = +`${decade}9`;
-
-  years.value.push({
-    year: startYear - 1,
-    month: 1,
-    date: 1,
-    secondary: true,
-  });
-  for (let i = startYear; i <= endYear; i++) {
-    years.value.push({
-      year: i,
-      month: 1,
-      date: 1,
-    });
-  }
-  years.value.push({
-    year: endYear + 1,
-    month: 1,
-    date: 1,
-    secondary: true,
-  });
-
-  yearsViewHeading.value = `${decade}0 - ${decade}9`;
-};
-const generateMonths = () => {
-  months.value = [];
-
-  for (let i = 0; i < 12; i++) {
-    months.value.push({
-      year: viewDatePreview.value.getFullYear(),
-      month: i,
-      date: 1,
-    });
-  }
-
-  monthsViewHeading.value = viewDatePreview.value.getFullYear().toString();
-};
 const init = () => {
   generateYears();
   generateMonths();
@@ -554,7 +590,16 @@ onBeforeUnmount(() => {
             <BDatePickerPreviousButton
               @click="viewData[view].handleClickPreview()"
             />
-            <BDatePickerHeading @click="viewData[view].handleClickHeading()">
+            <BDatePickerHeading
+              :class="{
+                'ds-cursor-pointer hover:ds-bg-gray-150':
+                  viewData[view].handleClickHeading,
+              }"
+              @click="
+                viewData[view].handleClickHeading &&
+                  viewData[view].handleClickHeading()
+              "
+            >
               {{ viewData[view].heading }}
             </BDatePickerHeading>
             <BDatePickerNextButton @click="viewData[view].handleClickNext()" />

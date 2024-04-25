@@ -36,10 +36,14 @@ const isSelected = ({ year, month }: BDatePickerDateItem) => {
 
   return year === (value.value as Date).getFullYear();
 };
-const handleSelectYear = ({ year, month, date }: BDatePickerDateItem) => {
-  console.log('handleSelectYear');
+const handleSelectYear = ({
+  year,
+  month,
+  date,
+  disabled,
+}: BDatePickerDateItem) => {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-  if (year < 1970) {
+  if (year < 1970 || disabled) {
     return;
   }
   value.value = new Date(year, month, date, 0, 0, 0, 0);
@@ -54,14 +58,12 @@ const handleSelectYear = ({ year, month, date }: BDatePickerDateItem) => {
     <div
       v-for="i in years"
       :key="i.year"
-      :class="[
-        {
-          'ds-text-gray-400': !i.disabled && i.secondary,
-        },
-        isSelected(i)
-          ? 'ds-bg-primary-t ds-text-white'
-          : 'hover:ds-bg-gray-150',
-      ]"
+      :class="{
+        'hover:ds-bg-gray-150': !i.disabled && !isSelected(i),
+        'ds-text-gray-400': !i.disabled && i.secondary,
+        'ds-text-gray-200': i.disabled,
+        'ds-bg-primary-t ds-text-white': isSelected(i),
+      }"
       class="ds-flex ds-h-9 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg"
       @click="handleSelectYear(i)"
     >

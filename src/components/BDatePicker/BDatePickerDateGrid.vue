@@ -31,7 +31,7 @@ const value = computed({
 //#endregion
 
 //#region Methods
-const isSelectedDate = ({ year, month, date }: BDatePickerDateItem) => {
+const isSelected = ({ year, month, date }: BDatePickerDateItem) => {
   if (!value.value) {
     return false;
   }
@@ -75,10 +75,10 @@ const handleSelectDate = ({
         v-for="i in dates"
         :key="`${i.date}${i.month}${i.year}`"
         :class="{
-          'hover:ds-bg-gray-150': !i.disabled && !isSelectedDate(i),
+          'hover:ds-bg-gray-150': !i.disabled && !isSelected(i),
           'ds-text-gray-400': !i.disabled && i.secondary,
           'ds-text-gray-200': i.disabled,
-          'ds-bg-primary-t ds-text-white': isSelectedDate(i),
+          'ds-bg-primary-t ds-text-white': isSelected(i),
         }"
         class="ds-flex ds-h-10 ds-w-10 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg"
         @click="handleSelectDate(i)"
