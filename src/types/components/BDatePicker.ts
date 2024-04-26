@@ -1,7 +1,13 @@
 export interface BDatePickerDateItem {
-  date: number;
-  month: number;
-  year: number;
+  year?: number;
+  month?: number;
+  date?: number;
   secondary?: boolean;
   disabled?: boolean;
+}
+
+export interface BDatePickerViewData {
+  handleClickPreview: () => void;
+  handleClickNext: () => void;
+  handleClickHeading?: () => void;
 }

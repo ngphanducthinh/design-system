@@ -1,6 +1,6 @@
 <template>
   <button
-    class="ds-flex ds-h-10 ds-w-10 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg ds-fill-primary-t hover:ds-bg-gray-150"
+    class="ds-flex ds-h-10 ds-w-10 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg ds-fill-primary-t enabled:hover:ds-bg-[#e6f0fe] disabled:ds-fill-black/40"
   >
     <svg
       class="ds-h-4 ds-w-4"

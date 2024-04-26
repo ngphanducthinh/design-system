@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { BDatePickerDateItem } from '@/types';
 import { useDate } from '@/composables/Date';
+import { isNil } from 'lodash-es';
 
 //#region Props
 interface BDatePickerDateGridProps {
@@ -23,7 +24,7 @@ const { monthShortNames } = useDate();
 
 //#region Methods
 const isSelected = ({ year, month }: BDatePickerDateItem) => {
-  if (props.month.year === -1 && props.month.month === -1) {
+  if (isNil(props.month.year) || isNil(props.month.month)) {
     return false;
   }
   return year === props.month.year && month === props.month.month;

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { BDatePickerDateItem } from '@/types';
+import { isNil } from 'lodash-es';
 
 //#region Props
 interface BDatePickerDateGridProps {
@@ -17,8 +18,8 @@ const emit = defineEmits<{
 //#endregion
 
 //#region Methods
-const isSelected = ({ year, month }: BDatePickerDateItem) => {
-  if (props.year.year === -1) {
+const isSelected = ({ year }: BDatePickerDateItem) => {
+  if (isNil(props.year.year)) {
     return false;
   }
   return year === props.year.year;
@@ -30,7 +31,7 @@ const handleSelectYear = ({
   disabled,
 }: BDatePickerDateItem) => {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-  if (disabled) {
+  if ((year && year < 1900) || disabled) {
     return;
   }
   emit('select:year', { year, month, date });
