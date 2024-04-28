@@ -19,21 +19,22 @@ import IMask from '@/vendor/imask-7.1.3.js'; // https://imask.js.org/guide.html#
 import moment from 'moment-mini';
 import { DateDelimiter } from '@/constants/Common';
 import { checkIfISOFormat } from '@/helpers/DateHelper';
-import BDatePickerDateGrid from '@/components/BDatePicker/BDatePickerDateGrid.vue';
-import BDatePickerMonthGrid from '@/components/BDatePicker/BDatePickerMonthGrid.vue';
+import BDatePickerGridDate from '@/components/BDatePicker/BDatePickerGridDate.vue';
+import BDatePickerGridMonth from '@/components/BDatePicker/BDatePickerGridMonth.vue';
 import type { BDatePickerDateItem, BDatePickerViewData } from '@/types';
-import BDatePickerPreviousButton from '@/components/BDatePicker/BDatePickerPreviousButton.vue';
-import BDatePickerNextButton from '@/components/BDatePicker/BDatePickerNextButton.vue';
+import BDatePickerButtonPrevious from '@/components/BDatePicker/BDatePickerButtonPrevious.vue';
+import BDatePickerButtonNext from '@/components/BDatePicker/BDatePickerButtonNext.vue';
 import BDatePickerHeading from '@/components/BDatePicker/BDatePickerHeading.vue';
 import BDatePickerIcon from '@/components/BDatePicker/BDatePickerIcon.vue';
 import { useDate } from '@/composables/Date';
-import BDatePickerYearGrid from '@/components/BDatePicker/BDatePickerYearGrid.vue';
-import { isNil } from 'lodash-es';
+import BDatePickerGridYear from '@/components/BDatePicker/BDatePickerGridYear.vue';
+import { isEmpty, isNil } from 'lodash-es';
+import BDatePickerGridDateRange from '@/components/BDatePicker/BDatePickerGridDateRange.vue';
 
 enum BDatePickerView {
-  Dates = 'dates',
-  Months = 'months',
   Years = 'years',
+  Months = 'months',
+  Dates = 'dates',
 }
 
 //#region Props
@@ -43,9 +44,9 @@ export interface BDatePickerProps {
    */
   inputId?: string;
   /**
-   * Value v-model: <code>Date | string</code>
+   * Value v-model: <code>Date</code> when range is false, unless v-model: <code>Array<Date></code>.
    */
-  modelValue?: Date;
+  modelValue?: Date | Date[];
   /**
    * Label of the field.
    */
@@ -75,13 +76,17 @@ export interface BDatePickerProps {
    */
   inputCssClass?: string;
   /**
-   * Minimum selectable date
+   * Minimum selectable date.
    */
   minDate?: Date;
   /**
-   * Maximum selectable date
+   * Maximum selectable date.
    */
   maxDate?: Date;
+  /**
+   * Allow to select a date range.
+   */
+  range?: boolean;
   /**
    * Hide the validation error message.
    */
@@ -100,6 +105,7 @@ const props = withDefaults(defineProps<BDatePickerProps>(), {
   inputCssClass: '',
   minDate: undefined,
   maxDate: undefined,
+  range: false,
   hideDetails: false,
 });
 //#endregion
@@ -111,7 +117,7 @@ const emit = defineEmits<{
    * @param e
    * @param value
    */
-  (e: 'update:modelValue', value?: Date): void;
+  (e: 'update:modelValue', value?: Date | Date[]): void;
 }>();
 //#endregion
 
@@ -126,15 +132,13 @@ const CURRENT_DATE = new Date(
 
 const { t } = useI18n();
 const { formatMonthYear } = useDate();
+const valueDisplay = ref<BDatePickerDateItem>({});
+const valueRangeDisplay = ref<BDatePickerDateItem[]>([]);
 const viewDate = ref<BDatePickerDateItem>({
   year: CURRENT_DATE.getFullYear(),
   month: CURRENT_DATE.getMonth(),
 });
 const viewDateDisplay = ref<BDatePickerDateItem>({
-  year: CURRENT_DATE.getFullYear(),
-  month: CURRENT_DATE.getMonth(),
-});
-const valueDisplay = ref<BDatePickerDateItem>({
   year: CURRENT_DATE.getFullYear(),
   month: CURRENT_DATE.getMonth(),
 });
@@ -165,6 +169,9 @@ const value = computed({
     emit('update:modelValue', val);
   },
 });
+const formattedValue = computed(() =>
+  (props.modelValue as Date[])?.map((val) => formatDateMoment(val)).join(' - '),
+);
 const vRules = computed(() => {
   let result: ValidationRule[] = [];
 
@@ -183,7 +190,7 @@ const { validate, validationResult } = useValidationField(
   vRules.value,
 );
 const inputCssClassValue = computed(() => [
-  'ds-border ds-rounded-lg ds-block ds-w-full ds-text-sm ds-px-3 ds-h-[40px]',
+  'ds-border ds-rounded-lg ds-block ds-w-full ds-text-sm ds-px-3 ds-h-[40px] ds-transition-all ds-ease-in-out',
   {
     'ds-cursor-not-allowed ds-bg-[#f2f2f2] ds-text-black/[0.4]': props.disabled,
     'ds-text-black/[0.85]': !props.disabled,
@@ -236,6 +243,7 @@ const viewData = computed<Record<BDatePickerView, BDatePickerViewData>>(() => ({
   [BDatePickerView.Years]: {
     handleClickPreview: handleSwitchToPreviousDecade,
     handleClickNext: handleSwitchToNextDecade,
+    handleClickHeading: () => {},
   },
   [BDatePickerView.Months]: {
     handleClickPreview: handleSwitchToPreviousYear,
@@ -255,7 +263,15 @@ watch(isVisibleMenu, (val) => {
   if (val) {
     lockScrollBody();
     ensureVisiblePosition(datePickerRef.value!, datePickerMenuRef.value!);
-    valueDisplay.value = value.value ? cloneItemFromDate(value.value) : {};
+    if (props.range) {
+      valueRangeDisplay.value = value.value
+        ? cloneItemFromDateRange(value.value as Date[])
+        : [];
+    } else {
+      valueDisplay.value = value.value
+        ? cloneItemFromDate(value.value as Date)
+        : {};
+    }
     viewDateDisplay.value = cloneItem(viewDate.value);
   } else {
     unlockScrollBody();
@@ -266,12 +282,20 @@ watch(
   () => props.modelValue,
   (val) => {
     if (isNotSyncedModelValue(val)) {
-      valueDisplay.value = val ? cloneItemFromDate(val) : {};
-      viewDate.value = val ? cloneItemFromDate(val, true) : {};
-      viewDateDisplay.value = val ? cloneItemFromDate(val, true) : {};
+      if (props.range) {
+        const v = val as Date[];
+        valueRangeDisplay.value = val ? cloneItemFromDateRange(v) : [];
+        viewDate.value = val ? cloneItemFromDate(v[1], true) : {};
+        viewDateDisplay.value = val ? cloneItemFromDate(v[1], true) : {};
+      } else {
+        const v = val as Date;
+        valueDisplay.value = val ? cloneItemFromDate(v) : {};
+        viewDate.value = val ? cloneItemFromDate(v, true) : {};
+        viewDateDisplay.value = val ? cloneItemFromDate(v, true) : {};
+      }
     }
-    if (isNotSyncedModelValue(getInputMaskDate())) {
-      mask.value = formatDateMoment(props.modelValue || '');
+    if (!props.range && isNotSyncedModelValue(getInputMaskDate())) {
+      mask.value = formatDateMoment((val as Date) || '');
     }
   },
 );
@@ -286,12 +310,24 @@ const handleSwitchToYearsView = () => {
   generateYears();
   view.value = BDatePickerView.Years;
 };
-const isNotSyncedModelValue = (date: any) => {
-  const ruleEngine = [
-    !props.modelValue && date,
-    !date && props.modelValue,
-    props.modelValue && date && props.modelValue?.getTime() !== date.getTime(),
-  ];
+const isNotSyncedModelValue = (val?: Date | Date[]) => {
+  const ruleEngine = props.range
+    ? [
+        !isEmpty(props.modelValue) && isEmpty(val),
+        !isEmpty(val) && isEmpty(props.modelValue),
+        !isEmpty(props.modelValue) &&
+          !isEmpty(val) &&
+          (props.modelValue as Date[]).some(
+            (v, i) => v?.getTime() !== (val as Date[])[i]?.getTime(),
+          ),
+      ]
+    : [
+        !props.modelValue && val,
+        !val && props.modelValue,
+        props.modelValue &&
+          val &&
+          (props.modelValue as Date)?.getTime() !== (val as Date).getTime(),
+      ];
   return ruleEngine.some((r) => r);
 };
 const handleCancel = () => {
@@ -299,18 +335,37 @@ const handleCancel = () => {
 };
 const handleConfirm = () => {
   isVisibleMenu.value = false;
-  if (
-    valueDisplay.value.year &&
-    valueDisplay.value.month &&
-    valueDisplay.value.date
-  ) {
-    value.value = new Date(
-      valueDisplay.value.year,
-      valueDisplay.value.month,
-      valueDisplay.value.date,
-    );
+  if (props.range) {
+    if (valueRangeDisplay.value.length === 2) {
+      value.value = [
+        new Date(
+          valueRangeDisplay.value[0].year!,
+          valueRangeDisplay.value[0].month!,
+          valueRangeDisplay.value[0].date,
+        ),
+        new Date(
+          valueRangeDisplay.value[1].year!,
+          valueRangeDisplay.value[1].month!,
+          valueRangeDisplay.value[1].date,
+        ),
+      ];
+    } else {
+      value.value = undefined;
+    }
   } else {
-    value.value = undefined;
+    if (
+      !isNil(valueDisplay.value.year) &&
+      !isNil(valueDisplay.value.month) &&
+      !isNil(valueDisplay.value.date)
+    ) {
+      value.value = new Date(
+        valueDisplay.value.year,
+        valueDisplay.value.month,
+        valueDisplay.value.date,
+      );
+    } else {
+      value.value = undefined;
+    }
   }
   viewDate.value = cloneItem(viewDateDisplay.value);
 };
@@ -330,6 +385,21 @@ const cloneItemFromDate = (
   month: date.getMonth(),
   date: ignoreDate ? undefined : date.getDate(),
 });
+const cloneItemFromDateRange = (
+  dateRange: Date[],
+  ignoreDate?: boolean,
+): BDatePickerDateItem[] => [
+  {
+    year: dateRange[0].getFullYear(),
+    month: dateRange[0].getMonth(),
+    date: ignoreDate ? undefined : dateRange[0].getDate(),
+  },
+  {
+    year: dateRange[1].getFullYear(),
+    month: dateRange[1].getMonth(),
+    date: ignoreDate ? undefined : dateRange[1].getDate(),
+  },
+];
 const handleSelectYear = (item: BDatePickerDateItem) => {
   viewDateDisplay.value = cloneItem(item);
   generateMonths();
@@ -353,6 +423,48 @@ const handleSelectDate = (item: BDatePickerDateItem) => {
     viewDateDisplay.value = cloneItem(item, true);
     generateDates();
   }
+};
+const handleSelectDateRange = ({ year, month, date }: BDatePickerDateItem) => {
+  const valueRangeDisplayLength = valueRangeDisplay.value.length;
+  if (valueRangeDisplayLength === 0) {
+    valueRangeDisplay.value.push({ year, month, date });
+  } else if (valueRangeDisplayLength === 1) {
+    const foundIndex = valueRangeDisplay.value.findIndex(
+      (i) => i.year === year && i.month === month && i.date === date,
+    );
+    if (foundIndex !== -1) {
+      valueRangeDisplay.value.splice(foundIndex, 1);
+    } else {
+      if (
+        new Date(year!, month!, date) >
+        new Date(
+          valueRangeDisplay.value[0].year!,
+          valueRangeDisplay.value[0].month!,
+          valueRangeDisplay.value[0].date,
+        )
+      ) {
+        valueRangeDisplay.value.push({ year, month, date });
+      } else {
+        valueRangeDisplay.value.unshift({ year, month, date });
+      }
+    }
+  } else if (valueRangeDisplayLength === 2) {
+    const foundIndex = valueRangeDisplay.value.findIndex(
+      (i) => i.year === year && i.month === month && i.date === date,
+    );
+    if (foundIndex !== -1) {
+      valueRangeDisplay.value.splice(foundIndex, 1);
+    } else {
+      valueRangeDisplay.value = [];
+      valueRangeDisplay.value.push({ year, month, date });
+    }
+  }
+
+  viewDateDisplay.value = {
+    year,
+    month,
+  };
+  generateDates();
 };
 const handleSwitchToPreviousDecade = () => {
   switchToDecade(-1);
@@ -572,8 +684,8 @@ const onComplete = () => {
   const date = getInputMaskDate();
   if (date) {
     value.value = date;
-    viewDate.value = cloneItemFromDate(date, true);
     valueDisplay.value = cloneItemFromDate(date);
+    viewDate.value = cloneItemFromDate(date, true);
     viewDateDisplay.value = cloneItemFromDate(date, true);
     generateDates();
   } else {
@@ -617,10 +729,12 @@ init();
 
 //#region Lifecycle Hooks
 onMounted(() => {
-  mask = IMask(inputMaskRef.value!, inputMaskOptions.value);
-  mask.value = formatDateMoment(props.modelValue || '');
-  mask.on('accept', onAccept);
-  mask.on('complete', onComplete);
+  if (!props.range) {
+    mask = IMask(inputMaskRef.value!, inputMaskOptions.value);
+    mask.value = formatDateMoment((props.modelValue as Date) || '');
+    mask.on('accept', onAccept);
+    mask.on('complete', onComplete);
+  }
 });
 onBeforeUnmount(() => {
   unlockScrollBody();
@@ -635,6 +749,17 @@ onBeforeUnmount(() => {
 
       <div class="ds-relative">
         <input
+          v-if="props.range"
+          :id="id"
+          :class="inputCssClassValue"
+          :disabled="disabled"
+          :placeholder="placeholder"
+          :value="formattedValue"
+          class="ds-drop-shadow-light"
+          readonly
+        />
+        <input
+          v-else
           :id="id"
           ref="inputMaskRef"
           :class="inputCssClassValue"
@@ -661,7 +786,7 @@ onBeforeUnmount(() => {
           class="ds-absolute ds-z-50 ds-mt-1 ds-grid ds-w-80 ds-gap-5 ds-rounded-lg ds-bg-white ds-p-3 ds-shadow-2xl"
         >
           <div class="ds-flex ds-w-full ds-items-center ds-justify-between">
-            <BDatePickerPreviousButton
+            <BDatePickerButtonPrevious
               :disabled="viewLeftNavDisabled"
               @click="viewData[view].handleClickPreview()"
             />
@@ -670,37 +795,42 @@ onBeforeUnmount(() => {
                 'ds-cursor-pointer hover:ds-bg-gray-150':
                   viewData[view].handleClickHeading,
               }"
-              @click="
-                viewData[view].handleClickHeading &&
-                  viewData[view].handleClickHeading()
-              "
+              @click="viewData[view].handleClickHeading"
             >
               {{ viewHeading }}
             </BDatePickerHeading>
-            <BDatePickerNextButton
+            <BDatePickerButtonNext
               :disabled="viewRightNavDisabled"
               @click="viewData[view].handleClickNext()"
             />
           </div>
 
-          <BDatePickerYearGrid
+          <BDatePickerGridYear
             v-if="view === BDatePickerView.Years"
             :year="valueDisplay"
             :years
             @select:year="handleSelectYear"
           />
-          <BDatePickerMonthGrid
+          <BDatePickerGridMonth
             v-if="view === BDatePickerView.Months"
             :month="valueDisplay"
             :months
             @select:month="handleSelectMonth"
           />
-          <BDatePickerDateGrid
-            v-if="view === BDatePickerView.Dates"
-            :date="valueDisplay"
-            :dates
-            @select:date="handleSelectDate"
-          />
+          <template v-if="view === BDatePickerView.Dates">
+            <BDatePickerGridDateRange
+              v-if="props.range"
+              :date-range="valueRangeDisplay"
+              :dates
+              @select:date="handleSelectDateRange"
+            />
+            <BDatePickerGridDate
+              v-else
+              :date="valueDisplay"
+              :dates
+              @select:date="handleSelectDate"
+            />
+          </template>
 
           <div class="ds-grid ds-w-full ds-grid-cols-2 ds-gap-2">
             <BButton @click="handleCancel">

@@ -21,6 +21,12 @@ module.exports = {
         'primary-f-stop': 'var(--ds-colors-primary-f-stop)',
         'primary-t-stop': 'var(--ds-colors-primary-t-stop)',
       },
+      height: {
+        4.5: '1.125rem',
+      },
+      width: {
+        4.5: '1.125rem',
+      },
     },
   },
   variants: {

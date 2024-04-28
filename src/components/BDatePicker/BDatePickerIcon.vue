@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<BDatePickerIconProps>(), {});
           ? 'ds-cursor-not-allowed ds-fill-black/40'
           : 'ds-cursor-pointer ds-fill-black/80',
       ]"
-      class="ds-h-[18px] ds-w-[18px]"
+      class="ds-h-4.5 ds-w-4.5"
       viewBox="0 0 448 512"
       xmlns="http://www.w3.org/2000/svg"
     >
