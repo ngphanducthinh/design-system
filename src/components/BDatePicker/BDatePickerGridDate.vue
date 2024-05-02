@@ -37,15 +37,7 @@ const isSelected = ({ year, month, date }: BDatePickerDateItem) => {
     date === props.date.date
   );
 };
-const handleSelectDate = ({
-  year,
-  month,
-  date,
-  disabled,
-}: BDatePickerDateItem) => {
-  if (disabled) {
-    return;
-  }
+const handleSelectDate = ({ year, month, date }: BDatePickerDateItem) => {
   emit('select:date', { year, month, date });
 };
 //#endregion
@@ -66,20 +58,21 @@ const handleSelectDate = ({
     </div>
 
     <div class="ds-grid ds-w-full ds-grid-cols-7 ds-gap-1">
-      <div
+      <button
         v-for="i in dates"
         :key="`${i.date}${i.month}${i.year}`"
         :class="{
           'hover:ds-bg-gray-150': !i.disabled && !isSelected(i),
           'ds-text-gray-400': !i.disabled && i.secondary,
           'ds-text-gray-200': i.disabled,
-          'ds-bg-primary-t ds-text-white': isSelected(i),
+          '--selected ds-bg-primary-t ds-text-white': isSelected(i),
         }"
+        :disabled="i.disabled"
         class="ds-flex ds-h-10 ds-w-10 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg"
         @click="handleSelectDate(i)"
       >
         {{ i.date }}
-      </div>
+      </button>
     </div>
   </div>
 </template>

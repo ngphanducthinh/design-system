@@ -24,16 +24,8 @@ const isSelected = ({ year }: BDatePickerDateItem) => {
   }
   return year === props.year.year;
 };
-const handleSelectYear = ({
-  year,
-  month,
-  date,
-  disabled,
-}: BDatePickerDateItem) => {
+const handleSelectYear = ({ year, month, date }: BDatePickerDateItem) => {
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-  if ((year && year < 1900) || disabled) {
-    return;
-  }
   emit('select:year', { year, month, date });
 };
 //#endregion
@@ -43,7 +35,7 @@ const handleSelectYear = ({
   <div
     class="ds-grid ds-w-full ds-grid-cols-3 ds-grid-rows-4 ds-gap-x-1 ds-gap-y-3"
   >
-    <div
+    <button
       v-for="i in years"
       :key="i.year"
       :class="{
@@ -52,10 +44,11 @@ const handleSelectYear = ({
         'ds-text-gray-200': i.disabled,
         'ds-bg-primary-t ds-text-white': isSelected(i),
       }"
+      :disabled="i.disabled"
       class="ds-flex ds-h-9 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg"
       @click="handleSelectYear(i)"
     >
       {{ i.year }}
-    </div>
+    </button>
   </div>
 </template>

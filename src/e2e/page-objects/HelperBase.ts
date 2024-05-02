@@ -15,6 +15,7 @@ export class HelperBase {
     await expect(
       this.frame().getByRole('heading', {
         name: heading,
+        exact: true,
       }),
     ).toBeVisible();
   }
@@ -24,5 +25,12 @@ export class HelperBase {
       .getByRole('table')
       .locator('tr', { hasText: name })
       .locator(`input[id="control-${name}"]`);
+  }
+
+  getTextarea(name: string) {
+    return this.frame()
+      .getByRole('table')
+      .locator('tr', { hasText: name })
+      .locator(`textarea[id="control-${name}"]`);
   }
 }

@@ -1,5 +1,12 @@
 <script lang="ts" setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import {
+  computed,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+} from 'vue';
 import BButton from '@/components/BButton.vue';
 import BLabel from '@/components/BLabel.vue';
 import {
@@ -30,6 +37,7 @@ import { useDate } from '@/composables/Date';
 import BDatePickerGridYear from '@/components/BDatePicker/BDatePickerGridYear.vue';
 import { isEmpty, isNil } from 'lodash-es';
 import BDatePickerGridDateRange from '@/components/BDatePicker/BDatePickerGridDateRange.vue';
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 
 enum BDatePickerView {
   Years = 'years',
@@ -91,6 +99,10 @@ export interface BDatePickerProps {
    * Hide the validation error message.
    */
   hideDetails?: boolean;
+  /**
+   * Default view mode when opening menu
+   */
+  view?: `${BDatePickerView}`;
 }
 
 const props = withDefaults(defineProps<BDatePickerProps>(), {
@@ -107,13 +119,14 @@ const props = withDefaults(defineProps<BDatePickerProps>(), {
   maxDate: undefined,
   range: false,
   hideDetails: false,
+  view: BDatePickerView.Dates,
 });
 //#endregion
 
 //#region Events
 const emit = defineEmits<{
   /**
-   * Update value, param <code>value: any</code>
+   * Update value, param <code>Date</code> when range is false, unless param <code>Array<Date></code>.
    * @param e
    * @param value
    */
@@ -130,6 +143,8 @@ const CURRENT_DATE = new Date(
   new Date().getDate(),
 );
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const smAndLarger = breakpoints.greaterOrEqual('sm');
 const { t } = useI18n();
 const { formatMonthYear } = useDate();
 const valueDisplay = ref<BDatePickerDateItem>({});
@@ -143,10 +158,11 @@ const viewDateDisplay = ref<BDatePickerDateItem>({
   month: CURRENT_DATE.getMonth(),
 });
 const isVisibleMenu = ref(false);
-const view = ref<BDatePickerView>(BDatePickerView.Dates);
-const inputMaskRef = ref<HTMLInputElement | null>(null);
+const viewValue = ref<BDatePickerView>(props.view as BDatePickerView);
 const datePickerRef = ref<HTMLDivElement | null>(null);
 const datePickerMenuRef = ref<HTMLDivElement | null>(null);
+const datePickerInputRef = ref<HTMLInputElement | null>(null);
+const datePickerInputMaskRef = ref<HTMLInputElement | null>(null);
 const dates = ref<BDatePickerDateItem[]>([]);
 const months = ref<BDatePickerDateItem[]>([]);
 const years = ref<BDatePickerDateItem[]>([]);
@@ -243,7 +259,6 @@ const viewData = computed<Record<BDatePickerView, BDatePickerViewData>>(() => ({
   [BDatePickerView.Years]: {
     handleClickPreview: handleSwitchToPreviousDecade,
     handleClickNext: handleSwitchToNextDecade,
-    handleClickHeading: () => {},
   },
   [BDatePickerView.Months]: {
     handleClickPreview: handleSwitchToPreviousYear,
@@ -259,10 +274,48 @@ const viewData = computed<Record<BDatePickerView, BDatePickerViewData>>(() => ({
 //#endregion
 
 //#region Watchers
+watch(
+  () => props.minDate,
+  (val) => {
+    if (val && value.value && val > value.value) {
+      value.value = undefined;
+    }
+    generateDates();
+  },
+);
+watch(
+  () => props.maxDate,
+  (val) => {
+    if (val && value.value && val < value.value) {
+      value.value = undefined;
+    }
+    generateDates();
+  },
+);
+watch(
+  () => props.range,
+  (val) => {
+    if (!val) {
+      nextTick(() => {
+        initIMask();
+      });
+    }
+    valueDisplay.value = {};
+    valueRangeDisplay.value = [];
+  },
+);
+watch(
+  () => props.view,
+  (val) => {
+    viewValue.value = val as BDatePickerView;
+  },
+);
+watch(smAndLarger, () => {
+  isVisibleMenu.value = false;
+});
 watch(isVisibleMenu, (val) => {
   if (val) {
     lockScrollBody();
-    ensureVisiblePosition(datePickerRef.value!, datePickerMenuRef.value!);
     if (props.range) {
       valueRangeDisplay.value = value.value
         ? cloneItemFromDateRange(value.value as Date[])
@@ -273,6 +326,15 @@ watch(isVisibleMenu, (val) => {
         : {};
     }
     viewDateDisplay.value = cloneItem(viewDate.value);
+    nextTick(() => {
+      // https://tailwindcss.com/docs/responsive-design
+      if (smAndLarger.value) {
+        ensureVisiblePosition(datePickerRef.value!, datePickerMenuRef.value!);
+      } else {
+        // Move menu element into body tag
+        document.body.append(datePickerMenuRef.value!);
+      }
+    });
   } else {
     unlockScrollBody();
     resetPosition(datePickerRef.value!, datePickerMenuRef.value!);
@@ -304,11 +366,11 @@ watch(
 //#region Methods
 const handleSwitchToMonthsView = () => {
   generateMonths();
-  view.value = BDatePickerView.Months;
+  viewValue.value = BDatePickerView.Months;
 };
 const handleSwitchToYearsView = () => {
   generateYears();
-  view.value = BDatePickerView.Years;
+  viewValue.value = BDatePickerView.Years;
 };
 const isNotSyncedModelValue = (val?: Date | Date[]) => {
   const ruleEngine = props.range
@@ -403,12 +465,12 @@ const cloneItemFromDateRange = (
 const handleSelectYear = (item: BDatePickerDateItem) => {
   viewDateDisplay.value = cloneItem(item);
   generateMonths();
-  view.value = BDatePickerView.Months;
+  viewValue.value = BDatePickerView.Months;
 };
 const handleSelectMonth = (item: BDatePickerDateItem) => {
   viewDateDisplay.value = cloneItem(item);
   generateDates();
-  view.value = BDatePickerView.Dates;
+  viewValue.value = BDatePickerView.Dates;
 };
 const handleSelectDate = (item: BDatePickerDateItem) => {
   if (
@@ -508,6 +570,9 @@ const switchToMonth = (monthCount: number) => {
     return;
   }
   viewDateDisplay.value.month += monthCount;
+};
+const openMenu = () => {
+  isVisibleMenu.value = true;
 };
 const handleToggleMenu = () => {
   if (props.disabled) {
@@ -718,6 +783,32 @@ const onBlur = () => {
 };
 const formatDateMoment = (date: string | Date) =>
   checkIfISOFormat(date) ? moment(date).format(DATE_FORMAT) : date;
+const closeOnClickOutside = (event: any) => {
+  const refs = [datePickerRef.value, datePickerMenuRef.value];
+  const withinBoundaries = refs.some((r) => event.composedPath().includes(r));
+  if (!withinBoundaries) {
+    closeDatePickerMenu();
+  }
+};
+const closeOnEscapePressed = (event: KeyboardEvent) => {
+  if (event.key === 'Escape') {
+    closeDatePickerMenu();
+  }
+};
+const closeDatePickerMenu = () => {
+  isVisibleMenu.value = false;
+  datePickerInputRef.value?.blur();
+  datePickerInputMaskRef.value?.blur();
+};
+const initIMask = () => {
+  mask = IMask(datePickerInputMaskRef.value!, inputMaskOptions.value);
+  mask.value = formatDateMoment((props.modelValue as Date) || '');
+  mask.on('accept', onAccept);
+  mask.on('complete', onComplete);
+};
+const destroyIMask = () => {
+  mask && mask.destroy();
+};
 const init = () => {
   generateYears();
   generateMonths();
@@ -730,20 +821,23 @@ init();
 //#region Lifecycle Hooks
 onMounted(() => {
   if (!props.range) {
-    mask = IMask(inputMaskRef.value!, inputMaskOptions.value);
-    mask.value = formatDateMoment((props.modelValue as Date) || '');
-    mask.on('accept', onAccept);
-    mask.on('complete', onComplete);
+    initIMask();
   }
+  document.addEventListener('click', closeOnClickOutside);
+  document.addEventListener('keydown', closeOnEscapePressed);
 });
 onBeforeUnmount(() => {
+  destroyIMask();
   unlockScrollBody();
+  resetPosition(datePickerRef.value!, datePickerMenuRef.value!); // Make sure dropdown menu unmounted with itself
+  document.removeEventListener('keydown', closeOnEscapePressed);
+  document.removeEventListener('click', closeOnClickOutside);
 });
 //#endregion
 </script>
 
 <template>
-  <div>
+  <div class="b-date-picker">
     <div ref="datePickerRef">
       <BLabel :id="id" :label="label" :required="required" />
 
@@ -751,17 +845,19 @@ onBeforeUnmount(() => {
         <input
           v-if="props.range"
           :id="id"
+          ref="datePickerInputRef"
           :class="inputCssClassValue"
           :disabled="disabled"
           :placeholder="placeholder"
           :value="formattedValue"
           class="ds-drop-shadow-light"
           readonly
+          @focus="openMenu"
         />
         <input
           v-else
           :id="id"
-          ref="inputMaskRef"
+          ref="datePickerInputMaskRef"
           :class="inputCssClassValue"
           :disabled="disabled"
           :placeholder="placeholder"
@@ -769,55 +865,54 @@ onBeforeUnmount(() => {
           @blur="onBlur"
         />
         <!--NOTE: Remove ds.components.base.date_picker.today-->
-        <BDatePickerIcon :disabled="props.disabled" @click="handleToggleMenu" />
+        <BDatePickerIcon
+          :disabled="props.disabled"
+          @click="handleToggleMenu"
+          @keyup.enter="handleToggleMenu"
+        />
       </div>
 
-      <Transition
-        enter-active-class="ds-transition-all ds-ease-in-out"
-        enter-from-class="ds-opacity-0"
-        enter-to-class="ds-opacity-1"
-        leave-active-class="ds-transition-all ds-ease-in-out"
-        leave-from-class="ds-opacity-1"
-        leave-to-class="ds-opacity-0"
+      <div
+        v-show="isVisibleMenu"
+        ref="datePickerMenuRef"
+        class="b-date-picker__menu sm:ds-items-[unset] sm:ds-justify-[unset] ds-fixed ds-left-0 ds-top-0 ds-z-100 ds-flex ds-h-full ds-w-full ds-items-center ds-justify-center ds-bg-black/65 ds-backdrop-blur-sm sm:ds-absolute sm:ds-left-[unset] sm:ds-top-[unset] sm:ds-z-50 sm:ds-block sm:ds-h-auto sm:ds-w-auto sm:ds-bg-transparent sm:ds-backdrop-blur-none"
       >
         <div
-          v-show="isVisibleMenu"
-          ref="datePickerMenuRef"
-          class="ds-absolute ds-z-50 ds-mt-1 ds-grid ds-w-80 ds-gap-5 ds-rounded-lg ds-bg-white ds-p-3 ds-shadow-2xl"
+          class="ds-mt-1 ds-grid ds-w-80 ds-gap-5 ds-rounded-lg ds-bg-white ds-p-3 ds-shadow-2xl"
         >
           <div class="ds-flex ds-w-full ds-items-center ds-justify-between">
             <BDatePickerButtonPrevious
               :disabled="viewLeftNavDisabled"
-              @click="viewData[view].handleClickPreview()"
+              @click="viewData[viewValue].handleClickPreview()"
             />
             <BDatePickerHeading
               :class="{
                 'ds-cursor-pointer hover:ds-bg-gray-150':
-                  viewData[view].handleClickHeading,
+                  viewData[viewValue].handleClickHeading,
               }"
-              @click="viewData[view].handleClickHeading"
+              @click="viewData[viewValue].handleClickHeading"
             >
               {{ viewHeading }}
             </BDatePickerHeading>
             <BDatePickerButtonNext
               :disabled="viewRightNavDisabled"
-              @click="viewData[view].handleClickNext()"
+              @click="viewData[viewValue].handleClickNext()"
             />
           </div>
 
           <BDatePickerGridYear
-            v-if="view === BDatePickerView.Years"
+            v-if="viewValue === BDatePickerView.Years"
             :year="valueDisplay"
             :years
             @select:year="handleSelectYear"
           />
           <BDatePickerGridMonth
-            v-if="view === BDatePickerView.Months"
+            v-if="viewValue === BDatePickerView.Months"
             :month="valueDisplay"
             :months
             @select:month="handleSelectMonth"
           />
-          <template v-if="view === BDatePickerView.Dates">
+          <template v-if="viewValue === BDatePickerView.Dates">
             <BDatePickerGridDateRange
               v-if="props.range"
               :date-range="valueRangeDisplay"
@@ -841,7 +936,7 @@ onBeforeUnmount(() => {
             </BButton>
           </div>
         </div>
-      </Transition>
+      </div>
     </div>
 
     <BErrorMessage

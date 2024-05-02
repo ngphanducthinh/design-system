@@ -29,15 +29,7 @@ const isSelected = ({ year, month }: BDatePickerDateItem) => {
   }
   return year === props.month.year && month === props.month.month;
 };
-const handleSelectMonth = ({
-  year,
-  month,
-  date,
-  disabled,
-}: BDatePickerDateItem) => {
-  if (disabled) {
-    return;
-  }
+const handleSelectMonth = ({ year, month, date }: BDatePickerDateItem) => {
   emit('select:month', { year, month, date });
 };
 //#endregion
@@ -47,7 +39,7 @@ const handleSelectMonth = ({
   <div
     class="ds-grid ds-w-full ds-grid-cols-3 ds-grid-rows-4 ds-gap-x-1 ds-gap-y-3"
   >
-    <div
+    <button
       v-for="i in months"
       :key="i.month"
       :class="{
@@ -55,10 +47,11 @@ const handleSelectMonth = ({
         'ds-text-gray-200': i.disabled,
         'ds-bg-primary-t ds-text-white': isSelected(i),
       }"
+      :disabled="i.disabled"
       class="ds-flex ds-h-9 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg"
       @click="handleSelectMonth(i)"
     >
-      {{ monthShortNames[i.month] }}
-    </div>
+      {{ monthShortNames[i.month!] }}
+    </button>
   </div>
 </template>

@@ -96,6 +96,7 @@ const handleSelectDate = ({
           '--end': isSelectedEnd(i),
         }"
         class="date-item group ds-cursor-pointer ds-p-0.5"
+        @click="handleSelectDate(i)"
       >
         <div
           :class="{
@@ -106,7 +107,6 @@ const handleSelectDate = ({
             'ds-bg-primary-t/10': isWithin(i),
           }"
           class="date-item__inner ds-flex ds-aspect-square ds-items-center ds-justify-center ds-rounded-lg ds-transition-all"
-          @click="handleSelectDate(i)"
         >
           {{ i.date }}
         </div>
@@ -117,16 +117,8 @@ const handleSelectDate = ({
 
 <style lang="scss" scoped>
 .date-range:not(:has(.--start):has(.--end)) {
-  .date-item.--selected:has(~ .date-item:hover) .date-item__inner {
-    border-top-right-radius: unset;
-    border-bottom-right-radius: unset;
-  }
   .date-item.--selected ~ .date-item:has(~ .date-item:hover) .date-item__inner {
     background-color: theme('colors.primary-t / 10%');
-  }
-  .date-item:hover ~ .date-item.--selected .date-item__inner {
-    border-top-left-radius: unset;
-    border-bottom-left-radius: unset;
   }
   .date-item:hover ~ .date-item:has(~ .date-item.--selected) .date-item__inner {
     background-color: theme('colors.primary-t / 10%');

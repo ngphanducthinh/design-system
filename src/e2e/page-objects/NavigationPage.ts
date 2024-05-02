@@ -9,16 +9,29 @@ export class NavigationPage {
 
   async introductionPage() {
     await this.page.goto('./');
-    await this.page.getByRole('link', { name: 'Introduction' }).click();
+    await this.page
+      .getByRole('link', { name: 'Introduction', exact: true })
+      .click();
   }
 
   async breadcrumbPage() {
     await this.page.goto('./');
-    await this.page.getByRole('button', { name: 'Breadcrumb' }).click();
+    await this.page
+      .getByRole('button', { name: 'Breadcrumb', exact: true })
+      .click();
   }
 
   async carouselPage() {
     await this.page.goto('./');
-    await this.page.getByRole('button', { name: 'Carousel' }).click();
+    await this.page
+      .getByRole('button', { name: 'Carousel', exact: true })
+      .click();
+  }
+
+  async datePickerPage() {
+    await this.page.goto('./');
+    await this.page
+      .getByRole('button', { name: 'DatePicker', exact: true })
+      .click();
   }
 }

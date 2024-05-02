@@ -1,7 +1,13 @@
-import { BDatePicker } from '@/components';
-import { BDatePickerView } from '@/constants/Enums';
+import BDatePicker from '@/components/BDatePicker/BDatePicker.vue';
+// import { BDatePickerView } from '@/constants/Enums';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+
+enum BDatePickerView {
+  Years = 'years',
+  Months = 'months',
+  Dates = 'dates',
+}
 
 const meta: Meta<typeof BDatePicker> = {
   title: 'Components/DatePicker',
@@ -30,12 +36,11 @@ const meta: Meta<typeof BDatePicker> = {
     requiredErrorMessage: '',
     disabled: false,
     inputCssClass: '',
-    minDate: '',
-    maxDate: '',
-    showHintToday: false,
-    view: 'days',
+    minDate: undefined,
+    maxDate: undefined,
+    range: false,
     hideDetails: false,
-    position: 'bottom left',
+    view: 'dates',
   },
 };
 
@@ -46,7 +51,26 @@ export const Default: Story = {
   render: (args: any) => ({
     components: { BDatePicker },
     setup() {
-      const date = ref(new Date());
+      const CURRENT_DATE = new Date();
+
+      const date = ref<Date | Date[] | undefined>(new Date());
+      const startDate = new Date(
+        CURRENT_DATE.getFullYear(),
+        CURRENT_DATE.getMonth(),
+        CURRENT_DATE.getDate() - 4,
+      );
+      const endDate = new Date(
+        CURRENT_DATE.getFullYear(),
+        CURRENT_DATE.getMonth(),
+        CURRENT_DATE.getDate() + 2,
+      );
+
+      watch(
+        () => args.range,
+        (val) => {
+          date.value = val ? [startDate, endDate] : new Date();
+        },
+      );
 
       return { args, date };
     },

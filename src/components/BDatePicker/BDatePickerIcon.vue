@@ -10,14 +10,16 @@ const props = withDefaults(defineProps<BDatePickerIconProps>(), {});
 
 <template>
   <label
-    class="ds-absolute ds-right-3 ds-top-0 ds-z-[3] ds-flex ds-h-10 ds-items-center"
+    :class="[
+      props.disabled
+        ? 'ds-cursor-not-allowed ds-fill-black/40'
+        : 'ds-cursor-pointer ds-fill-black/80',
+    ]"
+    aria-label="Icon"
+    class="ds-absolute ds-right-3 ds-top-0 ds-z-[3] ds-flex ds-h-10 ds-items-center hover:ds-fill-primary-t/80 focus:ds-fill-primary-t/80"
+    tabindex="0"
   >
     <svg
-      :class="[
-        props.disabled
-          ? 'ds-cursor-not-allowed ds-fill-black/40'
-          : 'ds-cursor-pointer ds-fill-black/80',
-      ]"
       class="ds-h-4.5 ds-w-4.5"
       viewBox="0 0 448 512"
       xmlns="http://www.w3.org/2000/svg"

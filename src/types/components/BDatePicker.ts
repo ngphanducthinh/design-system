@@ -9,5 +9,5 @@ export interface BDatePickerDateItem {
 export interface BDatePickerViewData {
   handleClickPreview: () => void;
   handleClickNext: () => void;
-  handleClickHeading: () => void;
+  handleClickHeading?: () => void;
 }

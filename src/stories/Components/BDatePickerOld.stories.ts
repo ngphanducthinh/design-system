@@ -1,18 +1,18 @@
-import { BDateRangePicker } from '@/components';
+import { BDatePicker } from '@/components';
 import { BDatePickerView } from '@/constants/Enums';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { ref } from 'vue';
 
-const meta: Meta<typeof BDateRangePicker> = {
-  title: 'Components/DateRangePicker',
+const meta: Meta<typeof BDatePicker> = {
+  title: 'Components/DatePickerOld',
   parameters: {
     docs: {
       description: {
-        component: `The <code>BDateRangePicker</code> component is a fully featured date selection component that lets users select a range of dates.`,
+        component: `The <code>BDatePicker</code> component is a fully featured date selection component that lets users select a date.`,
       },
     },
   },
-  component: BDateRangePicker,
+  component: BDatePicker,
   tags: ['autodocs'],
   // https://storybook.js.org/docs/react/essentials/controls
   argTypes: {
@@ -32,30 +32,26 @@ const meta: Meta<typeof BDateRangePicker> = {
     inputCssClass: '',
     minDate: '',
     maxDate: '',
-    view: BDatePickerView.Days,
+    showHintToday: false,
+    view: 'days',
     hideDetails: false,
     position: 'bottom left',
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof BDateRangePicker>;
+type Story = StoryObj<typeof BDatePicker>;
 
 export const Default: Story = {
   render: (args: any) => ({
-    components: { BDateRangePicker },
+    components: { BDatePicker },
     setup() {
-      const currentDate = new Date();
-      const fromDate = new Date(
-        new Date(currentDate).setDate(currentDate.getDate() - 3),
-      );
-      const toDate = new Date(currentDate);
-      const date = ref([fromDate, toDate]);
+      const date = ref(new Date());
 
       return { args, date };
     },
     template: `
-      <BDateRangePicker v-bind="args" v-model="date" />
+      <BDatePicker v-bind="args" v-model="date" />
     `,
   }),
   args: {},
