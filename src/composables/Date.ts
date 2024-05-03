@@ -151,5 +151,6 @@ export function useDate() {
     formatDateHuge,
     formatMonthYear,
     dayShortNames,
+    monthShortNames,
   };
 }

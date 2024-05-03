@@ -66,12 +66,9 @@
             "december": "Dec"
           },
           "buttons": {
-            "today": "Today",
-            "clear": "Clear",
             "cancel": "Cancel",
             "confirm": "Confirm"
-          },
-          "today": "Today"
+          }
         },
         "multi_select": {
           "selected_item_count": "Selected {count}"

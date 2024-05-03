@@ -151,7 +151,7 @@ onBeforeUnmount(() => {
   <div v-show="value" class="ds-relative">
     <div
       ref="contentRef"
-      class="ds-absolute ds-z-10 ds-inline-block ds-rounded-lg ds-bg-black/[0.65] ds-px-3 ds-py-2 ds-text-sm ds-font-medium ds-text-white ds-shadow-sm ds-transition-opacity ds-duration-300"
+      class="ds-absolute ds-z-10 ds-inline-block ds-rounded-lg ds-bg-black/65 ds-px-3 ds-py-2 ds-text-sm ds-font-medium ds-text-white ds-shadow-sm ds-transition-opacity ds-duration-300"
     >
       <slot></slot>
       <div class="tooltip-arrow" data-popper-arrow></div>
