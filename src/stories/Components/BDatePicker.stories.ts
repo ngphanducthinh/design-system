@@ -1,13 +1,7 @@
 import BDatePicker from '@/components/BDatePicker/BDatePicker.vue';
-// import { BDatePickerView } from '@/constants/Enums';
+import { BDatePickerView } from '@/constants/Enums';
 import type { Meta, StoryObj } from '@storybook/vue3';
 import { ref, watch } from 'vue';
-
-enum BDatePickerView {
-  Years = 'years',
-  Months = 'months',
-  Dates = 'dates',
-}
 
 const meta: Meta<typeof BDatePicker> = {
   title: 'Components/DatePicker',

@@ -1,12 +1,7 @@
 import { expect, type Page } from '@playwright/test';
 import { HelperBase } from '@/e2e/page-objects/HelperBase';
 import enUS from '@/locales/en-US.json';
-
-enum BDatePickerView {
-  Years = 'years',
-  Months = 'months',
-  Dates = 'dates',
-}
+import { BDatePickerView } from '@/constants/Enums';
 
 export class DatePickerPage extends HelperBase {
   constructor(page: Page) {

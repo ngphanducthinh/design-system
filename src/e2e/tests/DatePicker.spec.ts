@@ -1,10 +1,5 @@
 import { test } from '@/e2e/fixtures/Test';
-
-enum BDatePickerView {
-  Years = 'years',
-  Months = 'months',
-  Dates = 'dates',
-}
+import { BDatePickerView } from '@/constants/Enums';
 
 test('adjust inputId', async ({ datePickerPage }) => {
   await datePickerPage.fillInputId('custom-id');
@@ -67,7 +62,7 @@ test('turn on range', async ({ datePickerPage }) => {
   await datePickerPage.hasSelectedDatesInRage(-3, 5);
 });
 
-test('adjust view', async ({ datePickerPage, page }) => {
+test('adjust view', async ({ datePickerPage }) => {
   await datePickerPage.selectView(BDatePickerView.Years);
   await datePickerPage.hasViewAsDefaultWhenOpenMenu(BDatePickerView.Years);
   await datePickerPage.selectView(BDatePickerView.Months);

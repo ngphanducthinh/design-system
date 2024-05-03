@@ -1,10 +1,4 @@
-@layer vendor, design-system;
-
-@layer vendor {
-  // NOTE: There is an issue that storybook cannot import directly from node_modules/air-datepicker, investigate later.
-  // CSS file "air-datepicker.css" from "air-datepicker": "3.3.0"
-  @import 'airDatepicker';
-}
+@layer design-system;
 
 @layer design-system {
   // Tailwind

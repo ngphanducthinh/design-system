@@ -66,12 +66,9 @@
             "december": "Mười Hai"
           },
           "buttons": {
-            "today": "Hôm nay",
-            "clear": "Xoá chọn",
             "cancel": "Đóng",
             "confirm": "Xác nhận"
-          },
-          "today": "Hôm nay"
+          }
         },
         "multi_select": {
           "selected_item_count": "Đã chọn {count}"

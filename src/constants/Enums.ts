@@ -112,11 +112,14 @@ export enum BPaginationSize {
  * BDatePicker
  */
 export enum BDatePickerView {
-  Days = 'days',
-  Months = 'months',
   Years = 'years',
+  Months = 'months',
+  Dates = 'dates',
 }
 
+/**
+ * Locales
+ */
 export enum SupportedLocale {
   'vi-VN' = 'vi-VN',
   'en-US' = 'en-US',

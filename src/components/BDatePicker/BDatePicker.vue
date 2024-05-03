@@ -38,12 +38,7 @@ import BDatePickerGridYear from '@/components/BDatePicker/BDatePickerGridYear.vu
 import { isEmpty, isNil } from 'lodash-es';
 import BDatePickerGridDateRange from '@/components/BDatePicker/BDatePickerGridDateRange.vue';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
-
-enum BDatePickerView {
-  Years = 'years',
-  Months = 'months',
-  Dates = 'dates',
-}
+import { BDatePickerView } from '@/constants/Enums';
 
 //#region Props
 export interface BDatePickerProps {
@@ -52,9 +47,9 @@ export interface BDatePickerProps {
    */
   inputId?: string;
   /**
-   * Value v-model: <code>Date</code> when range is false, v-model: <code>Array<Date></code> when range is true.
+   * Value v-model: <code>Date | number | string</code> when range is false, v-model: <code>Array<Date | number | string></code> when range is true.
    */
-  modelValue?: Date | Date[];
+  modelValue?: Date | number | string | Array<Date | number | string>;
   /**
    * Label of the field.
    */
@@ -126,11 +121,14 @@ const props = withDefaults(defineProps<BDatePickerProps>(), {
 //#region Events
 const emit = defineEmits<{
   /**
-   * Update value, param <code>Date</code> when range is false, unless param <code>Array<Date></code>.
+   * Update value, param <code>Date | number | string</code> when range is false, unless param <code>Array<Date | number | string></code>.
    * @param e
    * @param value
    */
-  (e: 'update:modelValue', value?: Date | Date[]): void;
+  (
+    e: 'update:modelValue',
+    value?: Date | number | string | Array<Date | number | string>,
+  ): void;
 }>();
 //#endregion
 
@@ -169,35 +167,8 @@ const years = ref<BDatePickerDateItem[]>([]);
 const viewHeading = ref('');
 const viewLeftNavDisabled = ref(false);
 const viewRightNavDisabled = ref(false);
-const minValue = computed<Date | undefined>(() => {
-  if (props.minDate) {
-    switch (typeof props.minDate) {
-      case 'object':
-        return props.minDate;
-      case 'number':
-        return new Date(props.minDate);
-      case 'string':
-        return checkIfISOFormat(props.minDate)
-          ? new Date(props.minDate)
-          : undefined;
-    }
-  }
-  return undefined;
-});
-
-const maxValue = computed<Date | undefined>(() => {
-  switch (typeof props.maxDate) {
-    case 'object':
-      return props.maxDate;
-    case 'number':
-      return new Date(props.maxDate);
-    case 'string':
-      return checkIfISOFormat(props.maxDate)
-        ? new Date(props.maxDate)
-        : undefined;
-  }
-  return undefined;
-});
+const minValue = computed<Date | undefined>(() => getDateObject(props.minDate));
+const maxValue = computed<Date | undefined>(() => getDateObject(props.maxDate));
 const validateRequired: ValidationRule = {
   validateRule: (val) => !!val,
   errorMessage: () =>
@@ -215,7 +186,9 @@ const value = computed({
   },
 });
 const formattedValue = computed(() =>
-  (props.modelValue as Date[])?.map((val) => formatDateMoment(val)).join(' - '),
+  (props.modelValue as Array<Date | number | string>)
+    ?.map((val) => formatDateMoment(val))
+    .join(' - '),
 );
 const vRules = computed(() => {
   let result: ValidationRule[] = [];
@@ -306,8 +279,14 @@ const viewData = computed<Record<BDatePickerView, BDatePickerViewData>>(() => ({
 watch(
   () => props.minDate,
   () => {
-    if (minValue.value && value.value && minValue.value > value.value) {
-      value.value = undefined;
+    if (props.range) {
+      const arr = value.value as Array<Date | number | string>;
+      if (arr.length > 0) {
+        ensureValueWhenMinDateChange(arr[0] as any);
+      }
+    } else {
+      const val = value.value as Date | number | string;
+      ensureValueWhenMinDateChange(val);
     }
     generateDates();
   },
@@ -315,8 +294,17 @@ watch(
 watch(
   () => props.maxDate,
   () => {
-    if (maxValue.value && value.value && maxValue.value < value.value) {
-      value.value = undefined;
+    if (props.range) {
+      const arr = value.value as Array<Date | number | string>;
+      if (arr.length > 1) {
+        ensureValueWhenMaxDateChange(arr[1]);
+      }
+      if (arr.length > 0) {
+        ensureValueWhenMaxDateChange(arr[0]);
+      }
+    } else {
+      const val = value.value as Date | number | string;
+      ensureValueWhenMaxDateChange(val);
     }
     generateDates();
   },
@@ -347,11 +335,11 @@ watch(isVisibleMenu, (val) => {
     lockScrollBody();
     if (props.range) {
       valueRangeDisplay.value = value.value
-        ? cloneItemFromDateRange(value.value as Date[])
+        ? cloneItemFromDateRange(value.value as Array<Date | number | string>)
         : [];
     } else {
       valueDisplay.value = value.value
-        ? cloneItemFromDate(value.value as Date)
+        ? cloneItemFromDate(value.value as Date | number | string)
         : {};
     }
     viewDateDisplay.value = cloneItem(viewDate.value);
@@ -374,25 +362,50 @@ watch(
   (val) => {
     if (isNotSyncedModelValue(val)) {
       if (props.range) {
-        const v = val as Date[];
+        const v = val as Array<Date | number | string>;
         valueRangeDisplay.value = val ? cloneItemFromDateRange(v) : [];
         viewDate.value = val ? cloneItemFromDate(v[1], true) : {};
         viewDateDisplay.value = val ? cloneItemFromDate(v[1], true) : {};
       } else {
-        const v = val as Date;
+        const v = val as Date | number | string;
         valueDisplay.value = val ? cloneItemFromDate(v) : {};
         viewDate.value = val ? cloneItemFromDate(v, true) : {};
         viewDateDisplay.value = val ? cloneItemFromDate(v, true) : {};
       }
     }
     if (!props.range && isNotSyncedModelValue(getInputMaskDate())) {
-      mask.value = formatDateMoment((val as Date) || '');
+      mask.value = formatDateMoment(
+        getDateObject(val as Date | number | string) || '',
+      );
     }
   },
 );
 //#endregion
 
 //#region Methods
+const ensureValueWhenMinDateChange = (d?: Date | number | string) => {
+  const val = getDateObject(d);
+  if (minValue.value && val && minValue.value > val) {
+    value.value = undefined;
+  }
+};
+const ensureValueWhenMaxDateChange = (d?: Date | number | string) => {
+  const val = getDateObject(d);
+  if (maxValue.value && val && maxValue.value < val) {
+    value.value = undefined;
+  }
+};
+const getDateObject = (val?: Date | number | string) => {
+  switch (typeof val) {
+    case 'object':
+      return val;
+    case 'number':
+      return new Date(val);
+    case 'string':
+      return checkIfISOFormat(val) ? new Date(val) : undefined;
+  }
+  return val;
+};
 const handleSwitchToMonthsView = () => {
   generateMonths();
   viewValue.value = BDatePickerView.Months;
@@ -401,15 +414,21 @@ const handleSwitchToYearsView = () => {
   generateYears();
   viewValue.value = BDatePickerView.Years;
 };
-const isNotSyncedModelValue = (val?: Date | Date[]) => {
+const isNotSyncedModelValue = (
+  val?: Date | number | string | Array<Date | number | string>,
+) => {
   const ruleEngine = props.range
     ? [
         !isEmpty(props.modelValue) && isEmpty(val),
         !isEmpty(val) && isEmpty(props.modelValue),
         !isEmpty(props.modelValue) &&
           !isEmpty(val) &&
-          (props.modelValue as Date[]).some(
-            (v, i) => v?.getTime() !== (val as Date[])[i]?.getTime(),
+          (props.modelValue as Array<Date | number | string>).some(
+            (v, i) =>
+              getDateObject(v)?.getTime() !==
+              getDateObject(
+                (val as Array<Date | number | string>)[i],
+              )?.getTime(),
           ),
       ]
     : [
@@ -417,7 +436,10 @@ const isNotSyncedModelValue = (val?: Date | Date[]) => {
         !val && props.modelValue,
         props.modelValue &&
           val &&
-          (props.modelValue as Date)?.getTime() !== (val as Date).getTime(),
+          getDateObject(
+            props.modelValue as Date | number | string,
+          )?.getTime() !==
+            getDateObject(val as Date | number | string)?.getTime(),
       ];
   return ruleEngine.some((r) => r);
 };
@@ -469,26 +491,26 @@ const cloneItem = (
   date: ignoreDate ? undefined : item.date,
 });
 const cloneItemFromDate = (
-  date: Date,
+  date: Date | number | string,
   ignoreDate?: boolean,
 ): BDatePickerDateItem => ({
-  year: date.getFullYear(),
-  month: date.getMonth(),
-  date: ignoreDate ? undefined : date.getDate(),
+  year: getDateObject(date)!.getFullYear(),
+  month: getDateObject(date)!.getMonth(),
+  date: ignoreDate ? undefined : getDateObject(date)!.getDate(),
 });
 const cloneItemFromDateRange = (
-  dateRange: Date[],
+  dateRange: Array<Date | number | string>,
   ignoreDate?: boolean,
 ): BDatePickerDateItem[] => [
   {
-    year: dateRange[0].getFullYear(),
-    month: dateRange[0].getMonth(),
-    date: ignoreDate ? undefined : dateRange[0].getDate(),
+    year: getDateObject(dateRange[0])!.getFullYear(),
+    month: getDateObject(dateRange[0])!.getMonth(),
+    date: ignoreDate ? undefined : getDateObject(dateRange[0])!.getDate(),
   },
   {
-    year: dateRange[1].getFullYear(),
-    month: dateRange[1].getMonth(),
-    date: ignoreDate ? undefined : dateRange[1].getDate(),
+    year: getDateObject(dateRange[1])!.getFullYear(),
+    month: getDateObject(dateRange[1])!.getMonth(),
+    date: ignoreDate ? undefined : getDateObject(dateRange[1])!.getDate(),
   },
 ];
 const handleSelectYear = (item: BDatePickerDateItem) => {
@@ -812,8 +834,9 @@ const onBlur = () => {
     };
   }
 };
-const formatDateMoment = (date: string | Date) =>
-  checkIfISOFormat(date) ? moment(date).format(DATE_FORMAT) : date;
+
+const formatDateMoment = (date: Date | number | string) =>
+  moment(date).format(DATE_FORMAT);
 const closeOnClickOutside = (event: any) => {
   const refs = [datePickerRef.value, datePickerMenuRef.value];
   const withinBoundaries = refs.some((r) => event.composedPath().includes(r));
@@ -833,7 +856,9 @@ const closeDatePickerMenu = () => {
 };
 const initIMask = () => {
   mask = IMask(datePickerInputMaskRef.value!, inputMaskOptions.value);
-  mask.value = formatDateMoment((props.modelValue as Date) || '');
+  mask.value = formatDateMoment(
+    getDateObject(props.modelValue as Date | number | string) || '',
+  );
   mask.on('accept', onAccept);
   mask.on('complete', onComplete);
 };
