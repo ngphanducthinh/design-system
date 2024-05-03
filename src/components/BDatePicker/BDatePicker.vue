@@ -52,7 +52,7 @@ export interface BDatePickerProps {
    */
   inputId?: string;
   /**
-   * Value v-model: <code>Date</code> when range is false, unless v-model: <code>Array<Date></code>.
+   * Value v-model: <code>Date</code> when range is false, v-model: <code>Array<Date></code> when range is true.
    */
   modelValue?: Date | Date[];
   /**
@@ -84,13 +84,13 @@ export interface BDatePickerProps {
    */
   inputCssClass?: string;
   /**
-   * Minimum selectable date.
+   * Minimum selectable date <code>Date | number | string</code> (date object | number representing the timestamp | string in ISO 8601 format).
    */
-  minDate?: Date;
+  minDate?: Date | number | string;
   /**
-   * Maximum selectable date.
+   * Maximum selectable date <code>Date | number | string</code> (date object | number representing the timestamp | string in ISO 8601 format).
    */
-  maxDate?: Date;
+  maxDate?: Date | number | string;
   /**
    * Allow to select a date range.
    */
@@ -169,6 +169,35 @@ const years = ref<BDatePickerDateItem[]>([]);
 const viewHeading = ref('');
 const viewLeftNavDisabled = ref(false);
 const viewRightNavDisabled = ref(false);
+const minValue = computed<Date | undefined>(() => {
+  if (props.minDate) {
+    switch (typeof props.minDate) {
+      case 'object':
+        return props.minDate;
+      case 'number':
+        return new Date(props.minDate);
+      case 'string':
+        return checkIfISOFormat(props.minDate)
+          ? new Date(props.minDate)
+          : undefined;
+    }
+  }
+  return undefined;
+});
+
+const maxValue = computed<Date | undefined>(() => {
+  switch (typeof props.maxDate) {
+    case 'object':
+      return props.maxDate;
+    case 'number':
+      return new Date(props.maxDate);
+    case 'string':
+      return checkIfISOFormat(props.maxDate)
+        ? new Date(props.maxDate)
+        : undefined;
+  }
+  return undefined;
+});
 const validateRequired: ValidationRule = {
   validateRule: (val) => !!val,
   errorMessage: () =>
@@ -246,11 +275,11 @@ const inputMaskOptions = computed(() => {
     },
   };
 
-  if (props.minDate) {
-    result.min = props.minDate;
+  if (minValue.value) {
+    result.min = minValue.value;
   }
-  if (props.maxDate) {
-    result.max = props.maxDate;
+  if (maxValue.value) {
+    result.max = maxValue.value;
   }
 
   return result;
@@ -276,8 +305,8 @@ const viewData = computed<Record<BDatePickerView, BDatePickerViewData>>(() => ({
 //#region Watchers
 watch(
   () => props.minDate,
-  (val) => {
-    if (val && value.value && val > value.value) {
+  () => {
+    if (minValue.value && value.value && minValue.value > value.value) {
       value.value = undefined;
     }
     generateDates();
@@ -285,8 +314,8 @@ watch(
 );
 watch(
   () => props.maxDate,
-  (val) => {
-    if (val && value.value && val < value.value) {
+  () => {
+    if (maxValue.value && value.value && maxValue.value < value.value) {
       value.value = undefined;
     }
     generateDates();
@@ -581,22 +610,22 @@ const handleToggleMenu = () => {
   isVisibleMenu.value = !isVisibleMenu.value;
 };
 const isOutOfRangeYear = (year: number) =>
-  (props.minDate ? props.minDate.getFullYear() > year : false) ||
-  (props.maxDate ? year > props.maxDate.getFullYear() : false);
+  (minValue.value ? minValue.value.getFullYear() > year : false) ||
+  (maxValue.value ? year > maxValue.value.getFullYear() : false);
 const isOutOfRangeMonth = (year: number, month: number) =>
-  (props.minDate
-    ? (props.minDate.getFullYear() === year &&
-        props.minDate.getMonth() > month) ||
-      props.minDate.getFullYear() > year
+  (minValue.value
+    ? (minValue.value.getFullYear() === year &&
+        minValue.value.getMonth() > month) ||
+      minValue.value.getFullYear() > year
     : false) ||
-  (props.maxDate
-    ? (props.maxDate.getFullYear() === year &&
-        props.maxDate.getMonth() < month) ||
-      props.maxDate.getFullYear() < year
+  (maxValue.value
+    ? (maxValue.value.getFullYear() === year &&
+        maxValue.value.getMonth() < month) ||
+      maxValue.value.getFullYear() < year
     : false);
 const isOutOfRangeDate = (date: Date) =>
-  (props.minDate ? props.minDate > date : false) ||
-  (props.maxDate ? date > props.maxDate : false);
+  (minValue.value ? minValue.value > date : false) ||
+  (maxValue.value ? date > maxValue.value : false);
 const getStartOfMonth = (year: number, month: number) =>
   new Date(year, month, 1);
 const getEndOfMonth = (year: number, month: number) =>
@@ -721,10 +750,12 @@ const generateDates = () => {
   updateNavDisabledState(startOfMonth, endOfMonth);
 };
 const updateNavDisabledState = (startDate: Date, endDate: Date) => {
-  viewLeftNavDisabled.value = props.minDate
-    ? props.minDate >= startDate
+  viewLeftNavDisabled.value = minValue.value
+    ? minValue.value >= startDate
     : false;
-  viewRightNavDisabled.value = props.maxDate ? props.maxDate <= endDate : false;
+  viewRightNavDisabled.value = maxValue.value
+    ? maxValue.value <= endDate
+    : false;
 };
 const getInputMaskDate = () => {
   const arr = mask.value.split('/');

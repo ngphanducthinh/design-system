@@ -33,7 +33,7 @@ const handleSelectYear = ({ year, month, date }: BDatePickerDateItem) => {
 
 <template>
   <div
-    class="ds-grid ds-w-full ds-grid-cols-3 ds-grid-rows-4 ds-gap-x-1 ds-gap-y-3"
+    class="b-date-picker__grid-year ds-grid ds-w-full ds-grid-cols-3 ds-grid-rows-4 ds-gap-x-1 ds-gap-y-3"
   >
     <button
       v-for="i in years"

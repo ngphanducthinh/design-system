@@ -2,6 +2,12 @@ import { expect, type Page } from '@playwright/test';
 import { HelperBase } from '@/e2e/page-objects/HelperBase';
 import enUS from '@/locales/en-US.json';
 
+enum BDatePickerView {
+  Years = 'years',
+  Months = 'months',
+  Dates = 'dates',
+}
+
 export class DatePickerPage extends HelperBase {
   constructor(page: Page) {
     super(page);
@@ -31,12 +37,9 @@ export class DatePickerPage extends HelperBase {
     await this.getTextarea('placeholder').fill(placeholderText);
   }
   async hasCustomPlaceholder(placeholderText: string) {
-    this.frame()
-      .locator('.b-date-picker')
-      .getByLabel('Icon')
-      .click({ force: true });
+    this.frame().locator('.b-date-picker').getByLabel('Icon').click();
     this.frame().locator('.--selected').click();
-    await this.page.waitForTimeout(500);
+    await this.wait();
     this.frame().getByRole('button', { name: 'Confirm' }).click();
     const input = this.frame().locator('.b-date-picker').locator('input');
     await expect(input).toHaveValue('');
@@ -76,55 +79,15 @@ export class DatePickerPage extends HelperBase {
     expect(await input.getAttribute('class')).toContain(cssClass);
   }
 
-  async selectDateFromToday(dateCount: number) {
-    this.frame()
-      .locator('.b-date-picker')
-      .getByLabel('Icon')
-      .click({ force: true });
-
+  async openDatePickerMenu() {
+    this.frame().locator('.b-date-picker').getByLabel('Icon').click();
+    await this.wait();
+  }
+  async selectDateFromToday(dateCount: number, clickConfirm: boolean = true) {
     const date = new Date();
     date.setDate(date.getDate() + dateCount);
 
-    if (dateCount > 0) {
-      await this.lookForInOtherMonths(date, true);
-    } else {
-      await this.lookForInOtherMonths(date, false);
-    }
-
-    await this.page.waitForTimeout(500);
-    this.frame().getByRole('button', { name: 'Confirm' }).click();
-  }
-  async hasSelectedDateFromToday(dateCount: number) {
-    const date = new Date();
-    date.setDate(date.getDate() + dateCount);
-    const expectedHeadingText = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`;
-    const input = this.frame().locator('.b-date-picker').locator('input');
-    await expect(input).toHaveValue(expectedHeadingText);
-  }
-
-  //#region Private Methods
-  private async lookForInOtherMonths(date: Date, isNext: boolean) {
-    const months = Object.values(enUS.ds.components.base.date_picker.months);
-    const expectedHeadingText = `${months[date.getMonth()]} ${date.getFullYear()}`;
-
-    const heading = this.frame()
-      .locator('.b-date-picker__menu')
-      .locator('[aria-label="heading"]');
-    let headingText = await heading.textContent();
-
-    while (!headingText?.includes(expectedHeadingText)) {
-      const navButton = isNext
-        ? this.frame()
-            .locator('.b-date-picker__menu')
-            .locator('[aria-label="Next"]')
-        : this.frame()
-            .locator('.b-date-picker__menu')
-            .locator('[aria-label="Previous"]');
-      navButton.click();
-      await this.page.waitForTimeout(200);
-      headingText = await heading.textContent();
-    }
-
+    await this.goToDesiredDateGrid(date);
     if (date.getDate() < 15) {
       this.frame()
         .locator('.b-date-picker__menu')
@@ -138,6 +101,158 @@ export class DatePickerPage extends HelperBase {
         .last()
         .click();
     }
+
+    if (clickConfirm) {
+      await this.wait();
+      this.frame().getByRole('button', { name: 'Confirm' }).click();
+    }
+
+    await this.wait();
+  }
+  async hasSelectedDateFromToday(dateCount: number) {
+    const date = new Date();
+    date.setDate(date.getDate() + dateCount);
+    const expectedHeadingText = this.getDateMonthYearText(date, '/');
+    const input = this.frame().locator('.b-date-picker').locator('input');
+    await expect(input).toHaveValue(expectedHeadingText);
+  }
+
+  async fillMinDateFromToday(dateCount: number) {
+    const date = new Date();
+    date.setDate(date.getDate() + dateCount);
+
+    await this.frame()
+      .getByRole('table')
+      .locator('tr', { hasText: 'minDate' })
+      .locator(`input[id="control-minDate-date"]`)
+      .fill(this.getYearMonthDateText(date, '-'));
+  }
+  async fillMaxDateFromToday(dateCount: number) {
+    const date = new Date();
+    date.setDate(date.getDate() + dateCount);
+
+    await this.frame()
+      .getByRole('table')
+      .locator('tr', { hasText: 'maxDate' })
+      .locator(`input[id="control-maxDate-date"]`)
+      .fill(this.getYearMonthDateText(date, '-'));
+  }
+  async hasDisabledDateFromToday(dateCount: number) {
+    this.frame().locator('.b-date-picker').getByLabel('Icon').click();
+
+    const date = new Date();
+    date.setDate(date.getDate() + dateCount);
+
+    await this.goToDesiredDateGrid(date);
+    if (date.getDate() < 15) {
+      await expect(
+        this.frame()
+          .locator('.b-date-picker__menu')
+          .getByText(date.getDate().toString(), { exact: true })
+          .first(),
+      ).toBeDisabled();
+    } else {
+      await expect(
+        this.frame()
+          .locator('.b-date-picker__menu')
+          .getByText(date.getDate().toString(), { exact: true })
+          .last(),
+      ).toBeDisabled();
+    }
+  }
+
+  async clickRange() {
+    await this.getInput('range').click();
+  }
+  async hasSelectedDatesInRage(startCount: number, endCount: number) {
+    const startDate = new Date(
+      new Date().setDate(new Date().getDate() + startCount),
+    );
+    const endDate = new Date(
+      new Date().setDate(new Date().getDate() + endCount),
+    );
+    const expectedHeadingText = `${this.getDateMonthYearText(startDate, '/')} - ${this.getDateMonthYearText(endDate, '/')}`;
+    const input = this.frame().locator('.b-date-picker').locator('input');
+    await expect(input).toHaveValue(expectedHeadingText);
+  }
+
+  async selectView(view: BDatePickerView) {
+    await this.frame()
+      .getByRole('table')
+      .locator('tr', { hasText: 'view' })
+      .locator('select[id="control-view"]')
+      .selectOption(view);
+  }
+  async hasViewAsDefaultWhenOpenMenu(view: BDatePickerView) {
+    this.frame().locator('.b-date-picker').getByLabel('Icon').click();
+    const viewClasses: Record<BDatePickerView, string> = {
+      [BDatePickerView.Years]: '.b-date-picker__grid-year',
+      [BDatePickerView.Months]: '.b-date-picker__grid-month',
+      [BDatePickerView.Dates]: '.b-date-picker__grid-date',
+    };
+    await expect(this.frame().locator(viewClasses[view])).toBeVisible();
+    await this.wait();
+    this.frame().getByRole('button', { name: 'Cancel' }).click();
+  }
+
+  //#region Private Methods
+  private getDateMonthYearText = (date: Date, delimiter: string): string =>
+    `${date.getDate().toString().padStart(2, '0')}${delimiter}${(date.getMonth() + 1).toString().padStart(2, '0')}${delimiter}${date.getFullYear()}`;
+  private getYearMonthDateText = (date: Date, delimiter: string): string =>
+    `${date.getFullYear()}${delimiter}${(date.getMonth() + 1).toString().padStart(2, '0')}${delimiter}${date.getDate().toString().padStart(2, '0')}`;
+  private async goToDesiredDateGrid(date: Date) {
+    const heading = this.frame()
+      .locator('.b-date-picker__menu')
+      .locator('[aria-label="heading"]');
+
+    heading.click();
+    await this.wait();
+
+    heading.click();
+    await this.wait();
+
+    const [startYear, endYear] = (await heading.textContent())!.split(' - ');
+    const expectedYear = date.getFullYear();
+    while (expectedYear < +startYear) {
+      await this.wait();
+      this.frame()
+        .locator('.b-date-picker__menu')
+        .locator('[aria-label="Previous"]')
+        .click();
+    }
+    while (expectedYear > +endYear) {
+      await this.wait();
+      this.frame()
+        .locator('.b-date-picker__menu')
+        .locator('[aria-label="Next"]')
+        .click();
+    }
+
+    await this.wait();
+    this.frame()
+      .locator('.b-date-picker__menu')
+      .getByText(expectedYear.toString(), { exact: true })
+      .first()
+      .click();
+
+    await this.wait();
+    const monthsShort = Object.values(
+      enUS.ds.components.base.date_picker.months_short,
+    );
+    this.frame()
+      .locator('.b-date-picker__menu')
+      .getByText(monthsShort[date.getMonth()].toString(), { exact: true })
+      .click();
+
+    await this.wait();
+    const months = Object.values(enUS.ds.components.base.date_picker.months);
+    const expectedHeadingText = `${months[date.getMonth()]} ${date.getFullYear()}`;
+    expect(
+      await this.frame()
+        .locator('.b-date-picker__menu')
+        .locator('[aria-label="heading"]')
+        .textContent(),
+    ).toEqual(expectedHeadingText);
   }
   //#endregion
 }

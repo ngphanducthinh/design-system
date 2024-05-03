@@ -19,6 +19,9 @@ export class HelperBase {
       }),
     ).toBeVisible();
   }
+  async wait() {
+    await this.page.waitForTimeout(300);
+  }
 
   getInput(name: string) {
     return this.frame()

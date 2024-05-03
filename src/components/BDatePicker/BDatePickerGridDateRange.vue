@@ -71,7 +71,7 @@ const handleSelectDate = ({
 </script>
 
 <template>
-  <div class="ds-space-y-3">
+  <div class="b-date-picker__grid-date-range ds-space-y-3">
     <div
       class="ds-grid ds-w-full ds-grid-cols-7 ds-gap-1 ds-text-xs ds-text-gray-400"
     >
