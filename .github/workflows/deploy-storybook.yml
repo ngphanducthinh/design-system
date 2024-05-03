@@ -9,6 +9,7 @@ on:
       - '.github/actions/**'
       - 'src/e2e/**'
       - 'src/tests/**'
+      - 'package.json'
   workflow_dispatch:
 
 jobs:
