@@ -30,28 +30,28 @@ const btnCssClass = computed(() => {
   switch (props.type) {
     case BButtonType.Primary:
     default:
-      result += `ds-bg-gradient-to-r ds-from-primary-f-stop enabled:hover:ds-from-primary-f/90 enabled:hover:ds-to-primary-t/90 disabled:ds-text-black/40 ds-rounded-lg ds-text-white `;
+      result += `ds-bg-gradient-to-r ds-from-primary-f-stop enabled:hover:ds-from-primary-f/90 enabled:hover:ds-to-primary-t/90 disabled:ds-text-black/40 ds-rounded-lg ds-text-white focus-visible:ds-to-primary-t/90 `;
       result += props.disabled
         ? `ds-bg-gray-150 `
         : `ds-from-primary-f ds-to-primary-t `;
       break;
     case BButtonType.Secondary:
-      result += `ds-rounded-lg ds-bg-transparent ds-text-primary-t enabled:hover:ds-bg-[#e6f0fe] disabled:ds-text-black/[0.4] `;
+      result += `ds-rounded-lg ds-bg-transparent ds-text-primary-t enabled:hover:ds-bg-blue-light disabled:ds-text-black/[0.4] focus-visible:ds-bg-blue-light `;
       result += props.disabled
         ? `ds-border-inner-secondary--disabled `
         : `ds-border-inner-secondary `;
       break;
     case BButtonType.Additional:
-      result += `ds-rounded-lg ds-bg-transparent ds-text-black/[0.85] enabled:hover:ds-bg-gray-150 disabled:ds-text-black/[0.4] `;
+      result += `ds-rounded-lg ds-bg-transparent ds-text-black/[0.85] enabled:hover:ds-bg-gray-150 disabled:ds-text-black/[0.4] focus-visible:ds-bg-gray-150 `;
       result += props.disabled
         ? `ds-border-inner-additional--disabled `
         : `ds-border-inner-additional `;
       break;
     case BButtonType.Clear:
-      result += `ds-rounded-lg ds-bg-transparent ds-text-primary-t enabled:hover:ds-bg-[#e6f0fe] disabled:ds-text-black/[0.4] `;
+      result += `ds-rounded-lg ds-bg-transparent ds-text-primary-t enabled:hover:ds-bg-blue-light disabled:ds-text-black/[0.4] focus-visible:ds-bg-blue-light `;
       break;
     case BButtonType.Icon:
-      result += `ds-bg-gradient-to-r ds-from-primary-f-stop enabled:hover:ds-from-primary-f/90 enabled:hover:ds-to-primary-t/90 disabled:ds-text-black/40 ds-rounded-full ds-rounded-full ds-text-white `;
+      result += `ds-bg-gradient-to-r ds-from-primary-f-stop enabled:hover:ds-from-primary-f/90 enabled:hover:ds-to-primary-t/90 disabled:ds-text-black/40 ds-rounded-full ds-rounded-full ds-text-white focus-visible:ds-from-primary-f/90 focus-visible:ds-to-primary-t/90 `;
       result += props.disabled
         ? `disabled:ds-bg-gray-150 `
         : `ds-from-primary-f ds-to-primary-t `;

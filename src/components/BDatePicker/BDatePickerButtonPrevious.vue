@@ -1,7 +1,7 @@
 <template>
   <button
     aria-label="Previous"
-    class="ds-flex ds-h-10 ds-w-10 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg ds-fill-primary-t enabled:hover:ds-bg-[#e6f0fe] disabled:ds-fill-black/40"
+    class="ds-flex ds-h-10 ds-w-10 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg ds-fill-primary-t ds-transition-all focus-visible:ds-bg-blue-light enabled:hover:ds-bg-blue-light disabled:ds-fill-black/40"
     type="button"
   >
     <svg

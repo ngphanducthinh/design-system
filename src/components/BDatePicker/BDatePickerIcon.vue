@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<BDatePickerIconProps>(), {});
         : 'ds-cursor-pointer ds-fill-black/80',
     ]"
     aria-label="Icon"
-    class="ds-absolute ds-right-3 ds-top-0 ds-z-[3] ds-flex ds-h-10 ds-items-center hover:ds-fill-primary-t/80 focus:ds-fill-primary-t/80"
+    class="ds-absolute ds-right-3 ds-top-0 ds-z-[3] ds-flex ds-h-10 ds-items-center hover:ds-fill-primary-t/80 focus-visible:ds-fill-primary-t/80"
     tabindex="0"
   >
     <svg

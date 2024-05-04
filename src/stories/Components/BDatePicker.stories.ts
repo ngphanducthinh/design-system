@@ -1,7 +1,7 @@
-import BDatePicker from '@/components/BDatePicker/BDatePicker.vue';
+import { BDatePicker } from '@/components';
 import { BDatePickerView } from '@/constants/Enums';
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 const meta: Meta<typeof BDatePicker> = {
   title: 'Components/DatePicker',
@@ -58,6 +58,12 @@ export const Default: Story = {
         CURRENT_DATE.getMonth(),
         CURRENT_DATE.getDate() + 2,
       );
+      const minDateValue = computed(() =>
+        args.minDate ? new Date(args.minDate) : undefined,
+      );
+      const maxDateValue = computed(() =>
+        args.maxDate ? new Date(args.maxDate) : undefined,
+      );
 
       watch(
         () => args.range,
@@ -66,10 +72,10 @@ export const Default: Story = {
         },
       );
 
-      return { args, date };
+      return { args, date, minDateValue, maxDateValue };
     },
     template: `
-      <BDatePicker v-bind="args" v-model="date" />
+      <BDatePicker v-bind="args" v-model="date" :min-date="minDateValue" :max-date="maxDateValue" />
     `,
   }),
   args: {},

@@ -56,15 +56,7 @@ const isSelectedEnd = ({ year, month, date }: BDatePickerDateItem) =>
       month === props.dateRange[1].month &&
       date === props.dateRange[1].date
     : false;
-const handleSelectDate = ({
-  year,
-  month,
-  date,
-  disabled,
-}: BDatePickerDateItem) => {
-  if (disabled) {
-    return;
-  }
+const handleSelectDate = ({ year, month, date }: BDatePickerDateItem) => {
   emit('select:date', { year, month, date });
 };
 //#endregion
@@ -85,32 +77,32 @@ const handleSelectDate = ({
     </div>
 
     <div class="date-range -ds-mx-0.5 ds-grid ds-w-full ds-grid-cols-7">
-      <div
+      <button
         v-for="i in dates"
         :key="`${i.date}${i.month}${i.year}`"
         :class="{
-          '*:hover:ds-bg-gray-150':
-            !i.disabled && !isSelectedStart(i) && !isSelectedEnd(i),
+          '*:enabled:hover:ds-bg-gray-150':
+            !isSelectedStart(i) && !isSelectedEnd(i),
+          'enabled:ds-text-gray-400': i.secondary,
           '--selected': isSelectedStart(i) || isSelectedEnd(i),
           '--start': isSelectedStart(i),
           '--end': isSelectedEnd(i),
         }"
-        class="date-item group ds-cursor-pointer ds-p-0.5"
+        :disabled="i.disabled"
+        class="date-item group ds-cursor-pointer ds-p-0.5 ds-transition-all focus-visible:ds-bg-gray-150 disabled:ds-text-gray-200"
         @click="handleSelectDate(i)"
       >
-        <div
+        <span
           :class="{
-            'ds-text-gray-400': !i.disabled && i.secondary,
-            'ds-text-gray-200': i.disabled,
             'ds-bg-primary-t ds-text-white':
               isSelectedStart(i) || isSelectedEnd(i),
             'ds-bg-primary-t/10': isWithin(i),
           }"
-          class="date-item__inner ds-flex ds-aspect-square ds-items-center ds-justify-center ds-rounded-lg ds-transition-all"
+          class="date-item__inner ds-flex ds-aspect-square ds-items-center ds-justify-center ds-rounded-lg"
         >
           {{ i.date }}
-        </div>
-      </div>
+        </span>
+      </button>
     </div>
   </div>
 </template>

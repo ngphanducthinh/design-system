@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         error: '#ec3741',
         'gray-150': '#f2f2f2',
+        'blue-light': '#e6f0fe',
         'primary-f': 'rgb(var(--ds-colors-primary-f) / <alpha-value>)',
         'primary-t': 'rgb(var(--ds-colors-primary-t) / <alpha-value>)',
         focus: 'rgb(var(--ds-colors-focus) / <alpha-value>)',

@@ -47,9 +47,9 @@ export interface BDatePickerProps {
    */
   inputId?: string;
   /**
-   * Value v-model: <code>Date | number | string</code> when range is false, v-model: <code>Array<Date | number | string></code> when range is true.
+   * Value v-model: <code>Date | string</code> when range is false, v-model: <code>Array<Date | string></code> when range is true (date | string in ISO 8601 format).
    */
-  modelValue?: Date | number | string | Array<Date | number | string>;
+  modelValue?: Date | string | Array<Date | string>;
   /**
    * Label of the field.
    */
@@ -79,13 +79,13 @@ export interface BDatePickerProps {
    */
   inputCssClass?: string;
   /**
-   * Minimum selectable date <code>Date | number | string</code> (date object | number representing the timestamp | string in ISO 8601 format).
+   * Minimum selectable date <code>Date | string</code> (date | string in ISO 8601 format).
    */
-  minDate?: Date | number | string;
+  minDate?: Date | string;
   /**
-   * Maximum selectable date <code>Date | number | string</code> (date object | number representing the timestamp | string in ISO 8601 format).
+   * Maximum selectable date <code>Date | string</code> (date | string in ISO 8601 format).
    */
-  maxDate?: Date | number | string;
+  maxDate?: Date | string;
   /**
    * Allow to select a date range.
    */
@@ -121,14 +121,11 @@ const props = withDefaults(defineProps<BDatePickerProps>(), {
 //#region Events
 const emit = defineEmits<{
   /**
-   * Update value, param <code>Date | number | string</code> when range is false, unless param <code>Array<Date | number | string></code>.
+   * Update value, param <code>Date | string</code> when range is false, unless param <code>Array<Date | string></code>.
    * @param e
    * @param value
    */
-  (
-    e: 'update:modelValue',
-    value?: Date | number | string | Array<Date | number | string>,
-  ): void;
+  (e: 'update:modelValue', value?: Date | string | Array<Date | string>): void;
 }>();
 //#endregion
 
@@ -186,7 +183,7 @@ const value = computed({
   },
 });
 const formattedValue = computed(() =>
-  (props.modelValue as Array<Date | number | string>)
+  (props.modelValue as Array<Date | string>)
     ?.map((val) => formatDateMoment(val))
     .join(' - '),
 );
@@ -280,12 +277,12 @@ watch(
   () => props.minDate,
   () => {
     if (props.range) {
-      const arr = value.value as Array<Date | number | string>;
+      const arr = value.value as Array<Date | string>;
       if (arr.length > 0) {
         ensureValueWhenMinDateChange(arr[0] as any);
       }
     } else {
-      const val = value.value as Date | number | string;
+      const val = value.value as Date | string;
       ensureValueWhenMinDateChange(val);
     }
     generateDates();
@@ -295,7 +292,7 @@ watch(
   () => props.maxDate,
   () => {
     if (props.range) {
-      const arr = value.value as Array<Date | number | string>;
+      const arr = value.value as Array<Date | string>;
       if (arr.length > 1) {
         ensureValueWhenMaxDateChange(arr[1]);
       }
@@ -303,7 +300,7 @@ watch(
         ensureValueWhenMaxDateChange(arr[0]);
       }
     } else {
-      const val = value.value as Date | number | string;
+      const val = value.value as Date | string;
       ensureValueWhenMaxDateChange(val);
     }
     generateDates();
@@ -335,11 +332,11 @@ watch(isVisibleMenu, (val) => {
     lockScrollBody();
     if (props.range) {
       valueRangeDisplay.value = value.value
-        ? cloneItemFromDateRange(value.value as Array<Date | number | string>)
+        ? cloneItemFromDateRange(value.value as Array<Date | string>)
         : [];
     } else {
       valueDisplay.value = value.value
-        ? cloneItemFromDate(value.value as Date | number | string)
+        ? cloneItemFromDate(value.value as Date | string)
         : {};
     }
     viewDateDisplay.value = cloneItem(viewDate.value);
@@ -362,45 +359,43 @@ watch(
   (val) => {
     if (isNotSyncedModelValue(val)) {
       if (props.range) {
-        const v = val as Array<Date | number | string>;
+        const v = val as Array<Date | string>;
         valueRangeDisplay.value = val ? cloneItemFromDateRange(v) : [];
         viewDate.value = val ? cloneItemFromDate(v[1], true) : {};
         viewDateDisplay.value = val ? cloneItemFromDate(v[1], true) : {};
       } else {
-        const v = val as Date | number | string;
+        const v = val as Date | string;
         valueDisplay.value = val ? cloneItemFromDate(v) : {};
         viewDate.value = val ? cloneItemFromDate(v, true) : {};
         viewDateDisplay.value = val ? cloneItemFromDate(v, true) : {};
       }
     }
     if (!props.range && isNotSyncedModelValue(getInputMaskDate())) {
-      mask.value = formatDateMoment(
-        getDateObject(val as Date | number | string) || '',
-      );
+      mask.value = formatDateMoment(getDateObject(val as Date | string) || '');
     }
   },
 );
 //#endregion
 
 //#region Methods
-const ensureValueWhenMinDateChange = (d?: Date | number | string) => {
+const getConsistentValue = (val: Date) =>
+  typeof props.modelValue === 'string' ? val.toISOString() : val;
+const ensureValueWhenMinDateChange = (d?: Date | string) => {
   const val = getDateObject(d);
   if (minValue.value && val && minValue.value > val) {
     value.value = undefined;
   }
 };
-const ensureValueWhenMaxDateChange = (d?: Date | number | string) => {
+const ensureValueWhenMaxDateChange = (d?: Date | string) => {
   const val = getDateObject(d);
   if (maxValue.value && val && maxValue.value < val) {
     value.value = undefined;
   }
 };
-const getDateObject = (val?: Date | number | string) => {
+const getDateObject = (val?: Date | string) => {
   switch (typeof val) {
     case 'object':
       return val;
-    case 'number':
-      return new Date(val);
     case 'string':
       return checkIfISOFormat(val) ? new Date(val) : undefined;
   }
@@ -414,21 +409,17 @@ const handleSwitchToYearsView = () => {
   generateYears();
   viewValue.value = BDatePickerView.Years;
 };
-const isNotSyncedModelValue = (
-  val?: Date | number | string | Array<Date | number | string>,
-) => {
+const isNotSyncedModelValue = (val?: Date | string | Array<Date | string>) => {
   const ruleEngine = props.range
     ? [
         !isEmpty(props.modelValue) && isEmpty(val),
         !isEmpty(val) && isEmpty(props.modelValue),
         !isEmpty(props.modelValue) &&
           !isEmpty(val) &&
-          (props.modelValue as Array<Date | number | string>).some(
+          (props.modelValue as Array<Date | string>).some(
             (v, i) =>
               getDateObject(v)?.getTime() !==
-              getDateObject(
-                (val as Array<Date | number | string>)[i],
-              )?.getTime(),
+              getDateObject((val as Array<Date | string>)[i])?.getTime(),
           ),
       ]
     : [
@@ -436,10 +427,8 @@ const isNotSyncedModelValue = (
         !val && props.modelValue,
         props.modelValue &&
           val &&
-          getDateObject(
-            props.modelValue as Date | number | string,
-          )?.getTime() !==
-            getDateObject(val as Date | number | string)?.getTime(),
+          getDateObject(props.modelValue as Date | string)?.getTime() !==
+            getDateObject(val as Date | string)?.getTime(),
       ];
   return ruleEngine.some((r) => r);
 };
@@ -451,15 +440,19 @@ const handleConfirm = () => {
   if (props.range) {
     if (valueRangeDisplay.value.length === 2) {
       value.value = [
-        new Date(
-          valueRangeDisplay.value[0].year!,
-          valueRangeDisplay.value[0].month!,
-          valueRangeDisplay.value[0].date,
+        getConsistentValue(
+          new Date(
+            valueRangeDisplay.value[0].year!,
+            valueRangeDisplay.value[0].month!,
+            valueRangeDisplay.value[0].date,
+          ),
         ),
-        new Date(
-          valueRangeDisplay.value[1].year!,
-          valueRangeDisplay.value[1].month!,
-          valueRangeDisplay.value[1].date,
+        getConsistentValue(
+          new Date(
+            valueRangeDisplay.value[1].year!,
+            valueRangeDisplay.value[1].month!,
+            valueRangeDisplay.value[1].date,
+          ),
         ),
       ];
     } else {
@@ -471,10 +464,12 @@ const handleConfirm = () => {
       !isNil(valueDisplay.value.month) &&
       !isNil(valueDisplay.value.date)
     ) {
-      value.value = new Date(
-        valueDisplay.value.year,
-        valueDisplay.value.month,
-        valueDisplay.value.date,
+      value.value = getConsistentValue(
+        new Date(
+          valueDisplay.value.year,
+          valueDisplay.value.month,
+          valueDisplay.value.date,
+        ),
       );
     } else {
       value.value = undefined;
@@ -491,7 +486,7 @@ const cloneItem = (
   date: ignoreDate ? undefined : item.date,
 });
 const cloneItemFromDate = (
-  date: Date | number | string,
+  date: Date | string,
   ignoreDate?: boolean,
 ): BDatePickerDateItem => ({
   year: getDateObject(date)!.getFullYear(),
@@ -499,7 +494,7 @@ const cloneItemFromDate = (
   date: ignoreDate ? undefined : getDateObject(date)!.getDate(),
 });
 const cloneItemFromDateRange = (
-  dateRange: Array<Date | number | string>,
+  dateRange: Array<Date | string>,
   ignoreDate?: boolean,
 ): BDatePickerDateItem[] => [
   {
@@ -801,7 +796,7 @@ const onAccept = () => {
 const onComplete = () => {
   const date = getInputMaskDate();
   if (date) {
-    value.value = date;
+    value.value = getConsistentValue(date);
     valueDisplay.value = cloneItemFromDate(date);
     viewDate.value = cloneItemFromDate(date, true);
     viewDateDisplay.value = cloneItemFromDate(date, true);
@@ -821,7 +816,7 @@ const onBlur = () => {
     return;
   }
   if (date) {
-    value.value = date;
+    value.value = getConsistentValue(date);
     viewDate.value = cloneItemFromDate(date, true);
     valueDisplay.value = cloneItemFromDate(date);
     viewDateDisplay.value = cloneItemFromDate(date, true);
@@ -835,7 +830,7 @@ const onBlur = () => {
   }
 };
 
-const formatDateMoment = (date: Date | number | string) =>
+const formatDateMoment = (date: Date | string) =>
   moment(date).format(DATE_FORMAT);
 const closeOnClickOutside = (event: any) => {
   const refs = [datePickerRef.value, datePickerMenuRef.value];
@@ -857,7 +852,7 @@ const closeDatePickerMenu = () => {
 const initIMask = () => {
   mask = IMask(datePickerInputMaskRef.value!, inputMaskOptions.value);
   mask.value = formatDateMoment(
-    getDateObject(props.modelValue as Date | number | string) || '',
+    getDateObject(props.modelValue as Date | string) || '',
   );
   mask.on('accept', onAccept);
   mask.on('complete', onComplete);
@@ -943,7 +938,7 @@ onBeforeUnmount(() => {
             />
             <BDatePickerHeading
               :class="{
-                'ds-cursor-pointer hover:ds-bg-gray-150':
+                'ds-cursor-pointer hover:ds-bg-blue-light focus-visible:ds-bg-blue-light':
                   viewData[viewValue].handleClickHeading,
               }"
               @click="viewData[viewValue].handleClickHeading"

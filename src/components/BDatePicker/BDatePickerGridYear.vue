@@ -39,13 +39,12 @@ const handleSelectYear = ({ year, month, date }: BDatePickerDateItem) => {
       v-for="i in years"
       :key="i.year"
       :class="{
-        'hover:ds-bg-gray-150': !i.disabled && !isSelected(i),
-        'ds-text-gray-400': !i.disabled && i.secondary,
-        'ds-text-gray-200': i.disabled,
+        'enabled:hover:ds-bg-gray-150': !isSelected(i),
+        'enabled:ds-text-gray-400': i.secondary,
         'ds-bg-primary-t ds-text-white': isSelected(i),
       }"
       :disabled="i.disabled"
-      class="ds-flex ds-h-9 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg"
+      class="ds-flex ds-h-9 ds-cursor-pointer ds-items-center ds-justify-center ds-rounded-lg ds-transition-all focus-visible:ds-bg-gray-150 disabled:ds-text-gray-200"
       @click="handleSelectYear(i)"
     >
       {{ i.year }}
