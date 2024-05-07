@@ -25,7 +25,7 @@ import {
 import IMask from '@/vendor/imask-7.1.3.js'; // https://imask.js.org/guide.html#getting-started
 import moment from 'moment-mini';
 import { DateDelimiter } from '@/constants/Common';
-import { checkIfISOFormat } from '@/helpers/DateHelper';
+import { isISO8601 } from '@/helpers/DateHelper';
 import BDatePickerGridDate from '@/components/BDatePicker/BDatePickerGridDate.vue';
 import BDatePickerGridMonth from '@/components/BDatePicker/BDatePickerGridMonth.vue';
 import type { BDatePickerDateItem, BDatePickerViewData } from '@/types';
@@ -131,7 +131,7 @@ const emit = defineEmits<{
 
 //#region Data
 let mask: any;
-const DATE_FORMAT = `DD${DateDelimiter}MM${DateDelimiter}YYYY`; // moment's date format
+const DATE_FORMAT = `DD${DateDelimiter}MM${DateDelimiter}YYYY`;
 const CURRENT_DATE = new Date(
   new Date().getFullYear(),
   new Date().getMonth(),
@@ -397,7 +397,7 @@ const getDateObject = (val?: Date | string) => {
     case 'object':
       return val;
     case 'string':
-      return checkIfISOFormat(val) ? new Date(val) : undefined;
+      return isISO8601(val) ? new Date(val) : undefined;
   }
   return val;
 };
@@ -777,8 +777,7 @@ const updateNavDisabledState = (startDate: Date, endDate: Date) => {
 const getInputMaskDate = () => {
   const arr = mask.value.split('/');
   const dateStr = `${arr[2]}-${arr[1]}-${arr[0]}`;
-  // Check if string is in ISO format
-  if (moment(dateStr, moment.ISO_8601, true).isValid()) {
+  if (isISO8601(dateStr)) {
     return new Date(dateStr);
   }
 
