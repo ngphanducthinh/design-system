@@ -16,6 +16,7 @@ Import CSS & plugin in main.ts:
 
 ```
 import '@7pmlabs/design-system/style.css';
+import ds from '@7pmlabs/design-system';
 
 const app = createApp(App);
 ...
