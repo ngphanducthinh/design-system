@@ -1,13 +1,13 @@
 {
   "include": ["src/**/*"],
   "exclude": [
-    "node_modules",
-    "src/**/*.spec.ts",
     "src/App.vue",
     "src/main.ts",
-    "src/locales/index.ts",
-    ".storybook/**/*",
-    "src/stories/**/*"
+    "src/e2e",
+    "src/playground",
+    "src/tests",
+    "src/stories",
+    ".storybook/**/*"
   ],
   "compilerOptions": {
     "paths": {
@@ -15,7 +15,7 @@
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "types": ["vite/client"],
-    "lib": ["ES2018", "DOM"]
+    "lib": ["ES2018", "DOM"],
+    "skipLibCheck": true
   }
 }
