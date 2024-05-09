@@ -1,8 +1,8 @@
 import { fileURLToPath, URL } from 'node:url';
 
 import vue from '@vitejs/plugin-vue';
-import path from 'path';
 import { defineConfig } from 'vite';
+import path from 'path';
 // import dts from 'vite-plugin-dts';
 
 // const resolve = (dir: any) => path.join(__dirname, dir);
@@ -24,18 +24,14 @@ export default defineConfig({
       // Set the entry point (file that contains our components exported).
       entry: path.resolve(__dirname, 'src/index.ts'),
       fileName: 'design-system',
-      formats: ['es', 'cjs'],
+      formats: ['es'],
     },
     rollupOptions: {
       // Vue is provided by the parent project, don't compile Vue source-code inside our library.
-      external: ['vue', 'imask'],
+      external: ['vue'],
       output: {
-        // Provide a global variable for these externalized dependencies in UMD build mode
-        globals: {
-          vue: 'Vue',
-        },
+        // https://rollupjs.org/configuration-options/#output-format
         sourcemap: true,
-        format: 'esm',
         preserveModules: true,
       },
     },
