@@ -9,7 +9,7 @@ export * from './constants/Common';
 export * from './constants/Enums';
 // Helpers
 export * from './helpers/ComponentHelper';
-export { default as default } from './plugin';
+// export { default as default } from './plugin';
 export * from './types';
 // CSS
 import './assets/styles/main.scss';

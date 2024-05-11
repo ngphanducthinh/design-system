@@ -64,12 +64,13 @@ export const Default: Story = {
       const maxDateValue = computed(() =>
         args.maxDate ? new Date(args.maxDate) : undefined,
       );
-
+      console.log('args.range', args.range);
       watch(
         () => args.range,
         (val) => {
           date.value = val ? [startDate, endDate] : new Date();
         },
+        { immediate: true },
       );
 
       return { args, date, minDateValue, maxDateValue };
