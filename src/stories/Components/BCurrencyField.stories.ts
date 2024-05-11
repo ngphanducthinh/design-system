@@ -67,5 +67,6 @@ export const Default: Story = {
   args: {
     prependIcon: '<i class="fa-solid fa-money-bills" />',
     appendIcon: '',
+    locale: SupportedLocale['en-US'],
   },
 };

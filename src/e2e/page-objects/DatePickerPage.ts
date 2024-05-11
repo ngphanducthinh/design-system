@@ -102,7 +102,7 @@ export class DatePickerPage extends HelperBase {
   async hasSelectedDateFromToday(dateCount: number) {
     const date = new Date();
     date.setDate(date.getDate() + dateCount);
-    const expectedHeadingText = this.getDateMonthYearText(date, '/');
+    const expectedHeadingText = this.getMonthDateYearText(date, '/');
     const input = this.frame().locator('.b-date-picker').locator('input');
     await expect(input).toHaveValue(expectedHeadingText);
   }
@@ -161,7 +161,7 @@ export class DatePickerPage extends HelperBase {
     const endDate = new Date(
       new Date().setDate(new Date().getDate() + endCount),
     );
-    const expectedHeadingText = `${this.getDateMonthYearText(startDate, '/')} - ${this.getDateMonthYearText(endDate, '/')}`;
+    const expectedHeadingText = `${this.getMonthDateYearText(startDate, '/')} - ${this.getMonthDateYearText(endDate, '/')}`;
     const input = this.frame().locator('.b-date-picker').locator('input');
     await expect(input).toHaveValue(expectedHeadingText);
   }
@@ -186,8 +186,8 @@ export class DatePickerPage extends HelperBase {
   }
 
   //#region Private Methods
-  private getDateMonthYearText = (date: Date, delimiter: string): string =>
-    `${date.getDate().toString().padStart(2, '0')}${delimiter}${(date.getMonth() + 1).toString().padStart(2, '0')}${delimiter}${date.getFullYear()}`;
+  private getMonthDateYearText = (date: Date, delimiter: string): string =>
+    `${(date.getMonth() + 1).toString().padStart(2, '0')}${delimiter}${date.getDate().toString().padStart(2, '0')}${delimiter}${date.getFullYear()}`;
   private getYearMonthDateText = (date: Date, delimiter: string): string =>
     `${date.getFullYear()}${delimiter}${(date.getMonth() + 1).toString().padStart(2, '0')}${delimiter}${date.getDate().toString().padStart(2, '0')}`;
   private async goToDesiredDateGrid(date: Date) {

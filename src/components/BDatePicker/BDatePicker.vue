@@ -23,8 +23,6 @@ import {
   unlockScrollBody,
 } from '@/helpers/ComponentHelper';
 import IMask from '@/vendor/imask-7.1.3.js'; // https://imask.js.org/guide.html#getting-started
-import moment from 'moment-mini';
-import { DateDelimiter } from '@/constants/Common';
 import { isISO8601 } from '@/helpers/DateHelper';
 import BDatePickerGridDate from '@/components/BDatePicker/BDatePickerGridDate.vue';
 import BDatePickerGridMonth from '@/components/BDatePicker/BDatePickerGridMonth.vue';
@@ -131,7 +129,6 @@ const emit = defineEmits<{
 
 //#region Data
 let mask: any;
-const DATE_FORMAT = `DD${DateDelimiter}MM${DateDelimiter}YYYY`;
 const CURRENT_DATE = new Date(
   new Date().getFullYear(),
   new Date().getMonth(),
@@ -140,8 +137,8 @@ const CURRENT_DATE = new Date(
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const smAndLarger = breakpoints.greaterOrEqual('sm');
-const { t } = useI18n();
-const { formatMonthYear } = useDate();
+const { t, locale } = useI18n();
+const { formatMonthYear, formatDate, dateFormat, convertToDate } = useDate();
 const valueDisplay = ref<BDatePickerDateItem>({});
 const valueRangeDisplay = ref<BDatePickerDateItem[]>([]);
 const viewDate = ref<BDatePickerDateItem>({
@@ -184,7 +181,9 @@ const value = computed({
 });
 const formattedValue = computed(() =>
   (props.modelValue as Array<Date | string>)
-    ?.map((val) => formatDateMoment(val))
+    ?.map((val) =>
+      typeof val === 'string' ? formatDate(new Date(val)) : formatDate(val),
+    )
     .join(' - '),
 );
 const vRules = computed(() => {
@@ -220,11 +219,11 @@ const inputCssClassValue = computed(() => [
 const inputMaskOptions = computed(() => {
   const result: any = {
     mask: IMask.MaskedDate,
-    pattern: DATE_FORMAT,
+    pattern: dateFormat.value,
     lazy: true,
 
-    format: (date: any) => moment(date).format(DATE_FORMAT),
-    parse: (str: string) => moment(str, DATE_FORMAT),
+    format: (date: Date) => formatDate(date),
+    parse: (str: string) => convertToDate(str),
 
     blocks: {
       YYYY: {
@@ -273,6 +272,16 @@ const viewData = computed<Record<BDatePickerView, BDatePickerViewData>>(() => ({
 //#endregion
 
 //#region Watchers
+watch(locale, () => {
+  if (mask) {
+    mask.off('accept', onAccept);
+    mask.off('complete', onComplete);
+    mask.updateOptions(inputMaskOptions.value);
+    updateMaskValue();
+    mask.on('accept', onAccept);
+    mask.on('complete', onComplete);
+  }
+});
 watch(
   () => props.minDate,
   () => {
@@ -371,13 +380,17 @@ watch(
       }
     }
     if (!props.range && isNotSyncedModelValue(getInputMaskDate())) {
-      mask.value = formatDateMoment(getDateObject(val as Date | string) || '');
+      updateMaskValue();
     }
   },
 );
 //#endregion
 
 //#region Methods
+const updateMaskValue = () => {
+  const d = getDateObject(props.modelValue as Date | string);
+  mask.value = d ? formatDate(d) : '';
+};
 const getConsistentValue = (val: Date) =>
   typeof props.modelValue === 'string' ? val.toISOString() : val;
 const ensureValueWhenMinDateChange = (d?: Date | string) => {
@@ -776,12 +789,15 @@ const updateNavDisabledState = (startDate: Date, endDate: Date) => {
 };
 const getInputMaskDate = () => {
   const arr = mask.value.split('/');
-  const dateStr = `${arr[2]}-${arr[1]}-${arr[0]}`;
-  if (isISO8601(dateStr)) {
-    return new Date(dateStr);
-  }
 
-  return undefined;
+  const result: Record<string, string> = {
+    'vi-VN': `${arr[2]}-${arr[1]}-${arr[0]}`,
+    'en-US': `${arr[2]}-${arr[0]}-${arr[1]}`,
+  };
+
+  return isISO8601(result[locale.value])
+    ? new Date(result[locale.value])
+    : undefined;
 };
 const onAccept = () => {
   if (!mask.unmaskedValue) {
@@ -794,6 +810,7 @@ const onAccept = () => {
 };
 const onComplete = () => {
   const date = getInputMaskDate();
+  console.log('onComplete', date);
   if (date) {
     value.value = getConsistentValue(date);
     valueDisplay.value = cloneItemFromDate(date);
@@ -829,8 +846,8 @@ const onBlur = () => {
   }
 };
 
-const formatDateMoment = (date: Date | string) =>
-  moment(date).format(DATE_FORMAT);
+// const formatDateMoment = (date: Date | string) =>
+//   moment(date).format(DATE_FORMAT);
 const closeOnClickOutside = (event: any) => {
   const refs = [datePickerRef.value, datePickerMenuRef.value];
   const withinBoundaries = refs.some((r) => event.composedPath().includes(r));
@@ -850,9 +867,10 @@ const closeDatePickerMenu = () => {
 };
 const initIMask = () => {
   mask = IMask(datePickerInputMaskRef.value!, inputMaskOptions.value);
-  mask.value = formatDateMoment(
-    getDateObject(props.modelValue as Date | string) || '',
-  );
+  // mask.value = formatDateMoment(
+  //   getDateObject(props.modelValue as Date | string) || '',
+  // );
+  updateMaskValue();
   mask.on('accept', onAccept);
   mask.on('complete', onComplete);
 };

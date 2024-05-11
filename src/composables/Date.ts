@@ -1,12 +1,20 @@
 import { padStartZero } from '@/helpers/DateHelper';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { DateDelimiter } from '@/constants/Common';
 
 export function useDate() {
   /**
    * Data
    */
   const { t, locale } = useI18n();
+  const dateFormat = computed(() => {
+    const result: Record<string, string> = {
+      'en-US': `MM${DateDelimiter}DD${DateDelimiter}YYYY`,
+      'vi-VN': `DD${DateDelimiter}MM${DateDelimiter}YYYY`,
+    };
+    return result[locale.value];
+  });
   const dayNames = computed<Record<number, string>>(() => ({
     0: t('ds.components.base.date_picker.days.sunday'),
     1: t('ds.components.base.date_picker.days.monday'),
@@ -57,6 +65,14 @@ export function useDate() {
   /**
    * Methods
    */
+  const convertToDate = (val: string) => {
+    const arr = val.split(DateDelimiter);
+    const result: Record<string, Date> = {
+      'en-US': new Date(+arr[2], +arr[0] - 1, +arr[1]),
+      'vi-VN': new Date(+arr[2], +arr[1] - 1, +arr[0]),
+    };
+    return result[locale.value];
+  };
   const formatDateHuge = (date: Date) => {
     if (!validateDate(date)) {
       return date;
@@ -86,10 +102,10 @@ export function useDate() {
         date.getMonth() + 1,
         2,
       )}/${padStartZero(date.getFullYear(), 4)}`,
-      'en-US': `${monthNames.value[date.getMonth()]} ${padStartZero(
-        date.getDate(),
+      'en-US': `${padStartZero(
+        date.getMonth() + 1,
         2,
-      )}, ${date.getFullYear()}`,
+      )}/${padStartZero(date.getDate(), 2)}/${padStartZero(date.getFullYear(), 4)}`,
     };
 
     return result[locale.value];
@@ -152,5 +168,7 @@ export function useDate() {
     formatMonthYear,
     dayShortNames,
     monthShortNames,
+    dateFormat,
+    convertToDate,
   };
 }
