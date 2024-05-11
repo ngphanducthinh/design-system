@@ -810,7 +810,6 @@ const onAccept = () => {
 };
 const onComplete = () => {
   const date = getInputMaskDate();
-  console.log('onComplete', date);
   if (date) {
     value.value = getConsistentValue(date);
     valueDisplay.value = cloneItemFromDate(date);
