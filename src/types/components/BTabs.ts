@@ -1,4 +1,5 @@
-export interface BTabsHeader {
+export interface BTabData {
   text: string;
-  disabled?: boolean;
+  active: boolean;
+  disabled: boolean;
 }
