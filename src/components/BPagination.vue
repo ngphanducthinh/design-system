@@ -99,7 +99,7 @@ const clickNext = () => {
 const getActiveClass = (isActive: boolean = true) => {
   return isActive
     ? `ds-text-white ds-bg-primary-t `
-    : `ds-text-black/80 hover:ds-bg-primary-t/10 ${
+    : `ds-text-black/80 ${
         props.transparent ? 'ds-bg-transparent' : 'ds-bg-white'
       }`;
 };
