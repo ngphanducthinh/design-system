@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
+<script lang="ts" setup></script>
 
 <template>
-  <div class="ds-p-4">
+  <div class="ds-bg-white ds-p-4">
     <slot></slot>
   </div>
 </template>

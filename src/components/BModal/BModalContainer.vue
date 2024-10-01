@@ -49,7 +49,7 @@ const modalWrapperCssClass = computed(() => {
   return result;
 });
 const modalWrapperContentCssClass = computed(() => {
-  let result = `ds-relative ds-bg-white ds-rounded-lg ds-shadow `;
+  let result = `ds-relative ds-rounded-lg ds-shadow `;
   result += props.fullscreen ? `ds-w-screen ds-h-screen ds-rounded-none ` : ``;
 
   return result;
