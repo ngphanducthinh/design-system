@@ -320,7 +320,7 @@ defineExpose({ validate, selectMenu });
         <div class="ds-absolute ds-right-3 ds-z-[1]">
           <svg
             :class="[selectMenu ? 'ds-rotate-180' : '']"
-            class="ds-h-4 ds-w-4 ds-transition-transform"
+            class="ds-h-4 ds-min-h-4 ds-w-4 ds-min-w-4 ds-transition-transform"
             viewBox="0 0 320 512"
             xmlns="http://www.w3.org/2000/svg"
             @click="inputRef?.focus()"
@@ -385,7 +385,7 @@ defineExpose({ validate, selectMenu });
         &nbsp;
         <svg
           :class="[selectMenu ? 'ds-rotate-180' : '']"
-          class="ds-h-4 ds-w-4 ds-transition-transform"
+          class="ds-h-4 ds-min-h-4 ds-w-4 ds-min-w-4 ds-transition-transform"
           viewBox="0 0 320 512"
           xmlns="http://www.w3.org/2000/svg"
         >
