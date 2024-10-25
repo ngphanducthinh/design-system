@@ -6,6 +6,7 @@ import {
 } from '@/composables/Validation';
 import {
   ensureVisiblePosition,
+  ensureVisibleY,
   lockScrollBody,
   resetPosition,
   unlockScrollBody,
@@ -222,6 +223,7 @@ const initPressEscapeEventListener = () => {
 const closeOnEscapePressed = (event: KeyboardEvent) => {
   if (event.key === 'Escape') {
     closeSelectMenu();
+    resetFocusedIndex();
   }
 };
 const initClickOutsideEventListener = () => {
@@ -232,6 +234,7 @@ const closeOnClickOutside = (event: any) => {
   const withinBoundaries = refs.some((r) => event.composedPath().includes(r));
   if (!withinBoundaries) {
     closeSelectMenu();
+    resetFocusedIndex();
   }
 };
 const onClickItem = (item: DisplayItem) => {
@@ -245,6 +248,9 @@ const onClickItem = (item: DisplayItem) => {
   nextTick(() => {
     validate();
   });
+
+  // Reset calculate the position of the menu
+  ensureVisibleY(selectEl.value!, selectMenuEl.value!);
 };
 const ensureMenuWidth = (parentEl: HTMLElement, menuEl: HTMLElement) => {
   menuEl.style.width = `${parentEl.offsetWidth}px`;
@@ -260,6 +266,7 @@ const resetMenuPosition = () => {
 };
 const onChangeInputText = (text: string) => {
   emit('change:input', text);
+  resetFocusedIndex();
 };
 const closeSelectMenu = () => {
   selectMenu.value = false;
@@ -299,6 +306,47 @@ onBeforeUnmount(() => {
 //#endregion
 
 defineExpose({ validate, selectMenu });
+
+const itemRefs = ref<HTMLLIElement[] | null>(null);
+const focusedIndex = ref(-1);
+const resetFocusedIndex = () => {
+  focusedIndex.value = -1;
+};
+const onKeyDown = (event: KeyboardEvent) => {
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    if (focusedIndex.value < props.items.length - 1) {
+      focusedIndex.value++;
+      nextTick(() => {
+        if (itemRefs.value) {
+          itemRefs.value[focusedIndex.value]?.scrollIntoView({
+            block: 'nearest',
+          });
+        }
+      });
+    }
+  } else if (event.key === 'ArrowUp') {
+    event.preventDefault();
+    if (focusedIndex.value > 0) {
+      focusedIndex.value--;
+      nextTick(() => {
+        if (itemRefs.value) {
+          itemRefs.value[focusedIndex.value]?.scrollIntoView({
+            block: 'nearest',
+          });
+        }
+      });
+    } else {
+      // If at the top of the list, leave the list
+      focusedIndex.value = -1;
+    }
+  } else if (event.key === 'Enter' && focusedIndex.value >= 0) {
+    event.preventDefault();
+    onClickItem(props.items[focusedIndex.value]);
+  } else if (event.key === 'Tab') {
+    closeSelectMenu();
+  }
+};
 </script>
 
 <template>
@@ -356,7 +404,9 @@ defineExpose({ validate, selectMenu });
           class="ds-flex-auto"
           hide-details
           input-css-class="ds-drop-shadow-none ds-border-none !ds-ring-0 ds-px-0 !ds-h-[30px] ds-pl-0"
+          @change="resetFocusedIndex"
           @focus="selectMenu = true"
+          @keydown="onKeyDown"
           @update:model-value="onChangeInputText"
         />
       </div>
@@ -411,19 +461,21 @@ defineExpose({ validate, selectMenu });
             <li
               v-for="(item, index) in items"
               :key="`item${index}`"
+              ref="itemRefs"
               class="ds-cursor-pointer"
               @click.prevent="onClickItem(item)"
             >
               <a
-                :class="
-                  item.cssClass +
-                  `${
-                    selectedItems.some((s) => s.value === item.value)
-                      ? ' ds-bg-slate-100'
-                      : ''
-                  }`
-                "
-                class="ds-flex ds-items-center ds-space-x-2 ds-px-4 ds-py-2 hover:ds-bg-slate-100"
+                :class="[
+                  item.cssClass,
+                  {
+                    'ds-bg-slate-100':
+                      focusedIndex !== index &&
+                      selectedItems.some((s: any) => s.value === item.value),
+                    'ds-bg-slate-300': focusedIndex === index,
+                  },
+                ]"
+                class="ds-flex ds-items-center ds-space-x-2 ds-px-4 ds-py-2 hover:ds-bg-slate-300"
               >
                 <BCheckbox v-model="value" :value="item.value" size="sm" />
                 <span>{{ item?.text }}</span>
