@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<BButtonProps>(), {
 
 //#region Data
 const btnCssClass = computed(() => {
-  let result = 'ds-font-semibold ds-text-center ';
+  let result = 'ds-font-semibold ds-text-center ds-transition-all ';
   result += 'disabled:ds-cursor-not-allowed ';
 
   switch (props.type) {

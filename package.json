@@ -51,8 +51,8 @@
     "@vueuse/core": "^10.9.0",
     "lodash-es": "^4.17.21",
     "moment-mini": "^2.29.4",
-    "uuid": "^9.0.0",
-    "vue": "^3.0.0",
+    "uuid": "^10.0.0",
+    "vue": "^3.5.12",
     "vue-i18n": "^9.2.2"
   },
   "devDependencies": {
