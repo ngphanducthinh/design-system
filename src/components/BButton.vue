@@ -69,8 +69,8 @@ const btnCssClass = computed(() => {
     default:
       result +=
         props.type !== BButtonType.Icon
-          ? `ds-text-sm ds-leading-4 ds-py-3.5 lg:ds-py-3 ds-px-4 `
-          : `ds-text-2xl ds-leading-4 ds-h-11 ds-w-11 lg:ds-h-10 lg:ds-w-10 `;
+          ? `ds-text-sm ds-leading-4 ds-py-3 ds-px-4 `
+          : `ds-text-2xl ds-leading-4 ds-h-10 ds-w-10 `;
       break;
   }
 
