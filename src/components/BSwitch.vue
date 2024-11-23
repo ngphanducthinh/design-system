@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid';
 import { computed } from 'vue';
 
 //#region Props
-export interface BCheckboxProps {
+export interface BSwitchProps {
   inputId?: string;
   modelValue: boolean | Array<string | number>;
   label?: string;
@@ -14,7 +14,7 @@ export interface BCheckboxProps {
   disabled?: boolean;
 }
 
-const props = withDefaults(defineProps<BCheckboxProps>(), {
+const props = withDefaults(defineProps<BSwitchProps>(), {
   inputId: '',
   modelValue: false,
   label: '',
@@ -49,12 +49,12 @@ const value = computed({
 <template>
   <div class="b-switch ds-flex ds-items-center">
     <input
-      v-model="value"
       :id="id"
+      v-model="value"
       :disabled="props.disabled"
       :value="$attrs.value"
-      type="checkbox"
       class="b-switch__input"
+      type="checkbox"
     />
     <label
       :for="id"
