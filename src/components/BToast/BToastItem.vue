@@ -34,14 +34,14 @@ const cssClass = computed<string>(() => {
 
   switch (props.type) {
     case BToastItemType.Success:
-      result += `ds-bg-[#00a86b] ds-text-white `;
+      result += ``;
       break;
     case BToastItemType.Error:
-      result += `ds-bg-red-600 ds-text-white `;
+      result += ``;
       break;
     case BToastItemType.Default:
     default:
-      result += `ds-bg-white ds-text-primary-t `;
+      result += ``;
   }
 
   return result;
@@ -53,10 +53,10 @@ const cssClass = computed<string>(() => {
   <div :class="cssClass">
     <div
       v-if="BToastItemType.Success === props.type"
-      class="ds-flex ds-flex-initial ds-items-center ds-pr-1"
+      class="ds-flex ds-flex-initial ds-items-center ds-pr-2"
     >
       <svg
-        class="ds-h-5 ds-w-5 ds-fill-white"
+        class="ds-h-5 ds-w-5 ds-fill-[#00a86b]"
         viewBox="0 0 512 512"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -67,10 +67,10 @@ const cssClass = computed<string>(() => {
     </div>
     <div
       v-else-if="BToastItemType.Error === props.type"
-      class="ds-flex ds-flex-initial ds-items-center ds-pr-1"
+      class="ds-flex ds-flex-initial ds-items-center ds-pr-2"
     >
       <svg
-        class="ds-h-5 ds-w-5 ds-fill-white"
+        class="ds-h-5 ds-w-5 ds-fill-red-600"
         viewBox="0 0 512 512"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -99,12 +99,7 @@ const cssClass = computed<string>(() => {
       @click="emit('close')"
     >
       <svg
-        :class="[
-          BToastItemType.Default === props.type
-            ? 'ds-fill-primary-t'
-            : 'ds-fill-white',
-        ]"
-        class="ds-h-5 ds-w-5"
+        class="ds-h-5 ds-w-5 ds-fill-gray-600"
         viewBox="0 0 384 512"
         xmlns="http://www.w3.org/2000/svg"
       >

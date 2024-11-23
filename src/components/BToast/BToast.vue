@@ -57,6 +57,7 @@ const onCloseToastItem = (i: number) => {
         v-for="(toastItem, index) in value"
         :key="`toastItem${index}`"
         :icon="toastItem.icon"
+        :message="toastItem.message"
         :text="toastItem.text"
         :type="toastItem.type"
         class="ds-my-2"
