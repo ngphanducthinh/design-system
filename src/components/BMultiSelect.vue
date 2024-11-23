@@ -477,7 +477,12 @@ const onKeyDown = (event: KeyboardEvent) => {
                 ]"
                 class="ds-flex ds-items-center ds-space-x-2 ds-px-4 ds-py-2 hover:ds-bg-slate-300"
               >
-                <BCheckbox v-model="value" :value="item.value" size="sm" />
+                <BCheckbox
+                  v-model="value"
+                  :value="item.value"
+                  hide-details
+                  size="sm"
+                />
                 <span>{{ item?.text }}</span>
               </a>
             </li>
