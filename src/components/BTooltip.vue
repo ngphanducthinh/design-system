@@ -16,7 +16,7 @@ export interface BTooltipProps {
 }
 
 const props = withDefaults(defineProps<BTooltipProps>(), {
-  modelValue: false,
+  modelValue: undefined,
   position: BTooltipPosition.Top,
   openEvent: BTooltipOpenEvent.Hover,
 });
