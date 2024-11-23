@@ -5,12 +5,14 @@ import { computed } from 'vue';
 //#region Props
 export interface Props {
   text?: string;
+  message?: string;
   type?: `${BToastItemType}`;
   hideClose?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   text: '',
+  message: '',
   type: BToastItemType.Default,
   hideClose: false,
 });
@@ -32,14 +34,14 @@ const cssClass = computed<string>(() => {
 
   switch (props.type) {
     case BToastItemType.Success:
-      result += `ds-bg-[#00a86b] ds-text-white `;
+      result += ``;
       break;
     case BToastItemType.Error:
-      result += `ds-bg-red-600 ds-text-white `;
+      result += ``;
       break;
     case BToastItemType.Default:
     default:
-      result += `ds-bg-white ds-text-primary-t `;
+      result += ``;
   }
 
   return result;
@@ -51,10 +53,10 @@ const cssClass = computed<string>(() => {
   <div :class="cssClass">
     <div
       v-if="BToastItemType.Success === props.type"
-      class="ds-flex ds-flex-initial ds-items-center ds-pr-1"
+      class="ds-flex ds-flex-initial ds-items-center ds-pr-2"
     >
       <svg
-        class="ds-h-5 ds-w-5 ds-fill-white"
+        class="ds-h-5 ds-w-5 ds-fill-[#00a86b]"
         viewBox="0 0 512 512"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -65,10 +67,10 @@ const cssClass = computed<string>(() => {
     </div>
     <div
       v-else-if="BToastItemType.Error === props.type"
-      class="ds-flex ds-flex-initial ds-items-center ds-pr-1"
+      class="ds-flex ds-flex-initial ds-items-center ds-pr-2"
     >
       <svg
-        class="ds-h-5 ds-w-5 ds-fill-white"
+        class="ds-h-5 ds-w-5 ds-fill-red-600"
         viewBox="0 0 512 512"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -78,10 +80,17 @@ const cssClass = computed<string>(() => {
       </svg>
     </div>
 
-    <div class="ds-flex-auto ds-text-sm ds-font-normal">
-      <slot>
-        <div v-html="text" />
-      </slot>
+    <div class="ds-flex ds-flex-auto ds-flex-wrap ds-text-sm">
+      <div v-if="text || $slots.text" class="ds-w-full">
+        <slot name="text">
+          <div class="ds-font-semibold ds-text-black/80" v-html="text" />
+        </slot>
+      </div>
+      <div v-if="message || $slots.message" class="ds-w-full">
+        <slot name="message">
+          <div class="ds-text-gray-500" v-html="message" />
+        </slot>
+      </div>
     </div>
 
     <div
@@ -90,12 +99,7 @@ const cssClass = computed<string>(() => {
       @click="emit('close')"
     >
       <svg
-        :class="[
-          BToastItemType.Default === props.type
-            ? 'ds-fill-primary-t'
-            : 'ds-fill-white',
-        ]"
-        class="ds-h-5 ds-w-5"
+        class="ds-h-5 ds-w-5 ds-fill-gray-600"
         viewBox="0 0 384 512"
         xmlns="http://www.w3.org/2000/svg"
       >
