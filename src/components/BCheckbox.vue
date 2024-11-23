@@ -2,6 +2,12 @@
 import { BCheckboxSize } from '@/constants/Enums';
 import { v4 as uuid } from 'uuid';
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+import {
+  useValidationField,
+  type ValidationRule,
+} from '@/composables/Validation';
+import BErrorMessage from './BErrorMessage.vue';
 
 //#region Props
 export interface BCheckboxProps {
@@ -14,6 +20,19 @@ export interface BCheckboxProps {
   labelOrphan?: boolean;
   disabled?: boolean;
   size?: `${BCheckboxSize}`;
+  /**
+   * Hide the validation error message.
+   */
+  hideDetails?: boolean;
+  /**
+   * Array of custom validation rules.
+   */
+  validationRules?: ValidationRule[];
+  /**
+   * Validate if the field is left empty.
+   */
+  required?: boolean;
+  requiredErrorMessage?: string;
 }
 
 const props = withDefaults(defineProps<BCheckboxProps>(), {
@@ -23,11 +42,16 @@ const props = withDefaults(defineProps<BCheckboxProps>(), {
   labelOrphan: false,
   disabled: false,
   size: BCheckboxSize.Medium,
+  hideDetails: false,
+  validationRules: undefined,
+  required: false,
+  requiredErrorMessage: '',
 });
 //#endregion
 
 //#region Events
 const emit = defineEmits<{
+  (e: 'change'): void;
   /**
    * Update value, param: <code>value: boolean | Array<string | number></code>
    * @param e
@@ -38,6 +62,13 @@ const emit = defineEmits<{
 //#endregion
 
 //#region Data
+const { t } = useI18n();
+const validateRequired: ValidationRule = {
+  validateRule: (val: boolean | Array<string | number>) =>
+    typeof val === 'boolean' ? val : !!val.length,
+  errorMessage: () =>
+    props.requiredErrorMessage || t('ds.global.field_required'),
+};
 const id = computed(() => props.inputId || `id-${uuid()}`);
 const value = computed({
   get() {
@@ -62,7 +93,33 @@ const cssClassValue = computed(() => {
 
   return result;
 });
+const vRules = computed(() => {
+  let result: ValidationRule[] = [];
+
+  if (props.required) {
+    result.push(validateRequired);
+  }
+  if (props.validationRules) {
+    result = result.concat(props.validationRules);
+  }
+
+  return result.length ? result : undefined;
+});
+const { validate, validationResult } = useValidationField(
+  id.value,
+  value,
+  vRules.value,
+);
 //#endregion
+
+//#region Methods
+const handleChange = () => {
+  emit('change');
+  validate();
+};
+//#endregion
+
+defineExpose({ validate });
 
 /**
  * Customize checkbox styles, need to hide input tag and style a label which stands for that input
@@ -72,28 +129,36 @@ const cssClassValue = computed(() => {
  */
 </script>
 <template>
-  <div :class="cssClassValue" class="b-checkbox ds-flex ds-items-center">
-    <input
-      :id="id"
-      v-model="value"
-      :disabled="disabled"
-      :value="$attrs.value"
-      type="checkbox"
-      class="b-checkbox__input"
+  <div :class="cssClassValue" class="b-checkbox">
+    <div class="ds-flex ds-items-center">
+      <input
+        :id="id"
+        v-model="value"
+        :disabled="disabled"
+        :value="$attrs.value"
+        class="b-checkbox__input"
+        type="checkbox"
+        @change="handleChange"
+      />
+      <label
+        :for="id"
+        class="b-checkbox__input-label ds-border ds-border-black/[0.1] ds-drop-shadow-light"
+      />
+      <label
+        v-if="label || $slots.default"
+        :for="labelOrphan ? undefined : id"
+        class="ds-ml-2 ds-text-sm ds-font-medium ds-text-gray-900"
+      >
+        <slot>
+          {{ props.label }}
+        </slot>
+      </label>
+    </div>
+    <BErrorMessage
+      v-if="!hideDetails"
+      :error-message="validationResult.errorMessage()"
+      class="ds-mt-1"
     />
-    <label
-      :for="id"
-      class="b-checkbox__input-label ds-border ds-border-black/[0.1] ds-drop-shadow-light"
-    />
-    <label
-      v-if="label || $slots.default"
-      :for="labelOrphan ? undefined : id"
-      class="ds-ml-2 ds-text-sm ds-font-medium ds-text-gray-900"
-    >
-      <slot>
-        {{ props.label }}
-      </slot>
-    </label>
   </div>
 </template>
 
