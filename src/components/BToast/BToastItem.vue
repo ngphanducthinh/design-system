@@ -30,7 +30,7 @@ const emit = defineEmits<{
 
 //#region Data
 const cssClass = computed<string>(() => {
-  let result = `ds-flex ds-items-center ds-w-80 ds-px-4 ds-py-5 ds-rounded-lg ds-shadow-2xl `;
+  let result = `ds-flex ds-items-center ds-w-80 ds-px-4 ds-py-5 ds-rounded-lg ds-shadow-2xl ds-bg-white `;
 
   switch (props.type) {
     case BToastItemType.Success:
