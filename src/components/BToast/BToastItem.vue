@@ -5,12 +5,14 @@ import { computed } from 'vue';
 //#region Props
 export interface Props {
   text?: string;
+  message?: string;
   type?: `${BToastItemType}`;
   hideClose?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   text: '',
+  message: '',
   type: BToastItemType.Default,
   hideClose: false,
 });
@@ -78,10 +80,17 @@ const cssClass = computed<string>(() => {
       </svg>
     </div>
 
-    <div class="ds-flex-auto ds-text-sm ds-font-normal">
-      <slot>
-        <div v-html="text" />
-      </slot>
+    <div class="ds-flex ds-flex-auto ds-flex-wrap ds-text-sm">
+      <div v-if="text || $slots.text" class="ds-w-full">
+        <slot name="text">
+          <div class="ds-font-semibold ds-text-black/80" v-html="text" />
+        </slot>
+      </div>
+      <div v-if="message || $slots.message" class="ds-w-full">
+        <slot name="message">
+          <div class="ds-text-gray-500" v-html="message" />
+        </slot>
+      </div>
     </div>
 
     <div
