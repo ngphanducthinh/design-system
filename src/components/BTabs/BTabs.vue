@@ -58,9 +58,15 @@ const tabBodyId = computed(() => `id-${uuid()}`);
 //#endregion
 
 //#region Watchers
-watch(value, (val) => {
-  selectTab(val);
-});
+watch(
+  value,
+  (val) => {
+    nextTick(() => {
+      selectTab(val);
+    });
+  },
+  { immediate: true },
+);
 watch(
   () => props.headers,
   () => {
