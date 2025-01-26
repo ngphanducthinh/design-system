@@ -16,6 +16,17 @@ export default defineConfig({
       // packages: resolve('./src/components'),
     },
   },
+  css: {
+    devSourcemap: true,
+    preprocessorOptions: {
+      scss: {
+        logger: {
+          // silence warnings to speed up the build
+          warn: () => {},
+        },
+      },
+    },
+  },
   // https://vitejs.dev/guide/build.html#library-mode
   build: {
     // Output compiled files to /dist.
