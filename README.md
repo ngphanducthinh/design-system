@@ -1,48 +1,64 @@
-# 7PMLabs Design System
+# design-system-2
 
-Documentation: https://ngphanducthinh.github.io/7pmlabs-design-system
+This template should help get you started developing with Vue 3 in Vite.
 
-In case, you also use [Tailwind CSS](https://tailwindcss.com/docs/installation) in your project, do not import `@import 'tailwindcss/base';` unless it causes broken styles.
+## Recommended IDE Setup
 
-## Getting started
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-```
-npm i @7pmlabs/design-system
-```
+## Type Support for `.vue` Imports in TS
 
-## Usage
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-Import CSS & plugin in main.ts:
+## Customize configuration
 
-```
-import '@7pmlabs/design-system/style.css';
-import ds from '@7pmlabs/design-system';
+See [Vite Configuration Reference](https://vite.dev/config/).
 
-const app = createApp(App);
-...
-app.use(ds, { i18n });
+## Project Setup
+
+```sh
+bun install
 ```
 
-Import & use component:
+### Compile and Hot-Reload for Development
 
-```
-import { BButton } from '@7pmlabs/design-system';
-
-<BButton>Click me!</BButton>
+```sh
+bun dev
 ```
 
-## Color Customization
+### Type-Check, Compile and Minify for Production
 
-CSS Variables:
-
+```sh
+bun run build
 ```
---ds-colors-primary-f: 6 182 212; // #06b6d4
 
---ds-colors-primary-t: 59 130 246; // #3b82f6
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
---ds-colors-focus: 86 221 214; // #56ddd6
+```sh
+bun test:unit
+```
 
---ds-colors-primary-f-stop: 0%;
+### Run End-to-End Tests with [Playwright](https://playwright.dev)
 
---ds-colors-primary-t-stop: 100%;
+```sh
+# Install browsers for the first run
+npx playwright install
+
+# When testing on CI, must build the project first
+bun run build
+
+# Runs the end-to-end tests
+bun test:e2e
+# Runs the tests only on Chromium
+bun test:e2e --project=chromium
+# Runs the tests of a specific file
+bun test:e2e tests/example.spec.ts
+# Runs the tests in debug mode
+bun test:e2e --debug
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+bun lint
 ```

@@ -1,14 +1,7 @@
-import { createApp } from 'vue';
-import App from './App.vue';
+import './assets/main.css'
 
-// CSS
-import '@/assets/styles/main.scss';
-// Icon
-import '@/assets/styles-demo/icon.css';
-// Localizations
-import i18n from '@/locales';
+import { createApp } from 'vue'
 
-// Vue App
-const app = createApp(App);
-app.use(i18n);
-app.mount('#app');
+import App from './App.vue'
+
+createApp(App).mount('#app')
