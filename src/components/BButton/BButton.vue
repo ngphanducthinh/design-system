@@ -1,16 +1,54 @@
 <script setup lang="ts">
-import { BButtonColor, BButtonSize, BButtonVariant } from '@/types.ts';
+import BIcon from '@/components/BIcon/BIcon.vue';
+import { BIconBrandName, type BIconName } from '@/components/BIcon/BIconEnum.ts';
+import { BButtonColor, BButtonSize, BButtonVariant, BIconColor } from '@/types.ts';
 
 const {
   color = BButtonColor.Primary,
   size = BButtonSize.Medium,
   variant = BButtonVariant.Solid,
   disabled = false,
+  prependIcon,
+  prependIconColor,
+  appendIcon,
+  appendIconColor,
 } = defineProps<{
+  /**
+   * The color of the button.
+   */
   color?: `${BButtonColor}`;
+  /**
+   * The size of the button.
+   */
   size?: `${BButtonSize}`;
+  /**
+   * The variant of the button.
+   */
   variant?: `${BButtonVariant}`;
+  /**
+   * Whether the button is disabled.
+   */
   disabled?: boolean;
+  /**
+   * Prepend icon name, should match the file name in the assets/icons folder.
+   * @example 'check', 'cross', 'arrow-right'
+   */
+  prependIcon?: `${BIconName}` | `${BIconBrandName}`;
+  /**
+   * Custom color for the prepend icon, can be a CSS color value or a theme color
+   * @example 'currentColor', 'primary', 'secondary', '#808080', 'rgb(128, 128, 128)', 'hsl(0, 0%, 50%)'
+   */
+  prependIconColor?: string | 'currentColor' | `${BIconColor}`;
+  /**
+   * Append icon name, should match the file name in the assets/icons folder.
+   * @example 'check', 'cross', 'arrow-right'
+   */
+  appendIcon?: `${BIconName}` | `${BIconBrandName}`;
+  /**
+   * Custom color for the append icon, can be a CSS color value or a theme color
+   * @example 'currentColor', 'primary', 'secondary', '#808080', 'rgb(128, 128, 128)', 'hsl(0, 0%, 50%)'
+   */
+  appendIconColor?: string | 'currentColor' | `${BIconColor}`;
 }>();
 
 const isColor = (value: `${BButtonColor}`) => {
@@ -27,7 +65,7 @@ const isSize = (value: `${BButtonSize}`) => {
 <template>
   <button
     type="button"
-    class="b:inline-flex b:items-center b:justify-center b:rounded-lg b:transition-all b:duration-200 b:not-disabled:cursor-pointer b:disabled:opacity-50"
+    class="b:inline-flex b:items-center b:justify-center b:gap-x-2 b:rounded-lg b:transition-all b:duration-200 b:not-disabled:cursor-pointer b:disabled:opacity-50"
     :class="[
       isVariant('solid') && {
         'b:text-white': !isColor('secondary'),
@@ -89,6 +127,12 @@ const isSize = (value: `${BButtonSize}`) => {
     ]"
     :disabled="disabled"
   >
-    <slot />
+    <BIcon v-if="prependIcon" :icon="prependIcon" :color="prependIconColor" size="sm" />
+
+    <span>
+      <slot />
+    </span>
+
+    <BIcon v-if="appendIcon" :icon="appendIcon" :color="appendIconColor" size="sm" />
   </button>
 </template>
