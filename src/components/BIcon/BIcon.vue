@@ -118,7 +118,7 @@ const loadAndParseIcon = async () => {
 };
 
 watch(
-  () => icon,
+  () => [icon, variant],
   () => {
     loadAndParseIcon();
   },
