@@ -11,6 +11,7 @@ const variant = ref<BIconVariant>(BIconVariant.Regular);
 const iconNames = Object.values(BIconName);
 const icons = ref<any[]>([]);
 
+// TODO: Apply pagination and sorting, then remove search button
 const search = () => {
   icons.value = iconNames.reduce((acc, name) => {
     if (name.toLowerCase().includes(searchText.value.toLowerCase())) {
