@@ -1,23 +1,17 @@
 <template>
   <header></header>
 
-  <main>
-    <BIcon :icon="BIconName.Abacus" size="md" />
-    <BIcon :icon="BIconBrandName.Airbnb" brand />
-    <BButton
-      prepend-icon="house"
-      prepend-icon-color="red"
-      append-icon="house"
-      append-icon-color="red"
-    >
-      Apply
-    </BButton>
+  <main class="b:p-16">
+    {{ page }}
+
+    <BPagination v-model="page" :total="10000" />
   </main>
 
   <footer></footer>
 </template>
 <script setup lang="ts">
-import { BButton } from '@/components';
-import BIcon from '@/components/BIcon/BIcon.vue';
-import { BIconBrandName, BIconName } from '@/components/BIcon/BIconEnum.ts';
+import { BPagination } from '@/components';
+import { ref } from 'vue';
+
+const page = ref(1);
 </script>

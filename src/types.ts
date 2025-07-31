@@ -1,7 +1,7 @@
 export enum BButtonSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
+  Small = 'sm',
+  Medium = 'md',
+  Large = 'lg',
 }
 
 export enum BButtonColor {
@@ -27,6 +27,7 @@ export enum BIconSize {
   Medium = 'md',
   Large = 'lg',
   XLarge = 'xl',
+  XXLarge = 'xxl',
 }
 
 export enum BIconVariant {
@@ -48,4 +49,10 @@ export enum BIconColor {
   Failure = 'failure',
   Warning = 'warning',
   Info = 'info',
+}
+
+export enum BPaginationSize {
+  Small = 'sm',
+  Medium = 'md',
+  Large = 'lg',
 }

@@ -12,6 +12,8 @@ const {
   rotate = 0,
   brand = false,
   color = 'currentColor',
+  width,
+  height,
 } = defineProps<{
   /**
    * Icon name, should match the file name in the assets/icons folder
@@ -35,12 +37,14 @@ const {
   color?: string | 'currentColor' | `${BIconColor}`;
   /**
    * Custom width
+   * @example '2rem', '24px', '1.5em'
    */
-  width?: string | number;
+  width?: string;
   /**
    * Custom height
+   * @example '2rem', '24px', '1.5em'
    */
-  height?: string | number;
+  height?: string;
   /**
    * Whether icon is decorative (sets aria-hidden)
    * @default true
@@ -67,8 +71,8 @@ const {
 
 const svgRef = ref<HTMLDivElement | null>(null);
 const svgStyle = computed(() => ({
-  width: `${BIconSizeMap[size]}rem`,
-  height: `${BIconSizeMap[size]}rem`,
+  width: width || `${BIconSizeMap[size]}rem`,
+  height: height || `${BIconSizeMap[size]}rem`,
   rotate: `rotate(${rotate}deg)`,
   color: ['currentColor', ...Object.values(BIconColor)].includes(color) ? undefined : color,
 }));

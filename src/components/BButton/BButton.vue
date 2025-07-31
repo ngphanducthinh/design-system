@@ -116,13 +116,13 @@ const isSize = (value: `${BButtonSize}`) => {
         'b:text-info b:hover:not-disabled:text-info-hover': isColor('info'),
       },
       {
-        'b:h-6 b:text-sm': isSize('small'),
-        'b:h-8 b:text-sm': isSize('medium'),
-        'b:h-10 b:text-base': isSize('large'),
+        'b:h-6 b:text-sm': isSize('sm'),
+        'b:h-8 b:text-sm': isSize('md'),
+        'b:h-10 b:text-base': isSize('lg'),
       },
       {
-        'b:px-2': isSize('small'),
-        'b:px-4': isSize('medium') || isSize('large'),
+        'b:px-2': isSize('sm'),
+        'b:px-4': isSize('md') || isSize('lg'),
       },
     ]"
     :disabled="disabled"

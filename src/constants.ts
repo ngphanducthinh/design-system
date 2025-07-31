@@ -1,9 +1,10 @@
 import { BIconSize } from '@/types.ts';
 
 export const BIconSizeMap: Record<BIconSize, number> = {
-  [BIconSize.XSmall]: 1,
-  [BIconSize.Small]: 1.25,
-  [BIconSize.Medium]: 1.5,
-  [BIconSize.Large]: 2,
-  [BIconSize.XLarge]: 2.5,
+  [BIconSize.XSmall]: 0.5, // 8px
+  [BIconSize.Small]: 0.75, // 12px
+  [BIconSize.Medium]: 1, // 16px
+  [BIconSize.Large]: 1.25, // 20px
+  [BIconSize.XLarge]: 1.5, // 24px
+  [BIconSize.XXLarge]: 2, // 32px
 };
