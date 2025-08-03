@@ -4,7 +4,7 @@ import BIcon from '@/components/BIcon/BIcon.vue';
 import { BIconName } from '@/components/BIcon/BIconEnum.ts';
 import { BIconSize, BIconVariant } from '@/types.ts';
 import { debounce } from 'lodash-es';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 
 const searchText = ref('');
 const size = ref<BIconSize>(BIconSize.XLarge);
@@ -13,22 +13,26 @@ const iconNames = Object.values(BIconName);
 const icons = ref<any[]>([]);
 const page = ref(1);
 const pageSize = 180;
-const totalIcons = computed(() => icons.length);
+const totalIcons = ref(iconNames.length);
 
 const searchDebounced = debounce(() => {
-  search();
+  resetPageAndSearch();
 }, 500);
+const resetPageAndSearch = () => {
+  page.value = 1; // Reset to first page on new search
+  search();
+};
 const search = () => {
-  icons.value = iconNames
-    .reduce((acc, name) => {
-      if (name.toLowerCase().includes(searchText.value.toLowerCase())) {
-        acc.push({
-          name,
-        });
-      }
-      return acc;
-    }, [] as any[])
-    .slice((page.value - 1) * pageSize, page.value * pageSize);
+  const filteredIcons = iconNames.reduce((acc, name) => {
+    if (name.toLowerCase().includes(searchText.value.toLowerCase())) {
+      acc.push({
+        name,
+      });
+    }
+    return acc;
+  }, [] as any[]);
+  totalIcons.value = filteredIcons.length;
+  icons.value = filteredIcons.slice((page.value - 1) * pageSize, page.value * pageSize);
 };
 
 search();
@@ -52,12 +56,10 @@ search();
       </select>
     </div>
 
-    <p>Use the icons below to see how they render.</p>
-
     <div class="icons b:grid b:gap-x-14 b:gap-y-10">
       <template v-for="icon in icons">
         <KeepAlive>
-          <div>
+          <div class="b:flex b:flex-wrap b:justify-center">
             <BIcon
               :key="icon.name"
               :icon="icon.name"
@@ -67,18 +69,22 @@ search();
               :width="icon.width"
               :height="icon.height"
             />
-            <p class="b:mt-2 b:text-center b:text-xs">{{ icon.name }}</p>
+            <div class="b:mt-2 b:line-clamp-2 b:h-8 b:w-full b:text-center b:text-xs">
+              {{ icon.name }}
+            </div>
           </div>
         </KeepAlive>
       </template>
     </div>
 
-    <BPagination v-model="page" :page-size="pageSize" :total="totalIcons" @change="search" />
+    <div class="b:flex b:w-full b:justify-center">
+      <BPagination v-model="page" :page-size="pageSize" :total="totalIcons" @change="search" />
+    </div>
   </div>
 </template>
 
 <style scoped>
 .icons {
-  grid-template-columns: repeat(auto-fit, minmax(min(24px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(5rem, 100%), 1fr));
 }
 </style>
