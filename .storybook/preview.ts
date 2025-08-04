@@ -1,5 +1,6 @@
-import type { Preview } from '@storybook/vue3-vite'
-import '../src/assets/tailwind.css'
+import type { Preview } from '@storybook/vue3-vite';
+import '../src/assets/resetUAS.css';
+import '../src/assets/tailwind.css';
 
 const preview: Preview = {
   parameters: {
@@ -13,6 +14,6 @@ const preview: Preview = {
       codePanel: true,
     },
   },
-}
+};
 
-export default preview
+export default preview;

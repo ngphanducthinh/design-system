@@ -56,3 +56,16 @@ export enum BPaginationSize {
   Medium = 'md',
   Large = 'lg',
 }
+
+export enum BInputSize {
+  Small = 'sm',
+  Medium = 'md',
+  Large = 'lg',
+}
+
+export enum BInputVariant {
+  Outline = 'outlined',
+  Filled = 'filled',
+  Borderless = 'borderless',
+  Underlined = 'underlined',
+}

@@ -14,7 +14,11 @@ const {
   total: number;
   size?: `${BPaginationSize}`;
 }>();
-// https://vuejs.org/api/sfc-script-setup.html#usage-with-typescript
+
+/**
+ * Size of the pagination component.
+ * https://vuejs.org/api/sfc-script-setup.html#usage-with-typescript
+ */
 const model = defineModel<number>({ required: true });
 
 const totalPages = computed(() => {
