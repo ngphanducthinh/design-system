@@ -30,7 +30,7 @@ const model = defineModel<string>({ required: true });
 <template>
   <input
     v-model="model"
-    class="b:transition-all b:duration-200 b:placeholder:text-gray-300"
+    class="b:box-border b:transition-all b:duration-200 b:placeholder:text-zinc-300"
     :class="[
       {
         'b:h-6 b:px-2 b:text-sm': size === BInputSize.Small,
@@ -38,12 +38,12 @@ const model = defineModel<string>({ required: true });
         'b:h-10 b:px-3 b:text-base': size === BInputSize.Large,
       },
       {
-        'b:rounded-lg b:ring-1 b:ring-gray-300 b:hover:not-disabled:ring-primary b:focus-visible:not-disabled:ring-primary':
+        'b:rounded-lg b:border-1 b:border-zinc-300 b:hover:not-disabled:border-primary b:focus-visible:not-disabled:border-primary':
           variant === BInputVariant.Outline,
-        'b:rounded-lg b:bg-zinc-100 b:ring-1 b:ring-zinc-100 b:focus-visible:not-disabled:ring-primary':
+        'b:rounded-lg b:border-1 b:border-zinc-100 b:bg-zinc-100 b:focus-visible:not-disabled:border-primary':
           variant === BInputVariant.Filled,
         '': variant === BInputVariant.Borderless,
-        'b:box-border b:border-b-1 b:border-gray-300 b:focus-visible:not-disabled:border-b-primary':
+        'b:border-b-1 b:border-zinc-300 b:focus-visible:not-disabled:border-b-primary':
           variant === BInputVariant.Underlined,
       },
     ]"

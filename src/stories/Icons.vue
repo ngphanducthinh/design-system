@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BPagination } from '@/components';
+import { BInput, BPagination } from '@/components';
 import BIcon from '@/components/BIcon/BIcon.vue';
 import { BIconName } from '@/components/BIcon/BIconEnum.ts';
 import { BIconSize, BIconVariant } from '@/types.ts';
@@ -41,7 +41,7 @@ search();
 <template>
   <div class="b:grid b:grid-cols-1 b:gap-y-8">
     <div class="b:flex b:flex-wrap b:gap-4">
-      <input type="text" v-model="searchText" @input="searchDebounced" />
+      <BInput v-model="searchText" placeholder="Search..." @update:model-value="searchDebounced" />
 
       <select v-model="size">
         <option v-for="size in Object.values(BIconSize)" :key="size" :value="size">
