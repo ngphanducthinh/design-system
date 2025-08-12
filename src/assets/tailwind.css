@@ -1,0 +1,24 @@
+@import 'tailwindcss' prefix(b);
+
+@theme {
+  --color-primary: oklch(68.5% 0.169 237.323);
+  --color-secondary: oklch(92% 0.004 286.32);
+  --color-success: oklch(72.3% 0.219 149.579);
+  --color-failure: oklch(63.7% 0.237 25.331);
+  --color-warning: oklch(75% 0.183 55.934);
+  --color-info: oklch(62.3% 0.214 259.815);
+
+  --color-primary-hover: oklch(58.8% 0.158 241.966);
+  --color-secondary-hover: oklch(87.1% 0.006 286.286);
+  --color-success-hover: oklch(62.7% 0.194 149.214);
+  --color-failure-hover: oklch(57.7% 0.245 27.325);
+  --color-warning-hover: oklch(70.5% 0.213 47.604);
+  --color-info-hover: oklch(54.6% 0.245 262.881);
+
+  --color-primary-hover-light: oklch(90.1% 0.058 230.902);
+  --color-secondary-hover-light: oklch(96.7% 0.001 286.375);
+  --color-success-hover-light: oklch(87.1% 0.15 154.449);
+  --color-failure-hover-light: oklch(80.8% 0.114 19.571);
+  --color-warning-hover-light: oklch(90.1% 0.076 70.697);
+  --color-info-hover-light: oklch(80.9% 0.105 251.813);
+}

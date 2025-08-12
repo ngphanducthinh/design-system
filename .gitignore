@@ -13,8 +13,6 @@ dist
 dist-ssr
 coverage
 *.local
-src/playground/**
-storybook-static
 
 /cypress/videos/
 /cypress/screenshots/
@@ -28,7 +26,11 @@ storybook-static
 *.njsproj
 *.sln
 *.sw?
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+
+*.tsbuildinfo
+
+test-results/
+playwright-report/
+
+*storybook.log
+storybook-static
