@@ -3,17 +3,17 @@ export const ensureVisiblePosition = (
   menuEl: HTMLElement,
   menuFixed?: boolean,
 ): void => {
-  ensureVisibleX(parentEl, menuEl, menuFixed);
+  ensureVisibleX(parentEl, menuEl);
   ensureVisibleY(parentEl, menuEl, menuFixed);
   // Move menu element into body tag
   document.body.append(menuEl);
 };
-export const ensureVisibleX = (parentEl: HTMLElement, menuEl: HTMLElement, menuFixed?: boolean) => {
+export const ensureVisibleX = (parentEl: HTMLElement, menuEl: HTMLElement) => {
   // Viewport
   const screenWidth = window.innerWidth;
 
   // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
-  const scrollX = menuFixed ? 0 : window.scrollX;
+  const scrollX = isParentElFixed(parentEl) ? 0 : window.scrollX;
   const dropdownLeftEdge = parentEl.getBoundingClientRect().left + scrollX;
   const dropdownWidth = parentEl.getBoundingClientRect().width;
 
@@ -49,6 +49,16 @@ export const ensureVisibleY = (parentEl: HTMLElement, menuEl: HTMLElement, menuF
     menuEl.style.top = `${dropdownTopEdge - menuHeight}px`;
   }
 };
+
+export const isParentElFixed = (parentEl: HTMLElement): boolean => {
+  const parentElStyle = window.getComputedStyle(parentEl);
+  const parentElStylePosition = parentElStyle.getPropertyValue('position');
+
+  // position: sticky in CSS creates an element that behaves like a hybrid between position: relative and position: fixed
+
+  return parentElStylePosition === 'fixed';
+};
+
 export const resetPosition = (parentEl: HTMLElement, menuEl: HTMLElement) => {
   menuEl.style.top = '';
   menuEl.style.right = '';
