@@ -73,7 +73,7 @@ const svgRef = ref<HTMLDivElement | null>(null);
 const svgStyle = computed(() => ({
   width: width || `${BIconSizeMap[size]}rem`,
   height: height || `${BIconSizeMap[size]}rem`,
-  rotate: `rotate(${rotate}deg)`,
+  transform: `rotate(${rotate}deg)`,
   color: ['currentColor', ...Object.values(BIconColor)].includes(color) ? undefined : color,
 }));
 
@@ -162,7 +162,7 @@ watch(
 .b-icon {
   width: v-bind('svgStyle.width');
   height: v-bind('svgStyle.height');
-  rotate: v-bind('svgStyle.rotate');
+  transform: v-bind('svgStyle.transform');
 }
 
 .b-icon--color {

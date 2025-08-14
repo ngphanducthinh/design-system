@@ -69,3 +69,8 @@ export enum BInputVariant {
   Borderless = 'borderless',
   Underlined = 'underlined',
 }
+
+export interface BSelectOption {
+  label: string;
+  value: unknown;
+}

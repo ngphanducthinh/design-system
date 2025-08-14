@@ -46,6 +46,9 @@ const model = defineModel<string>({ required: true });
         'b:border-b-1 b:border-zinc-300 b:focus-visible:not-disabled:border-b-primary':
           variant === BInputVariant.Underlined,
       },
+      {
+        'b:cursor-not-allowed b:bg-secondary b:opacity-40': disabled,
+      },
     ]"
     :placeholder="placeholder"
     :disabled="disabled"
