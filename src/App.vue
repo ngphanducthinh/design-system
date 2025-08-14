@@ -6,6 +6,8 @@
       {{ select1 }}
       <BSelect v-model="select1" :options="options" placeholder="Select an option..." />
       <BSelect v-model="select1" :options="options" searchable />
+
+      <BButton>Button</BButton>
     </div>
     <div class="b:h-[100dvh] b:bg-green-300"></div>
   </main>
@@ -13,7 +15,7 @@
   <footer></footer>
 </template>
 <script setup lang="ts">
-import { BSelect } from '@/components';
+import { BButton, BSelect } from '@/components';
 import type { BSelectOption } from '@/types.ts';
 import { ref } from 'vue';
 

@@ -94,9 +94,9 @@ export const Size: Story = {
     docs: {
       source: {
         code: `
-          <BButton size="small">Primary</BButton>
+          <BButton size="sm">Primary</BButton>
           <BButton>Secondary</BButton>
-          <BButton size="large">Success</BButton>
+          <BButton size="lg">Success</BButton>
         `,
       },
     },
@@ -105,9 +105,9 @@ export const Size: Story = {
     components: { BButton },
     template: `
       <div class="b:flex b:flex-wrap b:items-center b:gap-2">
-        <BButton size="small">Small</BButton>
+        <BButton size="sm">Small</BButton>
         <BButton>Medium</BButton>
-        <BButton size="large">Large</BButton>
+        <BButton size="lg">Large</BButton>
       </div>
     `,
   }),
