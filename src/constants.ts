@@ -8,3 +8,5 @@ export const BIconSizeMap: Record<BIconSize, number> = {
   [BIconSize.XLarge]: 1.5, // 24px
   [BIconSize.XXLarge]: 2, // 32px
 };
+
+export const BModalInjectionKey = Symbol('BModalInjectionKey');

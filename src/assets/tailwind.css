@@ -21,4 +21,6 @@
   --color-failure-hover-light: oklch(80.8% 0.114 19.571);
   --color-warning-hover-light: oklch(90.1% 0.076 70.697);
   --color-info-hover-light: oklch(80.9% 0.105 251.813);
+
+  --color-black-base: oklch(0 0 0 / 0.8);
 }
