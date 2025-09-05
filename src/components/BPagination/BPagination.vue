@@ -32,7 +32,6 @@ const EllipsisText = '...';
 const emit = defineEmits<{
   /**
    * Value is changed, param: <code>value: number</code>
-   * @param e
    * @param value
    */
   change: [value: number];

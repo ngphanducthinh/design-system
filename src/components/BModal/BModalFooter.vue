@@ -11,6 +11,10 @@ const { cancelText = 'Cancel', okText = 'OK' } = defineProps<{
    */
   hideCancel?: boolean;
   /**
+   * If true, the cancel button will be disabled.
+   */
+  cancelDisabled?: boolean;
+  /**
    * Text to display on the OK button.
    */
   okText?: string;
@@ -18,6 +22,10 @@ const { cancelText = 'Cancel', okText = 'OK' } = defineProps<{
    * If true, the OK button will not be displayed.
    */
   hideOk?: boolean;
+  /**
+   * If true, the OK button will be disabled.
+   */
+  okDisabled?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -45,11 +53,12 @@ const emit = defineEmits<{
           variant="outlined"
           color="secondary"
           autofocus
+          :disabled="cancelDisabled"
           @click="emit('cancel')"
         >
           {{ cancelText }}
         </BButton>
-        <BButton v-if="!hideOk" @click="emit('ok')">
+        <BButton v-if="!hideOk" :disabled="okDisabled" @click="emit('ok')">
           {{ okText }}
         </BButton>
       </div>

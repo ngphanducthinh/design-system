@@ -15,7 +15,7 @@ export enum BButtonColor {
 
 export enum BButtonVariant {
   Solid = 'solid',
-  Outline = 'outlined',
+  Outlined = 'outlined',
   Dashed = 'dashed',
   Text = 'text',
   Link = 'link',
