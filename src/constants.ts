@@ -1,4 +1,5 @@
 import { BIconSize } from '@/types.ts';
+import type { InjectionKey } from 'vue';
 
 export const BIconSizeMap: Record<BIconSize, number> = {
   [BIconSize.XSmall]: 0.5, // 8px
@@ -9,4 +10,6 @@ export const BIconSizeMap: Record<BIconSize, number> = {
   [BIconSize.XXLarge]: 2, // 32px
 };
 
-export const BModalInjectionKey = Symbol('BModalInjectionKey');
+export const PIKey = {
+  BCollapseGroup: Symbol('BCollapseGroup') as InjectionKey<Record<number, boolean>>,
+};
