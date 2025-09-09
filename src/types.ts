@@ -74,3 +74,8 @@ export interface BSelectOption {
   label: string;
   value: unknown;
 }
+
+export interface BCollapseData {
+  id: number;
+  isOpen: boolean;
+}

@@ -2,16 +2,27 @@
   <header></header>
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
-    <div style="max-height: 200px; overflow: hidden">
-      <BCollapseGroup>
-        <summary @click="value = !value">System Requirements</summary>
-        <BCollapse v-model="value">
-          Requires a computer running an operating system. The computer must have some memory and
-          ideally some kind of long-term storage. An input device as well as some form of output
-          device is recommended.
-        </BCollapse>
-      </BCollapseGroup>
+    <BCollapseGroup v-model="collapseGroup" class="b:space-y-2">
+      <BCollapse header="Hello world">
+        Requires a computer running an operating system. The computer must have some memory and
+        ideally some kind of long-term storage. An input device as well as some form of output
+        device is recommended.
+      </BCollapse>
 
+      <BCollapse header="Hello world 2">
+        Requires a computer running an operating system. The computer must have some memory and
+        ideally some kind of long-term storage. An input device as well as some form of output
+        device is recommended.
+      </BCollapse>
+
+      <BCollapse header="Hello world 3">
+        Requires a computer running an operating system. The computer must have some memory and
+        ideally some kind of long-term storage. An input device as well as some form of output
+        device is recommended.
+      </BCollapse>
+    </BCollapseGroup>
+
+    <div style="max-height: 200px; overflow: hidden">
       {{ select1 }}
       <BSelect v-model="select1" :options="options" placeholder="Select an option..." />
       <BSelect v-model="select1" :options="options" searchable />
@@ -53,27 +64,6 @@ const options: BSelectOption[] = [
 ];
 
 const value = ref(false);
-const markerContentColor = 'red';
-const markerContent = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12px" height="12px" viewBox="0 0 320 512"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" fill="${markerContentColor}"/></svg>')`;
 
-const toggle = () => {
-  value.value = !value.value;
-};
+const collapseGroup = ref(2);
 </script>
-
-<style scoped>
-summary::marker {
-  content: '';
-}
-
-summary::before {
-  content: v-bind('markerContent');
-  display: inline-block;
-  margin-right: 0.5rem;
-  transition: transform 0.2s ease-in-out;
-}
-
-details:open > summary::before {
-  transform: rotate(90deg);
-}
-</style>
