@@ -2,6 +2,8 @@
   <header></header>
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
+    <BProgress v-model="progressValue" />
+
     <BCollapseGroup v-model="collapseGroup" class="b:space-y-2">
       <BCollapse header="Hello world">
         Requires a computer running an operating system. The computer must have some memory and
@@ -51,6 +53,7 @@ import { BButton, BCollapse, BCollapseGroup, BModal, BSelect } from '@/component
 import BModalBody from '@/components/BModal/BModalBody.vue';
 import BModalFooter from '@/components/BModal/BModalFooter.vue';
 import BModalHeader from '@/components/BModal/BModalHeader.vue';
+import BProgress from '@/components/BProgress/BProgress.vue';
 import type { BSelectOption } from '@/types.ts';
 import { ref } from 'vue';
 
@@ -63,7 +66,14 @@ const options: BSelectOption[] = [
   { label: 'Option 4', value: 2 },
 ];
 
-const value = ref(false);
+const progressValue = ref(25);
+setTimeout(() => {
+  progressValue.value = 75;
+
+  setTimeout(() => {
+    progressValue.value = 100;
+  }, 1000);
+}, 1000);
 
 const collapseGroup = ref(2);
 </script>
