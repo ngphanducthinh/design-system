@@ -52,7 +52,7 @@ const successIcon = computed(
   display: grid;
   place-items: center;
   /*
-    => Equivalent to:
+    [Equivalent to:]
     display: flex;
     align-items: center;
     justify-content: center;

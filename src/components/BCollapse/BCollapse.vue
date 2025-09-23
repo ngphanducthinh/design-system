@@ -12,7 +12,7 @@ const {} = defineProps<{
 }>();
 //#endregion
 
-const internalModel = ref(model.value);
+const internalModel = ref(false);
 const combinedModel = computed({
   get() {
     return model.value !== undefined ? model.value : internalModel.value;
@@ -26,7 +26,8 @@ const combinedModel = computed({
   },
 });
 
-const collapseList = inject(PIKey.BCollapseGroup)!;
+// Give collapseList default value as empty array
+const collapseList = inject(PIKey.BCollapseGroup, ref([]));
 const instance = getCurrentInstance();
 
 if (collapseList.value) {

@@ -4,6 +4,13 @@
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
     <BProgress v-model="progressValue" />
 
+    <BButton @click="singleCollapse = !singleCollapse"> Toggle </BButton>
+    <BCollapse v-model="singleCollapse">
+      Requires a computer running an operating system. The computer must have some memory and
+      ideally some kind of long-term storage. An input device as well as some form of output device
+      is recommended.
+    </BCollapse>
+
     <BCollapseGroup v-model="collapseGroup" class="b:space-y-2">
       <BCollapse header="Hello world">
         Requires a computer running an operating system. The computer must have some memory and
@@ -65,6 +72,7 @@ const options: BSelectOption[] = [
   { label: 'Option 3', value: 'option3' },
   { label: 'Option 4', value: 2 },
 ];
+const singleCollapse = ref(false);
 
 const progressValue = ref(25);
 setTimeout(() => {

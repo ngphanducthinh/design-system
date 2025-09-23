@@ -79,3 +79,8 @@ export interface BCollapseData {
   id: number;
   isOpen: boolean;
 }
+
+export interface BTabData {
+  id: number;
+  isActive: boolean;
+}
