@@ -58,7 +58,7 @@ const value = computed({
 const paginationItemClass = computed(() => {
   let result = `
   ds-flex ds-items-center ds-justify-center
-  ds-rounded-lg `;
+  ds-rounded-lg ds-select-none `;
 
   if (props.border) {
     result += 'ds-border ds-border-gray-300 ';
