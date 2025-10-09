@@ -14,7 +14,10 @@ export const PIKey = {
   BCollapseGroup: Symbol('Injection key for an array of BCollapseData') as InjectionKey<
     Ref<Array<BCollapseData>>
   >,
-  BTabs: Symbol('Injection key for the unique id of the BTabs') as InjectionKey<
+  BTabToggleGroup: Symbol('Injection key for the unique id of the BToggles') as InjectionKey<
+    Ref<Array<BTabData>>
+  >,
+  BTabContentGroup: Symbol('Injection key for the unique id of the BTabContents') as InjectionKey<
     Ref<Array<BTabData>>
   >,
 };

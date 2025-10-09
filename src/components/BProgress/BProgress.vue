@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
-const model = defineModel<number>({ required: true });
-const progress = computed(() => `${model.value}%`);
+const { percent = 0 } = defineProps<{
+  percent: number;
+}>();
+const progress = computed(() => `${percent}%`);
 
 const color = 'green';
 
@@ -11,7 +13,7 @@ const color = 'green';
  * It is false when progress is 0 (not started) or 100 (completed).
  * https://www.w3.org/TR/wai-aria-1.2/#aria-busy
  */
-const isBusy = computed(() => model.value > 0 && model.value < 100);
+const isBusy = computed(() => percent > 0 && percent < 100);
 
 const successIcon = computed(
   () =>
@@ -20,7 +22,7 @@ const successIcon = computed(
 </script>
 
 <template>
-  <div role="progressbar" class="b-progress" :aria-valuenow="model" :aria-busy="isBusy" />
+  <div role="progressbar" class="b-progress" :aria-valuenow="percent" :aria-busy="isBusy" />
 </template>
 
 <style scoped>

@@ -2,7 +2,20 @@
   <header></header>
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
-    <BProgress v-model="progressValue" />
+    <BTabs>
+      <BTabToggleGroup>
+        <BTabToggle>Head 1</BTabToggle>
+        <BTabToggle>Head 2</BTabToggle>
+        <BTabToggle>Head 3</BTabToggle>
+      </BTabToggleGroup>
+      <BTabContentGroup>
+        <BTabContent>Hello world 01!</BTabContent>
+        <BTabContent>Hello world 02!</BTabContent>
+        <BTabContent>Hello world 03!</BTabContent>
+      </BTabContentGroup>
+    </BTabs>
+
+    <BProgress :percent="progressValue" />
 
     <BButton @click="singleCollapse = !singleCollapse"> Toggle </BButton>
     <BCollapse v-model="singleCollapse">
@@ -56,7 +69,18 @@
   <footer></footer>
 </template>
 <script setup lang="ts">
-import { BButton, BCollapse, BCollapseGroup, BModal, BSelect } from '@/components';
+import {
+  BButton,
+  BCollapse,
+  BCollapseGroup,
+  BModal,
+  BSelect,
+  BTabContent,
+  BTabContentGroup,
+  BTabs,
+  BTabToggle,
+  BTabToggleGroup,
+} from '@/components';
 import BModalBody from '@/components/BModal/BModalBody.vue';
 import BModalFooter from '@/components/BModal/BModalFooter.vue';
 import BModalHeader from '@/components/BModal/BModalHeader.vue';
@@ -84,4 +108,13 @@ setTimeout(() => {
 }, 1000);
 
 const collapseGroup = ref(2);
+
+const tab = ref(0);
+setTimeout(() => {
+  tab.value = 1;
+
+  setTimeout(() => {
+    tab.value = 2;
+  }, 1000);
+}, 1000);
 </script>

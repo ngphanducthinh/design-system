@@ -5,3 +5,4 @@ export { default as BInput } from './BInput/BInput.vue';
 export * from './BModal';
 export { default as BPagination } from './BPagination/BPagination.vue';
 export { default as BSelect } from './BSelect/BSelect.vue';
+export * from './BTabs';
