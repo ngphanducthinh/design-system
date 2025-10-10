@@ -2,6 +2,15 @@
   <header></header>
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
+    <BBreadcrumb
+      :items="[
+        { text: 'Home' },
+        { text: 'Products' },
+        { text: 'Product Detail' },
+        { text: 'Product Detail - Comments' },
+      ]"
+    />
+
     <BTabs>
       <BTabToggleGroup>
         <BTabToggle>Head 1</BTabToggle>
@@ -70,6 +79,7 @@
 </template>
 <script setup lang="ts">
 import {
+  BBreadcrumb,
   BButton,
   BCollapse,
   BCollapseGroup,

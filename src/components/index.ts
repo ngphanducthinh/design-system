@@ -1,3 +1,4 @@
+export { default as BBreadcrumb } from './BBreadcrumb/BBreadcrumb.vue';
 export { default as BButton } from './BButton/BButton.vue';
 export * from './BCollapse';
 export { default as BIcon } from './BIcon/BIcon.vue';

@@ -84,3 +84,9 @@ export interface BTabData {
   id: number;
   isActive: boolean;
 }
+
+export interface BBreadcrumbItem {
+  text: string;
+  href?: string;
+  to?: RouteLocationRaw;
+}
