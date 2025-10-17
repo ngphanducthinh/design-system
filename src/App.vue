@@ -2,6 +2,19 @@
   <header></header>
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
+    <div>
+      <BTooltip tooltip="Tooltip content!">
+        <span>Hello world!</span>
+      </BTooltip>
+
+      <BTooltip tooltip="Tooltip content 02!" trigger="click">
+        <span>Hello world 02!</span>
+        <template #tooltip>
+          <div class="b:h-64 b:w-64 b:bg-blue-100"></div>
+        </template>
+      </BTooltip>
+    </div>
+
     <BBreadcrumb
       :items="[
         { text: 'Home' },
@@ -95,6 +108,7 @@ import BModalBody from '@/components/BModal/BModalBody.vue';
 import BModalFooter from '@/components/BModal/BModalFooter.vue';
 import BModalHeader from '@/components/BModal/BModalHeader.vue';
 import BProgress from '@/components/BProgress/BProgress.vue';
+import BTooltip from '@/components/BTooltip/BTooltip.vue';
 import type { BSelectOption } from '@/types.ts';
 import { ref } from 'vue';
 

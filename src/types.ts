@@ -1,3 +1,5 @@
+import type { RouteLocationRaw } from 'vue-router';
+
 export enum BButtonSize {
   Small = 'sm',
   Medium = 'md',
@@ -89,4 +91,10 @@ export interface BBreadcrumbItem {
   text: string;
   href?: string;
   to?: RouteLocationRaw;
+}
+
+export enum BTooltipTrigger {
+  Hover = 'hover',
+  Click = 'click',
+  Focus = 'focus',
 }
