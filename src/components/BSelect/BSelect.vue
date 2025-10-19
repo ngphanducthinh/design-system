@@ -100,8 +100,7 @@ watch(model, (newValue) => {
   <div class="b:flex b:items-center">
     <BInput
       v-model="searchText"
-      :style="{ 'anchor-name': anchorName }"
-      :class="[{ 'b:not-disabled:cursor-pointer': !searchable }]"
+      :class="['b-select__input', { 'b:not-disabled:cursor-pointer': !searchable }]"
       :readonly="!searchable"
       :placeholder="placeholder"
       :disabled="disabled"
@@ -150,6 +149,11 @@ watch(model, (newValue) => {
 </template>
 
 <style scoped>
+.b-select__input {
+  /* Anchor for positioning the tooltip */
+  anchor-name: v-bind('anchorName');
+}
+
 .b-select__menu {
   /* Reset default styles of browsers */
   position: absolute;
@@ -158,8 +162,8 @@ watch(model, (newValue) => {
   /* Positioning based on anchor element */
   position-anchor: v-bind('anchorName');
   position-try-fallbacks: --bottom-left, --top-right, --top-left;
+  /* Default position: Bottom Right*/
   inset: auto;
-  /* bottom right */
   top: anchor(bottom);
   right: anchor(right);
 
@@ -169,7 +173,6 @@ watch(model, (newValue) => {
     opacity 0.2s;
   transition-behavior: allow-discrete;
   opacity: 0;
-
   &:popover-open {
     opacity: 1;
 
@@ -181,21 +184,18 @@ watch(model, (newValue) => {
 
 @position-try --bottom-left {
   inset: auto;
-
   top: anchor(bottom);
   left: anchor(left);
 }
 
 @position-try --top-left {
   inset: auto;
-
   bottom: anchor(top);
   left: anchor(left);
 }
 
 @position-try --top-right {
   inset: auto;
-
   bottom: anchor(top);
   right: anchor(right);
 }

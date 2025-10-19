@@ -7,10 +7,12 @@
         <span>Hello world!</span>
       </BTooltip>
 
-      <BTooltip tooltip="Tooltip content 02!" trigger="click">
+      <BTooltip tooltip="Tooltip content 02!" placement="bottom-right" trigger="click">
         <span>Hello world 02!</span>
         <template #tooltip>
-          <div class="b:h-64 b:w-64 b:bg-blue-100"></div>
+          <div class="b:max-w-32">
+            {{ 'This is a custom tooltip content with more complex structure.' }}
+          </div>
         </template>
       </BTooltip>
     </div>

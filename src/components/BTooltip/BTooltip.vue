@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BTooltipTrigger } from '@/types.ts';
+import { BTooltipPlacement, BTooltipTrigger } from '@/types.ts';
 import { computed, getCurrentInstance, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 const model = defineModel<boolean>();
@@ -17,18 +17,28 @@ const uModel = computed({
   },
 });
 
-const { tooltip, trigger = BTooltipTrigger.Hover } = defineProps<{
+const {
+  tooltip,
+  trigger = BTooltipTrigger.Hover,
+  placement = BTooltipPlacement.TopCenter,
+} = defineProps<{
   /**
    * The text to display inside the tooltip.
    */
   tooltip?: string;
-
   /**
    * The event that triggers the tooltip to open.
    *
    * @default BTooltipTrigger.Hover
    */
-  trigger?: 'click' | 'hover' | 'focus';
+  trigger?: `${BTooltipTrigger}`;
+  /**
+   * The placement of the tooltip relative to the toggle element.
+   * This value is used as the first preference. If there is not enough space, it will try other placements.
+   *
+   * @default BTooltipPlacement.TopCenter
+   */
+  placement?: `${BTooltipPlacement}`;
 }>();
 
 const tooltipRef = ref<HTMLDivElement | null>(null);
@@ -104,35 +114,52 @@ const anchorName = computed(() => `--toggle-${componentUID.value}`);
 </script>
 
 <template>
-  <div ref="toggleRef" class="b-tooltip-toggle b:inline-block">
+  <div ref="toggleRef" class="b-tooltip__toggle b:inline-block">
     <slot />
   </div>
 
   <div
     ref="tooltipRef"
     :popover="isTriggerClick ? 'auto' : 'manual'"
-    class="b-tooltip-content top-center"
+    :class="[
+      'b-tooltip__content',
+      {
+        'top-left': placement === BTooltipPlacement.TopLeft,
+        'top-center': placement === BTooltipPlacement.TopCenter,
+        'top-right': placement === BTooltipPlacement.TopRight,
+        'right-top': placement === BTooltipPlacement.RightTop,
+        'right-center': placement === BTooltipPlacement.RightCenter,
+        'right-bottom': placement === BTooltipPlacement.RightBottom,
+        'bottom-right': placement === BTooltipPlacement.BottomRight,
+        'bottom-center': placement === BTooltipPlacement.BottomCenter,
+        'bottom-left': placement === BTooltipPlacement.BottomLeft,
+        'left-bottom': placement === BTooltipPlacement.LeftBottom,
+        'left-center': placement === BTooltipPlacement.LeftCenter,
+        'left-top': placement === BTooltipPlacement.LeftTop,
+      },
+    ]"
     @toggle="updateIsOpen"
   >
-    <slot name="tooltip">
-      {{ tooltip }}
-    </slot>
+    <div class="b:rounded-lg b:bg-zinc-900 b:px-2 b:py-1.5 b:text-white">
+      <slot name="tooltip">
+        {{ tooltip }}
+      </slot>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.b-tooltip-toggle {
+.b-tooltip__toggle {
   /* Anchor for positioning the tooltip */
   anchor-name: v-bind('anchorName');
 }
 
-.b-tooltip-content {
+.b-tooltip__content {
   /* Reset default styles of browsers */
   position: absolute;
-  margin-top: var(--b-spacing);
   /* Positioning based on anchor element */
   position-anchor: v-bind('anchorName');
-  /* ATTENTION: Too many fallbacks make the browser silently ignores the property */
+  /* ATTENTION: Too many fallbacks make the browser silently ignores the property, for now this should be less than 10 */
   position-try-fallbacks: --right-center, --bottom-center, --left-center;
 
   /* Default position: Top Center*/
@@ -141,11 +168,99 @@ const anchorName = computed(() => `--toggle-${componentUID.value}`);
     inset: auto;
     bottom: anchor(top);
     left: anchor(left);
+
+    margin: 0 0 var(--b-spacing) 0;
   }
   &.top-center {
     inset: auto;
     bottom: anchor(top);
     justify-self: anchor-center;
+
+    margin: 0 0 var(--b-spacing) 0;
+  }
+  &.top-right {
+    inset: auto;
+    bottom: anchor(top);
+    right: anchor(right);
+
+    margin: 0 0 var(--b-spacing) 0;
+  }
+  &.right-top {
+    inset: auto;
+    top: anchor(top);
+    left: anchor(right);
+
+    margin: 0 0 0 var(--b-spacing);
+  }
+  &.right-center {
+    inset: auto;
+    align-self: anchor-center;
+    left: anchor(right);
+
+    margin: 0 0 0 var(--b-spacing);
+  }
+  &.right-bottom {
+    inset: auto;
+    bottom: anchor(bottom);
+    left: anchor(right);
+
+    margin: 0 0 0 var(--b-spacing);
+  }
+  &.bottom-right {
+    inset: auto;
+    top: anchor(bottom);
+    right: anchor(right);
+
+    margin: var(--b-spacing) 0 0 0;
+  }
+  &.bottom-center {
+    inset: auto;
+    top: anchor(bottom);
+    justify-self: anchor-center;
+
+    margin: var(--b-spacing) 0 0 0;
+  }
+  &.bottom-left {
+    inset: auto;
+    top: anchor(bottom);
+    left: anchor(left);
+
+    margin: var(--b-spacing) 0 0 0;
+  }
+  &.left-bottom {
+    inset: auto;
+    bottom: anchor(bottom);
+    right: anchor(left);
+
+    margin: 0 var(--b-spacing) 0 0;
+  }
+  &.left-center {
+    inset: auto;
+    align-self: anchor-center;
+    right: anchor(left);
+
+    margin: 0 var(--b-spacing) 0 0;
+  }
+  &.left-top {
+    inset: auto;
+    top: anchor(top);
+    right: anchor(left);
+
+    margin: 0 var(--b-spacing) 0 0;
+  }
+
+  /* Animation and visibility */
+  transition:
+    display 0.2s,
+    opacity 0.2s;
+  transition-behavior: allow-discrete;
+  opacity: 0;
+  &:popover-open {
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
   }
 }
 
@@ -153,71 +268,95 @@ const anchorName = computed(() => `--toggle-${componentUID.value}`);
   inset: auto;
   bottom: anchor(top);
   left: anchor(left);
+
+  margin: 0 0 var(--b-spacing) 0;
 }
 
 @position-try --top-center {
   inset: auto;
   bottom: anchor(top);
   justify-self: anchor-center;
+
+  margin: 0 0 var(--b-spacing) 0;
 }
 
 @position-try --top-right {
   inset: auto;
   bottom: anchor(top);
   right: anchor(right);
+
+  margin: 0 0 var(--b-spacing) 0;
 }
 
 @position-try --right-top {
   inset: auto;
   top: anchor(top);
   left: anchor(right);
+
+  margin: 0 0 0 var(--b-spacing);
 }
 
 @position-try --right-center {
   inset: auto;
   align-self: anchor-center;
   left: anchor(right);
+
+  margin: 0 0 0 var(--b-spacing);
 }
 
 @position-try --right-bottom {
   inset: auto;
   bottom: anchor(bottom);
   left: anchor(right);
+
+  margin: 0 0 0 var(--b-spacing);
 }
 
 @position-try --bottom-right {
   inset: auto;
   top: anchor(bottom);
   right: anchor(right);
+
+  margin: var(--b-spacing) 0 0 0;
 }
 
 @position-try --bottom-center {
   inset: auto;
   top: anchor(bottom);
   justify-self: anchor-center;
+
+  margin: var(--b-spacing) 0 0 0;
 }
 
 @position-try --bottom-left {
   inset: auto;
   top: anchor(bottom);
   left: anchor(left);
+
+  margin: var(--b-spacing) 0 0 0;
 }
 
 @position-try --left-bottom {
   inset: auto;
   bottom: anchor(bottom);
   right: anchor(left);
+
+  margin: 0 var(--b-spacing) 0 0;
 }
 
 @position-try --left-center {
   inset: auto;
   align-self: anchor-center;
   right: anchor(left);
+
+  margin: 0 var(--b-spacing) 0 0;
 }
 
 @position-try --left-top {
   inset: auto;
   top: anchor(top);
   right: anchor(left);
+
+  margin: 0 var(--b-spacing) 0 0;
 }
 </style>

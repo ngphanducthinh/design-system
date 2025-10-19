@@ -98,3 +98,18 @@ export enum BTooltipTrigger {
   Click = 'click',
   Focus = 'focus',
 }
+
+export enum BTooltipPlacement {
+  TopLeft = 'top-left',
+  TopCenter = 'top-center',
+  TopRight = 'top-right',
+  RightTop = 'right-top',
+  RightCenter = 'right-center',
+  RightBottom = 'right-bottom',
+  BottomRight = 'bottom-right',
+  BottomCenter = 'bottom-center',
+  BottomLeft = 'bottom-left',
+  LeftBottom = 'left-bottom',
+  LeftCenter = 'left-center',
+  LeftTop = 'left-top',
+}
