@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { BInput, BPagination } from '@/components';
-import BIcon from '@/components/BIcon/BIcon.vue';
 import { BIconName } from '@/components/BIcon/BIconEnum.ts';
 import { BIconSize, BIconVariant } from '@/types.ts';
 import { debounce } from 'lodash-es';
 import { ref } from 'vue';
+import BIcon from '../../components/BIcon/BIcon.vue';
 
 const searchText = ref('');
 const size = ref<BIconSize>(BIconSize.XLarge);

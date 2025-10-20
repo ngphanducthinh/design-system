@@ -12,6 +12,12 @@ const preview: Preview = {
     docs: {
       codePanel: true,
     },
+    options: {
+      // https://storybook.js.org/docs/writing-stories/naming-components-and-hierarchy#sorting-stories
+      storySort: {
+        order: ['General', 'Data Display', 'Feedback'],
+      },
+    },
   },
 };
 

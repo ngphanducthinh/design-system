@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { BIcon, BInput } from '@/components';
+import { useComponentId } from '@/composables/useComponentId.ts';
 import type { BSelectOption } from '@/types.ts';
-import { computed, getCurrentInstance, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 /**
  * Read more about the Popover API:
@@ -28,8 +29,7 @@ const { options = [], searchable } = defineProps<{
 }>();
 const model = defineModel<unknown>({ required: true });
 
-const componentInstance = getCurrentInstance();
-const componentUID = computed(() => componentInstance?.uid);
+const { componentUID } = useComponentId();
 const anchorName = computed(() => `--search-input-${componentUID.value}`);
 
 const menuEl = ref<HTMLElement | null>(null);

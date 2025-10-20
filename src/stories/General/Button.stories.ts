@@ -1,7 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite';
-
+import { BButton } from '@/components';
 import { BButtonColor, BButtonSize, BButtonVariant } from '@/types.ts';
-import { BButton } from '../components';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {

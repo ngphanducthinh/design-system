@@ -3,12 +3,12 @@
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
     <div>
-      <BTooltip tooltip="Tooltip content!">
+      <BTooltip :tooltip="tooltipContent" placement="bottom-left">
         <span>Hello world!</span>
       </BTooltip>
 
       <BTooltip tooltip="Tooltip content 02!" placement="bottom-right" trigger="click">
-        <span>Hello world 02!</span>
+        <span>Tooltip will show on mouse enter.</span>
         <template #tooltip>
           <div class="b:max-w-32">
             {{ 'This is a custom tooltip content with more complex structure.' }}
@@ -143,4 +143,9 @@ setTimeout(() => {
     tab.value = 2;
   }, 1000);
 }, 1000);
+
+const tooltipContent = ref('Tooltip content!');
+setTimeout(() => {
+  tooltipContent.value = 'Updated tooltip content!';
+}, 2000);
 </script>

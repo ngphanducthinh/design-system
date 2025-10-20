@@ -7,3 +7,4 @@ export * from './BModal';
 export { default as BPagination } from './BPagination/BPagination.vue';
 export { default as BSelect } from './BSelect/BSelect.vue';
 export * from './BTabs';
+export { default as BTooltip } from './BTooltip/BTooltip.vue';

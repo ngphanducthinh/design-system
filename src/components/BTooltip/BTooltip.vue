@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { useComponentId } from '@/composables/useComponentId.ts';
 import { BTooltipPlacement, BTooltipTrigger } from '@/types.ts';
-import { computed, getCurrentInstance, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 const model = defineModel<boolean>();
 const internalModel = ref(false);
@@ -16,7 +17,6 @@ const uModel = computed({
     }
   },
 });
-
 const {
   tooltip,
   trigger = BTooltipTrigger.Hover,
@@ -29,19 +29,45 @@ const {
   /**
    * The event that triggers the tooltip to open.
    *
-   * @default BTooltipTrigger.Hover
+   * Default: `hover`.
    */
   trigger?: `${BTooltipTrigger}`;
   /**
    * The placement of the tooltip relative to the toggle element.
    * This value is used as the first preference. If there is not enough space, it will try other placements.
    *
-   * @default BTooltipPlacement.TopCenter
+   * Default: `top-center`.
    */
   placement?: `${BTooltipPlacement}`;
+  /**
+   * Additional classes to apply to the tooltip element.
+   */
+  toggleClass?: string;
+  /**
+   * Additional classes to apply to the inner content of the tooltip element.
+   */
+  tooltipClass?: string;
+  /**
+   * Additional classes to apply to the inner content of the tooltip element.
+   */
+  tooltipInnerClass?: string;
 }>();
 
+const emit = defineEmits<{
+  /**
+   * Emitted when the tooltip is opened or closed.
+   * @param isOpen - Whether the tooltip is open.
+   */
+  toggle: [isOpen: boolean];
+}>();
+
+const updateIsOpen = ({ newState }: ToggleEvent) => {
+  uModel.value = newState === 'open';
+  emit('toggle', uModel.value);
+};
+
 const tooltipRef = ref<HTMLDivElement | null>(null);
+const toggleRef = ref<HTMLDivElement | null>(null);
 const toggleMenu = () => {
   if (uModel.value) {
     tooltipRef.value?.hidePopover();
@@ -49,11 +75,6 @@ const toggleMenu = () => {
     tooltipRef.value?.showPopover();
   }
 };
-const updateIsOpen = ({ newState }: ToggleEvent) => {
-  uModel.value = newState === 'open';
-};
-
-const toggleRef = ref<HTMLDivElement | null>(null);
 const onClick = () => {
   toggleMenu();
 };
@@ -97,7 +118,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   clearEventListeners();
 });
-
 watch(
   () => trigger,
   () => {
@@ -108,13 +128,17 @@ watch(
 
 const isTriggerClick = computed(() => trigger === BTooltipTrigger.Click);
 
-const componentInstance = getCurrentInstance();
-const componentUID = computed(() => componentInstance?.uid);
+const { componentUID } = useComponentId();
 const anchorName = computed(() => `--toggle-${componentUID.value}`);
+const tooltipContentInnerId = computed(() => `tooltip-content-inner-${componentUID.value}`);
 </script>
 
 <template>
-  <div ref="toggleRef" class="b-tooltip__toggle b:inline-block">
+  <div
+    ref="toggleRef"
+    :class="['b-tooltip__toggle', 'b:inline-block', toggleClass]"
+    :aria-describedby="tooltipContentInnerId"
+  >
     <slot />
   </div>
 
@@ -137,10 +161,15 @@ const anchorName = computed(() => `--toggle-${componentUID.value}`);
         'left-center': placement === BTooltipPlacement.LeftCenter,
         'left-top': placement === BTooltipPlacement.LeftTop,
       },
+      tooltipClass,
     ]"
     @toggle="updateIsOpen"
   >
-    <div class="b:rounded-lg b:bg-zinc-900 b:px-2 b:py-1.5 b:text-white">
+    <div
+      :id="tooltipContentInnerId"
+      :class="['b:rounded-lg b:bg-zinc-900 b:px-2 b:py-1.5 b:text-white', tooltipInnerClass]"
+      role="tooltip"
+    >
       <slot name="tooltip">
         {{ tooltip }}
       </slot>
