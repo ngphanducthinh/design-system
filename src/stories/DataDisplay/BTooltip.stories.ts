@@ -13,7 +13,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'The <code>BTooltip</code> component is a simple text popup box.<br><br>',
+        component: 'The <code>BTooltip</code> component is a simple text popup box.<br>',
       },
     },
   },
@@ -23,7 +23,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * This story demonstrates the default usage of the BButton component.
+ * This story demonstrates the default usage of the BTooltip component.
  */
 export const Default: Story = {
   args: {
@@ -31,13 +31,23 @@ export const Default: Story = {
     trigger: BTooltipTrigger.Hover,
     placement: BTooltipPlacement.TopCenter,
   },
+  argTypes: {
+    trigger: {
+      table: { defaultValue: { summary: 'hover' } },
+    },
+    placement: {
+      table: { defaultValue: { summary: 'top-center' } },
+    },
+  },
   parameters: {
     docs: {
       source: {
         code: `
-          <BTooltip tooltip="Have a nice day!">
-            Tooltip will show on mouse enter.
-          </BTooltip>
+          <template>
+            <BTooltip tooltip="Have a nice day!">
+              Tooltip will show on mouse enter.
+            </BTooltip>
+          </template>
         `,
       },
     },

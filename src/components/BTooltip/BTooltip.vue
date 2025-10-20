@@ -29,14 +29,14 @@ const {
   /**
    * The event that triggers the tooltip to open.
    *
-   * Default: `hover`.
+   * @default 'hover'
    */
   trigger?: `${BTooltipTrigger}`;
   /**
    * The placement of the tooltip relative to the toggle element.
    * This value is used as the first preference. If there is not enough space, it will try other placements.
    *
-   * Default: `top-center`.
+   * @default 'top-center'
    */
   placement?: `${BTooltipPlacement}`;
   /**

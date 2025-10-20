@@ -28,6 +28,36 @@ export const Default: Story = {
   args: {
     modelValue: false,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+          <script>
+            const model = ref(false);
+            const openModal = () => {
+              model.value = true;
+            };
+            const closeModal = () => {
+              model.value = false;
+            };
+          </script>
+
+          <template>
+            <BButton @click="openModal">Modal</BButton>
+
+            <BModal v-model="model" class="b:w-[400px]">
+              <BModalHeader title="My modal title"></BModalHeader>
+              <BModalBody>
+                {{ 'This is a modal body.' }}
+              </BModalBody>
+              <BModalFooter @cancel="closeModal">
+              </BModalFooter>
+            </BModal>
+          </template>
+        `,
+      },
+    },
+  },
   render: (args: any) => ({
     components: { BButton, BModal, BModalHeader, BModalBody, BModalFooter },
     setup() {
@@ -45,7 +75,6 @@ export const Default: Story = {
     },
     template: `
       <BButton @click="openModal">Modal</BButton>
-
       <BModal v-bind="args" v-model="model" class="b:w-[400px]">
         <BModalHeader title="My modal title"></BModalHeader>
         <BModalBody>
