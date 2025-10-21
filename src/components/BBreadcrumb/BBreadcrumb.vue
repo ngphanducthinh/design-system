@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import BIcon from '@/components/BIcon/BIcon.vue';
+import { useComponentId } from '@/composables/useComponentId.ts';
 import type { BBreadcrumbItem } from '@/types';
-import { v4 as uuid } from 'uuid';
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue';
 
 interface BBreadcrumbItemInternal extends BBreadcrumbItem {
@@ -65,7 +65,8 @@ const resizeObserver = new ResizeObserver(() => {
   }
 });
 const isCollapsed = computed(() => breadcrumbItems.value.some((i) => i.hidden));
-const ellipsisMenuId = computed(() => `menu-id-${uuid()}`);
+const { componentUID } = useComponentId();
+const ellipsisMenuId = computed(() => `b-breadcrumb-menu-${componentUID}`);
 //#region
 
 //#region Methods
@@ -78,7 +79,7 @@ const initClickOutsideEventListener = () => {
 const removeClickOutsideEventListener = () => {
   document.removeEventListener('click', closeOnClickOutside);
 };
-const closeOnClickOutside = (event: any) => {
+const closeOnClickOutside = (event: Event) => {
   const refs = [ellipsisRefs.value![0], ellipsisMenuRefs.value![0]];
   const withinBoundaries = refs.some((r) => event.composedPath().includes(r));
   if (!withinBoundaries) {

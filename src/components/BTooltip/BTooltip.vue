@@ -130,7 +130,7 @@ const isTriggerClick = computed(() => trigger === BTooltipTrigger.Click);
 
 const { componentUID } = useComponentId();
 const anchorName = computed(() => `--toggle-${componentUID.value}`);
-const tooltipContentInnerId = computed(() => `tooltip-content-inner-${componentUID.value}`);
+const tooltipContentInnerId = computed(() => `b-tooltip-content-inner-${componentUID.value}`);
 </script>
 
 <template>
