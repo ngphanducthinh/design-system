@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { BIcon } from '@/components';
+import { BIcon, BSelect } from '@/components';
 import { BPaginationSize } from '@/types.ts';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 const {
   pageSize = 10,
@@ -22,10 +22,10 @@ const {
 const model = defineModel<number>({ required: true });
 
 const totalPages = computed(() => {
-  if (!total || !pageSize) {
+  if (!total || !internalPageSize.value) {
     return 0;
   }
-  return Math.ceil(total / pageSize);
+  return Math.ceil(total / internalPageSize.value);
 });
 const EllipsisText = '...';
 
@@ -53,6 +53,20 @@ const clickNext = () => {
     model.value++;
     emit('change', model.value);
   }
+};
+
+const internalPageSize = ref(pageSize);
+const internalPageSizeOptions = computed(() => {
+  return pageSizeOptions.map((sizeOption) => ({
+    label: `${sizeOption.toString()} / page`,
+    value: sizeOption,
+  }));
+});
+
+const handlePageSizeChange = () => {
+  // Reset to first page when page size changes
+  model.value = 1;
+  emit('change', model.value);
 };
 </script>
 
@@ -153,6 +167,16 @@ const clickNext = () => {
       >
         <BIcon icon="chevron-right" />
       </li>
+
+      <!--Page size select-->
+      <li>
+        <BSelect
+          v-model="internalPageSize"
+          :options="internalPageSizeOptions"
+          @update:modelValue="handlePageSizeChange"
+        />
+      </li>
+      <!---->
     </ul>
   </nav>
 </template>

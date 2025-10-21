@@ -2,6 +2,8 @@
   <header></header>
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
+    <BPagination :total="500" v-model="page" />
+
     <div>
       <BTooltip :tooltip="tooltipContent" placement="bottom-left">
         <span>Hello world!</span>
@@ -99,6 +101,7 @@ import {
   BCollapse,
   BCollapseGroup,
   BModal,
+  BPagination,
   BSelect,
   BTabContent,
   BTabContentGroup,
@@ -113,6 +116,8 @@ import BProgress from '@/components/BProgress/BProgress.vue';
 import BTooltip from '@/components/BTooltip/BTooltip.vue';
 import type { BSelectOption } from '@/types.ts';
 import { ref } from 'vue';
+
+const page = ref(1);
 
 const modal = ref(false);
 const select1 = ref('');

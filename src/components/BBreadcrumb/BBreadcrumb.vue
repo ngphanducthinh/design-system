@@ -66,7 +66,7 @@ const resizeObserver = new ResizeObserver(() => {
 });
 const isCollapsed = computed(() => breadcrumbItems.value.some((i) => i.hidden));
 const { componentUID } = useComponentId();
-const ellipsisMenuId = computed(() => `b-breadcrumb-menu-${componentUID}`);
+const ellipsisMenuId = computed(() => `b-breadcrumb-menu-${componentUID.value}`);
 //#region
 
 //#region Methods
