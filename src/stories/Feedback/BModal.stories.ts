@@ -32,7 +32,7 @@ export const Default: Story = {
     docs: {
       source: {
         code: `
-          <script>
+          <script setup lang="ts">
             const model = ref(false);
             const openModal = () => {
               model.value = true;

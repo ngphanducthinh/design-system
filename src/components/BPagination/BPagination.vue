@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import { BIcon, BSelect } from '@/components';
-import { BPaginationSize } from '@/types.ts';
+import { BCommonSize } from '@/types.ts';
 import { computed, ref } from 'vue';
 
 const {
   pageSize = 10,
   pageSizeOptions = [10, 20, 50, 100],
   total,
-  size = BPaginationSize.Medium,
+  size = BCommonSize.Medium,
 } = defineProps<{
   pageSize?: number;
   pageSizeOptions?: number[];
   total: number;
-  size?: `${BPaginationSize}`;
+  /**
+   * Size of the pagination component.
+   */
+  size?: `${BCommonSize}`;
+  showPageSizeSelector?: boolean;
 }>();
 
 /**
@@ -74,7 +78,14 @@ const handlePageSizeChange = () => {
   <nav>
     <ul class="b:inline-flex b:gap-x-1">
       <li
-        class="b:flex b:h-8 b:min-w-8 b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary"
+        :class="[
+          'b:flex b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary',
+          {
+            'b:h-6 b:min-w-6': size === BCommonSize.Small,
+            'b:h-8 b:min-w-8': size === BCommonSize.Medium,
+            'b:h-10 b:min-w-10': size === BCommonSize.Large,
+          },
+        ]"
         tabindex="0"
         @click="clickPrevious"
         @keydown.enter="clickPrevious"
@@ -84,10 +95,15 @@ const handlePageSizeChange = () => {
 
       <!--First-->
       <li
-        class="b:flex b:h-8 b:min-w-8 b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary"
         :class="[
+          'b:flex b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary',
           {
             'b:bg-primary b:text-white': model === 1,
+          },
+          {
+            'b:h-6 b:min-w-6': size === BCommonSize.Small,
+            'b:h-8 b:min-w-8': size === BCommonSize.Medium,
+            'b:h-10 b:min-w-10': size === BCommonSize.Large,
           },
         ]"
         tabindex="0"
@@ -103,7 +119,14 @@ const handlePageSizeChange = () => {
 
       <li
         v-show="model > 2"
-        class="b:flex b:h-8 b:min-w-8 b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary"
+        :class="[
+          'b:flex b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary',
+          {
+            'b:h-6 b:min-w-6': size === BCommonSize.Small,
+            'b:h-8 b:min-w-8': size === BCommonSize.Medium,
+            'b:h-10 b:min-w-10': size === BCommonSize.Large,
+          },
+        ]"
         tabindex="0"
         @click="clickPage(model - 1)"
         @keydown.enter="clickPage(model - 1)"
@@ -115,7 +138,14 @@ const handlePageSizeChange = () => {
       <!--Active item-->
       <li
         v-show="model !== 1 && model !== totalPages"
-        class="b:flex b:h-8 b:min-w-8 b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:bg-white b:px-1.5 b:text-primary b:ring b:ring-primary b:select-none b:hover:text-primary-hover b:hover:ring-primary-hover"
+        :class="[
+          'b:flex b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:bg-white b:px-1.5 b:text-primary b:ring b:ring-primary b:select-none b:hover:text-primary-hover b:hover:ring-primary-hover',
+          {
+            'b:h-6 b:min-w-6': size === BCommonSize.Small,
+            'b:h-8 b:min-w-8': size === BCommonSize.Medium,
+            'b:h-10 b:min-w-10': size === BCommonSize.Large,
+          },
+        ]"
         tabindex="0"
         @click="clickPage(model)"
         @keydown.enter="clickPage(model)"
@@ -127,7 +157,14 @@ const handlePageSizeChange = () => {
       <!---->
       <li
         v-show="model < totalPages - 1"
-        class="b:flex b:h-8 b:min-w-8 b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary"
+        :class="[
+          'b:flex b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary',
+          {
+            'b:h-6 b:min-w-6': size === BCommonSize.Small,
+            'b:h-8 b:min-w-8': size === BCommonSize.Medium,
+            'b:h-10 b:min-w-10': size === BCommonSize.Large,
+          },
+        ]"
         tabindex="0"
         @click="clickPage(model + 1)"
         @keydown.enter="clickPage(model + 1)"
@@ -143,10 +180,15 @@ const handlePageSizeChange = () => {
       <!--Last-->
       <li
         v-show="totalPages > 1"
-        class="b:flex b:h-8 b:min-w-8 b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary"
         :class="[
+          'b:flex b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary',
           {
             'b:bg-primary b:text-white': model === totalPages,
+          },
+          {
+            'b:h-6 b:min-w-6': size === BCommonSize.Small,
+            'b:h-8 b:min-w-8': size === BCommonSize.Medium,
+            'b:h-10 b:min-w-10': size === BCommonSize.Large,
           },
         ]"
         tabindex="0"
@@ -160,7 +202,14 @@ const handlePageSizeChange = () => {
       <!---->
 
       <li
-        class="b:flex b:h-8 b:min-w-8 b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary"
+        :class="[
+          'b:flex b:cursor-pointer b:items-center b:justify-center b:rounded-lg b:px-1.5 b:transition-all b:duration-200 b:select-none b:hover:not-disabled:bg-secondary',
+          {
+            'b:h-6 b:min-w-6': size === BCommonSize.Small,
+            'b:h-8 b:min-w-8': size === BCommonSize.Medium,
+            'b:h-10 b:min-w-10': size === BCommonSize.Large,
+          },
+        ]"
         tabindex="0"
         @click="clickNext"
         @keydown.enter="clickNext"
@@ -169,10 +218,11 @@ const handlePageSizeChange = () => {
       </li>
 
       <!--Page size select-->
-      <li>
+      <li v-if="showPageSizeSelector">
         <BSelect
           v-model="internalPageSize"
           :options="internalPageSizeOptions"
+          :size="size"
           @update:modelValue="handlePageSizeChange"
         />
       </li>

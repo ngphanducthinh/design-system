@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { BIcon, BInput } from '@/components';
 import { useComponentId } from '@/composables/useComponentId.ts';
-import type { BSelectOption } from '@/types.ts';
+import { BCommonSize, type BSelectOption } from '@/types.ts';
 import { computed, ref, watch } from 'vue';
 
 /**
@@ -23,9 +23,13 @@ const { options = [], searchable } = defineProps<{
    */
   disabled?: boolean;
   /**
-   * Placeholder text for the input field.
+   * Placeholder text for the select component.
    */
   placeholder?: string;
+  /**
+   * Size of the select component.
+   */
+  size?: `${BCommonSize}`;
 }>();
 const model = defineModel<unknown>({ required: true });
 
@@ -104,6 +108,7 @@ watch(model, (newValue) => {
       :readonly="!searchable"
       :placeholder="placeholder"
       :disabled="disabled"
+      :size="size"
       @update:modelValue="search"
       @click="toggleMenu"
     />

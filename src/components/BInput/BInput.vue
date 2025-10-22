@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { BInputSize, BInputVariant } from '@/types.ts';
+import { BCommonSize, BInputVariant } from '@/types.ts';
 
 const {
-  size = BInputSize.Medium,
+  size = BCommonSize.Medium,
   placeholder,
   variant = BInputVariant.Outline,
 } = defineProps<{
   /**
    * Size of the input field.
    */
-  size?: `${BInputSize}`;
+  size?: `${BCommonSize}`;
   /**
    * Placeholder text for the input field.
    */
@@ -33,9 +33,9 @@ const model = defineModel<string>({ required: true });
     class="b:box-border b:transition-all b:duration-200 b:placeholder:text-zinc-300"
     :class="[
       {
-        'b:h-6 b:px-2 b:text-sm': size === BInputSize.Small,
-        'b:h-8 b:px-3 b:text-sm': size === BInputSize.Medium,
-        'b:h-10 b:px-3 b:text-base': size === BInputSize.Large,
+        'b:h-6 b:px-2 b:text-sm': size === BCommonSize.Small,
+        'b:h-8 b:px-3 b:text-sm': size === BCommonSize.Medium,
+        'b:h-10 b:px-3 b:text-base': size === BCommonSize.Large,
       },
       {
         'b:rounded-lg b:border-1 b:border-zinc-300 b:hover:not-disabled:border-primary b:focus-visible:not-disabled:border-primary':

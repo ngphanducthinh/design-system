@@ -2,7 +2,9 @@
   <header></header>
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
-    <BPagination :total="500" v-model="page" />
+    <BPagination :total="40" v-model="page" showPageSizeSelector size="sm" />
+    <BPagination :total="40" v-model="page" showPageSizeSelector />
+    <BPagination :total="40" v-model="page" showPageSizeSelector size="lg" />
 
     <div>
       <BTooltip :tooltip="tooltipContent" placement="bottom-left">

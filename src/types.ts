@@ -1,6 +1,6 @@
 import type { RouteLocationRaw } from 'vue-router';
 
-export enum BButtonSize {
+export enum BCommonSize {
   Small = 'sm',
   Medium = 'md',
   Large = 'lg',
@@ -51,18 +51,6 @@ export enum BIconColor {
   Failure = 'failure',
   Warning = 'warning',
   Info = 'info',
-}
-
-export enum BPaginationSize {
-  Small = 'sm',
-  Medium = 'md',
-  Large = 'lg',
-}
-
-export enum BInputSize {
-  Small = 'sm',
-  Medium = 'md',
-  Large = 'lg',
 }
 
 export enum BInputVariant {

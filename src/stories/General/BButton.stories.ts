@@ -1,5 +1,5 @@
 import { BButton } from '@/components';
-import { BButtonColor, BButtonSize, BButtonVariant } from '@/types.ts';
+import { BButtonColor, BButtonVariant, BCommonSize } from '@/types.ts';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
@@ -10,7 +10,7 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     color: { control: 'select', options: Object.values(BButtonColor) },
-    size: { control: 'select', options: Object.values(BButtonSize) },
+    size: { control: 'select', options: Object.values(BCommonSize) },
     variant: { control: 'select', options: Object.values(BButtonVariant) },
   },
   parameters: {
@@ -37,7 +37,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     color: BButtonColor.Primary,
-    size: BButtonSize.Medium,
+    size: BCommonSize.Medium,
     disabled: false,
     variant: BButtonVariant.Solid,
   },

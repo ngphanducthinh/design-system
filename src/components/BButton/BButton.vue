@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import BIcon from '@/components/BIcon/BIcon.vue';
 import { BIconBrandName, type BIconName } from '@/components/BIcon/BIconEnum.ts';
-import { BButtonColor, BButtonSize, BButtonVariant, BIconColor, BIconSize } from '@/types.ts';
+import { BButtonColor, BButtonVariant, BCommonSize, BIconColor, BIconSize } from '@/types.ts';
 import { useSlots } from 'vue';
 
 const {
   color = BButtonColor.Primary,
-  size = BButtonSize.Medium,
+  size = BCommonSize.Medium,
   variant = BButtonVariant.Solid,
   disabled = false,
   prependIcon,
@@ -23,7 +23,7 @@ const {
   /**
    * The size of the button.
    */
-  size?: `${BButtonSize}`;
+  size?: `${BCommonSize}`;
   /**
    * The variant of the button.
    */
@@ -72,7 +72,7 @@ const isColor = (value: `${BButtonColor}`) => {
 const isVariant = (value: `${BButtonVariant}`) => {
   return variant === value;
 };
-const isSize = (value: `${BButtonSize}`) => {
+const isSize = (value: `${BCommonSize}`) => {
   return size === value;
 };
 
