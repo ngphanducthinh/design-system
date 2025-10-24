@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import BIcon from '@/components/BIcon/BIcon.vue';
 import { BIconBrandName, type BIconName } from '@/components/BIcon/BIconEnum.ts';
-import { BButtonColor, BButtonVariant, BCommonSize, BIconColor, BIconSize } from '@/types.ts';
+import { BButtonVariant, BCommonColor, BCommonSize, BIconSize } from '@/types.ts';
 import { useSlots } from 'vue';
 
 const {
-  color = BButtonColor.Primary,
+  color = BCommonColor.Primary,
   size = BCommonSize.Medium,
   variant = BButtonVariant.Solid,
   disabled = false,
@@ -19,7 +19,7 @@ const {
   /**
    * The color of the button.
    */
-  color?: `${BButtonColor}`;
+  color?: `${BCommonColor}`;
   /**
    * The size of the button.
    */
@@ -41,7 +41,7 @@ const {
    * Custom color for the prepend icon, can be a CSS color value or a theme color
    * @example 'currentColor', 'primary', 'secondary', '#808080', 'rgb(128, 128, 128)', 'hsl(0, 0%, 50%)'
    */
-  prependIconColor?: string | 'currentColor' | `${BIconColor}`;
+  prependIconColor?: string | 'currentColor' | `${BCommonColor}`;
   /**
    * Prepend icon size, should match the BIconSize enum.
    * @example 'xs', 'sm', 'md', 'lg'
@@ -57,7 +57,7 @@ const {
    * Custom color for the append icon, can be a CSS color value or a theme color
    * @example 'currentColor', 'primary', 'secondary', '#808080', 'rgb(128, 128, 128)', 'hsl(0, 0%, 50%)'
    */
-  appendIconColor?: string | 'currentColor' | `${BIconColor}`;
+  appendIconColor?: string | 'currentColor' | `${BCommonColor}`;
   /**
    * Append icon size, should match the BIconSize enum.
    * @example 'xs', 'sm', 'md', 'lg'
@@ -66,7 +66,7 @@ const {
   appendIconSize?: `${BIconSize}`;
 }>();
 
-const isColor = (value: `${BButtonColor}`) => {
+const isColor = (value: `${BCommonColor}`) => {
   return color === value;
 };
 const isVariant = (value: `${BButtonVariant}`) => {

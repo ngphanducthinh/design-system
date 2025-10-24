@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 
-import { BButtonColor, BButtonSize } from '@/types.ts';
+import { BCommonColor, BCommonSize } from '@/types.ts';
 import BButton from './BButton.vue';
 
 describe('BButton', () => {
@@ -17,27 +17,27 @@ describe('BButton', () => {
     expect(wrapper.attributes('disabled')).toBeUndefined();
 
     // Default variant should be primary
-    expect(wrapper.classes()).toContain('b:bg-sky-500');
+    expect(wrapper.classes()).toContain('b:bg-primary');
 
     // Default size should be medium
-    expect(wrapper.classes()).toContain('b:h-9');
-    expect(wrapper.classes()).toContain('b:p-3');
+    expect(wrapper.classes()).toContain('b:h-8');
+    expect(wrapper.classes()).toContain('b:px-4');
   });
 
   it('renders with different variants', () => {
     const variants = [
-      { prop: BButtonColor.Primary, className: 'b:bg-sky-500' },
-      { prop: BButtonColor.Secondary, className: 'b:bg-slate-500' },
-      { prop: BButtonColor.Success, className: 'b:bg-green-500' },
-      { prop: BButtonColor.Failure, className: 'b:bg-red-500' },
-      { prop: BButtonColor.Warning, className: 'b:bg-yellow-500' },
-      { prop: BButtonColor.Info, className: 'b:bg-blue-500' },
+      { prop: BCommonColor.Primary, className: 'b:bg-primary' },
+      { prop: BCommonColor.Secondary, className: 'b:bg-secondary' },
+      { prop: BCommonColor.Success, className: 'b:bg-success' },
+      { prop: BCommonColor.Failure, className: 'b:bg-failure' },
+      { prop: BCommonColor.Warning, className: 'b:bg-warning' },
+      { prop: BCommonColor.Info, className: 'b:bg-info' },
     ];
 
     variants.forEach(({ prop, className }) => {
       const wrapper = mount(BButton, {
         props: {
-          variant: prop,
+          color: prop,
         },
       });
 
@@ -47,12 +47,12 @@ describe('BButton', () => {
 
   it('renders with different sizes', () => {
     const sizes = [
-      { prop: BButtonSize.Small, height: 'b:h-7', padding: 'b:p-2' },
-      { prop: BButtonSize.Medium, height: 'b:h-9', padding: 'b:p-3' },
-      { prop: BButtonSize.Large, height: 'b:h-10', padding: 'b:p-4' },
+      { prop: BCommonSize.Small, height: 'b:h-6', width: 'b:w-6' },
+      { prop: BCommonSize.Medium, height: 'b:h-8', width: 'b:w-8' },
+      { prop: BCommonSize.Large, height: 'b:h-10', width: 'b:w-10' },
     ];
 
-    sizes.forEach(({ prop, height, padding }) => {
+    sizes.forEach(({ prop, height, width }) => {
       const wrapper = mount(BButton, {
         props: {
           size: prop,
@@ -60,23 +60,23 @@ describe('BButton', () => {
       });
 
       expect(wrapper.classes()).toContain(height);
-      expect(wrapper.classes()).toContain(padding);
+      expect(wrapper.classes()).toContain(width);
     });
   });
 
   it('applies correct text color based on variant', () => {
     // All variants except secondary should have white text
     const whiteTextVariants = [
-      BButtonColor.Primary,
-      BButtonColor.Success,
-      BButtonColor.Failure,
-      BButtonColor.Warning,
-      BButtonColor.Info,
+      BCommonColor.Primary,
+      BCommonColor.Success,
+      BCommonColor.Failure,
+      BCommonColor.Warning,
+      BCommonColor.Info,
     ];
 
-    whiteTextVariants.forEach((variant) => {
+    whiteTextVariants.forEach((color) => {
       const wrapper = mount(BButton, {
-        props: { variant },
+        props: { color },
       });
 
       expect(wrapper.classes()).toContain('b:text-white');
@@ -85,7 +85,7 @@ describe('BButton', () => {
 
     // Secondary variant should have black text
     const wrapper = mount(BButton, {
-      props: { variant: BButtonColor.Secondary },
+      props: { color: BCommonColor.Secondary },
     });
 
     expect(wrapper.classes()).toContain('b:text-black');

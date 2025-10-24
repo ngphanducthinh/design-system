@@ -2,6 +2,10 @@
   <header></header>
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
+    <div>
+      <BBadge text="New" v-show="showBadge" />
+    </div>
+
     <BPagination :total="40" v-model="page" showPageSizeSelector size="sm" />
     <BPagination :total="40" v-model="page" showPageSizeSelector />
     <BPagination :total="40" v-model="page" showPageSizeSelector size="lg" />
@@ -98,6 +102,7 @@
 </template>
 <script setup lang="ts">
 import {
+  BBadge,
   BBreadcrumb,
   BButton,
   BCollapse,
@@ -116,6 +121,7 @@ import BModalFooter from '@/components/BModal/BModalFooter.vue';
 import BModalHeader from '@/components/BModal/BModalHeader.vue';
 import BProgress from '@/components/BProgress/BProgress.vue';
 import BTooltip from '@/components/BTooltip/BTooltip.vue';
+
 import type { BSelectOption } from '@/types.ts';
 import { ref } from 'vue';
 
@@ -154,5 +160,13 @@ setTimeout(() => {
 const tooltipContent = ref('Tooltip content!');
 setTimeout(() => {
   tooltipContent.value = 'Updated tooltip content!';
+}, 2000);
+
+const showBadge = ref(false);
+setTimeout(() => {
+  showBadge.value = true;
+}, 1000);
+setTimeout(() => {
+  showBadge.value = false;
 }, 2000);
 </script>

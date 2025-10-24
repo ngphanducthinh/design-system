@@ -6,7 +6,7 @@ export enum BCommonSize {
   Large = 'lg',
 }
 
-export enum BButtonColor {
+export enum BCommonColor {
   Primary = 'primary',
   Secondary = 'secondary',
   Success = 'success',
@@ -42,15 +42,6 @@ export enum BIconVariant {
   SharpThin = 'sharp-thin',
   Solid = 'solid',
   Thin = 'thin',
-}
-
-export enum BIconColor {
-  Primary = 'primary',
-  Secondary = 'secondary',
-  Success = 'success',
-  Failure = 'failure',
-  Warning = 'warning',
-  Info = 'info',
 }
 
 export enum BInputVariant {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { BIconBrandName, BIconName } from '@/components/BIcon/BIconEnum.ts';
 import { BIconSizeMap } from '@/constants';
-import { BIconColor, BIconSize, BIconVariant } from '@/types';
+import { BCommonColor, BIconSize, BIconVariant } from '@/types';
 import { computed, ref, useAttrs, watch } from 'vue';
 
 const {
@@ -34,7 +34,7 @@ const {
    * Custom color for the icon, can be a CSS color value or a theme color
    * @example 'currentColor', 'primary', 'secondary', '#808080', 'rgb(128, 128, 128)', 'hsl(0, 0%, 50%)'
    */
-  color?: string | 'currentColor' | `${BIconColor}`;
+  color?: string | 'currentColor' | `${BCommonColor}`;
   /**
    * Custom width
    * @example '2rem', '24px', '1.5em'
@@ -74,7 +74,7 @@ const svgStyle = computed(() => ({
   width: width || `${BIconSizeMap[size]}rem`,
   height: height || `${BIconSizeMap[size]}rem`,
   transform: `rotate(${rotate}deg)`,
-  color: ['currentColor', ...Object.values(BIconColor)].includes(color) ? undefined : color,
+  color: ['currentColor', ...Object.values(BCommonColor)].includes(color) ? undefined : color,
 }));
 
 const attrs = useAttrs();
