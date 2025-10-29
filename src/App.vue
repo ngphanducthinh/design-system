@@ -3,7 +3,11 @@
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
     <div>
-      <BBadge text="New" v-show="showBadge" />
+      <BBadge text="Wow" color="warning" />
+      <BBadge color="warning"> Hello world! </BBadge>
+      <div>
+        <BBadge text="Wow" color="warning" dot />
+      </div>
     </div>
 
     <BPagination :total="40" v-model="page" showPageSizeSelector size="sm" />
@@ -162,11 +166,11 @@ setTimeout(() => {
   tooltipContent.value = 'Updated tooltip content!';
 }, 2000);
 
-const showBadge = ref(false);
-setTimeout(() => {
-  showBadge.value = true;
-}, 1000);
+const showBadge = ref(true);
 setTimeout(() => {
   showBadge.value = false;
+  setTimeout(() => {
+    showBadge.value = true;
+  }, 2000);
 }, 2000);
 </script>
