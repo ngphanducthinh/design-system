@@ -74,9 +74,7 @@ watch(
           'b:text-white': !isColor('secondary'),
           'b:text-black': isColor('secondary'),
         },
-        dot
-          ? 'b:inline-block b:h-2 b:w-2 b:min-w-2 b:rounded-full'
-          : 'b:rounded-xl b:px-2 b:py-0.5',
+        dot ? 'b:inline-block b:min-h-2 b:min-w-2 b:rounded-full' : 'b:rounded-xl b:px-2 b:py-0.5',
       ]"
     >
       <slot v-if="!dot">
