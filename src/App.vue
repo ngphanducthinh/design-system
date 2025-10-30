@@ -2,6 +2,8 @@
   <header></header>
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
+    <BSwitch v-model="switchValue" />
+
     <div>
       <BBadge text="Wow" color="warning" />
       <BBadge color="warning"> Hello world! </BBadge>
@@ -114,6 +116,7 @@ import {
   BModal,
   BPagination,
   BSelect,
+  BSwitch,
   BTabContent,
   BTabContentGroup,
   BTabs,
@@ -173,4 +176,6 @@ setTimeout(() => {
     showBadge.value = true;
   }, 2000);
 }, 2000);
+
+const switchValue = ref(false);
 </script>

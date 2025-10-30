@@ -58,6 +58,7 @@ watch(
   >
     <sup
       v-if="!hiddenInner"
+      class="b:shadow-2xs"
       :class="[
         {
           'b:bg-primary': color === 'primary',
