@@ -23,7 +23,7 @@ function toEnumName(filename: string): string {
   const nameWithoutExtension = filename.replace('.svg', '');
 
   // Handle special cases for starting with numbers or special characters
-  const validJsStart = /^[0-9\-\.]/;
+  const validJsStart = /^[0-9\-.]/;
   let enumName = nameWithoutExtension;
 
   // Convert kebab-case to PascalCase
@@ -122,3 +122,11 @@ ${brandEnumContent}
 
 // Run the generator
 generateIconEnums();
+
+/**
+ * Reason for using `--allow no-shadow-restricted-names` with oxlint:
+ * We intentionally generate enum/property keys that match JS globals (e.g., `Infinity`) as readable icon names.
+ * These appear only as enum keys and string values - they do not modify or shadow runtime globals in our code.
+ * OXLint flags them as a correctness warning; allowing the rule here avoids noisy renames that would break icon names/consumers.
+ * Scope is limited to the oxlint run (`npm run lint:oxlint`); other linters and correctness checks remain enabled.
+ */

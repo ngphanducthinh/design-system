@@ -6,7 +6,7 @@ import { computed, getCurrentInstance, inject, ref, watch } from 'vue';
 
 //#region Props
 const model = defineModel<boolean>();
-const {} = defineProps<{
+defineProps<{
   header?: string;
   hideIcon?: boolean;
 }>();
@@ -28,10 +28,10 @@ const combinedModel = computed({
 
 // Give collapseList default value as empty array
 const collapseList = inject(PIKey.BCollapseGroup, ref([]));
-const instance = getCurrentInstance();
+const instance = getCurrentInstance()!;
 
 if (collapseList.value) {
-  collapseList.value.push({ id: instance?.uid!, isOpen: false });
+  collapseList.value.push({ id: instance.uid, isOpen: false });
 }
 console.log(collapseList.value);
 
@@ -45,7 +45,7 @@ const open = () => {
 watch(
   collapseList,
   () => {
-    const found = collapseList.value.find((c) => c.id === instance?.uid! && c.isOpen);
+    const found = collapseList.value.find((c) => c.id === instance.uid && c.isOpen);
     if (found) {
       combinedModel.value = true;
     }
