@@ -1,16 +1,19 @@
 {
   "name": "design-system",
-  "version": "0.0.0",
+  "version": "0.0.111",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-s lint-all build:lib",
+    "build:lib": "vite build && npm run build:types",
+    "build:types": "vue-tsc --project tsconfig.types.json --declaration --emitDeclarationOnly --outDir dist/types",
+    "lint-all": "run-p lint type-check",
+    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore --allow no-shadow-restricted-names",
     "lint:eslint": "eslint . --fix",
     "lint": "run-s lint:*",
@@ -65,5 +68,31 @@
     "vue-router": {
       "optional": true
     }
-  }
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/design-system.js",
+  "module": "./dist/design-system.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/design-system.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./style.css": {
+      "import": "./dist/design-system.css",
+      "require": "./dist/design-system.css"
+    }
+  },
+  "sideEffects": [
+    "dist/design-system.css",
+    "dist/**/*.css"
+  ],
+  "keywords": [
+    "vue",
+    "ui library",
+    "component library",
+    "design system"
+  ]
 }
