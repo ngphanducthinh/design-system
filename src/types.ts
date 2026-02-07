@@ -1,3 +1,4 @@
+import type { BIconBrandName, BIconName } from './components/BIcon/BIconEnum.ts';
 import type { RouteLocationRaw } from 'vue-router';
 
 export enum BCommonSize {
@@ -91,4 +92,36 @@ export enum BTooltipPlacement {
   LeftBottom = 'left-bottom',
   LeftCenter = 'left-center',
   LeftTop = 'left-top',
+}
+
+export enum BStepsStatus {
+  Wait = 'wait',
+  Process = 'process',
+  Finish = 'finish',
+  Error = 'error',
+}
+
+export enum BStepsDirection {
+  Horizontal = 'horizontal',
+  Vertical = 'vertical',
+}
+
+export enum BStepsType {
+  Default = 'default',
+  Navigation = 'navigation',
+  Inline = 'inline',
+}
+
+export enum BStepsLabelPlacement {
+  Horizontal = 'horizontal',
+  Vertical = 'vertical',
+}
+
+export interface BStepItem {
+  title: string;
+  subTitle?: string;
+  description?: string;
+  status?: `${BStepsStatus}`;
+  icon?: `${BIconName}` | `${BIconBrandName}`;
+  disabled?: boolean;
 }
