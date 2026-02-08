@@ -17,10 +17,6 @@ export interface BStepsProps {
    */
   items?: BStepItem[];
   /**
-   * Current step index (0-based).
-   */
-  current?: number;
-  /**
    * Status applied to the current step if not overridden by the item.
    */
   status?: `${BStepsStatus}`;
@@ -44,14 +40,14 @@ export interface BStepsProps {
 
 const props = withDefaults(defineProps<BStepsProps>(), {
   items: () => [],
-  current: 0,
   status: BStepsStatus.Process,
   direction: BStepsDirection.Horizontal,
   size: BCommonSize.Medium,
   labelPlacement: BStepsLabelPlacement.Horizontal,
   type: BStepsType.Default,
 });
-const { items, current, status, direction, size, labelPlacement, type } = toRefs(props);
+const { items, status, direction, size, labelPlacement, type } = toRefs(props);
+const current = defineModel<number>('current', { default: 0 });
 
 const emit = defineEmits<{
   /**
