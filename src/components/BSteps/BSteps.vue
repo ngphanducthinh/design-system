@@ -259,12 +259,24 @@ const descriptionClass = (status: `${BStepsStatus}`) => ({
 .b-steps__item {
   position: relative;
   flex: 1;
+  min-width: 0;
 }
 
 .b-steps__item-inner {
   display: flex;
   align-items: flex-start;
   gap: var(--b-steps-gap);
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.b-steps__icon {
+  flex-shrink: 0;
+}
+
+.b-steps__content {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .b-steps--label-vertical .b-steps__item-inner {
@@ -315,7 +327,8 @@ const descriptionClass = (status: `${BStepsStatus}`) => ({
 }
 
 .b-steps__tail {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 1.5rem;
   height: 1px;
   margin-top: calc(var(--b-steps-icon-size) / 2);
   background-color: var(--b-steps-tail-color);
