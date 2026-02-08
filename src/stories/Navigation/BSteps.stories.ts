@@ -6,6 +6,7 @@ import {
   BStepsStatus,
   BStepsType,
 } from '@/types.ts';
+import { expect, userEvent, within } from '@storybook/test';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { ref } from 'vue';
 
@@ -72,4 +73,40 @@ export const Default: Story = {
       <BSteps v-bind="args" v-model:current="current" />
     `,
   }),
+};
+
+export const Interactive: Story = {
+  args: {
+    current: 0,
+    direction: BStepsDirection.Horizontal,
+    labelPlacement: BStepsLabelPlacement.Horizontal,
+    size: BCommonSize.Medium,
+    status: BStepsStatus.Process,
+    type: BStepsType.Navigation,
+    items: [
+      { title: 'Verify email' },
+      { title: 'Profile setup' },
+      { title: 'Finish' },
+    ],
+  },
+  render: (args: any) => ({
+    components: { BSteps },
+    setup() {
+      const current = ref(args.current);
+      return { args, current };
+    },
+    template: `
+      <BSteps v-bind="args" v-model:current="current" />
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const profileStep = await canvas.findByText('Profile setup');
+
+    await userEvent.click(profileStep);
+
+    const activeStep = canvasElement.querySelector('[aria-current="step"]');
+    expect(activeStep).toBeTruthy();
+    expect(activeStep?.textContent).toContain('Profile setup');
+  },
 };
