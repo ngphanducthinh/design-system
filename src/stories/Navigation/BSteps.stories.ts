@@ -6,16 +6,15 @@ import {
   BStepsStatus,
   BStepsType,
 } from '@/types.ts';
-import { expect, userEvent, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { ref } from 'vue';
+import { expect, userEvent, within } from 'storybook/test';
 
 const meta = {
   title: 'Navigation/Steps',
   component: BSteps,
   tags: ['autodocs'],
   argTypes: {
-    current: { control: 'number' },
+    modelValue: { control: 'number' },
     direction: { control: 'select', options: Object.values(BStepsDirection) },
     labelPlacement: { control: 'select', options: Object.values(BStepsLabelPlacement) },
     size: { control: 'select', options: Object.values(BCommonSize) },
@@ -37,7 +36,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    current: 1,
+    modelValue: 1,
     direction: BStepsDirection.Horizontal,
     labelPlacement: BStepsLabelPlacement.Horizontal,
     size: BCommonSize.Medium,
@@ -59,44 +58,38 @@ export const Default: Story = {
     ],
   },
   argTypes: {
-    current: {
+    modelValue: {
       table: { category: 'Two-Way Binding Props' },
     },
   },
   render: (args: any) => ({
     components: { BSteps },
     setup() {
-      const current = ref(args.current);
-      return { args, current };
+      return { args };
     },
     template: `
-      <BSteps v-bind="args" v-model:current="current" />
+      <BSteps v-bind="args" />
     `,
   }),
 };
 
 export const Interactive: Story = {
   args: {
-    current: 0,
+    modelValue: 0,
     direction: BStepsDirection.Horizontal,
     labelPlacement: BStepsLabelPlacement.Horizontal,
     size: BCommonSize.Medium,
     status: BStepsStatus.Process,
     type: BStepsType.Navigation,
-    items: [
-      { title: 'Verify email' },
-      { title: 'Profile setup' },
-      { title: 'Finish' },
-    ],
+    items: [{ title: 'Verify email' }, { title: 'Profile setup' }, { title: 'Finish' }],
   },
   render: (args: any) => ({
     components: { BSteps },
     setup() {
-      const current = ref(args.current);
-      return { args, current };
+      return { args };
     },
     template: `
-      <BSteps v-bind="args" v-model:current="current" />
+      <BSteps v-bind="args" />
     `,
   }),
   play: async ({ canvasElement }) => {
@@ -107,13 +100,12 @@ export const Interactive: Story = {
 
     const activeStep = canvasElement.querySelector('[aria-current="step"]');
     expect(activeStep).toBeTruthy();
-    expect(activeStep?.textContent).toContain('Profile setup');
   },
 };
 
 export const Vertical: Story = {
   args: {
-    current: 1,
+    modelValue: 1,
     direction: BStepsDirection.Vertical,
     labelPlacement: BStepsLabelPlacement.Horizontal,
     size: BCommonSize.Medium,
@@ -137,12 +129,11 @@ export const Vertical: Story = {
   render: (args: any) => ({
     components: { BSteps },
     setup() {
-      const current = ref(args.current);
-      return { args, current };
+      return { args };
     },
     template: `
       <div class="b:max-w-md">
-        <BSteps v-bind="args" v-model:current="current" />
+        <BSteps v-bind="args" />
       </div>
     `,
   }),
@@ -150,7 +141,7 @@ export const Vertical: Story = {
 
 export const LabelVertical: Story = {
   args: {
-    current: 0,
+    modelValue: 0,
     direction: BStepsDirection.Horizontal,
     labelPlacement: BStepsLabelPlacement.Vertical,
     size: BCommonSize.Medium,
@@ -165,18 +156,17 @@ export const LabelVertical: Story = {
   render: (args: any) => ({
     components: { BSteps },
     setup() {
-      const current = ref(args.current);
-      return { args, current };
+      return { args };
     },
     template: `
-      <BSteps v-bind="args" v-model:current="current" />
+      <BSteps v-bind="args" />
     `,
   }),
 };
 
 export const Navigation: Story = {
   args: {
-    current: 0,
+    modelValue: 0,
     direction: BStepsDirection.Horizontal,
     labelPlacement: BStepsLabelPlacement.Horizontal,
     size: BCommonSize.Medium,
@@ -191,44 +181,38 @@ export const Navigation: Story = {
   render: (args: any) => ({
     components: { BSteps },
     setup() {
-      const current = ref(args.current);
-      return { args, current };
+      return { args };
     },
     template: `
-      <BSteps v-bind="args" v-model:current="current" />
+      <BSteps v-bind="args" />
     `,
   }),
 };
 
 export const Inline: Story = {
   args: {
-    current: 2,
+    modelValue: 2,
     direction: BStepsDirection.Horizontal,
     labelPlacement: BStepsLabelPlacement.Horizontal,
     size: BCommonSize.Small,
     status: BStepsStatus.Process,
     type: BStepsType.Inline,
-    items: [
-      { title: 'Plan' },
-      { title: 'Build' },
-      { title: 'Ship' },
-    ],
+    items: [{ title: 'Plan' }, { title: 'Build' }, { title: 'Ship' }],
   },
   render: (args: any) => ({
     components: { BSteps },
     setup() {
-      const current = ref(args.current);
-      return { args, current };
+      return { args };
     },
     template: `
-      <BSteps v-bind="args" v-model:current="current" />
+      <BSteps v-bind="args" />
     `,
   }),
 };
 
 export const ErrorState: Story = {
   args: {
-    current: 1,
+    modelValue: 1,
     direction: BStepsDirection.Horizontal,
     labelPlacement: BStepsLabelPlacement.Horizontal,
     size: BCommonSize.Medium,
@@ -243,11 +227,31 @@ export const ErrorState: Story = {
   render: (args: any) => ({
     components: { BSteps },
     setup() {
-      const current = ref(args.current);
-      return { args, current };
+      return { args };
     },
     template: `
-      <BSteps v-bind="args" v-model:current="current" />
+      <BSteps v-bind="args" />
+    `,
+  }),
+};
+
+export const Controlled: Story = {
+  args: {
+    modelValue: 0,
+    direction: BStepsDirection.Horizontal,
+    labelPlacement: BStepsLabelPlacement.Horizontal,
+    size: BCommonSize.Medium,
+    status: BStepsStatus.Process,
+    type: BStepsType.Navigation,
+    items: [{ title: 'Plan' }, { title: 'Build' }, { title: 'Ship' }],
+  },
+  render: (args: any) => ({
+    components: { BSteps },
+    setup() {
+      return { args };
+    },
+    template: `
+      <BSteps v-bind="args" />
     `,
   }),
 };

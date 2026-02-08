@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
+import { nextTick, ref } from 'vue';
 
 import {
   BStepsDirection,
@@ -23,7 +24,7 @@ describe('BSteps', () => {
     const wrapper = mount(BSteps, {
       props: {
         items,
-        current: 1,
+        modelValue: 1,
       },
       global: {
         stubs: {
@@ -47,7 +48,7 @@ describe('BSteps', () => {
     const wrapper = mount(BSteps, {
       props: {
         items,
-        current: 1,
+        modelValue: 1,
       },
       global: {
         stubs: {
@@ -68,7 +69,7 @@ describe('BSteps', () => {
     const wrapper = mount(BSteps, {
       props: {
         items,
-        current: 0,
+        modelValue: 0,
         type: BStepsType.Navigation,
       },
       global: {
@@ -81,7 +82,7 @@ describe('BSteps', () => {
     const stepButtons = wrapper.findAll('.b-steps__item-inner');
     await stepButtons[1].trigger('click');
 
-    expect(wrapper.emitted('update:current')?.[0]).toEqual([1]);
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([1]);
     expect(wrapper.emitted('change')?.[0]).toEqual([1]);
   });
 
@@ -95,5 +96,30 @@ describe('BSteps', () => {
     });
 
     expect(wrapper.classes()).toContain('b-steps--vertical');
+  });
+
+  it('updates UI when v-model:current changes', async () => {
+    const wrapper = mount({
+      components: { BSteps },
+      setup() {
+        const current = ref(0);
+        const items: BStepItem[] = [
+          { title: 'Start' },
+          { title: 'Middle' },
+          { title: 'Done' },
+        ];
+        return { current, items };
+      },
+      template: `
+        <BSteps v-model="current" :items="items" />
+      `,
+    });
+
+    expect(wrapper.find('[aria-current="step"]').text()).toContain('Start');
+
+    wrapper.vm.current = 2;
+    await nextTick();
+
+    expect(wrapper.find('[aria-current="step"]').text()).toContain('Done');
   });
 });

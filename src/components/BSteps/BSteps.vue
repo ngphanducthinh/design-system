@@ -47,17 +47,13 @@ const props = withDefaults(defineProps<BStepsProps>(), {
   type: BStepsType.Default,
 });
 const { items, status, direction, size, labelPlacement, type } = toRefs(props);
-const current = defineModel<number>('current', { default: 0 });
+const model = defineModel<number>({ default: 0 });
 
 const emit = defineEmits<{
   /**
    * Emitted when the current step changes via user interaction.
    */
   change: [value: number];
-  /**
-   * Emitted for v-model:current updates.
-   */
-  'update:current': [value: number];
 }>();
 
 const normalizedSize = computed(() =>
@@ -85,10 +81,10 @@ const getStepStatus = (item: BStepItem, index: number) => {
   if (item.status) {
     return item.status;
   }
-  if (index === current.value) {
+  if (index === model.value) {
     return status.value || BStepsStatus.Process;
   }
-  if (index < current.value) {
+  if (index < model.value) {
     return BStepsStatus.Finish;
   }
   return BStepsStatus.Wait;
@@ -111,7 +107,7 @@ const onStepClick = (item: BStepItem, index: number) => {
   if (!isClickable.value || item.disabled) {
     return;
   }
-  emit('update:current', index);
+  model.value = index;
   emit('change', index);
 };
 
@@ -171,7 +167,7 @@ const descriptionClass = (status: `${BStepsStatus}`) => ({
         :role="isClickable && !item.disabled ? 'button' : undefined"
         :tabindex="isClickable && !item.disabled ? 0 : undefined"
         :aria-disabled="item.disabled ? 'true' : undefined"
-        :aria-current="index === current ? 'step' : undefined"
+        :aria-current="index === model ? 'step' : undefined"
         @click="onStepClick(item, index)"
         @keydown="onStepKeydown($event, item, index)"
       >
