@@ -127,10 +127,10 @@ const onStepKeydown = (event: KeyboardEvent, item: BStepItem, index: number) => 
 };
 
 const iconClass = (status: `${BStepsStatus}`) => ({
-  'b:border-secondary b:text-secondary': status === BStepsStatus.Wait,
+  'b:border-secondary b:bg-white b:text-secondary': status === BStepsStatus.Wait,
   'b:border-primary b:bg-primary b:text-white': status === BStepsStatus.Process,
-  'b:border-primary b:text-primary': status === BStepsStatus.Finish,
-  'b:border-failure b:text-failure': status === BStepsStatus.Error,
+  'b:border-primary b:bg-white b:text-primary': status === BStepsStatus.Finish,
+  'b:border-failure b:bg-white b:text-failure': status === BStepsStatus.Error,
 });
 const titleClass = (status: `${BStepsStatus}`) => ({
   'b:text-black-base': status === BStepsStatus.Process || status === BStepsStatus.Finish,
@@ -180,7 +180,7 @@ const descriptionClass = (status: `${BStepsStatus}`) => ({
         @keydown="onStepKeydown($event, item, index)"
       >
         <div
-          class="b-steps__icon b:flex b:items-center b:justify-center b:rounded-full b:border b:bg-white"
+          class="b-steps__icon b:flex b:items-center b:justify-center b:rounded-full b:border"
           :class="[
             iconClass(getStepStatus(item, index)),
             {
