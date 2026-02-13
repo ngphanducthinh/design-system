@@ -125,3 +125,22 @@ export interface BStepItem {
   icon?: `${BIconName}` | `${BIconBrandName}`;
   disabled?: boolean;
 }
+
+export enum BSkeletonAvatarShape {
+  Circle = 'circle',
+  Square = 'square',
+}
+
+export interface BSkeletonAvatar {
+  size?: `${BCommonSize}` | number;
+  shape?: `${BSkeletonAvatarShape}`;
+}
+
+export interface BSkeletonTitle {
+  width?: number | string;
+}
+
+export interface BSkeletonParagraph {
+  rows?: number;
+  width?: number | string | Array<number | string>;
+}
