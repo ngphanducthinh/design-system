@@ -73,6 +73,13 @@ export interface BBreadcrumbItem {
   to?: RouteLocationRaw;
 }
 
+export enum BAlertType {
+  Success = 'success',
+  Info = 'info',
+  Warning = 'warning',
+  Error = 'error',
+}
+
 export enum BTooltipTrigger {
   Hover = 'hover',
   Click = 'click',

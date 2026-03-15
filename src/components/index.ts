@@ -1,3 +1,4 @@
+export * from './BAlert';
 export { default as BBadge } from './BBadge/BBadge.vue';
 export { default as BBreadcrumb } from './BBreadcrumb/BBreadcrumb.vue';
 export { default as BButton } from './BButton/BButton.vue';
