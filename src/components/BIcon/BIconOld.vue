@@ -2,7 +2,7 @@
 import { BIconBrandName, BIconName } from '@/components/BIcon/BIconEnum.ts';
 import { BIconSizeMap } from '@/constants';
 import { BCommonColor, BIconSize, BIconVariant } from '@/types';
-import { computed, ref, watch } from 'vue';
+import { computed, ref, useAttrs, watch } from 'vue';
 
 const {
   icon,
@@ -69,48 +69,72 @@ const {
   brand?: boolean;
 }>();
 
-const ICONS_BASE_URL = import.meta.env.DEV
-  ? '/src/assets/icons'
-  : `/node_modules/${__PACKAGE_NAME__}/dist/assets/icons`;
-
-
+const svgRef = ref<HTMLDivElement | null>(null);
 const svgStyle = computed(() => ({
   width: width || `${BIconSizeMap[size]}rem`,
   height: height || `${BIconSizeMap[size]}rem`,
   transform: `rotate(${rotate}deg)`,
-  fill: ['currentColor', ...Object.values(BCommonColor)].includes(color) ? undefined : color,
+  color: ['currentColor', ...Object.values(BCommonColor)].includes(color) ? undefined : color,
 }));
 
-const iconFolder = computed(() => (brand ? 'brands' : variant));
+const attrs = useAttrs();
+const svgAttributes = ref<Record<string, string>>({});
+const svgInnerHtml = ref<string>('');
+const svgMergedAttributes = computed(() => ({
+  ...svgAttributes.value,
+  ...attrs,
+}));
 
-/**
- * SVG markup fetched at runtime from the static assets folder.
- * No dynamic import() — icons are NOT bundled as JS chunks.
- * They are served as plain .svg files copied to dist/assets/icons by viteStaticCopy.
- */
-const svgMarkup = ref<string>('');
-
-const loadIcon = async () => {
-  svgMarkup.value = '';
-  const url = `${ICONS_BASE_URL}/${iconFolder.value}/${icon}.svg`;
+const getIconFolder = () => (brand ? 'brands' : variant);
+const importIcon = async () => {
+  // Should keep SVG files in one folder
+  // Because each import statement results in a file system access. File system accesses are relatively expensive operations, and we should avoid them when possible.
   try {
-    const res = await fetch(url);
-    if (!res.ok) {
-      console.warn(`[BIcon] Could not load icon '${icon}' from '${url}' (HTTP ${res.status})`);
+    if (!icon) {
       return;
     }
-    svgMarkup.value = await res.text();
-  } catch {
-    console.warn(`[BIcon] Could not load icon '${icon}' from '${url}'`);
+    return (await (() => import(`../../assets/icons/${getIconFolder()}/${icon}.svg?raw`))())
+      .default;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_) {
+    console.warn(`Icon '${icon}' not found`);
   }
 };
+const loadAndParseIcon = async () => {
+  // Load icon URL
+  const iconUrl = await importIcon();
+  if (!iconUrl) {
+    return;
+  }
 
-watch(() => [icon, iconFolder.value], loadIcon, { immediate: true });
+  // Parse the SVG string into an actual SVG element
+  const parser = new DOMParser();
+  const svgDoc = parser.parseFromString(iconUrl, 'image/svg+xml');
+  const svgElement = svgDoc.documentElement;
+
+  // Set the attributes of the SVG element
+  Array.from(svgElement.attributes).forEach((attr) => {
+    svgAttributes.value[attr.name] = attr.value;
+  });
+
+  // Set the inner HTML of the SVG element
+  svgInnerHtml.value = svgElement.innerHTML;
+};
+
+watch(
+  () => [icon, variant],
+  () => {
+    loadAndParseIcon();
+  },
+  {
+    immediate: true,
+  },
+);
 </script>
 
 <template>
-  <!-- v-html renders the raw SVG markup inline so fill/color CSS works normally -->
-  <span
+  <svg
+    ref="svgRef"
     class="b-icon"
     :class="[
       {
@@ -121,33 +145,27 @@ watch(() => [icon, iconFolder.value], loadIcon, { immediate: true });
         'b:fill-failure': color === 'failure',
         'b:fill-warning': color === 'warning',
         'b:fill-info': color === 'info',
-        'b-icon--color': !!svgStyle.fill,
+      },
+      {
+        'b-icon--color': !!svgStyle.color,
       },
     ]"
-    :aria-hidden="!!decorative || undefined"
+    :aria-hidden="!!decorative"
     :aria-label="ariaLabel"
     :aria-labelledby="ariaLabelledby"
-    v-html="svgMarkup"
+    v-bind="svgMergedAttributes"
+    v-html="svgInnerHtml"
   />
 </template>
 
 <style scoped>
 .b-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   width: v-bind('svgStyle.width');
   height: v-bind('svgStyle.height');
   transform: v-bind('svgStyle.transform');
 }
 
-/* Size the inner <svg> element to fill the wrapper span */
-.b-icon :deep(svg) {
-  width: 100%;
-  height: 100%;
-}
-
-.b-icon--color :deep(svg) {
-  fill: v-bind('svgStyle.fill');
+.b-icon--color {
+  fill: v-bind('svgStyle.color');
 }
 </style>

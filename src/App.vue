@@ -2,6 +2,8 @@
   <header></header>
 
   <main class="b:grid b:grid-cols-1 b:gap-4 b:p-8">
+    <BIcon class="mr-4" :icon="BIconName.BellSchoolSlash" color="warning" :rotate="90"></BIcon>
+
     <BSwitch v-model="switchValue" />
 
     <div>
@@ -113,6 +115,7 @@ import {
   BButton,
   BCollapse,
   BCollapseGroup,
+  BIcon,
   BModal,
   BPagination,
   BSelect,
@@ -129,6 +132,7 @@ import BModalHeader from '@/components/BModal/BModalHeader.vue';
 import BProgress from '@/components/BProgress/BProgress.vue';
 import BTooltip from '@/components/BTooltip/BTooltip.vue';
 
+import { BIconName } from '@/components/BIcon/BIconEnum.ts';
 import type { BSelectOption } from '@/types.ts';
 import { ref } from 'vue';
 

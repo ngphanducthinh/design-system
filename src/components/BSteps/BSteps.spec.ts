@@ -2,12 +2,7 @@ import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import { nextTick, ref } from 'vue';
 
-import {
-  BStepsDirection,
-  BStepsStatus,
-  BStepsType,
-  type BStepItem,
-} from '@/types.ts';
+import { type BStepItem, BStepsDirection, BStepsStatus, BStepsType } from '@/types.ts';
 import BSteps from './BSteps.vue';
 
 const iconStub = {
@@ -16,11 +11,7 @@ const iconStub = {
 
 describe('BSteps', () => {
   it('renders items with correct computed statuses', () => {
-    const items: BStepItem[] = [
-      { title: 'One' },
-      { title: 'Two' },
-      { title: 'Three' },
-    ];
+    const items: BStepItem[] = [{ title: 'One' }, { title: 'Two' }, { title: 'Three' }];
     const wrapper = mount(BSteps, {
       props: {
         items,
@@ -41,10 +32,7 @@ describe('BSteps', () => {
   });
 
   it('respects item status override', () => {
-    const items: BStepItem[] = [
-      { title: 'One', status: BStepsStatus.Error },
-      { title: 'Two' },
-    ];
+    const items: BStepItem[] = [{ title: 'One', status: BStepsStatus.Error }, { title: 'Two' }];
     const wrapper = mount(BSteps, {
       props: {
         items,
@@ -62,10 +50,7 @@ describe('BSteps', () => {
   });
 
   it('emits change and update when clicking navigation steps', async () => {
-    const items: BStepItem[] = [
-      { title: 'One' },
-      { title: 'Two' },
-    ];
+    const items: BStepItem[] = [{ title: 'One' }, { title: 'Two' }];
     const wrapper = mount(BSteps, {
       props: {
         items,
@@ -103,11 +88,7 @@ describe('BSteps', () => {
       components: { BSteps },
       setup() {
         const current = ref(0);
-        const items: BStepItem[] = [
-          { title: 'Start' },
-          { title: 'Middle' },
-          { title: 'Done' },
-        ];
+        const items: BStepItem[] = [{ title: 'Start' }, { title: 'Middle' }, { title: 'Done' }];
         return { current, items };
       },
       template: `
@@ -117,7 +98,7 @@ describe('BSteps', () => {
 
     expect(wrapper.find('[aria-current="step"]').text()).toContain('Start');
 
-    wrapper.vm.current = 2;
+    (wrapper.vm as unknown as { current: number }).current = 2;
     await nextTick();
 
     expect(wrapper.find('[aria-current="step"]').text()).toContain('Done');
