@@ -26,6 +26,7 @@
     "@playwright/test": "^1.58.2",
     "@storybook/addon-docs": "^10.2.19",
     "@storybook/addon-onboarding": "^10.2.19",
+    "@storybook/addon-themes": "^10.2.19",
     "@storybook/vue3-vite": "^10.2.19",
     "@tailwindcss/vite": "^4.2.1",
     "@tsconfig/node22": "^22.0.5",

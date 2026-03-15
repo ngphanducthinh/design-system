@@ -1,3 +1,15 @@
 @import "./resetUAS.css" layer(b-reset);
 @import "./tailwind.css" layer(b-tailwind);
 
+/* ── Theme switching (mirrors Ant Design pattern) ──────────────────────────
+   JS sets data-prefers-color="light"|"dark" on <html>.
+   color-scheme tells the browser to adjust native UI accordingly.
+   Component dark styles use [data-prefers-color='dark'] selectors.
+   ───────────────────────────────────────────────────────────────────────── */
+[data-prefers-color='light'] {
+  color-scheme: light;
+}
+
+[data-prefers-color='dark'] {
+  color-scheme: dark;
+}

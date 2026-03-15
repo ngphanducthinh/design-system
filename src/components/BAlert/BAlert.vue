@@ -281,39 +281,41 @@ function onAfterLeave() {
   --b-alert-close-hover-color: oklch(35% 0.12 20);
 }
 
-/* ── Dark mode ── */
-@media (prefers-color-scheme: dark) {
-  .b-alert {
-    --b-alert-bg: oklch(20% 0.04 240);
-    --b-alert-border-color: oklch(35% 0.1 240);
-    --b-alert-color: oklch(85% 0.05 240);
-    --b-alert-close-color: oklch(65% 0.04 240);
-    --b-alert-close-hover-color: oklch(85% 0.05 240);
-  }
+/* ── Dark mode (mirrors Ant Design pattern) ──────────────────────────────
+   The <html> element carries data-prefers-color="dark"|"light".
+   color-scheme is set on html itself (see main.css / preview.ts decorator).
+   Component styles only need the attribute selector — no @media needed.
+   ──────────────────────────────────────────────────────────────────────── */
+[data-prefers-color='dark'] .b-alert {
+  --b-alert-bg: oklch(20% 0.04 240);
+  --b-alert-border-color: oklch(35% 0.1 240);
+  --b-alert-color: oklch(85% 0.05 240);
+  --b-alert-close-color: oklch(65% 0.04 240);
+  --b-alert-close-hover-color: oklch(85% 0.05 240);
+}
 
-  .b-alert--success {
-    --b-alert-bg: oklch(18% 0.05 149);
-    --b-alert-border-color: oklch(35% 0.12 149);
-    --b-alert-color: oklch(82% 0.07 149);
-    --b-alert-close-color: oklch(60% 0.06 149);
-    --b-alert-close-hover-color: oklch(82% 0.07 149);
-  }
+[data-prefers-color='dark'] .b-alert--success {
+  --b-alert-bg: oklch(18% 0.05 149);
+  --b-alert-border-color: oklch(35% 0.12 149);
+  --b-alert-color: oklch(82% 0.07 149);
+  --b-alert-close-color: oklch(60% 0.06 149);
+  --b-alert-close-hover-color: oklch(82% 0.07 149);
+}
 
-  .b-alert--warning {
-    --b-alert-bg: oklch(18% 0.05 55);
-    --b-alert-border-color: oklch(38% 0.14 55);
-    --b-alert-color: oklch(88% 0.08 55);
-    --b-alert-close-color: oklch(62% 0.06 55);
-    --b-alert-close-hover-color: oklch(88% 0.08 55);
-  }
+[data-prefers-color='dark'] .b-alert--warning {
+  --b-alert-bg: oklch(18% 0.05 55);
+  --b-alert-border-color: oklch(38% 0.14 55);
+  --b-alert-color: oklch(88% 0.08 55);
+  --b-alert-close-color: oklch(62% 0.06 55);
+  --b-alert-close-hover-color: oklch(88% 0.08 55);
+}
 
-  .b-alert--error {
-    --b-alert-bg: oklch(18% 0.04 20);
-    --b-alert-border-color: oklch(35% 0.12 20);
-    --b-alert-color: oklch(85% 0.07 20);
-    --b-alert-close-color: oklch(62% 0.06 20);
-    --b-alert-close-hover-color: oklch(85% 0.07 20);
-  }
+[data-prefers-color='dark'] .b-alert--error {
+  --b-alert-bg: oklch(18% 0.04 20);
+  --b-alert-border-color: oklch(35% 0.12 20);
+  --b-alert-color: oklch(85% 0.07 20);
+  --b-alert-close-color: oklch(62% 0.06 20);
+  --b-alert-close-hover-color: oklch(85% 0.07 20);
 }
 
 /* ─────────────────────────────────────────────
