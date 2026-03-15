@@ -1,7 +1,7 @@
 import { BAlert } from '@/components';
 import { BAlertType } from '@/types.ts';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { expect, userEvent, within } from 'storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { ref } from 'vue';
 
 // ─────────────────────────────────────────────
@@ -320,15 +320,17 @@ export const Accessibility: Story = {
     expect(alerts[2].getAttribute('role')).toBe('status');
     expect(alerts[3].getAttribute('role')).toBe('status');
 
-    // Keyboard: focus and close the first (error) alert
+    // Keyboard: focus the first (error) close button and activate with Enter
     const firstClose = canvas.getAllByRole('button', { name: /close alert/i })[0];
-    await userEvent.tab();
     firstClose.focus();
     expect(document.activeElement).toBe(firstClose);
 
     await userEvent.keyboard('{Enter}');
-    // After close the element should be gone from DOM
-    expect(alerts[0].isConnected).toBe(false);
+    // The Vue <Transition> leave animation keeps the element in the DOM briefly.
+    // waitFor polls until v-if fully unmounts it after @after-leave fires.
+    await waitFor(() => {
+      expect(alerts[0].isConnected).toBe(false);
+    });
   },
 };
 
@@ -439,8 +441,7 @@ export const InteractionClose: Story = {
     const canvas = within(canvasElement);
 
     // Alert is visible
-    const alertEl = canvasElement.querySelector('.b-alert');
-    expect(alertEl).toBeTruthy();
+    expect(canvasElement.querySelector('.b-alert')).toBeTruthy();
 
     // Close button is accessible by label
     const closeBtn = canvas.getByRole('button', { name: /close alert/i });
@@ -449,7 +450,10 @@ export const InteractionClose: Story = {
     // Click the close button
     await userEvent.click(closeBtn);
 
-    // Alert is removed from DOM
-    expect(canvasElement.querySelector('.b-alert')).toBeNull();
+    // The Vue <Transition> leave animation keeps the element in the DOM briefly.
+    // waitFor polls until the element is fully removed (v-if unmounts after @after-leave).
+    await waitFor(() => {
+      expect(canvasElement.querySelector('.b-alert')).toBeNull();
+    });
   },
 };

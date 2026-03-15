@@ -8,6 +8,7 @@
         "@playwright/test": "^1.58.2",
         "@storybook/addon-docs": "^10.2.19",
         "@storybook/addon-onboarding": "^10.2.19",
+        "@storybook/addon-themes": "^10.2.19",
         "@storybook/vue3-vite": "^10.2.19",
         "@tailwindcss/vite": "^4.2.1",
         "@tsconfig/node22": "^22.0.5",
@@ -373,6 +374,8 @@
     "@storybook/addon-docs": ["@storybook/addon-docs@10.2.19", "", { "dependencies": { "@mdx-js/react": "^3.0.0", "@storybook/csf-plugin": "10.2.19", "@storybook/icons": "^2.0.1", "@storybook/react-dom-shim": "10.2.19", "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "ts-dedent": "^2.0.0" }, "peerDependencies": { "storybook": "^10.2.19" } }, "sha512-tXugthdzjX5AkGWDSP4pnRgA/CWlOaEKp/+y9JOGXHLQmm1GHjW+4brNvNkKbjBl06LALXwlcTOyU4lyVRDLAw=="],
 
     "@storybook/addon-onboarding": ["@storybook/addon-onboarding@10.2.19", "", { "peerDependencies": { "storybook": "^10.2.19" } }, "sha512-nlsQrdVMRFpbdimouLJHmCOCSsa3J1ASgDT6ipuE1owpUltg7Dj2PdUg/JRaWE6ghlP7MOP5see6vvnUgZ0Feg=="],
+
+    "@storybook/addon-themes": ["@storybook/addon-themes@10.2.19", "", { "dependencies": { "ts-dedent": "^2.0.0" }, "peerDependencies": { "storybook": "^10.2.19" } }, "sha512-TzcX/aqzZrQUypDATywLOenVoa1CTXBthODoY9odLsLLrxVaoeqsAdulkmOjeppKR1FigcERyIjIWPB8W48dag=="],
 
     "@storybook/builder-vite": ["@storybook/builder-vite@10.2.19", "", { "dependencies": { "@storybook/csf-plugin": "10.2.19", "ts-dedent": "^2.0.0" }, "peerDependencies": { "storybook": "^10.2.19", "vite": "^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0" } }, "sha512-a59xALzM9GeYh6p+wzAeBbDyIe+qyrC4nxS3QNzb5i2ZOhrq1iIpvnDaOWe80NC8mV3IlqUEGY8Uawkf//1Rmg=="],
 
