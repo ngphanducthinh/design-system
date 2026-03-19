@@ -80,6 +80,18 @@ export enum BAlertType {
   Error = 'error',
 }
 
+export enum BDrawerPlacement {
+  Top = 'top',
+  Right = 'right',
+  Bottom = 'bottom',
+  Left = 'left',
+}
+
+export enum BDrawerSize {
+  Default = 'default',
+  Large = 'large',
+}
+
 export enum BTooltipTrigger {
   Hover = 'hover',
   Click = 'click',
