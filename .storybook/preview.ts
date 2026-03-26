@@ -48,6 +48,17 @@ const preview: Preview = {
         order: ['General', 'Data Display', 'Feedback'],
       },
     },
+    // Accessibility testing: automatically run axe-core on every story.
+    // 'error' makes violations fail the test; use 'todo' for known issues.
+    // https://storybook.js.org/docs/writing-tests/accessibility-testing
+    a11y: {
+      test: 'error',
+      // Exclude Vue DevTools anchor button (injected by vite-plugin-vue-devtools)
+      // which has aria-label on a div without a valid role.
+      context: {
+        exclude: ['.vue-devtools__anchor'],
+      },
+    },
   },
 };
 
