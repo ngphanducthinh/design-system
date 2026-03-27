@@ -8,6 +8,7 @@ export { default as BIcon } from './BIcon/BIcon.vue';
 export { default as BInput } from './BInput/BInput.vue';
 export * from './BMessage';
 export * from './BModal';
+export * from './BNotification';
 export { default as BPagination } from './BPagination/BPagination.vue';
 export { default as BSelect } from './BSelect/BSelect.vue';
 export { default as BSteps } from './BSteps/BSteps.vue';

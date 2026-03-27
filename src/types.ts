@@ -100,6 +100,20 @@ export enum BMessageType {
   Loading = 'loading',
 }
 
+export enum BNotificationType {
+  Success = 'success',
+  Info = 'info',
+  Warning = 'warning',
+  Error = 'error',
+}
+
+export enum BNotificationPlacement {
+  TopLeft = 'top-left',
+  TopRight = 'top-right',
+  BottomLeft = 'bottom-left',
+  BottomRight = 'bottom-right',
+}
+
 export enum BTooltipTrigger {
   Hover = 'hover',
   Click = 'click',
