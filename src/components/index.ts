@@ -14,4 +14,4 @@ export { default as BSelect } from './BSelect/BSelect.vue';
 export { default as BSteps } from './BSteps/BSteps.vue';
 export { default as BSwitch } from './BSwitch/BSwitch.vue';
 export * from './BTabs';
-export { default as BTooltip } from './BTooltip/BTooltip.vue';
+export * from './BTooltip';
