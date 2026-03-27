@@ -92,6 +92,14 @@ export enum BDrawerSize {
   Large = 'large',
 }
 
+export enum BMessageType {
+  Success = 'success',
+  Error = 'error',
+  Info = 'info',
+  Warning = 'warning',
+  Loading = 'loading',
+}
+
 export enum BTooltipTrigger {
   Hover = 'hover',
   Click = 'click',

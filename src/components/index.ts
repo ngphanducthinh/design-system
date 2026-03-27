@@ -6,6 +6,7 @@ export * from './BCollapse';
 export * from './BDrawer';
 export { default as BIcon } from './BIcon/BIcon.vue';
 export { default as BInput } from './BInput/BInput.vue';
+export * from './BMessage';
 export * from './BModal';
 export { default as BPagination } from './BPagination/BPagination.vue';
 export { default as BSelect } from './BSelect/BSelect.vue';
