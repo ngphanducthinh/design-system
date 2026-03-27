@@ -135,6 +135,27 @@ export enum BTooltipPlacement {
   LeftTop = 'left-top',
 }
 
+export enum BPopconfirmPlacement {
+  TopLeft = 'top-left',
+  TopCenter = 'top-center',
+  TopRight = 'top-right',
+  RightTop = 'right-top',
+  RightCenter = 'right-center',
+  RightBottom = 'right-bottom',
+  BottomRight = 'bottom-right',
+  BottomCenter = 'bottom-center',
+  BottomLeft = 'bottom-left',
+  LeftBottom = 'left-bottom',
+  LeftCenter = 'left-center',
+  LeftTop = 'left-top',
+}
+
+export enum BPopconfirmTrigger {
+  Hover = 'hover',
+  Click = 'click',
+  Focus = 'focus',
+}
+
 export enum BStepsStatus {
   Wait = 'wait',
   Process = 'process',
