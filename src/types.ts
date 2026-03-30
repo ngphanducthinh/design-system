@@ -185,6 +185,17 @@ export enum BSpinSize {
   Large = 'large',
 }
 
+export enum BAvatarShape {
+  Circle = 'circle',
+  Square = 'square',
+}
+
+export enum BAvatarSize {
+  Small = 'small',
+  Default = 'default',
+  Large = 'large',
+}
+
 export interface BStepItem {
   title: string;
   subTitle?: string;
