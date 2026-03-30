@@ -179,6 +179,12 @@ export enum BStepsLabelPlacement {
   Vertical = 'vertical',
 }
 
+export enum BSpinSize {
+  Small = 'small',
+  Default = 'default',
+  Large = 'large',
+}
+
 export interface BStepItem {
   title: string;
   subTitle?: string;

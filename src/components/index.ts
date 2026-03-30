@@ -12,6 +12,7 @@ export * from './BNotification';
 export { default as BPagination } from './BPagination/BPagination.vue';
 export * from './BPopconfirm';
 export { default as BSelect } from './BSelect/BSelect.vue';
+export * from './BSpin';
 export { default as BSteps } from './BSteps/BSteps.vue';
 export { default as BSwitch } from './BSwitch/BSwitch.vue';
 export * from './BTabs';
