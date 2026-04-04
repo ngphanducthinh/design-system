@@ -1,6 +1,6 @@
 export * from './BAlert';
 export * from './BAvatar';
-export { default as BBadge } from './BBadge/BBadge.vue';
+export * from './BBadge';
 export { default as BBreadcrumb } from './BBreadcrumb/BBreadcrumb.vue';
 export { default as BButton } from './BButton/BButton.vue';
 export * from './BCollapse';

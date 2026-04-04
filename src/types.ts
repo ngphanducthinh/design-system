@@ -196,6 +196,19 @@ export enum BAvatarSize {
   Large = 'large',
 }
 
+export enum BBadgeSize {
+  Default = 'default',
+  Small = 'small',
+}
+
+export enum BBadgeStatus {
+  Success = 'success',
+  Processing = 'processing',
+  Default = 'default',
+  Error = 'error',
+  Warning = 'warning',
+}
+
 export interface BStepItem {
   title: string;
   subTitle?: string;
