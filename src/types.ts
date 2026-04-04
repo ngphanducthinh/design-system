@@ -209,6 +209,22 @@ export enum BBadgeStatus {
   Warning = 'warning',
 }
 
+export enum BCardSize {
+  Default = 'default',
+  Small = 'small',
+}
+
+export enum BCardType {
+  Default = 'default',
+  Inner = 'inner',
+}
+
+export interface BCardTabItem {
+  key: string;
+  tab: string;
+  disabled?: boolean;
+}
+
 export interface BStepItem {
   title: string;
   subTitle?: string;
