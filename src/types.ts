@@ -57,10 +57,11 @@ export interface BSelectOption {
   value: unknown;
 }
 
-export interface BCollapseData {
-  id: number;
-  isOpen: boolean;
-}
+export type {
+  BCollapseCollapsible,
+  BCollapseExpandIconPosition,
+  BCollapseSize,
+} from './components/BCollapse/types';
 
 export interface BTabData {
   id: number;

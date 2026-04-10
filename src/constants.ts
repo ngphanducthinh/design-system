@@ -1,4 +1,4 @@
-import { type BCollapseData, BIconSize, type BTabData } from '@/types.ts';
+import { BIconSize, type BTabData } from '@/types.ts';
 import type { InjectionKey, Ref } from 'vue';
 
 export const BIconSizeMap: Record<BIconSize, number> = {
@@ -11,9 +11,6 @@ export const BIconSizeMap: Record<BIconSize, number> = {
 };
 
 export const PIKey = {
-  BCollapseGroup: Symbol('Injection key for an array of BCollapseData') as InjectionKey<
-    Ref<Array<BCollapseData>>
-  >,
   BTabToggleGroup: Symbol('Injection key for the unique id of the BToggles') as InjectionKey<
     Ref<Array<BTabData>>
   >,
