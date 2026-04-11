@@ -63,6 +63,12 @@ export type {
   BCollapseSize,
 } from './components/BCollapse/types';
 
+export type {
+  BDescriptionsItem,
+  BDescriptionsLayout,
+  BDescriptionsSize,
+} from './components/BDescriptions/types';
+
 export interface BTabData {
   id: number;
   isActive: boolean;

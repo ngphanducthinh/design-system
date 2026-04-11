@@ -5,6 +5,7 @@ export * from './BCard';
 export { default as BBreadcrumb } from './BBreadcrumb/BBreadcrumb.vue';
 export { default as BButton } from './BButton/BButton.vue';
 export * from './BCollapse';
+export * from './BDescriptions';
 export * from './BDrawer';
 export { default as BIcon } from './BIcon/BIcon.vue';
 export { default as BInput } from './BInput/BInput.vue';
