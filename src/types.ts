@@ -232,6 +232,11 @@ export interface BCardTabItem {
   disabled?: boolean;
 }
 
+export enum BEmptyImage {
+  Default = 'default',
+  Simple = 'simple',
+}
+
 export interface BStepItem {
   title: string;
   subTitle?: string;

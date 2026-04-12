@@ -7,6 +7,7 @@ export { default as BButton } from './BButton/BButton.vue';
 export * from './BCollapse';
 export * from './BDescriptions';
 export * from './BDrawer';
+export * from './BEmpty';
 export { default as BIcon } from './BIcon/BIcon.vue';
 export { default as BInput } from './BInput/BInput.vue';
 export * from './BMessage';
