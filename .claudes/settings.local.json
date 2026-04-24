@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx vue-tsc:*)",
+      "Bash(npx vitest:*)",
+      "WebFetch(domain:ant.design)",
+      "Bash(ls -la /Users/I772161/Downloads/Projects/Practices/design-system/*.md)",
+      "Bash(xargs ls:*)"
+    ]
+  }
+}
