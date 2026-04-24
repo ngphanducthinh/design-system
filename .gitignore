@@ -36,3 +36,4 @@ playwright-report/
 storybook-static
 
 PROMPT.md
+.claude/*
