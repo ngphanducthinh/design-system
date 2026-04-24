@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ':*)",
+      "Bash(node -e \"const t = require\\('/Users/I772161/Downloads/Projects/Practices/design-system/node_modules/@storybook/test'\\); console.log\\(Object.keys\\(t\\).filter\\(k=>k.includes\\('user'\\)\\).join\\(', '\\)\\)\")",
+      "Bash(node -e \"const pkg = require\\('/Users/I772161/Downloads/Projects/Practices/design-system/node_modules/@storybook/test/package.json'\\); console.log\\('version:', pkg.version\\); console.log\\('deps:', JSON.stringify\\(pkg.dependencies||{}\\)\\)\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('version:', d.get\\('version'\\)\\); print\\('peerDeps:', list\\(d.get\\('peerDependencies',{}\\).keys\\(\\)\\)[:5]\\)\")",
+      "Bash(ls /Users/I772161/Downloads/Projects/Practices/design-system/node_modules/storybook/test*)",
+      "Bash(node -e \"const pkg = require\\('/Users/I772161/Downloads/Projects/Practices/design-system/node_modules/@testing-library/user-event/package.json'\\); console.log\\('user-event version:', pkg.version\\)\")"
+    ]
+  }
+}

@@ -75,6 +75,44 @@ export type {
   BSegmentedSize,
 } from './components/BSegmented/types';
 
+export type {
+  BTagColor,
+  BTagPresetColor,
+  BTagSize,
+  BTagVariant,
+} from './components/BTag/types';
+
+export type {
+  BTimelineItem as BTimelineItemData,
+  BTimelineItemColor,
+  BTimelineItemPlacement,
+  BTimelineItemStatus,
+  BTimelineMode,
+  BTimelineOrientation,
+  BTimelineVariant,
+} from './components/BTimeline/types';
+
+export type {
+  BTableAlign,
+  BTableChangeExtra,
+  BTableColumnType,
+  BTableExpandIconProps,
+  BTableExpandable,
+  BTableFilterOption,
+  BTableFilterState,
+  BTableFilterValue,
+  BTablePaginationConfig,
+  BTableRowDragConfig,
+  BTableRowSelection,
+  BTableRowSelectionType,
+  BTableScrollConfig,
+  BTableSelectionItem,
+  BTableSize,
+  BTableSortOrder,
+  BTableSorterResult,
+  BTableSummaryCell,
+} from './components/BTable/types';
+
 export interface BTabData {
   id: number;
   isActive: boolean;
