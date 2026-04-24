@@ -69,6 +69,12 @@ export type {
   BDescriptionsSize,
 } from './components/BDescriptions/types';
 
+export type {
+  BSegmentedOption,
+  BSegmentedRawOption,
+  BSegmentedSize,
+} from './components/BSegmented/types';
+
 export interface BTabData {
   id: number;
   isActive: boolean;

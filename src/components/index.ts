@@ -18,6 +18,7 @@ export { default as BPagination } from './BPagination/BPagination.vue';
 export * from './BPopconfirm';
 export * from './BPopover';
 export { default as BSelect } from './BSelect/BSelect.vue';
+export * from './BSegmented';
 export * from './BSpin';
 export { default as BSteps } from './BSteps/BSteps.vue';
 export { default as BSwitch } from './BSwitch/BSwitch.vue';
