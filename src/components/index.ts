@@ -27,3 +27,4 @@ export { default as BSteps } from './BSteps/BSteps.vue';
 export { default as BSwitch } from './BSwitch/BSwitch.vue';
 export * from './BTabs';
 export * from './BTooltip';
+export * from './BTour';
