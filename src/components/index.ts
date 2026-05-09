@@ -28,3 +28,4 @@ export { default as BSwitch } from './BSwitch/BSwitch.vue';
 export * from './BTabs';
 export * from './BTooltip';
 export * from './BTour';
+export * from './BTree';
