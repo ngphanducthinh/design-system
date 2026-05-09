@@ -29,3 +29,4 @@ export * from './BTabs';
 export * from './BTooltip';
 export * from './BTour';
 export * from './BTree';
+export * from './BFloatButton';
