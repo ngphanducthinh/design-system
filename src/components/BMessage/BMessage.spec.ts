@@ -290,7 +290,7 @@ describe('BMessage – mouse hover pauses timer', () => {
     vi.advanceTimersByTime(3000);
     await wrapper.vm.$nextTick();
     // In controlled mode, close emits update:modelValue but doesn't hide
-    // until parent updates the prop — check for the event instead
+    // until parent updates the prop - check for the event instead
     expect(wrapper.emitted('close')).toHaveLength(1);
   });
 });

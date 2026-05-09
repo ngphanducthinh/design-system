@@ -390,7 +390,7 @@ describe('BNotification – event ordering', () => {
     await wrapper.vm.$nextTick();
 
     expect(wrapper.emitted('close')).toHaveLength(1);
-    // afterClose fires after the CSS transition — not yet
+    // afterClose fires after the CSS transition - not yet
     expect(wrapper.emitted('afterClose')).toBeFalsy();
 
     // Simulate the Vue Transition after-leave hook
@@ -424,7 +424,7 @@ describe('BNotification – mouse hover pauses timer', () => {
     await wrapper.find('.b-notification').trigger('mouseenter');
     vi.advanceTimersByTime(5000);
     await wrapper.vm.$nextTick();
-    // Still visible — timer paused
+    // Still visible - timer paused
     expect(wrapper.find('.b-notification').exists()).toBe(true);
 
     await wrapper.find('.b-notification').trigger('mouseleave');

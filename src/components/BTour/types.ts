@@ -96,7 +96,7 @@ export interface BTourResolvedStep extends BTourStep {
 }
 
 // ─────────────────────────────────────────────
-// Injection key (unused currently — kept for extensibility)
+// Injection key (unused currently - kept for extensibility)
 // ─────────────────────────────────────────────
 
 export const BTourContextKey: InjectionKey<null> = Symbol('BTourContext');

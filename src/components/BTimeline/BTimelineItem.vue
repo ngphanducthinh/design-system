@@ -13,7 +13,7 @@ const {
   placement,
 } = defineProps<{
   /**
-   * Dot color — preset (`blue` | `red` | `green` | `gray`) or any CSS color.
+   * Dot color - preset (`blue` | `red` | `green` | `gray`) or any CSS color.
    * @default 'blue'
    */
   color?: BTimelineItemColor;
@@ -22,7 +22,7 @@ const {
    */
   icon?: string;
   /**
-   * Shows a spinner on this item's dot — use for in-progress items.
+   * Shows a spinner on this item's dot - use for in-progress items.
    * @default false
    */
   loading?: boolean;
@@ -39,7 +39,7 @@ const {
 defineSlots<{
   /** Main content of the timeline item. */
   default?(): unknown;
-  /** Custom dot/icon content — fully replaces the standard circle. */
+  /** Custom dot/icon content - fully replaces the standard circle. */
   icon?(): unknown;
   /** Label shown on the opposing side in alternate/end mode. */
   label?(): unknown;
@@ -104,7 +104,7 @@ const variantClass = computed(() =>
     :class="rootClasses"
     :style="colorStyle"
   >
-    <!-- Label — always rendered as a structural spacer; CSS hides it in start mode -->
+    <!-- Label - always rendered as a structural spacer; CSS hides it in start mode -->
     <span class="b-timeline-item__label">
       <slot name="label" />
     </span>

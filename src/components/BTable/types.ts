@@ -38,7 +38,7 @@ export interface BTableFilterOption {
 export interface BTableColumnType<T = Record<string, unknown>> {
   /** Column title */
   title?: string;
-  /** Column data key — dot-path supported (e.g. 'address.city') */
+  /** Column data key - dot-path supported (e.g. 'address.city') */
   dataIndex?: string | string[];
   /** Unique column key (falls back to dataIndex) */
   key?: string | number;

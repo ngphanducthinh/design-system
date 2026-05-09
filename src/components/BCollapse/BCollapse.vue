@@ -24,7 +24,7 @@ const props = withDefaults(
     modelValue?: (string | number)[];
     /** Initial active panel key(s) for uncontrolled mode. */
     defaultActiveKey?: (string | number)[];
-    /** Accordion mode — only one panel open at a time. */
+    /** Accordion mode - only one panel open at a time. */
     accordion?: boolean;
     /** Show border around the collapse. @default true */
     bordered?: boolean;
@@ -34,7 +34,7 @@ const props = withDefaults(
     destroyInactivePanel?: boolean;
     /** Position of the expand icon. @default 'start' */
     expandIconPosition?: BCollapseExpandIconPosition;
-    /** Ghost mode — borderless with transparent background. @default false */
+    /** Ghost mode - borderless with transparent background. @default false */
     ghost?: boolean;
     /** Size of the collapse. @default 'default' */
     size?: BCollapseSize;

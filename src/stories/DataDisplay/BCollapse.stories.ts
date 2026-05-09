@@ -24,7 +24,7 @@ const meta = {
     },
     accordion: {
       control: 'boolean',
-      description: 'Accordion mode — only one panel open at a time.',
+      description: 'Accordion mode - only one panel open at a time.',
       table: { defaultValue: { summary: 'false' }, category: 'Props' },
     },
     bordered: {
@@ -46,7 +46,7 @@ const meta = {
     },
     ghost: {
       control: 'boolean',
-      description: 'Ghost mode — borderless with transparent background.',
+      description: 'Ghost mode - borderless with transparent background.',
       table: { defaultValue: { summary: 'false' }, category: 'Props' },
     },
     size: {
@@ -387,7 +387,7 @@ export const Accessibility: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    // Panel 1 — should be active
+    // Panel 1 - should be active
     const panel1 = canvas.getByTestId('a11y-panel-1');
     const header1 = panel1.querySelector('.b-collapse-panel__header')!;
     const content1 = panel1.querySelector('.b-collapse-panel__content-wrapper')!;
@@ -405,7 +405,7 @@ export const Accessibility: Story = {
     expect(content1.getAttribute('aria-labelledby')).toBe(header1.getAttribute('id'));
     expect(content1.getAttribute('aria-hidden')).toBe('false');
 
-    // Panel 2 — collapsed
+    // Panel 2 - collapsed
     const panel2 = canvas.getByTestId('a11y-panel-2');
     const header2 = panel2.querySelector('.b-collapse-panel__header')!;
     expect(header2.getAttribute('aria-expanded')).toBe('false');

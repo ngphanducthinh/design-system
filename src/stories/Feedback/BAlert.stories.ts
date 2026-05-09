@@ -58,7 +58,7 @@ const meta = {
       description: {
         component:
           'The <code>BAlert</code> component is used to display important messages inline within the page content.<br><br>' +
-          'It supports four severity levels — <strong>success</strong>, <strong>info</strong>, <strong>warning</strong>, and <strong>error</strong> — with optional icons, descriptions, actions and a dismiss button.<br>' +
+          'It supports four severity levels - <strong>success</strong>, <strong>info</strong>, <strong>warning</strong>, and <strong>error</strong> - with optional icons, descriptions, actions and a dismiss button.<br>' +
           'It operates in both <em>uncontrolled</em> (self-managing visibility) and <em>controlled</em> (<code>v-model</code>) modes.',
       },
     },
@@ -72,7 +72,7 @@ type Story = StoryObj<typeof meta>;
 // 1. Playground (all controls)
 // ─────────────────────────────────────────────
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  */
 export const Playground: Story = {
   args: {

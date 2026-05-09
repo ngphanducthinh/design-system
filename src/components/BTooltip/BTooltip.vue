@@ -41,7 +41,7 @@ const {
   fresh?: boolean;
   /** Whether to auto-adjust placement when tooltip overflows viewport. */
   autoAdjustOverflow?: boolean;
-  /** Controlled visibility — bind with `v-model`. */
+  /** Controlled visibility - bind with `v-model`. */
   modelValue?: boolean;
   /** Additional classes to apply to the toggle wrapper. */
   toggleClass?: string;

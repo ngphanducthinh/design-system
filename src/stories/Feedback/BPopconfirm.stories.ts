@@ -438,7 +438,7 @@ export const InteractionConfirmFlow: Story = {
       expect(document.querySelector('.b-popconfirm__content[role="dialog"]')).toBeTruthy();
     });
 
-    // Click confirm (Yes button — second button)
+    // Click confirm (Yes button - second button)
     const buttons = document.querySelectorAll('.b-popconfirm__btn');
     await userEvent.click(buttons[1]);
 
@@ -489,7 +489,7 @@ export const InteractionCancelFlow: Story = {
       expect(document.querySelector('.b-popconfirm__content[role="dialog"]')).toBeTruthy();
     });
 
-    // Click cancel (No button — first button)
+    // Click cancel (No button - first button)
     const buttons = document.querySelectorAll('.b-popconfirm__btn');
     await userEvent.click(buttons[0]);
 

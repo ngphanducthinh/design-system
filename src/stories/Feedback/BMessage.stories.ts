@@ -48,7 +48,7 @@ const meta = {
       description: {
         component:
           'The <code>BMessage</code> component provides lightweight feedback displayed at the top of the viewport.<br><br>' +
-          'It supports five types — <strong>success</strong>, <strong>info</strong>, <strong>warning</strong>, <strong>error</strong>, and <strong>loading</strong>.<br>' +
+          'It supports five types - <strong>success</strong>, <strong>info</strong>, <strong>warning</strong>, <strong>error</strong>, and <strong>loading</strong>.<br>' +
           'Messages are <strong>closed by default</strong> and must be opened explicitly via <code>v-model</code> or the exposed <code>open()</code> method.<br>' +
           'They auto-close after a configurable duration (default 3 s) and pause on mouse hover.<br>' +
           'The component teleports to <code>&lt;body&gt;</code> for proper stacking.',
@@ -70,7 +70,7 @@ const btnStyle =
 // 1. Playground (all controls)
 // ─────────────────────────────────────────────
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  * Click **"Show Message"** to open it. It starts closed by default.
  */
 export const Playground: Story = {
@@ -346,7 +346,7 @@ export const Accessibility: Story = {
     const showAllBtn = canvas.getByTestId('show-all-btn');
     await userEvent.click(showAllBtn);
 
-    // BMessage teleports to <body>, so query document — not canvasElement
+    // BMessage teleports to <body>, so query document - not canvasElement
     await waitFor(() => {
       expect(document.querySelectorAll('.b-message').length).toBe(5);
     });

@@ -103,7 +103,7 @@ const meta = {
         component:
           'The <code>BDrawer</code> component is a panel that slides in from the edge of the screen.<br><br>' +
           'It is commonly used for navigation, forms, detail views, or any content that should overlay the main page without a full page transition.<br>' +
-          'It supports four placements — <strong>top</strong>, <strong>right</strong>, <strong>bottom</strong>, <strong>left</strong> — with focus trapping, keyboard navigation, and full accessibility.',
+          'It supports four placements - <strong>top</strong>, <strong>right</strong>, <strong>bottom</strong>, <strong>left</strong> - with focus trapping, keyboard navigation, and full accessibility.',
       },
     },
     // Global a11y testing is inherited from preview.ts (a11y.test: 'error').
@@ -124,7 +124,7 @@ type Story = StoryObj<typeof meta>;
 // 1. Playground (all controls)
 // ─────────────────────────────────────────────
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  */
 export const Playground: Story = {
   args: {
@@ -156,7 +156,7 @@ export const Playground: Story = {
       <BButton @click="open = true">Open Drawer</BButton>
       <BDrawer v-bind="args" v-model="open">
         <p>Some content inside the drawer.</p>
-        <p>You can put anything here — forms, lists, details…</p>
+        <p>You can put anything here - forms, lists, details…</p>
       </BDrawer>
     `,
   }),
@@ -356,7 +356,7 @@ export const Sizes: Story = {
  * - Close button has `aria-label`.
  *
  * **Accessibility testing strategy:**
- * 1. `parameters.a11y.test: 'error'` — axe-core automatically runs after the play function
+ * 1. `parameters.a11y.test: 'error'` - axe-core automatically runs after the play function
  *    and fails on any violation.
  * 2. The play function manually asserts specific ARIA attributes for defense-in-depth.
  */
@@ -728,7 +728,7 @@ export const InteractionMaskNotClosable: Story = {
       expect(document.querySelector('.b-drawer')).toBeTruthy();
     });
 
-    // Click the mask — drawer should stay open
+    // Click the mask - drawer should stay open
     const mask = document.querySelector('.b-drawer__mask') as HTMLElement;
     expect(mask).toBeTruthy();
     await userEvent.click(mask);
@@ -811,7 +811,7 @@ export const InteractionFocusTrap: Story = {
     await userEvent.tab(); // → Last button
     expect(document.activeElement).toBe(document.querySelector('[data-testid="btn-last"]'));
 
-    // Tab once more — should wrap back to close button (first focusable)
+    // Tab once more - should wrap back to close button (first focusable)
     await userEvent.tab();
     await waitFor(() => {
       const closeBtn = document.querySelector('.b-drawer__close');
@@ -978,15 +978,22 @@ export const Theming: Story = {
       },
       source: {
         code: `
-<style>
-.my-custom-drawer .b-drawer {
-  --b-drawer-bg: #1a1a2e;
-  --b-drawer-color: #eaeaea;
-  --b-drawer-border-color: #e94560;
-  --b-drawer-close-color: #aaa;
-  --b-drawer-close-hover-color: #eaeaea;
-}
-</style>
+<!-- Tokens are scoped to .b-drawer-root (the component root element).
+     Override them via an inline style or a CSS class on that root. -->
+<BDrawer
+  v-model="open"
+  title="Custom Theme"
+  style="
+    --b-drawer-bg: #1a1a2e;
+    --b-drawer-color: #eaeaea;
+    --b-drawer-border-color: #e94560;
+    --b-drawer-close-color: #aaa;
+    --b-drawer-close-hover-color: #eaeaea;
+    --b-drawer-mask-bg: rgba(0,0,0,0.75);
+  "
+>
+  Content here.
+</BDrawer>
         `,
       },
     },
@@ -1086,11 +1093,8 @@ export const SnapshotNoHeader: Story = {
   name: 'Snapshot – no header',
   parameters: {
     controls: { disable: true },
-    // When closable=false and no title, the dialog has no accessible name.
-    // This is a known a11y gap (aria-dialog-name). Consumers should always
-    // provide a title or aria-label. Mark as 'todo' so it doesn't block CI.
     a11y: {
-      test: 'todo',
+      test: 'error',
       context: { include: ['.b-drawer-root'] },
     },
   },
@@ -1102,7 +1106,7 @@ export const SnapshotNoHeader: Story = {
     },
     template: `
       <BButton @click="open = true" data-testid="open-snap-no-hdr">Open</BButton>
-      <BDrawer v-model="open" :closable="false">
+      <BDrawer v-model="open" :closable="false" aria-label="Drawer content">
         <p>No header, just body.</p>
       </BDrawer>
     `,
@@ -1209,7 +1213,7 @@ export const EdgeCaseKeyboardDisabled: Story = {
       expect(document.querySelector('.b-drawer')).toBeTruthy();
     });
 
-    // Press Escape — drawer should NOT close
+    // Press Escape - drawer should NOT close
     await userEvent.keyboard('{Escape}');
     await new Promise((r) => setTimeout(r, 200));
     expect(document.querySelector('.b-drawer')).toBeTruthy();

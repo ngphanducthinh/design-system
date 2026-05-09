@@ -39,7 +39,7 @@ const {
   zIndex?: number;
   /** Force re-render when popover is shown. */
   fresh?: boolean;
-  /** Controlled visibility — bind with `v-model`. */
+  /** Controlled visibility - bind with `v-model`. */
   modelValue?: boolean;
 }>();
 

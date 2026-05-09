@@ -85,7 +85,7 @@ const iconFolder = computed(() => (brand ? 'brands' : variant));
 
 /**
  * SVG markup fetched at runtime from the static assets folder.
- * No dynamic import() — icons are NOT bundled as JS chunks.
+ * No dynamic import() - icons are NOT bundled as JS chunks.
  * They are served as plain .svg files copied to dist/assets/icons by viteStaticCopy.
  */
 const svgMarkup = ref<string>('');

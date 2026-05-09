@@ -19,7 +19,7 @@ const {
   modelValue = undefined,
 } = defineProps<{
   /**
-   * Notification type — controls the icon and colour scheme.
+   * Notification type - controls the icon and colour scheme.
    * When omitted no type-colour is applied (plain notification).
    */
   type?: `${BNotificationType}`;
@@ -42,7 +42,7 @@ const {
   /** Show the built-in status icon when `type` is set. @default true */
   showIcon?: boolean;
   /**
-   * Custom icon content — overrides the built-in type icon.
+   * Custom icon content - overrides the built-in type icon.
    * Also accepts the `icon` slot.
    */
   icon?: string;
@@ -57,7 +57,7 @@ const {
    */
   btn?: string;
   /**
-   * Controlled visibility — when provided the component operates in
+   * Controlled visibility - when provided the component operates in
    * controlled mode; otherwise it manages its own visibility.
    * Bind with `v-model`.
    */
@@ -74,7 +74,7 @@ const emit = defineEmits<{
 }>();
 
 defineSlots<{
-  /** Overrides the `message` prop — the notification title. */
+  /** Overrides the `message` prop - the notification title. */
   message?(): unknown;
   /** Overrides the `description` prop. */
   description?(): unknown;
@@ -93,7 +93,7 @@ const notificationId = useId();
 const titleId = `${notificationId}-title`;
 const descId = `${notificationId}-desc`;
 
-/** Uncontrolled visibility flag — default closed. */
+/** Uncontrolled visibility flag - default closed. */
 const internalVisible = ref(false);
 
 /** Ref to the notification DOM element for focus return. */
@@ -217,7 +217,7 @@ function onKeydown(event: KeyboardEvent) {
 }
 
 // ─────────────────────────────────────────────
-// Visibility watcher — manage timer + focus
+// Visibility watcher - manage timer + focus
 // ─────────────────────────────────────────────
 watch(
   isVisible,
@@ -555,7 +555,7 @@ defineExpose({ open, close });
     transform var(--b-notification-transition-duration, 300ms) ease;
 }
 
-/* top-right / bottom-right — slide in from right */
+/* top-right / bottom-right - slide in from right */
 .b-notification--top-right.b-notification-fade-enter-from,
 .b-notification--bottom-right.b-notification-fade-enter-from {
   opacity: 0;
@@ -576,7 +576,7 @@ defineExpose({ open, close });
   transform: translateX(100%);
 }
 
-/* top-left / bottom-left — slide in from left */
+/* top-left / bottom-left - slide in from left */
 .b-notification--top-left.b-notification-fade-enter-from,
 .b-notification--bottom-left.b-notification-fade-enter-from {
   opacity: 0;

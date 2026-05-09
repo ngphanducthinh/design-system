@@ -710,8 +710,8 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
 
 <style>
 /* ────────────────────────────────────────────
-   Design tokens — scoped to component root
-   (Never on :root — always on .b-tour)
+   Design tokens - scoped to component root
+   (Never on :root - always on .b-tour)
    ──────────────────────────────────────────── */
 .b-tour {
   /* AntD token: zIndexPopup → 1070 */

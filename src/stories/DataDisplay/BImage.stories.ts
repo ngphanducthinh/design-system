@@ -107,7 +107,7 @@ const meta = {
     loading: {
       control: 'select',
       options: ['lazy', 'eager'],
-      description: 'Native `loading` attribute — use `lazy` for below-the-fold images.',
+      description: 'Native `loading` attribute - use `lazy` for below-the-fold images.',
       table: { category: 'Props' },
     },
     crossOrigin: {
@@ -168,7 +168,7 @@ type Story = StoryObj<typeof meta>;
 // 1. Playground (all controls)
 // ─────────────────────────────────────────────
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  */
 export const Playground: Story = {
   args: {
@@ -295,7 +295,7 @@ export const ProgressiveLoading: Story = {
             Refresh to replay loading
           </button>
           <span style="margin-left:0.75rem;font-size:0.75rem;color:#525252;">
-            Loads a 4K image — watch the blurred placeholder transition to the full image.
+            Loads a 4K image - watch the blurred placeholder transition to the full image.
           </span>
         </div>
         <div style="display:flex;gap:2rem;align-items:flex-start;">

@@ -438,7 +438,7 @@ describe('BSegmented – edge cases', () => {
 });
 
 // ─────────────────────────────────────────────
-// 8. Animation — fake timers
+// 8. Animation - fake timers
 // ─────────────────────────────────────────────
 describe('BSegmented – thumb animation (deterministic)', () => {
   beforeEach(() => {

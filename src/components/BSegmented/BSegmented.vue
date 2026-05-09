@@ -199,7 +199,7 @@ const rootClasses = computed(() => [
     role="group"
     :aria-disabled="disabled ? 'true' : undefined"
   >
-    <!-- Animated thumb — positioned via JS -->
+    <!-- Animated thumb - positioned via JS -->
     <div
       v-if="thumbStyle"
       class="b-segmented__thumb"
@@ -232,7 +232,7 @@ const rootClasses = computed(() => [
           aria-hidden="true"
         >{{ opt.icon }}</span>
 
-        <!-- Label — slot or prop -->
+        <!-- Label - slot or prop -->
         <span class="b-segmented__item-label">
           <slot name="label" :option="opt">{{ opt.label }}</slot>
         </span>
@@ -243,7 +243,7 @@ const rootClasses = computed(() => [
 
 <style>
 /* ─────────────────────────────────────────────
-   BSegmented — CSS custom properties (scoped to root)
+   BSegmented - CSS custom properties (scoped to root)
    ───────────────────────────────────────────── */
 .b-segmented {
   /* Surface */

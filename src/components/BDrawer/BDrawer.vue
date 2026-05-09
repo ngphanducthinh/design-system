@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, ref, useId, watch } from 'vue';
-
-// ─────────────────────────────────────────────
-// Types
-// ─────────────────────────────────────────────
-export type BDrawerPlacement = 'top' | 'right' | 'bottom' | 'left';
-export type BDrawerSize = 'default' | 'large';
+import type { BDrawerPlacement, BDrawerSize } from '@/types';
 
 // ─────────────────────────────────────────────
 // Props & emits
@@ -29,6 +24,7 @@ const {
   extra = '',
   footer = '',
   loading = false,
+  ariaLabel,
 } = defineProps<{
   /** Direction from which the drawer slides in. */
   placement?: BDrawerPlacement;
@@ -60,7 +56,7 @@ const {
   /** Whether to auto-focus the first focusable element when opened. */
   autoFocus?: boolean;
   /**
-   * Controlled visibility — bind with `v-model`.
+   * Controlled visibility - bind with `v-model`.
    * When not provided the drawer manages its own state.
    */
   modelValue?: boolean;
@@ -72,6 +68,11 @@ const {
   footer?: string;
   /** Show loading spinner in body area. */
   loading?: boolean;
+  /**
+   * Accessible label for the dialog when no visible title is present.
+   * Required when `closable=false` and no `title` prop or `#title` slot is used.
+   */
+  ariaLabel?: string;
 }>();
 
 const emit = defineEmits<{
@@ -315,6 +316,7 @@ defineExpose({ open });
           ]"
           role="dialog"
           aria-modal="true"
+          :aria-label="!hasTitle ? ariaLabel : undefined"
           :aria-labelledby="hasTitle ? titleId : undefined"
           :style="panelStyle"
           tabindex="-1"
@@ -611,7 +613,7 @@ defineExpose({ open });
   visibility: hidden;
 }
 
-/* — Active phase: set transition on children — */
+/* - Active phase: set transition on children - */
 .b-drawer-enter-active > .b-drawer,
 .b-drawer-leave-active > .b-drawer {
   transition: transform var(--b-drawer-transition-duration) cubic-bezier(0.7, 0.3, 0.1, 1);
@@ -622,31 +624,31 @@ defineExpose({ open });
   transition: opacity var(--b-drawer-transition-duration) ease;
 }
 
-/* — From / To: mask fades — */
+/* - From / To: mask fades - */
 .b-drawer-enter-from > .b-drawer__mask,
 .b-drawer-leave-to > .b-drawer__mask {
   opacity: 0;
 }
 
-/* — From / To: panel slides (right) — */
+/* - From / To: panel slides (right) - */
 .b-drawer-enter-from > .b-drawer--right,
 .b-drawer-leave-to > .b-drawer--right {
   transform: translateX(100%);
 }
 
-/* — From / To: panel slides (left) — */
+/* - From / To: panel slides (left) - */
 .b-drawer-enter-from > .b-drawer--left,
 .b-drawer-leave-to > .b-drawer--left {
   transform: translateX(-100%);
 }
 
-/* — From / To: panel slides (top) — */
+/* - From / To: panel slides (top) - */
 .b-drawer-enter-from > .b-drawer--top,
 .b-drawer-leave-to > .b-drawer--top {
   transform: translateY(-100%);
 }
 
-/* — From / To: panel slides (bottom) — */
+/* - From / To: panel slides (bottom) - */
 .b-drawer-enter-from > .b-drawer--bottom,
 .b-drawer-leave-to > .b-drawer--bottom {
   transform: translateY(100%);

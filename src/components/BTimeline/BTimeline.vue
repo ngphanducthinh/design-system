@@ -24,23 +24,23 @@ const {
 } = defineProps<{
   /**
    * Controls which side labels appear on.
-   * - `'start'`     — all content on the right of the line (default)
-   * - `'end'`       — all content on the left of the line
-   * - `'alternate'` — content alternates left/right
+   * - `'start'`     - all content on the right of the line (default)
+   * - `'end'`       - all content on the left of the line
+   * - `'alternate'` - content alternates left/right
    * @default 'start'
    */
   mode?: BTimelineMode;
   /**
    * Dot style.
-   * - `'filled'`   — solid filled circle (default)
-   * - `'outlined'` — hollow ring with colored border
+   * - `'filled'`   - solid filled circle (default)
+   * - `'outlined'` - hollow ring with colored border
    * @default 'filled'
    */
   variant?: BTimelineVariant;
   /**
    * Layout direction.
-   * - `'vertical'`   — items stacked top-to-bottom (default)
-   * - `'horizontal'` — items laid out left-to-right
+   * - `'vertical'`   - items stacked top-to-bottom (default)
+   * - `'horizontal'` - items laid out left-to-right
    * @default 'vertical'
    */
   orientation?: BTimelineOrientation;
@@ -161,7 +161,7 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
         ]"
         :style="[dotColorStyle(item.color), typeof item.style === 'string' ? item.style : item.style]"
       >
-        <!-- Label / title (opposing side) — always rendered as structural spacer; CSS hides in start mode -->
+        <!-- Label / title (opposing side) - always rendered as structural spacer; CSS hides in start mode -->
         <span class="b-timeline-item__label">{{ item.title ?? '' }}</span>
 
         <!-- Line + dot -->
@@ -211,7 +211,7 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
 
 <style>
 /* ─────────────────────────────────────────────
-   BTimeline — CSS custom properties (scoped to root)
+   BTimeline - CSS custom properties (scoped to root)
    ───────────────────────────────────────────── */
 .b-timeline {
   /* ── Structural ── */
@@ -277,7 +277,7 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
   list-style: none;
 }
 
-/* last item — hide tail, collapse bottom padding */
+/* last item - hide tail, collapse bottom padding */
 .b-timeline-item:last-child {
   padding-bottom: 0;
 }
@@ -336,13 +336,13 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
   color: var(--b-timeline-item-current-color, var(--b-timeline-color-blue));
 }
 
-/* Symbol rendered via ::before so no text node exists — avoids axe non-text-char rule */
+/* Symbol rendered via ::before so no text node exists - avoids axe non-text-char rule */
 .b-timeline-item__dot--custom::before {
   content: attr(data-icon);
 }
 
 /* ─────────────────────────────────────────────
-   Preset colors — set --b-timeline-item-current-color
+   Preset colors - set --b-timeline-item-current-color
    ───────────────────────────────────────────── */
 .b-timeline-item--blue {
   --b-timeline-item-current-color: var(--b-timeline-color-blue);
@@ -385,7 +385,7 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
 }
 
 /* ─────────────────────────────────────────────
-   Mode: start (default) — content right of line
+   Mode: start (default) - content right of line
    Each item: [dot] [content]
    ───────────────────────────────────────────── */
 .b-timeline--start .b-timeline-item {
@@ -401,7 +401,7 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
 }
 
 /* ─────────────────────────────────────────────
-   Mode: end — content left of line
+   Mode: end - content left of line
    Each item: [content] [dot]
    ───────────────────────────────────────────── */
 .b-timeline--end .b-timeline-item {
@@ -430,7 +430,7 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
                        right-half = content (left-aligned)
    Right items (odd):  left-half = content (right-aligned)
                        right-half = label (left-aligned)
-   We use CSS `order` to swap — never flex-direction:row-reverse,
+   We use CSS `order` to swap - never flex-direction:row-reverse,
    which would flip the padding direction and break the gap.
    ───────────────────────────────────────────── */
 
@@ -460,7 +460,7 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
 }
 
 /* ── Left items (even): label LEFT → dot → content RIGHT ── */
-/* DOM order: label(1) tail(abs) dot(2) content(3) — already correct, no reordering needed */
+/* DOM order: label(1) tail(abs) dot(2) content(3) - already correct, no reordering needed */
 .b-timeline--alternate .b-timeline-item--left .b-timeline-item__label {
   order: 1;
   text-align: right;
@@ -500,7 +500,7 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
 }
 
 /* ─────────────────────────────────────────────
-   Variant: outlined — hollow ring dot
+   Variant: outlined - hollow ring dot
    ───────────────────────────────────────────── */
 .b-timeline--outlined .b-timeline-item__dot {
   background: transparent;

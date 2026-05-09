@@ -78,7 +78,7 @@ const OBJECT_OPTIONS: BSegmentedRawOption[] = [
 // 1. Playground
 // ─────────────────────────────────────────────
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  */
 export const Playground: Story = {
   args: {
@@ -318,13 +318,13 @@ export const WithIcons: Story = {
     setup() {
       const value = ref('list');
       const iconBaseOpts: BSegmentedRawOption[] = [
-        { label: 'List',   value: 'list'   },
-        { label: 'Grid',   value: 'grid'   },
+        { label: 'List', value: 'list' },
+        { label: 'Grid', value: 'grid' },
         { label: 'Kanban', value: 'kanban' },
       ];
       const iconMap: Record<string, string> = {
-        list:   '☰',
-        grid:   '⊞',
+        list: '☰',
+        grid: '⊞',
         kanban: '▣',
       };
       return { value, iconBaseOpts, iconMap };
@@ -648,7 +648,7 @@ export const InteractionTests: Story = {
     const partial = canvas.getByTestId('int-partial');
     const partialItems = partial.querySelectorAll<HTMLElement>('.b-segmented__item');
 
-    // satellite (index 2) is disabled — click must not change selection
+    // satellite (index 2) is disabled - click must not change selection
     await userEvent.click(partialItems[2]);
     expect(partialItems[2].getAttribute('aria-checked')).toBe('false');
     expect(partialItems[0].getAttribute('aria-checked')).toBe('true');

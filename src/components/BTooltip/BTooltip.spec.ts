@@ -307,7 +307,7 @@ describe('BTooltip – delays (fake timers)', () => {
 
     await wrapper.find('.b-tooltip__toggle').trigger('mouseenter');
 
-    // Not yet opened — delay hasn't elapsed
+    // Not yet opened - delay hasn't elapsed
     expect(wrapper.emitted('openChange')).toBeFalsy();
 
     // Advance past delay
@@ -332,7 +332,7 @@ describe('BTooltip – delays (fake timers)', () => {
     await wrapper.find('.b-tooltip__toggle').trigger('mouseleave');
     await wrapper.vm.$nextTick();
 
-    // Not yet closed — delay hasn't elapsed (only 0ms passed)
+    // Not yet closed - delay hasn't elapsed (only 0ms passed)
     const eventsAfterLeave = wrapper.emitted('openChange')!;
     // Should still only have the open event, not a close event yet
     const hasClose = eventsAfterLeave.some((e) => e[0] === false);

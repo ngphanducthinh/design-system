@@ -1,4 +1,4 @@
-# Design System — Project Context for Claude
+# Design System - Project Context for Claude
 
 ## Project Identity
 
@@ -13,7 +13,7 @@
 
 | Category | Technology |
 |---|---|
-| Framework | Vue 3.5 (Composition API, `<script setup>` only — no Options API) |
+| Framework | Vue 3.5 (Composition API, `<script setup>` only - no Options API) |
 | Language | TypeScript 5.9 (strict) |
 | Styling | Tailwind CSS 4 with `prefix('b')` + scoped CSS custom properties |
 | Build | Vite 8 + Rolldown (library mode, ES modules, `preserveModules: true`) |
@@ -49,7 +49,7 @@ Every component lives in `src/components/<ComponentName>/` and contains:
 
 ```
 BComponentName/
-├── BComponentName.vue        # Main SFC — script setup + template (no scoped style block)
+├── BComponentName.vue        # Main SFC - script setup + template (no scoped style block)
 ├── BComponentName.spec.ts    # Vitest unit tests
 ├── types.ts                  # Component-specific TypeScript types (if needed)
 ├── index.ts                  # Named exports: component + types
@@ -62,29 +62,29 @@ Stories live separately in `src/stories/<Category>/BComponentName.stories.ts`.
 
 ## Naming Conventions
 
-- **Components:** PascalCase with `B` prefix — `BButton`, `BTree`, `BTimeline`
-- **Props:** camelCase — `checkable`, `treeData`, `defaultExpandedKeys`
-- **Emits:** camelCase — `check`, `expand`, `select`
-- **CSS classes:** kebab-case with `b-` prefix — `.b-button`, `.b-tree-item`
-- **CSS vars:** `--b-{component}-{token}` — `--b-timeline-item-dot-color`
-- **Tailwind classes:** prefixed with `b:` — `b:flex`, `b:bg-primary`, `b:hover:not-disabled:bg-primary-hover`
+- **Components:** PascalCase with `B` prefix - `BButton`, `BTree`, `BTimeline`
+- **Props:** camelCase - `checkable`, `treeData`, `defaultExpandedKeys`
+- **Emits:** camelCase - `check`, `expand`, `select`
+- **CSS classes:** kebab-case with `b-` prefix - `.b-button`, `.b-tree-item`
+- **CSS vars:** `--b-{component}-{token}` - `--b-timeline-item-dot-color`
+- **Tailwind classes:** prefixed with `b:` - `b:flex`, `b:bg-primary`, `b:hover:not-disabled:bg-primary-hover`
 
 ---
 
 ## Component Authoring Rules
 
-1. **Always use `<script setup>`** — no Options API, no `defineComponent()` wrapper.
-2. **Destructure props with inline defaults** — `const { size = 'md', disabled = false } = defineProps<{...}>()`.
-3. **JSDoc every prop** — describe purpose, accepted values, default, example.
-4. **No `<style scoped>` block** — use Tailwind utilities + CSS custom properties only.
-5. **CSS-first animations** — transitions, hover states, and layout done in CSS; JS only for logic.
-6. **Scoped CSS vars on component root** — never on `:root`; scope to `.b-{component}`.
-7. **Dark mode** — reassign CSS vars under `[data-prefers-color='dark']` selector.
-8. **Accessibility first** — proper ARIA roles, `aria-label`, keyboard navigation, focus management.
+1. **Always use `<script setup>`** - no Options API, no `defineComponent()` wrapper.
+2. **Destructure props with inline defaults** - `const { size = 'md', disabled = false } = defineProps<{...}>()`.
+3. **JSDoc every prop** - describe purpose, accepted values, default, example.
+4. **No `<style scoped>` block** - use Tailwind utilities + CSS custom properties only.
+5. **CSS-first animations** - transitions, hover states, and layout done in CSS; JS only for logic.
+6. **Scoped CSS vars on component root** - never on `:root`; scope to `.b-{component}`.
+7. **Dark mode** - reassign CSS vars under `[data-prefers-color='dark']` selector.
+8. **Accessibility first** - proper ARIA roles, `aria-label`, keyboard navigation, focus management.
 9. **Use `useComponentId()`** for generating unique IDs needed for ARIA relationships.
-10. **Provide/inject for hierarchies** — use `PIKey` symbols from `constants.ts`.
-11. **Helper functions for conditional classes** — `isSize()`, `isVariant()`, `isColor()` etc.
-12. **Controlled + uncontrolled** — support both `v-model` binding and prop-driven patterns.
+10. **Provide/inject for hierarchies** - use `PIKey` symbols from `constants.ts`.
+11. **Helper functions for conditional classes** - `isSize()`, `isVariant()`, `isColor()` etc.
+12. **Controlled + uncontrolled** - support both `v-model` binding and prop-driven patterns.
 
 ---
 
@@ -141,9 +141,9 @@ export const Accessibility: Story = { play: async ({ canvasElement }) => { /* ax
 ```
 
 **Run commands:**
-- `bun run test:unit` — Vitest unit tests
-- `bun run test:storybook` — Storybook browser tests
-- `bun run test:e2e` — Playwright e2e
+- `bun run test:unit` - Vitest unit tests
+- `bun run test:storybook` - Storybook browser tests
+- `bun run test:e2e` - Playwright e2e
 
 ---
 
@@ -162,8 +162,8 @@ bun run format         # Prettier --write src/
 
 ## CI/CD
 
-- **deploy-storybook.yml** — On push to `main`: lint → e2e → build → deploy Storybook
-- **publish-npm-{major|minor|patch}.yml** — Manual version bumps + NPM publish
+- **deploy-storybook.yml** - On push to `main`: lint → e2e → build → deploy Storybook
+- **publish-npm-{major|minor|patch}.yml** - Manual version bumps + NPM publish
 - E2E test reports uploaded as GitHub Actions artifacts
 
 ---

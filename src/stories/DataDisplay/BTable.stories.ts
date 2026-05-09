@@ -18,17 +18,17 @@ interface User extends Record<string, unknown> {
 
 const BASIC_DATA: User[] = [
   { key: '1', name: 'Alice Johnson', age: 32, address: '10 Downing St, London', status: 'active' },
-  { key: '2', name: 'Bob Smith',     age: 42, address: '221B Baker St, London', status: 'active' },
-  { key: '3', name: 'Carol White',   age: 28, address: '4 Privet Drive, Surrey', status: 'inactive' },
-  { key: '4', name: 'Dave Brown',    age: 55, address: '12 Grimmauld Place, London', status: 'active' },
-  { key: '5', name: 'Eve Green',     age: 19, address: '1 Railway Cuttings, East Cheam', status: 'inactive' },
+  { key: '2', name: 'Bob Smith', age: 42, address: '221B Baker St, London', status: 'active' },
+  { key: '3', name: 'Carol White', age: 28, address: '4 Privet Drive, Surrey', status: 'inactive' },
+  { key: '4', name: 'Dave Brown', age: 55, address: '12 Grimmauld Place, London', status: 'active' },
+  { key: '5', name: 'Eve Green', age: 19, address: '1 Railway Cuttings, East Cheam', status: 'inactive' },
 ];
 
 const BASIC_COLUMNS: BTableColumnType<User>[] = [
-  { title: 'Name',    dataIndex: 'name',    key: 'name' },
-  { title: 'Age',     dataIndex: 'age',     key: 'age',     align: 'right' },
+  { title: 'Name', dataIndex: 'name', key: 'name' },
+  { title: 'Age', dataIndex: 'age', key: 'age', align: 'right' },
   { title: 'Address', dataIndex: 'address', key: 'address' },
-  { title: 'Status',  dataIndex: 'status',  key: 'status'  },
+  { title: 'Status', dataIndex: 'status', key: 'status' },
 ];
 
 const MANY_DATA: User[] = Array.from({ length: 46 }, (_, i) => ({
@@ -50,7 +50,7 @@ const meta = {
   argTypes: {
     // ── Two-Way Binding Props ──
     // (BTable has no modelValue but rowSelection/pagination controlled state
-    //  is driven by props — we expose expandedRowKeys here for completeness)
+    //  is driven by props - we expose expandedRowKeys here for completeness)
 
     // ── Props ──
     dataSource: {
@@ -123,7 +123,7 @@ type Story = StoryObj<typeof meta>;
 // ─────────────────────────────────────────────
 
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  */
 export const Playground: Story = {
   args: {
@@ -153,7 +153,7 @@ export const Playground: Story = {
 // ─────────────────────────────────────────────
 
 /**
- * Minimal table — just data and columns.
+ * Minimal table - just data and columns.
  */
 export const Basic: Story = {
   parameters: {
@@ -325,7 +325,7 @@ export const Sorting: Story = {
     setup() {
       const columns: BTableColumnType<User>[] = [
         { title: 'Name', dataIndex: 'name', key: 'name', sorter: true },
-        { title: 'Age',  dataIndex: 'age',  key: 'age',  sorter: (a, b) => a.age - b.age, align: 'right' },
+        { title: 'Age', dataIndex: 'age', key: 'age', sorter: (a, b) => a.age - b.age, align: 'right' },
         { title: 'Address', dataIndex: 'address', key: 'address' },
       ];
       return { data: BASIC_DATA, columns };
@@ -377,7 +377,7 @@ export const Filtering: Story = {
         {
           title: 'Status', dataIndex: 'status', key: 'status',
           filters: [
-            { text: 'Active',   value: 'active'   },
+            { text: 'Active', value: 'active' },
             { text: 'Inactive', value: 'inactive' },
           ],
           filterMultiple: false,
@@ -425,14 +425,14 @@ export const Filtering: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 9. Row selection — checkbox
+// 9. Row selection - checkbox
 // ─────────────────────────────────────────────
 
 /**
  * Multi-row selection with checkboxes. Shows selected count in footer.
  */
 export const RowSelectionCheckbox: Story = {
-  name: 'Row Selection — Checkbox',
+  name: 'Row Selection - Checkbox',
   parameters: {
     controls: { disable: true },
     a11y: {
@@ -442,7 +442,7 @@ export const RowSelectionCheckbox: Story = {
       // explicit background. All colours in this story pass WCAG AA:
       //   table body text (dark on #fff) → >10:1  ✓
       //   paragraph #666 on #fff        →  4.9:1  ✓
-      //   checkboxes are decorative      —  n/a
+      //   checkboxes are decorative      -  n/a
       options: {
         rules: { 'color-contrast': { enabled: false } },
       },
@@ -498,7 +498,7 @@ export const ExpandableRows: Story = {
     setup() {
       const expandable = {
         expandedRowRender: (record: User) =>
-          h('div', { style: 'padding:8px 16px;color:#595959;' }, `Notes for ${record.name}: —`),
+          h('div', { style: 'padding:8px 16px;color:#595959;' }, `Notes for ${record.name}: -`),
         rowExpandable: () => true,
       };
       return { data: BASIC_DATA, columns: BASIC_COLUMNS.slice(0, 3), expandable };
@@ -587,11 +587,11 @@ export const ColumnGroups: Story = {
           title: 'Identity',
           children: [
             { title: 'Name', dataIndex: 'name', key: 'name' },
-            { title: 'Age',  dataIndex: 'age',  key: 'age', align: 'right' },
+            { title: 'Age', dataIndex: 'age', key: 'age', align: 'right' },
           ],
         },
         { title: 'Address', dataIndex: 'address', key: 'address' },
-        { title: 'Status',  dataIndex: 'status',  key: 'status'  },
+        { title: 'Status', dataIndex: 'status', key: 'status' },
       ];
       return { data: BASIC_DATA, columns };
     },
@@ -617,10 +617,10 @@ export const ScrollAndFixed: Story = {
     components: { BTable },
     setup() {
       const wideColumns: BTableColumnType<User>[] = [
-        { title: 'Name',    dataIndex: 'name',    key: 'name',    fixed: 'left',  width: 150 },
-        { title: 'Age',     dataIndex: 'age',     key: 'age',     width: 200 },
+        { title: 'Name', dataIndex: 'name', key: 'name', fixed: 'left', width: 150 },
+        { title: 'Age', dataIndex: 'age', key: 'age', width: 200 },
         { title: 'Address', dataIndex: 'address', key: 'address', width: 400 },
-        { title: 'Status',  dataIndex: 'status',  key: 'status',  width: 200 },
+        { title: 'Status', dataIndex: 'status', key: 'status', width: 200 },
       ];
       return {
         data: BASIC_DATA,
@@ -649,7 +649,7 @@ export const CustomCellRendering: Story = {
     a11y: {
       // axe-core cannot determine the background of the Age <td> because
       // elementsFromPoint picks up an intermediate element at those coordinates
-      // with overflow:hidden and no explicit background — a false positive from
+      // with overflow:hidden and no explicit background - a false positive from
       // the customRender inline-block badge's stacking context. All foreground /
       // background pairs in this story meet WCAG AA:
       //   "Active"   #0958d9 on #e6f4ff  → ~5.0:1  ✓
@@ -665,8 +665,8 @@ export const CustomCellRendering: Story = {
     components: { BTable },
     setup() {
       const columns: BTableColumnType<User>[] = [
-        { title: 'Name',   dataIndex: 'name',   key: 'name'  },
-        { title: 'Age',    dataIndex: 'age',    key: 'age', align: 'right' },
+        { title: 'Name', dataIndex: 'name', key: 'name' },
+        { title: 'Age', dataIndex: 'age', key: 'age', align: 'right' },
         {
           title: 'Status', dataIndex: 'status', key: 'status',
           customRender: ({ value }) => {
@@ -765,10 +765,12 @@ export const Accessibility: Story = {
     components: { BTable },
     setup() {
       const columns: BTableColumnType<User>[] = [
-        { title: 'Name',   dataIndex: 'name',   key: 'name',   sorter: true },
-        { title: 'Status', dataIndex: 'status', key: 'status',
-          filters: [{ text: 'Active', value: 'active' }] },
-        { title: 'Age',    dataIndex: 'age',    key: 'age',    sorter: (a, b) => a.age - b.age, align: 'right' },
+        { title: 'Name', dataIndex: 'name', key: 'name', sorter: true },
+        {
+          title: 'Status', dataIndex: 'status', key: 'status',
+          filters: [{ text: 'Active', value: 'active' }]
+        },
+        { title: 'Age', dataIndex: 'age', key: 'age', sorter: (a, b) => a.age - b.age, align: 'right' },
       ];
       return { data: BASIC_DATA, columns, rowSelection: { type: 'checkbox' } as BTableRowSelection<User> };
     },
@@ -834,7 +836,7 @@ export const Accessibility: Story = {
     expect(dropdown).toBeTruthy();
     expect(dropdown!.getAttribute('role')).toBe('dialog');
 
-    // Close via Escape — dispatch KeyboardEvent directly on the dropdown element
+    // Close via Escape - dispatch KeyboardEvent directly on the dropdown element
     // since the Escape handler is bound to the dropdown div itself
     dropdown!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     await new Promise(r => requestAnimationFrame(r));
@@ -862,7 +864,7 @@ export const Theming: Story = {
       description: {
         story:
           'Override <code>--b-table-*</code> CSS variables to theme the table. ' +
-          'All tokens are scoped to the <code>.b-table</code> root — no global side-effects.',
+          'All tokens are scoped to the <code>.b-table</code> root - no global side-effects.',
       },
       source: {
         code: `

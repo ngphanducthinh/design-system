@@ -66,7 +66,7 @@ const props = withDefaults(
     maxScale?: number;
     /** Allow dragging/panning the image inside the preview. */
     movable?: boolean;
-    /** Native `loading` attribute — `'lazy'` for below-the-fold images. */
+    /** Native `loading` attribute - `'lazy'` for below-the-fold images. */
     loading?: 'lazy' | 'eager';
     /** CORS setting for the image. */
     crossOrigin?: '' | 'anonymous' | 'use-credentials';

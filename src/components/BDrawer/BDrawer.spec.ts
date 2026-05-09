@@ -250,6 +250,17 @@ describe('BDrawer – accessibility', () => {
     expect(wrapper.find('.b-drawer').attributes('aria-labelledby')).toBeUndefined();
   });
 
+  it('sets aria-label when ariaLabel prop is provided and there is no title', () => {
+    const wrapper = mountDrawer({ modelValue: true, closable: false, ariaLabel: 'User details' });
+    expect(wrapper.find('.b-drawer').attributes('aria-label')).toBe('User details');
+  });
+
+  it('does NOT set aria-label when a title is present (aria-labelledby takes over)', () => {
+    const wrapper = mountDrawer({ modelValue: true, title: 'My Title', ariaLabel: 'Ignored' });
+    expect(wrapper.find('.b-drawer').attributes('aria-label')).toBeUndefined();
+    expect(wrapper.find('.b-drawer').attributes('aria-labelledby')).toBeTruthy();
+  });
+
   it('close button has aria-label', () => {
     const wrapper = mountDrawer({ modelValue: true });
     expect(wrapper.find('.b-drawer__close').attributes('aria-label')).toBe('Close drawer');
@@ -331,7 +342,7 @@ describe('BDrawer – edge cases', () => {
   });
 
   it('forceRender keeps content rendered when closed', async () => {
-    // forceRender with modelValue false — the root v-if hides the panel,
+    // forceRender with modelValue false - the root v-if hides the panel,
     // so shouldRender is about the inner content presence
     const wrapper = mountDrawer(
       { modelValue: true, forceRender: true },

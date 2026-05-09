@@ -262,7 +262,7 @@ const skeletonRows = [100, 75, 90, 60];
 
 <style>
 /* ─────────────────────────────────────────────
-   BCard — CSS custom properties (scoped to root)
+   BCard - CSS custom properties (scoped to root)
    ───────────────────────────────────────────── */
 .b-card {
   /* Surface */

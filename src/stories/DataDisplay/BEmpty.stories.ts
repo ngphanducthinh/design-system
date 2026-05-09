@@ -43,7 +43,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The <code>BEmpty</code> component displays a placeholder when content is absent — ' +
+          'The <code>BEmpty</code> component displays a placeholder when content is absent - ' +
           'e.g. empty tables, search results, or fresh-start states.<br><br>' +
           'Supports <strong>two built-in illustrations</strong> (default &amp; simple), ' +
           '<strong>custom images</strong> via URL or slot, and an <strong>action footer</strong> slot.<br>' +
@@ -60,7 +60,7 @@ type Story = StoryObj<typeof meta>;
 // 1. Playground (all controls)
 // ─────────────────────────────────────────────
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  */
 export const Playground: Story = {
   args: {

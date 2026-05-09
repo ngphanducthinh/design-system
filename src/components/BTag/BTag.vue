@@ -44,7 +44,7 @@ const {
    */
   closeIcon?: string;
   /**
-   * Controlled visibility — operate the tag in controlled mode via v-model.
+   * Controlled visibility - operate the tag in controlled mode via v-model.
    * When undefined the component manages its own visibility.
    */
   visible?: boolean;
@@ -68,7 +68,7 @@ const emit = defineEmits<{
   (e: 'close', event: MouseEvent | KeyboardEvent): void;
   /** Fires after the fade-out transition fully completes. */
   (e: 'afterClose'): void;
-  /** v-model support — emitted with `false` when the tag is closed. */
+  /** v-model support - emitted with `false` when the tag is closed. */
   (e: 'update:visible', value: boolean): void;
 }>();
 
@@ -78,7 +78,7 @@ const emit = defineEmits<{
 defineSlots<{
   /** Default tag content. */
   default?(): unknown;
-  /** Leading icon area — receives no scoped props. */
+  /** Leading icon area - receives no scoped props. */
   icon?(): unknown;
   /** Overrides the built-in close icon. */
   closeIcon?(): unknown;
@@ -238,7 +238,7 @@ const customColorStyle = computed(() => {
 
 <style>
 /* ─────────────────────────────────────────────
-   BTag — CSS custom properties (scoped to root)
+   BTag - CSS custom properties (scoped to root)
    ───────────────────────────────────────────── */
 .b-tag {
   /* Layout */

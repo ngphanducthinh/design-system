@@ -16,7 +16,7 @@ const {
   modelValue = undefined,
 } = defineProps<{
   /**
-   * Alert type — maps to role / colour scheme.
+   * Alert type - maps to role / colour scheme.
    * @default 'info'
    */
   type?: `${BAlertType}`;
@@ -36,7 +36,7 @@ const {
    */
   action?: string;
   /**
-   * Controlled visibility — when provided the component operates in
+   * Controlled visibility - when provided the component operates in
    * controlled mode; otherwise it manages its own visibility.
    * Bind with `v-model`.
    */
@@ -241,7 +241,7 @@ function onAfterLeave() {
   --b-alert-icon-size-with-desc: 1.5rem;
   --b-alert-gap: 0.5rem;
 
-  /* Colours — info (default) */
+  /* Colours - info (default) */
   --b-alert-bg: oklch(95% 0.04 240);
   --b-alert-border-color: oklch(80% 0.1 240);
   --b-alert-color: oklch(35% 0.12 240);
@@ -284,7 +284,7 @@ function onAfterLeave() {
 /* ── Dark mode (mirrors Ant Design pattern) ──────────────────────────────
    The <html> element carries data-prefers-color="dark"|"light".
    color-scheme is set on html itself (see main.css / preview.ts decorator).
-   Component styles only need the attribute selector — no @media needed.
+   Component styles only need the attribute selector - no @media needed.
    ──────────────────────────────────────────────────────────────────────── */
 [data-prefers-color='dark'] .b-alert {
   --b-alert-bg: oklch(20% 0.04 240);

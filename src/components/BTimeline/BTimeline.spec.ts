@@ -388,7 +388,7 @@ describe('BTimeline – edge cases', () => {
 });
 
 // ─────────────────────────────────────────────
-// 7. Animation — fake timers
+// 7. Animation - fake timers
 // ─────────────────────────────────────────────
 describe('BTimeline – animation (deterministic)', () => {
   beforeEach(() => {
@@ -447,7 +447,7 @@ describe('BTimeline – variant', () => {
   it('outlined variant: dot has no background fill (CSS class present)', () => {
     const w = mountWithItems({ variant: 'outlined' });
     // The CSS rule .b-timeline--outlined .b-timeline-item__dot makes dots transparent
-    // — we just verify the class is on the root so CSS can apply
+    // - we just verify the class is on the root so CSS can apply
     expect(w.find('.b-timeline--outlined').exists()).toBe(true);
   });
 });

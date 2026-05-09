@@ -391,7 +391,7 @@ function mergedContentStyle(item: ResolvedItem): CSSProperties | undefined {
 
 <style>
 /* ─────────────────────────────────────────────
-   BDescriptions — CSS custom properties (scoped to root)
+   BDescriptions - CSS custom properties (scoped to root)
    ───────────────────────────────────────────── */
 .b-descriptions {
   /* Surface */

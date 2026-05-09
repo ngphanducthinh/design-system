@@ -15,7 +15,7 @@ const meta = {
     // ── Two-Way Binding Props ──
     visible: {
       control: 'boolean',
-      description: 'Controlled visibility — bind with `v-model:visible`.',
+      description: 'Controlled visibility - bind with `v-model:visible`.',
       table: { category: 'Two-Way Binding Props' },
     },
 
@@ -82,7 +82,7 @@ type Story = StoryObj<typeof meta>;
 // 1. Playground
 // ─────────────────────────────────────────────
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  */
 export const Playground: Story = {
   args: {
@@ -112,7 +112,7 @@ export const Playground: Story = {
 // 2. Basic
 // ─────────────────────────────────────────────
 /**
- * Simplest usage — no color, no close button.
+ * Simplest usage - no color, no close button.
  */
 export const Basic: Story = {
   parameters: {
@@ -354,7 +354,7 @@ export const Variants: Story = {
 // 7. Closable Tags
 // ─────────────────────────────────────────────
 /**
- * Tags with close buttons — uncontrolled (self-hide) and controlled.
+ * Tags with close buttons - uncontrolled (self-hide) and controlled.
  */
 export const Closable: Story = {
   parameters: {
@@ -378,7 +378,7 @@ export const Closable: Story = {
     template: `
       <div style="padding:2rem;display:flex;flex-direction:column;gap:1.5rem;align-items:flex-start;">
         <div>
-          <p style="font-size:12px;color:#666;margin:0 0 6px;">Uncontrolled — click × to hide</p>
+          <p style="font-size:12px;color:#666;margin:0 0 6px;">Uncontrolled - click × to hide</p>
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
             <BTag
               v-for="t in tags"
@@ -391,7 +391,7 @@ export const Closable: Story = {
           </div>
         </div>
         <div>
-          <p style="font-size:12px;color:#666;margin:0 0 6px;">Controlled — parent drives visibility</p>
+          <p style="font-size:12px;color:#666;margin:0 0 6px;">Controlled - parent drives visibility</p>
           <BTag
             data-testid="controlled-tag"
             closable
@@ -558,7 +558,7 @@ export const Accessibility: Story = {
 
     // ── Keyboard close (Enter) ───────────────────────────────────────────
     // In userEvent v14 (stateful setup instance), keyboard() dispatches to
-    // document.activeElement — so .focus() correctly seeds the target.
+    // document.activeElement - so .focus() correctly seeds the target.
     const kbTag = canvas.getByTestId('a11y-keyboard');
     const kbCloseBtn = kbTag.querySelector('.b-tag__close') as HTMLButtonElement;
     kbCloseBtn.focus();
@@ -600,14 +600,14 @@ export const Theming: Story = {
           <BTag>Default</BTag>
         </div>
         <div>
-          <p style="font-size:12px;color:#666;margin:0 0 6px;">Rounded pill — custom vars</p>
+          <p style="font-size:12px;color:#666;margin:0 0 6px;">Rounded pill - custom vars</p>
           <BTag
             data-testid="theme-pill"
             style="--b-tag-border-radius:12px;--b-tag-bg:oklch(92% 0.06 260);--b-tag-border-color:oklch(72% 0.17 262);--b-tag-color:oklch(38% 0.18 262);"
           >Pill Tag</BTag>
         </div>
         <div>
-          <p style="font-size:12px;color:#666;margin:0 0 6px;">Compact — small height & font via vars</p>
+          <p style="font-size:12px;color:#666;margin:0 0 6px;">Compact - small height & font via vars</p>
           <BTag
             data-testid="theme-compact"
             style="--b-tag-height:16px;--b-tag-font-size:10px;--b-tag-padding:0 4px;--b-tag-line-height:14px;"

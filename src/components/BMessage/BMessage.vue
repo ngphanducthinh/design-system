@@ -14,7 +14,7 @@ const {
   modelValue = undefined,
 } = defineProps<{
   /**
-   * Message type — controls icon and colour scheme.
+   * Message type - controls icon and colour scheme.
    * @default 'info'
    */
   type?: `${BMessageType}`;
@@ -28,7 +28,7 @@ const {
   /** Show the built-in status icon. @default true */
   showIcon?: boolean;
   /**
-   * Controlled visibility — when provided the component operates in
+   * Controlled visibility - when provided the component operates in
    * controlled mode; otherwise it manages its own visibility.
    * Bind with `v-model`.
    */
@@ -49,7 +49,7 @@ const emit = defineEmits<{
 // ─────────────────────────────────────────────
 const messageId = useId();
 
-/** Uncontrolled visibility flag — default closed. */
+/** Uncontrolled visibility flag - default closed. */
 const internalVisible = ref(false);
 
 /**
@@ -237,7 +237,7 @@ defineExpose({ open, close });
   --b-message-font-size: 0.875rem;
   --b-message-max-width: 32rem;
 
-  /* Colours — info (default) */
+  /* Colours - info (default) */
   --b-message-bg: #ffffff;
   --b-message-border-color: oklch(90% 0.02 240);
   --b-message-color: oklch(30% 0.02 240);

@@ -46,7 +46,7 @@ const {
   dataSource?: T[];
   /** Column definitions */
   columns?: BTableColumnType<T>[];
-  /** Unique row key — a field name string or extractor function */
+  /** Unique row key - a field name string or extractor function */
   rowKey?: string | ((record: T) => string | number);
   /** Table size */
   size?: BTableSize;
@@ -1196,7 +1196,7 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
 
 <style>
 /* ─────────────────────────────────────────────
-   BTable — CSS custom properties (scoped to root)
+   BTable - CSS custom properties (scoped to root)
    ───────────────────────────────────────────── */
 .b-table {
   /* Colors */
@@ -1287,7 +1287,7 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
 
 /* ── Caption ── */
 .b-table__caption {
-  /* Visually hidden — accessible label is surfaced via aria-label on the region landmark */
+  /* Visually hidden - accessible label is surfaced via aria-label on the region landmark */
   position: absolute;
   width: 1px;
   height: 1px;

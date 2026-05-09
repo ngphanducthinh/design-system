@@ -239,7 +239,7 @@ export const Playground: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Default — file manager toolbar
+// Default - file manager toolbar
 // ─────────────────────────────────────────────
 
 export const Default: Story = {
@@ -308,14 +308,14 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Default type with four toolbar targets — New, Upload, Filter, and Share.',
+        story: 'Default type with four toolbar targets - New, Upload, Filter, and Share.',
       },
     },
   },
 };
 
 // ─────────────────────────────────────────────
-// Primary type — dashboard onboarding
+// Primary type - dashboard onboarding
 // ─────────────────────────────────────────────
 
 export const Primary: Story = {
@@ -328,7 +328,7 @@ export const Primary: Story = {
       const steps: BTourStep[] = [
         {
           title: 'Overview Panel',
-          description: 'Your key metrics at a glance — visits, conversions, and revenue.',
+          description: 'Your key metrics at a glance - visits, conversions, and revenue.',
           target: () => document.getElementById('pri-overview') as HTMLElement,
           placement: BTourPlacement.Bottom,
           type: BTourType.Primary,
@@ -408,7 +408,7 @@ export const Primary: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Primary type spotlighting four dashboard regions — overview panel, activity feed, quick actions, and user menu.',
+        story: 'Primary type spotlighting four dashboard regions - overview panel, activity feed, quick actions, and user menu.',
       },
       source: {
         code: `<BTour :steps="steps" type="primary" v-model:open="open" v-model:current="current" />`,
@@ -418,7 +418,7 @@ export const Primary: Story = {
 };
 
 // ─────────────────────────────────────────────
-// With cover image — onboarding wizard
+// With cover image - onboarding wizard
 // ─────────────────────────────────────────────
 
 const COVER_IMG = 'https://user-images.githubusercontent.com/5378891/197385811-55df8480-7ff4-44bd-9d43-a7dade598d70.png';
@@ -526,7 +526,7 @@ export const WithCover: Story = {
 };
 
 // ─────────────────────────────────────────────
-// No mask — settings page walkthrough
+// No mask - settings page walkthrough
 // ─────────────────────────────────────────────
 
 export const NoMask: Story = {
@@ -606,14 +606,14 @@ export const NoMask: Story = {
   parameters: {
     docs: {
       description: {
-        story: '`mask=false` — the overlay is removed so users can still interact with the page while the tour runs.',
+        story: '`mask=false` - the overlay is removed so users can still interact with the page while the tour runs.',
       },
     },
   },
 };
 
 // ─────────────────────────────────────────────
-// WithTargets — code editor toolbar
+// WithTargets - code editor toolbar
 // ─────────────────────────────────────────────
 
 export const WithTargets: Story = {
@@ -662,14 +662,14 @@ export const WithTargets: Story = {
       <div :style="UI.page" style="gap:0.75rem;">
         <!-- Editor chrome -->
         <div style="background:#1e1e2e; border-radius:0.5rem; overflow:hidden;">
-          <!-- Title bar — decorative chrome, aria-hidden -->
+          <!-- Title bar - decorative chrome, aria-hidden -->
           <div style="display:flex; align-items:center; gap:0.5rem; padding:0.5rem 0.75rem; background:#181825; border-bottom:1px solid #313244;" aria-hidden="true">
             <span style="display:flex; gap:0.375rem;">
               <span style="width:0.75rem; height:0.75rem; border-radius:50%; background:#ff5f57; display:inline-block;"></span>
               <span style="width:0.75rem; height:0.75rem; border-radius:50%; background:#ffbd2e; display:inline-block;"></span>
               <span style="width:0.75rem; height:0.75rem; border-radius:50%; background:#28c840; display:inline-block;"></span>
             </span>
-            <span style="flex:1; text-align:center; font-size:0.75rem; color:#a6adc8;">main.ts — MyProject</span>
+            <span style="flex:1; text-align:center; font-size:0.75rem; color:#a6adc8;">main.ts - MyProject</span>
           </div>
 
           <!-- Toolbar -->
@@ -682,7 +682,7 @@ export const WithTargets: Story = {
             <button id="wt-settings" type="button" aria-label="Settings" style="padding:0.3rem 0.5rem; border:1px solid #45475a; border-radius:0.25rem; background:transparent; color:#cdd6f4; font-size:0.75rem; cursor:pointer;">⚙</button>
           </div>
 
-          <!-- Fake code area — decorative, aria-hidden -->
+          <!-- Fake code area - decorative, aria-hidden -->
           <pre style="margin:0; padding:1rem; font-size:0.8125rem; color:#cdd6f4; font-family:monospace; line-height:1.6; min-height:6rem; overflow:auto;" aria-hidden="true"><code><span style="color:#89b4fa;">import</span> <span style="color:#cdd6f4;">{ ref } </span><span style="color:#89b4fa;">from</span> <span style="color:#a6e3a1;">'vue'</span>
 <span style="color:#89b4fa;">const</span> <span style="color:#cba6f7;">count</span> <span style="color:#89dceb;">=</span> <span style="color:#89b4fa;">ref</span>(<span style="color:#fab387;">0</span>)</code></pre>
         </div>
@@ -701,14 +701,14 @@ export const WithTargets: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Five targeted steps across a code-editor toolbar — Run, Format, Terminal, Extensions, and Settings.',
+        story: 'Five targeted steps across a code-editor toolbar - Run, Format, Terminal, Extensions, and Settings.',
       },
     },
   },
 };
 
 // ─────────────────────────────────────────────
-// Custom indicators — e-commerce checkout
+// Custom indicators - e-commerce checkout
 // ─────────────────────────────────────────────
 
 export const CustomIndicators: Story = {
@@ -823,7 +823,7 @@ export const CustomIndicators: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Accessibility — admin table
+// Accessibility - admin table
 // ─────────────────────────────────────────────
 
 export const Accessibility: Story = {
@@ -921,7 +921,7 @@ export const Accessibility: Story = {
     data() { return { UI }; },
   }),
   play: async ({ canvasElement }) => {
-    // BTour uses <Teleport to="body"> — popup lives outside canvasElement.
+    // BTour uses <Teleport to="body"> - popup lives outside canvasElement.
     // Scope trigger-button queries to canvasElement; scope popup queries to
     // the teleported popup node to avoid collisions with canvas buttons.
     const canvas = within(canvasElement);
@@ -933,7 +933,7 @@ export const Accessibility: Story = {
     // ── 2. Open the tour ──────────────────────────────────────────────────
     await user.click(canvas.getByRole('button', { name: /start accessible tour/i }));
 
-    // Vue's scheduler is async — wait until the popup is in the DOM.
+    // Vue's scheduler is async - wait until the popup is in the DOM.
     await waitFor(() => expect(document.body.querySelector('.b-tour__popup')).not.toBeNull());
 
     const popup = document.body.querySelector<HTMLElement>('.b-tour__popup')!;
@@ -959,7 +959,7 @@ export const Accessibility: Story = {
     expect(activeIndicator).toBeTruthy();
     expect(activeIndicator).toHaveAttribute('aria-current', 'step');
 
-    // ── 8. Navigate to step 2 — wait for Vue re-render, then check ────────
+    // ── 8. Navigate to step 2 - wait for Vue re-render, then check ────────
     await user.click(nextBtn);
     await waitFor(() =>
       expect(document.body.querySelector('[role="dialog"]')).toHaveAttribute('aria-label', 'Role Filter'),
@@ -974,7 +974,7 @@ export const Accessibility: Story = {
     expect(dots[1]).toHaveAttribute('aria-current', 'step');
 
     // ── 9. Escape closes the tour ─────────────────────────────────────────
-    // fireEvent targets the element directly — no focus-tracking side-effects.
+    // fireEvent targets the element directly - no focus-tracking side-effects.
     // The @keydown listener is on .b-tour__popup, so dispatch there.
     fireEvent.keyDown(popup2, { key: 'Escape', code: 'Escape', bubbles: true });
     await waitFor(() => expect(document.body.querySelector('.b-tour__popup')).toBeNull());
@@ -989,7 +989,7 @@ export const Accessibility: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Theming — analytics dashboard
+// Theming - analytics dashboard
 // ─────────────────────────────────────────────
 
 export const Theming: Story = {
@@ -1061,7 +1061,7 @@ export const Theming: Story = {
             </div>
           </div>
 
-          <!-- Chart placeholder — decorative bars, aria-hidden -->
+          <!-- Chart placeholder - decorative bars, aria-hidden -->
           <div id="th-chart" :style="UI.card" role="img" aria-label="Bar chart showing session trends" style="min-height:8rem; display:flex; align-items:flex-end; gap:0.375rem; padding-bottom:1rem;">
             <div v-for="(h, i) in [40,65,50,80,70,90,60,75,85,55,95,72]" :key="i"
               aria-hidden="true"
@@ -1106,7 +1106,7 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Interaction test — full navigation flow
+// Interaction test - full navigation flow
 // ─────────────────────────────────────────────
 
 export const InteractionFlow: Story = {
@@ -1179,7 +1179,7 @@ export const InteractionFlow: Story = {
     await user.click(canvas.getByRole('button', { name: /start tour/i }));
     await waitFor(() => expect(document.body.querySelector('.b-tour__popup')).not.toBeNull());
 
-    // 3. Step 1 visible — re-query popup each time to avoid stale refs after Vue re-renders
+    // 3. Step 1 visible - re-query popup each time to avoid stale refs after Vue re-renders
     await waitFor(() =>
       expect(document.body.querySelector('.b-tour__popup .b-tour__title')?.textContent?.trim()).toBe('Upload File'),
     );
@@ -1194,7 +1194,7 @@ export const InteractionFlow: Story = {
     );
     expect(document.body.querySelector('.b-tour__popup .b-tour__btn--prev')).toBeTruthy();
 
-    // 6. Next → step 3 (last — button label changes to "Finish")
+    // 6. Next → step 3 (last - button label changes to "Finish")
     await user.click(within(document.body.querySelector<HTMLElement>('.b-tour__popup')!).getByRole('button', { name: /next/i }));
     await waitFor(() =>
       expect(document.body.querySelector('.b-tour__popup .b-tour__title')?.textContent?.trim()).toBe('Share'),

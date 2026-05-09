@@ -7,9 +7,9 @@ export type BTimelineItemColor = 'blue' | 'red' | 'green' | 'gray' | (string & {
 
 /**
  * Overall mode controlling which side labels/content appear on.
- * - `'start'`     — all content on the right of the line (default)
- * - `'end'`       — all content on the left of the line
- * - `'alternate'` — content alternates left/right
+ * - `'start'`     - all content on the right of the line (default)
+ * - `'end'`       - all content on the left of the line
+ * - `'alternate'` - content alternates left/right
  */
 export type BTimelineMode = 'start' | 'alternate' | 'end';
 
@@ -19,7 +19,7 @@ export type BTimelineVariant = 'filled' | 'outlined';
 /** Layout direction. */
 export type BTimelineOrientation = 'vertical' | 'horizontal';
 
-/** Per-item side placement — overrides the global mode for a single item. */
+/** Per-item side placement - overrides the global mode for a single item. */
 export type BTimelineItemPlacement = 'start' | 'end';
 
 /** Status-based color convenience alias. */
@@ -32,7 +32,7 @@ export type BTimelineItemStatus = 'success' | 'processing' | 'error' | 'warning'
 export interface BTimelineItem {
   /** Main content of the item. */
   content?: string;
-  /** Dot color — preset name or any CSS color. @default 'blue' */
+  /** Dot color - preset name or any CSS color. @default 'blue' */
   color?: BTimelineItemColor;
   /** Title / timestamp shown on the opposing side (alternate / end mode). */
   title?: string;
@@ -40,7 +40,7 @@ export interface BTimelineItem {
   icon?: string;
   /** When true, renders a spinner on this item's dot. @default false */
   loading?: boolean;
-  /** Override the global mode for this item — pin it to 'start' or 'end'. */
+  /** Override the global mode for this item - pin it to 'start' or 'end'. */
   placement?: BTimelineItemPlacement;
   /** Additional CSS class(es) to add to the item root. */
   className?: string;

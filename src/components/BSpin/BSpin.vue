@@ -18,7 +18,7 @@ const {
    */
   spinning?: boolean;
   /**
-   * Size of the spinner — small, default, or large.
+   * Size of the spinner - small, default, or large.
    * @default 'default'
    */
   size?: `${BSpinSize}`;
@@ -56,7 +56,7 @@ const slots = defineSlots<{
 // ─────────────────────────────────────────────
 const tipId = useId();
 
-/** Delayed spinning state — respects `delay` prop. */
+/** Delayed spinning state - respects `delay` prop. */
 const shouldShow = ref(false);
 let delayTimer: ReturnType<typeof setTimeout> | undefined;
 

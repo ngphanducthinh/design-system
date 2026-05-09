@@ -370,7 +370,7 @@ describe('BTour – accessibility', () => {
 
   it('spotlight is aria-hidden', () => {
     const wrapper = mountTour();
-    // No highlightRect without a real target, so spotlight absent — just check when it would appear
+    // No highlightRect without a real target, so spotlight absent - just check when it would appear
     // Verify the attribute is present in the template (structural test)
     const spotlight = wrapper.find('.b-tour__spotlight');
     if (spotlight.exists()) {

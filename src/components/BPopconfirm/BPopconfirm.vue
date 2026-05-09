@@ -54,7 +54,7 @@ const {
   destroyTooltipOnHide?: boolean;
   /** z-index of the popconfirm. */
   zIndex?: number;
-  /** Controlled visibility — bind with `v-model`. */
+  /** Controlled visibility - bind with `v-model`. */
   modelValue?: boolean;
 }>();
 

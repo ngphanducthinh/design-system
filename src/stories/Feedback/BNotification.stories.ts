@@ -56,7 +56,7 @@ const meta = {
         defaultValue: { summary: 'false' },
       },
     },
-    // Prop-only (no control — raw HTML / slot content)
+    // Prop-only (no control - raw HTML / slot content)
     icon: { control: false },
     closeIcon: { control: false },
     btn: { control: false },
@@ -66,7 +66,7 @@ const meta = {
       description: {
         component:
           'The <code>BNotification</code> component displays a floating notification card in a corner of the viewport.<br><br>' +
-          'It supports four types — <strong>success</strong>, <strong>info</strong>, <strong>warning</strong>, and <strong>error</strong> — defaulting to <strong>info</strong>.<br>' +
+          'It supports four types - <strong>success</strong>, <strong>info</strong>, <strong>warning</strong>, and <strong>error</strong> - defaulting to <strong>info</strong>.<br>' +
           'Notifications are <strong>closed by default</strong> and must be opened explicitly via <code>v-model</code> or the exposed <code>open()</code> method.<br>' +
           'They auto-close after a configurable duration (default 4.5 s), pause on mouse hover, and can be dismissed with the close button or the <kbd>Escape</kbd> key.<br>' +
           'The component teleports to <code>&lt;body&gt;</code> for correct stacking.',
@@ -88,7 +88,7 @@ const btnStyle =
 // 1. Playground (all controls)
 // ─────────────────────────────────────────────
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  * Click **"Show Notification"** to open it. It starts closed by default.
  */
 export const Playground: Story = {
@@ -176,7 +176,7 @@ export const AllTypes: Story = {
 // 3. All placements
 // ─────────────────────────────────────────────
 /**
- * Four placement options — click each button to see the notification appear
+ * Four placement options - click each button to see the notification appear
  * in the corresponding corner of the viewport.
  */
 export const AllPlacements: Story = {

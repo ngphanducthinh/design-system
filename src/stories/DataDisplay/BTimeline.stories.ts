@@ -22,7 +22,7 @@ const meta = {
     variant: {
       control: 'select',
       options: ['filled', 'outlined'] satisfies BTimelineVariant[],
-      description: 'Dot style — `filled` (solid circle) or `outlined` (hollow ring).',
+      description: 'Dot style - `filled` (solid circle) or `outlined` (hollow ring).',
       table: { defaultValue: { summary: 'filled' }, category: 'Props' },
     },
     orientation: {
@@ -90,7 +90,7 @@ const BASIC_ITEMS: BTimelineItemData[] = [
 // 1. Playground
 // ─────────────────────────────────────────────
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  */
 export const Playground: Story = {
   args: {
@@ -169,9 +169,9 @@ export const DotColors: Story = {
       source: {
         code: `<BTimeline :items="[
   { content: 'Blue (default)', color: 'blue' },
-  { content: 'Green — success', color: 'green' },
-  { content: 'Red — error', color: 'red' },
-  { content: 'Gray — neutral', color: 'gray' },
+  { content: 'Green - success', color: 'green' },
+  { content: 'Red - error', color: 'red' },
+  { content: 'Gray - neutral', color: 'gray' },
   { content: 'Custom CSS color', color: 'oklch(60% 0.2 300)' },
 ]" />`,
       },
@@ -182,9 +182,9 @@ export const DotColors: Story = {
     setup() {
       const colorItems: BTimelineItemData[] = [
         { content: 'Blue (default)', color: 'blue' },
-        { content: 'Green — success', color: 'green' },
-        { content: 'Red — error', color: 'red' },
-        { content: 'Gray — neutral', color: 'gray' },
+        { content: 'Green - success', color: 'green' },
+        { content: 'Red - error', color: 'red' },
+        { content: 'Gray - neutral', color: 'gray' },
         { content: 'Custom purple (oklch)', color: 'oklch(60% 0.2 300)' },
       ];
       return { colorItems };
@@ -212,7 +212,7 @@ export const DotColors: Story = {
 // 4. Mode: Alternate
 // ─────────────────────────────────────────────
 /**
- * Alternate mode — content and labels alternate sides of the line.
+ * Alternate mode - content and labels alternate sides of the line.
  */
 export const ModeAlternate: Story = {
   name: 'Mode: Alternate',
@@ -257,7 +257,7 @@ export const ModeAlternate: Story = {
 // 5. Mode: End
 // ─────────────────────────────────────────────
 /**
- * End mode — all content on the left of the line.
+ * End mode - all content on the left of the line.
  */
 export const ModeRight: Story = {
   name: 'Mode: End',
@@ -294,7 +294,7 @@ export const ModeRight: Story = {
 // 6. Pending
 // ─────────────────────────────────────────────
 /**
- * Timeline with a pending ghost item — shows a spinner at the tail.
+ * Timeline with a pending ghost item - shows a spinner at the tail.
  */
 export const Pending: Story = {
   parameters: {
@@ -422,7 +422,7 @@ export const WithLabels: Story = {
 // 9. Reverse
 // ─────────────────────────────────────────────
 /**
- * Reverse order — newest items appear first.
+ * Reverse order - newest items appear first.
  */
 export const Reverse: Story = {
   parameters: {
@@ -619,7 +619,7 @@ export const Theming: Story = {
   <!-- ── tailWidth / --b-timeline-line-width ── -->
   <div>
     <p style="margin:0 0 4px;font-size:13px;font-weight:600;">--b-timeline-line-width</p>
-    <p style="margin:0 0 12px;font-size:12px;color:#595959;">Ant Design: <code>tailWidth</code> — width of the connecting line. Default: <code>2px</code></p>
+    <p style="margin:0 0 12px;font-size:12px;color:#595959;">Ant Design: <code>tailWidth</code> - width of the connecting line. Default: <code>2px</code></p>
     <div style="display:flex;gap:3rem;align-items:flex-start;">
       <div style="flex:1;">
         <p style="margin:0 0 6px;font-size:12px;color:#595959;text-transform:uppercase;letter-spacing:.05em;">Default (2px)</p>
@@ -635,7 +635,7 @@ export const Theming: Story = {
   <!-- ── tailColor / --b-timeline-line-color ── -->
   <div>
     <p style="margin:0 0 4px;font-size:13px;font-weight:600;">--b-timeline-line-color</p>
-    <p style="margin:0 0 12px;font-size:12px;color:#595959;">Ant Design: <code>tailColor</code> — color of the connecting line. Default: light gray</p>
+    <p style="margin:0 0 12px;font-size:12px;color:#595959;">Ant Design: <code>tailColor</code> - color of the connecting line. Default: light gray</p>
     <div style="display:flex;gap:3rem;align-items:flex-start;">
       <div style="flex:1;">
         <p style="margin:0 0 6px;font-size:12px;color:#595959;text-transform:uppercase;letter-spacing:.05em;">Default</p>
@@ -651,7 +651,7 @@ export const Theming: Story = {
   <!-- ── dotSize / --b-timeline-dot-size ── -->
   <div>
     <p style="margin:0 0 4px;font-size:13px;font-weight:600;">--b-timeline-dot-size</p>
-    <p style="margin:0 0 12px;font-size:12px;color:#595959;">Ant Design: <code>dotSize</code> — diameter of the dot circle. Default: <code>10px</code></p>
+    <p style="margin:0 0 12px;font-size:12px;color:#595959;">Ant Design: <code>dotSize</code> - diameter of the dot circle. Default: <code>10px</code></p>
     <div style="display:flex;gap:3rem;align-items:flex-start;">
       <div style="flex:1;">
         <p style="margin:0 0 6px;font-size:12px;color:#595959;text-transform:uppercase;letter-spacing:.05em;">Default (10px)</p>
@@ -667,7 +667,7 @@ export const Theming: Story = {
   <!-- ── dotBorderWidth / --b-timeline-dot-border-width ── -->
   <div>
     <p style="margin:0 0 4px;font-size:13px;font-weight:600;">--b-timeline-dot-border-width</p>
-    <p style="margin:0 0 12px;font-size:12px;color:#595959;">Ant Design: <code>dotBorderWidth</code> — border thickness used in <code>outlined</code> variant. Default: <code>2px</code></p>
+    <p style="margin:0 0 12px;font-size:12px;color:#595959;">Ant Design: <code>dotBorderWidth</code> - border thickness used in <code>outlined</code> variant. Default: <code>2px</code></p>
     <div style="display:flex;gap:3rem;align-items:flex-start;">
       <div style="flex:1;">
         <p style="margin:0 0 6px;font-size:12px;color:#595959;text-transform:uppercase;letter-spacing:.05em;">Default (2px)</p>
@@ -683,7 +683,7 @@ export const Theming: Story = {
   <!-- ── itemPaddingBottom / --b-timeline-item-padding-bottom ── -->
   <div>
     <p style="margin:0 0 4px;font-size:13px;font-weight:600;">--b-timeline-item-padding-bottom</p>
-    <p style="margin:0 0 12px;font-size:12px;color:#595959;">Ant Design: <code>itemPaddingBottom</code> — vertical gap between items. Default: <code>20px</code></p>
+    <p style="margin:0 0 12px;font-size:12px;color:#595959;">Ant Design: <code>itemPaddingBottom</code> - vertical gap between items. Default: <code>20px</code></p>
     <div style="display:flex;gap:3rem;align-items:flex-start;">
       <div style="flex:1;">
         <p style="margin:0 0 6px;font-size:12px;color:#595959;text-transform:uppercase;letter-spacing:.05em;">Default (20px)</p>

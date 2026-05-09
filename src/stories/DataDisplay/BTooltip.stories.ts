@@ -495,7 +495,7 @@ export const InteractionFocusTrigger: Story = {
       expect(toggle.getAttribute('aria-describedby')).toBeTruthy();
     });
 
-    // Tab away — tooltip should hide
+    // Tab away - tooltip should hide
     await userEvent.tab();
     await waitFor(() => {
       expect(toggle.getAttribute('aria-describedby')).toBeNull();

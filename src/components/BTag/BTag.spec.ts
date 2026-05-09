@@ -389,7 +389,7 @@ describe('BTag – edge cases', () => {
 });
 
 // ─────────────────────────────────────────────
-// 8. Animation — fake timers (deterministic)
+// 8. Animation - fake timers (deterministic)
 // ─────────────────────────────────────────────
 describe('BTag – animation (deterministic)', () => {
   beforeEach(() => {
@@ -415,7 +415,7 @@ describe('BTag – animation (deterministic)', () => {
     await w.find('.b-tag__close').trigger('click');
     // Simulate the Transition @after-leave firing (jsdom doesn't run CSS)
     // We can call the handler indirectly by checking emitted events
-    // after $nextTick — enough to confirm the wiring is correct
+    // after $nextTick - enough to confirm the wiring is correct
     vi.runAllTimers();
     await w.vm.$nextTick();
     // afterClose may or may not have fired in jsdom (no CSS animation),

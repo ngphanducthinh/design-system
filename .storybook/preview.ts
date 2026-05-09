@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/vue3-vite';
 import '../src/assets/main.css';
 
 function applyColorScheme(scheme: 'light' | 'dark') {
-  // Set data-prefers-color on <html> — the single source of truth.
+  // Set data-prefers-color on <html> - the single source of truth.
   // main.css maps this to color-scheme: light/dark for native browser UI.
   // Component styles use [data-prefers-color='dark'] ancestor selectors.
   document.documentElement.setAttribute('data-prefers-color', scheme);
