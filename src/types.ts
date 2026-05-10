@@ -37,7 +37,7 @@ export enum BIconVariant {
   Duotone = 'duotone',
   Light = 'light',
   Regular = 'regular',
-  SharpLine = 'sharp-line',
+  SharpLight = 'sharp-light',
   SharpRegular = 'sharp-regular',
   SharpSolid = 'sharp-solid',
   SharpThin = 'sharp-thin',
