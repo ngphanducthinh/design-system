@@ -6,7 +6,7 @@ import { expect, within } from 'storybook/test';
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'Layout/BDivider',
+  title: 'Layout/Divider',
   component: BDivider,
   tags: ['autodocs'],
   argTypes: {
