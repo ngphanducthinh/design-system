@@ -1,4 +1,5 @@
 export * from './BAlert';
+export * from './BDivider';
 export * from './BAvatar';
 export * from './BBadge';
 export * from './BCard';
