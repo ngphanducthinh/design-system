@@ -168,7 +168,7 @@ onUnmounted(() => {
                 </a>
               </slot>
 
-              <span v-if="index < items?.length - 1" aria-hidden="true" class="b:pl-2">
+              <span v-if="index < (items ? items.length - 1 : 0)" aria-hidden="true" class="b:pl-2">
                 <slot :item="item" :name="`separator-${index}`">
                   <BIcon icon="slash-forward" class="b:inline-block" />
                 </slot>
