@@ -119,9 +119,14 @@ export interface BTabData {
 }
 
 export interface BBreadcrumbItem {
+  /** Display text for the breadcrumb item. */
   text: string;
+  /** URL the item links to. */
   href?: string;
+  /** Vue Router location for the item. */
   to?: RouteLocationRaw;
+  /** Optional icon name displayed before the text. */
+  icon?: BIconName;
 }
 
 export enum BAlertType {

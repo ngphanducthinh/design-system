@@ -3,7 +3,7 @@ export * from './BDivider';
 export * from './BAvatar';
 export * from './BBadge';
 export * from './BCard';
-export { default as BBreadcrumb } from './BBreadcrumb/BBreadcrumb.vue';
+export * from './BBreadcrumb';
 export { default as BButton } from './BButton/BButton.vue';
 export * from './BCollapse';
 export * from './BDescriptions';

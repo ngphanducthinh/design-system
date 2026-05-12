@@ -37,9 +37,11 @@ src/
 ├── utils/                # Helper functions (e.g., debounce.ts)
 ├── stories/              # Storybook stories (General / DataDisplay / Feedback / Navigation)
 ├── index.ts              # Library entry: re-exports components + types + imports CSS
-├── types.ts              # Global enums & interfaces (~850 lines)
+├── types.ts              # Global enums & interfaces (~317 lines)
 └── constants.ts          # BIconSizeMap, PIKey injection symbols
 ```
+
+
 
 ---
 
@@ -168,23 +170,23 @@ bun run format         # Prettier --write src/
 
 ---
 
-## All Components (31)
+## All Components (35)
 
-General: `BButton`, `BIcon`, `BInput`, `BSelect`, `BSwitch`, `BTag`
-Data Display: `BAvatar`, BBadge`, `BCard`, `BCollapse`, `BDescriptions`, `BEmpty`, `BImage`, `BPagination`, `BProgress`, `BSegmented`, `BSteps`, `BTable`, `BTabs`, `BTimeline`, `BTree`, `BTour`
+General: `BButton`, `BDivider`, `BFloatButton`, `BIcon`, `BInput`, `BSelect`, `BSwitch`, `BTag`
+Data Display: `BAvatar`, `BBadge`, `BCard`, `BCollapse`, `BDescriptions`, `BEmpty`, `BImage`, `BMasonry`, `BPagination`, `BProgress`*, `BSegmented`, `BSteps`, `BTable`, `BTabs`, `BTimeline`, `BTree`, `BTour`
 Feedback: `BAlert`, `BMessage`, `BModal`, `BNotification`, `BSpin`
 Navigation: `BBreadcrumb`, `BDrawer`, `BPopconfirm`, `BPopover`, `BTooltip`
+
+*`BProgress` directory exists but is not yet registered in `src/components/index.ts`.
 
 ---
 
 ## Current Work
 
-**Branch:** `feat/tree`
-**Task:** Implement `BTree` component (hierarchical tree view).
-- Mirror Ant Design Tree UX and API (Vue-idiomatic)
-- Required features: checkboxes, expand/collapse, lazy-load, virtual scroll, DirectoryTree mode, drag-and-drop
-- Files in progress: `src/components/BTree/`, `src/stories/DataDisplay/BTree.stories.ts`
-- Must register in `src/components/index.ts`
+**Branch:** `feat/rework-with-ant-design`
+**Task:** Rework `BBreadcrumb` component.
+- Files in progress: `src/components/BBreadcrumb/BBreadcrumb.vue`, `src/components/BBreadcrumb/BBreadcrumb.spec.ts`, `src/components/BBreadcrumb/index.ts`, `src/stories/Navigation/BBreadcrumb.stories.ts`
+- `src/components/index.ts` and `src/types.ts` also modified
 
 ---
 
