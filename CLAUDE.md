@@ -149,6 +149,27 @@ export const Accessibility: Story = { play: async ({ canvasElement }) => { /* ax
 
 ---
 
+## Mandatory Test Verification (MUST follow)
+
+**After completing any component work (new component, rework, bug fix), you MUST run and verify ALL of the following before reporting the task as done:**
+
+1. **Unit tests** — Run `bun run test:unit` (or target the specific component with `bun run test:unit -- src/components/BComponentName`). ALL tests must pass. If any test fails, fix the implementation or the test before proceeding.
+
+2. **Storybook interaction & accessibility tests** — Run `bun run test:storybook`. This executes all `play` functions in stories, including accessibility checks (axe-core). ALL must pass. Fix any a11y violations or interaction failures before proceeding.
+
+3. **Type checking** — Run `bun run type-check`. Zero errors required.
+
+4. **Linting** — Run `bun run lint-all`. Zero errors required.
+
+**Rules:**
+- Do NOT skip these steps. Do NOT report work as complete if any test is failing.
+- If a test failure is pre-existing and unrelated to your changes, explicitly inform the user which tests were already failing and why, but still ensure your changes do not introduce NEW failures.
+- When writing new components or modifying existing ones, ensure the corresponding `.spec.ts` tests and storybook `play` functions still align with the updated behavior. Update tests to match new props/emits/behavior — do not leave stale assertions.
+- For accessibility: verify ARIA attributes, keyboard navigation, focus management, and color contrast are correct in both the implementation and the test assertions.
+- Run tests against the specific component first for fast feedback, then run the full suite to catch regressions.
+
+---
+
 ## Build & Dev Commands
 
 ```bash
@@ -170,23 +191,14 @@ bun run format         # Prettier --write src/
 
 ---
 
-## All Components (35)
+## All Components (36)
 
 General: `BButton`, `BDivider`, `BFloatButton`, `BIcon`, `BInput`, `BSelect`, `BSwitch`, `BTag`
 Data Display: `BAvatar`, `BBadge`, `BCard`, `BCollapse`, `BDescriptions`, `BEmpty`, `BImage`, `BMasonry`, `BPagination`, `BProgress`*, `BSegmented`, `BSteps`, `BTable`, `BTabs`, `BTimeline`, `BTree`, `BTour`
 Feedback: `BAlert`, `BMessage`, `BModal`, `BNotification`, `BSpin`
-Navigation: `BBreadcrumb`, `BDrawer`, `BPopconfirm`, `BPopover`, `BTooltip`
+Navigation: `BBreadcrumb`, `BDrawer`, `BDropdown`, `BPopconfirm`, `BPopover`, `BTooltip`
 
 *`BProgress` directory exists but is not yet registered in `src/components/index.ts`.
-
----
-
-## Current Work
-
-**Branch:** `feat/rework-with-ant-design`
-**Task:** Rework `BBreadcrumb` component.
-- Files in progress: `src/components/BBreadcrumb/BBreadcrumb.vue`, `src/components/BBreadcrumb/BBreadcrumb.spec.ts`, `src/components/BBreadcrumb/index.ts`, `src/stories/Navigation/BBreadcrumb.stories.ts`
-- `src/components/index.ts` and `src/types.ts` also modified
 
 ---
 

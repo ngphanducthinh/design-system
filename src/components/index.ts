@@ -32,3 +32,4 @@ export * from './BTour';
 export * from './BTree';
 export * from './BFloatButton';
 export * from './BMasonry';
+export * from './BDropdown';
