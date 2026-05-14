@@ -33,3 +33,4 @@ export * from './BTree';
 export * from './BFloatButton';
 export * from './BMasonry';
 export * from './BDropdown';
+export * from './BAnchor';
