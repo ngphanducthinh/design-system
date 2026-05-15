@@ -1,97 +1,70 @@
-name: Deploy to Storybook Repo
+name: Deploy Storybook
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths-ignore:
-      - '.github/workflows/*'
-      - '.github/actions/**'
+      - '.github/**'
+      - '*.md'
       - 'src/e2e/**'
-      - 'src/tests/**'
-      - 'package.json'
   workflow_dispatch:
 
+concurrency:
+  group: deploy-storybook
+  cancel-in-progress: true
+
 jobs:
-  lint:
+  quality:
+    name: Quality Checks
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Setup
+        uses: ./.github/actions/setup
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
+      - name: Lint
+        run: bun run lint-all
 
-      - name: Get & cache dependencies
-        uses: ./.github/actions/get-dependencies
+      - name: Unit Tests
+        run: bun run test:unit
 
-      - name: Lint code
-        run: bun lint
-
-  test-e2e:
+  e2e:
+    name: E2E Tests
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Get & cache dependencies
-        uses: ./.github/actions/get-dependencies
+      - name: Setup
+        uses: ./.github/actions/setup
 
       - name: Install Playwright browsers
         run: bunx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: bun test:e2e:ci
+        run: bun run test:e2e:ci
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload test report
+        uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
           path: playwright-report/
-          retention-days: 30
+          retention-days: 14
 
-  build:
+  deploy:
+    name: Build & Deploy
     runs-on: ubuntu-latest
-    needs: [lint, test-e2e]
+    needs: [quality, e2e]
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Setup
+        uses: ./.github/actions/setup
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v2
+      - name: Build Storybook
+        run: bun run build-storybook
+
+      - name: Deploy to Storybook repository
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          bun-version: latest
-
-      - name: Get & cache dependencies
-        uses: ./.github/actions/get-dependencies
-
-      - name: Build
-        run: |
-          bun build-storybook
-
-      - name: Checkout Another Repository
-        uses: actions/checkout@v4
-        with:
-          repository: ngphanducthinh/7pmlabs-design-system # replace with the actual repository URL
-          token: ${{ secrets.DESIGN_SYSTEM_STORYBOOK }}
-          path: 7pmlabs-design-system # replace with the desired path in your workspace
-
-      - name: Copy Built Files
-        run: |
-          cp -R storybook-static/* 7pmlabs-design-system/
-
-      - name: Commit and Push Changes to Another Repository
-        run: |
-          cd 7pmlabs-design-system
-          git config user.email "ngphanducthinh@gmail.com"
-          git config user.name "Thinh Nguyen"
-          git add .
-          git commit -m "Update built files"
-          git push
+          personal_token: ${{ secrets.DESIGN_SYSTEM_STORYBOOK }}
+          external_repository: ngphanducthinh/7pmlabs-design-system
+          publish_dir: ./storybook-static
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'deploy: update storybook (${{ github.sha }})'
