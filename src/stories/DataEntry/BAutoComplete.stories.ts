@@ -13,7 +13,7 @@ import { ref } from 'vue';
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'General/AutoComplete',
+  title: 'Data Entry/AutoComplete',
   component: BAutoComplete,
   tags: ['autodocs'],
   argTypes: {
