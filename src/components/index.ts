@@ -38,3 +38,4 @@ export * from './BMenu';
 export * from './BAutoComplete';
 export * from './BCascader';
 export * from './BCheckbox';
+export * from './BColorPicker';
