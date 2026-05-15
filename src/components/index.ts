@@ -35,3 +35,4 @@ export * from './BMasonry';
 export * from './BDropdown';
 export * from './BAnchor';
 export * from './BMenu';
+export * from './BAutoComplete';

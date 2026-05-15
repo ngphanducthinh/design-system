@@ -1,64 +1,61 @@
-# design-system-2
+# @7pmlabs/design-system
 
-This template should help get you started developing with Vue 3 in Vite.
+A Vue 3 component library built with TypeScript, Tailwind CSS 4, and Ant Design inspiration.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Installation
 
 ```sh
-bun install
+npm install @7pmlabs/design-system
+# or
+bun add @7pmlabs/design-system
 ```
 
-### Compile and Hot-Reload for Development
+## Usage
+
+```ts
+import { BButton, BInput, BModal } from '@7pmlabs/design-system'
+import '@7pmlabs/design-system/style.css'
+```
+
+## Tech Stack
+
+- **Framework:** Vue 3.5 (Composition API, `<script setup>`)
+- **Language:** TypeScript 5.9 (strict)
+- **Styling:** Tailwind CSS 4 with `b:` prefix + scoped CSS custom properties
+- **Build:** Vite 8 + Rolldown (library mode, ES modules)
+- **Testing:** Vitest, Playwright, Storybook vitest addon
+- **Storybook:** v10.3
+
+## Development
 
 ```sh
-bun dev
+bun install          # Install dependencies
+bun run dev          # Vite dev server
+bun run storybook    # Storybook dev server (port 6006)
 ```
 
-### Type-Check, Compile and Minify for Production
+## Testing
 
 ```sh
-bun run build
+bun run test:unit       # Unit tests (Vitest)
+bun run test:storybook  # Storybook interaction & a11y tests
+bun run test:e2e        # End-to-end tests (Playwright)
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Build
 
 ```sh
-bun test:unit
+bun run build            # Lint + build library + generate types
+bun run build-storybook  # Build static Storybook
 ```
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
+## Linting & Formatting
 
 ```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-bun run build
-
-# Runs the end-to-end tests
-bun test:e2e
-# Runs the tests only on Chromium
-bun test:e2e --project=chromium
-# Runs the tests of a specific file
-bun test:e2e tests/example.spec.ts
-# Runs the tests in debug mode
-bun test:e2e --debug
+bun run lint-all   # ESLint + oxlint + type-check
+bun run format     # Prettier
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## License
 
-```sh
-bun lint
-```
+MIT
