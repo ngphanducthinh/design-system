@@ -191,12 +191,12 @@ bun run format         # Prettier --write src/
 
 ---
 
-## All Components (36)
+## All Components (38)
 
 General: `BButton`, `BDivider`, `BFloatButton`, `BIcon`, `BInput`, `BSelect`, `BSwitch`, `BTag`
 Data Display: `BAvatar`, `BBadge`, `BCard`, `BCollapse`, `BDescriptions`, `BEmpty`, `BImage`, `BMasonry`, `BPagination`, `BProgress`*, `BSegmented`, `BSteps`, `BTable`, `BTabs`, `BTimeline`, `BTree`, `BTour`
 Feedback: `BAlert`, `BMessage`, `BModal`, `BNotification`, `BSpin`
-Navigation: `BBreadcrumb`, `BDrawer`, `BDropdown`, `BPopconfirm`, `BPopover`, `BTooltip`
+Navigation: `BAnchor`, `BBreadcrumb`, `BDrawer`, `BDropdown`, `BMenu`, `BPopconfirm`, `BPopover`, `BTooltip`
 
 *`BProgress` directory exists but is not yet registered in `src/components/index.ts`.
 
