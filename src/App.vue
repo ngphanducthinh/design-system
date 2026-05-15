@@ -42,17 +42,18 @@
       ]"
     />
 
-    <BTabs>
-      <BTabToggleGroup>
-        <BTabToggle>Head 1</BTabToggle>
-        <BTabToggle>Head 2</BTabToggle>
-        <BTabToggle>Head 3</BTabToggle>
-      </BTabToggleGroup>
-      <BTabContentGroup>
-        <BTabContent>Hello world 01!</BTabContent>
-        <BTabContent>Hello world 02!</BTabContent>
-        <BTabContent>Hello world 03!</BTabContent>
-      </BTabContentGroup>
+    <BTabs
+      :items="[
+        { key: '1', label: 'Head 1' },
+        { key: '2', label: 'Head 2' },
+        { key: '3', label: 'Head 3' },
+      ]"
+    >
+      <template #default="{ item }">
+        <div v-if="item.key === '1'">Hello world 01!</div>
+        <div v-else-if="item.key === '2'">Hello world 02!</div>
+        <div v-else>Hello world 03!</div>
+      </template>
     </BTabs>
 
     <BProgress :percent="progressValue" />
@@ -120,11 +121,7 @@ import {
   BPagination,
   BSelect,
   BSwitch,
-  BTabContent,
-  BTabContentGroup,
   BTabs,
-  BTabToggle,
-  BTabToggleGroup,
 } from '@/components';
 import BModalBody from '@/components/BModal/BModalBody.vue';
 import BModalFooter from '@/components/BModal/BModalFooter.vue';

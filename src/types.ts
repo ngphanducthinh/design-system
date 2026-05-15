@@ -113,10 +113,6 @@ export type {
   BTableSummaryCell,
 } from './components/BTable/types';
 
-export interface BTabData {
-  id: number;
-  isActive: boolean;
-}
 
 export interface BBreadcrumbItem {
   /** Display text for the breadcrumb item. */

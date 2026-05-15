@@ -1,5 +1,4 @@
-import { BIconSize, type BTabData } from '@/types.ts';
-import type { InjectionKey, Ref } from 'vue';
+import { BIconSize } from '@/types.ts';
 
 export const BIconSizeMap: Record<BIconSize, number> = {
   [BIconSize.XSmall]: 0.5, // 8px
@@ -8,13 +7,4 @@ export const BIconSizeMap: Record<BIconSize, number> = {
   [BIconSize.Large]: 1.25, // 20px
   [BIconSize.XLarge]: 1.5, // 24px
   [BIconSize.XXLarge]: 2, // 32px
-};
-
-export const PIKey = {
-  BTabToggleGroup: Symbol('Injection key for the unique id of the BToggles') as InjectionKey<
-    Ref<Array<BTabData>>
-  >,
-  BTabContentGroup: Symbol('Injection key for the unique id of the BTabContents') as InjectionKey<
-    Ref<Array<BTabData>>
-  >,
 };

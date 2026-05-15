@@ -15,7 +15,7 @@ export { default as BInput } from './BInput/BInput.vue';
 export * from './BMessage';
 export * from './BModal';
 export * from './BNotification';
-export { default as BPagination } from './BPagination/BPagination.vue';
+export * from './BPagination';
 export * from './BPopconfirm';
 export * from './BPopover';
 export { default as BSelect } from './BSelect/BSelect.vue';

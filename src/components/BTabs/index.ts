@@ -1,5 +1,10 @@
-export { default as BTabContent } from './BTabContent.vue';
-export { default as BTabContentGroup } from './BTabContentGroup.vue';
 export { default as BTabs } from './BTabs.vue';
-export { default as BTabToggle } from './BTabToggle.vue';
-export { default as BTabToggleGroup } from './BTabToggleGroup.vue';
+export { default as BTabPane } from './BTabPane.vue';
+export type {
+  BTabItem,
+  BTabPaneRegistration,
+  BTabsContext,
+  BTabsPlacement,
+  BTabsSize,
+  BTabsType,
+} from './types';
