@@ -40,3 +40,4 @@ export * from './BCascader';
 export * from './BCheckbox';
 export * from './BColorPicker';
 export * from './BDatePicker';
+export * from './BInputNumber';
