@@ -11,7 +11,7 @@ export * from './BDrawer';
 export * from './BEmpty';
 export { default as BIcon } from './BIcon/BIcon.vue';
 export * from './BImage';
-export { default as BInput } from './BInput/BInput.vue';
+export * from './BInput';
 export * from './BMessage';
 export * from './BModal';
 export * from './BNotification';

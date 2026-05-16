@@ -49,7 +49,7 @@ Stories live in `src/stories/<Category>/BComponentName.stories.ts`.
 4. **No `<style scoped>`** — Tailwind utilities + CSS custom properties only.
 5. CSS-first animations — JS only for logic.
 6. Scoped CSS vars on `.b-{component}` root — never `:root`.
-7. Dark mode via `[data-prefers-color='dark']` selector.
+7. Theme support: light/dark/follow-system — style dark mode via `[data-prefers-color='dark']` selector.
 8. Accessibility first — ARIA roles, keyboard nav, focus management.
 9. Use `useComponentId()` for ARIA relationship IDs.
 10. Provide/inject via `PIKey` symbols from `constants.ts` for hierarchies.
@@ -61,7 +61,7 @@ Stories live in `src/stories/<Category>/BComponentName.stories.ts`.
 
 - **Tailwind theme** (`src/assets/tailwind.css`): OKLCH colors, 6 families (`primary`, `secondary`, `success`, `failure`, `warning`, `info`) × 3 variants (base, `-hover`, `-hover-light`), all `b:` prefixed.
 - **Component tokens:** Scoped CSS vars on component root class.
-- **Dark mode:** `[data-prefers-color='dark']` on `<html>` + `@media prefers-color-scheme: dark`.
+- **Theme modes:** Light / Dark / Follow System (like Ant Design). Controlled via `[data-prefers-color='light' | 'dark']` on `<html>`; when set to "follow system", rely on `@media (prefers-color-scheme: dark)`.
 - **Motion:** Respect `prefers-reduced-motion`.
 
 ---

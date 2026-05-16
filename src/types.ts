@@ -45,12 +45,6 @@ export enum BIconVariant {
   Thin = 'thin',
 }
 
-export enum BInputVariant {
-  Outline = 'outlined',
-  Filled = 'filled',
-  Borderless = 'borderless',
-  Underlined = 'underlined',
-}
 
 export interface BSelectOption {
   label: string;
