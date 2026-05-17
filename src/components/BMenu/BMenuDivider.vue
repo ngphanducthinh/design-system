@@ -38,4 +38,15 @@ const { dashed = false } = defineProps<{
   background: none;
   border-top-color: rgba(253, 253, 253, 0.12);
 }
+
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-menu-divider {
+    background: rgba(253, 253, 253, 0.12);
+  }
+
+  [data-prefers-color='system'] .b-menu-divider--dashed {
+    background: none;
+    border-top-color: rgba(253, 253, 253, 0.12);
+  }
+}
 </style>

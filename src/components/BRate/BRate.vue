@@ -395,6 +395,13 @@ watch(hoverValue, (val) => {
   --b-rate-star-color: #fadb14;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-rate {
+    --b-rate-star-bg: rgba(255, 255, 255, 0.12);
+    --b-rate-star-color: #fadb14;
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .b-rate__star {

@@ -89,4 +89,11 @@ const slots = useSlots();
   --b-card-meta-title-color: oklch(92% 0.01 260);
   --b-card-meta-description-color: oklch(65% 0.01 260);
 }
+
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-card-meta {
+    --b-card-meta-title-color: oklch(92% 0.01 260);
+    --b-card-meta-description-color: oklch(65% 0.01 260);
+  }
+}
 </style>

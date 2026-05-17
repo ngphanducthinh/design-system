@@ -665,6 +665,34 @@ defineExpose({ focus, blur });
   --b-input-filled-hover-bg: rgba(255, 255, 255, 0.12);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-input {
+    --b-input-active-bg: #141414;
+    --b-input-active-border-color: #1668dc;
+    --b-input-active-shadow: 0 0 0 2px rgba(22, 104, 220, 0.15);
+    --b-input-addon-bg: rgba(255, 255, 255, 0.04);
+    --b-input-error-active-shadow: 0 0 0 2px rgba(220, 56, 56, 0.1);
+    --b-input-hover-bg: #141414;
+    --b-input-hover-border-color: #3c89e8;
+    --b-input-warning-active-shadow: 0 0 0 2px rgba(209, 163, 0, 0.1);
+    --b-input-border-color: #424242;
+    --b-input-bg: #141414;
+    --b-input-color: rgba(255, 255, 255, 0.88);
+    --b-input-placeholder-color: rgba(255, 255, 255, 0.25);
+    --b-input-clear-color: rgba(255, 255, 255, 0.25);
+    --b-input-clear-hover-color: rgba(255, 255, 255, 0.45);
+    --b-input-count-color: rgba(255, 255, 255, 0.65);
+    --b-input-disabled-bg: rgba(255, 255, 255, 0.08);
+    --b-input-disabled-color: rgba(255, 255, 255, 0.25);
+    --b-input-error-border-color: #dc3838;
+    --b-input-error-hover-border-color: #e86e6e;
+    --b-input-warning-border-color: #d1a300;
+    --b-input-warning-hover-border-color: #e8c631;
+    --b-input-filled-bg: rgba(255, 255, 255, 0.08);
+    --b-input-filled-hover-bg: rgba(255, 255, 255, 0.12);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .b-input__wrapper,
   .b-input__clear,

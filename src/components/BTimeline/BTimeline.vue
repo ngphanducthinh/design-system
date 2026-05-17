@@ -656,6 +656,16 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
   --b-timeline-spinner-border-color: oklch(54.6% 0.245 262.881 / 15%);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-timeline {
+    --b-timeline-line-color: oklch(32% 0.012 260);
+    --b-timeline-content-color: oklch(82% 0.01 260);
+    --b-timeline-label-color: oklch(60% 0.01 260);
+    --b-timeline-color-gray: oklch(50% 0.01 260);
+    --b-timeline-spinner-border-color: oklch(54.6% 0.245 262.881 / 15%);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Reduced motion
    ───────────────────────────────────────────── */

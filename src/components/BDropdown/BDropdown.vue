@@ -545,9 +545,26 @@ defineExpose({ open: doOpen, close: doClose });
 }
 
 /* ── Dark mode ── */
-[data-prefers-color='dark'] .b-dropdown,
+[data-prefers-color='dark'] .b-dropdown {
+  --b-dropdown-bg: #1f1f1f;
+  --b-dropdown-color: rgba(255, 255, 255, 0.85);
+  --b-dropdown-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
+    0 9px 28px 8px rgba(0, 0, 0, 0.2);
+  --b-dropdown-item-color: rgba(255, 255, 255, 0.85);
+  --b-dropdown-item-hover-bg: rgba(255, 255, 255, 0.08);
+  --b-dropdown-item-active-bg: rgba(255, 255, 255, 0.12);
+  --b-dropdown-item-disabled-color: rgba(255, 255, 255, 0.25);
+  --b-dropdown-item-danger-color: #ff7875;
+  --b-dropdown-item-danger-hover-bg: rgba(255, 77, 79, 0.12);
+  --b-dropdown-item-selected-bg: rgba(22, 119, 255, 0.15);
+  --b-dropdown-item-selected-color: #4096ff;
+  --b-dropdown-divider-color: rgba(253, 253, 253, 0.12);
+  --b-dropdown-group-title-color: rgba(255, 255, 255, 0.45);
+}
+
 @media (prefers-color-scheme: dark) {
-  [data-theme='dark'] .b-dropdown {
+  [data-prefers-color='system'] .b-dropdown {
     --b-dropdown-bg: #1f1f1f;
     --b-dropdown-color: rgba(255, 255, 255, 0.85);
     --b-dropdown-shadow:

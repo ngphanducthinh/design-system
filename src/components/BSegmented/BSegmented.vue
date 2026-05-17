@@ -414,6 +414,18 @@ const rootClasses = computed(() => [
   --b-segmented-selected-color: oklch(95% 0.005 260);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-segmented {
+    --b-segmented-bg: oklch(22% 0.02 260);
+    --b-segmented-item-color: oklch(72% 0.01 260);
+    --b-segmented-item-hover-color: oklch(92% 0.005 260);
+    --b-segmented-item-hover-bg: oklch(100% 0 0 / 8%);
+    --b-segmented-thumb-bg: oklch(30% 0.02 260);
+    --b-segmented-thumb-shadow: 0 1px 2px oklch(0% 0 0 / 30%), 0 0 0 1px oklch(0% 0 0 / 20%);
+    --b-segmented-selected-color: oklch(95% 0.005 260);
+  }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .b-segmented {

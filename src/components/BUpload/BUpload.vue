@@ -865,6 +865,17 @@ defineExpose({
   --b-upload-color-text-secondary: rgba(255, 255, 255, 0.6);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-upload {
+    --b-upload-actions-color: rgba(255, 255, 255, 0.45);
+    --b-upload-color-border: #424242;
+    --b-upload-color-bg: #1f1f1f;
+    --b-upload-color-bg-hover: #2f2f2f;
+    --b-upload-color-text: rgba(255, 255, 255, 0.85);
+    --b-upload-color-text-secondary: rgba(255, 255, 255, 0.6);
+  }
+}
+
 /* Dark mode - follow system (only when no explicit preference is set) */
 @media (prefers-color-scheme: dark) {
   :root:not([data-prefers-color]) .b-upload {

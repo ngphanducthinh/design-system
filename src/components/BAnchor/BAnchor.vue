@@ -490,9 +490,16 @@ watch(activeLink, () => {
 /* ─────────────────────────────────────────────
    Dark mode
    ───────────────────────────────────────────── */
-[data-prefers-color='dark'] .b-anchor,
+[data-prefers-color='dark'] .b-anchor {
+  --b-anchor-link-color: oklch(72% 0.01 260);
+  --b-anchor-link-color-active: oklch(70% 0.18 262);
+  --b-anchor-link-color-hover: oklch(70% 0.18 262);
+  --b-anchor-indicator-color: oklch(70% 0.18 262);
+  --b-anchor-border-color: oklch(35% 0.01 260);
+}
+
 @media (prefers-color-scheme: dark) {
-  .b-anchor {
+  [data-prefers-color='system'] .b-anchor {
     --b-anchor-link-color: oklch(72% 0.01 260);
     --b-anchor-link-color-active: oklch(70% 0.18 262);
     --b-anchor-link-color-hover: oklch(70% 0.18 262);

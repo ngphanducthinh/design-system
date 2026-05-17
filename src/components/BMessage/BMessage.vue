@@ -271,6 +271,17 @@ defineExpose({ open, close });
     0 9px 28px 8px rgba(0, 0, 0, 0.2);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-message {
+    --b-message-bg: oklch(22% 0.02 240);
+    --b-message-border-color: oklch(35% 0.03 240);
+    --b-message-color: oklch(88% 0.02 240);
+    --b-message-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 3px 6px -4px rgba(0, 0, 0, 0.48),
+      0 9px 28px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Base layout
    ───────────────────────────────────────────── */

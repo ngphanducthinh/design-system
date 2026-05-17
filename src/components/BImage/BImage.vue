@@ -859,6 +859,25 @@ function handleToolbarKeydown(event: KeyboardEvent) {
   --b-image-preview-toolbar-bg: oklch(10% 0.005 260 / 90%);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-image {
+    --b-image-bg: oklch(22% 0.005 260);
+    --b-image-placeholder-bg: oklch(25% 0.005 260);
+    --b-image-placeholder-shimmer: linear-gradient(
+      90deg,
+      oklch(25% 0.005 260) 25%,
+      oklch(30% 0.003 260) 50%,
+      oklch(25% 0.005 260) 75%
+    );
+    --b-image-error-bg: oklch(22% 0.005 260);
+    --b-image-error-color: oklch(70% 0.01 260);
+  }
+  [data-prefers-color='system'] .b-image-preview {
+    --b-image-preview-backdrop-bg: oklch(0% 0 0 / 80%);
+    --b-image-preview-toolbar-bg: oklch(10% 0.005 260 / 90%);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Base layout
    ───────────────────────────────────────────── */

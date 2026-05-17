@@ -900,8 +900,7 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
 }
 
 /* ── Dark mode ── */
-[data-prefers-color='dark'] .b-cascader,
-[data-theme='dark'] .b-cascader {
+[data-prefers-color='dark'] .b-cascader {
   --b-cascader-bg: #1f1f1f;
   --b-cascader-color: rgba(255, 255, 255, 0.85);
   --b-cascader-border-color: #424242;
@@ -929,7 +928,7 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
 }
 
 @media (prefers-color-scheme: dark) {
-  [data-theme='dark'] .b-cascader {
+  [data-prefers-color='system'] .b-cascader {
     --b-cascader-bg: #1f1f1f;
     --b-cascader-color: rgba(255, 255, 255, 0.85);
     --b-cascader-border-color: #424242;

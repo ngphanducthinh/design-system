@@ -145,6 +145,19 @@ function handleChange(event: Event) {
   --b-checkbox-check-color: #fff;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-checkbox {
+    --b-checkbox-color-primary: #3c89e8;
+    --b-checkbox-color-primary-hover: #65a9f3;
+    --b-checkbox-color-border: #424242;
+    --b-checkbox-color-bg-container: #141414;
+    --b-checkbox-color-bg-container-disabled: rgba(255, 255, 255, 0.08);
+    --b-checkbox-color-text-disabled: rgba(255, 255, 255, 0.25);
+    --b-checkbox-color-border-disabled: #424242;
+    --b-checkbox-check-color: #fff;
+  }
+}
+
 .b-checkbox__label {
   font-size: var(--b-checkbox-font-size);
   line-height: var(--b-checkbox-line-height);

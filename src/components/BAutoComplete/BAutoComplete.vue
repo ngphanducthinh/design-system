@@ -413,6 +413,20 @@ defineExpose({
   --b-auto-complete-option-selected-color: rgba(255, 255, 255, 0.88);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-auto-complete {
+    --b-auto-complete-active-border-color: #1668dc;
+    --b-auto-complete-active-outline-color: rgba(22, 104, 220, 0.15);
+    --b-auto-complete-hover-border-color: #3c89e8;
+    --b-auto-complete-border-color: #424242;
+    --b-auto-complete-clear-bg: #1f1f1f;
+    --b-auto-complete-selector-bg: rgba(255, 255, 255, 0.08);
+    --b-auto-complete-option-active-bg: rgba(255, 255, 255, 0.08);
+    --b-auto-complete-option-selected-bg: #111a2c;
+    --b-auto-complete-option-selected-color: rgba(255, 255, 255, 0.88);
+  }
+}
+
 .b-auto-complete__input {
   anchor-name: v-bind('anchorName');
 }

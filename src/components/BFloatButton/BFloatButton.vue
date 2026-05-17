@@ -262,6 +262,22 @@ const rootTag = computed(() => (href ? 'a' : 'button'));
   --b-float-button-badge-bg: oklch(55% 0.22 25);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'].b-float-button {
+    --b-float-button-bg: oklch(20% 0.02 260);
+    --b-float-button-bg-hover: oklch(28% 0.02 260);
+    --b-float-button-color: oklch(88% 0.01 260);
+    --b-float-button-primary-bg: oklch(50% 0.2 264);
+    --b-float-button-primary-bg-hover: oklch(57% 0.2 264);
+    --b-float-button-shadow:
+      0 6px 16px 0 oklch(0% 0 0 / 30%), 0 3px 6px -4px oklch(0% 0 0 / 40%),
+      0 9px 28px 8px oklch(0% 0 0 / 25%);
+    --b-float-button-tooltip-bg: oklch(30% 0.02 260);
+    --b-float-button-tooltip-color: oklch(88% 0.01 260);
+    --b-float-button-badge-bg: oklch(55% 0.22 25);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Base button
    ───────────────────────────────────────────── */

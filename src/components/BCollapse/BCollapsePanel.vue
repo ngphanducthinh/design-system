@@ -278,6 +278,23 @@ function handleKeydown(e: KeyboardEvent) {
   background: oklch(25% 0.005 260);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-collapse-panel {
+    --b-collapse-header-bg: oklch(22% 0.005 260);
+    --b-collapse-header-color: oklch(90% 0 0);
+    --b-collapse-content-bg: oklch(18% 0.005 260);
+    --b-collapse-content-color: oklch(80% 0.01 260);
+    --b-collapse-border-color: oklch(32% 0.005 260);
+    --b-collapse-arrow-color: oklch(65% 0 0);
+    --b-collapse-extra-color: oklch(65% 0 0);
+    --b-collapse-disabled-color: oklch(45% 0 0);
+    --b-collapse-disabled-bg: oklch(20% 0.005 260);
+  }
+  [data-prefers-color='system'] .b-collapse-panel__header--clickable:hover {
+    background: oklch(25% 0.005 260);
+  }
+}
+
 .b-collapse-panel__header--icon-clickable {
   cursor: default;
 }

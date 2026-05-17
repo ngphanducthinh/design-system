@@ -301,6 +301,14 @@ defineExpose({ focus, blur });
   --b-switch-handle-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-switch {
+    --b-switch-track-bg: rgba(255, 255, 255, 0.25);
+    --b-switch-track-bg-disabled: rgba(255, 255, 255, 0.08);
+    --b-switch-handle-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .b-switch__handle {

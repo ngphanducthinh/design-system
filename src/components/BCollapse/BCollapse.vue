@@ -152,6 +152,12 @@ provide(BCollapseGroupContextKey, context);
   --b-collapse-border-color: oklch(32% 0.005 260);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-collapse {
+    --b-collapse-border-color: oklch(32% 0.005 260);
+  }
+}
+
 .b-collapse {
   box-sizing: border-box;
   font-family: inherit;

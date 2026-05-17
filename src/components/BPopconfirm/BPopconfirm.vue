@@ -539,6 +539,22 @@ defineExpose({ open: doOpen, close: doClose });
   --b-popconfirm-btn-default-border: oklch(40% 0 0);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] {
+    --b-popconfirm-bg: oklch(22% 0 0);
+    --b-popconfirm-color: oklch(90% 0 0);
+    --b-popconfirm-arrow-color: oklch(22% 0 0);
+    --b-popconfirm-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
+      0 9px 28px 8px rgba(0, 0, 0, 0.2);
+    --b-popconfirm-icon-color: oklch(80% 0.15 85);
+    --b-popconfirm-description-color: oklch(65% 0 0);
+    --b-popconfirm-btn-primary-bg: oklch(55% 0.2 260);
+    --b-popconfirm-btn-default-color: oklch(90% 0 0);
+    --b-popconfirm-btn-default-border: oklch(40% 0 0);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Toggle wrapper
    ───────────────────────────────────────────── */

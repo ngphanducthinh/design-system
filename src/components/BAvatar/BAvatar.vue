@@ -251,6 +251,14 @@ watch([() => gap, hasText], () => {
   --b-avatar-icon-color: oklch(90% 0.01 240);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-avatar {
+    --b-avatar-bg: oklch(40% 0.03 240);
+    --b-avatar-color: oklch(90% 0.01 240);
+    --b-avatar-icon-color: oklch(90% 0.01 240);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Base layout
    ───────────────────────────────────────────── */

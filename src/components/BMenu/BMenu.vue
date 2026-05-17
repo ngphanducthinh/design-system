@@ -356,6 +356,27 @@ const ariaOrientation = computed(() => (props.mode === 'horizontal' ? 'horizonta
 }
 
 @media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-menu {
+    --b-menu-item-bg: #001529;
+    --b-menu-item-color: rgba(255, 255, 255, 0.65);
+    --b-menu-item-hover-bg: transparent;
+    --b-menu-item-hover-color: #fff;
+    --b-menu-item-active-bg: #1677ff;
+    --b-menu-item-selected-bg: #1677ff;
+    --b-menu-item-selected-color: #fff;
+    --b-menu-item-disabled-color: rgba(255, 255, 255, 0.25);
+    --b-menu-group-title-color: rgba(255, 255, 255, 0.65);
+    --b-menu-danger-item-color: #ff4d4f;
+    --b-menu-danger-item-hover-color: #ff7875;
+    --b-menu-danger-item-active-bg: #ff4d4f;
+    --b-menu-danger-item-selected-bg: #ff4d4f;
+    --b-menu-danger-item-selected-color: #fff;
+    --b-menu-sub-menu-item-bg: #000c17;
+    --b-menu-popup-bg: #001529;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
   [data-theme='dark'] .b-menu {
     --b-menu-item-bg: #001529;
     --b-menu-item-color: rgba(255, 255, 255, 0.65);

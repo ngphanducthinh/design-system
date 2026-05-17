@@ -582,6 +582,19 @@ function mergedContentStyle(item: ResolvedItem): CSSProperties | undefined {
   --b-descriptions-content-color: oklch(88% 0.01 260);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-descriptions {
+    --b-descriptions-bg: oklch(20% 0.02 260);
+    --b-descriptions-color: oklch(88% 0.01 260);
+    --b-descriptions-border-color: oklch(35% 0.02 260);
+    --b-descriptions-title-color: oklch(92% 0.01 260);
+    --b-descriptions-extra-color: oklch(65% 0.01 260);
+    --b-descriptions-label-color: oklch(65% 0.01 260);
+    --b-descriptions-label-bg: oklch(25% 0.02 260);
+    --b-descriptions-content-color: oklch(88% 0.01 260);
+  }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .b-descriptions {

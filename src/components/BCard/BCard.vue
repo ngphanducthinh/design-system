@@ -577,6 +577,29 @@ const skeletonRows = [100, 75, 90, 60];
   --b-card-loading-shine-color: oklch(35% 0.02 260);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-card {
+    --b-card-bg: oklch(20% 0.02 260);
+    --b-card-color: oklch(88% 0.01 260);
+    --b-card-border-color: oklch(35% 0.02 260);
+    --b-card-shadow: 0 1px 2px 0 oklch(0% 0 0 / 20%), 0 1px 3px 0 oklch(0% 0 0 / 25%);
+    --b-card-shadow-hover: 0 4px 12px oklch(0% 0 0 / 30%);
+    --b-card-head-color: oklch(92% 0.01 260);
+    --b-card-head-border-color: oklch(35% 0.02 260);
+    --b-card-extra-color: oklch(65% 0.01 260);
+    --b-card-tab-color: oklch(65% 0.01 260);
+    --b-card-tab-active-color: oklch(70% 0.18 264);
+    --b-card-tab-hover-color: oklch(70% 0.18 264);
+    --b-card-tab-disabled-color: oklch(40% 0.01 260);
+    --b-card-tab-bar-border-color: oklch(35% 0.02 260);
+    --b-card-tab-indicator-color: oklch(70% 0.18 264);
+    --b-card-actions-border-color: oklch(35% 0.02 260);
+    --b-card-inner-bg: oklch(25% 0.02 260);
+    --b-card-loading-line-bg: oklch(30% 0.02 260);
+    --b-card-loading-shine-color: oklch(35% 0.02 260);
+  }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .b-card {

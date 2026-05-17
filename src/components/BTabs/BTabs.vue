@@ -907,6 +907,23 @@ const tabBarGutterStyle = computed(() =>
   border-bottom-color: oklch(20% 0.015 260);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-tabs {
+    --b-tabs-ink-bar-color: oklch(70% 0.18 262.881);
+    --b-tabs-item-active-color: oklch(80% 0.14 262.881);
+    --b-tabs-item-color: oklch(85% 0.01 260 / 88%);
+    --b-tabs-item-hover-color: oklch(70% 0.18 262.881);
+    --b-tabs-item-selected-color: oklch(70% 0.18 262.881);
+    --b-tabs-item-disabled-color: oklch(85% 0.01 260 / 25%);
+    --b-tabs-card-bg: oklch(25% 0.015 260 / 50%);
+    --b-tabs-border-color: oklch(35% 0.01 260);
+  }
+  [data-prefers-color='system'] .b-tabs--editable-card .b-tabs__tab--active {
+    background: oklch(20% 0.015 260);
+    border-bottom-color: oklch(20% 0.015 260);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Reduced motion
    ───────────────────────────────────────────── */

@@ -856,6 +856,26 @@ defineExpose({
   --b-select-option-selected-color: rgba(255, 255, 255, 0.88);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-select {
+    --b-select-active-border-color: #1668dc;
+    --b-select-active-outline-color: rgba(22, 104, 220, 0.15);
+    --b-select-hover-border-color: #3c89e8;
+    --b-select-border-color: #424242;
+    --b-select-color: rgba(255, 255, 255, 0.88);
+    --b-select-placeholder-color: #9ca3af;
+    --b-select-clear-bg: #1f1f1f;
+    --b-select-selector-bg: #1f1f1f;
+    --b-select-filled-bg: rgba(255, 255, 255, 0.08);
+    --b-select-multiple-item-bg: rgba(255, 255, 255, 0.1);
+    --b-select-multiple-item-color-disabled: rgba(255, 255, 255, 0.25);
+    --b-select-multiple-selector-bg-disabled: rgba(255, 255, 255, 0.08);
+    --b-select-option-active-bg: rgba(255, 255, 255, 0.08);
+    --b-select-option-selected-bg: #111a2c;
+    --b-select-option-selected-color: rgba(255, 255, 255, 0.88);
+  }
+}
+
 .b-select__selector {
   anchor-name: v-bind('anchorName');
 }

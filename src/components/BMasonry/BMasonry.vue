@@ -412,6 +412,13 @@ onBeforeUnmount(() => {
   --b-masonry-item-bg: transparent;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-masonry {
+    /* Tokens that shift in dark mode — override as needed by the consumer */
+    --b-masonry-item-bg: transparent;
+  }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .b-masonry {

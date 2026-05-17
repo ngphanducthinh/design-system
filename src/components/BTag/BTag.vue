@@ -594,6 +594,94 @@ const customColorStyle = computed(() => {
   --b-tag-color: color-mix(in oklch, var(--b-tag-custom-color) 85%, white);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-tag {
+    --b-tag-bg: oklch(26% 0.008 260);
+    --b-tag-border-color: oklch(36% 0.012 260);
+    --b-tag-color: oklch(82% 0.01 260);
+  }
+  [data-prefers-color='system'] .b-tag--success {
+    --b-tag-bg: oklch(20% 0.06 148);
+    --b-tag-border-color: oklch(38% 0.12 148);
+    --b-tag-color: oklch(78% 0.12 148);
+  }
+  [data-prefers-color='system'] .b-tag--processing {
+    --b-tag-bg: oklch(20% 0.06 260);
+    --b-tag-border-color: oklch(40% 0.14 262);
+    --b-tag-color: oklch(76% 0.15 262);
+  }
+  [data-prefers-color='system'] .b-tag--error {
+    --b-tag-bg: oklch(20% 0.05 20);
+    --b-tag-border-color: oklch(38% 0.14 22);
+    --b-tag-color: oklch(78% 0.14 22);
+  }
+  [data-prefers-color='system'] .b-tag--warning {
+    --b-tag-bg: oklch(20% 0.06 58);
+    --b-tag-border-color: oklch(40% 0.15 58);
+    --b-tag-color: oklch(80% 0.14 58);
+  }
+  [data-prefers-color='system'] .b-tag--magenta {
+    --b-tag-bg: oklch(20% 0.05 348);
+    --b-tag-border-color: oklch(38% 0.16 350);
+    --b-tag-color: oklch(76% 0.16 348);
+  }
+  [data-prefers-color='system'] .b-tag--red {
+    --b-tag-bg: oklch(20% 0.05 18);
+    --b-tag-border-color: oklch(38% 0.17 18);
+    --b-tag-color: oklch(76% 0.17 18);
+  }
+  [data-prefers-color='system'] .b-tag--volcano {
+    --b-tag-bg: oklch(20% 0.05 38);
+    --b-tag-border-color: oklch(38% 0.15 38);
+    --b-tag-color: oklch(76% 0.15 38);
+  }
+  [data-prefers-color='system'] .b-tag--orange {
+    --b-tag-bg: oklch(20% 0.06 62);
+    --b-tag-border-color: oklch(40% 0.16 62);
+    --b-tag-color: oklch(80% 0.16 62);
+  }
+  [data-prefers-color='system'] .b-tag--gold {
+    --b-tag-bg: oklch(20% 0.06 78);
+    --b-tag-border-color: oklch(40% 0.16 78);
+    --b-tag-color: oklch(80% 0.14 78);
+  }
+  [data-prefers-color='system'] .b-tag--lime {
+    --b-tag-bg: oklch(20% 0.07 128);
+    --b-tag-border-color: oklch(40% 0.16 128);
+    --b-tag-color: oklch(80% 0.14 128);
+  }
+  [data-prefers-color='system'] .b-tag--green {
+    --b-tag-bg: oklch(20% 0.06 147);
+    --b-tag-border-color: oklch(38% 0.14 147);
+    --b-tag-color: oklch(76% 0.13 147);
+  }
+  [data-prefers-color='system'] .b-tag--cyan {
+    --b-tag-bg: oklch(20% 0.05 200);
+    --b-tag-border-color: oklch(38% 0.12 200);
+    --b-tag-color: oklch(76% 0.11 200);
+  }
+  [data-prefers-color='system'] .b-tag--blue {
+    --b-tag-bg: oklch(20% 0.06 258);
+    --b-tag-border-color: oklch(38% 0.15 258);
+    --b-tag-color: oklch(74% 0.15 258);
+  }
+  [data-prefers-color='system'] .b-tag--geekblue {
+    --b-tag-bg: oklch(20% 0.05 272);
+    --b-tag-border-color: oklch(36% 0.18 272);
+    --b-tag-color: oklch(72% 0.18 272);
+  }
+  [data-prefers-color='system'] .b-tag--purple {
+    --b-tag-bg: oklch(20% 0.05 300);
+    --b-tag-border-color: oklch(36% 0.16 300);
+    --b-tag-color: oklch(74% 0.16 300);
+  }
+  [data-prefers-color='system'] .b-tag--custom-color {
+    --b-tag-bg: color-mix(in oklch, var(--b-tag-custom-color) 15%, oklch(15% 0 0));
+    --b-tag-border-color: color-mix(in oklch, var(--b-tag-custom-color) 50%, oklch(15% 0 0));
+    --b-tag-color: color-mix(in oklch, var(--b-tag-custom-color) 85%, white);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Transition (fade)
    ───────────────────────────────────────────── */

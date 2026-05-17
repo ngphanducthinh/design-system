@@ -727,9 +727,25 @@ const rootClasses = computed(() => [
 }
 
 /* ── Dark mode ── */
-[data-prefers-color='dark'] .b-pagination,
+[data-prefers-color='dark'] .b-pagination {
+  --b-pagination-item-bg: #1d1d1d;
+  --b-pagination-item-bg-hover: rgba(255, 255, 255, 0.08);
+  --b-pagination-item-active-bg: #1d1d1d;
+  --b-pagination-item-active-color: #4096ff;
+  --b-pagination-item-active-border-color: #4096ff;
+  --b-pagination-item-active-color-hover: #69b1ff;
+  --b-pagination-item-active-border-color-hover: #69b1ff;
+  --b-pagination-item-active-bg-disabled: rgba(255, 255, 255, 0.08);
+  --b-pagination-item-active-color-disabled: rgba(255, 255, 255, 0.3);
+  --b-pagination-item-color-disabled: rgba(255, 255, 255, 0.3);
+  --b-pagination-item-input-bg: #1d1d1d;
+  --b-pagination-item-link-bg: #1d1d1d;
+  --b-pagination-color: rgba(255, 255, 255, 0.88);
+  --b-pagination-focus-ring: 0 0 0 2px rgba(64, 150, 255, 0.25);
+}
+
 @media (prefers-color-scheme: dark) {
-  .b-pagination {
+  [data-prefers-color='system'] .b-pagination {
     --b-pagination-item-bg: #1d1d1d;
     --b-pagination-item-bg-hover: rgba(255, 255, 255, 0.08);
     --b-pagination-item-active-bg: #1d1d1d;

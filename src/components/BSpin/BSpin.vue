@@ -219,6 +219,15 @@ const rootClasses = computed(() => [
   --b-spin-fullscreen-bg: oklch(15% 0 0 / 0.75);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-spin {
+    --b-spin-dot-color: oklch(72% 0.14 237);
+    --b-spin-tip-color: oklch(72% 0.14 237);
+    --b-spin-overlay-bg: oklch(15% 0 0 / 0.6);
+    --b-spin-fullscreen-bg: oklch(15% 0 0 / 0.75);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Base layout
    ───────────────────────────────────────────── */

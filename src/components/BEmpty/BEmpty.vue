@@ -233,6 +233,26 @@ const descriptionText = computed(() => {
   --b-empty-description-color: oklch(70% 0.01 260);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-empty {
+    --b-empty-ellipse-fill: oklch(25% 0.005 260);
+    --b-empty-path-bg-fill: oklch(22% 0.005 260);
+    --b-empty-path-main-fill: oklch(18% 0.003 260);
+    --b-empty-path-front-stroke: oklch(40% 0.01 260);
+    --b-empty-path-front-fill: oklch(20% 0.005 260);
+    --b-empty-path-panel-fill: oklch(28% 0.005 260);
+    --b-empty-path-dot-fill: oklch(40% 0.01 260);
+    --b-empty-path-dots-group-fill: oklch(18% 0 0);
+  
+    --b-empty-simple-ellipse-fill: oklch(25% 0.005 260);
+    --b-empty-simple-group-stroke: oklch(40% 0.01 260);
+    --b-empty-simple-group-fill: oklch(20% 0.005 260);
+    --b-empty-simple-inner-fill: oklch(28% 0.005 260);
+  
+    --b-empty-description-color: oklch(70% 0.01 260);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Base layout
    ───────────────────────────────────────────── */

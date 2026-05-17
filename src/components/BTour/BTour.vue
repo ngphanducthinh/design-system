@@ -820,6 +820,26 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
   --b-tour-close-hover-color: oklch(90% 0 0);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-tour {
+    --b-tour-popup-bg: oklch(22% 0 0);
+    --b-tour-popup-color: oklch(90% 0 0);
+    --b-tour-popup-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 3px 6px -4px rgba(0, 0, 0, 0.48),
+      0 9px 28px 8px rgba(0, 0, 0, 0.2);
+    --b-tour-title-color: oklch(95% 0 0);
+    --b-tour-description-color: oklch(72% 0 0);
+    --b-tour-mask-bg: rgba(0, 0, 0, 0.65);
+    --b-tour-arrow-bg: oklch(22% 0 0);
+    --b-tour-indicator-bg: oklch(40% 0 0);
+    --b-tour-prev-btn-color: oklch(85% 0 0);
+    --b-tour-prev-btn-border: 1px solid oklch(35% 0 0);
+    --b-tour-prev-btn-hover-bg: oklch(30% 0 0);
+    --b-tour-close-color: oklch(65% 0 0);
+    --b-tour-close-hover-color: oklch(90% 0 0);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Tour container (fullscreen overlay wrapper)
    ───────────────────────────────────────────── */

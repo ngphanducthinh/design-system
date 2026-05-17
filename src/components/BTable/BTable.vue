@@ -2216,6 +2216,25 @@ function getCellStyle(
   --b-table-checkbox-border: 1px solid oklch(48% 0.02 260);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-table {
+    --b-table-bg: oklch(18% 0.015 260);
+    --b-table-color: oklch(88% 0.01 260);
+    --b-table-border-color: oklch(32% 0.02 260);
+    --b-table-header-bg: oklch(22% 0.02 260);
+    --b-table-header-color: oklch(85% 0.01 260);
+    --b-table-row-hover-bg: oklch(25% 0.02 260);
+    --b-table-row-selected-bg: oklch(26% 0.04 262);
+    --b-table-row-expanded-bg: oklch(21% 0.015 260);
+    --b-table-empty-color: oklch(55% 0.01 260);
+    --b-table-footer-bg: oklch(22% 0.02 260);
+    --b-table-loading-overlay-bg: oklch(18% 0.015 260);
+    --b-table-filter-dropdown-bg: oklch(22% 0.02 260);
+    --b-table-filter-dropdown-shadow: 0 6px 16px oklch(0% 0 0 / 30%), 0 3px 6px oklch(0% 0 0 / 20%);
+    --b-table-checkbox-border: 1px solid oklch(48% 0.02 260);
+  }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .b-table {

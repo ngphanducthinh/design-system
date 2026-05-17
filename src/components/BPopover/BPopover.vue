@@ -434,6 +434,20 @@ defineExpose({ open: doOpen, close: doClose });
   --b-popover-body-color: oklch(75% 0 0);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-popover__content {
+    --b-popover-bg: oklch(22% 0 0);
+    --b-popover-color: oklch(90% 0 0);
+    --b-popover-arrow-color: oklch(22% 0 0);
+    --b-popover-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
+      0 9px 28px 8px rgba(0, 0, 0, 0.2);
+    --b-popover-title-color: oklch(95% 0 0);
+    --b-popover-title-border-bottom: 1px solid oklch(30% 0 0);
+    --b-popover-body-color: oklch(75% 0 0);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Toggle wrapper
    ───────────────────────────────────────────── */

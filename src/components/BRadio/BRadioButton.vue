@@ -244,6 +244,24 @@ function handleChange(event: Event) {
   --b-radio-button-solid-checked-active-bg: #003eb3;
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-radio-button {
+    --b-radio-button-bg: #141414;
+    --b-radio-button-checked-bg: #141414;
+    --b-radio-button-color: rgba(255, 255, 255, 0.85);
+    --b-radio-button-color-primary: #4d94e8;
+    --b-radio-button-color-primary-hover: #4d94e8;
+    --b-radio-button-color-primary-active: #3c89e8;
+    --b-radio-button-color-border: #424242;
+    --b-radio-button-color-disabled-bg: rgba(255, 255, 255, 0.08);
+    --b-radio-button-color-disabled: rgba(255, 255, 255, 0.25);
+    --b-radio-button-solid-checked-bg: #1668dc;
+    --b-radio-button-solid-checked-color: #fff;
+    --b-radio-button-solid-checked-hover-bg: #0958d9;
+    --b-radio-button-solid-checked-active-bg: #003eb3;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .b-radio-button {
     transition: none;

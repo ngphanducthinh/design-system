@@ -1015,9 +1015,20 @@ defineExpose({ open: () => setOpen(true), close: () => setOpen(false) });
 }
 
 /* ── Dark mode ── */
-[data-prefers-color='dark'] .b-color-picker,
+[data-prefers-color='dark'] .b-color-picker {
+  --b-color-picker-bg: #1f1f1f;
+  --b-color-picker-border-color: #424242;
+  --b-color-picker-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
+    0 9px 28px 8px rgba(0, 0, 0, 0.2);
+  --b-color-picker-input-bg: #141414;
+  --b-color-picker-input-border: #424242;
+  --b-color-picker-text-color: rgba(255, 255, 255, 0.88);
+  --b-color-picker-text-color-secondary: rgba(255, 255, 255, 0.65);
+}
+
 @media (prefers-color-scheme: dark) {
-  .b-color-picker {
+  [data-prefers-color='system'] .b-color-picker {
     --b-color-picker-bg: #1f1f1f;
     --b-color-picker-border-color: #424242;
     --b-color-picker-shadow:

@@ -419,6 +419,20 @@ defineExpose({ open });
     -9px 0 28px 8px rgba(0, 0, 0, 0.2);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-drawer-root {
+    --b-drawer-bg: oklch(20% 0 0);
+    --b-drawer-color: oklch(90% 0 0);
+    --b-drawer-mask-bg: rgba(0, 0, 0, 0.65);
+    --b-drawer-border-color: oklch(30% 0 0);
+    --b-drawer-close-color: oklch(65% 0 0);
+    --b-drawer-close-hover-color: oklch(90% 0 0);
+    --b-drawer-shadow:
+      -6px 0 16px 0 rgba(0, 0, 0, 0.24), -3px 0 6px -4px rgba(0, 0, 0, 0.36),
+      -9px 0 28px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Root wrapper (mask + panel)
    ───────────────────────────────────────────── */

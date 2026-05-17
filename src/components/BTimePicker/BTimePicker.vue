@@ -1210,8 +1210,7 @@ const isSecondDisabled = (s: number) => disabledSeconds.value.includes(s);
 }
 
 /* ──── Dark Mode ──── */
-[data-prefers-color='dark'] .b-time-picker,
-[data-theme='dark'] .b-time-picker {
+[data-prefers-color='dark'] .b-time-picker {
   --b-time-picker-bg: #141414;
   --b-time-picker-hover-bg: #141414;
   --b-time-picker-active-bg: #141414;
@@ -1238,7 +1237,7 @@ const isSecondDisabled = (s: number) => disabledSeconds.value.includes(s);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root:not([data-prefers-color]) .b-time-picker {
+  [data-prefers-color='system'] .b-time-picker {
     --b-time-picker-bg: #141414;
     --b-time-picker-hover-bg: #141414;
     --b-time-picker-active-bg: #141414;

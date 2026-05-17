@@ -1549,8 +1549,7 @@ watch(isPanelOpen, (val) => {
   background: var(--b-date-picker-cell-hover-bg);
 }
 
-[data-prefers-color='dark'] .b-date-picker,
-[data-theme='dark'] .b-date-picker {
+[data-prefers-color='dark'] .b-date-picker {
   --b-date-picker-bg: #141414;
   --b-date-picker-panel-bg: #1f1f1f;
   --b-date-picker-border-color: #424242;
@@ -1569,6 +1568,29 @@ watch(isPanelOpen, (val) => {
     0 9px 28px 8px rgba(0, 0, 0, 0.2);
   --b-date-picker-hover-bg: #141414;
   --b-date-picker-active-bg: #141414;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-date-picker {
+    --b-date-picker-bg: #141414;
+    --b-date-picker-panel-bg: #1f1f1f;
+    --b-date-picker-border-color: #424242;
+    --b-date-picker-text-color: rgba(255, 255, 255, 0.88);
+    --b-date-picker-text-color-secondary: rgba(255, 255, 255, 0.45);
+    --b-date-picker-text-color-disabled: rgba(255, 255, 255, 0.25);
+    --b-date-picker-hover-border-color: #3c89e8;
+    --b-date-picker-active-border-color: #1668dc;
+    --b-date-picker-active-shadow: 0 0 0 2px rgba(22, 104, 220, 0.15);
+    --b-date-picker-cell-hover-bg: rgba(255, 255, 255, 0.08);
+    --b-date-picker-cell-bg-disabled: rgba(255, 255, 255, 0.08);
+    --b-date-picker-selected-bg: #1668dc;
+    --b-date-picker-today-border-color: #1668dc;
+    --b-date-picker-panel-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 3px 6px -4px rgba(0, 0, 0, 0.48),
+      0 9px 28px 8px rgba(0, 0, 0, 0.2);
+    --b-date-picker-hover-bg: #141414;
+    --b-date-picker-active-bg: #141414;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

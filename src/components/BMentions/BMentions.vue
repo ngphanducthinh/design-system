@@ -714,6 +714,36 @@ defineExpose({
   --b-mentions-warning-active-shadow: 0 0 0 2px rgba(216, 150, 20, 0.1);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-mentions {
+    --b-mentions-active-bg: #1f1f1f;
+    --b-mentions-active-border-color: #1668dc;
+    --b-mentions-active-shadow: 0 0 0 2px rgba(22, 104, 220, 0.15);
+    --b-mentions-hover-bg: #1f1f1f;
+    --b-mentions-hover-border-color: #3c89e8;
+    --b-mentions-border-color: #424242;
+    --b-mentions-bg: #1f1f1f;
+    --b-mentions-color: rgba(255, 255, 255, 0.88);
+    --b-mentions-placeholder-color: rgba(255, 255, 255, 0.25);
+    --b-mentions-disabled-bg: rgba(255, 255, 255, 0.08);
+    --b-mentions-disabled-color: rgba(255, 255, 255, 0.25);
+    --b-mentions-dropdown-bg: #2a2a2a;
+    --b-mentions-dropdown-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 3px 6px -4px rgba(0, 0, 0, 0.48),
+      0 9px 28px 8px rgba(0, 0, 0, 0.2);
+    --b-mentions-option-active-bg: rgba(255, 255, 255, 0.08);
+    --b-mentions-option-selected-bg: #111a2c;
+    --b-mentions-clear-color: rgba(255, 255, 255, 0.25);
+    --b-mentions-clear-hover-color: rgba(255, 255, 255, 0.45);
+    --b-mentions-error-border-color: #d32029;
+    --b-mentions-error-hover-border-color: #e84749;
+    --b-mentions-error-active-shadow: 0 0 0 2px rgba(211, 32, 41, 0.1);
+    --b-mentions-warning-border-color: #d89614;
+    --b-mentions-warning-hover-border-color: #e8b339;
+    --b-mentions-warning-active-shadow: 0 0 0 2px rgba(216, 150, 20, 0.1);
+  }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .b-mentions__textarea,

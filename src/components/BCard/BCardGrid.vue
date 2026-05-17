@@ -72,6 +72,13 @@ defineSlots<{
   --b-card-grid-shadow-hover: 0 4px 12px oklch(0% 0 0 / 30%);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-card-grid {
+    --b-card-grid-border-color: oklch(35% 0.02 260);
+    --b-card-grid-shadow-hover: 0 4px 12px oklch(0% 0 0 / 30%);
+  }
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .b-card-grid {

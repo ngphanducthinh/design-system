@@ -124,6 +124,19 @@ function handleChange(event: Event) {
   --b-radio-dot-color-disabled: rgba(255, 255, 255, 0.25);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-radio {
+    --b-radio-color-primary: #3c89e8;
+    --b-radio-color-primary-hover: #65a9f3;
+    --b-radio-color-border: #424242;
+    --b-radio-color-bg-container: #141414;
+    --b-radio-color-bg-container-disabled: rgba(255, 255, 255, 0.08);
+    --b-radio-color-text-disabled: rgba(255, 255, 255, 0.25);
+    --b-radio-color-border-disabled: #424242;
+    --b-radio-dot-color-disabled: rgba(255, 255, 255, 0.25);
+  }
+}
+
 .b-radio__label {
   font-size: var(--b-radio-font-size);
   line-height: var(--b-radio-line-height);

@@ -2,10 +2,7 @@ import type { Preview } from '@storybook/vue3-vite';
 import '../src/assets/main.css';
 import './storybook-overrides.css';
 
-function applyColorScheme(scheme: 'light' | 'dark') {
-  // Set data-prefers-color on <html> - the single source of truth.
-  // main.css maps this to color-scheme: light/dark for native browser UI.
-  // Component styles use [data-prefers-color='dark'] ancestor selectors.
+function applyColorScheme(scheme: 'light' | 'dark' | 'system') {
   document.documentElement.setAttribute('data-prefers-color', scheme);
 }
 
@@ -19,6 +16,7 @@ const preview: Preview = {
         items: [
           { value: 'light', icon: 'sun', title: 'Light' },
           { value: 'dark', icon: 'moon', title: 'Dark' },
+          { value: 'system', icon: 'mirror', title: 'System' },
         ],
         dynamicTitle: true,
       },
@@ -29,7 +27,7 @@ const preview: Preview = {
   },
   decorators: [
     (story, context) => {
-      applyColorScheme((context.globals.colorScheme ?? 'light') as 'light' | 'dark');
+      applyColorScheme((context.globals.colorScheme ?? 'light') as 'light' | 'dark' | 'system');
       return story();
     },
   ],

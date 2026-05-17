@@ -350,6 +350,14 @@ watch(
   --b-badge-status-default: oklch(50% 0.01 260);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-badge {
+    --b-badge-shadow: 0 0 0 1px oklch(20% 0.01 260);
+    --b-badge-status-text-color: oklch(85% 0.01 260);
+    --b-badge-status-default: oklch(50% 0.01 260);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Base layout
    ───────────────────────────────────────────── */

@@ -4,3 +4,11 @@
   background-color: oklch(15% 0.01 260);
   color: oklch(93% 0.005 260);
 }
+
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .docs-story,
+  [data-prefers-color='system'] .sb-story {
+    background-color: oklch(15% 0.01 260);
+    color: oklch(93% 0.005 260);
+  }
+}

@@ -377,6 +377,16 @@ defineExpose({ open: doOpen, close: doClose });
     0 9px 28px 8px rgba(0, 0, 0, 0.2);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] {
+    --b-tooltip-bg: oklch(35% 0 0);
+    --b-tooltip-arrow-color: oklch(35% 0 0);
+    --b-tooltip-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
+      0 9px 28px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Toggle wrapper
    ───────────────────────────────────────────── */

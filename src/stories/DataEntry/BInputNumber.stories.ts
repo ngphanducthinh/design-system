@@ -105,7 +105,7 @@ type Story = StoryObj<typeof meta>;
 // ─────────────────────────────────────────────
 export const Playground: Story = {
   args: {
-    placeholder: 'Enter number',
+    placeholder: 'Number',
     size: 'md',
     variant: 'outlined',
     disabled: false,
@@ -441,7 +441,7 @@ export const Theming: Story = {
 // ─────────────────────────────────────────────
 export const InteractionTest: Story = {
   args: {
-    placeholder: 'Enter number',
+    placeholder: 'Number',
     min: 0,
     max: 10,
     step: 1,

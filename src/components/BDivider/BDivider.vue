@@ -178,6 +178,13 @@ const rootClass = computed(() => [
   --b-divider-text-color: oklch(85% 0.02 264);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-divider {
+    --b-divider-color: oklch(35% 0.02 264);
+    --b-divider-text-color: oklch(85% 0.02 264);
+  }
+}
+
 /* ─────────────────────────────────────────────
    Horizontal — <div role=separator> (no text) or <div role=separator> (with text)
    ───────────────────────────────────────────── */

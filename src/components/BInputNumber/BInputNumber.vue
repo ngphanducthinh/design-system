@@ -700,6 +700,36 @@ defineExpose({ focus, blur });
   --b-input-number-filled-hover-bg: rgba(255, 255, 255, 0.12);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-input-number {
+    --b-input-number-active-bg: #141414;
+    --b-input-number-active-border-color: #1668dc;
+    --b-input-number-active-shadow: 0 0 0 2px rgba(22, 104, 220, 0.15);
+    --b-input-number-addon-bg: rgba(255, 255, 255, 0.04);
+    --b-input-number-error-active-shadow: 0 0 0 2px rgba(220, 56, 56, 0.1);
+    --b-input-number-filled-handle-bg: rgba(255, 255, 255, 0.12);
+    --b-input-number-handle-active-bg: rgba(255, 255, 255, 0.04);
+    --b-input-number-handle-bg: #1f1f1f;
+    --b-input-number-handle-border-color: #424242;
+    --b-input-number-handle-hover-color: #3c89e8;
+    --b-input-number-hover-bg: #141414;
+    --b-input-number-hover-border-color: #3c89e8;
+    --b-input-number-warning-active-shadow: 0 0 0 2px rgba(209, 163, 0, 0.1);
+    --b-input-number-border-color: #424242;
+    --b-input-number-bg: #141414;
+    --b-input-number-color: rgba(255, 255, 255, 0.88);
+    --b-input-number-placeholder-color: rgba(255, 255, 255, 0.25);
+    --b-input-number-disabled-bg: rgba(255, 255, 255, 0.08);
+    --b-input-number-disabled-color: rgba(255, 255, 255, 0.25);
+    --b-input-number-error-border-color: #dc3838;
+    --b-input-number-error-hover-border-color: #e86e6e;
+    --b-input-number-warning-border-color: #d1a300;
+    --b-input-number-warning-hover-border-color: #e8c631;
+    --b-input-number-filled-bg: rgba(255, 255, 255, 0.08);
+    --b-input-number-filled-hover-bg: rgba(255, 255, 255, 0.12);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .b-input-number__wrapper,
   .b-input-number__handler-wrap,

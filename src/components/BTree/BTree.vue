@@ -947,6 +947,27 @@ function handleRightClick(event: MouseEvent, node: BTreeNodeData) {
   --b-tree-directory-selected-color: oklch(100% 0 0);
 }
 
+@media (prefers-color-scheme: dark) {
+  [data-prefers-color='system'] .b-tree {
+    --b-tree-node-hover-bg: oklch(28% 0.012 264);
+    --b-tree-node-hover-color: oklch(92% 0.006 264);
+    --b-tree-node-selected-bg: oklch(30% 0.06 254);
+    --b-tree-node-selected-color: oklch(92% 0.006 264);
+    --b-tree-node-disabled-color: oklch(45% 0.005 264);
+    --b-tree-switcher-color: oklch(65% 0.008 264);
+    --b-tree-checkbox-border: oklch(45% 0.008 264);
+    --b-tree-checkbox-bg: oklch(22% 0.012 264);
+    --b-tree-checkbox-checked-bg: oklch(55% 0.22 260);
+    --b-tree-checkbox-checked-border: oklch(55% 0.22 260);
+    --b-tree-checkbox-indeterminate-bg: oklch(55% 0.22 260);
+    --b-tree-line-color: oklch(35% 0.008 264);
+    --b-tree-title-color: oklch(92% 0.006 264);
+    --b-tree-title-filtered-color: oklch(65% 0.22 260);
+    --b-tree-directory-selected-bg: oklch(45% 0.22 260);
+    --b-tree-directory-selected-color: oklch(100% 0 0);
+  }
+}
+
 /* ─── Node ───────────────────────────────────────────────────────────────────── */
 .b-tree__node {
   display: flex;
