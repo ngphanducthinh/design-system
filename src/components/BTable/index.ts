@@ -1,0 +1,21 @@
+export { default as BTable } from './BTable.vue';
+export type {
+  BTableAlign,
+  BTableChangeExtra,
+  BTableColumnType,
+  BTableExpandIconProps,
+  BTableExpandable,
+  BTableFilterOption,
+  BTableFilterState,
+  BTableFilterValue,
+  BTablePaginationConfig,
+  BTableRowDragConfig,
+  BTableRowSelection,
+  BTableRowSelectionType,
+  BTableScrollConfig,
+  BTableSelectionItem,
+  BTableSize,
+  BTableSortOrder,
+  BTableSorterResult,
+  BTableSummaryCell,
+} from './types';

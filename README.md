@@ -1,48 +1,61 @@
-# 7PMLabs Design System
+# @7pmlabs/design-system
 
-Documentation: https://ngphanducthinh.github.io/7pmlabs-design-system
+A Vue 3 component library built with TypeScript, Tailwind CSS 4, and Ant Design inspiration.
 
-In case, you also use [Tailwind CSS](https://tailwindcss.com/docs/installation) in your project, do not import `@import 'tailwindcss/base';` unless it causes broken styles.
+## Installation
 
-## Getting started
-
-```
-npm i @7pmlabs/design-system
+```sh
+npm install @7pmlabs/design-system
+# or
+bun add @7pmlabs/design-system
 ```
 
 ## Usage
 
-Import CSS & plugin in main.ts:
-
-```
-import '@7pmlabs/design-system/style.css';
-import ds from '@7pmlabs/design-system';
-
-const app = createApp(App);
-...
-app.use(ds, { i18n });
+```ts
+import { BButton, BInput, BModal } from '@7pmlabs/design-system'
+import '@7pmlabs/design-system/style.css'
 ```
 
-Import & use component:
+## Tech Stack
 
+- **Framework:** Vue 3.5 (Composition API, `<script setup>`)
+- **Language:** TypeScript 5.9 (strict)
+- **Styling:** Tailwind CSS 4 with `b:` prefix + scoped CSS custom properties
+- **Build:** Vite 8 + Rolldown (library mode, ES modules)
+- **Testing:** Vitest, Playwright, Storybook vitest addon
+- **Storybook:** v10.3
+
+## Development
+
+```sh
+bun install          # Install dependencies
+bun run dev          # Vite dev server
+bun run storybook    # Storybook dev server (port 6006)
 ```
-import { BButton } from '@7pmlabs/design-system';
 
-<BButton>Click me!</BButton>
+## Testing
+
+```sh
+bun run test:unit       # Unit tests (Vitest)
+bun run test:storybook  # Storybook interaction & a11y tests
+bun run test:e2e        # End-to-end tests (Playwright)
 ```
 
-## Color Customization
+## Build
 
-CSS Variables:
-
+```sh
+bun run build            # Lint + build library + generate types
+bun run build-storybook  # Build static Storybook
 ```
---ds-colors-primary-f: 6 182 212; // #06b6d4
 
---ds-colors-primary-t: 59 130 246; // #3b82f6
+## Linting & Formatting
 
---ds-colors-focus: 86 221 214; // #56ddd6
-
---ds-colors-primary-f-stop: 0%;
-
---ds-colors-primary-t-stop: 100%;
+```sh
+bun run lint-all   # ESLint + oxlint + type-check
+bun run format     # Prettier
 ```
+
+## License
+
+MIT

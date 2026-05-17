@@ -1,47 +1,52 @@
-import { fileURLToPath, URL } from 'node:url';
-
+import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath, URL } from 'node:url';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+import vueDevTools from 'vite-plugin-vue-devtools';
 import { defineConfig } from 'vite';
-import path from 'path';
-// import dts from 'vite-plugin-dts';
 
-// const resolve = (dir: any) => path.join(__dirname, dir);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const { name: packageName } = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    vueDevTools(),
+    tailwindcss(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'src/assets/icons',
+          dest: 'assets',
+        },
+      ],
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      // packages: resolve('./src/components'),
     },
   },
-  css: {
-    devSourcemap: true,
-    preprocessorOptions: {
-      scss: {
-        logger: {
-          // silence warnings to speed up the build
-          warn: () => {},
-        },
-      },
-    },
+  define: {
+    __PACKAGE_NAME__: JSON.stringify(packageName),
   },
-  // https://vitejs.dev/guide/build.html#library-mode
   build: {
-    // Output compiled files to /dist.
     outDir: './dist',
+    // https://vite.dev/guide/build#library-mode
     lib: {
-      // Set the entry point (file that contains our components exported).
-      entry: path.resolve(__dirname, 'src/index.ts'),
+      name: 'DesignSystem',
       fileName: 'design-system',
+      entry: resolve(__dirname, 'src/index.ts'),
       formats: ['es'],
     },
-    rollupOptions: {
+    rolldownOptions: {
       // Vue is provided by the parent project, don't compile Vue source-code inside our library.
       external: ['vue'],
       output: {
-        // https://rollupjs.org/configuration-options/#output-format
         sourcemap: true,
         preserveModules: true,
       },

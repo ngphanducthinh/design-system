@@ -1,106 +1,93 @@
-<script lang="ts" setup>
-import { BModalSize } from '@/constants/Enums';
-import { lockScrollBody, unlockScrollBody } from '@/helpers/ComponentHelper';
-import { computed, onBeforeUnmount, watch } from 'vue';
-import BModalContainer from './BModalContainer.vue';
+<script setup lang="ts">
+import { ref, watch } from 'vue';
 
-//#region Props
-export interface BModalProps {
-  modelValue: boolean;
-  /**
-   * Modal size.
-   */
-  size?: BModalSize;
-  /**
-   * Fullscreen modal.
-   */
-  fullscreen?: boolean;
-  /**
-   * Prevent modal from closing when clicking outside or pressing "Esc".
-   */
-  persistent?: boolean;
-}
+/**
+ * https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog
+ * Animation: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog#animating_dialogs
+ * Transition Behavior: https://developer.mozilla.org/en-US/docs/Web/CSS/transition-behavior
+ */
 
-const props = withDefaults(defineProps<BModalProps>(), {
-  size: BModalSize.Medium,
-  fullscreen: false,
-  persistent: false,
-});
-//#endregion
+const model = defineModel<boolean>({ required: true });
 
-//#region Events
-const emit = defineEmits<{
-  /**
-   * Update value, param: <code>value: boolean</code>
-   * @param e
-   * @param value
-   */
-  (e: 'update:modelValue', value: boolean): void;
-}>();
-//#endregion
+const dialogRef = ref<HTMLDialogElement | null>(null);
 
-//#region Data
-const value = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(val: boolean) {
-    emit('update:modelValue', val);
-  },
-});
-//#endregion
+const updateModelFalse = () => {
+  model.value = false;
+};
 
-//#region Watchers
 watch(
-  value,
-  (val) => {
-    if (val) {
-      lockScrollBody();
+  model,
+  (newValue) => {
+    if (!dialogRef.value) {
+      return;
+    }
+    if (newValue) {
+      dialogRef.value.showModal();
     } else {
-      unlockScrollBody();
+      dialogRef.value.close();
     }
   },
   { immediate: true },
 );
-//#endregion
-
-//#region Lifecycle Hooks
-onBeforeUnmount(() => {
-  unlockScrollBody();
-});
-//#endregion
-</script>
-
-<script lang="ts">
-/**
- * [Vue warn]: Extraneous non-props attributes (class) were passed to component but could not be automatically inherited because component renders fragment or text root nodes
- */
-export default {
-  // https://vuejs.org/guide/components/attrs.html#disabling-attribute-inheritance
-  inheritAttrs: false,
-};
 </script>
 
 <template>
-  <Teleport to="body">
-    <Transition
-      enter-active-class="ds-transition-all ds-ease-in-out"
-      enter-from-class="ds-opacity-0"
-      enter-to-class="ds-opacity-1"
-      leave-active-class="ds-transition-all ds-ease-in-out"
-      leave-from-class="ds-opacity-1"
-      leave-to-class="ds-opacity-0"
-    >
-      <BModalContainer
-        v-if="value"
-        :class="$attrs.class"
-        :fullscreen="props.fullscreen"
-        :persistent="props.persistent"
-        :size="props.size"
-        @close="value = false"
-      >
-        <slot />
-      </BModalContainer>
-    </Transition>
-  </Teleport>
+  <dialog
+    ref="dialogRef"
+    class="b-modal b:rounded-lg b:bg-white b:px-5 b:py-4"
+    @close="updateModelFalse"
+  >
+    <slot />
+  </dialog>
 </template>
+
+<style scoped>
+.b-modal {
+  --duration: 0.7s;
+
+  margin: auto;
+
+  opacity: 0;
+  transform: scaleY(0);
+  transition:
+    opacity var(--duration) ease-out,
+    transform var(--duration) ease-out,
+    overlay var(--duration) ease-out allow-discrete,
+    display var(--duration) ease-out allow-discrete;
+  /* Equivalent to transition: all var(--duration) allow-discrete; */
+
+  &::backdrop {
+    background-color: transparent;
+    transition:
+      display var(--duration) allow-discrete,
+      overlay var(--duration) allow-discrete,
+      background-color var(--duration);
+    /* Equivalent to transition: all var(--duration) allow-discrete; */
+  }
+
+  &:open {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  &:open::backdrop {
+    background-color: rgb(0 0 0 / 25%);
+  }
+}
+
+/* Before open state  */
+/* Needs to be after the previous dialog:open rule to take effect, as the specificity is the same */
+@starting-style {
+  .b-modal:open {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+}
+
+/* This starting-style rule cannot be nested inside the above selector because the nesting selector cannot represent pseudo-elements. */
+@starting-style {
+  .b-modal:open::backdrop {
+    background-color: transparent;
+  }
+}
+</style>
