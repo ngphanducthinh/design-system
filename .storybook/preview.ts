@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/vue3-vite';
 import '../src/assets/main.css';
+import './storybook-overrides.css';
 
 function applyColorScheme(scheme: 'light' | 'dark') {
   // Set data-prefers-color on <html> - the single source of truth.

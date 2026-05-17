@@ -1,101 +1,318 @@
 <script lang="ts" setup>
-import { useComponentId } from '@/composables/useComponentId.ts';
-import { computed } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 
 //#region Props
 const {
-  id = '',
-  label = '',
-  labelOrphan = false,
+  defaultChecked = false,
   disabled = false,
+  loading = false,
+  size = 'default',
 } = defineProps<{
-  /**
-   * The id attribute for the switch input.
-   */
-  id?: string;
-  /**
-   * The label text displayed next to the switch.
-   */
-  label?: string;
-  /**
-   * Clicking on label will not turn on/off the switch.
-   */
-  labelOrphan?: boolean;
-  /**
-   * Disables the switch if set to true.
-   */
+  /** Initial checked state for uncontrolled usage. */
+  defaultChecked?: boolean;
+  /** Whether the switch is disabled. */
   disabled?: boolean;
+  /** Whether to show a loading spinner on the handle. */
+  loading?: boolean;
+  /** Size of the switch. */
+  size?: 'default' | 'small';
 }>();
 
 /**
- * The value of the switch. Can be a boolean or an array of strings/numbers for multiple switches.
+ * The checked state of the switch.
+ * Supports v-model for controlled usage.
  */
-const model = defineModel<boolean | Array<string | number>>({ default: false });
+const model = defineModel<boolean>({ default: undefined });
+
+const emit = defineEmits<{
+  change: [checked: boolean, event: Event];
+  click: [checked: boolean, event: MouseEvent];
+}>();
 //#endregion
 
-const { componentUID } = useComponentId();
-const inputId = computed(() => id || `b-switch-input-${componentUID.value}`);
-</script>
-<template>
-  <div class="b-switch b:flex b:items-center">
-    <input
-      :id="inputId"
-      v-model="model"
-      :disabled="disabled"
-      :value="$attrs.value"
-      class="b-switch__input"
-      type="checkbox"
-    />
-    <label :for="inputId" class="b-switch__input-label b:drop-shadow-light" />
-    <label
-      v-if="label || $slots.default"
-      :for="labelOrphan ? undefined : inputId"
-      class="b:ml-2 b:text-sm b:font-medium b:text-gray-900"
-    >
-      <slot>
-        {{ label }}
-      </slot>
-    </label>
-  </div>
-</template>
+//#region Internal state
+const internalChecked = ref(defaultChecked);
 
-<style scoped>
-.b-switch__input {
-  display: none;
+const isChecked = computed(() =>
+  model.value !== undefined ? model.value : internalChecked.value,
+);
 
-  &:checked + .b-switch__input-label {
-    background-color: var(--b-color-primary);
+onMounted(() => {
+  if (model.value === undefined) {
+    internalChecked.value = defaultChecked;
   }
+});
 
-  &:checked + .b-switch__input-label::before {
-    transform: translateX(22px);
-    background-color: var(--b-color-white);
-  }
+watch(
+  () => model.value,
+  (val) => {
+    if (val !== undefined) {
+      internalChecked.value = val;
+    }
+  },
+);
+//#endregion
 
-  &:disabled + .b-switch__input-label::before {
-    background-color: var(--b-color-gray-100);
+//#region Handlers
+function toggle(event: MouseEvent | KeyboardEvent) {
+  if (disabled || loading) return;
+
+  const newChecked = !isChecked.value;
+  internalChecked.value = newChecked;
+  model.value = newChecked;
+  emit('change', newChecked, event);
+
+  if (event instanceof MouseEvent) {
+    emit('click', newChecked, event);
   }
 }
 
-.b-switch__input-label {
-  position: relative;
-  display: flex;
-  background-color: var(--b-color-gray-200);
-  border-radius: var(--b-radius-2xl);
-  padding: calc(var(--b-spacing) * 0.5);
-  width: calc(var(--b-spacing) * 11);
-  height: calc(var(--b-spacing) * 5.5);
+function handleClick(event: MouseEvent) {
+  toggle(event);
+}
 
-  &::before {
-    content: '';
-    position: absolute;
-    width: calc(var(--b-spacing) * 4.5);
-    height: calc(var(--b-spacing) * 4.5);
-    background-color: var(--b-color-white);
-    border-radius: calc(infinity * 1px);
-    left: calc(var(--b-spacing) * 0.5);
-    top: calc(var(--b-spacing) * 0.5);
-    transition: all var(--b-default-transition-duration) var(--b-default-transition-timing-function);
+function handleKeyDown(event: KeyboardEvent) {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    toggle(event);
+  }
+}
+//#endregion
+
+//#region Expose
+const rootRef = ref<HTMLButtonElement | null>(null);
+
+function focus() {
+  rootRef.value?.focus();
+}
+
+function blur() {
+  rootRef.value?.blur();
+}
+
+defineExpose({ focus, blur });
+//#endregion
+</script>
+
+<template>
+  <button
+    ref="rootRef"
+    type="button"
+    role="switch"
+    class="b-switch"
+    :class="[
+      `b-switch--${size}`,
+      {
+        'b-switch--checked': isChecked,
+        'b-switch--disabled': disabled,
+        'b-switch--loading': loading,
+      },
+    ]"
+    :aria-checked="isChecked"
+    :aria-disabled="disabled || loading || undefined"
+    :disabled="disabled"
+    :tabindex="disabled ? -1 : 0"
+    @click="handleClick"
+    @keydown="handleKeyDown"
+  >
+    <span class="b-switch__handle" aria-hidden="true">
+      <svg
+        v-if="loading"
+        class="b-switch__loading-icon"
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+      >
+        <circle
+          cx="8"
+          cy="8"
+          r="6"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-dasharray="28"
+          stroke-dashoffset="8"
+        />
+      </svg>
+    </span>
+    <span class="b-switch__inner" aria-hidden="true">
+      <span v-if="isChecked" class="b-switch__inner-checked">
+        <slot name="checked" />
+      </span>
+      <span v-else class="b-switch__inner-unchecked">
+        <slot name="unchecked" />
+      </span>
+    </span>
+  </button>
+</template>
+
+<style scoped>
+.b-switch {
+  --b-switch-handle-bg: #fff;
+  --b-switch-handle-shadow: 0 2px 4px 0 rgba(0, 35, 11, 0.2);
+  --b-switch-handle-size: 18px;
+  --b-switch-track-height: 22px;
+  --b-switch-track-min-width: 44px;
+  --b-switch-track-padding: 2px;
+  --b-switch-inner-max-margin: 24px;
+  --b-switch-inner-min-margin: 9px;
+  --b-switch-track-bg: rgba(0, 0, 0, 0.25);
+  --b-switch-track-bg-checked: #1565d8;
+  --b-switch-track-bg-disabled: rgba(0, 0, 0, 0.04);
+  --b-switch-loading-color: #1565d8;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-width: var(--b-switch-track-min-width);
+  height: var(--b-switch-track-height);
+  padding: 0;
+  border: 0;
+  border-radius: calc(var(--b-switch-track-height) / 2);
+  background-color: var(--b-switch-track-bg);
+  cursor: pointer;
+  outline: none;
+  transition:
+    background-color 0.2s,
+    opacity 0.2s;
+  vertical-align: middle;
+  user-select: none;
+  line-height: 1;
+}
+
+.b-switch:focus-visible {
+  outline: 2px solid var(--b-switch-track-bg-checked);
+  outline-offset: 2px;
+}
+
+/* Checked state */
+.b-switch--checked {
+  background-color: var(--b-switch-track-bg-checked);
+}
+
+/* Disabled state */
+.b-switch--disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* Loading state */
+.b-switch--loading {
+  cursor: default;
+  opacity: 0.85;
+}
+
+/* Handle */
+.b-switch__handle {
+  position: absolute;
+  top: var(--b-switch-track-padding);
+  inset-inline-start: var(--b-switch-track-padding);
+  width: var(--b-switch-handle-size);
+  height: var(--b-switch-handle-size);
+  border-radius: 50%;
+  background-color: var(--b-switch-handle-bg);
+  box-shadow: var(--b-switch-handle-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: inset-inline-start 0.2s ease-in-out;
+}
+
+.b-switch--checked .b-switch__handle {
+  inset-inline-start: calc(
+    100% - var(--b-switch-handle-size) - var(--b-switch-track-padding)
+  );
+}
+
+/* Loading icon */
+.b-switch__loading-icon {
+  width: calc(var(--b-switch-handle-size) * 0.6);
+  height: calc(var(--b-switch-handle-size) * 0.6);
+  color: var(--b-switch-loading-color);
+  animation: b-switch-spin 1s linear infinite;
+}
+
+.b-switch--checked .b-switch__loading-icon {
+  color: var(--b-switch-track-bg-checked);
+}
+
+@keyframes b-switch-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Inner content */
+.b-switch__inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 12px;
+  color: #fff;
+  overflow: hidden;
+  padding: 0;
+}
+
+.b-switch__inner-checked,
+.b-switch__inner-unchecked {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.b-switch__inner-checked {
+  margin-inline-start: calc(
+    var(--b-switch-track-padding) + var(--b-switch-inner-min-margin)
+  );
+  margin-inline-end: calc(
+    var(--b-switch-handle-size) + var(--b-switch-track-padding) +
+      var(--b-switch-inner-min-margin) - var(--b-switch-inner-max-margin) +
+      var(--b-switch-inner-max-margin)
+  );
+}
+
+.b-switch__inner-unchecked {
+  margin-inline-start: calc(
+    var(--b-switch-handle-size) + var(--b-switch-track-padding) +
+      var(--b-switch-inner-min-margin)
+  );
+  margin-inline-end: calc(
+    var(--b-switch-track-padding) + var(--b-switch-inner-min-margin)
+  );
+}
+
+/* Small size */
+.b-switch--small {
+  --b-switch-handle-size: 12px;
+  --b-switch-track-height: 16px;
+  --b-switch-track-min-width: 28px;
+  --b-switch-inner-max-margin: 18px;
+  --b-switch-inner-min-margin: 6px;
+}
+
+/* Dark mode */
+[data-prefers-color='dark'] .b-switch {
+  --b-switch-track-bg: rgba(255, 255, 255, 0.25);
+  --b-switch-track-bg-disabled: rgba(255, 255, 255, 0.08);
+  --b-switch-handle-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .b-switch__handle {
+    transition: none;
+  }
+
+  .b-switch {
+    transition: none;
+  }
+
+  .b-switch__loading-icon {
+    animation: none;
   }
 }
 </style>

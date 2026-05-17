@@ -8,7 +8,7 @@
 
 ## Tech Stack
 
-Vue 3.5 (`<script setup>` only) · TypeScript 5.9 strict · Tailwind CSS 4 with `prefix('b')` · Vite 8 + Rolldown (library mode, `preserveModules: true`) · Vitest + Playwright + Storybook vitest addon · ESLint 9 flat + oxlint · Prettier with `prettier-plugin-tailwindcss` · Bun (primary) · Storybook v10.3
+Vue 3.5 (`<script setup>` only) · TypeScript 5.9 strict · Tailwind CSS 4 with `prefix('b')` · Vite 8 + Rolldown (library mode, `preserveModules: true`) · Vitest + Playwright + Storybook vitest addon · ESLint 9 flat + oxlint · Prettier with `prettier-plugin-tailwindcss` · Bun (primary) · Storybook v10.4 · Zod (optional peer dep for validation)
 
 ---
 
@@ -52,7 +52,7 @@ Stories live in `src/stories/<Category>/BComponentName.stories.ts`.
 7. Theme support: light/dark/follow-system — style dark mode via `[data-prefers-color='dark']` selector.
 8. Accessibility first — ARIA roles, keyboard nav, focus management.
 9. Use `useComponentId()` for ARIA relationship IDs.
-10. Provide/inject via `PIKey` symbols from `constants.ts` for hierarchies.
+10. Provide/inject via `PIKey` symbols for component hierarchies (defined per-composable, e.g. `src/composables/useValidation.ts`).
 11. Support both controlled (`v-model`) and uncontrolled patterns.
 
 ---
@@ -100,8 +100,9 @@ bun run format           # Prettier
 
 ## Key Patterns
 
-- **Library entry:** `src/index.ts` → imports CSS, re-exports from `./components` barrel + `./types`
+- **Library entry:** `src/index.ts` → imports CSS, re-exports from `./components` barrel, `./types`, and composables (`useValidationForm`, `useValidationField`)
 - **Global types/enums:** `src/types.ts` (`BCommonSize`, `BCommonColor`, `BButtonVariant`, etc.)
-- **Constants:** `src/constants.ts` (`BIconSizeMap`, `PIKey` injection symbols)
+- **Constants:** `src/constants.ts` (`BIconSizeMap`)
+- **Composables:** `src/composables/` — `useComponentId.ts`, `useValidation.ts` (Zod-based form/field validation with dirty/touched tracking)
 - **Component barrel:** `src/components/index.ts`
 - **Design tokens:** `src/assets/tailwind.css`

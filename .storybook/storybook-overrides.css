@@ -1,0 +1,6 @@
+/* Override Storybook's story container backgrounds to respect theme switching */
+[data-prefers-color='dark'] .docs-story,
+[data-prefers-color='dark'] .sb-story {
+  background-color: oklch(15% 0.01 260);
+  color: oklch(93% 0.005 260);
+}
