@@ -1,5 +1,5 @@
 import { BDescriptions, BDescriptionsItem } from '@/components';
-import type { BDescriptionsItem as BDescriptionsItemData } from '@/types';
+import type { BDescriptionsItemData } from '@/types';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, within } from 'storybook/test';
 

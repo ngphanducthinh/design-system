@@ -45,11 +45,6 @@ export enum BIconVariant {
   Thin = 'thin',
 }
 
-export interface BSelectOption {
-  label: string;
-  value: unknown;
-}
-
 export type {
   BCollapseCollapsible,
   BCollapseExpandIconPosition,
@@ -57,7 +52,7 @@ export type {
 } from './components/BCollapse/types';
 
 export type {
-  BDescriptionsItem,
+  BDescriptionsItem as BDescriptionsItemData,
   BDescriptionsLayout,
   BDescriptionsSize,
 } from './components/BDescriptions/types';
