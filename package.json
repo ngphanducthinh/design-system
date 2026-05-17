@@ -1,6 +1,6 @@
 {
   "name": "@7pmlabs/design-system",
-  "version": "0.0.117",
+  "version": "1.0.0-beta.0",
   "private": true,
   "type": "module",
   "homepage": "https://github.com/ngphanducthinh/design-system",
@@ -22,7 +22,8 @@
     "lint": "run-s lint:*",
     "format": "prettier --write src/",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test:int": "bun run scripts/test-integration.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

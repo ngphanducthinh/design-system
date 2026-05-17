@@ -35,5 +35,8 @@ playwright-report/
 *storybook.log
 storybook-static
 
+.integration-test/
+*.tgz
+
 PROMPT.md
 .claude/*
