@@ -35,7 +35,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run tests
-        run: bun run test:all -- --reporter=verbose
+        run: bun run test:unit -- --reporter=verbose --coverage
 
 #  e2e-tests:
 #    name: E2E Tests
