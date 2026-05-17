@@ -4,9 +4,6 @@ description: 'Checkout, install Bun, optionally Node.js, and install cached depe
 runs:
   using: 'composite'
   steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
     - name: Set up Bun
       uses: oven-sh/setup-bun@v2
       with:
