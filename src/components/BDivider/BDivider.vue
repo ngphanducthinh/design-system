@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { BDividerOrientation, BDividerSize, BDividerTitlePlacement, BDividerVariant } from './types.ts';
+import type {
+  BDividerOrientation,
+  BDividerSize,
+  BDividerTitlePlacement,
+  BDividerVariant,
+} from './types.ts';
 
 // ─────────────────────────────────────────────
 // Props
@@ -100,12 +105,7 @@ const rootClass = computed(() => [
     Vertical divider: a presentational inline separator.
     role="separator" with aria-orientation covers both horizontal and vertical.
   -->
-  <span
-    v-if="isVertical"
-    :class="rootClass"
-    role="separator"
-    aria-orientation="vertical"
-  />
+  <span v-if="isVertical" :class="rootClass" role="separator" aria-orientation="vertical" />
 
   <!--
     Horizontal divider WITHOUT content.
@@ -125,12 +125,7 @@ const rootClass = computed(() => [
     Horizontal divider WITH content: <div role="separator"> wrapping the text.
     <hr> cannot contain children, so we fall back to a div.
   -->
-  <div
-    v-else
-    :class="rootClass"
-    role="separator"
-    aria-orientation="horizontal"
-  >
+  <div v-else :class="rootClass" role="separator" aria-orientation="horizontal">
     <span class="b-divider__content">
       <slot />
     </span>
@@ -161,9 +156,9 @@ const rootClass = computed(() => [
   --b-divider-font-weight-text: 500; /* "with-text" non-plain heading weight */
 
   /* Size (margin-block for horizontal) */
-  --b-divider-margin-block-large:  1.5rem;  /* size=large  (AntD default) */
+  --b-divider-margin-block-large: 1.5rem; /* size=large  (AntD default) */
   --b-divider-margin-block-medium: 0.75rem; /* size=medium */
-  --b-divider-margin-block-small:  0.25rem; /* size=small  */
+  --b-divider-margin-block-small: 0.25rem; /* size=small  */
 
   /* Line geometry */
   --b-divider-line-width: 1px;
@@ -199,9 +194,15 @@ const rootClass = computed(() => [
 }
 
 /* Size variants (horizontal only) */
-.b-divider--horizontal.b-divider--size-small  { margin-block: var(--b-divider-margin-block-small); }
-.b-divider--horizontal.b-divider--size-medium { margin-block: var(--b-divider-margin-block-medium); }
-.b-divider--horizontal.b-divider--size-large  { margin-block: var(--b-divider-margin-block-large); }
+.b-divider--horizontal.b-divider--size-small {
+  margin-block: var(--b-divider-margin-block-small);
+}
+.b-divider--horizontal.b-divider--size-medium {
+  margin-block: var(--b-divider-margin-block-medium);
+}
+.b-divider--horizontal.b-divider--size-large {
+  margin-block: var(--b-divider-margin-block-large);
+}
 
 /* ─────────────────────────────────────────────
    Horizontal WITH text

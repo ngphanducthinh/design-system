@@ -107,9 +107,7 @@ const previousFocusRef = ref<HTMLElement | null>(null);
  *  - controlled  → honour `modelValue`
  *  - uncontrolled → use `internalVisible`
  */
-const isVisible = computed(() =>
-  modelValue !== undefined ? modelValue : internalVisible.value,
-);
+const isVisible = computed(() => (modelValue !== undefined ? modelValue : internalVisible.value));
 
 const isControlled = computed(() => modelValue !== undefined);
 
@@ -118,9 +116,7 @@ const isControlled = computed(() => modelValue !== undefined);
 // ─────────────────────────────────────────────
 /** ARIA role: 'alert' for error/warning (assertive), 'status' for others. */
 const ariaRole = computed<'alert' | 'status'>(() =>
-  type === BNotificationType.Error || type === BNotificationType.Warning
-    ? 'alert'
-    : 'status',
+  type === BNotificationType.Error || type === BNotificationType.Warning ? 'alert' : 'status',
 );
 
 /** aria-live polarity mirrors the role. */
@@ -229,9 +225,8 @@ watch(
       // Focus the close button (if closable) once the DOM updates
       if (closable) {
         await nextTick();
-        const closeBtn = notificationRef.value?.querySelector<HTMLElement>(
-          '.b-notification__close',
-        );
+        const closeBtn =
+          notificationRef.value?.querySelector<HTMLElement>('.b-notification__close');
         closeBtn?.focus();
       }
     } else {
@@ -278,11 +273,7 @@ defineExpose({ open, close });
         @keydown="onKeydown"
       >
         <!-- Icon area -->
-        <span
-          v-if="showIconArea"
-          class="b-notification__icon"
-          aria-hidden="true"
-        >
+        <span v-if="showIconArea" class="b-notification__icon" aria-hidden="true">
           <slot name="icon">
             <!-- Custom icon prop as raw HTML (consumer's responsibility) -->
             <span v-if="icon" v-html="icon" />
@@ -317,10 +308,7 @@ defineExpose({ open, close });
           </div>
 
           <!-- Action button area -->
-          <div
-            v-if="btn || $slots.btn"
-            class="b-notification__btn"
-          >
+          <div v-if="btn || $slots.btn" class="b-notification__btn">
             <slot name="btn">{{ btn }}</slot>
           </div>
         </div>
@@ -381,8 +369,8 @@ defineExpose({ open, close });
   --b-notification-close-color: oklch(50% 0.02 240);
   --b-notification-close-hover-color: oklch(20% 0.02 240);
   --b-notification-icon-color: oklch(62.3% 0.214 259.815);
-  --b-notification-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+  --b-notification-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 9px 28px 8px rgba(0, 0, 0, 0.05);
 
   /* Animation */
@@ -414,8 +402,8 @@ defineExpose({ open, close });
   --b-notification-desc-color: oklch(70% 0.02 240);
   --b-notification-close-color: oklch(60% 0.02 240);
   --b-notification-close-hover-color: oklch(90% 0.02 240);
-  --b-notification-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.32),
-    0 3px 6px -4px rgba(0, 0, 0, 0.48),
+  --b-notification-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 3px 6px -4px rgba(0, 0, 0, 0.48),
     0 9px 28px 8px rgba(0, 0, 0, 0.2);
 }
 

@@ -59,7 +59,13 @@ function setValue(val: string | number) {
 }
 
 const props = reactive({ disabled, name, size, optionType, buttonStyle });
-const { disabled: disabledRef, name: nameRef, size: sizeRef, optionType: optionTypeRef, buttonStyle: buttonStyleRef } = toRefs(props);
+const {
+  disabled: disabledRef,
+  name: nameRef,
+  size: sizeRef,
+  optionType: optionTypeRef,
+  buttonStyle: buttonStyleRef,
+} = toRefs(props);
 
 provide(B_RADIO_GROUP_KEY, {
   modelValue: computed(() => model.value),

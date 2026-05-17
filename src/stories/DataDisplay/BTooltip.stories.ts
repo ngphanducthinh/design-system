@@ -112,7 +112,9 @@ export const Playground: Story = {
     setup() {
       const open = ref(args.modelValue ?? undefined);
       const argsRef = toRef(() => args.modelValue);
-      watch(argsRef, (v) => { open.value = v; });
+      watch(argsRef, (v) => {
+        open.value = v;
+      });
       return { args, open };
     },
     template: `

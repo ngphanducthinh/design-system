@@ -84,17 +84,26 @@ const prevCount = ref<number | string | undefined>(count);
 // Derived state
 // ─────────────────────────────────────────────
 const PRESET_COLORS = [
-  'pink', 'red', 'yellow', 'orange', 'cyan', 'green', 'blue',
-  'purple', 'geekblue', 'magenta', 'volcano', 'gold', 'lime',
+  'pink',
+  'red',
+  'yellow',
+  'orange',
+  'cyan',
+  'green',
+  'blue',
+  'purple',
+  'geekblue',
+  'magenta',
+  'volcano',
+  'gold',
+  'lime',
 ] as const;
 
 const isPresetColor = computed(() =>
   color ? (PRESET_COLORS as readonly string[]).includes(color) : false,
 );
 
-const isCustomColor = computed(() =>
-  color ? !isPresetColor.value : false,
-);
+const isCustomColor = computed(() => (color ? !isPresetColor.value : false));
 
 const isStatusMode = computed(() => {
   // Status mode: explicit status prop, or color-only without count/dot (standalone color dot)
@@ -127,7 +136,7 @@ const displayCount = computed(() => {
 
 const shouldShowBadge = computed(() => {
   if (dot) {
-    return hasCount.value ? (numericCount.value !== 0 || showZero) : true;
+    return hasCount.value ? numericCount.value !== 0 || showZero : true;
   }
   if (hasCount.value) {
     if (numericCount.value === 0) return showZero;
@@ -180,7 +189,7 @@ watch(
 
 watch(
   () => {
-    if (dot) return hasCount.value ? (numericCount.value !== 0 || showZero) : true;
+    if (dot) return hasCount.value ? numericCount.value !== 0 || showZero : true;
     if (hasCount.value) {
       if (numericCount.value === 0) return showZero;
       return true;
@@ -214,21 +223,11 @@ watch(
       role="img"
       :aria-label="text || status || 'status'"
     />
-    <span
-      v-if="text"
-      class="b-badge__status-text"
-    >{{ text }}</span>
+    <span v-if="text" class="b-badge__status-text">{{ text }}</span>
   </span>
 
   <!-- Normal wrapper mode -->
-  <span
-    v-else
-    :id="badgeId"
-    class="b-badge"
-    :class="[
-      { 'b-badge--no-wrapper': isStandalone },
-    ]"
-  >
+  <span v-else :id="badgeId" class="b-badge" :class="[{ 'b-badge--no-wrapper': isStandalone }]">
     <slot />
 
     <!-- Dot indicator -->
@@ -498,55 +497,81 @@ watch(
    ───────────────────────────────────────────── */
 .b-badge__dot--pink,
 .b-badge__count--pink,
-.b-badge__status-dot--pink { background-color: var(--b-badge-color-pink); }
+.b-badge__status-dot--pink {
+  background-color: var(--b-badge-color-pink);
+}
 
 .b-badge__dot--red,
 .b-badge__count--red,
-.b-badge__status-dot--red { background-color: var(--b-badge-color-red); }
+.b-badge__status-dot--red {
+  background-color: var(--b-badge-color-red);
+}
 
 .b-badge__dot--yellow,
 .b-badge__count--yellow,
-.b-badge__status-dot--yellow { background-color: var(--b-badge-color-yellow); }
+.b-badge__status-dot--yellow {
+  background-color: var(--b-badge-color-yellow);
+}
 
 .b-badge__dot--orange,
 .b-badge__count--orange,
-.b-badge__status-dot--orange { background-color: var(--b-badge-color-orange); }
+.b-badge__status-dot--orange {
+  background-color: var(--b-badge-color-orange);
+}
 
 .b-badge__dot--cyan,
 .b-badge__count--cyan,
-.b-badge__status-dot--cyan { background-color: var(--b-badge-color-cyan); }
+.b-badge__status-dot--cyan {
+  background-color: var(--b-badge-color-cyan);
+}
 
 .b-badge__dot--green,
 .b-badge__count--green,
-.b-badge__status-dot--green { background-color: var(--b-badge-color-green); }
+.b-badge__status-dot--green {
+  background-color: var(--b-badge-color-green);
+}
 
 .b-badge__dot--blue,
 .b-badge__count--blue,
-.b-badge__status-dot--blue { background-color: var(--b-badge-color-blue); }
+.b-badge__status-dot--blue {
+  background-color: var(--b-badge-color-blue);
+}
 
 .b-badge__dot--purple,
 .b-badge__count--purple,
-.b-badge__status-dot--purple { background-color: var(--b-badge-color-purple); }
+.b-badge__status-dot--purple {
+  background-color: var(--b-badge-color-purple);
+}
 
 .b-badge__dot--geekblue,
 .b-badge__count--geekblue,
-.b-badge__status-dot--geekblue { background-color: var(--b-badge-color-geekblue); }
+.b-badge__status-dot--geekblue {
+  background-color: var(--b-badge-color-geekblue);
+}
 
 .b-badge__dot--magenta,
 .b-badge__count--magenta,
-.b-badge__status-dot--magenta { background-color: var(--b-badge-color-magenta); }
+.b-badge__status-dot--magenta {
+  background-color: var(--b-badge-color-magenta);
+}
 
 .b-badge__dot--volcano,
 .b-badge__count--volcano,
-.b-badge__status-dot--volcano { background-color: var(--b-badge-color-volcano); }
+.b-badge__status-dot--volcano {
+  background-color: var(--b-badge-color-volcano);
+}
 
 .b-badge__dot--gold,
 .b-badge__count--gold,
-.b-badge__status-dot--gold { background-color: var(--b-badge-color-gold); }
+.b-badge__status-dot--gold {
+  background-color: var(--b-badge-color-gold);
+}
 
 .b-badge__dot--lime,
 .b-badge__count--lime,
-.b-badge__status-dot--lime { background-color: var(--b-badge-color-lime); }
+.b-badge__status-dot--lime {
+  background-color: var(--b-badge-color-lime);
+}
 
 /* Custom color via style binding */
 .b-badge__dot--custom-color,

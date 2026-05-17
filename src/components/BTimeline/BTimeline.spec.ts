@@ -210,8 +210,14 @@ describe('BTimeline – slot-based items', () => {
     const w = mount(BTimeline, {
       slots: {
         default: [
-          { template: '<li class="b-timeline-item b-timeline-item--blue b-timeline-item--left"><div class="b-timeline-item__tail"></div><div class="b-timeline-item__dot-wrapper"><span class="b-timeline-item__dot"></span></div><div class="b-timeline-item__content">Event A</div></li>' },
-          { template: '<li class="b-timeline-item b-timeline-item--green b-timeline-item--left"><div class="b-timeline-item__tail"></div><div class="b-timeline-item__dot-wrapper"><span class="b-timeline-item__dot"></span></div><div class="b-timeline-item__content">Event B</div></li>' },
+          {
+            template:
+              '<li class="b-timeline-item b-timeline-item--blue b-timeline-item--left"><div class="b-timeline-item__tail"></div><div class="b-timeline-item__dot-wrapper"><span class="b-timeline-item__dot"></span></div><div class="b-timeline-item__content">Event A</div></li>',
+          },
+          {
+            template:
+              '<li class="b-timeline-item b-timeline-item--green b-timeline-item--left"><div class="b-timeline-item__tail"></div><div class="b-timeline-item__dot-wrapper"><span class="b-timeline-item__dot"></span></div><div class="b-timeline-item__content">Event B</div></li>',
+          },
         ],
       },
     });
@@ -371,9 +377,7 @@ describe('BTimeline – edge cases', () => {
     const w = mountWithItems();
     expect(w.findAll('.b-timeline-item').length).toBe(4);
     await w.setProps({
-      items: [
-        { content: 'Only one', color: 'blue' },
-      ],
+      items: [{ content: 'Only one', color: 'blue' }],
     });
     expect(w.findAll('.b-timeline-item').length).toBe(1);
   });
@@ -542,4 +546,3 @@ describe('BTimeline – item.loading / item.icon / item.title', () => {
     expect(w.find('.b-timeline-item__label').text()).toBe('2025-01-01');
   });
 });
-

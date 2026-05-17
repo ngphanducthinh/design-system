@@ -2,9 +2,7 @@
 // ─────────────────────────────────────────────
 // Props
 // ─────────────────────────────────────────────
-const {
-  hoverable = false,
-} = defineProps<{
+const { hoverable = false } = defineProps<{
   /** Whether to apply hover styling to the grid item. @default false */
   hoverable?: boolean;
 }>();

@@ -1,5 +1,10 @@
 import { BTimeline, BTimelineItem } from '@/components';
-import type { BTimelineItemData, BTimelineMode, BTimelineOrientation, BTimelineVariant } from '@/types';
+import type {
+  BTimelineItemData,
+  BTimelineMode,
+  BTimelineOrientation,
+  BTimelineVariant,
+} from '@/types';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, within } from 'storybook/test';
 import { ref } from 'vue';
@@ -204,7 +209,9 @@ export const DotColors: Story = {
     expect(items[2].classList.contains('b-timeline-item--red')).toBe(true);
     expect(items[3].classList.contains('b-timeline-item--gray')).toBe(true);
     expect(items[4].classList.contains('b-timeline-item--custom')).toBe(true);
-    expect((items[4] as HTMLElement).style.getPropertyValue('--b-timeline-item-dot-color')).toBeTruthy();
+    expect(
+      (items[4] as HTMLElement).style.getPropertyValue('--b-timeline-item-dot-color'),
+    ).toBeTruthy();
   },
 };
 
@@ -1028,7 +1035,8 @@ export const InteractionTests: Story = {
     await new Promise((r) => setTimeout(r, 50));
     const reversedItems = el.querySelectorAll('.b-timeline-item');
     // After reverse, last item content should be Alpha
-    expect(reversedItems[3].querySelector('.b-timeline-item__content')?.textContent?.trim())
-      .toBe('Alpha event');
+    expect(reversedItems[3].querySelector('.b-timeline-item__content')?.textContent?.trim()).toBe(
+      'Alpha event',
+    );
   },
 };

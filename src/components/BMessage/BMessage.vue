@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { BMessageType } from '@/types.ts';
-import { computed, onUnmounted, useId, watch } from 'vue';
-import { ref } from 'vue';
+import { computed, onUnmounted, ref, useId, watch } from 'vue';
 
 // ─────────────────────────────────────────────
 // Props & emits
@@ -57,9 +56,7 @@ const internalVisible = ref(false);
  *  - controlled  → honour `modelValue`
  *  - uncontrolled → use `internalVisible`
  */
-const isVisible = computed(() =>
-  modelValue !== undefined ? modelValue : internalVisible.value,
-);
+const isVisible = computed(() => (modelValue !== undefined ? modelValue : internalVisible.value));
 
 const isControlled = computed(() => modelValue !== undefined);
 
@@ -196,11 +193,7 @@ defineExpose({ open, close });
         @mouseleave="onMouseLeave"
       >
         <!-- Status icon -->
-        <span
-          v-if="showIcon"
-          class="b-message__icon"
-          aria-hidden="true"
-        >
+        <span v-if="showIcon" class="b-message__icon" aria-hidden="true">
           <slot name="icon">
             <svg
               class="b-message__icon-svg"
@@ -242,8 +235,8 @@ defineExpose({ open, close });
   --b-message-border-color: oklch(90% 0.02 240);
   --b-message-color: oklch(30% 0.02 240);
   --b-message-icon-color: oklch(62.3% 0.214 259.815);
-  --b-message-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+  --b-message-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 9px 28px 8px rgba(0, 0, 0, 0.05);
 
   /* Animation */
@@ -273,8 +266,8 @@ defineExpose({ open, close });
   --b-message-bg: oklch(22% 0.02 240);
   --b-message-border-color: oklch(35% 0.03 240);
   --b-message-color: oklch(88% 0.02 240);
-  --b-message-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.32),
-    0 3px 6px -4px rgba(0, 0, 0, 0.48),
+  --b-message-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 3px 6px -4px rgba(0, 0, 0, 0.48),
     0 9px 28px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -386,4 +379,3 @@ defineExpose({ open, close });
   }
 }
 </style>
-

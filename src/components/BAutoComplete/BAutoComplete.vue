@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import { useComponentId } from '@/composables/useComponentId.ts';
 import { BCommonSize } from '@/types.ts';
-import { computed, ref, watch, nextTick, useAttrs } from 'vue';
-import {
-  BAutoCompleteStatus,
-  BAutoCompleteVariant,
-  type BAutoCompleteOption,
-} from './types.ts';
+import { computed, nextTick, ref, useAttrs, watch } from 'vue';
+import { BAutoCompleteStatus, BAutoCompleteVariant, type BAutoCompleteOption } from './types.ts';
 
 defineOptions({ inheritAttrs: false });
 
@@ -199,7 +195,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
       const prevIdx = activeIndex.value - 1;
       const opts = filteredOptions.value;
       for (let i = 0; i < opts.length; i++) {
-        const idx = ((prevIdx - i) % opts.length + opts.length) % opts.length;
+        const idx = (((prevIdx - i) % opts.length) + opts.length) % opts.length;
         if (!opts[idx].disabled) {
           activeIndex.value = idx;
           if (backfill) {
@@ -273,7 +269,7 @@ defineExpose({
       ref="inputRef"
       v-bind="attrs"
       :value="inputValue"
-      class="b-auto-complete__input b:box-border b:w-full b:outline-none b:transition-all b:placeholder:text-zinc-300"
+      class="b-auto-complete__input b:box-border b:w-full b:transition-all b:outline-none b:placeholder:text-zinc-300"
       :class="[
         {
           'b:h-6 b:px-2 b:text-sm': size === BCommonSize.Small,
@@ -285,12 +281,13 @@ defineExpose({
             variant === BAutoCompleteVariant.Outlined,
           'b:rounded-lg b:border-1 b:border-transparent b:bg-[var(--b-auto-complete-selector-bg)] b:focus:not-disabled:border-[var(--b-auto-complete-active-border-color)] b:focus:not-disabled:shadow-[0_0_0_2px_var(--b-auto-complete-active-outline-color)]':
             variant === BAutoCompleteVariant.Filled,
-          'b:border-none b:bg-transparent':
-            variant === BAutoCompleteVariant.Borderless,
+          'b:border-none b:bg-transparent': variant === BAutoCompleteVariant.Borderless,
         },
         {
-          'b:border-red-500! b:hover:not-disabled:border-red-400!': status === BAutoCompleteStatus.Error,
-          'b:border-yellow-500! b:hover:not-disabled:border-yellow-400!': status === BAutoCompleteStatus.Warning,
+          'b:border-red-500! b:hover:not-disabled:border-red-400!':
+            status === BAutoCompleteStatus.Error,
+          'b:border-yellow-500! b:hover:not-disabled:border-yellow-400!':
+            status === BAutoCompleteStatus.Warning,
         },
         {
           'b:cursor-not-allowed b:opacity-40': disabled,
@@ -327,7 +324,11 @@ defineExpose({
       :id="listboxId"
       class="b-auto-complete__dropdown b:overflow-auto b:rounded-lg b:bg-white b:shadow-lg"
       :class="{ 'b:w-[anchor-size(width)]': popupMatchSelectWidth === true }"
-      :style="typeof popupMatchSelectWidth === 'number' ? { width: `${popupMatchSelectWidth}px` } : undefined"
+      :style="
+        typeof popupMatchSelectWidth === 'number'
+          ? { width: `${popupMatchSelectWidth}px` }
+          : undefined
+      "
       popover
       role="listbox"
       @toggle="handleToggle"
@@ -341,11 +342,13 @@ defineExpose({
           class="b-auto-complete__option b:cursor-pointer b:rounded-md b:px-[var(--b-auto-complete-option-padding-x)] b:py-[var(--b-auto-complete-option-padding-y)] b:text-[length:var(--b-auto-complete-option-font-size)] b:leading-[var(--b-auto-complete-option-line-height)] b:transition-colors"
           :class="[
             {
-              'b:bg-[var(--b-auto-complete-option-active-bg)]': idx === activeIndex && !opt.disabled,
+              'b:bg-[var(--b-auto-complete-option-active-bg)]':
+                idx === activeIndex && !opt.disabled,
               'b:bg-[var(--b-auto-complete-option-selected-bg)] b:font-[var(--b-auto-complete-option-selected-font-weight)] b:text-[color:var(--b-auto-complete-option-selected-color)]':
                 opt.value === model && idx !== activeIndex,
               'b:cursor-not-allowed b:opacity-40': opt.disabled,
-              'b:hover:not-disabled:bg-[var(--b-auto-complete-option-active-bg)]': !opt.disabled && idx !== activeIndex,
+              'b:hover:not-disabled:bg-[var(--b-auto-complete-option-active-bg)]':
+                !opt.disabled && idx !== activeIndex,
             },
           ]"
           :data-active="idx === activeIndex"

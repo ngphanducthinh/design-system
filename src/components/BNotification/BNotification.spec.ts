@@ -109,10 +109,7 @@ describe('BNotification – props map to DOM', () => {
   });
 
   it('renders message via slot', () => {
-    const wrapper = mountNotification(
-      { modelValue: true },
-      { message: () => 'Slot Title' },
-    );
+    const wrapper = mountNotification({ modelValue: true }, { message: () => 'Slot Title' });
     expect(wrapper.find('.b-notification__message').text()).toBe('Slot Title');
   });
 

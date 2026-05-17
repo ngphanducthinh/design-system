@@ -478,10 +478,10 @@ export const Accessibility: Story = {
     const notifications = document.querySelectorAll('.b-notification');
 
     // Verify ARIA roles
-    expect(notifications[0].getAttribute('role')).toBe('alert');   // error
-    expect(notifications[1].getAttribute('role')).toBe('alert');   // warning
-    expect(notifications[2].getAttribute('role')).toBe('status');  // info
-    expect(notifications[3].getAttribute('role')).toBe('status');  // success
+    expect(notifications[0].getAttribute('role')).toBe('alert'); // error
+    expect(notifications[1].getAttribute('role')).toBe('alert'); // warning
+    expect(notifications[2].getAttribute('role')).toBe('status'); // info
+    expect(notifications[3].getAttribute('role')).toBe('status'); // success
 
     // Verify aria-live
     expect(notifications[0].getAttribute('aria-live')).toBe('assertive');
@@ -707,7 +707,8 @@ export const InteractionClose: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Automated play function: opens a notification and dismisses it using the close button.',
+        story:
+          'Automated play function: opens a notification and dismisses it using the close button.',
       },
     },
   },

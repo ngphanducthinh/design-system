@@ -1,8 +1,8 @@
-import { mount, flushPromises } from '@vue/test-utils';
+import type { BBreadcrumbItem } from '@/types';
+import { mount } from '@vue/test-utils';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { nextTick } from 'vue';
 import BBreadcrumb from './BBreadcrumb.vue';
-import type { BBreadcrumbItem } from '@/types';
 
 // ─────────────────────────────────────────────
 // ResizeObserver stub (not available in jsdom)

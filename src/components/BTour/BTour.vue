@@ -99,9 +99,7 @@ const isControlledOpen = computed(() => open !== undefined);
 const isControlledCurrent = computed(() => current !== undefined);
 
 const isOpen = computed(() => (isControlledOpen.value ? open! : internalOpen.value));
-const currentStep = computed(() =>
-  isControlledCurrent.value ? current! : internalCurrent.value,
-);
+const currentStep = computed(() => (isControlledCurrent.value ? current! : internalCurrent.value));
 
 // ─────────────────────────────────────────────
 // Derived step data
@@ -129,31 +127,22 @@ const activeStep = computed<BTourResolvedStep | undefined>(
 );
 
 /** Effective placement for the current step (step overrides tour-level). */
-const effectivePlacement = computed(
-  () => activeStep.value?.placement ?? placement,
-);
+const effectivePlacement = computed(() => activeStep.value?.placement ?? placement);
 
 /** Effective arrow config for the current step. */
-const effectiveArrow = computed(
-  () => activeStep.value?.arrow ?? arrow,
-);
+const effectiveArrow = computed(() => activeStep.value?.arrow ?? arrow);
 
 const showArrow = computed(() => effectiveArrow.value !== false);
 
 const arrowPointAtCenter = computed(
-  () =>
-    typeof effectiveArrow.value === 'object' && effectiveArrow.value.pointAtCenter,
+  () => typeof effectiveArrow.value === 'object' && effectiveArrow.value.pointAtCenter,
 );
 
 /** Effective type for the current step. */
-const effectiveType = computed(
-  () => activeStep.value?.type ?? type,
-);
+const effectiveType = computed(() => activeStep.value?.type ?? type);
 
 /** Effective mask for the current step. */
-const effectiveMask = computed(
-  () => activeStep.value?.mask ?? mask,
-);
+const effectiveMask = computed(() => activeStep.value?.mask ?? mask);
 
 const showMask = computed(() => effectiveMask.value !== false);
 
@@ -313,16 +302,32 @@ const arrowClass = computed(() => {
   if (!showArrow.value) return '';
   const eff = effectivePlacement.value;
 
-  if ([BTourPlacement.Bottom, BTourPlacement.BottomLeft, BTourPlacement.BottomRight].includes(eff as BTourPlacement)) {
+  if (
+    [BTourPlacement.Bottom, BTourPlacement.BottomLeft, BTourPlacement.BottomRight].includes(
+      eff as BTourPlacement,
+    )
+  ) {
     return 'b-tour__arrow--top';
   }
-  if ([BTourPlacement.Top, BTourPlacement.TopLeft, BTourPlacement.TopRight].includes(eff as BTourPlacement)) {
+  if (
+    [BTourPlacement.Top, BTourPlacement.TopLeft, BTourPlacement.TopRight].includes(
+      eff as BTourPlacement,
+    )
+  ) {
     return 'b-tour__arrow--bottom';
   }
-  if ([BTourPlacement.Right, BTourPlacement.RightTop, BTourPlacement.RightBottom].includes(eff as BTourPlacement)) {
+  if (
+    [BTourPlacement.Right, BTourPlacement.RightTop, BTourPlacement.RightBottom].includes(
+      eff as BTourPlacement,
+    )
+  ) {
     return 'b-tour__arrow--left';
   }
-  if ([BTourPlacement.Left, BTourPlacement.LeftTop, BTourPlacement.LeftBottom].includes(eff as BTourPlacement)) {
+  if (
+    [BTourPlacement.Left, BTourPlacement.LeftTop, BTourPlacement.LeftBottom].includes(
+      eff as BTourPlacement,
+    )
+  ) {
     return 'b-tour__arrow--right';
   }
   return '';
@@ -407,9 +412,7 @@ function focusFirst() {
 
 function trapFocus(e: KeyboardEvent) {
   if (e.key !== 'Tab' || !popupRef.value) return;
-  const focusable = Array.from(
-    popupRef.value.querySelectorAll<HTMLElement>(focusableSelector),
-  );
+  const focusable = Array.from(popupRef.value.querySelectorAll<HTMLElement>(focusableSelector));
   if (focusable.length === 0) {
     e.preventDefault();
     return;
@@ -637,14 +640,20 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
               @click="doClose"
             >
               <svg
-                v-if="closeIcon === true || activeStep?.closeIcon === true || activeStep?.closeIcon === undefined"
+                v-if="
+                  closeIcon === true ||
+                  activeStep?.closeIcon === true ||
+                  activeStep?.closeIcon === undefined
+                "
                 class="b-tour__close-icon"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
                 focusable="false"
               >
-                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                <path
+                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
               </svg>
               <span v-else>{{ typeof closeIcon === 'string' ? closeIcon : '✕' }}</span>
             </button>
@@ -659,11 +668,7 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
           <div class="b-tour__footer">
             <!-- Indicators -->
             <div class="b-tour__indicators" aria-label="Step progress">
-              <slot
-                name="indicatorsRender"
-                :current="currentStep"
-                :total="totalSteps"
-              >
+              <slot name="indicatorsRender" :current="currentStep" :total="totalSteps">
                 <span
                   v-for="(_, i) in steps"
                   :key="i"
@@ -683,7 +688,12 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
                 type="button"
                 class="b-tour__btn b-tour__btn--prev"
                 v-bind="activeStep?.prevButtonProps ?? {}"
-                @click="() => { activeStep?.prevButtonProps?.onClick?.(); goPrev(); }"
+                @click="
+                  () => {
+                    activeStep?.prevButtonProps?.onClick?.();
+                    goPrev();
+                  }
+                "
               >
                 {{ activeStep?.prevButtonProps?.children ?? 'Previous' }}
               </button>
@@ -693,7 +703,12 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
                 type="button"
                 class="b-tour__btn b-tour__btn--next"
                 v-bind="activeStep?.nextButtonProps ?? {}"
-                @click="() => { activeStep?.nextButtonProps?.onClick?.(); goNext(); }"
+                @click="
+                  () => {
+                    activeStep?.nextButtonProps?.onClick?.();
+                    goNext();
+                  }
+                "
               >
                 {{
                   activeStep?.nextButtonProps?.children ??
@@ -736,8 +751,7 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
   --b-tour-popup-min-width: 220px;
   --b-tour-popup-padding: 1rem;
   --b-tour-popup-shadow:
-    0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 9px 28px 8px rgba(0, 0, 0, 0.05);
 
   --b-tour-title-font-size: 1rem;
@@ -792,8 +806,7 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
   --b-tour-popup-bg: oklch(22% 0 0);
   --b-tour-popup-color: oklch(90% 0 0);
   --b-tour-popup-shadow:
-    0 6px 16px 0 rgba(0, 0, 0, 0.32),
-    0 3px 6px -4px rgba(0, 0, 0, 0.48),
+    0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 3px 6px -4px rgba(0, 0, 0, 0.48),
     0 9px 28px 8px rgba(0, 0, 0, 0.2);
   --b-tour-title-color: oklch(95% 0 0);
   --b-tour-description-color: oklch(72% 0 0);
@@ -1005,7 +1018,8 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
   height: var(--b-tour-indicator-size);
   border-radius: 50%;
   background: var(--b-tour-indicator-bg);
-  transition: background var(--b-tour-transition-duration) ease,
+  transition:
+    background var(--b-tour-transition-duration) ease,
     width var(--b-tour-transition-duration) ease;
 }
 
@@ -1033,7 +1047,8 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
   font-size: var(--b-tour-btn-font-size);
   font-weight: 500;
   cursor: pointer;
-  transition: background var(--b-tour-transition-duration) ease,
+  transition:
+    background var(--b-tour-transition-duration) ease,
     color var(--b-tour-transition-duration) ease;
   white-space: nowrap;
 }

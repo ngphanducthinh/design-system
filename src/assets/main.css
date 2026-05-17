@@ -1,5 +1,5 @@
-@import "./resetUAS.css" layer(b-reset);
-@import "./tailwind.css" layer(b-tailwind);
+@import './resetUAS.css' layer(b-reset);
+@import './tailwind.css' layer(b-tailwind);
 
 /* ── Theme switching (mirrors Ant Design pattern) ──────────────────────────
    JS sets data-prefers-color="light"|"dark" on <html>.

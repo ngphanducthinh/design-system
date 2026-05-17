@@ -6,6567 +6,6567 @@
  */
 export enum BIconName {
   /** 0.svg */
-  N0 = "0",
+  N0 = '0',
   /** 00.svg */
-  N00 = "00",
+  N00 = '00',
   /** 1.svg */
-  N1 = "1",
+  N1 = '1',
   /** 2.svg */
-  N2 = "2",
+  N2 = '2',
   /** 3.svg */
-  N3 = "3",
+  N3 = '3',
   /** 360-degrees.svg */
-  N360Degrees = "360-degrees",
+  N360Degrees = '360-degrees',
   /** 4.svg */
-  N4 = "4",
+  N4 = '4',
   /** 5.svg */
-  N5 = "5",
+  N5 = '5',
   /** 6.svg */
-  N6 = "6",
+  N6 = '6',
   /** 7.svg */
-  N7 = "7",
+  N7 = '7',
   /** 8.svg */
-  N8 = "8",
+  N8 = '8',
   /** 9.svg */
-  N9 = "9",
+  N9 = '9',
   /** a.svg */
-  A = "a",
+  A = 'a',
   /** abacus.svg */
-  Abacus = "abacus",
+  Abacus = 'abacus',
   /** accent-grave.svg */
-  AccentGrave = "accent-grave",
+  AccentGrave = 'accent-grave',
   /** acorn.svg */
-  Acorn = "acorn",
+  Acorn = 'acorn',
   /** address-book.svg */
-  AddressBook = "address-book",
+  AddressBook = 'address-book',
   /** address-card.svg */
-  AddressCard = "address-card",
+  AddressCard = 'address-card',
   /** air-conditioner.svg */
-  AirConditioner = "air-conditioner",
+  AirConditioner = 'air-conditioner',
   /** airplay.svg */
-  Airplay = "airplay",
+  Airplay = 'airplay',
   /** alarm-clock.svg */
-  AlarmClock = "alarm-clock",
+  AlarmClock = 'alarm-clock',
   /** alarm-exclamation.svg */
-  AlarmExclamation = "alarm-exclamation",
+  AlarmExclamation = 'alarm-exclamation',
   /** alarm-plus.svg */
-  AlarmPlus = "alarm-plus",
+  AlarmPlus = 'alarm-plus',
   /** alarm-snooze.svg */
-  AlarmSnooze = "alarm-snooze",
+  AlarmSnooze = 'alarm-snooze',
   /** album-circle-plus.svg */
-  AlbumCirclePlus = "album-circle-plus",
+  AlbumCirclePlus = 'album-circle-plus',
   /** album-circle-user.svg */
-  AlbumCircleUser = "album-circle-user",
+  AlbumCircleUser = 'album-circle-user',
   /** album-collection-circle-plus.svg */
-  AlbumCollectionCirclePlus = "album-collection-circle-plus",
+  AlbumCollectionCirclePlus = 'album-collection-circle-plus',
   /** album-collection-circle-user.svg */
-  AlbumCollectionCircleUser = "album-collection-circle-user",
+  AlbumCollectionCircleUser = 'album-collection-circle-user',
   /** album-collection.svg */
-  AlbumCollection = "album-collection",
+  AlbumCollection = 'album-collection',
   /** album.svg */
-  Album = "album",
+  Album = 'album',
   /** alicorn.svg */
-  Alicorn = "alicorn",
+  Alicorn = 'alicorn',
   /** alien-8bit.svg */
-  Alien8bit = "alien-8bit",
+  Alien8bit = 'alien-8bit',
   /** alien.svg */
-  Alien = "alien",
+  Alien = 'alien',
   /** align-center.svg */
-  AlignCenter = "align-center",
+  AlignCenter = 'align-center',
   /** align-justify.svg */
-  AlignJustify = "align-justify",
+  AlignJustify = 'align-justify',
   /** align-left.svg */
-  AlignLeft = "align-left",
+  AlignLeft = 'align-left',
   /** align-right.svg */
-  AlignRight = "align-right",
+  AlignRight = 'align-right',
   /** align-slash.svg */
-  AlignSlash = "align-slash",
+  AlignSlash = 'align-slash',
   /** alt.svg */
-  Alt = "alt",
+  Alt = 'alt',
   /** amp-guitar.svg */
-  AmpGuitar = "amp-guitar",
+  AmpGuitar = 'amp-guitar',
   /** ampersand.svg */
-  Ampersand = "ampersand",
+  Ampersand = 'ampersand',
   /** anchor-circle-check.svg */
-  AnchorCircleCheck = "anchor-circle-check",
+  AnchorCircleCheck = 'anchor-circle-check',
   /** anchor-circle-exclamation.svg */
-  AnchorCircleExclamation = "anchor-circle-exclamation",
+  AnchorCircleExclamation = 'anchor-circle-exclamation',
   /** anchor-circle-xmark.svg */
-  AnchorCircleXmark = "anchor-circle-xmark",
+  AnchorCircleXmark = 'anchor-circle-xmark',
   /** anchor-lock.svg */
-  AnchorLock = "anchor-lock",
+  AnchorLock = 'anchor-lock',
   /** anchor.svg */
-  Anchor = "anchor",
+  Anchor = 'anchor',
   /** angel.svg */
-  Angel = "angel",
+  Angel = 'angel',
   /** angle-90.svg */
-  Angle90 = "angle-90",
+  Angle90 = 'angle-90',
   /** angle-down.svg */
-  AngleDown = "angle-down",
+  AngleDown = 'angle-down',
   /** angle-left.svg */
-  AngleLeft = "angle-left",
+  AngleLeft = 'angle-left',
   /** angle-right.svg */
-  AngleRight = "angle-right",
+  AngleRight = 'angle-right',
   /** angle-up.svg */
-  AngleUp = "angle-up",
+  AngleUp = 'angle-up',
   /** angle.svg */
-  Angle = "angle",
+  Angle = 'angle',
   /** angles-down.svg */
-  AnglesDown = "angles-down",
+  AnglesDown = 'angles-down',
   /** angles-left.svg */
-  AnglesLeft = "angles-left",
+  AnglesLeft = 'angles-left',
   /** angles-right.svg */
-  AnglesRight = "angles-right",
+  AnglesRight = 'angles-right',
   /** angles-up-down.svg */
-  AnglesUpDown = "angles-up-down",
+  AnglesUpDown = 'angles-up-down',
   /** angles-up.svg */
-  AnglesUp = "angles-up",
+  AnglesUp = 'angles-up',
   /** ankh.svg */
-  Ankh = "ankh",
+  Ankh = 'ankh',
   /** apartment.svg */
-  Apartment = "apartment",
+  Apartment = 'apartment',
   /** aperture.svg */
-  Aperture = "aperture",
+  Aperture = 'aperture',
   /** apostrophe.svg */
-  Apostrophe = "apostrophe",
+  Apostrophe = 'apostrophe',
   /** apple-core.svg */
-  AppleCore = "apple-core",
+  AppleCore = 'apple-core',
   /** apple-whole.svg */
-  AppleWhole = "apple-whole",
+  AppleWhole = 'apple-whole',
   /** archway.svg */
-  Archway = "archway",
+  Archway = 'archway',
   /** arrow-down-1-9.svg */
-  ArrowDown19 = "arrow-down-1-9",
+  ArrowDown19 = 'arrow-down-1-9',
   /** arrow-down-9-1.svg */
-  ArrowDown91 = "arrow-down-9-1",
+  ArrowDown91 = 'arrow-down-9-1',
   /** arrow-down-a-z.svg */
-  ArrowDownAZ = "arrow-down-a-z",
+  ArrowDownAZ = 'arrow-down-a-z',
   /** arrow-down-arrow-up.svg */
-  ArrowDownArrowUp = "arrow-down-arrow-up",
+  ArrowDownArrowUp = 'arrow-down-arrow-up',
   /** arrow-down-big-small.svg */
-  ArrowDownBigSmall = "arrow-down-big-small",
+  ArrowDownBigSmall = 'arrow-down-big-small',
   /** arrow-down-from-arc.svg */
-  ArrowDownFromArc = "arrow-down-from-arc",
+  ArrowDownFromArc = 'arrow-down-from-arc',
   /** arrow-down-from-dotted-line.svg */
-  ArrowDownFromDottedLine = "arrow-down-from-dotted-line",
+  ArrowDownFromDottedLine = 'arrow-down-from-dotted-line',
   /** arrow-down-from-line.svg */
-  ArrowDownFromLine = "arrow-down-from-line",
+  ArrowDownFromLine = 'arrow-down-from-line',
   /** arrow-down-left-and-arrow-up-right-to-center.svg */
-  ArrowDownLeftAndArrowUpRightToCenter = "arrow-down-left-and-arrow-up-right-to-center",
+  ArrowDownLeftAndArrowUpRightToCenter = 'arrow-down-left-and-arrow-up-right-to-center',
   /** arrow-down-left.svg */
-  ArrowDownLeft = "arrow-down-left",
+  ArrowDownLeft = 'arrow-down-left',
   /** arrow-down-long.svg */
-  ArrowDownLong = "arrow-down-long",
+  ArrowDownLong = 'arrow-down-long',
   /** arrow-down-right.svg */
-  ArrowDownRight = "arrow-down-right",
+  ArrowDownRight = 'arrow-down-right',
   /** arrow-down-short-wide.svg */
-  ArrowDownShortWide = "arrow-down-short-wide",
+  ArrowDownShortWide = 'arrow-down-short-wide',
   /** arrow-down-small-big.svg */
-  ArrowDownSmallBig = "arrow-down-small-big",
+  ArrowDownSmallBig = 'arrow-down-small-big',
   /** arrow-down-square-triangle.svg */
-  ArrowDownSquareTriangle = "arrow-down-square-triangle",
+  ArrowDownSquareTriangle = 'arrow-down-square-triangle',
   /** arrow-down-to-arc.svg */
-  ArrowDownToArc = "arrow-down-to-arc",
+  ArrowDownToArc = 'arrow-down-to-arc',
   /** arrow-down-to-bracket.svg */
-  ArrowDownToBracket = "arrow-down-to-bracket",
+  ArrowDownToBracket = 'arrow-down-to-bracket',
   /** arrow-down-to-dotted-line.svg */
-  ArrowDownToDottedLine = "arrow-down-to-dotted-line",
+  ArrowDownToDottedLine = 'arrow-down-to-dotted-line',
   /** arrow-down-to-line.svg */
-  ArrowDownToLine = "arrow-down-to-line",
+  ArrowDownToLine = 'arrow-down-to-line',
   /** arrow-down-to-square.svg */
-  ArrowDownToSquare = "arrow-down-to-square",
+  ArrowDownToSquare = 'arrow-down-to-square',
   /** arrow-down-triangle-square.svg */
-  ArrowDownTriangleSquare = "arrow-down-triangle-square",
+  ArrowDownTriangleSquare = 'arrow-down-triangle-square',
   /** arrow-down-up-across-line.svg */
-  ArrowDownUpAcrossLine = "arrow-down-up-across-line",
+  ArrowDownUpAcrossLine = 'arrow-down-up-across-line',
   /** arrow-down-up-lock.svg */
-  ArrowDownUpLock = "arrow-down-up-lock",
+  ArrowDownUpLock = 'arrow-down-up-lock',
   /** arrow-down-wide-short.svg */
-  ArrowDownWideShort = "arrow-down-wide-short",
+  ArrowDownWideShort = 'arrow-down-wide-short',
   /** arrow-down-z-a.svg */
-  ArrowDownZA = "arrow-down-z-a",
+  ArrowDownZA = 'arrow-down-z-a',
   /** arrow-down.svg */
-  ArrowDown = "arrow-down",
+  ArrowDown = 'arrow-down',
   /** arrow-left-from-arc.svg */
-  ArrowLeftFromArc = "arrow-left-from-arc",
+  ArrowLeftFromArc = 'arrow-left-from-arc',
   /** arrow-left-from-line.svg */
-  ArrowLeftFromLine = "arrow-left-from-line",
+  ArrowLeftFromLine = 'arrow-left-from-line',
   /** arrow-left-long-to-line.svg */
-  ArrowLeftLongToLine = "arrow-left-long-to-line",
+  ArrowLeftLongToLine = 'arrow-left-long-to-line',
   /** arrow-left-long.svg */
-  ArrowLeftLong = "arrow-left-long",
+  ArrowLeftLong = 'arrow-left-long',
   /** arrow-left-to-arc.svg */
-  ArrowLeftToArc = "arrow-left-to-arc",
+  ArrowLeftToArc = 'arrow-left-to-arc',
   /** arrow-left-to-line.svg */
-  ArrowLeftToLine = "arrow-left-to-line",
+  ArrowLeftToLine = 'arrow-left-to-line',
   /** arrow-left.svg */
-  ArrowLeft = "arrow-left",
+  ArrowLeft = 'arrow-left',
   /** arrow-pointer.svg */
-  ArrowPointer = "arrow-pointer",
+  ArrowPointer = 'arrow-pointer',
   /** arrow-progress.svg */
-  ArrowProgress = "arrow-progress",
+  ArrowProgress = 'arrow-progress',
   /** arrow-right-arrow-left.svg */
-  ArrowRightArrowLeft = "arrow-right-arrow-left",
+  ArrowRightArrowLeft = 'arrow-right-arrow-left',
   /** arrow-right-from-arc.svg */
-  ArrowRightFromArc = "arrow-right-from-arc",
+  ArrowRightFromArc = 'arrow-right-from-arc',
   /** arrow-right-from-bracket.svg */
-  ArrowRightFromBracket = "arrow-right-from-bracket",
+  ArrowRightFromBracket = 'arrow-right-from-bracket',
   /** arrow-right-from-line.svg */
-  ArrowRightFromLine = "arrow-right-from-line",
+  ArrowRightFromLine = 'arrow-right-from-line',
   /** arrow-right-long-to-line.svg */
-  ArrowRightLongToLine = "arrow-right-long-to-line",
+  ArrowRightLongToLine = 'arrow-right-long-to-line',
   /** arrow-right-long.svg */
-  ArrowRightLong = "arrow-right-long",
+  ArrowRightLong = 'arrow-right-long',
   /** arrow-right-to-arc.svg */
-  ArrowRightToArc = "arrow-right-to-arc",
+  ArrowRightToArc = 'arrow-right-to-arc',
   /** arrow-right-to-bracket.svg */
-  ArrowRightToBracket = "arrow-right-to-bracket",
+  ArrowRightToBracket = 'arrow-right-to-bracket',
   /** arrow-right-to-city.svg */
-  ArrowRightToCity = "arrow-right-to-city",
+  ArrowRightToCity = 'arrow-right-to-city',
   /** arrow-right-to-line.svg */
-  ArrowRightToLine = "arrow-right-to-line",
+  ArrowRightToLine = 'arrow-right-to-line',
   /** arrow-right.svg */
-  ArrowRight = "arrow-right",
+  ArrowRight = 'arrow-right',
   /** arrow-rotate-left.svg */
-  ArrowRotateLeft = "arrow-rotate-left",
+  ArrowRotateLeft = 'arrow-rotate-left',
   /** arrow-rotate-right.svg */
-  ArrowRotateRight = "arrow-rotate-right",
+  ArrowRotateRight = 'arrow-rotate-right',
   /** arrow-trend-down.svg */
-  ArrowTrendDown = "arrow-trend-down",
+  ArrowTrendDown = 'arrow-trend-down',
   /** arrow-trend-up.svg */
-  ArrowTrendUp = "arrow-trend-up",
+  ArrowTrendUp = 'arrow-trend-up',
   /** arrow-turn-down-left.svg */
-  ArrowTurnDownLeft = "arrow-turn-down-left",
+  ArrowTurnDownLeft = 'arrow-turn-down-left',
   /** arrow-turn-down-right.svg */
-  ArrowTurnDownRight = "arrow-turn-down-right",
+  ArrowTurnDownRight = 'arrow-turn-down-right',
   /** arrow-turn-down.svg */
-  ArrowTurnDown = "arrow-turn-down",
+  ArrowTurnDown = 'arrow-turn-down',
   /** arrow-turn-left-down.svg */
-  ArrowTurnLeftDown = "arrow-turn-left-down",
+  ArrowTurnLeftDown = 'arrow-turn-left-down',
   /** arrow-turn-left-up.svg */
-  ArrowTurnLeftUp = "arrow-turn-left-up",
+  ArrowTurnLeftUp = 'arrow-turn-left-up',
   /** arrow-turn-left.svg */
-  ArrowTurnLeft = "arrow-turn-left",
+  ArrowTurnLeft = 'arrow-turn-left',
   /** arrow-turn-right.svg */
-  ArrowTurnRight = "arrow-turn-right",
+  ArrowTurnRight = 'arrow-turn-right',
   /** arrow-turn-up.svg */
-  ArrowTurnUp = "arrow-turn-up",
+  ArrowTurnUp = 'arrow-turn-up',
   /** arrow-up-1-9.svg */
-  ArrowUp19 = "arrow-up-1-9",
+  ArrowUp19 = 'arrow-up-1-9',
   /** arrow-up-9-1.svg */
-  ArrowUp91 = "arrow-up-9-1",
+  ArrowUp91 = 'arrow-up-9-1',
   /** arrow-up-a-z.svg */
-  ArrowUpAZ = "arrow-up-a-z",
+  ArrowUpAZ = 'arrow-up-a-z',
   /** arrow-up-arrow-down.svg */
-  ArrowUpArrowDown = "arrow-up-arrow-down",
+  ArrowUpArrowDown = 'arrow-up-arrow-down',
   /** arrow-up-big-small.svg */
-  ArrowUpBigSmall = "arrow-up-big-small",
+  ArrowUpBigSmall = 'arrow-up-big-small',
   /** arrow-up-from-arc.svg */
-  ArrowUpFromArc = "arrow-up-from-arc",
+  ArrowUpFromArc = 'arrow-up-from-arc',
   /** arrow-up-from-bracket.svg */
-  ArrowUpFromBracket = "arrow-up-from-bracket",
+  ArrowUpFromBracket = 'arrow-up-from-bracket',
   /** arrow-up-from-dotted-line.svg */
-  ArrowUpFromDottedLine = "arrow-up-from-dotted-line",
+  ArrowUpFromDottedLine = 'arrow-up-from-dotted-line',
   /** arrow-up-from-ground-water.svg */
-  ArrowUpFromGroundWater = "arrow-up-from-ground-water",
+  ArrowUpFromGroundWater = 'arrow-up-from-ground-water',
   /** arrow-up-from-line.svg */
-  ArrowUpFromLine = "arrow-up-from-line",
+  ArrowUpFromLine = 'arrow-up-from-line',
   /** arrow-up-from-square.svg */
-  ArrowUpFromSquare = "arrow-up-from-square",
+  ArrowUpFromSquare = 'arrow-up-from-square',
   /** arrow-up-from-water-pump.svg */
-  ArrowUpFromWaterPump = "arrow-up-from-water-pump",
+  ArrowUpFromWaterPump = 'arrow-up-from-water-pump',
   /** arrow-up-left-from-circle.svg */
-  ArrowUpLeftFromCircle = "arrow-up-left-from-circle",
+  ArrowUpLeftFromCircle = 'arrow-up-left-from-circle',
   /** arrow-up-left.svg */
-  ArrowUpLeft = "arrow-up-left",
+  ArrowUpLeft = 'arrow-up-left',
   /** arrow-up-long.svg */
-  ArrowUpLong = "arrow-up-long",
+  ArrowUpLong = 'arrow-up-long',
   /** arrow-up-right-and-arrow-down-left-from-center.svg */
-  ArrowUpRightAndArrowDownLeftFromCenter = "arrow-up-right-and-arrow-down-left-from-center",
+  ArrowUpRightAndArrowDownLeftFromCenter = 'arrow-up-right-and-arrow-down-left-from-center',
   /** arrow-up-right-dots.svg */
-  ArrowUpRightDots = "arrow-up-right-dots",
+  ArrowUpRightDots = 'arrow-up-right-dots',
   /** arrow-up-right-from-square.svg */
-  ArrowUpRightFromSquare = "arrow-up-right-from-square",
+  ArrowUpRightFromSquare = 'arrow-up-right-from-square',
   /** arrow-up-right.svg */
-  ArrowUpRight = "arrow-up-right",
+  ArrowUpRight = 'arrow-up-right',
   /** arrow-up-short-wide.svg */
-  ArrowUpShortWide = "arrow-up-short-wide",
+  ArrowUpShortWide = 'arrow-up-short-wide',
   /** arrow-up-small-big.svg */
-  ArrowUpSmallBig = "arrow-up-small-big",
+  ArrowUpSmallBig = 'arrow-up-small-big',
   /** arrow-up-square-triangle.svg */
-  ArrowUpSquareTriangle = "arrow-up-square-triangle",
+  ArrowUpSquareTriangle = 'arrow-up-square-triangle',
   /** arrow-up-to-arc.svg */
-  ArrowUpToArc = "arrow-up-to-arc",
+  ArrowUpToArc = 'arrow-up-to-arc',
   /** arrow-up-to-dotted-line.svg */
-  ArrowUpToDottedLine = "arrow-up-to-dotted-line",
+  ArrowUpToDottedLine = 'arrow-up-to-dotted-line',
   /** arrow-up-to-line.svg */
-  ArrowUpToLine = "arrow-up-to-line",
+  ArrowUpToLine = 'arrow-up-to-line',
   /** arrow-up-triangle-square.svg */
-  ArrowUpTriangleSquare = "arrow-up-triangle-square",
+  ArrowUpTriangleSquare = 'arrow-up-triangle-square',
   /** arrow-up-wide-short.svg */
-  ArrowUpWideShort = "arrow-up-wide-short",
+  ArrowUpWideShort = 'arrow-up-wide-short',
   /** arrow-up-z-a.svg */
-  ArrowUpZA = "arrow-up-z-a",
+  ArrowUpZA = 'arrow-up-z-a',
   /** arrow-up.svg */
-  ArrowUp = "arrow-up",
+  ArrowUp = 'arrow-up',
   /** arrows-cross.svg */
-  ArrowsCross = "arrows-cross",
+  ArrowsCross = 'arrows-cross',
   /** arrows-down-to-line.svg */
-  ArrowsDownToLine = "arrows-down-to-line",
+  ArrowsDownToLine = 'arrows-down-to-line',
   /** arrows-down-to-people.svg */
-  ArrowsDownToPeople = "arrows-down-to-people",
+  ArrowsDownToPeople = 'arrows-down-to-people',
   /** arrows-from-dotted-line.svg */
-  ArrowsFromDottedLine = "arrows-from-dotted-line",
+  ArrowsFromDottedLine = 'arrows-from-dotted-line',
   /** arrows-from-line.svg */
-  ArrowsFromLine = "arrows-from-line",
+  ArrowsFromLine = 'arrows-from-line',
   /** arrows-left-right-to-line.svg */
-  ArrowsLeftRightToLine = "arrows-left-right-to-line",
+  ArrowsLeftRightToLine = 'arrows-left-right-to-line',
   /** arrows-left-right.svg */
-  ArrowsLeftRight = "arrows-left-right",
+  ArrowsLeftRight = 'arrows-left-right',
   /** arrows-maximize.svg */
-  ArrowsMaximize = "arrows-maximize",
+  ArrowsMaximize = 'arrows-maximize',
   /** arrows-minimize.svg */
-  ArrowsMinimize = "arrows-minimize",
+  ArrowsMinimize = 'arrows-minimize',
   /** arrows-repeat-1.svg */
-  ArrowsRepeat1 = "arrows-repeat-1",
+  ArrowsRepeat1 = 'arrows-repeat-1',
   /** arrows-repeat.svg */
-  ArrowsRepeat = "arrows-repeat",
+  ArrowsRepeat = 'arrows-repeat',
   /** arrows-retweet.svg */
-  ArrowsRetweet = "arrows-retweet",
+  ArrowsRetweet = 'arrows-retweet',
   /** arrows-rotate-reverse.svg */
-  ArrowsRotateReverse = "arrows-rotate-reverse",
+  ArrowsRotateReverse = 'arrows-rotate-reverse',
   /** arrows-rotate.svg */
-  ArrowsRotate = "arrows-rotate",
+  ArrowsRotate = 'arrows-rotate',
   /** arrows-spin.svg */
-  ArrowsSpin = "arrows-spin",
+  ArrowsSpin = 'arrows-spin',
   /** arrows-split-up-and-left.svg */
-  ArrowsSplitUpAndLeft = "arrows-split-up-and-left",
+  ArrowsSplitUpAndLeft = 'arrows-split-up-and-left',
   /** arrows-to-circle.svg */
-  ArrowsToCircle = "arrows-to-circle",
+  ArrowsToCircle = 'arrows-to-circle',
   /** arrows-to-dot.svg */
-  ArrowsToDot = "arrows-to-dot",
+  ArrowsToDot = 'arrows-to-dot',
   /** arrows-to-dotted-line.svg */
-  ArrowsToDottedLine = "arrows-to-dotted-line",
+  ArrowsToDottedLine = 'arrows-to-dotted-line',
   /** arrows-to-eye.svg */
-  ArrowsToEye = "arrows-to-eye",
+  ArrowsToEye = 'arrows-to-eye',
   /** arrows-to-line.svg */
-  ArrowsToLine = "arrows-to-line",
+  ArrowsToLine = 'arrows-to-line',
   /** arrows-turn-right.svg */
-  ArrowsTurnRight = "arrows-turn-right",
+  ArrowsTurnRight = 'arrows-turn-right',
   /** arrows-turn-to-dots.svg */
-  ArrowsTurnToDots = "arrows-turn-to-dots",
+  ArrowsTurnToDots = 'arrows-turn-to-dots',
   /** arrows-up-down-left-right.svg */
-  ArrowsUpDownLeftRight = "arrows-up-down-left-right",
+  ArrowsUpDownLeftRight = 'arrows-up-down-left-right',
   /** arrows-up-down.svg */
-  ArrowsUpDown = "arrows-up-down",
+  ArrowsUpDown = 'arrows-up-down',
   /** arrows-up-to-line.svg */
-  ArrowsUpToLine = "arrows-up-to-line",
+  ArrowsUpToLine = 'arrows-up-to-line',
   /** asterisk.svg */
-  Asterisk = "asterisk",
+  Asterisk = 'asterisk',
   /** at.svg */
-  At = "at",
+  At = 'at',
   /** atom-simple.svg */
-  AtomSimple = "atom-simple",
+  AtomSimple = 'atom-simple',
   /** atom.svg */
-  Atom = "atom",
+  Atom = 'atom',
   /** audio-description-slash.svg */
-  AudioDescriptionSlash = "audio-description-slash",
+  AudioDescriptionSlash = 'audio-description-slash',
   /** audio-description.svg */
-  AudioDescription = "audio-description",
+  AudioDescription = 'audio-description',
   /** austral-sign.svg */
-  AustralSign = "austral-sign",
+  AustralSign = 'austral-sign',
   /** avocado.svg */
-  Avocado = "avocado",
+  Avocado = 'avocado',
   /** award-simple.svg */
-  AwardSimple = "award-simple",
+  AwardSimple = 'award-simple',
   /** award.svg */
-  Award = "award",
+  Award = 'award',
   /** axe-battle.svg */
-  AxeBattle = "axe-battle",
+  AxeBattle = 'axe-battle',
   /** axe.svg */
-  Axe = "axe",
+  Axe = 'axe',
   /** b.svg */
-  B = "b",
+  B = 'b',
   /** baby-carriage.svg */
-  BabyCarriage = "baby-carriage",
+  BabyCarriage = 'baby-carriage',
   /** baby.svg */
-  Baby = "baby",
+  Baby = 'baby',
   /** backpack.svg */
-  Backpack = "backpack",
+  Backpack = 'backpack',
   /** backward-fast.svg */
-  BackwardFast = "backward-fast",
+  BackwardFast = 'backward-fast',
   /** backward-step.svg */
-  BackwardStep = "backward-step",
+  BackwardStep = 'backward-step',
   /** backward.svg */
-  Backward = "backward",
+  Backward = 'backward',
   /** bacon.svg */
-  Bacon = "bacon",
+  Bacon = 'bacon',
   /** bacteria.svg */
-  Bacteria = "bacteria",
+  Bacteria = 'bacteria',
   /** bacterium.svg */
-  Bacterium = "bacterium",
+  Bacterium = 'bacterium',
   /** badge-check.svg */
-  BadgeCheck = "badge-check",
+  BadgeCheck = 'badge-check',
   /** badge-dollar.svg */
-  BadgeDollar = "badge-dollar",
+  BadgeDollar = 'badge-dollar',
   /** badge-percent.svg */
-  BadgePercent = "badge-percent",
+  BadgePercent = 'badge-percent',
   /** badge-sheriff.svg */
-  BadgeSheriff = "badge-sheriff",
+  BadgeSheriff = 'badge-sheriff',
   /** badge.svg */
-  Badge = "badge",
+  Badge = 'badge',
   /** badger-honey.svg */
-  BadgerHoney = "badger-honey",
+  BadgerHoney = 'badger-honey',
   /** badminton.svg */
-  Badminton = "badminton",
+  Badminton = 'badminton',
   /** bag-seedling.svg */
-  BagSeedling = "bag-seedling",
+  BagSeedling = 'bag-seedling',
   /** bag-shopping-minus.svg */
-  BagShoppingMinus = "bag-shopping-minus",
+  BagShoppingMinus = 'bag-shopping-minus',
   /** bag-shopping-plus.svg */
-  BagShoppingPlus = "bag-shopping-plus",
+  BagShoppingPlus = 'bag-shopping-plus',
   /** bag-shopping.svg */
-  BagShopping = "bag-shopping",
+  BagShopping = 'bag-shopping',
   /** bagel.svg */
-  Bagel = "bagel",
+  Bagel = 'bagel',
   /** bags-shopping.svg */
-  BagsShopping = "bags-shopping",
+  BagsShopping = 'bags-shopping',
   /** baguette.svg */
-  Baguette = "baguette",
+  Baguette = 'baguette',
   /** bahai.svg */
-  Bahai = "bahai",
+  Bahai = 'bahai',
   /** baht-sign.svg */
-  BahtSign = "baht-sign",
+  BahtSign = 'baht-sign',
   /** ball-pile.svg */
-  BallPile = "ball-pile",
+  BallPile = 'ball-pile',
   /** balloon.svg */
-  Balloon = "balloon",
+  Balloon = 'balloon',
   /** balloons.svg */
-  Balloons = "balloons",
+  Balloons = 'balloons',
   /** ballot-check.svg */
-  BallotCheck = "ballot-check",
+  BallotCheck = 'ballot-check',
   /** ballot.svg */
-  Ballot = "ballot",
+  Ballot = 'ballot',
   /** ban-bug.svg */
-  BanBug = "ban-bug",
+  BanBug = 'ban-bug',
   /** ban-parking.svg */
-  BanParking = "ban-parking",
+  BanParking = 'ban-parking',
   /** ban-smoking.svg */
-  BanSmoking = "ban-smoking",
+  BanSmoking = 'ban-smoking',
   /** ban.svg */
-  Ban = "ban",
+  Ban = 'ban',
   /** banana.svg */
-  Banana = "banana",
+  Banana = 'banana',
   /** bandage.svg */
-  Bandage = "bandage",
+  Bandage = 'bandage',
   /** bangladeshi-taka-sign.svg */
-  BangladeshiTakaSign = "bangladeshi-taka-sign",
+  BangladeshiTakaSign = 'bangladeshi-taka-sign',
   /** banjo.svg */
-  Banjo = "banjo",
+  Banjo = 'banjo',
   /** barcode-read.svg */
-  BarcodeRead = "barcode-read",
+  BarcodeRead = 'barcode-read',
   /** barcode-scan.svg */
-  BarcodeScan = "barcode-scan",
+  BarcodeScan = 'barcode-scan',
   /** barcode.svg */
-  Barcode = "barcode",
+  Barcode = 'barcode',
   /** bars-filter.svg */
-  BarsFilter = "bars-filter",
+  BarsFilter = 'bars-filter',
   /** bars-progress.svg */
-  BarsProgress = "bars-progress",
+  BarsProgress = 'bars-progress',
   /** bars-sort.svg */
-  BarsSort = "bars-sort",
+  BarsSort = 'bars-sort',
   /** bars-staggered.svg */
-  BarsStaggered = "bars-staggered",
+  BarsStaggered = 'bars-staggered',
   /** bars.svg */
-  Bars = "bars",
+  Bars = 'bars',
   /** baseball-bat-ball.svg */
-  BaseballBatBall = "baseball-bat-ball",
+  BaseballBatBall = 'baseball-bat-ball',
   /** baseball.svg */
-  Baseball = "baseball",
+  Baseball = 'baseball',
   /** basket-shopping-minus.svg */
-  BasketShoppingMinus = "basket-shopping-minus",
+  BasketShoppingMinus = 'basket-shopping-minus',
   /** basket-shopping-plus.svg */
-  BasketShoppingPlus = "basket-shopping-plus",
+  BasketShoppingPlus = 'basket-shopping-plus',
   /** basket-shopping-simple.svg */
-  BasketShoppingSimple = "basket-shopping-simple",
+  BasketShoppingSimple = 'basket-shopping-simple',
   /** basket-shopping.svg */
-  BasketShopping = "basket-shopping",
+  BasketShopping = 'basket-shopping',
   /** basketball-hoop.svg */
-  BasketballHoop = "basketball-hoop",
+  BasketballHoop = 'basketball-hoop',
   /** basketball.svg */
-  Basketball = "basketball",
+  Basketball = 'basketball',
   /** bat.svg */
-  Bat = "bat",
+  Bat = 'bat',
   /** bath.svg */
-  Bath = "bath",
+  Bath = 'bath',
   /** battery-bolt.svg */
-  BatteryBolt = "battery-bolt",
+  BatteryBolt = 'battery-bolt',
   /** battery-empty.svg */
-  BatteryEmpty = "battery-empty",
+  BatteryEmpty = 'battery-empty',
   /** battery-exclamation.svg */
-  BatteryExclamation = "battery-exclamation",
+  BatteryExclamation = 'battery-exclamation',
   /** battery-full.svg */
-  BatteryFull = "battery-full",
+  BatteryFull = 'battery-full',
   /** battery-half.svg */
-  BatteryHalf = "battery-half",
+  BatteryHalf = 'battery-half',
   /** battery-low.svg */
-  BatteryLow = "battery-low",
+  BatteryLow = 'battery-low',
   /** battery-quarter.svg */
-  BatteryQuarter = "battery-quarter",
+  BatteryQuarter = 'battery-quarter',
   /** battery-slash.svg */
-  BatterySlash = "battery-slash",
+  BatterySlash = 'battery-slash',
   /** battery-three-quarters.svg */
-  BatteryThreeQuarters = "battery-three-quarters",
+  BatteryThreeQuarters = 'battery-three-quarters',
   /** bed-bunk.svg */
-  BedBunk = "bed-bunk",
+  BedBunk = 'bed-bunk',
   /** bed-empty.svg */
-  BedEmpty = "bed-empty",
+  BedEmpty = 'bed-empty',
   /** bed-front.svg */
-  BedFront = "bed-front",
+  BedFront = 'bed-front',
   /** bed-pulse.svg */
-  BedPulse = "bed-pulse",
+  BedPulse = 'bed-pulse',
   /** bed.svg */
-  Bed = "bed",
+  Bed = 'bed',
   /** bee.svg */
-  Bee = "bee",
+  Bee = 'bee',
   /** beer-mug-empty.svg */
-  BeerMugEmpty = "beer-mug-empty",
+  BeerMugEmpty = 'beer-mug-empty',
   /** beer-mug.svg */
-  BeerMug = "beer-mug",
+  BeerMug = 'beer-mug',
   /** bell-concierge.svg */
-  BellConcierge = "bell-concierge",
+  BellConcierge = 'bell-concierge',
   /** bell-exclamation.svg */
-  BellExclamation = "bell-exclamation",
+  BellExclamation = 'bell-exclamation',
   /** bell-on.svg */
-  BellOn = "bell-on",
+  BellOn = 'bell-on',
   /** bell-plus.svg */
-  BellPlus = "bell-plus",
+  BellPlus = 'bell-plus',
   /** bell-ring.svg */
-  BellRing = "bell-ring",
+  BellRing = 'bell-ring',
   /** bell-school-slash.svg */
-  BellSchoolSlash = "bell-school-slash",
+  BellSchoolSlash = 'bell-school-slash',
   /** bell-school.svg */
-  BellSchool = "bell-school",
+  BellSchool = 'bell-school',
   /** bell-slash.svg */
-  BellSlash = "bell-slash",
+  BellSlash = 'bell-slash',
   /** bell.svg */
-  Bell = "bell",
+  Bell = 'bell',
   /** bells.svg */
-  Bells = "bells",
+  Bells = 'bells',
   /** bench-tree.svg */
-  BenchTree = "bench-tree",
+  BenchTree = 'bench-tree',
   /** bezier-curve.svg */
-  BezierCurve = "bezier-curve",
+  BezierCurve = 'bezier-curve',
   /** bicycle.svg */
-  Bicycle = "bicycle",
+  Bicycle = 'bicycle',
   /** billboard.svg */
-  Billboard = "billboard",
+  Billboard = 'billboard',
   /** bin-bottles-recycle.svg */
-  BinBottlesRecycle = "bin-bottles-recycle",
+  BinBottlesRecycle = 'bin-bottles-recycle',
   /** bin-bottles.svg */
-  BinBottles = "bin-bottles",
+  BinBottles = 'bin-bottles',
   /** bin-recycle.svg */
-  BinRecycle = "bin-recycle",
+  BinRecycle = 'bin-recycle',
   /** binary-circle-check.svg */
-  BinaryCircleCheck = "binary-circle-check",
+  BinaryCircleCheck = 'binary-circle-check',
   /** binary-lock.svg */
-  BinaryLock = "binary-lock",
+  BinaryLock = 'binary-lock',
   /** binary-slash.svg */
-  BinarySlash = "binary-slash",
+  BinarySlash = 'binary-slash',
   /** binary.svg */
-  Binary = "binary",
+  Binary = 'binary',
   /** binoculars.svg */
-  Binoculars = "binoculars",
+  Binoculars = 'binoculars',
   /** biohazard.svg */
-  Biohazard = "biohazard",
+  Biohazard = 'biohazard',
   /** bird.svg */
-  Bird = "bird",
+  Bird = 'bird',
   /** bitcoin-sign.svg */
-  BitcoinSign = "bitcoin-sign",
+  BitcoinSign = 'bitcoin-sign',
   /** blanket-fire.svg */
-  BlanketFire = "blanket-fire",
+  BlanketFire = 'blanket-fire',
   /** blanket.svg */
-  Blanket = "blanket",
+  Blanket = 'blanket',
   /** blender-phone.svg */
-  BlenderPhone = "blender-phone",
+  BlenderPhone = 'blender-phone',
   /** blender.svg */
-  Blender = "blender",
+  Blender = 'blender',
   /** blinds-open.svg */
-  BlindsOpen = "blinds-open",
+  BlindsOpen = 'blinds-open',
   /** blinds-raised.svg */
-  BlindsRaised = "blinds-raised",
+  BlindsRaised = 'blinds-raised',
   /** blinds.svg */
-  Blinds = "blinds",
+  Blinds = 'blinds',
   /** block-brick-fire.svg */
-  BlockBrickFire = "block-brick-fire",
+  BlockBrickFire = 'block-brick-fire',
   /** block-brick.svg */
-  BlockBrick = "block-brick",
+  BlockBrick = 'block-brick',
   /** block-question.svg */
-  BlockQuestion = "block-question",
+  BlockQuestion = 'block-question',
   /** block-quote.svg */
-  BlockQuote = "block-quote",
+  BlockQuote = 'block-quote',
   /** block.svg */
-  Block = "block",
+  Block = 'block',
   /** blog.svg */
-  Blog = "blog",
+  Blog = 'blog',
   /** blueberries.svg */
-  Blueberries = "blueberries",
+  Blueberries = 'blueberries',
   /** bluetooth.svg */
-  Bluetooth = "bluetooth",
+  Bluetooth = 'bluetooth',
   /** bold.svg */
-  Bold = "bold",
+  Bold = 'bold',
   /** bolt-auto.svg */
-  BoltAuto = "bolt-auto",
+  BoltAuto = 'bolt-auto',
   /** bolt-lightning.svg */
-  BoltLightning = "bolt-lightning",
+  BoltLightning = 'bolt-lightning',
   /** bolt-slash.svg */
-  BoltSlash = "bolt-slash",
+  BoltSlash = 'bolt-slash',
   /** bolt.svg */
-  Bolt = "bolt",
+  Bolt = 'bolt',
   /** bomb.svg */
-  Bomb = "bomb",
+  Bomb = 'bomb',
   /** bone-break.svg */
-  BoneBreak = "bone-break",
+  BoneBreak = 'bone-break',
   /** bone.svg */
-  Bone = "bone",
+  Bone = 'bone',
   /** bong.svg */
-  Bong = "bong",
+  Bong = 'bong',
   /** book-arrow-right.svg */
-  BookArrowRight = "book-arrow-right",
+  BookArrowRight = 'book-arrow-right',
   /** book-arrow-up.svg */
-  BookArrowUp = "book-arrow-up",
+  BookArrowUp = 'book-arrow-up',
   /** book-atlas.svg */
-  BookAtlas = "book-atlas",
+  BookAtlas = 'book-atlas',
   /** book-bible.svg */
-  BookBible = "book-bible",
+  BookBible = 'book-bible',
   /** book-blank.svg */
-  BookBlank = "book-blank",
+  BookBlank = 'book-blank',
   /** book-bookmark.svg */
-  BookBookmark = "book-bookmark",
+  BookBookmark = 'book-bookmark',
   /** book-circle-arrow-right.svg */
-  BookCircleArrowRight = "book-circle-arrow-right",
+  BookCircleArrowRight = 'book-circle-arrow-right',
   /** book-circle-arrow-up.svg */
-  BookCircleArrowUp = "book-circle-arrow-up",
+  BookCircleArrowUp = 'book-circle-arrow-up',
   /** book-copy.svg */
-  BookCopy = "book-copy",
+  BookCopy = 'book-copy',
   /** book-font.svg */
-  BookFont = "book-font",
+  BookFont = 'book-font',
   /** book-heart.svg */
-  BookHeart = "book-heart",
+  BookHeart = 'book-heart',
   /** book-journal-whills.svg */
-  BookJournalWhills = "book-journal-whills",
+  BookJournalWhills = 'book-journal-whills',
   /** book-medical.svg */
-  BookMedical = "book-medical",
+  BookMedical = 'book-medical',
   /** book-open-cover.svg */
-  BookOpenCover = "book-open-cover",
+  BookOpenCover = 'book-open-cover',
   /** book-open-reader.svg */
-  BookOpenReader = "book-open-reader",
+  BookOpenReader = 'book-open-reader',
   /** book-open.svg */
-  BookOpen = "book-open",
+  BookOpen = 'book-open',
   /** book-quran.svg */
-  BookQuran = "book-quran",
+  BookQuran = 'book-quran',
   /** book-section.svg */
-  BookSection = "book-section",
+  BookSection = 'book-section',
   /** book-skull.svg */
-  BookSkull = "book-skull",
+  BookSkull = 'book-skull',
   /** book-sparkles.svg */
-  BookSparkles = "book-sparkles",
+  BookSparkles = 'book-sparkles',
   /** book-tanakh.svg */
-  BookTanakh = "book-tanakh",
+  BookTanakh = 'book-tanakh',
   /** book-user.svg */
-  BookUser = "book-user",
+  BookUser = 'book-user',
   /** book.svg */
-  Book = "book",
+  Book = 'book',
   /** bookmark-slash.svg */
-  BookmarkSlash = "bookmark-slash",
+  BookmarkSlash = 'bookmark-slash',
   /** bookmark.svg */
-  Bookmark = "bookmark",
+  Bookmark = 'bookmark',
   /** books-medical.svg */
-  BooksMedical = "books-medical",
+  BooksMedical = 'books-medical',
   /** books.svg */
-  Books = "books",
+  Books = 'books',
   /** boombox.svg */
-  Boombox = "boombox",
+  Boombox = 'boombox',
   /** boot-heeled.svg */
-  BootHeeled = "boot-heeled",
+  BootHeeled = 'boot-heeled',
   /** boot.svg */
-  Boot = "boot",
+  Boot = 'boot',
   /** booth-curtain.svg */
-  BoothCurtain = "booth-curtain",
+  BoothCurtain = 'booth-curtain',
   /** border-all.svg */
-  BorderAll = "border-all",
+  BorderAll = 'border-all',
   /** border-bottom-right.svg */
-  BorderBottomRight = "border-bottom-right",
+  BorderBottomRight = 'border-bottom-right',
   /** border-bottom.svg */
-  BorderBottom = "border-bottom",
+  BorderBottom = 'border-bottom',
   /** border-center-h.svg */
-  BorderCenterH = "border-center-h",
+  BorderCenterH = 'border-center-h',
   /** border-center-v.svg */
-  BorderCenterV = "border-center-v",
+  BorderCenterV = 'border-center-v',
   /** border-inner.svg */
-  BorderInner = "border-inner",
+  BorderInner = 'border-inner',
   /** border-left.svg */
-  BorderLeft = "border-left",
+  BorderLeft = 'border-left',
   /** border-none.svg */
-  BorderNone = "border-none",
+  BorderNone = 'border-none',
   /** border-outer.svg */
-  BorderOuter = "border-outer",
+  BorderOuter = 'border-outer',
   /** border-right.svg */
-  BorderRight = "border-right",
+  BorderRight = 'border-right',
   /** border-top-left.svg */
-  BorderTopLeft = "border-top-left",
+  BorderTopLeft = 'border-top-left',
   /** border-top.svg */
-  BorderTop = "border-top",
+  BorderTop = 'border-top',
   /** bore-hole.svg */
-  BoreHole = "bore-hole",
+  BoreHole = 'bore-hole',
   /** bottle-droplet.svg */
-  BottleDroplet = "bottle-droplet",
+  BottleDroplet = 'bottle-droplet',
   /** bottle-water.svg */
-  BottleWater = "bottle-water",
+  BottleWater = 'bottle-water',
   /** bow-arrow.svg */
-  BowArrow = "bow-arrow",
+  BowArrow = 'bow-arrow',
   /** bowl-chopsticks-noodles.svg */
-  BowlChopsticksNoodles = "bowl-chopsticks-noodles",
+  BowlChopsticksNoodles = 'bowl-chopsticks-noodles',
   /** bowl-chopsticks.svg */
-  BowlChopsticks = "bowl-chopsticks",
+  BowlChopsticks = 'bowl-chopsticks',
   /** bowl-food.svg */
-  BowlFood = "bowl-food",
+  BowlFood = 'bowl-food',
   /** bowl-hot.svg */
-  BowlHot = "bowl-hot",
+  BowlHot = 'bowl-hot',
   /** bowl-rice.svg */
-  BowlRice = "bowl-rice",
+  BowlRice = 'bowl-rice',
   /** bowl-scoop.svg */
-  BowlScoop = "bowl-scoop",
+  BowlScoop = 'bowl-scoop',
   /** bowl-scoops.svg */
-  BowlScoops = "bowl-scoops",
+  BowlScoops = 'bowl-scoops',
   /** bowl-soft-serve.svg */
-  BowlSoftServe = "bowl-soft-serve",
+  BowlSoftServe = 'bowl-soft-serve',
   /** bowl-spoon.svg */
-  BowlSpoon = "bowl-spoon",
+  BowlSpoon = 'bowl-spoon',
   /** bowling-ball-pin.svg */
-  BowlingBallPin = "bowling-ball-pin",
+  BowlingBallPin = 'bowling-ball-pin',
   /** bowling-ball.svg */
-  BowlingBall = "bowling-ball",
+  BowlingBall = 'bowling-ball',
   /** bowling-pins.svg */
-  BowlingPins = "bowling-pins",
+  BowlingPins = 'bowling-pins',
   /** box-archive.svg */
-  BoxArchive = "box-archive",
+  BoxArchive = 'box-archive',
   /** box-ballot.svg */
-  BoxBallot = "box-ballot",
+  BoxBallot = 'box-ballot',
   /** box-check.svg */
-  BoxCheck = "box-check",
+  BoxCheck = 'box-check',
   /** box-circle-check.svg */
-  BoxCircleCheck = "box-circle-check",
+  BoxCircleCheck = 'box-circle-check',
   /** box-dollar.svg */
-  BoxDollar = "box-dollar",
+  BoxDollar = 'box-dollar',
   /** box-heart.svg */
-  BoxHeart = "box-heart",
+  BoxHeart = 'box-heart',
   /** box-open-full.svg */
-  BoxOpenFull = "box-open-full",
+  BoxOpenFull = 'box-open-full',
   /** box-open.svg */
-  BoxOpen = "box-open",
+  BoxOpen = 'box-open',
   /** box-taped.svg */
-  BoxTaped = "box-taped",
+  BoxTaped = 'box-taped',
   /** box-tissue.svg */
-  BoxTissue = "box-tissue",
+  BoxTissue = 'box-tissue',
   /** box.svg */
-  Box = "box",
+  Box = 'box',
   /** boxes-packing.svg */
-  BoxesPacking = "boxes-packing",
+  BoxesPacking = 'boxes-packing',
   /** boxes-stacked.svg */
-  BoxesStacked = "boxes-stacked",
+  BoxesStacked = 'boxes-stacked',
   /** boxing-glove.svg */
-  BoxingGlove = "boxing-glove",
+  BoxingGlove = 'boxing-glove',
   /** bracket-curly-right.svg */
-  BracketCurlyRight = "bracket-curly-right",
+  BracketCurlyRight = 'bracket-curly-right',
   /** bracket-curly.svg */
-  BracketCurly = "bracket-curly",
+  BracketCurly = 'bracket-curly',
   /** bracket-round-right.svg */
-  BracketRoundRight = "bracket-round-right",
+  BracketRoundRight = 'bracket-round-right',
   /** bracket-round.svg */
-  BracketRound = "bracket-round",
+  BracketRound = 'bracket-round',
   /** bracket-square-right.svg */
-  BracketSquareRight = "bracket-square-right",
+  BracketSquareRight = 'bracket-square-right',
   /** bracket-square.svg */
-  BracketSquare = "bracket-square",
+  BracketSquare = 'bracket-square',
   /** brackets-curly.svg */
-  BracketsCurly = "brackets-curly",
+  BracketsCurly = 'brackets-curly',
   /** brackets-round.svg */
-  BracketsRound = "brackets-round",
+  BracketsRound = 'brackets-round',
   /** brackets-square.svg */
-  BracketsSquare = "brackets-square",
+  BracketsSquare = 'brackets-square',
   /** braille.svg */
-  Braille = "braille",
+  Braille = 'braille',
   /** brain-arrow-curved-right.svg */
-  BrainArrowCurvedRight = "brain-arrow-curved-right",
+  BrainArrowCurvedRight = 'brain-arrow-curved-right',
   /** brain-circuit.svg */
-  BrainCircuit = "brain-circuit",
+  BrainCircuit = 'brain-circuit',
   /** brain.svg */
-  Brain = "brain",
+  Brain = 'brain',
   /** brake-warning.svg */
-  BrakeWarning = "brake-warning",
+  BrakeWarning = 'brake-warning',
   /** brazilian-real-sign.svg */
-  BrazilianRealSign = "brazilian-real-sign",
+  BrazilianRealSign = 'brazilian-real-sign',
   /** bread-loaf.svg */
-  BreadLoaf = "bread-loaf",
+  BreadLoaf = 'bread-loaf',
   /** bread-slice-butter.svg */
-  BreadSliceButter = "bread-slice-butter",
+  BreadSliceButter = 'bread-slice-butter',
   /** bread-slice.svg */
-  BreadSlice = "bread-slice",
+  BreadSlice = 'bread-slice',
   /** bridge-circle-check.svg */
-  BridgeCircleCheck = "bridge-circle-check",
+  BridgeCircleCheck = 'bridge-circle-check',
   /** bridge-circle-exclamation.svg */
-  BridgeCircleExclamation = "bridge-circle-exclamation",
+  BridgeCircleExclamation = 'bridge-circle-exclamation',
   /** bridge-circle-xmark.svg */
-  BridgeCircleXmark = "bridge-circle-xmark",
+  BridgeCircleXmark = 'bridge-circle-xmark',
   /** bridge-lock.svg */
-  BridgeLock = "bridge-lock",
+  BridgeLock = 'bridge-lock',
   /** bridge-suspension.svg */
-  BridgeSuspension = "bridge-suspension",
+  BridgeSuspension = 'bridge-suspension',
   /** bridge-water.svg */
-  BridgeWater = "bridge-water",
+  BridgeWater = 'bridge-water',
   /** bridge.svg */
-  Bridge = "bridge",
+  Bridge = 'bridge',
   /** briefcase-arrow-right.svg */
-  BriefcaseArrowRight = "briefcase-arrow-right",
+  BriefcaseArrowRight = 'briefcase-arrow-right',
   /** briefcase-blank.svg */
-  BriefcaseBlank = "briefcase-blank",
+  BriefcaseBlank = 'briefcase-blank',
   /** briefcase-medical.svg */
-  BriefcaseMedical = "briefcase-medical",
+  BriefcaseMedical = 'briefcase-medical',
   /** briefcase.svg */
-  Briefcase = "briefcase",
+  Briefcase = 'briefcase',
   /** brightness-low.svg */
-  BrightnessLow = "brightness-low",
+  BrightnessLow = 'brightness-low',
   /** brightness.svg */
-  Brightness = "brightness",
+  Brightness = 'brightness',
   /** bring-forward.svg */
-  BringForward = "bring-forward",
+  BringForward = 'bring-forward',
   /** bring-front.svg */
-  BringFront = "bring-front",
+  BringFront = 'bring-front',
   /** broccoli.svg */
-  Broccoli = "broccoli",
+  Broccoli = 'broccoli',
   /** broom-ball.svg */
-  BroomBall = "broom-ball",
+  BroomBall = 'broom-ball',
   /** broom-wide.svg */
-  BroomWide = "broom-wide",
+  BroomWide = 'broom-wide',
   /** broom.svg */
-  Broom = "broom",
+  Broom = 'broom',
   /** browser.svg */
-  Browser = "browser",
+  Browser = 'browser',
   /** browsers.svg */
-  Browsers = "browsers",
+  Browsers = 'browsers',
   /** brush.svg */
-  Brush = "brush",
+  Brush = 'brush',
   /** bucket.svg */
-  Bucket = "bucket",
+  Bucket = 'bucket',
   /** bug-slash.svg */
-  BugSlash = "bug-slash",
+  BugSlash = 'bug-slash',
   /** bug.svg */
-  Bug = "bug",
+  Bug = 'bug',
   /** bugs.svg */
-  Bugs = "bugs",
+  Bugs = 'bugs',
   /** building-circle-arrow-right.svg */
-  BuildingCircleArrowRight = "building-circle-arrow-right",
+  BuildingCircleArrowRight = 'building-circle-arrow-right',
   /** building-circle-check.svg */
-  BuildingCircleCheck = "building-circle-check",
+  BuildingCircleCheck = 'building-circle-check',
   /** building-circle-exclamation.svg */
-  BuildingCircleExclamation = "building-circle-exclamation",
+  BuildingCircleExclamation = 'building-circle-exclamation',
   /** building-circle-xmark.svg */
-  BuildingCircleXmark = "building-circle-xmark",
+  BuildingCircleXmark = 'building-circle-xmark',
   /** building-columns.svg */
-  BuildingColumns = "building-columns",
+  BuildingColumns = 'building-columns',
   /** building-flag.svg */
-  BuildingFlag = "building-flag",
+  BuildingFlag = 'building-flag',
   /** building-lock.svg */
-  BuildingLock = "building-lock",
+  BuildingLock = 'building-lock',
   /** building-magnifying-glass.svg */
-  BuildingMagnifyingGlass = "building-magnifying-glass",
+  BuildingMagnifyingGlass = 'building-magnifying-glass',
   /** building-memo.svg */
-  BuildingMemo = "building-memo",
+  BuildingMemo = 'building-memo',
   /** building-ngo.svg */
-  BuildingNgo = "building-ngo",
+  BuildingNgo = 'building-ngo',
   /** building-shield.svg */
-  BuildingShield = "building-shield",
+  BuildingShield = 'building-shield',
   /** building-un.svg */
-  BuildingUn = "building-un",
+  BuildingUn = 'building-un',
   /** building-user.svg */
-  BuildingUser = "building-user",
+  BuildingUser = 'building-user',
   /** building-wheat.svg */
-  BuildingWheat = "building-wheat",
+  BuildingWheat = 'building-wheat',
   /** building.svg */
-  Building = "building",
+  Building = 'building',
   /** buildings.svg */
-  Buildings = "buildings",
+  Buildings = 'buildings',
   /** bulldozer.svg */
-  Bulldozer = "bulldozer",
+  Bulldozer = 'bulldozer',
   /** bullhorn.svg */
-  Bullhorn = "bullhorn",
+  Bullhorn = 'bullhorn',
   /** bullseye-arrow.svg */
-  BullseyeArrow = "bullseye-arrow",
+  BullseyeArrow = 'bullseye-arrow',
   /** bullseye-pointer.svg */
-  BullseyePointer = "bullseye-pointer",
+  BullseyePointer = 'bullseye-pointer',
   /** bullseye.svg */
-  Bullseye = "bullseye",
+  Bullseye = 'bullseye',
   /** buoy-mooring.svg */
-  BuoyMooring = "buoy-mooring",
+  BuoyMooring = 'buoy-mooring',
   /** buoy.svg */
-  Buoy = "buoy",
+  Buoy = 'buoy',
   /** burger-cheese.svg */
-  BurgerCheese = "burger-cheese",
+  BurgerCheese = 'burger-cheese',
   /** burger-fries.svg */
-  BurgerFries = "burger-fries",
+  BurgerFries = 'burger-fries',
   /** burger-glass.svg */
-  BurgerGlass = "burger-glass",
+  BurgerGlass = 'burger-glass',
   /** burger-lettuce.svg */
-  BurgerLettuce = "burger-lettuce",
+  BurgerLettuce = 'burger-lettuce',
   /** burger-soda.svg */
-  BurgerSoda = "burger-soda",
+  BurgerSoda = 'burger-soda',
   /** burger.svg */
-  Burger = "burger",
+  Burger = 'burger',
   /** burrito.svg */
-  Burrito = "burrito",
+  Burrito = 'burrito',
   /** burst.svg */
-  Burst = "burst",
+  Burst = 'burst',
   /** bus-school.svg */
-  BusSchool = "bus-school",
+  BusSchool = 'bus-school',
   /** bus-simple.svg */
-  BusSimple = "bus-simple",
+  BusSimple = 'bus-simple',
   /** bus.svg */
-  Bus = "bus",
+  Bus = 'bus',
   /** business-time.svg */
-  BusinessTime = "business-time",
+  BusinessTime = 'business-time',
   /** butter.svg */
-  Butter = "butter",
+  Butter = 'butter',
   /** c.svg */
-  C = "c",
+  C = 'c',
   /** cabin.svg */
-  Cabin = "cabin",
+  Cabin = 'cabin',
   /** cabinet-filing.svg */
-  CabinetFiling = "cabinet-filing",
+  CabinetFiling = 'cabinet-filing',
   /** cable-car.svg */
-  CableCar = "cable-car",
+  CableCar = 'cable-car',
   /** cactus.svg */
-  Cactus = "cactus",
+  Cactus = 'cactus',
   /** cake-candles.svg */
-  CakeCandles = "cake-candles",
+  CakeCandles = 'cake-candles',
   /** cake-slice.svg */
-  CakeSlice = "cake-slice",
+  CakeSlice = 'cake-slice',
   /** calculator-simple.svg */
-  CalculatorSimple = "calculator-simple",
+  CalculatorSimple = 'calculator-simple',
   /** calculator.svg */
-  Calculator = "calculator",
+  Calculator = 'calculator',
   /** calendar-arrow-down.svg */
-  CalendarArrowDown = "calendar-arrow-down",
+  CalendarArrowDown = 'calendar-arrow-down',
   /** calendar-arrow-up.svg */
-  CalendarArrowUp = "calendar-arrow-up",
+  CalendarArrowUp = 'calendar-arrow-up',
   /** calendar-check.svg */
-  CalendarCheck = "calendar-check",
+  CalendarCheck = 'calendar-check',
   /** calendar-circle-exclamation.svg */
-  CalendarCircleExclamation = "calendar-circle-exclamation",
+  CalendarCircleExclamation = 'calendar-circle-exclamation',
   /** calendar-circle-minus.svg */
-  CalendarCircleMinus = "calendar-circle-minus",
+  CalendarCircleMinus = 'calendar-circle-minus',
   /** calendar-circle-plus.svg */
-  CalendarCirclePlus = "calendar-circle-plus",
+  CalendarCirclePlus = 'calendar-circle-plus',
   /** calendar-circle-user.svg */
-  CalendarCircleUser = "calendar-circle-user",
+  CalendarCircleUser = 'calendar-circle-user',
   /** calendar-clock.svg */
-  CalendarClock = "calendar-clock",
+  CalendarClock = 'calendar-clock',
   /** calendar-day.svg */
-  CalendarDay = "calendar-day",
+  CalendarDay = 'calendar-day',
   /** calendar-days.svg */
-  CalendarDays = "calendar-days",
+  CalendarDays = 'calendar-days',
   /** calendar-exclamation.svg */
-  CalendarExclamation = "calendar-exclamation",
+  CalendarExclamation = 'calendar-exclamation',
   /** calendar-heart.svg */
-  CalendarHeart = "calendar-heart",
+  CalendarHeart = 'calendar-heart',
   /** calendar-image.svg */
-  CalendarImage = "calendar-image",
+  CalendarImage = 'calendar-image',
   /** calendar-lines-pen.svg */
-  CalendarLinesPen = "calendar-lines-pen",
+  CalendarLinesPen = 'calendar-lines-pen',
   /** calendar-lines.svg */
-  CalendarLines = "calendar-lines",
+  CalendarLines = 'calendar-lines',
   /** calendar-minus.svg */
-  CalendarMinus = "calendar-minus",
+  CalendarMinus = 'calendar-minus',
   /** calendar-pen.svg */
-  CalendarPen = "calendar-pen",
+  CalendarPen = 'calendar-pen',
   /** calendar-plus.svg */
-  CalendarPlus = "calendar-plus",
+  CalendarPlus = 'calendar-plus',
   /** calendar-range.svg */
-  CalendarRange = "calendar-range",
+  CalendarRange = 'calendar-range',
   /** calendar-star.svg */
-  CalendarStar = "calendar-star",
+  CalendarStar = 'calendar-star',
   /** calendar-users.svg */
-  CalendarUsers = "calendar-users",
+  CalendarUsers = 'calendar-users',
   /** calendar-week.svg */
-  CalendarWeek = "calendar-week",
+  CalendarWeek = 'calendar-week',
   /** calendar-xmark.svg */
-  CalendarXmark = "calendar-xmark",
+  CalendarXmark = 'calendar-xmark',
   /** calendar.svg */
-  Calendar = "calendar",
+  Calendar = 'calendar',
   /** calendars.svg */
-  Calendars = "calendars",
+  Calendars = 'calendars',
   /** camcorder.svg */
-  Camcorder = "camcorder",
+  Camcorder = 'camcorder',
   /** camera-cctv.svg */
-  CameraCctv = "camera-cctv",
+  CameraCctv = 'camera-cctv',
   /** camera-movie.svg */
-  CameraMovie = "camera-movie",
+  CameraMovie = 'camera-movie',
   /** camera-polaroid.svg */
-  CameraPolaroid = "camera-polaroid",
+  CameraPolaroid = 'camera-polaroid',
   /** camera-retro.svg */
-  CameraRetro = "camera-retro",
+  CameraRetro = 'camera-retro',
   /** camera-rotate.svg */
-  CameraRotate = "camera-rotate",
+  CameraRotate = 'camera-rotate',
   /** camera-security.svg */
-  CameraSecurity = "camera-security",
+  CameraSecurity = 'camera-security',
   /** camera-slash.svg */
-  CameraSlash = "camera-slash",
+  CameraSlash = 'camera-slash',
   /** camera-viewfinder.svg */
-  CameraViewfinder = "camera-viewfinder",
+  CameraViewfinder = 'camera-viewfinder',
   /** camera-web-slash.svg */
-  CameraWebSlash = "camera-web-slash",
+  CameraWebSlash = 'camera-web-slash',
   /** camera-web.svg */
-  CameraWeb = "camera-web",
+  CameraWeb = 'camera-web',
   /** camera.svg */
-  Camera = "camera",
+  Camera = 'camera',
   /** campfire.svg */
-  Campfire = "campfire",
+  Campfire = 'campfire',
   /** campground.svg */
-  Campground = "campground",
+  Campground = 'campground',
   /** can-food.svg */
-  CanFood = "can-food",
+  CanFood = 'can-food',
   /** candle-holder.svg */
-  CandleHolder = "candle-holder",
+  CandleHolder = 'candle-holder',
   /** candy-bar.svg */
-  CandyBar = "candy-bar",
+  CandyBar = 'candy-bar',
   /** candy-cane.svg */
-  CandyCane = "candy-cane",
+  CandyCane = 'candy-cane',
   /** candy-corn.svg */
-  CandyCorn = "candy-corn",
+  CandyCorn = 'candy-corn',
   /** candy.svg */
-  Candy = "candy",
+  Candy = 'candy',
   /** cannabis.svg */
-  Cannabis = "cannabis",
+  Cannabis = 'cannabis',
   /** cannon.svg */
-  Cannon = "cannon",
+  Cannon = 'cannon',
   /** capsules.svg */
-  Capsules = "capsules",
+  Capsules = 'capsules',
   /** car-battery.svg */
-  CarBattery = "car-battery",
+  CarBattery = 'car-battery',
   /** car-bolt.svg */
-  CarBolt = "car-bolt",
+  CarBolt = 'car-bolt',
   /** car-building.svg */
-  CarBuilding = "car-building",
+  CarBuilding = 'car-building',
   /** car-bump.svg */
-  CarBump = "car-bump",
+  CarBump = 'car-bump',
   /** car-burst.svg */
-  CarBurst = "car-burst",
+  CarBurst = 'car-burst',
   /** car-bus.svg */
-  CarBus = "car-bus",
+  CarBus = 'car-bus',
   /** car-circle-bolt.svg */
-  CarCircleBolt = "car-circle-bolt",
+  CarCircleBolt = 'car-circle-bolt',
   /** car-garage.svg */
-  CarGarage = "car-garage",
+  CarGarage = 'car-garage',
   /** car-mirrors.svg */
-  CarMirrors = "car-mirrors",
+  CarMirrors = 'car-mirrors',
   /** car-on.svg */
-  CarOn = "car-on",
+  CarOn = 'car-on',
   /** car-rear.svg */
-  CarRear = "car-rear",
+  CarRear = 'car-rear',
   /** car-side-bolt.svg */
-  CarSideBolt = "car-side-bolt",
+  CarSideBolt = 'car-side-bolt',
   /** car-side.svg */
-  CarSide = "car-side",
+  CarSide = 'car-side',
   /** car-tilt.svg */
-  CarTilt = "car-tilt",
+  CarTilt = 'car-tilt',
   /** car-tunnel.svg */
-  CarTunnel = "car-tunnel",
+  CarTunnel = 'car-tunnel',
   /** car-wash.svg */
-  CarWash = "car-wash",
+  CarWash = 'car-wash',
   /** car-wrench.svg */
-  CarWrench = "car-wrench",
+  CarWrench = 'car-wrench',
   /** car.svg */
-  Car = "car",
+  Car = 'car',
   /** caravan-simple.svg */
-  CaravanSimple = "caravan-simple",
+  CaravanSimple = 'caravan-simple',
   /** caravan.svg */
-  Caravan = "caravan",
+  Caravan = 'caravan',
   /** card-club.svg */
-  CardClub = "card-club",
+  CardClub = 'card-club',
   /** card-diamond.svg */
-  CardDiamond = "card-diamond",
+  CardDiamond = 'card-diamond',
   /** card-heart.svg */
-  CardHeart = "card-heart",
+  CardHeart = 'card-heart',
   /** card-spade.svg */
-  CardSpade = "card-spade",
+  CardSpade = 'card-spade',
   /** cards-blank.svg */
-  CardsBlank = "cards-blank",
+  CardsBlank = 'cards-blank',
   /** cards.svg */
-  Cards = "cards",
+  Cards = 'cards',
   /** caret-down.svg */
-  CaretDown = "caret-down",
+  CaretDown = 'caret-down',
   /** caret-left.svg */
-  CaretLeft = "caret-left",
+  CaretLeft = 'caret-left',
   /** caret-right.svg */
-  CaretRight = "caret-right",
+  CaretRight = 'caret-right',
   /** caret-up.svg */
-  CaretUp = "caret-up",
+  CaretUp = 'caret-up',
   /** carrot.svg */
-  Carrot = "carrot",
+  Carrot = 'carrot',
   /** cars.svg */
-  Cars = "cars",
+  Cars = 'cars',
   /** cart-arrow-down.svg */
-  CartArrowDown = "cart-arrow-down",
+  CartArrowDown = 'cart-arrow-down',
   /** cart-arrow-up.svg */
-  CartArrowUp = "cart-arrow-up",
+  CartArrowUp = 'cart-arrow-up',
   /** cart-circle-arrow-down.svg */
-  CartCircleArrowDown = "cart-circle-arrow-down",
+  CartCircleArrowDown = 'cart-circle-arrow-down',
   /** cart-circle-arrow-up.svg */
-  CartCircleArrowUp = "cart-circle-arrow-up",
+  CartCircleArrowUp = 'cart-circle-arrow-up',
   /** cart-circle-check.svg */
-  CartCircleCheck = "cart-circle-check",
+  CartCircleCheck = 'cart-circle-check',
   /** cart-circle-exclamation.svg */
-  CartCircleExclamation = "cart-circle-exclamation",
+  CartCircleExclamation = 'cart-circle-exclamation',
   /** cart-circle-plus.svg */
-  CartCirclePlus = "cart-circle-plus",
+  CartCirclePlus = 'cart-circle-plus',
   /** cart-circle-xmark.svg */
-  CartCircleXmark = "cart-circle-xmark",
+  CartCircleXmark = 'cart-circle-xmark',
   /** cart-flatbed-boxes.svg */
-  CartFlatbedBoxes = "cart-flatbed-boxes",
+  CartFlatbedBoxes = 'cart-flatbed-boxes',
   /** cart-flatbed-empty.svg */
-  CartFlatbedEmpty = "cart-flatbed-empty",
+  CartFlatbedEmpty = 'cart-flatbed-empty',
   /** cart-flatbed-suitcase.svg */
-  CartFlatbedSuitcase = "cart-flatbed-suitcase",
+  CartFlatbedSuitcase = 'cart-flatbed-suitcase',
   /** cart-flatbed.svg */
-  CartFlatbed = "cart-flatbed",
+  CartFlatbed = 'cart-flatbed',
   /** cart-minus.svg */
-  CartMinus = "cart-minus",
+  CartMinus = 'cart-minus',
   /** cart-plus.svg */
-  CartPlus = "cart-plus",
+  CartPlus = 'cart-plus',
   /** cart-shopping-fast.svg */
-  CartShoppingFast = "cart-shopping-fast",
+  CartShoppingFast = 'cart-shopping-fast',
   /** cart-shopping.svg */
-  CartShopping = "cart-shopping",
+  CartShopping = 'cart-shopping',
   /** cart-xmark.svg */
-  CartXmark = "cart-xmark",
+  CartXmark = 'cart-xmark',
   /** cash-register.svg */
-  CashRegister = "cash-register",
+  CashRegister = 'cash-register',
   /** cassette-betamax.svg */
-  CassetteBetamax = "cassette-betamax",
+  CassetteBetamax = 'cassette-betamax',
   /** cassette-tape.svg */
-  CassetteTape = "cassette-tape",
+  CassetteTape = 'cassette-tape',
   /** cassette-vhs.svg */
-  CassetteVhs = "cassette-vhs",
+  CassetteVhs = 'cassette-vhs',
   /** castle.svg */
-  Castle = "castle",
+  Castle = 'castle',
   /** cat-space.svg */
-  CatSpace = "cat-space",
+  CatSpace = 'cat-space',
   /** cat.svg */
-  Cat = "cat",
+  Cat = 'cat',
   /** cauldron.svg */
-  Cauldron = "cauldron",
+  Cauldron = 'cauldron',
   /** cedi-sign.svg */
-  CediSign = "cedi-sign",
+  CediSign = 'cedi-sign',
   /** cent-sign.svg */
-  CentSign = "cent-sign",
+  CentSign = 'cent-sign',
   /** certificate.svg */
-  Certificate = "certificate",
+  Certificate = 'certificate',
   /** chair-office.svg */
-  ChairOffice = "chair-office",
+  ChairOffice = 'chair-office',
   /** chair.svg */
-  Chair = "chair",
+  Chair = 'chair',
   /** chalkboard-user.svg */
-  ChalkboardUser = "chalkboard-user",
+  ChalkboardUser = 'chalkboard-user',
   /** chalkboard.svg */
-  Chalkboard = "chalkboard",
+  Chalkboard = 'chalkboard',
   /** champagne-glass.svg */
-  ChampagneGlass = "champagne-glass",
+  ChampagneGlass = 'champagne-glass',
   /** champagne-glasses.svg */
-  ChampagneGlasses = "champagne-glasses",
+  ChampagneGlasses = 'champagne-glasses',
   /** charging-station.svg */
-  ChargingStation = "charging-station",
+  ChargingStation = 'charging-station',
   /** chart-area.svg */
-  ChartArea = "chart-area",
+  ChartArea = 'chart-area',
   /** chart-bar.svg */
-  ChartBar = "chart-bar",
+  ChartBar = 'chart-bar',
   /** chart-bullet.svg */
-  ChartBullet = "chart-bullet",
+  ChartBullet = 'chart-bullet',
   /** chart-candlestick.svg */
-  ChartCandlestick = "chart-candlestick",
+  ChartCandlestick = 'chart-candlestick',
   /** chart-column.svg */
-  ChartColumn = "chart-column",
+  ChartColumn = 'chart-column',
   /** chart-gantt.svg */
-  ChartGantt = "chart-gantt",
+  ChartGantt = 'chart-gantt',
   /** chart-kanban.svg */
-  ChartKanban = "chart-kanban",
+  ChartKanban = 'chart-kanban',
   /** chart-line-down.svg */
-  ChartLineDown = "chart-line-down",
+  ChartLineDown = 'chart-line-down',
   /** chart-line-up-down.svg */
-  ChartLineUpDown = "chart-line-up-down",
+  ChartLineUpDown = 'chart-line-up-down',
   /** chart-line-up.svg */
-  ChartLineUp = "chart-line-up",
+  ChartLineUp = 'chart-line-up',
   /** chart-line.svg */
-  ChartLine = "chart-line",
+  ChartLine = 'chart-line',
   /** chart-mixed-up-circle-currency.svg */
-  ChartMixedUpCircleCurrency = "chart-mixed-up-circle-currency",
+  ChartMixedUpCircleCurrency = 'chart-mixed-up-circle-currency',
   /** chart-mixed-up-circle-dollar.svg */
-  ChartMixedUpCircleDollar = "chart-mixed-up-circle-dollar",
+  ChartMixedUpCircleDollar = 'chart-mixed-up-circle-dollar',
   /** chart-mixed.svg */
-  ChartMixed = "chart-mixed",
+  ChartMixed = 'chart-mixed',
   /** chart-network.svg */
-  ChartNetwork = "chart-network",
+  ChartNetwork = 'chart-network',
   /** chart-pie-simple-circle-currency.svg */
-  ChartPieSimpleCircleCurrency = "chart-pie-simple-circle-currency",
+  ChartPieSimpleCircleCurrency = 'chart-pie-simple-circle-currency',
   /** chart-pie-simple-circle-dollar.svg */
-  ChartPieSimpleCircleDollar = "chart-pie-simple-circle-dollar",
+  ChartPieSimpleCircleDollar = 'chart-pie-simple-circle-dollar',
   /** chart-pie-simple.svg */
-  ChartPieSimple = "chart-pie-simple",
+  ChartPieSimple = 'chart-pie-simple',
   /** chart-pie.svg */
-  ChartPie = "chart-pie",
+  ChartPie = 'chart-pie',
   /** chart-pyramid.svg */
-  ChartPyramid = "chart-pyramid",
+  ChartPyramid = 'chart-pyramid',
   /** chart-radar.svg */
-  ChartRadar = "chart-radar",
+  ChartRadar = 'chart-radar',
   /** chart-scatter-3d.svg */
-  ChartScatter3d = "chart-scatter-3d",
+  ChartScatter3d = 'chart-scatter-3d',
   /** chart-scatter-bubble.svg */
-  ChartScatterBubble = "chart-scatter-bubble",
+  ChartScatterBubble = 'chart-scatter-bubble',
   /** chart-scatter.svg */
-  ChartScatter = "chart-scatter",
+  ChartScatter = 'chart-scatter',
   /** chart-simple-horizontal.svg */
-  ChartSimpleHorizontal = "chart-simple-horizontal",
+  ChartSimpleHorizontal = 'chart-simple-horizontal',
   /** chart-simple.svg */
-  ChartSimple = "chart-simple",
+  ChartSimple = 'chart-simple',
   /** chart-tree-map.svg */
-  ChartTreeMap = "chart-tree-map",
+  ChartTreeMap = 'chart-tree-map',
   /** chart-user.svg */
-  ChartUser = "chart-user",
+  ChartUser = 'chart-user',
   /** chart-waterfall.svg */
-  ChartWaterfall = "chart-waterfall",
+  ChartWaterfall = 'chart-waterfall',
   /** check-double.svg */
-  CheckDouble = "check-double",
+  CheckDouble = 'check-double',
   /** check-to-slot.svg */
-  CheckToSlot = "check-to-slot",
+  CheckToSlot = 'check-to-slot',
   /** check.svg */
-  Check = "check",
+  Check = 'check',
   /** cheese-swiss.svg */
-  CheeseSwiss = "cheese-swiss",
+  CheeseSwiss = 'cheese-swiss',
   /** cheese.svg */
-  Cheese = "cheese",
+  Cheese = 'cheese',
   /** cherries.svg */
-  Cherries = "cherries",
+  Cherries = 'cherries',
   /** chess-bishop-piece.svg */
-  ChessBishopPiece = "chess-bishop-piece",
+  ChessBishopPiece = 'chess-bishop-piece',
   /** chess-bishop.svg */
-  ChessBishop = "chess-bishop",
+  ChessBishop = 'chess-bishop',
   /** chess-board.svg */
-  ChessBoard = "chess-board",
+  ChessBoard = 'chess-board',
   /** chess-clock-flip.svg */
-  ChessClockFlip = "chess-clock-flip",
+  ChessClockFlip = 'chess-clock-flip',
   /** chess-clock.svg */
-  ChessClock = "chess-clock",
+  ChessClock = 'chess-clock',
   /** chess-king-piece.svg */
-  ChessKingPiece = "chess-king-piece",
+  ChessKingPiece = 'chess-king-piece',
   /** chess-king.svg */
-  ChessKing = "chess-king",
+  ChessKing = 'chess-king',
   /** chess-knight-piece.svg */
-  ChessKnightPiece = "chess-knight-piece",
+  ChessKnightPiece = 'chess-knight-piece',
   /** chess-knight.svg */
-  ChessKnight = "chess-knight",
+  ChessKnight = 'chess-knight',
   /** chess-pawn-piece.svg */
-  ChessPawnPiece = "chess-pawn-piece",
+  ChessPawnPiece = 'chess-pawn-piece',
   /** chess-pawn.svg */
-  ChessPawn = "chess-pawn",
+  ChessPawn = 'chess-pawn',
   /** chess-queen-piece.svg */
-  ChessQueenPiece = "chess-queen-piece",
+  ChessQueenPiece = 'chess-queen-piece',
   /** chess-queen.svg */
-  ChessQueen = "chess-queen",
+  ChessQueen = 'chess-queen',
   /** chess-rook-piece.svg */
-  ChessRookPiece = "chess-rook-piece",
+  ChessRookPiece = 'chess-rook-piece',
   /** chess-rook.svg */
-  ChessRook = "chess-rook",
+  ChessRook = 'chess-rook',
   /** chess.svg */
-  Chess = "chess",
+  Chess = 'chess',
   /** chestnut.svg */
-  Chestnut = "chestnut",
+  Chestnut = 'chestnut',
   /** chevron-down.svg */
-  ChevronDown = "chevron-down",
+  ChevronDown = 'chevron-down',
   /** chevron-left.svg */
-  ChevronLeft = "chevron-left",
+  ChevronLeft = 'chevron-left',
   /** chevron-right.svg */
-  ChevronRight = "chevron-right",
+  ChevronRight = 'chevron-right',
   /** chevron-up.svg */
-  ChevronUp = "chevron-up",
+  ChevronUp = 'chevron-up',
   /** chevrons-down.svg */
-  ChevronsDown = "chevrons-down",
+  ChevronsDown = 'chevrons-down',
   /** chevrons-left.svg */
-  ChevronsLeft = "chevrons-left",
+  ChevronsLeft = 'chevrons-left',
   /** chevrons-right.svg */
-  ChevronsRight = "chevrons-right",
+  ChevronsRight = 'chevrons-right',
   /** chevrons-up.svg */
-  ChevronsUp = "chevrons-up",
+  ChevronsUp = 'chevrons-up',
   /** chf-sign.svg */
-  ChfSign = "chf-sign",
+  ChfSign = 'chf-sign',
   /** child-combatant.svg */
-  ChildCombatant = "child-combatant",
+  ChildCombatant = 'child-combatant',
   /** child-dress.svg */
-  ChildDress = "child-dress",
+  ChildDress = 'child-dress',
   /** child-reaching.svg */
-  ChildReaching = "child-reaching",
+  ChildReaching = 'child-reaching',
   /** child.svg */
-  Child = "child",
+  Child = 'child',
   /** children.svg */
-  Children = "children",
+  Children = 'children',
   /** chimney.svg */
-  Chimney = "chimney",
+  Chimney = 'chimney',
   /** chopsticks.svg */
-  Chopsticks = "chopsticks",
+  Chopsticks = 'chopsticks',
   /** church.svg */
-  Church = "church",
+  Church = 'church',
   /** circle-0.svg */
-  Circle0 = "circle-0",
+  Circle0 = 'circle-0',
   /** circle-1.svg */
-  Circle1 = "circle-1",
+  Circle1 = 'circle-1',
   /** circle-2.svg */
-  Circle2 = "circle-2",
+  Circle2 = 'circle-2',
   /** circle-3.svg */
-  Circle3 = "circle-3",
+  Circle3 = 'circle-3',
   /** circle-4.svg */
-  Circle4 = "circle-4",
+  Circle4 = 'circle-4',
   /** circle-5.svg */
-  Circle5 = "circle-5",
+  Circle5 = 'circle-5',
   /** circle-6.svg */
-  Circle6 = "circle-6",
+  Circle6 = 'circle-6',
   /** circle-7.svg */
-  Circle7 = "circle-7",
+  Circle7 = 'circle-7',
   /** circle-8.svg */
-  Circle8 = "circle-8",
+  Circle8 = 'circle-8',
   /** circle-9.svg */
-  Circle9 = "circle-9",
+  Circle9 = 'circle-9',
   /** circle-a.svg */
-  CircleA = "circle-a",
+  CircleA = 'circle-a',
   /** circle-ampersand.svg */
-  CircleAmpersand = "circle-ampersand",
+  CircleAmpersand = 'circle-ampersand',
   /** circle-arrow-down-left.svg */
-  CircleArrowDownLeft = "circle-arrow-down-left",
+  CircleArrowDownLeft = 'circle-arrow-down-left',
   /** circle-arrow-down-right.svg */
-  CircleArrowDownRight = "circle-arrow-down-right",
+  CircleArrowDownRight = 'circle-arrow-down-right',
   /** circle-arrow-down.svg */
-  CircleArrowDown = "circle-arrow-down",
+  CircleArrowDown = 'circle-arrow-down',
   /** circle-arrow-left.svg */
-  CircleArrowLeft = "circle-arrow-left",
+  CircleArrowLeft = 'circle-arrow-left',
   /** circle-arrow-right.svg */
-  CircleArrowRight = "circle-arrow-right",
+  CircleArrowRight = 'circle-arrow-right',
   /** circle-arrow-up-left.svg */
-  CircleArrowUpLeft = "circle-arrow-up-left",
+  CircleArrowUpLeft = 'circle-arrow-up-left',
   /** circle-arrow-up-right.svg */
-  CircleArrowUpRight = "circle-arrow-up-right",
+  CircleArrowUpRight = 'circle-arrow-up-right',
   /** circle-arrow-up.svg */
-  CircleArrowUp = "circle-arrow-up",
+  CircleArrowUp = 'circle-arrow-up',
   /** circle-b.svg */
-  CircleB = "circle-b",
+  CircleB = 'circle-b',
   /** circle-bolt.svg */
-  CircleBolt = "circle-bolt",
+  CircleBolt = 'circle-bolt',
   /** circle-book-open.svg */
-  CircleBookOpen = "circle-book-open",
+  CircleBookOpen = 'circle-book-open',
   /** circle-bookmark.svg */
-  CircleBookmark = "circle-bookmark",
+  CircleBookmark = 'circle-bookmark',
   /** circle-c.svg */
-  CircleC = "circle-c",
+  CircleC = 'circle-c',
   /** circle-calendar.svg */
-  CircleCalendar = "circle-calendar",
+  CircleCalendar = 'circle-calendar',
   /** circle-camera.svg */
-  CircleCamera = "circle-camera",
+  CircleCamera = 'circle-camera',
   /** circle-caret-down.svg */
-  CircleCaretDown = "circle-caret-down",
+  CircleCaretDown = 'circle-caret-down',
   /** circle-caret-left.svg */
-  CircleCaretLeft = "circle-caret-left",
+  CircleCaretLeft = 'circle-caret-left',
   /** circle-caret-right.svg */
-  CircleCaretRight = "circle-caret-right",
+  CircleCaretRight = 'circle-caret-right',
   /** circle-caret-up.svg */
-  CircleCaretUp = "circle-caret-up",
+  CircleCaretUp = 'circle-caret-up',
   /** circle-check.svg */
-  CircleCheck = "circle-check",
+  CircleCheck = 'circle-check',
   /** circle-chevron-down.svg */
-  CircleChevronDown = "circle-chevron-down",
+  CircleChevronDown = 'circle-chevron-down',
   /** circle-chevron-left.svg */
-  CircleChevronLeft = "circle-chevron-left",
+  CircleChevronLeft = 'circle-chevron-left',
   /** circle-chevron-right.svg */
-  CircleChevronRight = "circle-chevron-right",
+  CircleChevronRight = 'circle-chevron-right',
   /** circle-chevron-up.svg */
-  CircleChevronUp = "circle-chevron-up",
+  CircleChevronUp = 'circle-chevron-up',
   /** circle-d.svg */
-  CircleD = "circle-d",
+  CircleD = 'circle-d',
   /** circle-dashed.svg */
-  CircleDashed = "circle-dashed",
+  CircleDashed = 'circle-dashed',
   /** circle-divide.svg */
-  CircleDivide = "circle-divide",
+  CircleDivide = 'circle-divide',
   /** circle-dollar-to-slot.svg */
-  CircleDollarToSlot = "circle-dollar-to-slot",
+  CircleDollarToSlot = 'circle-dollar-to-slot',
   /** circle-dollar.svg */
-  CircleDollar = "circle-dollar",
+  CircleDollar = 'circle-dollar',
   /** circle-dot.svg */
-  CircleDot = "circle-dot",
+  CircleDot = 'circle-dot',
   /** circle-down-left.svg */
-  CircleDownLeft = "circle-down-left",
+  CircleDownLeft = 'circle-down-left',
   /** circle-down-right.svg */
-  CircleDownRight = "circle-down-right",
+  CircleDownRight = 'circle-down-right',
   /** circle-down.svg */
-  CircleDown = "circle-down",
+  CircleDown = 'circle-down',
   /** circle-e.svg */
-  CircleE = "circle-e",
+  CircleE = 'circle-e',
   /** circle-ellipsis-vertical.svg */
-  CircleEllipsisVertical = "circle-ellipsis-vertical",
+  CircleEllipsisVertical = 'circle-ellipsis-vertical',
   /** circle-ellipsis.svg */
-  CircleEllipsis = "circle-ellipsis",
+  CircleEllipsis = 'circle-ellipsis',
   /** circle-envelope.svg */
-  CircleEnvelope = "circle-envelope",
+  CircleEnvelope = 'circle-envelope',
   /** circle-euro.svg */
-  CircleEuro = "circle-euro",
+  CircleEuro = 'circle-euro',
   /** circle-exclamation-check.svg */
-  CircleExclamationCheck = "circle-exclamation-check",
+  CircleExclamationCheck = 'circle-exclamation-check',
   /** circle-exclamation.svg */
-  CircleExclamation = "circle-exclamation",
+  CircleExclamation = 'circle-exclamation',
   /** circle-f.svg */
-  CircleF = "circle-f",
+  CircleF = 'circle-f',
   /** circle-g.svg */
-  CircleG = "circle-g",
+  CircleG = 'circle-g',
   /** circle-h.svg */
-  CircleH = "circle-h",
+  CircleH = 'circle-h',
   /** circle-half-stroke.svg */
-  CircleHalfStroke = "circle-half-stroke",
+  CircleHalfStroke = 'circle-half-stroke',
   /** circle-half.svg */
-  CircleHalf = "circle-half",
+  CircleHalf = 'circle-half',
   /** circle-heart.svg */
-  CircleHeart = "circle-heart",
+  CircleHeart = 'circle-heart',
   /** circle-i.svg */
-  CircleI = "circle-i",
+  CircleI = 'circle-i',
   /** circle-info.svg */
-  CircleInfo = "circle-info",
+  CircleInfo = 'circle-info',
   /** circle-j.svg */
-  CircleJ = "circle-j",
+  CircleJ = 'circle-j',
   /** circle-k.svg */
-  CircleK = "circle-k",
+  CircleK = 'circle-k',
   /** circle-l.svg */
-  CircleL = "circle-l",
+  CircleL = 'circle-l',
   /** circle-left.svg */
-  CircleLeft = "circle-left",
+  CircleLeft = 'circle-left',
   /** circle-location-arrow.svg */
-  CircleLocationArrow = "circle-location-arrow",
+  CircleLocationArrow = 'circle-location-arrow',
   /** circle-m.svg */
-  CircleM = "circle-m",
+  CircleM = 'circle-m',
   /** circle-microphone-lines.svg */
-  CircleMicrophoneLines = "circle-microphone-lines",
+  CircleMicrophoneLines = 'circle-microphone-lines',
   /** circle-microphone.svg */
-  CircleMicrophone = "circle-microphone",
+  CircleMicrophone = 'circle-microphone',
   /** circle-minus.svg */
-  CircleMinus = "circle-minus",
+  CircleMinus = 'circle-minus',
   /** circle-n.svg */
-  CircleN = "circle-n",
+  CircleN = 'circle-n',
   /** circle-nodes.svg */
-  CircleNodes = "circle-nodes",
+  CircleNodes = 'circle-nodes',
   /** circle-notch.svg */
-  CircleNotch = "circle-notch",
+  CircleNotch = 'circle-notch',
   /** circle-o.svg */
-  CircleO = "circle-o",
+  CircleO = 'circle-o',
   /** circle-p.svg */
-  CircleP = "circle-p",
+  CircleP = 'circle-p',
   /** circle-parking.svg */
-  CircleParking = "circle-parking",
+  CircleParking = 'circle-parking',
   /** circle-pause.svg */
-  CirclePause = "circle-pause",
+  CirclePause = 'circle-pause',
   /** circle-phone-flip.svg */
-  CirclePhoneFlip = "circle-phone-flip",
+  CirclePhoneFlip = 'circle-phone-flip',
   /** circle-phone-hangup.svg */
-  CirclePhoneHangup = "circle-phone-hangup",
+  CirclePhoneHangup = 'circle-phone-hangup',
   /** circle-phone.svg */
-  CirclePhone = "circle-phone",
+  CirclePhone = 'circle-phone',
   /** circle-play.svg */
-  CirclePlay = "circle-play",
+  CirclePlay = 'circle-play',
   /** circle-plus.svg */
-  CirclePlus = "circle-plus",
+  CirclePlus = 'circle-plus',
   /** circle-q.svg */
-  CircleQ = "circle-q",
+  CircleQ = 'circle-q',
   /** circle-quarter-stroke.svg */
-  CircleQuarterStroke = "circle-quarter-stroke",
+  CircleQuarterStroke = 'circle-quarter-stroke',
   /** circle-quarter.svg */
-  CircleQuarter = "circle-quarter",
+  CircleQuarter = 'circle-quarter',
   /** circle-quarters.svg */
-  CircleQuarters = "circle-quarters",
+  CircleQuarters = 'circle-quarters',
   /** circle-question.svg */
-  CircleQuestion = "circle-question",
+  CircleQuestion = 'circle-question',
   /** circle-r.svg */
-  CircleR = "circle-r",
+  CircleR = 'circle-r',
   /** circle-radiation.svg */
-  CircleRadiation = "circle-radiation",
+  CircleRadiation = 'circle-radiation',
   /** circle-right.svg */
-  CircleRight = "circle-right",
+  CircleRight = 'circle-right',
   /** circle-s.svg */
-  CircleS = "circle-s",
+  CircleS = 'circle-s',
   /** circle-small.svg */
-  CircleSmall = "circle-small",
+  CircleSmall = 'circle-small',
   /** circle-sort-down.svg */
-  CircleSortDown = "circle-sort-down",
+  CircleSortDown = 'circle-sort-down',
   /** circle-sort-up.svg */
-  CircleSortUp = "circle-sort-up",
+  CircleSortUp = 'circle-sort-up',
   /** circle-sort.svg */
-  CircleSort = "circle-sort",
+  CircleSort = 'circle-sort',
   /** circle-star.svg */
-  CircleStar = "circle-star",
+  CircleStar = 'circle-star',
   /** circle-sterling.svg */
-  CircleSterling = "circle-sterling",
+  CircleSterling = 'circle-sterling',
   /** circle-stop.svg */
-  CircleStop = "circle-stop",
+  CircleStop = 'circle-stop',
   /** circle-t.svg */
-  CircleT = "circle-t",
+  CircleT = 'circle-t',
   /** circle-three-quarters-stroke.svg */
-  CircleThreeQuartersStroke = "circle-three-quarters-stroke",
+  CircleThreeQuartersStroke = 'circle-three-quarters-stroke',
   /** circle-three-quarters.svg */
-  CircleThreeQuarters = "circle-three-quarters",
+  CircleThreeQuarters = 'circle-three-quarters',
   /** circle-trash.svg */
-  CircleTrash = "circle-trash",
+  CircleTrash = 'circle-trash',
   /** circle-u.svg */
-  CircleU = "circle-u",
+  CircleU = 'circle-u',
   /** circle-up-left.svg */
-  CircleUpLeft = "circle-up-left",
+  CircleUpLeft = 'circle-up-left',
   /** circle-up-right.svg */
-  CircleUpRight = "circle-up-right",
+  CircleUpRight = 'circle-up-right',
   /** circle-up.svg */
-  CircleUp = "circle-up",
+  CircleUp = 'circle-up',
   /** circle-user.svg */
-  CircleUser = "circle-user",
+  CircleUser = 'circle-user',
   /** circle-v.svg */
-  CircleV = "circle-v",
+  CircleV = 'circle-v',
   /** circle-video.svg */
-  CircleVideo = "circle-video",
+  CircleVideo = 'circle-video',
   /** circle-w.svg */
-  CircleW = "circle-w",
+  CircleW = 'circle-w',
   /** circle-waveform-lines.svg */
-  CircleWaveformLines = "circle-waveform-lines",
+  CircleWaveformLines = 'circle-waveform-lines',
   /** circle-x.svg */
-  CircleX = "circle-x",
+  CircleX = 'circle-x',
   /** circle-xmark.svg */
-  CircleXmark = "circle-xmark",
+  CircleXmark = 'circle-xmark',
   /** circle-y.svg */
-  CircleY = "circle-y",
+  CircleY = 'circle-y',
   /** circle-yen.svg */
-  CircleYen = "circle-yen",
+  CircleYen = 'circle-yen',
   /** circle-z.svg */
-  CircleZ = "circle-z",
+  CircleZ = 'circle-z',
   /** circle.svg */
-  Circle = "circle",
+  Circle = 'circle',
   /** circles-overlap.svg */
-  CirclesOverlap = "circles-overlap",
+  CirclesOverlap = 'circles-overlap',
   /** citrus-slice.svg */
-  CitrusSlice = "citrus-slice",
+  CitrusSlice = 'citrus-slice',
   /** citrus.svg */
-  Citrus = "citrus",
+  Citrus = 'citrus',
   /** city.svg */
-  City = "city",
+  City = 'city',
   /** clapperboard-play.svg */
-  ClapperboardPlay = "clapperboard-play",
+  ClapperboardPlay = 'clapperboard-play',
   /** clapperboard.svg */
-  Clapperboard = "clapperboard",
+  Clapperboard = 'clapperboard',
   /** clarinet.svg */
-  Clarinet = "clarinet",
+  Clarinet = 'clarinet',
   /** claw-marks.svg */
-  ClawMarks = "claw-marks",
+  ClawMarks = 'claw-marks',
   /** clipboard-check.svg */
-  ClipboardCheck = "clipboard-check",
+  ClipboardCheck = 'clipboard-check',
   /** clipboard-list-check.svg */
-  ClipboardListCheck = "clipboard-list-check",
+  ClipboardListCheck = 'clipboard-list-check',
   /** clipboard-list.svg */
-  ClipboardList = "clipboard-list",
+  ClipboardList = 'clipboard-list',
   /** clipboard-medical.svg */
-  ClipboardMedical = "clipboard-medical",
+  ClipboardMedical = 'clipboard-medical',
   /** clipboard-prescription.svg */
-  ClipboardPrescription = "clipboard-prescription",
+  ClipboardPrescription = 'clipboard-prescription',
   /** clipboard-question.svg */
-  ClipboardQuestion = "clipboard-question",
+  ClipboardQuestion = 'clipboard-question',
   /** clipboard-user.svg */
-  ClipboardUser = "clipboard-user",
+  ClipboardUser = 'clipboard-user',
   /** clipboard.svg */
-  Clipboard = "clipboard",
+  Clipboard = 'clipboard',
   /** clock-desk.svg */
-  ClockDesk = "clock-desk",
+  ClockDesk = 'clock-desk',
   /** clock-eight-thirty.svg */
-  ClockEightThirty = "clock-eight-thirty",
+  ClockEightThirty = 'clock-eight-thirty',
   /** clock-eight.svg */
-  ClockEight = "clock-eight",
+  ClockEight = 'clock-eight',
   /** clock-eleven-thirty.svg */
-  ClockElevenThirty = "clock-eleven-thirty",
+  ClockElevenThirty = 'clock-eleven-thirty',
   /** clock-eleven.svg */
-  ClockEleven = "clock-eleven",
+  ClockEleven = 'clock-eleven',
   /** clock-five-thirty.svg */
-  ClockFiveThirty = "clock-five-thirty",
+  ClockFiveThirty = 'clock-five-thirty',
   /** clock-five.svg */
-  ClockFive = "clock-five",
+  ClockFive = 'clock-five',
   /** clock-four-thirty.svg */
-  ClockFourThirty = "clock-four-thirty",
+  ClockFourThirty = 'clock-four-thirty',
   /** clock-nine-thirty.svg */
-  ClockNineThirty = "clock-nine-thirty",
+  ClockNineThirty = 'clock-nine-thirty',
   /** clock-nine.svg */
-  ClockNine = "clock-nine",
+  ClockNine = 'clock-nine',
   /** clock-one-thirty.svg */
-  ClockOneThirty = "clock-one-thirty",
+  ClockOneThirty = 'clock-one-thirty',
   /** clock-one.svg */
-  ClockOne = "clock-one",
+  ClockOne = 'clock-one',
   /** clock-rotate-left.svg */
-  ClockRotateLeft = "clock-rotate-left",
+  ClockRotateLeft = 'clock-rotate-left',
   /** clock-seven-thirty.svg */
-  ClockSevenThirty = "clock-seven-thirty",
+  ClockSevenThirty = 'clock-seven-thirty',
   /** clock-seven.svg */
-  ClockSeven = "clock-seven",
+  ClockSeven = 'clock-seven',
   /** clock-six-thirty.svg */
-  ClockSixThirty = "clock-six-thirty",
+  ClockSixThirty = 'clock-six-thirty',
   /** clock-six.svg */
-  ClockSix = "clock-six",
+  ClockSix = 'clock-six',
   /** clock-ten-thirty.svg */
-  ClockTenThirty = "clock-ten-thirty",
+  ClockTenThirty = 'clock-ten-thirty',
   /** clock-ten.svg */
-  ClockTen = "clock-ten",
+  ClockTen = 'clock-ten',
   /** clock-three-thirty.svg */
-  ClockThreeThirty = "clock-three-thirty",
+  ClockThreeThirty = 'clock-three-thirty',
   /** clock-three.svg */
-  ClockThree = "clock-three",
+  ClockThree = 'clock-three',
   /** clock-twelve-thirty.svg */
-  ClockTwelveThirty = "clock-twelve-thirty",
+  ClockTwelveThirty = 'clock-twelve-thirty',
   /** clock-twelve.svg */
-  ClockTwelve = "clock-twelve",
+  ClockTwelve = 'clock-twelve',
   /** clock-two-thirty.svg */
-  ClockTwoThirty = "clock-two-thirty",
+  ClockTwoThirty = 'clock-two-thirty',
   /** clock-two.svg */
-  ClockTwo = "clock-two",
+  ClockTwo = 'clock-two',
   /** clock.svg */
-  Clock = "clock",
+  Clock = 'clock',
   /** clone.svg */
-  Clone = "clone",
+  Clone = 'clone',
   /** closed-captioning-slash.svg */
-  ClosedCaptioningSlash = "closed-captioning-slash",
+  ClosedCaptioningSlash = 'closed-captioning-slash',
   /** closed-captioning.svg */
-  ClosedCaptioning = "closed-captioning",
+  ClosedCaptioning = 'closed-captioning',
   /** clothes-hanger.svg */
-  ClothesHanger = "clothes-hanger",
+  ClothesHanger = 'clothes-hanger',
   /** cloud-arrow-down.svg */
-  CloudArrowDown = "cloud-arrow-down",
+  CloudArrowDown = 'cloud-arrow-down',
   /** cloud-arrow-up.svg */
-  CloudArrowUp = "cloud-arrow-up",
+  CloudArrowUp = 'cloud-arrow-up',
   /** cloud-binary.svg */
-  CloudBinary = "cloud-binary",
+  CloudBinary = 'cloud-binary',
   /** cloud-bolt-moon.svg */
-  CloudBoltMoon = "cloud-bolt-moon",
+  CloudBoltMoon = 'cloud-bolt-moon',
   /** cloud-bolt-sun.svg */
-  CloudBoltSun = "cloud-bolt-sun",
+  CloudBoltSun = 'cloud-bolt-sun',
   /** cloud-bolt.svg */
-  CloudBolt = "cloud-bolt",
+  CloudBolt = 'cloud-bolt',
   /** cloud-check.svg */
-  CloudCheck = "cloud-check",
+  CloudCheck = 'cloud-check',
   /** cloud-drizzle.svg */
-  CloudDrizzle = "cloud-drizzle",
+  CloudDrizzle = 'cloud-drizzle',
   /** cloud-exclamation.svg */
-  CloudExclamation = "cloud-exclamation",
+  CloudExclamation = 'cloud-exclamation',
   /** cloud-fog.svg */
-  CloudFog = "cloud-fog",
+  CloudFog = 'cloud-fog',
   /** cloud-hail-mixed.svg */
-  CloudHailMixed = "cloud-hail-mixed",
+  CloudHailMixed = 'cloud-hail-mixed',
   /** cloud-hail.svg */
-  CloudHail = "cloud-hail",
+  CloudHail = 'cloud-hail',
   /** cloud-meatball.svg */
-  CloudMeatball = "cloud-meatball",
+  CloudMeatball = 'cloud-meatball',
   /** cloud-minus.svg */
-  CloudMinus = "cloud-minus",
+  CloudMinus = 'cloud-minus',
   /** cloud-moon-rain.svg */
-  CloudMoonRain = "cloud-moon-rain",
+  CloudMoonRain = 'cloud-moon-rain',
   /** cloud-moon.svg */
-  CloudMoon = "cloud-moon",
+  CloudMoon = 'cloud-moon',
   /** cloud-music.svg */
-  CloudMusic = "cloud-music",
+  CloudMusic = 'cloud-music',
   /** cloud-plus.svg */
-  CloudPlus = "cloud-plus",
+  CloudPlus = 'cloud-plus',
   /** cloud-question.svg */
-  CloudQuestion = "cloud-question",
+  CloudQuestion = 'cloud-question',
   /** cloud-rain.svg */
-  CloudRain = "cloud-rain",
+  CloudRain = 'cloud-rain',
   /** cloud-rainbow.svg */
-  CloudRainbow = "cloud-rainbow",
+  CloudRainbow = 'cloud-rainbow',
   /** cloud-showers-heavy.svg */
-  CloudShowersHeavy = "cloud-showers-heavy",
+  CloudShowersHeavy = 'cloud-showers-heavy',
   /** cloud-showers-water.svg */
-  CloudShowersWater = "cloud-showers-water",
+  CloudShowersWater = 'cloud-showers-water',
   /** cloud-showers.svg */
-  CloudShowers = "cloud-showers",
+  CloudShowers = 'cloud-showers',
   /** cloud-slash.svg */
-  CloudSlash = "cloud-slash",
+  CloudSlash = 'cloud-slash',
   /** cloud-sleet.svg */
-  CloudSleet = "cloud-sleet",
+  CloudSleet = 'cloud-sleet',
   /** cloud-snow.svg */
-  CloudSnow = "cloud-snow",
+  CloudSnow = 'cloud-snow',
   /** cloud-sun-rain.svg */
-  CloudSunRain = "cloud-sun-rain",
+  CloudSunRain = 'cloud-sun-rain',
   /** cloud-sun.svg */
-  CloudSun = "cloud-sun",
+  CloudSun = 'cloud-sun',
   /** cloud-word.svg */
-  CloudWord = "cloud-word",
+  CloudWord = 'cloud-word',
   /** cloud-xmark.svg */
-  CloudXmark = "cloud-xmark",
+  CloudXmark = 'cloud-xmark',
   /** cloud.svg */
-  Cloud = "cloud",
+  Cloud = 'cloud',
   /** clouds-moon.svg */
-  CloudsMoon = "clouds-moon",
+  CloudsMoon = 'clouds-moon',
   /** clouds-sun.svg */
-  CloudsSun = "clouds-sun",
+  CloudsSun = 'clouds-sun',
   /** clouds.svg */
-  Clouds = "clouds",
+  Clouds = 'clouds',
   /** clover.svg */
-  Clover = "clover",
+  Clover = 'clover',
   /** club.svg */
-  Club = "club",
+  Club = 'club',
   /** coconut.svg */
-  Coconut = "coconut",
+  Coconut = 'coconut',
   /** code-branch.svg */
-  CodeBranch = "code-branch",
+  CodeBranch = 'code-branch',
   /** code-commit.svg */
-  CodeCommit = "code-commit",
+  CodeCommit = 'code-commit',
   /** code-compare.svg */
-  CodeCompare = "code-compare",
+  CodeCompare = 'code-compare',
   /** code-fork.svg */
-  CodeFork = "code-fork",
+  CodeFork = 'code-fork',
   /** code-merge.svg */
-  CodeMerge = "code-merge",
+  CodeMerge = 'code-merge',
   /** code-pull-request-closed.svg */
-  CodePullRequestClosed = "code-pull-request-closed",
+  CodePullRequestClosed = 'code-pull-request-closed',
   /** code-pull-request-draft.svg */
-  CodePullRequestDraft = "code-pull-request-draft",
+  CodePullRequestDraft = 'code-pull-request-draft',
   /** code-pull-request.svg */
-  CodePullRequest = "code-pull-request",
+  CodePullRequest = 'code-pull-request',
   /** code-simple.svg */
-  CodeSimple = "code-simple",
+  CodeSimple = 'code-simple',
   /** code.svg */
-  Code = "code",
+  Code = 'code',
   /** coffee-bean.svg */
-  CoffeeBean = "coffee-bean",
+  CoffeeBean = 'coffee-bean',
   /** coffee-beans.svg */
-  CoffeeBeans = "coffee-beans",
+  CoffeeBeans = 'coffee-beans',
   /** coffee-pot.svg */
-  CoffeePot = "coffee-pot",
+  CoffeePot = 'coffee-pot',
   /** coffin-cross.svg */
-  CoffinCross = "coffin-cross",
+  CoffinCross = 'coffin-cross',
   /** coffin.svg */
-  Coffin = "coffin",
+  Coffin = 'coffin',
   /** coin-blank.svg */
-  CoinBlank = "coin-blank",
+  CoinBlank = 'coin-blank',
   /** coin-front.svg */
-  CoinFront = "coin-front",
+  CoinFront = 'coin-front',
   /** coin-vertical.svg */
-  CoinVertical = "coin-vertical",
+  CoinVertical = 'coin-vertical',
   /** coin.svg */
-  Coin = "coin",
+  Coin = 'coin',
   /** coins.svg */
-  Coins = "coins",
+  Coins = 'coins',
   /** colon-sign.svg */
-  ColonSign = "colon-sign",
+  ColonSign = 'colon-sign',
   /** colon.svg */
-  Colon = "colon",
+  Colon = 'colon',
   /** columns-3.svg */
-  Columns3 = "columns-3",
+  Columns3 = 'columns-3',
   /** comet.svg */
-  Comet = "comet",
+  Comet = 'comet',
   /** comma.svg */
-  Comma = "comma",
+  Comma = 'comma',
   /** command.svg */
-  Command = "command",
+  Command = 'command',
   /** comment-arrow-down.svg */
-  CommentArrowDown = "comment-arrow-down",
+  CommentArrowDown = 'comment-arrow-down',
   /** comment-arrow-up-right.svg */
-  CommentArrowUpRight = "comment-arrow-up-right",
+  CommentArrowUpRight = 'comment-arrow-up-right',
   /** comment-arrow-up.svg */
-  CommentArrowUp = "comment-arrow-up",
+  CommentArrowUp = 'comment-arrow-up',
   /** comment-captions.svg */
-  CommentCaptions = "comment-captions",
+  CommentCaptions = 'comment-captions',
   /** comment-check.svg */
-  CommentCheck = "comment-check",
+  CommentCheck = 'comment-check',
   /** comment-code.svg */
-  CommentCode = "comment-code",
+  CommentCode = 'comment-code',
   /** comment-dollar.svg */
-  CommentDollar = "comment-dollar",
+  CommentDollar = 'comment-dollar',
   /** comment-dots.svg */
-  CommentDots = "comment-dots",
+  CommentDots = 'comment-dots',
   /** comment-exclamation.svg */
-  CommentExclamation = "comment-exclamation",
+  CommentExclamation = 'comment-exclamation',
   /** comment-heart.svg */
-  CommentHeart = "comment-heart",
+  CommentHeart = 'comment-heart',
   /** comment-image.svg */
-  CommentImage = "comment-image",
+  CommentImage = 'comment-image',
   /** comment-lines.svg */
-  CommentLines = "comment-lines",
+  CommentLines = 'comment-lines',
   /** comment-medical.svg */
-  CommentMedical = "comment-medical",
+  CommentMedical = 'comment-medical',
   /** comment-middle-top.svg */
-  CommentMiddleTop = "comment-middle-top",
+  CommentMiddleTop = 'comment-middle-top',
   /** comment-middle.svg */
-  CommentMiddle = "comment-middle",
+  CommentMiddle = 'comment-middle',
   /** comment-minus.svg */
-  CommentMinus = "comment-minus",
+  CommentMinus = 'comment-minus',
   /** comment-music.svg */
-  CommentMusic = "comment-music",
+  CommentMusic = 'comment-music',
   /** comment-pen.svg */
-  CommentPen = "comment-pen",
+  CommentPen = 'comment-pen',
   /** comment-plus.svg */
-  CommentPlus = "comment-plus",
+  CommentPlus = 'comment-plus',
   /** comment-question.svg */
-  CommentQuestion = "comment-question",
+  CommentQuestion = 'comment-question',
   /** comment-quote.svg */
-  CommentQuote = "comment-quote",
+  CommentQuote = 'comment-quote',
   /** comment-slash.svg */
-  CommentSlash = "comment-slash",
+  CommentSlash = 'comment-slash',
   /** comment-smile.svg */
-  CommentSmile = "comment-smile",
+  CommentSmile = 'comment-smile',
   /** comment-sms.svg */
-  CommentSms = "comment-sms",
+  CommentSms = 'comment-sms',
   /** comment-text.svg */
-  CommentText = "comment-text",
+  CommentText = 'comment-text',
   /** comment-xmark.svg */
-  CommentXmark = "comment-xmark",
+  CommentXmark = 'comment-xmark',
   /** comment.svg */
-  Comment = "comment",
+  Comment = 'comment',
   /** comments-dollar.svg */
-  CommentsDollar = "comments-dollar",
+  CommentsDollar = 'comments-dollar',
   /** comments-question-check.svg */
-  CommentsQuestionCheck = "comments-question-check",
+  CommentsQuestionCheck = 'comments-question-check',
   /** comments-question.svg */
-  CommentsQuestion = "comments-question",
+  CommentsQuestion = 'comments-question',
   /** comments.svg */
-  Comments = "comments",
+  Comments = 'comments',
   /** compact-disc.svg */
-  CompactDisc = "compact-disc",
+  CompactDisc = 'compact-disc',
   /** compass-drafting.svg */
-  CompassDrafting = "compass-drafting",
+  CompassDrafting = 'compass-drafting',
   /** compass-slash.svg */
-  CompassSlash = "compass-slash",
+  CompassSlash = 'compass-slash',
   /** compass.svg */
-  Compass = "compass",
+  Compass = 'compass',
   /** compress-wide.svg */
-  CompressWide = "compress-wide",
+  CompressWide = 'compress-wide',
   /** compress.svg */
-  Compress = "compress",
+  Compress = 'compress',
   /** computer-classic.svg */
-  ComputerClassic = "computer-classic",
+  ComputerClassic = 'computer-classic',
   /** computer-mouse-scrollwheel.svg */
-  ComputerMouseScrollwheel = "computer-mouse-scrollwheel",
+  ComputerMouseScrollwheel = 'computer-mouse-scrollwheel',
   /** computer-mouse.svg */
-  ComputerMouse = "computer-mouse",
+  ComputerMouse = 'computer-mouse',
   /** computer-speaker.svg */
-  ComputerSpeaker = "computer-speaker",
+  ComputerSpeaker = 'computer-speaker',
   /** computer.svg */
-  Computer = "computer",
+  Computer = 'computer',
   /** container-storage.svg */
-  ContainerStorage = "container-storage",
+  ContainerStorage = 'container-storage',
   /** conveyor-belt-arm.svg */
-  ConveyorBeltArm = "conveyor-belt-arm",
+  ConveyorBeltArm = 'conveyor-belt-arm',
   /** conveyor-belt-boxes.svg */
-  ConveyorBeltBoxes = "conveyor-belt-boxes",
+  ConveyorBeltBoxes = 'conveyor-belt-boxes',
   /** conveyor-belt-empty.svg */
-  ConveyorBeltEmpty = "conveyor-belt-empty",
+  ConveyorBeltEmpty = 'conveyor-belt-empty',
   /** conveyor-belt.svg */
-  ConveyorBelt = "conveyor-belt",
+  ConveyorBelt = 'conveyor-belt',
   /** cookie-bite.svg */
-  CookieBite = "cookie-bite",
+  CookieBite = 'cookie-bite',
   /** cookie.svg */
-  Cookie = "cookie",
+  Cookie = 'cookie',
   /** copy.svg */
-  Copy = "copy",
+  Copy = 'copy',
   /** copyright.svg */
-  Copyright = "copyright",
+  Copyright = 'copyright',
   /** corn.svg */
-  Corn = "corn",
+  Corn = 'corn',
   /** corner.svg */
-  Corner = "corner",
+  Corner = 'corner',
   /** couch.svg */
-  Couch = "couch",
+  Couch = 'couch',
   /** court-sport.svg */
-  CourtSport = "court-sport",
+  CourtSport = 'court-sport',
   /** cow.svg */
-  Cow = "cow",
+  Cow = 'cow',
   /** cowbell-circle-plus.svg */
-  CowbellCirclePlus = "cowbell-circle-plus",
+  CowbellCirclePlus = 'cowbell-circle-plus',
   /** cowbell.svg */
-  Cowbell = "cowbell",
+  Cowbell = 'cowbell',
   /** crab.svg */
-  Crab = "crab",
+  Crab = 'crab',
   /** crate-apple.svg */
-  CrateApple = "crate-apple",
+  CrateApple = 'crate-apple',
   /** crate-empty.svg */
-  CrateEmpty = "crate-empty",
+  CrateEmpty = 'crate-empty',
   /** credit-card-blank.svg */
-  CreditCardBlank = "credit-card-blank",
+  CreditCardBlank = 'credit-card-blank',
   /** credit-card-front.svg */
-  CreditCardFront = "credit-card-front",
+  CreditCardFront = 'credit-card-front',
   /** credit-card.svg */
-  CreditCard = "credit-card",
+  CreditCard = 'credit-card',
   /** cricket-bat-ball.svg */
-  CricketBatBall = "cricket-bat-ball",
+  CricketBatBall = 'cricket-bat-ball',
   /** croissant.svg */
-  Croissant = "croissant",
+  Croissant = 'croissant',
   /** crop-simple.svg */
-  CropSimple = "crop-simple",
+  CropSimple = 'crop-simple',
   /** crop.svg */
-  Crop = "crop",
+  Crop = 'crop',
   /** cross.svg */
-  Cross = "cross",
+  Cross = 'cross',
   /** crosshairs-simple.svg */
-  CrosshairsSimple = "crosshairs-simple",
+  CrosshairsSimple = 'crosshairs-simple',
   /** crosshairs.svg */
-  Crosshairs = "crosshairs",
+  Crosshairs = 'crosshairs',
   /** crow.svg */
-  Crow = "crow",
+  Crow = 'crow',
   /** crown.svg */
-  Crown = "crown",
+  Crown = 'crown',
   /** crutch.svg */
-  Crutch = "crutch",
+  Crutch = 'crutch',
   /** crutches.svg */
-  Crutches = "crutches",
+  Crutches = 'crutches',
   /** cruzeiro-sign.svg */
-  CruzeiroSign = "cruzeiro-sign",
+  CruzeiroSign = 'cruzeiro-sign',
   /** crystal-ball.svg */
-  CrystalBall = "crystal-ball",
+  CrystalBall = 'crystal-ball',
   /** cube.svg */
-  Cube = "cube",
+  Cube = 'cube',
   /** cubes-stacked.svg */
-  CubesStacked = "cubes-stacked",
+  CubesStacked = 'cubes-stacked',
   /** cubes.svg */
-  Cubes = "cubes",
+  Cubes = 'cubes',
   /** cucumber.svg */
-  Cucumber = "cucumber",
+  Cucumber = 'cucumber',
   /** cup-straw-swoosh.svg */
-  CupStrawSwoosh = "cup-straw-swoosh",
+  CupStrawSwoosh = 'cup-straw-swoosh',
   /** cup-straw.svg */
-  CupStraw = "cup-straw",
+  CupStraw = 'cup-straw',
   /** cup-togo.svg */
-  CupTogo = "cup-togo",
+  CupTogo = 'cup-togo',
   /** cupcake.svg */
-  Cupcake = "cupcake",
+  Cupcake = 'cupcake',
   /** curling-stone.svg */
-  CurlingStone = "curling-stone",
+  CurlingStone = 'curling-stone',
   /** custard.svg */
-  Custard = "custard",
+  Custard = 'custard',
   /** d.svg */
-  D = "d",
+  D = 'd',
   /** dagger.svg */
-  Dagger = "dagger",
+  Dagger = 'dagger',
   /** dash.svg */
-  Dash = "dash",
+  Dash = 'dash',
   /** database.svg */
-  Database = "database",
+  Database = 'database',
   /** deer-rudolph.svg */
-  DeerRudolph = "deer-rudolph",
+  DeerRudolph = 'deer-rudolph',
   /** deer.svg */
-  Deer = "deer",
+  Deer = 'deer',
   /** delete-left.svg */
-  DeleteLeft = "delete-left",
+  DeleteLeft = 'delete-left',
   /** delete-right.svg */
-  DeleteRight = "delete-right",
+  DeleteRight = 'delete-right',
   /** democrat.svg */
-  Democrat = "democrat",
+  Democrat = 'democrat',
   /** desktop-arrow-down.svg */
-  DesktopArrowDown = "desktop-arrow-down",
+  DesktopArrowDown = 'desktop-arrow-down',
   /** desktop.svg */
-  Desktop = "desktop",
+  Desktop = 'desktop',
   /** dharmachakra.svg */
-  Dharmachakra = "dharmachakra",
+  Dharmachakra = 'dharmachakra',
   /** diagram-cells.svg */
-  DiagramCells = "diagram-cells",
+  DiagramCells = 'diagram-cells',
   /** diagram-lean-canvas.svg */
-  DiagramLeanCanvas = "diagram-lean-canvas",
+  DiagramLeanCanvas = 'diagram-lean-canvas',
   /** diagram-nested.svg */
-  DiagramNested = "diagram-nested",
+  DiagramNested = 'diagram-nested',
   /** diagram-next.svg */
-  DiagramNext = "diagram-next",
+  DiagramNext = 'diagram-next',
   /** diagram-predecessor.svg */
-  DiagramPredecessor = "diagram-predecessor",
+  DiagramPredecessor = 'diagram-predecessor',
   /** diagram-previous.svg */
-  DiagramPrevious = "diagram-previous",
+  DiagramPrevious = 'diagram-previous',
   /** diagram-project.svg */
-  DiagramProject = "diagram-project",
+  DiagramProject = 'diagram-project',
   /** diagram-sankey.svg */
-  DiagramSankey = "diagram-sankey",
+  DiagramSankey = 'diagram-sankey',
   /** diagram-subtask.svg */
-  DiagramSubtask = "diagram-subtask",
+  DiagramSubtask = 'diagram-subtask',
   /** diagram-successor.svg */
-  DiagramSuccessor = "diagram-successor",
+  DiagramSuccessor = 'diagram-successor',
   /** diagram-venn.svg */
-  DiagramVenn = "diagram-venn",
+  DiagramVenn = 'diagram-venn',
   /** dial-high.svg */
-  DialHigh = "dial-high",
+  DialHigh = 'dial-high',
   /** dial-low.svg */
-  DialLow = "dial-low",
+  DialLow = 'dial-low',
   /** dial-max.svg */
-  DialMax = "dial-max",
+  DialMax = 'dial-max',
   /** dial-med-low.svg */
-  DialMedLow = "dial-med-low",
+  DialMedLow = 'dial-med-low',
   /** dial-med.svg */
-  DialMed = "dial-med",
+  DialMed = 'dial-med',
   /** dial-min.svg */
-  DialMin = "dial-min",
+  DialMin = 'dial-min',
   /** dial-off.svg */
-  DialOff = "dial-off",
+  DialOff = 'dial-off',
   /** dial.svg */
-  Dial = "dial",
+  Dial = 'dial',
   /** diamond-exclamation.svg */
-  DiamondExclamation = "diamond-exclamation",
+  DiamondExclamation = 'diamond-exclamation',
   /** diamond-half-stroke.svg */
-  DiamondHalfStroke = "diamond-half-stroke",
+  DiamondHalfStroke = 'diamond-half-stroke',
   /** diamond-half.svg */
-  DiamondHalf = "diamond-half",
+  DiamondHalf = 'diamond-half',
   /** diamond-turn-right.svg */
-  DiamondTurnRight = "diamond-turn-right",
+  DiamondTurnRight = 'diamond-turn-right',
   /** diamond.svg */
-  Diamond = "diamond",
+  Diamond = 'diamond',
   /** dice-d10.svg */
-  DiceD10 = "dice-d10",
+  DiceD10 = 'dice-d10',
   /** dice-d12.svg */
-  DiceD12 = "dice-d12",
+  DiceD12 = 'dice-d12',
   /** dice-d20.svg */
-  DiceD20 = "dice-d20",
+  DiceD20 = 'dice-d20',
   /** dice-d4.svg */
-  DiceD4 = "dice-d4",
+  DiceD4 = 'dice-d4',
   /** dice-d6.svg */
-  DiceD6 = "dice-d6",
+  DiceD6 = 'dice-d6',
   /** dice-d8.svg */
-  DiceD8 = "dice-d8",
+  DiceD8 = 'dice-d8',
   /** dice-five.svg */
-  DiceFive = "dice-five",
+  DiceFive = 'dice-five',
   /** dice-four.svg */
-  DiceFour = "dice-four",
+  DiceFour = 'dice-four',
   /** dice-one.svg */
-  DiceOne = "dice-one",
+  DiceOne = 'dice-one',
   /** dice-six.svg */
-  DiceSix = "dice-six",
+  DiceSix = 'dice-six',
   /** dice-three.svg */
-  DiceThree = "dice-three",
+  DiceThree = 'dice-three',
   /** dice-two.svg */
-  DiceTwo = "dice-two",
+  DiceTwo = 'dice-two',
   /** dice.svg */
-  Dice = "dice",
+  Dice = 'dice',
   /** dinosaur.svg */
-  Dinosaur = "dinosaur",
+  Dinosaur = 'dinosaur',
   /** diploma.svg */
-  Diploma = "diploma",
+  Diploma = 'diploma',
   /** disc-drive.svg */
-  DiscDrive = "disc-drive",
+  DiscDrive = 'disc-drive',
   /** disease.svg */
-  Disease = "disease",
+  Disease = 'disease',
   /** display-arrow-down.svg */
-  DisplayArrowDown = "display-arrow-down",
+  DisplayArrowDown = 'display-arrow-down',
   /** display-chart-up-circle-currency.svg */
-  DisplayChartUpCircleCurrency = "display-chart-up-circle-currency",
+  DisplayChartUpCircleCurrency = 'display-chart-up-circle-currency',
   /** display-chart-up-circle-dollar.svg */
-  DisplayChartUpCircleDollar = "display-chart-up-circle-dollar",
+  DisplayChartUpCircleDollar = 'display-chart-up-circle-dollar',
   /** display-chart-up.svg */
-  DisplayChartUp = "display-chart-up",
+  DisplayChartUp = 'display-chart-up',
   /** display-code.svg */
-  DisplayCode = "display-code",
+  DisplayCode = 'display-code',
   /** display-medical.svg */
-  DisplayMedical = "display-medical",
+  DisplayMedical = 'display-medical',
   /** display-slash.svg */
-  DisplaySlash = "display-slash",
+  DisplaySlash = 'display-slash',
   /** display.svg */
-  Display = "display",
+  Display = 'display',
   /** distribute-spacing-horizontal.svg */
-  DistributeSpacingHorizontal = "distribute-spacing-horizontal",
+  DistributeSpacingHorizontal = 'distribute-spacing-horizontal',
   /** distribute-spacing-vertical.svg */
-  DistributeSpacingVertical = "distribute-spacing-vertical",
+  DistributeSpacingVertical = 'distribute-spacing-vertical',
   /** ditto.svg */
-  Ditto = "ditto",
+  Ditto = 'ditto',
   /** divide.svg */
-  Divide = "divide",
+  Divide = 'divide',
   /** dna.svg */
-  Dna = "dna",
+  Dna = 'dna',
   /** do-not-enter.svg */
-  DoNotEnter = "do-not-enter",
+  DoNotEnter = 'do-not-enter',
   /** dog-leashed.svg */
-  DogLeashed = "dog-leashed",
+  DogLeashed = 'dog-leashed',
   /** dog.svg */
-  Dog = "dog",
+  Dog = 'dog',
   /** dollar-sign.svg */
-  DollarSign = "dollar-sign",
+  DollarSign = 'dollar-sign',
   /** dolly-empty.svg */
-  DollyEmpty = "dolly-empty",
+  DollyEmpty = 'dolly-empty',
   /** dolly.svg */
-  Dolly = "dolly",
+  Dolly = 'dolly',
   /** dolphin.svg */
-  Dolphin = "dolphin",
+  Dolphin = 'dolphin',
   /** dong-sign.svg */
-  DongSign = "dong-sign",
+  DongSign = 'dong-sign',
   /** donut.svg */
-  Donut = "donut",
+  Donut = 'donut',
   /** door-closed.svg */
-  DoorClosed = "door-closed",
+  DoorClosed = 'door-closed',
   /** door-open.svg */
-  DoorOpen = "door-open",
+  DoorOpen = 'door-open',
   /** dove.svg */
-  Dove = "dove",
+  Dove = 'dove',
   /** down-from-dotted-line.svg */
-  DownFromDottedLine = "down-from-dotted-line",
+  DownFromDottedLine = 'down-from-dotted-line',
   /** down-from-line.svg */
-  DownFromLine = "down-from-line",
+  DownFromLine = 'down-from-line',
   /** down-left-and-up-right-to-center.svg */
-  DownLeftAndUpRightToCenter = "down-left-and-up-right-to-center",
+  DownLeftAndUpRightToCenter = 'down-left-and-up-right-to-center',
   /** down-left.svg */
-  DownLeft = "down-left",
+  DownLeft = 'down-left',
   /** down-long.svg */
-  DownLong = "down-long",
+  DownLong = 'down-long',
   /** down-right.svg */
-  DownRight = "down-right",
+  DownRight = 'down-right',
   /** down-to-bracket.svg */
-  DownToBracket = "down-to-bracket",
+  DownToBracket = 'down-to-bracket',
   /** down-to-dotted-line.svg */
-  DownToDottedLine = "down-to-dotted-line",
+  DownToDottedLine = 'down-to-dotted-line',
   /** down-to-line.svg */
-  DownToLine = "down-to-line",
+  DownToLine = 'down-to-line',
   /** down.svg */
-  Down = "down",
+  Down = 'down',
   /** download.svg */
-  Download = "download",
+  Download = 'download',
   /** dragon.svg */
-  Dragon = "dragon",
+  Dragon = 'dragon',
   /** draw-circle.svg */
-  DrawCircle = "draw-circle",
+  DrawCircle = 'draw-circle',
   /** draw-polygon.svg */
-  DrawPolygon = "draw-polygon",
+  DrawPolygon = 'draw-polygon',
   /** draw-square.svg */
-  DrawSquare = "draw-square",
+  DrawSquare = 'draw-square',
   /** dreidel.svg */
-  Dreidel = "dreidel",
+  Dreidel = 'dreidel',
   /** drone-front.svg */
-  DroneFront = "drone-front",
+  DroneFront = 'drone-front',
   /** drone.svg */
-  Drone = "drone",
+  Drone = 'drone',
   /** droplet-degree.svg */
-  DropletDegree = "droplet-degree",
+  DropletDegree = 'droplet-degree',
   /** droplet-percent.svg */
-  DropletPercent = "droplet-percent",
+  DropletPercent = 'droplet-percent',
   /** droplet-slash.svg */
-  DropletSlash = "droplet-slash",
+  DropletSlash = 'droplet-slash',
   /** droplet.svg */
-  Droplet = "droplet",
+  Droplet = 'droplet',
   /** drum-steelpan.svg */
-  DrumSteelpan = "drum-steelpan",
+  DrumSteelpan = 'drum-steelpan',
   /** drum.svg */
-  Drum = "drum",
+  Drum = 'drum',
   /** drumstick-bite.svg */
-  DrumstickBite = "drumstick-bite",
+  DrumstickBite = 'drumstick-bite',
   /** drumstick.svg */
-  Drumstick = "drumstick",
+  Drumstick = 'drumstick',
   /** dryer-heat.svg */
-  DryerHeat = "dryer-heat",
+  DryerHeat = 'dryer-heat',
   /** dryer.svg */
-  Dryer = "dryer",
+  Dryer = 'dryer',
   /** duck.svg */
-  Duck = "duck",
+  Duck = 'duck',
   /** dumbbell.svg */
-  Dumbbell = "dumbbell",
+  Dumbbell = 'dumbbell',
   /** dumpster-fire.svg */
-  DumpsterFire = "dumpster-fire",
+  DumpsterFire = 'dumpster-fire',
   /** dumpster.svg */
-  Dumpster = "dumpster",
+  Dumpster = 'dumpster',
   /** dungeon.svg */
-  Dungeon = "dungeon",
+  Dungeon = 'dungeon',
   /** e.svg */
-  E = "e",
+  E = 'e',
   /** ear-deaf.svg */
-  EarDeaf = "ear-deaf",
+  EarDeaf = 'ear-deaf',
   /** ear-listen.svg */
-  EarListen = "ear-listen",
+  EarListen = 'ear-listen',
   /** ear-muffs.svg */
-  EarMuffs = "ear-muffs",
+  EarMuffs = 'ear-muffs',
   /** ear.svg */
-  Ear = "ear",
+  Ear = 'ear',
   /** earth-africa.svg */
-  EarthAfrica = "earth-africa",
+  EarthAfrica = 'earth-africa',
   /** earth-americas.svg */
-  EarthAmericas = "earth-americas",
+  EarthAmericas = 'earth-americas',
   /** earth-asia.svg */
-  EarthAsia = "earth-asia",
+  EarthAsia = 'earth-asia',
   /** earth-europe.svg */
-  EarthEurope = "earth-europe",
+  EarthEurope = 'earth-europe',
   /** earth-oceania.svg */
-  EarthOceania = "earth-oceania",
+  EarthOceania = 'earth-oceania',
   /** eclipse.svg */
-  Eclipse = "eclipse",
+  Eclipse = 'eclipse',
   /** egg-fried.svg */
-  EggFried = "egg-fried",
+  EggFried = 'egg-fried',
   /** egg.svg */
-  Egg = "egg",
+  Egg = 'egg',
   /** eggplant.svg */
-  Eggplant = "eggplant",
+  Eggplant = 'eggplant',
   /** eject.svg */
-  Eject = "eject",
+  Eject = 'eject',
   /** elephant.svg */
-  Elephant = "elephant",
+  Elephant = 'elephant',
   /** elevator.svg */
-  Elevator = "elevator",
+  Elevator = 'elevator',
   /** ellipsis-stroke-vertical.svg */
-  EllipsisStrokeVertical = "ellipsis-stroke-vertical",
+  EllipsisStrokeVertical = 'ellipsis-stroke-vertical',
   /** ellipsis-stroke.svg */
-  EllipsisStroke = "ellipsis-stroke",
+  EllipsisStroke = 'ellipsis-stroke',
   /** ellipsis-vertical.svg */
-  EllipsisVertical = "ellipsis-vertical",
+  EllipsisVertical = 'ellipsis-vertical',
   /** ellipsis.svg */
-  Ellipsis = "ellipsis",
+  Ellipsis = 'ellipsis',
   /** empty-set.svg */
-  EmptySet = "empty-set",
+  EmptySet = 'empty-set',
   /** engine-warning.svg */
-  EngineWarning = "engine-warning",
+  EngineWarning = 'engine-warning',
   /** engine.svg */
-  Engine = "engine",
+  Engine = 'engine',
   /** envelope-circle-check.svg */
-  EnvelopeCircleCheck = "envelope-circle-check",
+  EnvelopeCircleCheck = 'envelope-circle-check',
   /** envelope-dot.svg */
-  EnvelopeDot = "envelope-dot",
+  EnvelopeDot = 'envelope-dot',
   /** envelope-open-dollar.svg */
-  EnvelopeOpenDollar = "envelope-open-dollar",
+  EnvelopeOpenDollar = 'envelope-open-dollar',
   /** envelope-open-text.svg */
-  EnvelopeOpenText = "envelope-open-text",
+  EnvelopeOpenText = 'envelope-open-text',
   /** envelope-open.svg */
-  EnvelopeOpen = "envelope-open",
+  EnvelopeOpen = 'envelope-open',
   /** envelope.svg */
-  Envelope = "envelope",
+  Envelope = 'envelope',
   /** envelopes-bulk.svg */
-  EnvelopesBulk = "envelopes-bulk",
+  EnvelopesBulk = 'envelopes-bulk',
   /** envelopes.svg */
-  Envelopes = "envelopes",
+  Envelopes = 'envelopes',
   /** equals.svg */
-  Equals = "equals",
+  Equals = 'equals',
   /** eraser.svg */
-  Eraser = "eraser",
+  Eraser = 'eraser',
   /** escalator.svg */
-  Escalator = "escalator",
+  Escalator = 'escalator',
   /** ethernet.svg */
-  Ethernet = "ethernet",
+  Ethernet = 'ethernet',
   /** euro-sign.svg */
-  EuroSign = "euro-sign",
+  EuroSign = 'euro-sign',
   /** excavator.svg */
-  Excavator = "excavator",
+  Excavator = 'excavator',
   /** exclamation.svg */
-  Exclamation = "exclamation",
+  Exclamation = 'exclamation',
   /** expand-wide.svg */
-  ExpandWide = "expand-wide",
+  ExpandWide = 'expand-wide',
   /** expand.svg */
-  Expand = "expand",
+  Expand = 'expand',
   /** explosion.svg */
-  Explosion = "explosion",
+  Explosion = 'explosion',
   /** eye-dropper-full.svg */
-  EyeDropperFull = "eye-dropper-full",
+  EyeDropperFull = 'eye-dropper-full',
   /** eye-dropper-half.svg */
-  EyeDropperHalf = "eye-dropper-half",
+  EyeDropperHalf = 'eye-dropper-half',
   /** eye-dropper.svg */
-  EyeDropper = "eye-dropper",
+  EyeDropper = 'eye-dropper',
   /** eye-evil.svg */
-  EyeEvil = "eye-evil",
+  EyeEvil = 'eye-evil',
   /** eye-low-vision.svg */
-  EyeLowVision = "eye-low-vision",
+  EyeLowVision = 'eye-low-vision',
   /** eye-slash.svg */
-  EyeSlash = "eye-slash",
+  EyeSlash = 'eye-slash',
   /** eye.svg */
-  Eye = "eye",
+  Eye = 'eye',
   /** eyes.svg */
-  Eyes = "eyes",
+  Eyes = 'eyes',
   /** f.svg */
-  F = "f",
+  F = 'f',
   /** face-angry-horns.svg */
-  FaceAngryHorns = "face-angry-horns",
+  FaceAngryHorns = 'face-angry-horns',
   /** face-angry.svg */
-  FaceAngry = "face-angry",
+  FaceAngry = 'face-angry',
   /** face-anguished.svg */
-  FaceAnguished = "face-anguished",
+  FaceAnguished = 'face-anguished',
   /** face-anxious-sweat.svg */
-  FaceAnxiousSweat = "face-anxious-sweat",
+  FaceAnxiousSweat = 'face-anxious-sweat',
   /** face-astonished.svg */
-  FaceAstonished = "face-astonished",
+  FaceAstonished = 'face-astonished',
   /** face-awesome.svg */
-  FaceAwesome = "face-awesome",
+  FaceAwesome = 'face-awesome',
   /** face-beam-hand-over-mouth.svg */
-  FaceBeamHandOverMouth = "face-beam-hand-over-mouth",
+  FaceBeamHandOverMouth = 'face-beam-hand-over-mouth',
   /** face-clouds.svg */
-  FaceClouds = "face-clouds",
+  FaceClouds = 'face-clouds',
   /** face-confounded.svg */
-  FaceConfounded = "face-confounded",
+  FaceConfounded = 'face-confounded',
   /** face-confused.svg */
-  FaceConfused = "face-confused",
+  FaceConfused = 'face-confused',
   /** face-cowboy-hat.svg */
-  FaceCowboyHat = "face-cowboy-hat",
+  FaceCowboyHat = 'face-cowboy-hat',
   /** face-diagonal-mouth.svg */
-  FaceDiagonalMouth = "face-diagonal-mouth",
+  FaceDiagonalMouth = 'face-diagonal-mouth',
   /** face-disappointed.svg */
-  FaceDisappointed = "face-disappointed",
+  FaceDisappointed = 'face-disappointed',
   /** face-disguise.svg */
-  FaceDisguise = "face-disguise",
+  FaceDisguise = 'face-disguise',
   /** face-dizzy.svg */
-  FaceDizzy = "face-dizzy",
+  FaceDizzy = 'face-dizzy',
   /** face-dotted.svg */
-  FaceDotted = "face-dotted",
+  FaceDotted = 'face-dotted',
   /** face-downcast-sweat.svg */
-  FaceDowncastSweat = "face-downcast-sweat",
+  FaceDowncastSweat = 'face-downcast-sweat',
   /** face-drooling.svg */
-  FaceDrooling = "face-drooling",
+  FaceDrooling = 'face-drooling',
   /** face-exhaling.svg */
-  FaceExhaling = "face-exhaling",
+  FaceExhaling = 'face-exhaling',
   /** face-explode.svg */
-  FaceExplode = "face-explode",
+  FaceExplode = 'face-explode',
   /** face-expressionless.svg */
-  FaceExpressionless = "face-expressionless",
+  FaceExpressionless = 'face-expressionless',
   /** face-eyes-xmarks.svg */
-  FaceEyesXmarks = "face-eyes-xmarks",
+  FaceEyesXmarks = 'face-eyes-xmarks',
   /** face-fearful.svg */
-  FaceFearful = "face-fearful",
+  FaceFearful = 'face-fearful',
   /** face-flushed.svg */
-  FaceFlushed = "face-flushed",
+  FaceFlushed = 'face-flushed',
   /** face-frown-open.svg */
-  FaceFrownOpen = "face-frown-open",
+  FaceFrownOpen = 'face-frown-open',
   /** face-frown-slight.svg */
-  FaceFrownSlight = "face-frown-slight",
+  FaceFrownSlight = 'face-frown-slight',
   /** face-frown.svg */
-  FaceFrown = "face-frown",
+  FaceFrown = 'face-frown',
   /** face-glasses.svg */
-  FaceGlasses = "face-glasses",
+  FaceGlasses = 'face-glasses',
   /** face-grimace.svg */
-  FaceGrimace = "face-grimace",
+  FaceGrimace = 'face-grimace',
   /** face-grin-beam-sweat.svg */
-  FaceGrinBeamSweat = "face-grin-beam-sweat",
+  FaceGrinBeamSweat = 'face-grin-beam-sweat',
   /** face-grin-beam.svg */
-  FaceGrinBeam = "face-grin-beam",
+  FaceGrinBeam = 'face-grin-beam',
   /** face-grin-hearts.svg */
-  FaceGrinHearts = "face-grin-hearts",
+  FaceGrinHearts = 'face-grin-hearts',
   /** face-grin-squint-tears.svg */
-  FaceGrinSquintTears = "face-grin-squint-tears",
+  FaceGrinSquintTears = 'face-grin-squint-tears',
   /** face-grin-squint.svg */
-  FaceGrinSquint = "face-grin-squint",
+  FaceGrinSquint = 'face-grin-squint',
   /** face-grin-stars.svg */
-  FaceGrinStars = "face-grin-stars",
+  FaceGrinStars = 'face-grin-stars',
   /** face-grin-tears.svg */
-  FaceGrinTears = "face-grin-tears",
+  FaceGrinTears = 'face-grin-tears',
   /** face-grin-tongue-squint.svg */
-  FaceGrinTongueSquint = "face-grin-tongue-squint",
+  FaceGrinTongueSquint = 'face-grin-tongue-squint',
   /** face-grin-tongue-wink.svg */
-  FaceGrinTongueWink = "face-grin-tongue-wink",
+  FaceGrinTongueWink = 'face-grin-tongue-wink',
   /** face-grin-tongue.svg */
-  FaceGrinTongue = "face-grin-tongue",
+  FaceGrinTongue = 'face-grin-tongue',
   /** face-grin-wide.svg */
-  FaceGrinWide = "face-grin-wide",
+  FaceGrinWide = 'face-grin-wide',
   /** face-grin-wink.svg */
-  FaceGrinWink = "face-grin-wink",
+  FaceGrinWink = 'face-grin-wink',
   /** face-grin.svg */
-  FaceGrin = "face-grin",
+  FaceGrin = 'face-grin',
   /** face-hand-over-mouth.svg */
-  FaceHandOverMouth = "face-hand-over-mouth",
+  FaceHandOverMouth = 'face-hand-over-mouth',
   /** face-hand-peeking.svg */
-  FaceHandPeeking = "face-hand-peeking",
+  FaceHandPeeking = 'face-hand-peeking',
   /** face-hand-yawn.svg */
-  FaceHandYawn = "face-hand-yawn",
+  FaceHandYawn = 'face-hand-yawn',
   /** face-head-bandage.svg */
-  FaceHeadBandage = "face-head-bandage",
+  FaceHeadBandage = 'face-head-bandage',
   /** face-holding-back-tears.svg */
-  FaceHoldingBackTears = "face-holding-back-tears",
+  FaceHoldingBackTears = 'face-holding-back-tears',
   /** face-hushed.svg */
-  FaceHushed = "face-hushed",
+  FaceHushed = 'face-hushed',
   /** face-icicles.svg */
-  FaceIcicles = "face-icicles",
+  FaceIcicles = 'face-icicles',
   /** face-kiss-beam.svg */
-  FaceKissBeam = "face-kiss-beam",
+  FaceKissBeam = 'face-kiss-beam',
   /** face-kiss-closed-eyes.svg */
-  FaceKissClosedEyes = "face-kiss-closed-eyes",
+  FaceKissClosedEyes = 'face-kiss-closed-eyes',
   /** face-kiss-wink-heart.svg */
-  FaceKissWinkHeart = "face-kiss-wink-heart",
+  FaceKissWinkHeart = 'face-kiss-wink-heart',
   /** face-kiss.svg */
-  FaceKiss = "face-kiss",
+  FaceKiss = 'face-kiss',
   /** face-laugh-beam.svg */
-  FaceLaughBeam = "face-laugh-beam",
+  FaceLaughBeam = 'face-laugh-beam',
   /** face-laugh-squint.svg */
-  FaceLaughSquint = "face-laugh-squint",
+  FaceLaughSquint = 'face-laugh-squint',
   /** face-laugh-wink.svg */
-  FaceLaughWink = "face-laugh-wink",
+  FaceLaughWink = 'face-laugh-wink',
   /** face-laugh.svg */
-  FaceLaugh = "face-laugh",
+  FaceLaugh = 'face-laugh',
   /** face-lying.svg */
-  FaceLying = "face-lying",
+  FaceLying = 'face-lying',
   /** face-mask.svg */
-  FaceMask = "face-mask",
+  FaceMask = 'face-mask',
   /** face-meh-blank.svg */
-  FaceMehBlank = "face-meh-blank",
+  FaceMehBlank = 'face-meh-blank',
   /** face-meh.svg */
-  FaceMeh = "face-meh",
+  FaceMeh = 'face-meh',
   /** face-melting.svg */
-  FaceMelting = "face-melting",
+  FaceMelting = 'face-melting',
   /** face-monocle.svg */
-  FaceMonocle = "face-monocle",
+  FaceMonocle = 'face-monocle',
   /** face-nauseated.svg */
-  FaceNauseated = "face-nauseated",
+  FaceNauseated = 'face-nauseated',
   /** face-nose-steam.svg */
-  FaceNoseSteam = "face-nose-steam",
+  FaceNoseSteam = 'face-nose-steam',
   /** face-party.svg */
-  FaceParty = "face-party",
+  FaceParty = 'face-party',
   /** face-pensive.svg */
-  FacePensive = "face-pensive",
+  FacePensive = 'face-pensive',
   /** face-persevering.svg */
-  FacePersevering = "face-persevering",
+  FacePersevering = 'face-persevering',
   /** face-pleading.svg */
-  FacePleading = "face-pleading",
+  FacePleading = 'face-pleading',
   /** face-pouting.svg */
-  FacePouting = "face-pouting",
+  FacePouting = 'face-pouting',
   /** face-raised-eyebrow.svg */
-  FaceRaisedEyebrow = "face-raised-eyebrow",
+  FaceRaisedEyebrow = 'face-raised-eyebrow',
   /** face-relieved.svg */
-  FaceRelieved = "face-relieved",
+  FaceRelieved = 'face-relieved',
   /** face-rolling-eyes.svg */
-  FaceRollingEyes = "face-rolling-eyes",
+  FaceRollingEyes = 'face-rolling-eyes',
   /** face-sad-cry.svg */
-  FaceSadCry = "face-sad-cry",
+  FaceSadCry = 'face-sad-cry',
   /** face-sad-sweat.svg */
-  FaceSadSweat = "face-sad-sweat",
+  FaceSadSweat = 'face-sad-sweat',
   /** face-sad-tear.svg */
-  FaceSadTear = "face-sad-tear",
+  FaceSadTear = 'face-sad-tear',
   /** face-saluting.svg */
-  FaceSaluting = "face-saluting",
+  FaceSaluting = 'face-saluting',
   /** face-scream.svg */
-  FaceScream = "face-scream",
+  FaceScream = 'face-scream',
   /** face-shush.svg */
-  FaceShush = "face-shush",
+  FaceShush = 'face-shush',
   /** face-sleeping.svg */
-  FaceSleeping = "face-sleeping",
+  FaceSleeping = 'face-sleeping',
   /** face-sleepy.svg */
-  FaceSleepy = "face-sleepy",
+  FaceSleepy = 'face-sleepy',
   /** face-smile-beam.svg */
-  FaceSmileBeam = "face-smile-beam",
+  FaceSmileBeam = 'face-smile-beam',
   /** face-smile-halo.svg */
-  FaceSmileHalo = "face-smile-halo",
+  FaceSmileHalo = 'face-smile-halo',
   /** face-smile-hearts.svg */
-  FaceSmileHearts = "face-smile-hearts",
+  FaceSmileHearts = 'face-smile-hearts',
   /** face-smile-horns.svg */
-  FaceSmileHorns = "face-smile-horns",
+  FaceSmileHorns = 'face-smile-horns',
   /** face-smile-plus.svg */
-  FaceSmilePlus = "face-smile-plus",
+  FaceSmilePlus = 'face-smile-plus',
   /** face-smile-relaxed.svg */
-  FaceSmileRelaxed = "face-smile-relaxed",
+  FaceSmileRelaxed = 'face-smile-relaxed',
   /** face-smile-tear.svg */
-  FaceSmileTear = "face-smile-tear",
+  FaceSmileTear = 'face-smile-tear',
   /** face-smile-tongue.svg */
-  FaceSmileTongue = "face-smile-tongue",
+  FaceSmileTongue = 'face-smile-tongue',
   /** face-smile-upside-down.svg */
-  FaceSmileUpsideDown = "face-smile-upside-down",
+  FaceSmileUpsideDown = 'face-smile-upside-down',
   /** face-smile-wink.svg */
-  FaceSmileWink = "face-smile-wink",
+  FaceSmileWink = 'face-smile-wink',
   /** face-smile.svg */
-  FaceSmile = "face-smile",
+  FaceSmile = 'face-smile',
   /** face-smiling-hands.svg */
-  FaceSmilingHands = "face-smiling-hands",
+  FaceSmilingHands = 'face-smiling-hands',
   /** face-smirking.svg */
-  FaceSmirking = "face-smirking",
+  FaceSmirking = 'face-smirking',
   /** face-spiral-eyes.svg */
-  FaceSpiralEyes = "face-spiral-eyes",
+  FaceSpiralEyes = 'face-spiral-eyes',
   /** face-sunglasses.svg */
-  FaceSunglasses = "face-sunglasses",
+  FaceSunglasses = 'face-sunglasses',
   /** face-surprise.svg */
-  FaceSurprise = "face-surprise",
+  FaceSurprise = 'face-surprise',
   /** face-swear.svg */
-  FaceSwear = "face-swear",
+  FaceSwear = 'face-swear',
   /** face-thermometer.svg */
-  FaceThermometer = "face-thermometer",
+  FaceThermometer = 'face-thermometer',
   /** face-thinking.svg */
-  FaceThinking = "face-thinking",
+  FaceThinking = 'face-thinking',
   /** face-tired.svg */
-  FaceTired = "face-tired",
+  FaceTired = 'face-tired',
   /** face-tissue.svg */
-  FaceTissue = "face-tissue",
+  FaceTissue = 'face-tissue',
   /** face-tongue-money.svg */
-  FaceTongueMoney = "face-tongue-money",
+  FaceTongueMoney = 'face-tongue-money',
   /** face-tongue-sweat.svg */
-  FaceTongueSweat = "face-tongue-sweat",
+  FaceTongueSweat = 'face-tongue-sweat',
   /** face-unamused.svg */
-  FaceUnamused = "face-unamused",
+  FaceUnamused = 'face-unamused',
   /** face-viewfinder.svg */
-  FaceViewfinder = "face-viewfinder",
+  FaceViewfinder = 'face-viewfinder',
   /** face-vomit.svg */
-  FaceVomit = "face-vomit",
+  FaceVomit = 'face-vomit',
   /** face-weary.svg */
-  FaceWeary = "face-weary",
+  FaceWeary = 'face-weary',
   /** face-woozy.svg */
-  FaceWoozy = "face-woozy",
+  FaceWoozy = 'face-woozy',
   /** face-worried.svg */
-  FaceWorried = "face-worried",
+  FaceWorried = 'face-worried',
   /** face-zany.svg */
-  FaceZany = "face-zany",
+  FaceZany = 'face-zany',
   /** face-zipper.svg */
-  FaceZipper = "face-zipper",
+  FaceZipper = 'face-zipper',
   /** falafel.svg */
-  Falafel = "falafel",
+  Falafel = 'falafel',
   /** family-dress.svg */
-  FamilyDress = "family-dress",
+  FamilyDress = 'family-dress',
   /** family-pants.svg */
-  FamilyPants = "family-pants",
+  FamilyPants = 'family-pants',
   /** family.svg */
-  Family = "family",
+  Family = 'family',
   /** fan-table.svg */
-  FanTable = "fan-table",
+  FanTable = 'fan-table',
   /** fan.svg */
-  Fan = "fan",
+  Fan = 'fan',
   /** farm.svg */
-  Farm = "farm",
+  Farm = 'farm',
   /** faucet-drip.svg */
-  FaucetDrip = "faucet-drip",
+  FaucetDrip = 'faucet-drip',
   /** faucet.svg */
-  Faucet = "faucet",
+  Faucet = 'faucet',
   /** fax.svg */
-  Fax = "fax",
+  Fax = 'fax',
   /** feather-pointed.svg */
-  FeatherPointed = "feather-pointed",
+  FeatherPointed = 'feather-pointed',
   /** feather.svg */
-  Feather = "feather",
+  Feather = 'feather',
   /** fence.svg */
-  Fence = "fence",
+  Fence = 'fence',
   /** ferris-wheel.svg */
-  FerrisWheel = "ferris-wheel",
+  FerrisWheel = 'ferris-wheel',
   /** ferry.svg */
-  Ferry = "ferry",
+  Ferry = 'ferry',
   /** field-hockey-stick-ball.svg */
-  FieldHockeyStickBall = "field-hockey-stick-ball",
+  FieldHockeyStickBall = 'field-hockey-stick-ball',
   /** file-arrow-down.svg */
-  FileArrowDown = "file-arrow-down",
+  FileArrowDown = 'file-arrow-down',
   /** file-arrow-up.svg */
-  FileArrowUp = "file-arrow-up",
+  FileArrowUp = 'file-arrow-up',
   /** file-audio.svg */
-  FileAudio = "file-audio",
+  FileAudio = 'file-audio',
   /** file-binary.svg */
-  FileBinary = "file-binary",
+  FileBinary = 'file-binary',
   /** file-certificate.svg */
-  FileCertificate = "file-certificate",
+  FileCertificate = 'file-certificate',
   /** file-chart-column.svg */
-  FileChartColumn = "file-chart-column",
+  FileChartColumn = 'file-chart-column',
   /** file-chart-pie.svg */
-  FileChartPie = "file-chart-pie",
+  FileChartPie = 'file-chart-pie',
   /** file-check.svg */
-  FileCheck = "file-check",
+  FileCheck = 'file-check',
   /** file-circle-check.svg */
-  FileCircleCheck = "file-circle-check",
+  FileCircleCheck = 'file-circle-check',
   /** file-circle-exclamation.svg */
-  FileCircleExclamation = "file-circle-exclamation",
+  FileCircleExclamation = 'file-circle-exclamation',
   /** file-circle-info.svg */
-  FileCircleInfo = "file-circle-info",
+  FileCircleInfo = 'file-circle-info',
   /** file-circle-minus.svg */
-  FileCircleMinus = "file-circle-minus",
+  FileCircleMinus = 'file-circle-minus',
   /** file-circle-plus.svg */
-  FileCirclePlus = "file-circle-plus",
+  FileCirclePlus = 'file-circle-plus',
   /** file-circle-question.svg */
-  FileCircleQuestion = "file-circle-question",
+  FileCircleQuestion = 'file-circle-question',
   /** file-circle-xmark.svg */
-  FileCircleXmark = "file-circle-xmark",
+  FileCircleXmark = 'file-circle-xmark',
   /** file-code.svg */
-  FileCode = "file-code",
+  FileCode = 'file-code',
   /** file-contract.svg */
-  FileContract = "file-contract",
+  FileContract = 'file-contract',
   /** file-csv.svg */
-  FileCsv = "file-csv",
+  FileCsv = 'file-csv',
   /** file-dashed-line.svg */
-  FileDashedLine = "file-dashed-line",
+  FileDashedLine = 'file-dashed-line',
   /** file-doc.svg */
-  FileDoc = "file-doc",
+  FileDoc = 'file-doc',
   /** file-eps.svg */
-  FileEps = "file-eps",
+  FileEps = 'file-eps',
   /** file-excel.svg */
-  FileExcel = "file-excel",
+  FileExcel = 'file-excel',
   /** file-exclamation.svg */
-  FileExclamation = "file-exclamation",
+  FileExclamation = 'file-exclamation',
   /** file-export.svg */
-  FileExport = "file-export",
+  FileExport = 'file-export',
   /** file-gif.svg */
-  FileGif = "file-gif",
+  FileGif = 'file-gif',
   /** file-heart.svg */
-  FileHeart = "file-heart",
+  FileHeart = 'file-heart',
   /** file-image.svg */
-  FileImage = "file-image",
+  FileImage = 'file-image',
   /** file-import.svg */
-  FileImport = "file-import",
+  FileImport = 'file-import',
   /** file-invoice-dollar.svg */
-  FileInvoiceDollar = "file-invoice-dollar",
+  FileInvoiceDollar = 'file-invoice-dollar',
   /** file-invoice.svg */
-  FileInvoice = "file-invoice",
+  FileInvoice = 'file-invoice',
   /** file-jpg.svg */
-  FileJpg = "file-jpg",
+  FileJpg = 'file-jpg',
   /** file-lines.svg */
-  FileLines = "file-lines",
+  FileLines = 'file-lines',
   /** file-lock.svg */
-  FileLock = "file-lock",
+  FileLock = 'file-lock',
   /** file-magnifying-glass.svg */
-  FileMagnifyingGlass = "file-magnifying-glass",
+  FileMagnifyingGlass = 'file-magnifying-glass',
   /** file-medical.svg */
-  FileMedical = "file-medical",
+  FileMedical = 'file-medical',
   /** file-minus.svg */
-  FileMinus = "file-minus",
+  FileMinus = 'file-minus',
   /** file-mov.svg */
-  FileMov = "file-mov",
+  FileMov = 'file-mov',
   /** file-mp3.svg */
-  FileMp3 = "file-mp3",
+  FileMp3 = 'file-mp3',
   /** file-mp4.svg */
-  FileMp4 = "file-mp4",
+  FileMp4 = 'file-mp4',
   /** file-music.svg */
-  FileMusic = "file-music",
+  FileMusic = 'file-music',
   /** file-pdf.svg */
-  FilePdf = "file-pdf",
+  FilePdf = 'file-pdf',
   /** file-pen.svg */
-  FilePen = "file-pen",
+  FilePen = 'file-pen',
   /** file-plus-minus.svg */
-  FilePlusMinus = "file-plus-minus",
+  FilePlusMinus = 'file-plus-minus',
   /** file-plus.svg */
-  FilePlus = "file-plus",
+  FilePlus = 'file-plus',
   /** file-png.svg */
-  FilePng = "file-png",
+  FilePng = 'file-png',
   /** file-powerpoint.svg */
-  FilePowerpoint = "file-powerpoint",
+  FilePowerpoint = 'file-powerpoint',
   /** file-ppt.svg */
-  FilePpt = "file-ppt",
+  FilePpt = 'file-ppt',
   /** file-prescription.svg */
-  FilePrescription = "file-prescription",
+  FilePrescription = 'file-prescription',
   /** file-shield.svg */
-  FileShield = "file-shield",
+  FileShield = 'file-shield',
   /** file-signature.svg */
-  FileSignature = "file-signature",
+  FileSignature = 'file-signature',
   /** file-slash.svg */
-  FileSlash = "file-slash",
+  FileSlash = 'file-slash',
   /** file-spreadsheet.svg */
-  FileSpreadsheet = "file-spreadsheet",
+  FileSpreadsheet = 'file-spreadsheet',
   /** file-svg.svg */
-  FileSvg = "file-svg",
+  FileSvg = 'file-svg',
   /** file-user.svg */
-  FileUser = "file-user",
+  FileUser = 'file-user',
   /** file-vector.svg */
-  FileVector = "file-vector",
+  FileVector = 'file-vector',
   /** file-video.svg */
-  FileVideo = "file-video",
+  FileVideo = 'file-video',
   /** file-waveform.svg */
-  FileWaveform = "file-waveform",
+  FileWaveform = 'file-waveform',
   /** file-word.svg */
-  FileWord = "file-word",
+  FileWord = 'file-word',
   /** file-xls.svg */
-  FileXls = "file-xls",
+  FileXls = 'file-xls',
   /** file-xmark.svg */
-  FileXmark = "file-xmark",
+  FileXmark = 'file-xmark',
   /** file-xml.svg */
-  FileXml = "file-xml",
+  FileXml = 'file-xml',
   /** file-zip.svg */
-  FileZip = "file-zip",
+  FileZip = 'file-zip',
   /** file-zipper.svg */
-  FileZipper = "file-zipper",
+  FileZipper = 'file-zipper',
   /** file.svg */
-  File = "file",
+  File = 'file',
   /** files-medical.svg */
-  FilesMedical = "files-medical",
+  FilesMedical = 'files-medical',
   /** files.svg */
-  Files = "files",
+  Files = 'files',
   /** fill-drip.svg */
-  FillDrip = "fill-drip",
+  FillDrip = 'fill-drip',
   /** fill.svg */
-  Fill = "fill",
+  Fill = 'fill',
   /** film-canister.svg */
-  FilmCanister = "film-canister",
+  FilmCanister = 'film-canister',
   /** film-simple.svg */
-  FilmSimple = "film-simple",
+  FilmSimple = 'film-simple',
   /** film-slash.svg */
-  FilmSlash = "film-slash",
+  FilmSlash = 'film-slash',
   /** film.svg */
-  Film = "film",
+  Film = 'film',
   /** films.svg */
-  Films = "films",
+  Films = 'films',
   /** filter-circle-dollar.svg */
-  FilterCircleDollar = "filter-circle-dollar",
+  FilterCircleDollar = 'filter-circle-dollar',
   /** filter-circle-xmark.svg */
-  FilterCircleXmark = "filter-circle-xmark",
+  FilterCircleXmark = 'filter-circle-xmark',
   /** filter-list.svg */
-  FilterList = "filter-list",
+  FilterList = 'filter-list',
   /** filter-slash.svg */
-  FilterSlash = "filter-slash",
+  FilterSlash = 'filter-slash',
   /** filter.svg */
-  Filter = "filter",
+  Filter = 'filter',
   /** filters.svg */
-  Filters = "filters",
+  Filters = 'filters',
   /** fingerprint.svg */
-  Fingerprint = "fingerprint",
+  Fingerprint = 'fingerprint',
   /** fire-burner.svg */
-  FireBurner = "fire-burner",
+  FireBurner = 'fire-burner',
   /** fire-extinguisher.svg */
-  FireExtinguisher = "fire-extinguisher",
+  FireExtinguisher = 'fire-extinguisher',
   /** fire-flame-curved.svg */
-  FireFlameCurved = "fire-flame-curved",
+  FireFlameCurved = 'fire-flame-curved',
   /** fire-flame-simple.svg */
-  FireFlameSimple = "fire-flame-simple",
+  FireFlameSimple = 'fire-flame-simple',
   /** fire-flame.svg */
-  FireFlame = "fire-flame",
+  FireFlame = 'fire-flame',
   /** fire-hydrant.svg */
-  FireHydrant = "fire-hydrant",
+  FireHydrant = 'fire-hydrant',
   /** fire-smoke.svg */
-  FireSmoke = "fire-smoke",
+  FireSmoke = 'fire-smoke',
   /** fire.svg */
-  Fire = "fire",
+  Fire = 'fire',
   /** fireplace.svg */
-  Fireplace = "fireplace",
+  Fireplace = 'fireplace',
   /** fish-bones.svg */
-  FishBones = "fish-bones",
+  FishBones = 'fish-bones',
   /** fish-cooked.svg */
-  FishCooked = "fish-cooked",
+  FishCooked = 'fish-cooked',
   /** fish-fins.svg */
-  FishFins = "fish-fins",
+  FishFins = 'fish-fins',
   /** fish.svg */
-  Fish = "fish",
+  Fish = 'fish',
   /** fishing-rod.svg */
-  FishingRod = "fishing-rod",
+  FishingRod = 'fishing-rod',
   /** flag-checkered.svg */
-  FlagCheckered = "flag-checkered",
+  FlagCheckered = 'flag-checkered',
   /** flag-pennant.svg */
-  FlagPennant = "flag-pennant",
+  FlagPennant = 'flag-pennant',
   /** flag-swallowtail.svg */
-  FlagSwallowtail = "flag-swallowtail",
+  FlagSwallowtail = 'flag-swallowtail',
   /** flag-usa.svg */
-  FlagUsa = "flag-usa",
+  FlagUsa = 'flag-usa',
   /** flag.svg */
-  Flag = "flag",
+  Flag = 'flag',
   /** flashlight.svg */
-  Flashlight = "flashlight",
+  Flashlight = 'flashlight',
   /** flask-gear.svg */
-  FlaskGear = "flask-gear",
+  FlaskGear = 'flask-gear',
   /** flask-round-poison.svg */
-  FlaskRoundPoison = "flask-round-poison",
+  FlaskRoundPoison = 'flask-round-poison',
   /** flask-round-potion.svg */
-  FlaskRoundPotion = "flask-round-potion",
+  FlaskRoundPotion = 'flask-round-potion',
   /** flask-vial.svg */
-  FlaskVial = "flask-vial",
+  FlaskVial = 'flask-vial',
   /** flask.svg */
-  Flask = "flask",
+  Flask = 'flask',
   /** flatbread-stuffed.svg */
-  FlatbreadStuffed = "flatbread-stuffed",
+  FlatbreadStuffed = 'flatbread-stuffed',
   /** flatbread.svg */
-  Flatbread = "flatbread",
+  Flatbread = 'flatbread',
   /** floppy-disk-circle-arrow-right.svg */
-  FloppyDiskCircleArrowRight = "floppy-disk-circle-arrow-right",
+  FloppyDiskCircleArrowRight = 'floppy-disk-circle-arrow-right',
   /** floppy-disk-circle-xmark.svg */
-  FloppyDiskCircleXmark = "floppy-disk-circle-xmark",
+  FloppyDiskCircleXmark = 'floppy-disk-circle-xmark',
   /** floppy-disk-pen.svg */
-  FloppyDiskPen = "floppy-disk-pen",
+  FloppyDiskPen = 'floppy-disk-pen',
   /** floppy-disk.svg */
-  FloppyDisk = "floppy-disk",
+  FloppyDisk = 'floppy-disk',
   /** floppy-disks.svg */
-  FloppyDisks = "floppy-disks",
+  FloppyDisks = 'floppy-disks',
   /** florin-sign.svg */
-  FlorinSign = "florin-sign",
+  FlorinSign = 'florin-sign',
   /** flower-daffodil.svg */
-  FlowerDaffodil = "flower-daffodil",
+  FlowerDaffodil = 'flower-daffodil',
   /** flower-tulip.svg */
-  FlowerTulip = "flower-tulip",
+  FlowerTulip = 'flower-tulip',
   /** flower.svg */
-  Flower = "flower",
+  Flower = 'flower',
   /** flute.svg */
-  Flute = "flute",
+  Flute = 'flute',
   /** flux-capacitor.svg */
-  FluxCapacitor = "flux-capacitor",
+  FluxCapacitor = 'flux-capacitor',
   /** flying-disc.svg */
-  FlyingDisc = "flying-disc",
+  FlyingDisc = 'flying-disc',
   /** folder-arrow-down.svg */
-  FolderArrowDown = "folder-arrow-down",
+  FolderArrowDown = 'folder-arrow-down',
   /** folder-arrow-up.svg */
-  FolderArrowUp = "folder-arrow-up",
+  FolderArrowUp = 'folder-arrow-up',
   /** folder-bookmark.svg */
-  FolderBookmark = "folder-bookmark",
+  FolderBookmark = 'folder-bookmark',
   /** folder-check.svg */
-  FolderCheck = "folder-check",
+  FolderCheck = 'folder-check',
   /** folder-closed.svg */
-  FolderClosed = "folder-closed",
+  FolderClosed = 'folder-closed',
   /** folder-gear.svg */
-  FolderGear = "folder-gear",
+  FolderGear = 'folder-gear',
   /** folder-grid.svg */
-  FolderGrid = "folder-grid",
+  FolderGrid = 'folder-grid',
   /** folder-heart.svg */
-  FolderHeart = "folder-heart",
+  FolderHeart = 'folder-heart',
   /** folder-image.svg */
-  FolderImage = "folder-image",
+  FolderImage = 'folder-image',
   /** folder-magnifying-glass.svg */
-  FolderMagnifyingGlass = "folder-magnifying-glass",
+  FolderMagnifyingGlass = 'folder-magnifying-glass',
   /** folder-medical.svg */
-  FolderMedical = "folder-medical",
+  FolderMedical = 'folder-medical',
   /** folder-minus.svg */
-  FolderMinus = "folder-minus",
+  FolderMinus = 'folder-minus',
   /** folder-music.svg */
-  FolderMusic = "folder-music",
+  FolderMusic = 'folder-music',
   /** folder-open.svg */
-  FolderOpen = "folder-open",
+  FolderOpen = 'folder-open',
   /** folder-plus.svg */
-  FolderPlus = "folder-plus",
+  FolderPlus = 'folder-plus',
   /** folder-tree.svg */
-  FolderTree = "folder-tree",
+  FolderTree = 'folder-tree',
   /** folder-user.svg */
-  FolderUser = "folder-user",
+  FolderUser = 'folder-user',
   /** folder-xmark.svg */
-  FolderXmark = "folder-xmark",
+  FolderXmark = 'folder-xmark',
   /** folder.svg */
-  Folder = "folder",
+  Folder = 'folder',
   /** folders.svg */
-  Folders = "folders",
+  Folders = 'folders',
   /** fondue-pot.svg */
-  FonduePot = "fondue-pot",
+  FonduePot = 'fondue-pot',
   /** font-awesome.svg */
-  FontAwesome = "font-awesome",
+  FontAwesome = 'font-awesome',
   /** font-case.svg */
-  FontCase = "font-case",
+  FontCase = 'font-case',
   /** font.svg */
-  Font = "font",
+  Font = 'font',
   /** football-helmet.svg */
-  FootballHelmet = "football-helmet",
+  FootballHelmet = 'football-helmet',
   /** football.svg */
-  Football = "football",
+  Football = 'football',
   /** fork-knife.svg */
-  ForkKnife = "fork-knife",
+  ForkKnife = 'fork-knife',
   /** fork.svg */
-  Fork = "fork",
+  Fork = 'fork',
   /** forklift.svg */
-  Forklift = "forklift",
+  Forklift = 'forklift',
   /** fort.svg */
-  Fort = "fort",
+  Fort = 'fort',
   /** forward-fast.svg */
-  ForwardFast = "forward-fast",
+  ForwardFast = 'forward-fast',
   /** forward-step.svg */
-  ForwardStep = "forward-step",
+  ForwardStep = 'forward-step',
   /** forward.svg */
-  Forward = "forward",
+  Forward = 'forward',
   /** frame.svg */
-  Frame = "frame",
+  Frame = 'frame',
   /** franc-sign.svg */
-  FrancSign = "franc-sign",
+  FrancSign = 'franc-sign',
   /** french-fries.svg */
-  FrenchFries = "french-fries",
+  FrenchFries = 'french-fries',
   /** frog.svg */
-  Frog = "frog",
+  Frog = 'frog',
   /** function.svg */
-  Function = "function",
+  Function = 'function',
   /** futbol.svg */
-  Futbol = "futbol",
+  Futbol = 'futbol',
   /** g.svg */
-  G = "g",
+  G = 'g',
   /** galaxy.svg */
-  Galaxy = "galaxy",
+  Galaxy = 'galaxy',
   /** gallery-thumbnails.svg */
-  GalleryThumbnails = "gallery-thumbnails",
+  GalleryThumbnails = 'gallery-thumbnails',
   /** game-board-simple.svg */
-  GameBoardSimple = "game-board-simple",
+  GameBoardSimple = 'game-board-simple',
   /** game-board.svg */
-  GameBoard = "game-board",
+  GameBoard = 'game-board',
   /** game-console-handheld-crank.svg */
-  GameConsoleHandheldCrank = "game-console-handheld-crank",
+  GameConsoleHandheldCrank = 'game-console-handheld-crank',
   /** game-console-handheld.svg */
-  GameConsoleHandheld = "game-console-handheld",
+  GameConsoleHandheld = 'game-console-handheld',
   /** gamepad-modern.svg */
-  GamepadModern = "gamepad-modern",
+  GamepadModern = 'gamepad-modern',
   /** gamepad.svg */
-  Gamepad = "gamepad",
+  Gamepad = 'gamepad',
   /** garage-car.svg */
-  GarageCar = "garage-car",
+  GarageCar = 'garage-car',
   /** garage-open.svg */
-  GarageOpen = "garage-open",
+  GarageOpen = 'garage-open',
   /** garage.svg */
-  Garage = "garage",
+  Garage = 'garage',
   /** garlic.svg */
-  Garlic = "garlic",
+  Garlic = 'garlic',
   /** gas-pump-slash.svg */
-  GasPumpSlash = "gas-pump-slash",
+  GasPumpSlash = 'gas-pump-slash',
   /** gas-pump.svg */
-  GasPump = "gas-pump",
+  GasPump = 'gas-pump',
   /** gauge-circle-bolt.svg */
-  GaugeCircleBolt = "gauge-circle-bolt",
+  GaugeCircleBolt = 'gauge-circle-bolt',
   /** gauge-circle-minus.svg */
-  GaugeCircleMinus = "gauge-circle-minus",
+  GaugeCircleMinus = 'gauge-circle-minus',
   /** gauge-circle-plus.svg */
-  GaugeCirclePlus = "gauge-circle-plus",
+  GaugeCirclePlus = 'gauge-circle-plus',
   /** gauge-high.svg */
-  GaugeHigh = "gauge-high",
+  GaugeHigh = 'gauge-high',
   /** gauge-low.svg */
-  GaugeLow = "gauge-low",
+  GaugeLow = 'gauge-low',
   /** gauge-max.svg */
-  GaugeMax = "gauge-max",
+  GaugeMax = 'gauge-max',
   /** gauge-min.svg */
-  GaugeMin = "gauge-min",
+  GaugeMin = 'gauge-min',
   /** gauge-simple-high.svg */
-  GaugeSimpleHigh = "gauge-simple-high",
+  GaugeSimpleHigh = 'gauge-simple-high',
   /** gauge-simple-low.svg */
-  GaugeSimpleLow = "gauge-simple-low",
+  GaugeSimpleLow = 'gauge-simple-low',
   /** gauge-simple-max.svg */
-  GaugeSimpleMax = "gauge-simple-max",
+  GaugeSimpleMax = 'gauge-simple-max',
   /** gauge-simple-min.svg */
-  GaugeSimpleMin = "gauge-simple-min",
+  GaugeSimpleMin = 'gauge-simple-min',
   /** gauge-simple.svg */
-  GaugeSimple = "gauge-simple",
+  GaugeSimple = 'gauge-simple',
   /** gauge.svg */
-  Gauge = "gauge",
+  Gauge = 'gauge',
   /** gavel.svg */
-  Gavel = "gavel",
+  Gavel = 'gavel',
   /** gear-code.svg */
-  GearCode = "gear-code",
+  GearCode = 'gear-code',
   /** gear-complex-code.svg */
-  GearComplexCode = "gear-complex-code",
+  GearComplexCode = 'gear-complex-code',
   /** gear-complex.svg */
-  GearComplex = "gear-complex",
+  GearComplex = 'gear-complex',
   /** gear.svg */
-  Gear = "gear",
+  Gear = 'gear',
   /** gears.svg */
-  Gears = "gears",
+  Gears = 'gears',
   /** gem.svg */
-  Gem = "gem",
+  Gem = 'gem',
   /** genderless.svg */
-  Genderless = "genderless",
+  Genderless = 'genderless',
   /** ghost.svg */
-  Ghost = "ghost",
+  Ghost = 'ghost',
   /** gif.svg */
-  Gif = "gif",
+  Gif = 'gif',
   /** gift-card.svg */
-  GiftCard = "gift-card",
+  GiftCard = 'gift-card',
   /** gift.svg */
-  Gift = "gift",
+  Gift = 'gift',
   /** gifts.svg */
-  Gifts = "gifts",
+  Gifts = 'gifts',
   /** gingerbread-man.svg */
-  GingerbreadMan = "gingerbread-man",
+  GingerbreadMan = 'gingerbread-man',
   /** glass-citrus.svg */
-  GlassCitrus = "glass-citrus",
+  GlassCitrus = 'glass-citrus',
   /** glass-empty.svg */
-  GlassEmpty = "glass-empty",
+  GlassEmpty = 'glass-empty',
   /** glass-half.svg */
-  GlassHalf = "glass-half",
+  GlassHalf = 'glass-half',
   /** glass-water-droplet.svg */
-  GlassWaterDroplet = "glass-water-droplet",
+  GlassWaterDroplet = 'glass-water-droplet',
   /** glass-water.svg */
-  GlassWater = "glass-water",
+  GlassWater = 'glass-water',
   /** glass.svg */
-  Glass = "glass",
+  Glass = 'glass',
   /** glasses-round.svg */
-  GlassesRound = "glasses-round",
+  GlassesRound = 'glasses-round',
   /** glasses.svg */
-  Glasses = "glasses",
+  Glasses = 'glasses',
   /** globe-pointer.svg */
-  GlobePointer = "globe-pointer",
+  GlobePointer = 'globe-pointer',
   /** globe-snow.svg */
-  GlobeSnow = "globe-snow",
+  GlobeSnow = 'globe-snow',
   /** globe-stand.svg */
-  GlobeStand = "globe-stand",
+  GlobeStand = 'globe-stand',
   /** globe.svg */
-  Globe = "globe",
+  Globe = 'globe',
   /** goal-net.svg */
-  GoalNet = "goal-net",
+  GoalNet = 'goal-net',
   /** golf-ball-tee.svg */
-  GolfBallTee = "golf-ball-tee",
+  GolfBallTee = 'golf-ball-tee',
   /** golf-club.svg */
-  GolfClub = "golf-club",
+  GolfClub = 'golf-club',
   /** golf-flag-hole.svg */
-  GolfFlagHole = "golf-flag-hole",
+  GolfFlagHole = 'golf-flag-hole',
   /** gopuram.svg */
-  Gopuram = "gopuram",
+  Gopuram = 'gopuram',
   /** graduation-cap.svg */
-  GraduationCap = "graduation-cap",
+  GraduationCap = 'graduation-cap',
   /** gramophone.svg */
-  Gramophone = "gramophone",
+  Gramophone = 'gramophone',
   /** grapes.svg */
-  Grapes = "grapes",
+  Grapes = 'grapes',
   /** grate-droplet.svg */
-  GrateDroplet = "grate-droplet",
+  GrateDroplet = 'grate-droplet',
   /** grate.svg */
-  Grate = "grate",
+  Grate = 'grate',
   /** greater-than-equal.svg */
-  GreaterThanEqual = "greater-than-equal",
+  GreaterThanEqual = 'greater-than-equal',
   /** greater-than.svg */
-  GreaterThan = "greater-than",
+  GreaterThan = 'greater-than',
   /** grid-2-plus.svg */
-  Grid2Plus = "grid-2-plus",
+  Grid2Plus = 'grid-2-plus',
   /** grid-2.svg */
-  Grid2 = "grid-2",
+  Grid2 = 'grid-2',
   /** grid-4.svg */
-  Grid4 = "grid-4",
+  Grid4 = 'grid-4',
   /** grid-5.svg */
-  Grid5 = "grid-5",
+  Grid5 = 'grid-5',
   /** grid-dividers.svg */
-  GridDividers = "grid-dividers",
+  GridDividers = 'grid-dividers',
   /** grid-horizontal.svg */
-  GridHorizontal = "grid-horizontal",
+  GridHorizontal = 'grid-horizontal',
   /** grid-round-2-plus.svg */
-  GridRound2Plus = "grid-round-2-plus",
+  GridRound2Plus = 'grid-round-2-plus',
   /** grid-round-2.svg */
-  GridRound2 = "grid-round-2",
+  GridRound2 = 'grid-round-2',
   /** grid-round-4.svg */
-  GridRound4 = "grid-round-4",
+  GridRound4 = 'grid-round-4',
   /** grid-round-5.svg */
-  GridRound5 = "grid-round-5",
+  GridRound5 = 'grid-round-5',
   /** grid-round.svg */
-  GridRound = "grid-round",
+  GridRound = 'grid-round',
   /** grid.svg */
-  Grid = "grid",
+  Grid = 'grid',
   /** grill-fire.svg */
-  GrillFire = "grill-fire",
+  GrillFire = 'grill-fire',
   /** grill-hot.svg */
-  GrillHot = "grill-hot",
+  GrillHot = 'grill-hot',
   /** grill.svg */
-  Grill = "grill",
+  Grill = 'grill',
   /** grip-dots-vertical.svg */
-  GripDotsVertical = "grip-dots-vertical",
+  GripDotsVertical = 'grip-dots-vertical',
   /** grip-dots.svg */
-  GripDots = "grip-dots",
+  GripDots = 'grip-dots',
   /** grip-lines-vertical.svg */
-  GripLinesVertical = "grip-lines-vertical",
+  GripLinesVertical = 'grip-lines-vertical',
   /** grip-lines.svg */
-  GripLines = "grip-lines",
+  GripLines = 'grip-lines',
   /** grip-vertical.svg */
-  GripVertical = "grip-vertical",
+  GripVertical = 'grip-vertical',
   /** grip.svg */
-  Grip = "grip",
+  Grip = 'grip',
   /** group-arrows-rotate.svg */
-  GroupArrowsRotate = "group-arrows-rotate",
+  GroupArrowsRotate = 'group-arrows-rotate',
   /** guarani-sign.svg */
-  GuaraniSign = "guarani-sign",
+  GuaraniSign = 'guarani-sign',
   /** guitar-electric.svg */
-  GuitarElectric = "guitar-electric",
+  GuitarElectric = 'guitar-electric',
   /** guitar.svg */
-  Guitar = "guitar",
+  Guitar = 'guitar',
   /** guitars.svg */
-  Guitars = "guitars",
+  Guitars = 'guitars',
   /** gun-slash.svg */
-  GunSlash = "gun-slash",
+  GunSlash = 'gun-slash',
   /** gun-squirt.svg */
-  GunSquirt = "gun-squirt",
+  GunSquirt = 'gun-squirt',
   /** gun.svg */
-  Gun = "gun",
+  Gun = 'gun',
   /** h.svg */
-  H = "h",
+  H = 'h',
   /** h1.svg */
-  H1 = "h1",
+  H1 = 'h1',
   /** h2.svg */
-  H2 = "h2",
+  H2 = 'h2',
   /** h3.svg */
-  H3 = "h3",
+  H3 = 'h3',
   /** h4.svg */
-  H4 = "h4",
+  H4 = 'h4',
   /** h5.svg */
-  H5 = "h5",
+  H5 = 'h5',
   /** h6.svg */
-  H6 = "h6",
+  H6 = 'h6',
   /** hammer-brush.svg */
-  HammerBrush = "hammer-brush",
+  HammerBrush = 'hammer-brush',
   /** hammer-crash.svg */
-  HammerCrash = "hammer-crash",
+  HammerCrash = 'hammer-crash',
   /** hammer-war.svg */
-  HammerWar = "hammer-war",
+  HammerWar = 'hammer-war',
   /** hammer.svg */
-  Hammer = "hammer",
+  Hammer = 'hammer',
   /** hamsa.svg */
-  Hamsa = "hamsa",
+  Hamsa = 'hamsa',
   /** hand-back-fist.svg */
-  HandBackFist = "hand-back-fist",
+  HandBackFist = 'hand-back-fist',
   /** hand-back-point-down.svg */
-  HandBackPointDown = "hand-back-point-down",
+  HandBackPointDown = 'hand-back-point-down',
   /** hand-back-point-left.svg */
-  HandBackPointLeft = "hand-back-point-left",
+  HandBackPointLeft = 'hand-back-point-left',
   /** hand-back-point-ribbon.svg */
-  HandBackPointRibbon = "hand-back-point-ribbon",
+  HandBackPointRibbon = 'hand-back-point-ribbon',
   /** hand-back-point-right.svg */
-  HandBackPointRight = "hand-back-point-right",
+  HandBackPointRight = 'hand-back-point-right',
   /** hand-back-point-up.svg */
-  HandBackPointUp = "hand-back-point-up",
+  HandBackPointUp = 'hand-back-point-up',
   /** hand-dots.svg */
-  HandDots = "hand-dots",
+  HandDots = 'hand-dots',
   /** hand-fingers-crossed.svg */
-  HandFingersCrossed = "hand-fingers-crossed",
+  HandFingersCrossed = 'hand-fingers-crossed',
   /** hand-fist.svg */
-  HandFist = "hand-fist",
+  HandFist = 'hand-fist',
   /** hand-heart.svg */
-  HandHeart = "hand-heart",
+  HandHeart = 'hand-heart',
   /** hand-holding-box.svg */
-  HandHoldingBox = "hand-holding-box",
+  HandHoldingBox = 'hand-holding-box',
   /** hand-holding-circle-dollar.svg */
-  HandHoldingCircleDollar = "hand-holding-circle-dollar",
+  HandHoldingCircleDollar = 'hand-holding-circle-dollar',
   /** hand-holding-dollar.svg */
-  HandHoldingDollar = "hand-holding-dollar",
+  HandHoldingDollar = 'hand-holding-dollar',
   /** hand-holding-droplet.svg */
-  HandHoldingDroplet = "hand-holding-droplet",
+  HandHoldingDroplet = 'hand-holding-droplet',
   /** hand-holding-hand.svg */
-  HandHoldingHand = "hand-holding-hand",
+  HandHoldingHand = 'hand-holding-hand',
   /** hand-holding-heart.svg */
-  HandHoldingHeart = "hand-holding-heart",
+  HandHoldingHeart = 'hand-holding-heart',
   /** hand-holding-magic.svg */
-  HandHoldingMagic = "hand-holding-magic",
+  HandHoldingMagic = 'hand-holding-magic',
   /** hand-holding-medical.svg */
-  HandHoldingMedical = "hand-holding-medical",
+  HandHoldingMedical = 'hand-holding-medical',
   /** hand-holding-seedling.svg */
-  HandHoldingSeedling = "hand-holding-seedling",
+  HandHoldingSeedling = 'hand-holding-seedling',
   /** hand-holding-skull.svg */
-  HandHoldingSkull = "hand-holding-skull",
+  HandHoldingSkull = 'hand-holding-skull',
   /** hand-holding.svg */
-  HandHolding = "hand-holding",
+  HandHolding = 'hand-holding',
   /** hand-horns.svg */
-  HandHorns = "hand-horns",
+  HandHorns = 'hand-horns',
   /** hand-lizard.svg */
-  HandLizard = "hand-lizard",
+  HandLizard = 'hand-lizard',
   /** hand-love.svg */
-  HandLove = "hand-love",
+  HandLove = 'hand-love',
   /** hand-middle-finger.svg */
-  HandMiddleFinger = "hand-middle-finger",
+  HandMiddleFinger = 'hand-middle-finger',
   /** hand-peace.svg */
-  HandPeace = "hand-peace",
+  HandPeace = 'hand-peace',
   /** hand-point-down.svg */
-  HandPointDown = "hand-point-down",
+  HandPointDown = 'hand-point-down',
   /** hand-point-left.svg */
-  HandPointLeft = "hand-point-left",
+  HandPointLeft = 'hand-point-left',
   /** hand-point-ribbon.svg */
-  HandPointRibbon = "hand-point-ribbon",
+  HandPointRibbon = 'hand-point-ribbon',
   /** hand-point-right.svg */
-  HandPointRight = "hand-point-right",
+  HandPointRight = 'hand-point-right',
   /** hand-point-up.svg */
-  HandPointUp = "hand-point-up",
+  HandPointUp = 'hand-point-up',
   /** hand-pointer.svg */
-  HandPointer = "hand-pointer",
+  HandPointer = 'hand-pointer',
   /** hand-scissors.svg */
-  HandScissors = "hand-scissors",
+  HandScissors = 'hand-scissors',
   /** hand-sparkles.svg */
-  HandSparkles = "hand-sparkles",
+  HandSparkles = 'hand-sparkles',
   /** hand-spock.svg */
-  HandSpock = "hand-spock",
+  HandSpock = 'hand-spock',
   /** hand-wave.svg */
-  HandWave = "hand-wave",
+  HandWave = 'hand-wave',
   /** hand.svg */
-  Hand = "hand",
+  Hand = 'hand',
   /** handcuffs.svg */
-  Handcuffs = "handcuffs",
+  Handcuffs = 'handcuffs',
   /** hands-asl-interpreting.svg */
-  HandsAslInterpreting = "hands-asl-interpreting",
+  HandsAslInterpreting = 'hands-asl-interpreting',
   /** hands-bound.svg */
-  HandsBound = "hands-bound",
+  HandsBound = 'hands-bound',
   /** hands-bubbles.svg */
-  HandsBubbles = "hands-bubbles",
+  HandsBubbles = 'hands-bubbles',
   /** hands-clapping.svg */
-  HandsClapping = "hands-clapping",
+  HandsClapping = 'hands-clapping',
   /** hands-holding-child.svg */
-  HandsHoldingChild = "hands-holding-child",
+  HandsHoldingChild = 'hands-holding-child',
   /** hands-holding-circle.svg */
-  HandsHoldingCircle = "hands-holding-circle",
+  HandsHoldingCircle = 'hands-holding-circle',
   /** hands-holding-diamond.svg */
-  HandsHoldingDiamond = "hands-holding-diamond",
+  HandsHoldingDiamond = 'hands-holding-diamond',
   /** hands-holding-dollar.svg */
-  HandsHoldingDollar = "hands-holding-dollar",
+  HandsHoldingDollar = 'hands-holding-dollar',
   /** hands-holding-heart.svg */
-  HandsHoldingHeart = "hands-holding-heart",
+  HandsHoldingHeart = 'hands-holding-heart',
   /** hands-holding.svg */
-  HandsHolding = "hands-holding",
+  HandsHolding = 'hands-holding',
   /** hands-praying.svg */
-  HandsPraying = "hands-praying",
+  HandsPraying = 'hands-praying',
   /** hands.svg */
-  Hands = "hands",
+  Hands = 'hands',
   /** handshake-angle.svg */
-  HandshakeAngle = "handshake-angle",
+  HandshakeAngle = 'handshake-angle',
   /** handshake-simple-slash.svg */
-  HandshakeSimpleSlash = "handshake-simple-slash",
+  HandshakeSimpleSlash = 'handshake-simple-slash',
   /** handshake-simple.svg */
-  HandshakeSimple = "handshake-simple",
+  HandshakeSimple = 'handshake-simple',
   /** handshake-slash.svg */
-  HandshakeSlash = "handshake-slash",
+  HandshakeSlash = 'handshake-slash',
   /** handshake.svg */
-  Handshake = "handshake",
+  Handshake = 'handshake',
   /** hanukiah.svg */
-  Hanukiah = "hanukiah",
+  Hanukiah = 'hanukiah',
   /** hard-drive.svg */
-  HardDrive = "hard-drive",
+  HardDrive = 'hard-drive',
   /** hashtag-lock.svg */
-  HashtagLock = "hashtag-lock",
+  HashtagLock = 'hashtag-lock',
   /** hashtag.svg */
-  Hashtag = "hashtag",
+  Hashtag = 'hashtag',
   /** hat-beach.svg */
-  HatBeach = "hat-beach",
+  HatBeach = 'hat-beach',
   /** hat-chef.svg */
-  HatChef = "hat-chef",
+  HatChef = 'hat-chef',
   /** hat-cowboy-side.svg */
-  HatCowboySide = "hat-cowboy-side",
+  HatCowboySide = 'hat-cowboy-side',
   /** hat-cowboy.svg */
-  HatCowboy = "hat-cowboy",
+  HatCowboy = 'hat-cowboy',
   /** hat-santa.svg */
-  HatSanta = "hat-santa",
+  HatSanta = 'hat-santa',
   /** hat-winter.svg */
-  HatWinter = "hat-winter",
+  HatWinter = 'hat-winter',
   /** hat-witch.svg */
-  HatWitch = "hat-witch",
+  HatWitch = 'hat-witch',
   /** hat-wizard.svg */
-  HatWizard = "hat-wizard",
+  HatWizard = 'hat-wizard',
   /** head-side-brain.svg */
-  HeadSideBrain = "head-side-brain",
+  HeadSideBrain = 'head-side-brain',
   /** head-side-cough-slash.svg */
-  HeadSideCoughSlash = "head-side-cough-slash",
+  HeadSideCoughSlash = 'head-side-cough-slash',
   /** head-side-cough.svg */
-  HeadSideCough = "head-side-cough",
+  HeadSideCough = 'head-side-cough',
   /** head-side-gear.svg */
-  HeadSideGear = "head-side-gear",
+  HeadSideGear = 'head-side-gear',
   /** head-side-goggles.svg */
-  HeadSideGoggles = "head-side-goggles",
+  HeadSideGoggles = 'head-side-goggles',
   /** head-side-headphones.svg */
-  HeadSideHeadphones = "head-side-headphones",
+  HeadSideHeadphones = 'head-side-headphones',
   /** head-side-heart.svg */
-  HeadSideHeart = "head-side-heart",
+  HeadSideHeart = 'head-side-heart',
   /** head-side-mask.svg */
-  HeadSideMask = "head-side-mask",
+  HeadSideMask = 'head-side-mask',
   /** head-side-medical.svg */
-  HeadSideMedical = "head-side-medical",
+  HeadSideMedical = 'head-side-medical',
   /** head-side-virus.svg */
-  HeadSideVirus = "head-side-virus",
+  HeadSideVirus = 'head-side-virus',
   /** head-side.svg */
-  HeadSide = "head-side",
+  HeadSide = 'head-side',
   /** heading.svg */
-  Heading = "heading",
+  Heading = 'heading',
   /** headphones-simple.svg */
-  HeadphonesSimple = "headphones-simple",
+  HeadphonesSimple = 'headphones-simple',
   /** headphones.svg */
-  Headphones = "headphones",
+  Headphones = 'headphones',
   /** headset.svg */
-  Headset = "headset",
+  Headset = 'headset',
   /** heart-circle-bolt.svg */
-  HeartCircleBolt = "heart-circle-bolt",
+  HeartCircleBolt = 'heart-circle-bolt',
   /** heart-circle-check.svg */
-  HeartCircleCheck = "heart-circle-check",
+  HeartCircleCheck = 'heart-circle-check',
   /** heart-circle-exclamation.svg */
-  HeartCircleExclamation = "heart-circle-exclamation",
+  HeartCircleExclamation = 'heart-circle-exclamation',
   /** heart-circle-minus.svg */
-  HeartCircleMinus = "heart-circle-minus",
+  HeartCircleMinus = 'heart-circle-minus',
   /** heart-circle-plus.svg */
-  HeartCirclePlus = "heart-circle-plus",
+  HeartCirclePlus = 'heart-circle-plus',
   /** heart-circle-xmark.svg */
-  HeartCircleXmark = "heart-circle-xmark",
+  HeartCircleXmark = 'heart-circle-xmark',
   /** heart-crack.svg */
-  HeartCrack = "heart-crack",
+  HeartCrack = 'heart-crack',
   /** heart-half-stroke.svg */
-  HeartHalfStroke = "heart-half-stroke",
+  HeartHalfStroke = 'heart-half-stroke',
   /** heart-half.svg */
-  HeartHalf = "heart-half",
+  HeartHalf = 'heart-half',
   /** heart-pulse.svg */
-  HeartPulse = "heart-pulse",
+  HeartPulse = 'heart-pulse',
   /** heart.svg */
-  Heart = "heart",
+  Heart = 'heart',
   /** heat.svg */
-  Heat = "heat",
+  Heat = 'heat',
   /** helicopter-symbol.svg */
-  HelicopterSymbol = "helicopter-symbol",
+  HelicopterSymbol = 'helicopter-symbol',
   /** helicopter.svg */
-  Helicopter = "helicopter",
+  Helicopter = 'helicopter',
   /** helmet-battle.svg */
-  HelmetBattle = "helmet-battle",
+  HelmetBattle = 'helmet-battle',
   /** helmet-safety.svg */
-  HelmetSafety = "helmet-safety",
+  HelmetSafety = 'helmet-safety',
   /** helmet-un.svg */
-  HelmetUn = "helmet-un",
+  HelmetUn = 'helmet-un',
   /** hexagon-check.svg */
-  HexagonCheck = "hexagon-check",
+  HexagonCheck = 'hexagon-check',
   /** hexagon-divide.svg */
-  HexagonDivide = "hexagon-divide",
+  HexagonDivide = 'hexagon-divide',
   /** hexagon-exclamation.svg */
-  HexagonExclamation = "hexagon-exclamation",
+  HexagonExclamation = 'hexagon-exclamation',
   /** hexagon-image.svg */
-  HexagonImage = "hexagon-image",
+  HexagonImage = 'hexagon-image',
   /** hexagon-minus.svg */
-  HexagonMinus = "hexagon-minus",
+  HexagonMinus = 'hexagon-minus',
   /** hexagon-plus.svg */
-  HexagonPlus = "hexagon-plus",
+  HexagonPlus = 'hexagon-plus',
   /** hexagon-vertical-nft-slanted.svg */
-  HexagonVerticalNftSlanted = "hexagon-vertical-nft-slanted",
+  HexagonVerticalNftSlanted = 'hexagon-vertical-nft-slanted',
   /** hexagon-vertical-nft.svg */
-  HexagonVerticalNft = "hexagon-vertical-nft",
+  HexagonVerticalNft = 'hexagon-vertical-nft',
   /** hexagon-xmark.svg */
-  HexagonXmark = "hexagon-xmark",
+  HexagonXmark = 'hexagon-xmark',
   /** hexagon.svg */
-  Hexagon = "hexagon",
+  Hexagon = 'hexagon',
   /** high-definition.svg */
-  HighDefinition = "high-definition",
+  HighDefinition = 'high-definition',
   /** highlighter-line.svg */
-  HighlighterLine = "highlighter-line",
+  HighlighterLine = 'highlighter-line',
   /** highlighter.svg */
-  Highlighter = "highlighter",
+  Highlighter = 'highlighter',
   /** hill-avalanche.svg */
-  HillAvalanche = "hill-avalanche",
+  HillAvalanche = 'hill-avalanche',
   /** hill-rockslide.svg */
-  HillRockslide = "hill-rockslide",
+  HillRockslide = 'hill-rockslide',
   /** hippo.svg */
-  Hippo = "hippo",
+  Hippo = 'hippo',
   /** hockey-mask.svg */
-  HockeyMask = "hockey-mask",
+  HockeyMask = 'hockey-mask',
   /** hockey-puck.svg */
-  HockeyPuck = "hockey-puck",
+  HockeyPuck = 'hockey-puck',
   /** hockey-stick-puck.svg */
-  HockeyStickPuck = "hockey-stick-puck",
+  HockeyStickPuck = 'hockey-stick-puck',
   /** hockey-sticks.svg */
-  HockeySticks = "hockey-sticks",
+  HockeySticks = 'hockey-sticks',
   /** holly-berry.svg */
-  HollyBerry = "holly-berry",
+  HollyBerry = 'holly-berry',
   /** honey-pot.svg */
-  HoneyPot = "honey-pot",
+  HoneyPot = 'honey-pot',
   /** hood-cloak.svg */
-  HoodCloak = "hood-cloak",
+  HoodCloak = 'hood-cloak',
   /** horizontal-rule.svg */
-  HorizontalRule = "horizontal-rule",
+  HorizontalRule = 'horizontal-rule',
   /** horse-head.svg */
-  HorseHead = "horse-head",
+  HorseHead = 'horse-head',
   /** horse-saddle.svg */
-  HorseSaddle = "horse-saddle",
+  HorseSaddle = 'horse-saddle',
   /** horse.svg */
-  Horse = "horse",
+  Horse = 'horse',
   /** hose-reel.svg */
-  HoseReel = "hose-reel",
+  HoseReel = 'hose-reel',
   /** hose.svg */
-  Hose = "hose",
+  Hose = 'hose',
   /** hospital-user.svg */
-  HospitalUser = "hospital-user",
+  HospitalUser = 'hospital-user',
   /** hospital.svg */
-  Hospital = "hospital",
+  Hospital = 'hospital',
   /** hospitals.svg */
-  Hospitals = "hospitals",
+  Hospitals = 'hospitals',
   /** hot-tub-person.svg */
-  HotTubPerson = "hot-tub-person",
+  HotTubPerson = 'hot-tub-person',
   /** hotdog.svg */
-  Hotdog = "hotdog",
+  Hotdog = 'hotdog',
   /** hotel.svg */
-  Hotel = "hotel",
+  Hotel = 'hotel',
   /** hourglass-clock.svg */
-  HourglassClock = "hourglass-clock",
+  HourglassClock = 'hourglass-clock',
   /** hourglass-end.svg */
-  HourglassEnd = "hourglass-end",
+  HourglassEnd = 'hourglass-end',
   /** hourglass-half.svg */
-  HourglassHalf = "hourglass-half",
+  HourglassHalf = 'hourglass-half',
   /** hourglass-start.svg */
-  HourglassStart = "hourglass-start",
+  HourglassStart = 'hourglass-start',
   /** hourglass.svg */
-  Hourglass = "hourglass",
+  Hourglass = 'hourglass',
   /** house-blank.svg */
-  HouseBlank = "house-blank",
+  HouseBlank = 'house-blank',
   /** house-building.svg */
-  HouseBuilding = "house-building",
+  HouseBuilding = 'house-building',
   /** house-chimney-blank.svg */
-  HouseChimneyBlank = "house-chimney-blank",
+  HouseChimneyBlank = 'house-chimney-blank',
   /** house-chimney-crack.svg */
-  HouseChimneyCrack = "house-chimney-crack",
+  HouseChimneyCrack = 'house-chimney-crack',
   /** house-chimney-heart.svg */
-  HouseChimneyHeart = "house-chimney-heart",
+  HouseChimneyHeart = 'house-chimney-heart',
   /** house-chimney-medical.svg */
-  HouseChimneyMedical = "house-chimney-medical",
+  HouseChimneyMedical = 'house-chimney-medical',
   /** house-chimney-user.svg */
-  HouseChimneyUser = "house-chimney-user",
+  HouseChimneyUser = 'house-chimney-user',
   /** house-chimney-window.svg */
-  HouseChimneyWindow = "house-chimney-window",
+  HouseChimneyWindow = 'house-chimney-window',
   /** house-chimney.svg */
-  HouseChimney = "house-chimney",
+  HouseChimney = 'house-chimney',
   /** house-circle-check.svg */
-  HouseCircleCheck = "house-circle-check",
+  HouseCircleCheck = 'house-circle-check',
   /** house-circle-exclamation.svg */
-  HouseCircleExclamation = "house-circle-exclamation",
+  HouseCircleExclamation = 'house-circle-exclamation',
   /** house-circle-xmark.svg */
-  HouseCircleXmark = "house-circle-xmark",
+  HouseCircleXmark = 'house-circle-xmark',
   /** house-crack.svg */
-  HouseCrack = "house-crack",
+  HouseCrack = 'house-crack',
   /** house-day.svg */
-  HouseDay = "house-day",
+  HouseDay = 'house-day',
   /** house-fire.svg */
-  HouseFire = "house-fire",
+  HouseFire = 'house-fire',
   /** house-flag.svg */
-  HouseFlag = "house-flag",
+  HouseFlag = 'house-flag',
   /** house-flood-water-circle-arrow-right.svg */
-  HouseFloodWaterCircleArrowRight = "house-flood-water-circle-arrow-right",
+  HouseFloodWaterCircleArrowRight = 'house-flood-water-circle-arrow-right',
   /** house-flood-water.svg */
-  HouseFloodWater = "house-flood-water",
+  HouseFloodWater = 'house-flood-water',
   /** house-heart.svg */
-  HouseHeart = "house-heart",
+  HouseHeart = 'house-heart',
   /** house-laptop.svg */
-  HouseLaptop = "house-laptop",
+  HouseLaptop = 'house-laptop',
   /** house-lock.svg */
-  HouseLock = "house-lock",
+  HouseLock = 'house-lock',
   /** house-medical-circle-check.svg */
-  HouseMedicalCircleCheck = "house-medical-circle-check",
+  HouseMedicalCircleCheck = 'house-medical-circle-check',
   /** house-medical-circle-exclamation.svg */
-  HouseMedicalCircleExclamation = "house-medical-circle-exclamation",
+  HouseMedicalCircleExclamation = 'house-medical-circle-exclamation',
   /** house-medical-circle-xmark.svg */
-  HouseMedicalCircleXmark = "house-medical-circle-xmark",
+  HouseMedicalCircleXmark = 'house-medical-circle-xmark',
   /** house-medical-flag.svg */
-  HouseMedicalFlag = "house-medical-flag",
+  HouseMedicalFlag = 'house-medical-flag',
   /** house-medical.svg */
-  HouseMedical = "house-medical",
+  HouseMedical = 'house-medical',
   /** house-night.svg */
-  HouseNight = "house-night",
+  HouseNight = 'house-night',
   /** house-person-leave.svg */
-  HousePersonLeave = "house-person-leave",
+  HousePersonLeave = 'house-person-leave',
   /** house-person-return.svg */
-  HousePersonReturn = "house-person-return",
+  HousePersonReturn = 'house-person-return',
   /** house-signal.svg */
-  HouseSignal = "house-signal",
+  HouseSignal = 'house-signal',
   /** house-tree.svg */
-  HouseTree = "house-tree",
+  HouseTree = 'house-tree',
   /** house-tsunami.svg */
-  HouseTsunami = "house-tsunami",
+  HouseTsunami = 'house-tsunami',
   /** house-turret.svg */
-  HouseTurret = "house-turret",
+  HouseTurret = 'house-turret',
   /** house-user.svg */
-  HouseUser = "house-user",
+  HouseUser = 'house-user',
   /** house-water.svg */
-  HouseWater = "house-water",
+  HouseWater = 'house-water',
   /** house-window.svg */
-  HouseWindow = "house-window",
+  HouseWindow = 'house-window',
   /** house.svg */
-  House = "house",
+  House = 'house',
   /** hryvnia-sign.svg */
-  HryvniaSign = "hryvnia-sign",
+  HryvniaSign = 'hryvnia-sign',
   /** hundred-points.svg */
-  HundredPoints = "hundred-points",
+  HundredPoints = 'hundred-points',
   /** hurricane.svg */
-  Hurricane = "hurricane",
+  Hurricane = 'hurricane',
   /** hyphen.svg */
-  Hyphen = "hyphen",
+  Hyphen = 'hyphen',
   /** i-cursor.svg */
-  ICursor = "i-cursor",
+  ICursor = 'i-cursor',
   /** i.svg */
-  I = "i",
+  I = 'i',
   /** ice-cream.svg */
-  IceCream = "ice-cream",
+  IceCream = 'ice-cream',
   /** ice-skate.svg */
-  IceSkate = "ice-skate",
+  IceSkate = 'ice-skate',
   /** icicles.svg */
-  Icicles = "icicles",
+  Icicles = 'icicles',
   /** icons.svg */
-  Icons = "icons",
+  Icons = 'icons',
   /** id-badge.svg */
-  IdBadge = "id-badge",
+  IdBadge = 'id-badge',
   /** id-card-clip.svg */
-  IdCardClip = "id-card-clip",
+  IdCardClip = 'id-card-clip',
   /** id-card.svg */
-  IdCard = "id-card",
+  IdCard = 'id-card',
   /** igloo.svg */
-  Igloo = "igloo",
+  Igloo = 'igloo',
   /** image-landscape.svg */
-  ImageLandscape = "image-landscape",
+  ImageLandscape = 'image-landscape',
   /** image-polaroid-user.svg */
-  ImagePolaroidUser = "image-polaroid-user",
+  ImagePolaroidUser = 'image-polaroid-user',
   /** image-polaroid.svg */
-  ImagePolaroid = "image-polaroid",
+  ImagePolaroid = 'image-polaroid',
   /** image-portrait.svg */
-  ImagePortrait = "image-portrait",
+  ImagePortrait = 'image-portrait',
   /** image-slash.svg */
-  ImageSlash = "image-slash",
+  ImageSlash = 'image-slash',
   /** image-user.svg */
-  ImageUser = "image-user",
+  ImageUser = 'image-user',
   /** image.svg */
-  Image = "image",
+  Image = 'image',
   /** images-user.svg */
-  ImagesUser = "images-user",
+  ImagesUser = 'images-user',
   /** images.svg */
-  Images = "images",
+  Images = 'images',
   /** inbox-full.svg */
-  InboxFull = "inbox-full",
+  InboxFull = 'inbox-full',
   /** inbox-in.svg */
-  InboxIn = "inbox-in",
+  InboxIn = 'inbox-in',
   /** inbox-out.svg */
-  InboxOut = "inbox-out",
+  InboxOut = 'inbox-out',
   /** inbox.svg */
-  Inbox = "inbox",
+  Inbox = 'inbox',
   /** inboxes.svg */
-  Inboxes = "inboxes",
+  Inboxes = 'inboxes',
   /** indent.svg */
-  Indent = "indent",
+  Indent = 'indent',
   /** indian-rupee-sign.svg */
-  IndianRupeeSign = "indian-rupee-sign",
+  IndianRupeeSign = 'indian-rupee-sign',
   /** industry-windows.svg */
-  IndustryWindows = "industry-windows",
+  IndustryWindows = 'industry-windows',
   /** industry.svg */
-  Industry = "industry",
+  Industry = 'industry',
   /** infinity.svg */
-  Infinity = "infinity",
+  Infinity = 'infinity',
   /** info.svg */
-  Info = "info",
+  Info = 'info',
   /** inhaler.svg */
-  Inhaler = "inhaler",
+  Inhaler = 'inhaler',
   /** input-numeric.svg */
-  InputNumeric = "input-numeric",
+  InputNumeric = 'input-numeric',
   /** input-pipe.svg */
-  InputPipe = "input-pipe",
+  InputPipe = 'input-pipe',
   /** input-text.svg */
-  InputText = "input-text",
+  InputText = 'input-text',
   /** integral.svg */
-  Integral = "integral",
+  Integral = 'integral',
   /** interrobang.svg */
-  Interrobang = "interrobang",
+  Interrobang = 'interrobang',
   /** intersection.svg */
-  Intersection = "intersection",
+  Intersection = 'intersection',
   /** island-tropical.svg */
-  IslandTropical = "island-tropical",
+  IslandTropical = 'island-tropical',
   /** italic.svg */
-  Italic = "italic",
+  Italic = 'italic',
   /** j.svg */
-  J = "j",
+  J = 'j',
   /** jack-o-lantern.svg */
-  JackOLantern = "jack-o-lantern",
+  JackOLantern = 'jack-o-lantern',
   /** jar-wheat.svg */
-  JarWheat = "jar-wheat",
+  JarWheat = 'jar-wheat',
   /** jar.svg */
-  Jar = "jar",
+  Jar = 'jar',
   /** jedi.svg */
-  Jedi = "jedi",
+  Jedi = 'jedi',
   /** jet-fighter-up.svg */
-  JetFighterUp = "jet-fighter-up",
+  JetFighterUp = 'jet-fighter-up',
   /** jet-fighter.svg */
-  JetFighter = "jet-fighter",
+  JetFighter = 'jet-fighter',
   /** joint.svg */
-  Joint = "joint",
+  Joint = 'joint',
   /** joystick.svg */
-  Joystick = "joystick",
+  Joystick = 'joystick',
   /** jug-bottle.svg */
-  JugBottle = "jug-bottle",
+  JugBottle = 'jug-bottle',
   /** jug-detergent.svg */
-  JugDetergent = "jug-detergent",
+  JugDetergent = 'jug-detergent',
   /** jug.svg */
-  Jug = "jug",
+  Jug = 'jug',
   /** k.svg */
-  K = "k",
+  K = 'k',
   /** kaaba.svg */
-  Kaaba = "kaaba",
+  Kaaba = 'kaaba',
   /** kazoo.svg */
-  Kazoo = "kazoo",
+  Kazoo = 'kazoo',
   /** kerning.svg */
-  Kerning = "kerning",
+  Kerning = 'kerning',
   /** key-skeleton-left-right.svg */
-  KeySkeletonLeftRight = "key-skeleton-left-right",
+  KeySkeletonLeftRight = 'key-skeleton-left-right',
   /** key-skeleton.svg */
-  KeySkeleton = "key-skeleton",
+  KeySkeleton = 'key-skeleton',
   /** key.svg */
-  Key = "key",
+  Key = 'key',
   /** keyboard-brightness-low.svg */
-  KeyboardBrightnessLow = "keyboard-brightness-low",
+  KeyboardBrightnessLow = 'keyboard-brightness-low',
   /** keyboard-brightness.svg */
-  KeyboardBrightness = "keyboard-brightness",
+  KeyboardBrightness = 'keyboard-brightness',
   /** keyboard-down.svg */
-  KeyboardDown = "keyboard-down",
+  KeyboardDown = 'keyboard-down',
   /** keyboard-left.svg */
-  KeyboardLeft = "keyboard-left",
+  KeyboardLeft = 'keyboard-left',
   /** keyboard.svg */
-  Keyboard = "keyboard",
+  Keyboard = 'keyboard',
   /** keynote.svg */
-  Keynote = "keynote",
+  Keynote = 'keynote',
   /** khanda.svg */
-  Khanda = "khanda",
+  Khanda = 'khanda',
   /** kidneys.svg */
-  Kidneys = "kidneys",
+  Kidneys = 'kidneys',
   /** kip-sign.svg */
-  KipSign = "kip-sign",
+  KipSign = 'kip-sign',
   /** kit-medical.svg */
-  KitMedical = "kit-medical",
+  KitMedical = 'kit-medical',
   /** kitchen-set.svg */
-  KitchenSet = "kitchen-set",
+  KitchenSet = 'kitchen-set',
   /** kite.svg */
-  Kite = "kite",
+  Kite = 'kite',
   /** kiwi-bird.svg */
-  KiwiBird = "kiwi-bird",
+  KiwiBird = 'kiwi-bird',
   /** kiwi-fruit.svg */
-  KiwiFruit = "kiwi-fruit",
+  KiwiFruit = 'kiwi-fruit',
   /** knife-kitchen.svg */
-  KnifeKitchen = "knife-kitchen",
+  KnifeKitchen = 'knife-kitchen',
   /** knife.svg */
-  Knife = "knife",
+  Knife = 'knife',
   /** l.svg */
-  L = "l",
+  L = 'l',
   /** lacrosse-stick-ball.svg */
-  LacrosseStickBall = "lacrosse-stick-ball",
+  LacrosseStickBall = 'lacrosse-stick-ball',
   /** lacrosse-stick.svg */
-  LacrosseStick = "lacrosse-stick",
+  LacrosseStick = 'lacrosse-stick',
   /** lambda.svg */
-  Lambda = "lambda",
+  Lambda = 'lambda',
   /** lamp-desk.svg */
-  LampDesk = "lamp-desk",
+  LampDesk = 'lamp-desk',
   /** lamp-floor.svg */
-  LampFloor = "lamp-floor",
+  LampFloor = 'lamp-floor',
   /** lamp-street.svg */
-  LampStreet = "lamp-street",
+  LampStreet = 'lamp-street',
   /** lamp.svg */
-  Lamp = "lamp",
+  Lamp = 'lamp',
   /** land-mine-on.svg */
-  LandMineOn = "land-mine-on",
+  LandMineOn = 'land-mine-on',
   /** landmark-dome.svg */
-  LandmarkDome = "landmark-dome",
+  LandmarkDome = 'landmark-dome',
   /** landmark-flag.svg */
-  LandmarkFlag = "landmark-flag",
+  LandmarkFlag = 'landmark-flag',
   /** landmark-magnifying-glass.svg */
-  LandmarkMagnifyingGlass = "landmark-magnifying-glass",
+  LandmarkMagnifyingGlass = 'landmark-magnifying-glass',
   /** landmark.svg */
-  Landmark = "landmark",
+  Landmark = 'landmark',
   /** language.svg */
-  Language = "language",
+  Language = 'language',
   /** laptop-arrow-down.svg */
-  LaptopArrowDown = "laptop-arrow-down",
+  LaptopArrowDown = 'laptop-arrow-down',
   /** laptop-binary.svg */
-  LaptopBinary = "laptop-binary",
+  LaptopBinary = 'laptop-binary',
   /** laptop-code.svg */
-  LaptopCode = "laptop-code",
+  LaptopCode = 'laptop-code',
   /** laptop-file.svg */
-  LaptopFile = "laptop-file",
+  LaptopFile = 'laptop-file',
   /** laptop-medical.svg */
-  LaptopMedical = "laptop-medical",
+  LaptopMedical = 'laptop-medical',
   /** laptop-mobile.svg */
-  LaptopMobile = "laptop-mobile",
+  LaptopMobile = 'laptop-mobile',
   /** laptop-slash.svg */
-  LaptopSlash = "laptop-slash",
+  LaptopSlash = 'laptop-slash',
   /** laptop.svg */
-  Laptop = "laptop",
+  Laptop = 'laptop',
   /** lari-sign.svg */
-  LariSign = "lari-sign",
+  LariSign = 'lari-sign',
   /** lasso-sparkles.svg */
-  LassoSparkles = "lasso-sparkles",
+  LassoSparkles = 'lasso-sparkles',
   /** lasso.svg */
-  Lasso = "lasso",
+  Lasso = 'lasso',
   /** layer-group.svg */
-  LayerGroup = "layer-group",
+  LayerGroup = 'layer-group',
   /** layer-minus.svg */
-  LayerMinus = "layer-minus",
+  LayerMinus = 'layer-minus',
   /** layer-plus.svg */
-  LayerPlus = "layer-plus",
+  LayerPlus = 'layer-plus',
   /** leaf-heart.svg */
-  LeafHeart = "leaf-heart",
+  LeafHeart = 'leaf-heart',
   /** leaf-maple.svg */
-  LeafMaple = "leaf-maple",
+  LeafMaple = 'leaf-maple',
   /** leaf-oak.svg */
-  LeafOak = "leaf-oak",
+  LeafOak = 'leaf-oak',
   /** leaf.svg */
-  Leaf = "leaf",
+  Leaf = 'leaf',
   /** leafy-green.svg */
-  LeafyGreen = "leafy-green",
+  LeafyGreen = 'leafy-green',
   /** left-from-line.svg */
-  LeftFromLine = "left-from-line",
+  LeftFromLine = 'left-from-line',
   /** left-long-to-line.svg */
-  LeftLongToLine = "left-long-to-line",
+  LeftLongToLine = 'left-long-to-line',
   /** left-long.svg */
-  LeftLong = "left-long",
+  LeftLong = 'left-long',
   /** left-right.svg */
-  LeftRight = "left-right",
+  LeftRight = 'left-right',
   /** left-to-line.svg */
-  LeftToLine = "left-to-line",
+  LeftToLine = 'left-to-line',
   /** left.svg */
-  Left = "left",
+  Left = 'left',
   /** lemon.svg */
-  Lemon = "lemon",
+  Lemon = 'lemon',
   /** less-than-equal.svg */
-  LessThanEqual = "less-than-equal",
+  LessThanEqual = 'less-than-equal',
   /** less-than.svg */
-  LessThan = "less-than",
+  LessThan = 'less-than',
   /** life-ring.svg */
-  LifeRing = "life-ring",
+  LifeRing = 'life-ring',
   /** light-ceiling.svg */
-  LightCeiling = "light-ceiling",
+  LightCeiling = 'light-ceiling',
   /** light-emergency-on.svg */
-  LightEmergencyOn = "light-emergency-on",
+  LightEmergencyOn = 'light-emergency-on',
   /** light-emergency.svg */
-  LightEmergency = "light-emergency",
+  LightEmergency = 'light-emergency',
   /** light-switch-off.svg */
-  LightSwitchOff = "light-switch-off",
+  LightSwitchOff = 'light-switch-off',
   /** light-switch-on.svg */
-  LightSwitchOn = "light-switch-on",
+  LightSwitchOn = 'light-switch-on',
   /** light-switch.svg */
-  LightSwitch = "light-switch",
+  LightSwitch = 'light-switch',
   /** lightbulb-cfl-on.svg */
-  LightbulbCflOn = "lightbulb-cfl-on",
+  LightbulbCflOn = 'lightbulb-cfl-on',
   /** lightbulb-cfl.svg */
-  LightbulbCfl = "lightbulb-cfl",
+  LightbulbCfl = 'lightbulb-cfl',
   /** lightbulb-dollar.svg */
-  LightbulbDollar = "lightbulb-dollar",
+  LightbulbDollar = 'lightbulb-dollar',
   /** lightbulb-exclamation-on.svg */
-  LightbulbExclamationOn = "lightbulb-exclamation-on",
+  LightbulbExclamationOn = 'lightbulb-exclamation-on',
   /** lightbulb-exclamation.svg */
-  LightbulbExclamation = "lightbulb-exclamation",
+  LightbulbExclamation = 'lightbulb-exclamation',
   /** lightbulb-gear.svg */
-  LightbulbGear = "lightbulb-gear",
+  LightbulbGear = 'lightbulb-gear',
   /** lightbulb-on.svg */
-  LightbulbOn = "lightbulb-on",
+  LightbulbOn = 'lightbulb-on',
   /** lightbulb-slash.svg */
-  LightbulbSlash = "lightbulb-slash",
+  LightbulbSlash = 'lightbulb-slash',
   /** lightbulb.svg */
-  Lightbulb = "lightbulb",
+  Lightbulb = 'lightbulb',
   /** lighthouse.svg */
-  Lighthouse = "lighthouse",
+  Lighthouse = 'lighthouse',
   /** lights-holiday.svg */
-  LightsHoliday = "lights-holiday",
+  LightsHoliday = 'lights-holiday',
   /** line-columns.svg */
-  LineColumns = "line-columns",
+  LineColumns = 'line-columns',
   /** line-height.svg */
-  LineHeight = "line-height",
+  LineHeight = 'line-height',
   /** lines-leaning.svg */
-  LinesLeaning = "lines-leaning",
+  LinesLeaning = 'lines-leaning',
   /** link-horizontal-slash.svg */
-  LinkHorizontalSlash = "link-horizontal-slash",
+  LinkHorizontalSlash = 'link-horizontal-slash',
   /** link-horizontal.svg */
-  LinkHorizontal = "link-horizontal",
+  LinkHorizontal = 'link-horizontal',
   /** link-simple-slash.svg */
-  LinkSimpleSlash = "link-simple-slash",
+  LinkSimpleSlash = 'link-simple-slash',
   /** link-simple.svg */
-  LinkSimple = "link-simple",
+  LinkSimple = 'link-simple',
   /** link-slash.svg */
-  LinkSlash = "link-slash",
+  LinkSlash = 'link-slash',
   /** link.svg */
-  Link = "link",
+  Link = 'link',
   /** lips.svg */
-  Lips = "lips",
+  Lips = 'lips',
   /** lira-sign.svg */
-  LiraSign = "lira-sign",
+  LiraSign = 'lira-sign',
   /** list-check.svg */
-  ListCheck = "list-check",
+  ListCheck = 'list-check',
   /** list-dropdown.svg */
-  ListDropdown = "list-dropdown",
+  ListDropdown = 'list-dropdown',
   /** list-music.svg */
-  ListMusic = "list-music",
+  ListMusic = 'list-music',
   /** list-ol.svg */
-  ListOl = "list-ol",
+  ListOl = 'list-ol',
   /** list-radio.svg */
-  ListRadio = "list-radio",
+  ListRadio = 'list-radio',
   /** list-timeline.svg */
-  ListTimeline = "list-timeline",
+  ListTimeline = 'list-timeline',
   /** list-tree.svg */
-  ListTree = "list-tree",
+  ListTree = 'list-tree',
   /** list-ul.svg */
-  ListUl = "list-ul",
+  ListUl = 'list-ul',
   /** list.svg */
-  List = "list",
+  List = 'list',
   /** litecoin-sign.svg */
-  LitecoinSign = "litecoin-sign",
+  LitecoinSign = 'litecoin-sign',
   /** loader.svg */
-  Loader = "loader",
+  Loader = 'loader',
   /** lobster.svg */
-  Lobster = "lobster",
+  Lobster = 'lobster',
   /** location-arrow-up.svg */
-  LocationArrowUp = "location-arrow-up",
+  LocationArrowUp = 'location-arrow-up',
   /** location-arrow.svg */
-  LocationArrow = "location-arrow",
+  LocationArrow = 'location-arrow',
   /** location-check.svg */
-  LocationCheck = "location-check",
+  LocationCheck = 'location-check',
   /** location-crosshairs-slash.svg */
-  LocationCrosshairsSlash = "location-crosshairs-slash",
+  LocationCrosshairsSlash = 'location-crosshairs-slash',
   /** location-crosshairs.svg */
-  LocationCrosshairs = "location-crosshairs",
+  LocationCrosshairs = 'location-crosshairs',
   /** location-dot-slash.svg */
-  LocationDotSlash = "location-dot-slash",
+  LocationDotSlash = 'location-dot-slash',
   /** location-dot.svg */
-  LocationDot = "location-dot",
+  LocationDot = 'location-dot',
   /** location-exclamation.svg */
-  LocationExclamation = "location-exclamation",
+  LocationExclamation = 'location-exclamation',
   /** location-minus.svg */
-  LocationMinus = "location-minus",
+  LocationMinus = 'location-minus',
   /** location-pen.svg */
-  LocationPen = "location-pen",
+  LocationPen = 'location-pen',
   /** location-pin-lock.svg */
-  LocationPinLock = "location-pin-lock",
+  LocationPinLock = 'location-pin-lock',
   /** location-pin-slash.svg */
-  LocationPinSlash = "location-pin-slash",
+  LocationPinSlash = 'location-pin-slash',
   /** location-pin.svg */
-  LocationPin = "location-pin",
+  LocationPin = 'location-pin',
   /** location-plus.svg */
-  LocationPlus = "location-plus",
+  LocationPlus = 'location-plus',
   /** location-question.svg */
-  LocationQuestion = "location-question",
+  LocationQuestion = 'location-question',
   /** location-smile.svg */
-  LocationSmile = "location-smile",
+  LocationSmile = 'location-smile',
   /** location-xmark.svg */
-  LocationXmark = "location-xmark",
+  LocationXmark = 'location-xmark',
   /** lock-a.svg */
-  LockA = "lock-a",
+  LockA = 'lock-a',
   /** lock-hashtag.svg */
-  LockHashtag = "lock-hashtag",
+  LockHashtag = 'lock-hashtag',
   /** lock-keyhole-open.svg */
-  LockKeyholeOpen = "lock-keyhole-open",
+  LockKeyholeOpen = 'lock-keyhole-open',
   /** lock-keyhole.svg */
-  LockKeyhole = "lock-keyhole",
+  LockKeyhole = 'lock-keyhole',
   /** lock-open.svg */
-  LockOpen = "lock-open",
+  LockOpen = 'lock-open',
   /** lock.svg */
-  Lock = "lock",
+  Lock = 'lock',
   /** locust.svg */
-  Locust = "locust",
+  Locust = 'locust',
   /** lollipop.svg */
-  Lollipop = "lollipop",
+  Lollipop = 'lollipop',
   /** loveseat.svg */
-  Loveseat = "loveseat",
+  Loveseat = 'loveseat',
   /** luchador-mask.svg */
-  LuchadorMask = "luchador-mask",
+  LuchadorMask = 'luchador-mask',
   /** lungs-virus.svg */
-  LungsVirus = "lungs-virus",
+  LungsVirus = 'lungs-virus',
   /** lungs.svg */
-  Lungs = "lungs",
+  Lungs = 'lungs',
   /** m.svg */
-  M = "m",
+  M = 'm',
   /** mace.svg */
-  Mace = "mace",
+  Mace = 'mace',
   /** magnet.svg */
-  Magnet = "magnet",
+  Magnet = 'magnet',
   /** magnifying-glass-arrow-right.svg */
-  MagnifyingGlassArrowRight = "magnifying-glass-arrow-right",
+  MagnifyingGlassArrowRight = 'magnifying-glass-arrow-right',
   /** magnifying-glass-arrows-rotate.svg */
-  MagnifyingGlassArrowsRotate = "magnifying-glass-arrows-rotate",
+  MagnifyingGlassArrowsRotate = 'magnifying-glass-arrows-rotate',
   /** magnifying-glass-chart.svg */
-  MagnifyingGlassChart = "magnifying-glass-chart",
+  MagnifyingGlassChart = 'magnifying-glass-chart',
   /** magnifying-glass-dollar.svg */
-  MagnifyingGlassDollar = "magnifying-glass-dollar",
+  MagnifyingGlassDollar = 'magnifying-glass-dollar',
   /** magnifying-glass-location.svg */
-  MagnifyingGlassLocation = "magnifying-glass-location",
+  MagnifyingGlassLocation = 'magnifying-glass-location',
   /** magnifying-glass-minus.svg */
-  MagnifyingGlassMinus = "magnifying-glass-minus",
+  MagnifyingGlassMinus = 'magnifying-glass-minus',
   /** magnifying-glass-music.svg */
-  MagnifyingGlassMusic = "magnifying-glass-music",
+  MagnifyingGlassMusic = 'magnifying-glass-music',
   /** magnifying-glass-play.svg */
-  MagnifyingGlassPlay = "magnifying-glass-play",
+  MagnifyingGlassPlay = 'magnifying-glass-play',
   /** magnifying-glass-plus.svg */
-  MagnifyingGlassPlus = "magnifying-glass-plus",
+  MagnifyingGlassPlus = 'magnifying-glass-plus',
   /** magnifying-glass-waveform.svg */
-  MagnifyingGlassWaveform = "magnifying-glass-waveform",
+  MagnifyingGlassWaveform = 'magnifying-glass-waveform',
   /** magnifying-glass.svg */
-  MagnifyingGlass = "magnifying-glass",
+  MagnifyingGlass = 'magnifying-glass',
   /** mailbox-flag-up.svg */
-  MailboxFlagUp = "mailbox-flag-up",
+  MailboxFlagUp = 'mailbox-flag-up',
   /** mailbox.svg */
-  Mailbox = "mailbox",
+  Mailbox = 'mailbox',
   /** manat-sign.svg */
-  ManatSign = "manat-sign",
+  ManatSign = 'manat-sign',
   /** mandolin.svg */
-  Mandolin = "mandolin",
+  Mandolin = 'mandolin',
   /** mango.svg */
-  Mango = "mango",
+  Mango = 'mango',
   /** manhole.svg */
-  Manhole = "manhole",
+  Manhole = 'manhole',
   /** map-location-dot.svg */
-  MapLocationDot = "map-location-dot",
+  MapLocationDot = 'map-location-dot',
   /** map-location.svg */
-  MapLocation = "map-location",
+  MapLocation = 'map-location',
   /** map-pin.svg */
-  MapPin = "map-pin",
+  MapPin = 'map-pin',
   /** map.svg */
-  Map = "map",
+  Map = 'map',
   /** marker.svg */
-  Marker = "marker",
+  Marker = 'marker',
   /** mars-and-venus-burst.svg */
-  MarsAndVenusBurst = "mars-and-venus-burst",
+  MarsAndVenusBurst = 'mars-and-venus-burst',
   /** mars-and-venus.svg */
-  MarsAndVenus = "mars-and-venus",
+  MarsAndVenus = 'mars-and-venus',
   /** mars-double.svg */
-  MarsDouble = "mars-double",
+  MarsDouble = 'mars-double',
   /** mars-stroke-right.svg */
-  MarsStrokeRight = "mars-stroke-right",
+  MarsStrokeRight = 'mars-stroke-right',
   /** mars-stroke-up.svg */
-  MarsStrokeUp = "mars-stroke-up",
+  MarsStrokeUp = 'mars-stroke-up',
   /** mars-stroke.svg */
-  MarsStroke = "mars-stroke",
+  MarsStroke = 'mars-stroke',
   /** mars.svg */
-  Mars = "mars",
+  Mars = 'mars',
   /** martini-glass-citrus.svg */
-  MartiniGlassCitrus = "martini-glass-citrus",
+  MartiniGlassCitrus = 'martini-glass-citrus',
   /** martini-glass-empty.svg */
-  MartiniGlassEmpty = "martini-glass-empty",
+  MartiniGlassEmpty = 'martini-glass-empty',
   /** martini-glass.svg */
-  MartiniGlass = "martini-glass",
+  MartiniGlass = 'martini-glass',
   /** mask-face.svg */
-  MaskFace = "mask-face",
+  MaskFace = 'mask-face',
   /** mask-snorkel.svg */
-  MaskSnorkel = "mask-snorkel",
+  MaskSnorkel = 'mask-snorkel',
   /** mask-ventilator.svg */
-  MaskVentilator = "mask-ventilator",
+  MaskVentilator = 'mask-ventilator',
   /** mask.svg */
-  Mask = "mask",
+  Mask = 'mask',
   /** masks-theater.svg */
-  MasksTheater = "masks-theater",
+  MasksTheater = 'masks-theater',
   /** mattress-pillow.svg */
-  MattressPillow = "mattress-pillow",
+  MattressPillow = 'mattress-pillow',
   /** maximize.svg */
-  Maximize = "maximize",
+  Maximize = 'maximize',
   /** meat.svg */
-  Meat = "meat",
+  Meat = 'meat',
   /** medal.svg */
-  Medal = "medal",
+  Medal = 'medal',
   /** megaphone.svg */
-  Megaphone = "megaphone",
+  Megaphone = 'megaphone',
   /** melon-slice.svg */
-  MelonSlice = "melon-slice",
+  MelonSlice = 'melon-slice',
   /** melon.svg */
-  Melon = "melon",
+  Melon = 'melon',
   /** memo-circle-check.svg */
-  MemoCircleCheck = "memo-circle-check",
+  MemoCircleCheck = 'memo-circle-check',
   /** memo-circle-info.svg */
-  MemoCircleInfo = "memo-circle-info",
+  MemoCircleInfo = 'memo-circle-info',
   /** memo-pad.svg */
-  MemoPad = "memo-pad",
+  MemoPad = 'memo-pad',
   /** memo.svg */
-  Memo = "memo",
+  Memo = 'memo',
   /** memory.svg */
-  Memory = "memory",
+  Memory = 'memory',
   /** menorah.svg */
-  Menorah = "menorah",
+  Menorah = 'menorah',
   /** mercury.svg */
-  Mercury = "mercury",
+  Mercury = 'mercury',
   /** merge.svg */
-  Merge = "merge",
+  Merge = 'merge',
   /** message-arrow-down.svg */
-  MessageArrowDown = "message-arrow-down",
+  MessageArrowDown = 'message-arrow-down',
   /** message-arrow-up-right.svg */
-  MessageArrowUpRight = "message-arrow-up-right",
+  MessageArrowUpRight = 'message-arrow-up-right',
   /** message-arrow-up.svg */
-  MessageArrowUp = "message-arrow-up",
+  MessageArrowUp = 'message-arrow-up',
   /** message-bot.svg */
-  MessageBot = "message-bot",
+  MessageBot = 'message-bot',
   /** message-captions.svg */
-  MessageCaptions = "message-captions",
+  MessageCaptions = 'message-captions',
   /** message-check.svg */
-  MessageCheck = "message-check",
+  MessageCheck = 'message-check',
   /** message-code.svg */
-  MessageCode = "message-code",
+  MessageCode = 'message-code',
   /** message-dollar.svg */
-  MessageDollar = "message-dollar",
+  MessageDollar = 'message-dollar',
   /** message-dots.svg */
-  MessageDots = "message-dots",
+  MessageDots = 'message-dots',
   /** message-exclamation.svg */
-  MessageExclamation = "message-exclamation",
+  MessageExclamation = 'message-exclamation',
   /** message-heart.svg */
-  MessageHeart = "message-heart",
+  MessageHeart = 'message-heart',
   /** message-image.svg */
-  MessageImage = "message-image",
+  MessageImage = 'message-image',
   /** message-lines.svg */
-  MessageLines = "message-lines",
+  MessageLines = 'message-lines',
   /** message-medical.svg */
-  MessageMedical = "message-medical",
+  MessageMedical = 'message-medical',
   /** message-middle-top.svg */
-  MessageMiddleTop = "message-middle-top",
+  MessageMiddleTop = 'message-middle-top',
   /** message-middle.svg */
-  MessageMiddle = "message-middle",
+  MessageMiddle = 'message-middle',
   /** message-minus.svg */
-  MessageMinus = "message-minus",
+  MessageMinus = 'message-minus',
   /** message-music.svg */
-  MessageMusic = "message-music",
+  MessageMusic = 'message-music',
   /** message-pen.svg */
-  MessagePen = "message-pen",
+  MessagePen = 'message-pen',
   /** message-plus.svg */
-  MessagePlus = "message-plus",
+  MessagePlus = 'message-plus',
   /** message-question.svg */
-  MessageQuestion = "message-question",
+  MessageQuestion = 'message-question',
   /** message-quote.svg */
-  MessageQuote = "message-quote",
+  MessageQuote = 'message-quote',
   /** message-slash.svg */
-  MessageSlash = "message-slash",
+  MessageSlash = 'message-slash',
   /** message-smile.svg */
-  MessageSmile = "message-smile",
+  MessageSmile = 'message-smile',
   /** message-sms.svg */
-  MessageSms = "message-sms",
+  MessageSms = 'message-sms',
   /** message-text.svg */
-  MessageText = "message-text",
+  MessageText = 'message-text',
   /** message-xmark.svg */
-  MessageXmark = "message-xmark",
+  MessageXmark = 'message-xmark',
   /** message.svg */
-  Message = "message",
+  Message = 'message',
   /** messages-dollar.svg */
-  MessagesDollar = "messages-dollar",
+  MessagesDollar = 'messages-dollar',
   /** messages-question.svg */
-  MessagesQuestion = "messages-question",
+  MessagesQuestion = 'messages-question',
   /** messages.svg */
-  Messages = "messages",
+  Messages = 'messages',
   /** meteor.svg */
-  Meteor = "meteor",
+  Meteor = 'meteor',
   /** meter-bolt.svg */
-  MeterBolt = "meter-bolt",
+  MeterBolt = 'meter-bolt',
   /** meter-droplet.svg */
-  MeterDroplet = "meter-droplet",
+  MeterDroplet = 'meter-droplet',
   /** meter-fire.svg */
-  MeterFire = "meter-fire",
+  MeterFire = 'meter-fire',
   /** meter.svg */
-  Meter = "meter",
+  Meter = 'meter',
   /** microchip-ai.svg */
-  MicrochipAi = "microchip-ai",
+  MicrochipAi = 'microchip-ai',
   /** microchip.svg */
-  Microchip = "microchip",
+  Microchip = 'microchip',
   /** microphone-lines-slash.svg */
-  MicrophoneLinesSlash = "microphone-lines-slash",
+  MicrophoneLinesSlash = 'microphone-lines-slash',
   /** microphone-lines.svg */
-  MicrophoneLines = "microphone-lines",
+  MicrophoneLines = 'microphone-lines',
   /** microphone-slash.svg */
-  MicrophoneSlash = "microphone-slash",
+  MicrophoneSlash = 'microphone-slash',
   /** microphone-stand.svg */
-  MicrophoneStand = "microphone-stand",
+  MicrophoneStand = 'microphone-stand',
   /** microphone.svg */
-  Microphone = "microphone",
+  Microphone = 'microphone',
   /** microscope.svg */
-  Microscope = "microscope",
+  Microscope = 'microscope',
   /** microwave.svg */
-  Microwave = "microwave",
+  Microwave = 'microwave',
   /** mill-sign.svg */
-  MillSign = "mill-sign",
+  MillSign = 'mill-sign',
   /** minimize.svg */
-  Minimize = "minimize",
+  Minimize = 'minimize',
   /** minus.svg */
-  Minus = "minus",
+  Minus = 'minus',
   /** mistletoe.svg */
-  Mistletoe = "mistletoe",
+  Mistletoe = 'mistletoe',
   /** mitten.svg */
-  Mitten = "mitten",
+  Mitten = 'mitten',
   /** mobile-button.svg */
-  MobileButton = "mobile-button",
+  MobileButton = 'mobile-button',
   /** mobile-notch.svg */
-  MobileNotch = "mobile-notch",
+  MobileNotch = 'mobile-notch',
   /** mobile-retro.svg */
-  MobileRetro = "mobile-retro",
+  MobileRetro = 'mobile-retro',
   /** mobile-screen-button.svg */
-  MobileScreenButton = "mobile-screen-button",
+  MobileScreenButton = 'mobile-screen-button',
   /** mobile-screen.svg */
-  MobileScreen = "mobile-screen",
+  MobileScreen = 'mobile-screen',
   /** mobile-signal-out.svg */
-  MobileSignalOut = "mobile-signal-out",
+  MobileSignalOut = 'mobile-signal-out',
   /** mobile-signal.svg */
-  MobileSignal = "mobile-signal",
+  MobileSignal = 'mobile-signal',
   /** mobile.svg */
-  Mobile = "mobile",
+  Mobile = 'mobile',
   /** money-bill-1-wave.svg */
-  MoneyBill1Wave = "money-bill-1-wave",
+  MoneyBill1Wave = 'money-bill-1-wave',
   /** money-bill-1.svg */
-  MoneyBill1 = "money-bill-1",
+  MoneyBill1 = 'money-bill-1',
   /** money-bill-simple-wave.svg */
-  MoneyBillSimpleWave = "money-bill-simple-wave",
+  MoneyBillSimpleWave = 'money-bill-simple-wave',
   /** money-bill-simple.svg */
-  MoneyBillSimple = "money-bill-simple",
+  MoneyBillSimple = 'money-bill-simple',
   /** money-bill-transfer.svg */
-  MoneyBillTransfer = "money-bill-transfer",
+  MoneyBillTransfer = 'money-bill-transfer',
   /** money-bill-trend-up.svg */
-  MoneyBillTrendUp = "money-bill-trend-up",
+  MoneyBillTrendUp = 'money-bill-trend-up',
   /** money-bill-wave.svg */
-  MoneyBillWave = "money-bill-wave",
+  MoneyBillWave = 'money-bill-wave',
   /** money-bill-wheat.svg */
-  MoneyBillWheat = "money-bill-wheat",
+  MoneyBillWheat = 'money-bill-wheat',
   /** money-bill.svg */
-  MoneyBill = "money-bill",
+  MoneyBill = 'money-bill',
   /** money-bills-simple.svg */
-  MoneyBillsSimple = "money-bills-simple",
+  MoneyBillsSimple = 'money-bills-simple',
   /** money-bills.svg */
-  MoneyBills = "money-bills",
+  MoneyBills = 'money-bills',
   /** money-check-dollar-pen.svg */
-  MoneyCheckDollarPen = "money-check-dollar-pen",
+  MoneyCheckDollarPen = 'money-check-dollar-pen',
   /** money-check-dollar.svg */
-  MoneyCheckDollar = "money-check-dollar",
+  MoneyCheckDollar = 'money-check-dollar',
   /** money-check-pen.svg */
-  MoneyCheckPen = "money-check-pen",
+  MoneyCheckPen = 'money-check-pen',
   /** money-check.svg */
-  MoneyCheck = "money-check",
+  MoneyCheck = 'money-check',
   /** money-from-bracket.svg */
-  MoneyFromBracket = "money-from-bracket",
+  MoneyFromBracket = 'money-from-bracket',
   /** money-simple-from-bracket.svg */
-  MoneySimpleFromBracket = "money-simple-from-bracket",
+  MoneySimpleFromBracket = 'money-simple-from-bracket',
   /** monitor-waveform.svg */
-  MonitorWaveform = "monitor-waveform",
+  MonitorWaveform = 'monitor-waveform',
   /** monkey.svg */
-  Monkey = "monkey",
+  Monkey = 'monkey',
   /** monument.svg */
-  Monument = "monument",
+  Monument = 'monument',
   /** moon-cloud.svg */
-  MoonCloud = "moon-cloud",
+  MoonCloud = 'moon-cloud',
   /** moon-over-sun.svg */
-  MoonOverSun = "moon-over-sun",
+  MoonOverSun = 'moon-over-sun',
   /** moon-stars.svg */
-  MoonStars = "moon-stars",
+  MoonStars = 'moon-stars',
   /** moon.svg */
-  Moon = "moon",
+  Moon = 'moon',
   /** moped.svg */
-  Moped = "moped",
+  Moped = 'moped',
   /** mortar-pestle.svg */
-  MortarPestle = "mortar-pestle",
+  MortarPestle = 'mortar-pestle',
   /** mosque.svg */
-  Mosque = "mosque",
+  Mosque = 'mosque',
   /** mosquito-net.svg */
-  MosquitoNet = "mosquito-net",
+  MosquitoNet = 'mosquito-net',
   /** mosquito.svg */
-  Mosquito = "mosquito",
+  Mosquito = 'mosquito',
   /** motorcycle.svg */
-  Motorcycle = "motorcycle",
+  Motorcycle = 'motorcycle',
   /** mound.svg */
-  Mound = "mound",
+  Mound = 'mound',
   /** mountain-city.svg */
-  MountainCity = "mountain-city",
+  MountainCity = 'mountain-city',
   /** mountain-sun.svg */
-  MountainSun = "mountain-sun",
+  MountainSun = 'mountain-sun',
   /** mountain.svg */
-  Mountain = "mountain",
+  Mountain = 'mountain',
   /** mountains.svg */
-  Mountains = "mountains",
+  Mountains = 'mountains',
   /** mouse-field.svg */
-  MouseField = "mouse-field",
+  MouseField = 'mouse-field',
   /** mp3-player.svg */
-  Mp3Player = "mp3-player",
+  Mp3Player = 'mp3-player',
   /** mug-hot.svg */
-  MugHot = "mug-hot",
+  MugHot = 'mug-hot',
   /** mug-marshmallows.svg */
-  MugMarshmallows = "mug-marshmallows",
+  MugMarshmallows = 'mug-marshmallows',
   /** mug-saucer.svg */
-  MugSaucer = "mug-saucer",
+  MugSaucer = 'mug-saucer',
   /** mug-tea-saucer.svg */
-  MugTeaSaucer = "mug-tea-saucer",
+  MugTeaSaucer = 'mug-tea-saucer',
   /** mug-tea.svg */
-  MugTea = "mug-tea",
+  MugTea = 'mug-tea',
   /** mug.svg */
-  Mug = "mug",
+  Mug = 'mug',
   /** mushroom.svg */
-  Mushroom = "mushroom",
+  Mushroom = 'mushroom',
   /** music-magnifying-glass.svg */
-  MusicMagnifyingGlass = "music-magnifying-glass",
+  MusicMagnifyingGlass = 'music-magnifying-glass',
   /** music-note-slash.svg */
-  MusicNoteSlash = "music-note-slash",
+  MusicNoteSlash = 'music-note-slash',
   /** music-note.svg */
-  MusicNote = "music-note",
+  MusicNote = 'music-note',
   /** music-slash.svg */
-  MusicSlash = "music-slash",
+  MusicSlash = 'music-slash',
   /** music.svg */
-  Music = "music",
+  Music = 'music',
   /** mustache.svg */
-  Mustache = "mustache",
+  Mustache = 'mustache',
   /** n.svg */
-  N = "n",
+  N = 'n',
   /** naira-sign.svg */
-  NairaSign = "naira-sign",
+  NairaSign = 'naira-sign',
   /** narwhal.svg */
-  Narwhal = "narwhal",
+  Narwhal = 'narwhal',
   /** nesting-dolls.svg */
-  NestingDolls = "nesting-dolls",
+  NestingDolls = 'nesting-dolls',
   /** network-wired.svg */
-  NetworkWired = "network-wired",
+  NetworkWired = 'network-wired',
   /** neuter.svg */
-  Neuter = "neuter",
+  Neuter = 'neuter',
   /** newspaper.svg */
-  Newspaper = "newspaper",
+  Newspaper = 'newspaper',
   /** nfc-lock.svg */
-  NfcLock = "nfc-lock",
+  NfcLock = 'nfc-lock',
   /** nfc-magnifying-glass.svg */
-  NfcMagnifyingGlass = "nfc-magnifying-glass",
+  NfcMagnifyingGlass = 'nfc-magnifying-glass',
   /** nfc-pen.svg */
-  NfcPen = "nfc-pen",
+  NfcPen = 'nfc-pen',
   /** nfc-signal.svg */
-  NfcSignal = "nfc-signal",
+  NfcSignal = 'nfc-signal',
   /** nfc-slash.svg */
-  NfcSlash = "nfc-slash",
+  NfcSlash = 'nfc-slash',
   /** nfc-symbol.svg */
-  NfcSymbol = "nfc-symbol",
+  NfcSymbol = 'nfc-symbol',
   /** nfc-trash.svg */
-  NfcTrash = "nfc-trash",
+  NfcTrash = 'nfc-trash',
   /** nfc.svg */
-  Nfc = "nfc",
+  Nfc = 'nfc',
   /** nose.svg */
-  Nose = "nose",
+  Nose = 'nose',
   /** not-equal.svg */
-  NotEqual = "not-equal",
+  NotEqual = 'not-equal',
   /** notdef.svg */
-  Notdef = "notdef",
+  Notdef = 'notdef',
   /** note-medical.svg */
-  NoteMedical = "note-medical",
+  NoteMedical = 'note-medical',
   /** note-sticky.svg */
-  NoteSticky = "note-sticky",
+  NoteSticky = 'note-sticky',
   /** note.svg */
-  Note = "note",
+  Note = 'note',
   /** notebook.svg */
-  Notebook = "notebook",
+  Notebook = 'notebook',
   /** notes-medical.svg */
-  NotesMedical = "notes-medical",
+  NotesMedical = 'notes-medical',
   /** notes.svg */
-  Notes = "notes",
+  Notes = 'notes',
   /** o.svg */
-  O = "o",
+  O = 'o',
   /** object-exclude.svg */
-  ObjectExclude = "object-exclude",
+  ObjectExclude = 'object-exclude',
   /** object-group.svg */
-  ObjectGroup = "object-group",
+  ObjectGroup = 'object-group',
   /** object-intersect.svg */
-  ObjectIntersect = "object-intersect",
+  ObjectIntersect = 'object-intersect',
   /** object-subtract.svg */
-  ObjectSubtract = "object-subtract",
+  ObjectSubtract = 'object-subtract',
   /** object-ungroup.svg */
-  ObjectUngroup = "object-ungroup",
+  ObjectUngroup = 'object-ungroup',
   /** object-union.svg */
-  ObjectUnion = "object-union",
+  ObjectUnion = 'object-union',
   /** objects-align-bottom.svg */
-  ObjectsAlignBottom = "objects-align-bottom",
+  ObjectsAlignBottom = 'objects-align-bottom',
   /** objects-align-center-horizontal.svg */
-  ObjectsAlignCenterHorizontal = "objects-align-center-horizontal",
+  ObjectsAlignCenterHorizontal = 'objects-align-center-horizontal',
   /** objects-align-center-vertical.svg */
-  ObjectsAlignCenterVertical = "objects-align-center-vertical",
+  ObjectsAlignCenterVertical = 'objects-align-center-vertical',
   /** objects-align-left.svg */
-  ObjectsAlignLeft = "objects-align-left",
+  ObjectsAlignLeft = 'objects-align-left',
   /** objects-align-right.svg */
-  ObjectsAlignRight = "objects-align-right",
+  ObjectsAlignRight = 'objects-align-right',
   /** objects-align-top.svg */
-  ObjectsAlignTop = "objects-align-top",
+  ObjectsAlignTop = 'objects-align-top',
   /** objects-column.svg */
-  ObjectsColumn = "objects-column",
+  ObjectsColumn = 'objects-column',
   /** octagon-check.svg */
-  OctagonCheck = "octagon-check",
+  OctagonCheck = 'octagon-check',
   /** octagon-divide.svg */
-  OctagonDivide = "octagon-divide",
+  OctagonDivide = 'octagon-divide',
   /** octagon-exclamation.svg */
-  OctagonExclamation = "octagon-exclamation",
+  OctagonExclamation = 'octagon-exclamation',
   /** octagon-minus.svg */
-  OctagonMinus = "octagon-minus",
+  OctagonMinus = 'octagon-minus',
   /** octagon-plus.svg */
-  OctagonPlus = "octagon-plus",
+  OctagonPlus = 'octagon-plus',
   /** octagon-xmark.svg */
-  OctagonXmark = "octagon-xmark",
+  OctagonXmark = 'octagon-xmark',
   /** octagon.svg */
-  Octagon = "octagon",
+  Octagon = 'octagon',
   /** oil-can-drip.svg */
-  OilCanDrip = "oil-can-drip",
+  OilCanDrip = 'oil-can-drip',
   /** oil-can.svg */
-  OilCan = "oil-can",
+  OilCan = 'oil-can',
   /** oil-temperature.svg */
-  OilTemperature = "oil-temperature",
+  OilTemperature = 'oil-temperature',
   /** oil-well.svg */
-  OilWell = "oil-well",
+  OilWell = 'oil-well',
   /** olive-branch.svg */
-  OliveBranch = "olive-branch",
+  OliveBranch = 'olive-branch',
   /** olive.svg */
-  Olive = "olive",
+  Olive = 'olive',
   /** om.svg */
-  Om = "om",
+  Om = 'om',
   /** omega.svg */
-  Omega = "omega",
+  Omega = 'omega',
   /** onion.svg */
-  Onion = "onion",
+  Onion = 'onion',
   /** option.svg */
-  Option = "option",
+  Option = 'option',
   /** ornament.svg */
-  Ornament = "ornament",
+  Ornament = 'ornament',
   /** otter.svg */
-  Otter = "otter",
+  Otter = 'otter',
   /** outdent.svg */
-  Outdent = "outdent",
+  Outdent = 'outdent',
   /** outlet.svg */
-  Outlet = "outlet",
+  Outlet = 'outlet',
   /** oven.svg */
-  Oven = "oven",
+  Oven = 'oven',
   /** overline.svg */
-  Overline = "overline",
+  Overline = 'overline',
   /** p.svg */
-  P = "p",
+  P = 'p',
   /** page-caret-down.svg */
-  PageCaretDown = "page-caret-down",
+  PageCaretDown = 'page-caret-down',
   /** page-caret-up.svg */
-  PageCaretUp = "page-caret-up",
+  PageCaretUp = 'page-caret-up',
   /** page.svg */
-  Page = "page",
+  Page = 'page',
   /** pager.svg */
-  Pager = "pager",
+  Pager = 'pager',
   /** paint-roller.svg */
-  PaintRoller = "paint-roller",
+  PaintRoller = 'paint-roller',
   /** paintbrush-fine.svg */
-  PaintbrushFine = "paintbrush-fine",
+  PaintbrushFine = 'paintbrush-fine',
   /** paintbrush-pencil.svg */
-  PaintbrushPencil = "paintbrush-pencil",
+  PaintbrushPencil = 'paintbrush-pencil',
   /** paintbrush.svg */
-  Paintbrush = "paintbrush",
+  Paintbrush = 'paintbrush',
   /** palette.svg */
-  Palette = "palette",
+  Palette = 'palette',
   /** pallet-box.svg */
-  PalletBox = "pallet-box",
+  PalletBox = 'pallet-box',
   /** pallet-boxes.svg */
-  PalletBoxes = "pallet-boxes",
+  PalletBoxes = 'pallet-boxes',
   /** pallet.svg */
-  Pallet = "pallet",
+  Pallet = 'pallet',
   /** pan-food.svg */
-  PanFood = "pan-food",
+  PanFood = 'pan-food',
   /** pan-frying.svg */
-  PanFrying = "pan-frying",
+  PanFrying = 'pan-frying',
   /** pancakes.svg */
-  Pancakes = "pancakes",
+  Pancakes = 'pancakes',
   /** panel-ews.svg */
-  PanelEws = "panel-ews",
+  PanelEws = 'panel-ews',
   /** panel-fire.svg */
-  PanelFire = "panel-fire",
+  PanelFire = 'panel-fire',
   /** panorama.svg */
-  Panorama = "panorama",
+  Panorama = 'panorama',
   /** paper-plane-top.svg */
-  PaperPlaneTop = "paper-plane-top",
+  PaperPlaneTop = 'paper-plane-top',
   /** paper-plane.svg */
-  PaperPlane = "paper-plane",
+  PaperPlane = 'paper-plane',
   /** paperclip-vertical.svg */
-  PaperclipVertical = "paperclip-vertical",
+  PaperclipVertical = 'paperclip-vertical',
   /** paperclip.svg */
-  Paperclip = "paperclip",
+  Paperclip = 'paperclip',
   /** parachute-box.svg */
-  ParachuteBox = "parachute-box",
+  ParachuteBox = 'parachute-box',
   /** paragraph-left.svg */
-  ParagraphLeft = "paragraph-left",
+  ParagraphLeft = 'paragraph-left',
   /** paragraph.svg */
-  Paragraph = "paragraph",
+  Paragraph = 'paragraph',
   /** party-bell.svg */
-  PartyBell = "party-bell",
+  PartyBell = 'party-bell',
   /** party-horn.svg */
-  PartyHorn = "party-horn",
+  PartyHorn = 'party-horn',
   /** passport.svg */
-  Passport = "passport",
+  Passport = 'passport',
   /** paste.svg */
-  Paste = "paste",
+  Paste = 'paste',
   /** pause.svg */
-  Pause = "pause",
+  Pause = 'pause',
   /** paw-claws.svg */
-  PawClaws = "paw-claws",
+  PawClaws = 'paw-claws',
   /** paw-simple.svg */
-  PawSimple = "paw-simple",
+  PawSimple = 'paw-simple',
   /** paw.svg */
-  Paw = "paw",
+  Paw = 'paw',
   /** peace.svg */
-  Peace = "peace",
+  Peace = 'peace',
   /** peach.svg */
-  Peach = "peach",
+  Peach = 'peach',
   /** peanut.svg */
-  Peanut = "peanut",
+  Peanut = 'peanut',
   /** peanuts.svg */
-  Peanuts = "peanuts",
+  Peanuts = 'peanuts',
   /** peapod.svg */
-  Peapod = "peapod",
+  Peapod = 'peapod',
   /** pear.svg */
-  Pear = "pear",
+  Pear = 'pear',
   /** pedestal.svg */
-  Pedestal = "pedestal",
+  Pedestal = 'pedestal',
   /** pegasus.svg */
-  Pegasus = "pegasus",
+  Pegasus = 'pegasus',
   /** pen-circle.svg */
-  PenCircle = "pen-circle",
+  PenCircle = 'pen-circle',
   /** pen-clip-slash.svg */
-  PenClipSlash = "pen-clip-slash",
+  PenClipSlash = 'pen-clip-slash',
   /** pen-clip.svg */
-  PenClip = "pen-clip",
+  PenClip = 'pen-clip',
   /** pen-fancy-slash.svg */
-  PenFancySlash = "pen-fancy-slash",
+  PenFancySlash = 'pen-fancy-slash',
   /** pen-fancy.svg */
-  PenFancy = "pen-fancy",
+  PenFancy = 'pen-fancy',
   /** pen-field.svg */
-  PenField = "pen-field",
+  PenField = 'pen-field',
   /** pen-line.svg */
-  PenLine = "pen-line",
+  PenLine = 'pen-line',
   /** pen-nib-slash.svg */
-  PenNibSlash = "pen-nib-slash",
+  PenNibSlash = 'pen-nib-slash',
   /** pen-nib.svg */
-  PenNib = "pen-nib",
+  PenNib = 'pen-nib',
   /** pen-paintbrush.svg */
-  PenPaintbrush = "pen-paintbrush",
+  PenPaintbrush = 'pen-paintbrush',
   /** pen-ruler.svg */
-  PenRuler = "pen-ruler",
+  PenRuler = 'pen-ruler',
   /** pen-slash.svg */
-  PenSlash = "pen-slash",
+  PenSlash = 'pen-slash',
   /** pen-swirl.svg */
-  PenSwirl = "pen-swirl",
+  PenSwirl = 'pen-swirl',
   /** pen-to-square.svg */
-  PenToSquare = "pen-to-square",
+  PenToSquare = 'pen-to-square',
   /** pen.svg */
-  Pen = "pen",
+  Pen = 'pen',
   /** pencil-mechanical.svg */
-  PencilMechanical = "pencil-mechanical",
+  PencilMechanical = 'pencil-mechanical',
   /** pencil-slash.svg */
-  PencilSlash = "pencil-slash",
+  PencilSlash = 'pencil-slash',
   /** pencil.svg */
-  Pencil = "pencil",
+  Pencil = 'pencil',
   /** people-arrows.svg */
-  PeopleArrows = "people-arrows",
+  PeopleArrows = 'people-arrows',
   /** people-carry-box.svg */
-  PeopleCarryBox = "people-carry-box",
+  PeopleCarryBox = 'people-carry-box',
   /** people-dress-simple.svg */
-  PeopleDressSimple = "people-dress-simple",
+  PeopleDressSimple = 'people-dress-simple',
   /** people-dress.svg */
-  PeopleDress = "people-dress",
+  PeopleDress = 'people-dress',
   /** people-group.svg */
-  PeopleGroup = "people-group",
+  PeopleGroup = 'people-group',
   /** people-line.svg */
-  PeopleLine = "people-line",
+  PeopleLine = 'people-line',
   /** people-pants-simple.svg */
-  PeoplePantsSimple = "people-pants-simple",
+  PeoplePantsSimple = 'people-pants-simple',
   /** people-pants.svg */
-  PeoplePants = "people-pants",
+  PeoplePants = 'people-pants',
   /** people-pulling.svg */
-  PeoplePulling = "people-pulling",
+  PeoplePulling = 'people-pulling',
   /** people-robbery.svg */
-  PeopleRobbery = "people-robbery",
+  PeopleRobbery = 'people-robbery',
   /** people-roof.svg */
-  PeopleRoof = "people-roof",
+  PeopleRoof = 'people-roof',
   /** people-simple.svg */
-  PeopleSimple = "people-simple",
+  PeopleSimple = 'people-simple',
   /** people.svg */
-  People = "people",
+  People = 'people',
   /** pepper-hot.svg */
-  PepperHot = "pepper-hot",
+  PepperHot = 'pepper-hot',
   /** pepper.svg */
-  Pepper = "pepper",
+  Pepper = 'pepper',
   /** percent.svg */
-  Percent = "percent",
+  Percent = 'percent',
   /** period.svg */
-  Period = "period",
+  Period = 'period',
   /** person-arrow-down-to-line.svg */
-  PersonArrowDownToLine = "person-arrow-down-to-line",
+  PersonArrowDownToLine = 'person-arrow-down-to-line',
   /** person-arrow-up-from-line.svg */
-  PersonArrowUpFromLine = "person-arrow-up-from-line",
+  PersonArrowUpFromLine = 'person-arrow-up-from-line',
   /** person-biking-mountain.svg */
-  PersonBikingMountain = "person-biking-mountain",
+  PersonBikingMountain = 'person-biking-mountain',
   /** person-biking.svg */
-  PersonBiking = "person-biking",
+  PersonBiking = 'person-biking',
   /** person-booth.svg */
-  PersonBooth = "person-booth",
+  PersonBooth = 'person-booth',
   /** person-breastfeeding.svg */
-  PersonBreastfeeding = "person-breastfeeding",
+  PersonBreastfeeding = 'person-breastfeeding',
   /** person-burst.svg */
-  PersonBurst = "person-burst",
+  PersonBurst = 'person-burst',
   /** person-cane.svg */
-  PersonCane = "person-cane",
+  PersonCane = 'person-cane',
   /** person-carry-box.svg */
-  PersonCarryBox = "person-carry-box",
+  PersonCarryBox = 'person-carry-box',
   /** person-chalkboard.svg */
-  PersonChalkboard = "person-chalkboard",
+  PersonChalkboard = 'person-chalkboard',
   /** person-circle-check.svg */
-  PersonCircleCheck = "person-circle-check",
+  PersonCircleCheck = 'person-circle-check',
   /** person-circle-exclamation.svg */
-  PersonCircleExclamation = "person-circle-exclamation",
+  PersonCircleExclamation = 'person-circle-exclamation',
   /** person-circle-minus.svg */
-  PersonCircleMinus = "person-circle-minus",
+  PersonCircleMinus = 'person-circle-minus',
   /** person-circle-plus.svg */
-  PersonCirclePlus = "person-circle-plus",
+  PersonCirclePlus = 'person-circle-plus',
   /** person-circle-question.svg */
-  PersonCircleQuestion = "person-circle-question",
+  PersonCircleQuestion = 'person-circle-question',
   /** person-circle-xmark.svg */
-  PersonCircleXmark = "person-circle-xmark",
+  PersonCircleXmark = 'person-circle-xmark',
   /** person-digging.svg */
-  PersonDigging = "person-digging",
+  PersonDigging = 'person-digging',
   /** person-dolly-empty.svg */
-  PersonDollyEmpty = "person-dolly-empty",
+  PersonDollyEmpty = 'person-dolly-empty',
   /** person-dolly.svg */
-  PersonDolly = "person-dolly",
+  PersonDolly = 'person-dolly',
   /** person-dots-from-line.svg */
-  PersonDotsFromLine = "person-dots-from-line",
+  PersonDotsFromLine = 'person-dots-from-line',
   /** person-dress-burst.svg */
-  PersonDressBurst = "person-dress-burst",
+  PersonDressBurst = 'person-dress-burst',
   /** person-dress-fairy.svg */
-  PersonDressFairy = "person-dress-fairy",
+  PersonDressFairy = 'person-dress-fairy',
   /** person-dress-simple.svg */
-  PersonDressSimple = "person-dress-simple",
+  PersonDressSimple = 'person-dress-simple',
   /** person-dress.svg */
-  PersonDress = "person-dress",
+  PersonDress = 'person-dress',
   /** person-drowning.svg */
-  PersonDrowning = "person-drowning",
+  PersonDrowning = 'person-drowning',
   /** person-fairy.svg */
-  PersonFairy = "person-fairy",
+  PersonFairy = 'person-fairy',
   /** person-falling-burst.svg */
-  PersonFallingBurst = "person-falling-burst",
+  PersonFallingBurst = 'person-falling-burst',
   /** person-falling.svg */
-  PersonFalling = "person-falling",
+  PersonFalling = 'person-falling',
   /** person-from-portal.svg */
-  PersonFromPortal = "person-from-portal",
+  PersonFromPortal = 'person-from-portal',
   /** person-half-dress.svg */
-  PersonHalfDress = "person-half-dress",
+  PersonHalfDress = 'person-half-dress',
   /** person-harassing.svg */
-  PersonHarassing = "person-harassing",
+  PersonHarassing = 'person-harassing',
   /** person-hiking.svg */
-  PersonHiking = "person-hiking",
+  PersonHiking = 'person-hiking',
   /** person-military-pointing.svg */
-  PersonMilitaryPointing = "person-military-pointing",
+  PersonMilitaryPointing = 'person-military-pointing',
   /** person-military-rifle.svg */
-  PersonMilitaryRifle = "person-military-rifle",
+  PersonMilitaryRifle = 'person-military-rifle',
   /** person-military-to-person.svg */
-  PersonMilitaryToPerson = "person-military-to-person",
+  PersonMilitaryToPerson = 'person-military-to-person',
   /** person-pinball.svg */
-  PersonPinball = "person-pinball",
+  PersonPinball = 'person-pinball',
   /** person-praying.svg */
-  PersonPraying = "person-praying",
+  PersonPraying = 'person-praying',
   /** person-pregnant.svg */
-  PersonPregnant = "person-pregnant",
+  PersonPregnant = 'person-pregnant',
   /** person-rays.svg */
-  PersonRays = "person-rays",
+  PersonRays = 'person-rays',
   /** person-rifle.svg */
-  PersonRifle = "person-rifle",
+  PersonRifle = 'person-rifle',
   /** person-running-fast.svg */
-  PersonRunningFast = "person-running-fast",
+  PersonRunningFast = 'person-running-fast',
   /** person-running.svg */
-  PersonRunning = "person-running",
+  PersonRunning = 'person-running',
   /** person-seat-reclined.svg */
-  PersonSeatReclined = "person-seat-reclined",
+  PersonSeatReclined = 'person-seat-reclined',
   /** person-seat.svg */
-  PersonSeat = "person-seat",
+  PersonSeat = 'person-seat',
   /** person-shelter.svg */
-  PersonShelter = "person-shelter",
+  PersonShelter = 'person-shelter',
   /** person-sign.svg */
-  PersonSign = "person-sign",
+  PersonSign = 'person-sign',
   /** person-simple.svg */
-  PersonSimple = "person-simple",
+  PersonSimple = 'person-simple',
   /** person-skating.svg */
-  PersonSkating = "person-skating",
+  PersonSkating = 'person-skating',
   /** person-ski-jumping.svg */
-  PersonSkiJumping = "person-ski-jumping",
+  PersonSkiJumping = 'person-ski-jumping',
   /** person-ski-lift.svg */
-  PersonSkiLift = "person-ski-lift",
+  PersonSkiLift = 'person-ski-lift',
   /** person-skiing-nordic.svg */
-  PersonSkiingNordic = "person-skiing-nordic",
+  PersonSkiingNordic = 'person-skiing-nordic',
   /** person-skiing.svg */
-  PersonSkiing = "person-skiing",
+  PersonSkiing = 'person-skiing',
   /** person-sledding.svg */
-  PersonSledding = "person-sledding",
+  PersonSledding = 'person-sledding',
   /** person-snowboarding.svg */
-  PersonSnowboarding = "person-snowboarding",
+  PersonSnowboarding = 'person-snowboarding',
   /** person-snowmobiling.svg */
-  PersonSnowmobiling = "person-snowmobiling",
+  PersonSnowmobiling = 'person-snowmobiling',
   /** person-swimming.svg */
-  PersonSwimming = "person-swimming",
+  PersonSwimming = 'person-swimming',
   /** person-through-window.svg */
-  PersonThroughWindow = "person-through-window",
+  PersonThroughWindow = 'person-through-window',
   /** person-to-door.svg */
-  PersonToDoor = "person-to-door",
+  PersonToDoor = 'person-to-door',
   /** person-to-portal.svg */
-  PersonToPortal = "person-to-portal",
+  PersonToPortal = 'person-to-portal',
   /** person-walking-arrow-loop-left.svg */
-  PersonWalkingArrowLoopLeft = "person-walking-arrow-loop-left",
+  PersonWalkingArrowLoopLeft = 'person-walking-arrow-loop-left',
   /** person-walking-arrow-right.svg */
-  PersonWalkingArrowRight = "person-walking-arrow-right",
+  PersonWalkingArrowRight = 'person-walking-arrow-right',
   /** person-walking-dashed-line-arrow-right.svg */
-  PersonWalkingDashedLineArrowRight = "person-walking-dashed-line-arrow-right",
+  PersonWalkingDashedLineArrowRight = 'person-walking-dashed-line-arrow-right',
   /** person-walking-luggage.svg */
-  PersonWalkingLuggage = "person-walking-luggage",
+  PersonWalkingLuggage = 'person-walking-luggage',
   /** person-walking-with-cane.svg */
-  PersonWalkingWithCane = "person-walking-with-cane",
+  PersonWalkingWithCane = 'person-walking-with-cane',
   /** person-walking.svg */
-  PersonWalking = "person-walking",
+  PersonWalking = 'person-walking',
   /** person.svg */
-  Person = "person",
+  Person = 'person',
   /** peseta-sign.svg */
-  PesetaSign = "peseta-sign",
+  PesetaSign = 'peseta-sign',
   /** peso-sign.svg */
-  PesoSign = "peso-sign",
+  PesoSign = 'peso-sign',
   /** phone-arrow-down-left.svg */
-  PhoneArrowDownLeft = "phone-arrow-down-left",
+  PhoneArrowDownLeft = 'phone-arrow-down-left',
   /** phone-arrow-right.svg */
-  PhoneArrowRight = "phone-arrow-right",
+  PhoneArrowRight = 'phone-arrow-right',
   /** phone-arrow-up-right.svg */
-  PhoneArrowUpRight = "phone-arrow-up-right",
+  PhoneArrowUpRight = 'phone-arrow-up-right',
   /** phone-flip.svg */
-  PhoneFlip = "phone-flip",
+  PhoneFlip = 'phone-flip',
   /** phone-hangup.svg */
-  PhoneHangup = "phone-hangup",
+  PhoneHangup = 'phone-hangup',
   /** phone-intercom.svg */
-  PhoneIntercom = "phone-intercom",
+  PhoneIntercom = 'phone-intercom',
   /** phone-missed.svg */
-  PhoneMissed = "phone-missed",
+  PhoneMissed = 'phone-missed',
   /** phone-office.svg */
-  PhoneOffice = "phone-office",
+  PhoneOffice = 'phone-office',
   /** phone-plus.svg */
-  PhonePlus = "phone-plus",
+  PhonePlus = 'phone-plus',
   /** phone-rotary.svg */
-  PhoneRotary = "phone-rotary",
+  PhoneRotary = 'phone-rotary',
   /** phone-slash.svg */
-  PhoneSlash = "phone-slash",
+  PhoneSlash = 'phone-slash',
   /** phone-volume.svg */
-  PhoneVolume = "phone-volume",
+  PhoneVolume = 'phone-volume',
   /** phone-xmark.svg */
-  PhoneXmark = "phone-xmark",
+  PhoneXmark = 'phone-xmark',
   /** phone.svg */
-  Phone = "phone",
+  Phone = 'phone',
   /** photo-film-music.svg */
-  PhotoFilmMusic = "photo-film-music",
+  PhotoFilmMusic = 'photo-film-music',
   /** photo-film.svg */
-  PhotoFilm = "photo-film",
+  PhotoFilm = 'photo-film',
   /** pi.svg */
-  Pi = "pi",
+  Pi = 'pi',
   /** piano-keyboard.svg */
-  PianoKeyboard = "piano-keyboard",
+  PianoKeyboard = 'piano-keyboard',
   /** piano.svg */
-  Piano = "piano",
+  Piano = 'piano',
   /** pickaxe.svg */
-  Pickaxe = "pickaxe",
+  Pickaxe = 'pickaxe',
   /** pickleball.svg */
-  Pickleball = "pickleball",
+  Pickleball = 'pickleball',
   /** pie.svg */
-  Pie = "pie",
+  Pie = 'pie',
   /** pig.svg */
-  Pig = "pig",
+  Pig = 'pig',
   /** piggy-bank.svg */
-  PiggyBank = "piggy-bank",
+  PiggyBank = 'piggy-bank',
   /** pills.svg */
-  Pills = "pills",
+  Pills = 'pills',
   /** pinata.svg */
-  Pinata = "pinata",
+  Pinata = 'pinata',
   /** pinball.svg */
-  Pinball = "pinball",
+  Pinball = 'pinball',
   /** pineapple.svg */
-  Pineapple = "pineapple",
+  Pineapple = 'pineapple',
   /** pipe-circle-check.svg */
-  PipeCircleCheck = "pipe-circle-check",
+  PipeCircleCheck = 'pipe-circle-check',
   /** pipe-collar.svg */
-  PipeCollar = "pipe-collar",
+  PipeCollar = 'pipe-collar',
   /** pipe-section.svg */
-  PipeSection = "pipe-section",
+  PipeSection = 'pipe-section',
   /** pipe-smoking.svg */
-  PipeSmoking = "pipe-smoking",
+  PipeSmoking = 'pipe-smoking',
   /** pipe-valve.svg */
-  PipeValve = "pipe-valve",
+  PipeValve = 'pipe-valve',
   /** pipe.svg */
-  Pipe = "pipe",
+  Pipe = 'pipe',
   /** pizza-slice.svg */
-  PizzaSlice = "pizza-slice",
+  PizzaSlice = 'pizza-slice',
   /** pizza.svg */
-  Pizza = "pizza",
+  Pizza = 'pizza',
   /** place-of-worship.svg */
-  PlaceOfWorship = "place-of-worship",
+  PlaceOfWorship = 'place-of-worship',
   /** plane-arrival.svg */
-  PlaneArrival = "plane-arrival",
+  PlaneArrival = 'plane-arrival',
   /** plane-circle-check.svg */
-  PlaneCircleCheck = "plane-circle-check",
+  PlaneCircleCheck = 'plane-circle-check',
   /** plane-circle-exclamation.svg */
-  PlaneCircleExclamation = "plane-circle-exclamation",
+  PlaneCircleExclamation = 'plane-circle-exclamation',
   /** plane-circle-xmark.svg */
-  PlaneCircleXmark = "plane-circle-xmark",
+  PlaneCircleXmark = 'plane-circle-xmark',
   /** plane-departure.svg */
-  PlaneDeparture = "plane-departure",
+  PlaneDeparture = 'plane-departure',
   /** plane-engines.svg */
-  PlaneEngines = "plane-engines",
+  PlaneEngines = 'plane-engines',
   /** plane-lock.svg */
-  PlaneLock = "plane-lock",
+  PlaneLock = 'plane-lock',
   /** plane-prop.svg */
-  PlaneProp = "plane-prop",
+  PlaneProp = 'plane-prop',
   /** plane-slash.svg */
-  PlaneSlash = "plane-slash",
+  PlaneSlash = 'plane-slash',
   /** plane-tail.svg */
-  PlaneTail = "plane-tail",
+  PlaneTail = 'plane-tail',
   /** plane-up-slash.svg */
-  PlaneUpSlash = "plane-up-slash",
+  PlaneUpSlash = 'plane-up-slash',
   /** plane-up.svg */
-  PlaneUp = "plane-up",
+  PlaneUp = 'plane-up',
   /** plane.svg */
-  Plane = "plane",
+  Plane = 'plane',
   /** planet-moon.svg */
-  PlanetMoon = "planet-moon",
+  PlanetMoon = 'planet-moon',
   /** planet-ringed.svg */
-  PlanetRinged = "planet-ringed",
+  PlanetRinged = 'planet-ringed',
   /** plant-wilt.svg */
-  PlantWilt = "plant-wilt",
+  PlantWilt = 'plant-wilt',
   /** plate-utensils.svg */
-  PlateUtensils = "plate-utensils",
+  PlateUtensils = 'plate-utensils',
   /** plate-wheat.svg */
-  PlateWheat = "plate-wheat",
+  PlateWheat = 'plate-wheat',
   /** play-pause.svg */
-  PlayPause = "play-pause",
+  PlayPause = 'play-pause',
   /** play.svg */
-  Play = "play",
+  Play = 'play',
   /** plug-circle-bolt.svg */
-  PlugCircleBolt = "plug-circle-bolt",
+  PlugCircleBolt = 'plug-circle-bolt',
   /** plug-circle-check.svg */
-  PlugCircleCheck = "plug-circle-check",
+  PlugCircleCheck = 'plug-circle-check',
   /** plug-circle-exclamation.svg */
-  PlugCircleExclamation = "plug-circle-exclamation",
+  PlugCircleExclamation = 'plug-circle-exclamation',
   /** plug-circle-minus.svg */
-  PlugCircleMinus = "plug-circle-minus",
+  PlugCircleMinus = 'plug-circle-minus',
   /** plug-circle-plus.svg */
-  PlugCirclePlus = "plug-circle-plus",
+  PlugCirclePlus = 'plug-circle-plus',
   /** plug-circle-xmark.svg */
-  PlugCircleXmark = "plug-circle-xmark",
+  PlugCircleXmark = 'plug-circle-xmark',
   /** plug.svg */
-  Plug = "plug",
+  Plug = 'plug',
   /** plus-large.svg */
-  PlusLarge = "plus-large",
+  PlusLarge = 'plus-large',
   /** plus-minus.svg */
-  PlusMinus = "plus-minus",
+  PlusMinus = 'plus-minus',
   /** plus.svg */
-  Plus = "plus",
+  Plus = 'plus',
   /** podcast.svg */
-  Podcast = "podcast",
+  Podcast = 'podcast',
   /** podium-star.svg */
-  PodiumStar = "podium-star",
+  PodiumStar = 'podium-star',
   /** podium.svg */
-  Podium = "podium",
+  Podium = 'podium',
   /** police-box.svg */
-  PoliceBox = "police-box",
+  PoliceBox = 'police-box',
   /** poll-people.svg */
-  PollPeople = "poll-people",
+  PollPeople = 'poll-people',
   /** pompebled.svg */
-  Pompebled = "pompebled",
+  Pompebled = 'pompebled',
   /** poo-storm.svg */
-  PooStorm = "poo-storm",
+  PooStorm = 'poo-storm',
   /** poo.svg */
-  Poo = "poo",
+  Poo = 'poo',
   /** pool-8-ball.svg */
-  Pool8Ball = "pool-8-ball",
+  Pool8Ball = 'pool-8-ball',
   /** poop.svg */
-  Poop = "poop",
+  Poop = 'poop',
   /** popcorn.svg */
-  Popcorn = "popcorn",
+  Popcorn = 'popcorn',
   /** popsicle.svg */
-  Popsicle = "popsicle",
+  Popsicle = 'popsicle',
   /** pot-food.svg */
-  PotFood = "pot-food",
+  PotFood = 'pot-food',
   /** potato.svg */
-  Potato = "potato",
+  Potato = 'potato',
   /** power-off.svg */
-  PowerOff = "power-off",
+  PowerOff = 'power-off',
   /** prescription-bottle-medical.svg */
-  PrescriptionBottleMedical = "prescription-bottle-medical",
+  PrescriptionBottleMedical = 'prescription-bottle-medical',
   /** prescription-bottle-pill.svg */
-  PrescriptionBottlePill = "prescription-bottle-pill",
+  PrescriptionBottlePill = 'prescription-bottle-pill',
   /** prescription-bottle.svg */
-  PrescriptionBottle = "prescription-bottle",
+  PrescriptionBottle = 'prescription-bottle',
   /** prescription.svg */
-  Prescription = "prescription",
+  Prescription = 'prescription',
   /** presentation-screen.svg */
-  PresentationScreen = "presentation-screen",
+  PresentationScreen = 'presentation-screen',
   /** pretzel.svg */
-  Pretzel = "pretzel",
+  Pretzel = 'pretzel',
   /** print-magnifying-glass.svg */
-  PrintMagnifyingGlass = "print-magnifying-glass",
+  PrintMagnifyingGlass = 'print-magnifying-glass',
   /** print-slash.svg */
-  PrintSlash = "print-slash",
+  PrintSlash = 'print-slash',
   /** print.svg */
-  Print = "print",
+  Print = 'print',
   /** projector.svg */
-  Projector = "projector",
+  Projector = 'projector',
   /** pump-medical.svg */
-  PumpMedical = "pump-medical",
+  PumpMedical = 'pump-medical',
   /** pump-soap.svg */
-  PumpSoap = "pump-soap",
+  PumpSoap = 'pump-soap',
   /** pump.svg */
-  Pump = "pump",
+  Pump = 'pump',
   /** pumpkin.svg */
-  Pumpkin = "pumpkin",
+  Pumpkin = 'pumpkin',
   /** puzzle-piece-simple.svg */
-  PuzzlePieceSimple = "puzzle-piece-simple",
+  PuzzlePieceSimple = 'puzzle-piece-simple',
   /** puzzle-piece.svg */
-  PuzzlePiece = "puzzle-piece",
+  PuzzlePiece = 'puzzle-piece',
   /** puzzle.svg */
-  Puzzle = "puzzle",
+  Puzzle = 'puzzle',
   /** q.svg */
-  Q = "q",
+  Q = 'q',
   /** qrcode.svg */
-  Qrcode = "qrcode",
+  Qrcode = 'qrcode',
   /** question.svg */
-  Question = "question",
+  Question = 'question',
   /** quote-left.svg */
-  QuoteLeft = "quote-left",
+  QuoteLeft = 'quote-left',
   /** quote-right.svg */
-  QuoteRight = "quote-right",
+  QuoteRight = 'quote-right',
   /** quotes.svg */
-  Quotes = "quotes",
+  Quotes = 'quotes',
   /** r.svg */
-  R = "r",
+  R = 'r',
   /** rabbit-running.svg */
-  RabbitRunning = "rabbit-running",
+  RabbitRunning = 'rabbit-running',
   /** rabbit.svg */
-  Rabbit = "rabbit",
+  Rabbit = 'rabbit',
   /** raccoon.svg */
-  Raccoon = "raccoon",
+  Raccoon = 'raccoon',
   /** racquet.svg */
-  Racquet = "racquet",
+  Racquet = 'racquet',
   /** radar.svg */
-  Radar = "radar",
+  Radar = 'radar',
   /** radiation.svg */
-  Radiation = "radiation",
+  Radiation = 'radiation',
   /** radio-tuner.svg */
-  RadioTuner = "radio-tuner",
+  RadioTuner = 'radio-tuner',
   /** radio.svg */
-  Radio = "radio",
+  Radio = 'radio',
   /** rainbow.svg */
-  Rainbow = "rainbow",
+  Rainbow = 'rainbow',
   /** raindrops.svg */
-  Raindrops = "raindrops",
+  Raindrops = 'raindrops',
   /** ram.svg */
-  Ram = "ram",
+  Ram = 'ram',
   /** ramp-loading.svg */
-  RampLoading = "ramp-loading",
+  RampLoading = 'ramp-loading',
   /** ranking-star.svg */
-  RankingStar = "ranking-star",
+  RankingStar = 'ranking-star',
   /** raygun.svg */
-  Raygun = "raygun",
+  Raygun = 'raygun',
   /** receipt.svg */
-  Receipt = "receipt",
+  Receipt = 'receipt',
   /** record-vinyl.svg */
-  RecordVinyl = "record-vinyl",
+  RecordVinyl = 'record-vinyl',
   /** rectangle-ad.svg */
-  RectangleAd = "rectangle-ad",
+  RectangleAd = 'rectangle-ad',
   /** rectangle-barcode.svg */
-  RectangleBarcode = "rectangle-barcode",
+  RectangleBarcode = 'rectangle-barcode',
   /** rectangle-code.svg */
-  RectangleCode = "rectangle-code",
+  RectangleCode = 'rectangle-code',
   /** rectangle-history-circle-plus.svg */
-  RectangleHistoryCirclePlus = "rectangle-history-circle-plus",
+  RectangleHistoryCirclePlus = 'rectangle-history-circle-plus',
   /** rectangle-history-circle-user.svg */
-  RectangleHistoryCircleUser = "rectangle-history-circle-user",
+  RectangleHistoryCircleUser = 'rectangle-history-circle-user',
   /** rectangle-history.svg */
-  RectangleHistory = "rectangle-history",
+  RectangleHistory = 'rectangle-history',
   /** rectangle-list.svg */
-  RectangleList = "rectangle-list",
+  RectangleList = 'rectangle-list',
   /** rectangle-pro.svg */
-  RectanglePro = "rectangle-pro",
+  RectanglePro = 'rectangle-pro',
   /** rectangle-terminal.svg */
-  RectangleTerminal = "rectangle-terminal",
+  RectangleTerminal = 'rectangle-terminal',
   /** rectangle-vertical-history.svg */
-  RectangleVerticalHistory = "rectangle-vertical-history",
+  RectangleVerticalHistory = 'rectangle-vertical-history',
   /** rectangle-vertical.svg */
-  RectangleVertical = "rectangle-vertical",
+  RectangleVertical = 'rectangle-vertical',
   /** rectangle-wide.svg */
-  RectangleWide = "rectangle-wide",
+  RectangleWide = 'rectangle-wide',
   /** rectangle-xmark.svg */
-  RectangleXmark = "rectangle-xmark",
+  RectangleXmark = 'rectangle-xmark',
   /** rectangle.svg */
-  Rectangle = "rectangle",
+  Rectangle = 'rectangle',
   /** rectangles-mixed.svg */
-  RectanglesMixed = "rectangles-mixed",
+  RectanglesMixed = 'rectangles-mixed',
   /** recycle.svg */
-  Recycle = "recycle",
+  Recycle = 'recycle',
   /** reel.svg */
-  Reel = "reel",
+  Reel = 'reel',
   /** reflect-horizontal.svg */
-  ReflectHorizontal = "reflect-horizontal",
+  ReflectHorizontal = 'reflect-horizontal',
   /** reflect-vertical.svg */
-  ReflectVertical = "reflect-vertical",
+  ReflectVertical = 'reflect-vertical',
   /** refrigerator.svg */
-  Refrigerator = "refrigerator",
+  Refrigerator = 'refrigerator',
   /** registered.svg */
-  Registered = "registered",
+  Registered = 'registered',
   /** repeat-1.svg */
-  Repeat1 = "repeat-1",
+  Repeat1 = 'repeat-1',
   /** repeat.svg */
-  Repeat = "repeat",
+  Repeat = 'repeat',
   /** reply-all.svg */
-  ReplyAll = "reply-all",
+  ReplyAll = 'reply-all',
   /** reply-clock.svg */
-  ReplyClock = "reply-clock",
+  ReplyClock = 'reply-clock',
   /** reply.svg */
-  Reply = "reply",
+  Reply = 'reply',
   /** republican.svg */
-  Republican = "republican",
+  Republican = 'republican',
   /** restroom-simple.svg */
-  RestroomSimple = "restroom-simple",
+  RestroomSimple = 'restroom-simple',
   /** restroom.svg */
-  Restroom = "restroom",
+  Restroom = 'restroom',
   /** retweet.svg */
-  Retweet = "retweet",
+  Retweet = 'retweet',
   /** rhombus.svg */
-  Rhombus = "rhombus",
+  Rhombus = 'rhombus',
   /** ribbon.svg */
-  Ribbon = "ribbon",
+  Ribbon = 'ribbon',
   /** right-from-bracket.svg */
-  RightFromBracket = "right-from-bracket",
+  RightFromBracket = 'right-from-bracket',
   /** right-from-line.svg */
-  RightFromLine = "right-from-line",
+  RightFromLine = 'right-from-line',
   /** right-left-large.svg */
-  RightLeftLarge = "right-left-large",
+  RightLeftLarge = 'right-left-large',
   /** right-left.svg */
-  RightLeft = "right-left",
+  RightLeft = 'right-left',
   /** right-long-to-line.svg */
-  RightLongToLine = "right-long-to-line",
+  RightLongToLine = 'right-long-to-line',
   /** right-long.svg */
-  RightLong = "right-long",
+  RightLong = 'right-long',
   /** right-to-bracket.svg */
-  RightToBracket = "right-to-bracket",
+  RightToBracket = 'right-to-bracket',
   /** right-to-line.svg */
-  RightToLine = "right-to-line",
+  RightToLine = 'right-to-line',
   /** right.svg */
-  Right = "right",
+  Right = 'right',
   /** ring-diamond.svg */
-  RingDiamond = "ring-diamond",
+  RingDiamond = 'ring-diamond',
   /** ring.svg */
-  Ring = "ring",
+  Ring = 'ring',
   /** rings-wedding.svg */
-  RingsWedding = "rings-wedding",
+  RingsWedding = 'rings-wedding',
   /** road-barrier.svg */
-  RoadBarrier = "road-barrier",
+  RoadBarrier = 'road-barrier',
   /** road-bridge.svg */
-  RoadBridge = "road-bridge",
+  RoadBridge = 'road-bridge',
   /** road-circle-check.svg */
-  RoadCircleCheck = "road-circle-check",
+  RoadCircleCheck = 'road-circle-check',
   /** road-circle-exclamation.svg */
-  RoadCircleExclamation = "road-circle-exclamation",
+  RoadCircleExclamation = 'road-circle-exclamation',
   /** road-circle-xmark.svg */
-  RoadCircleXmark = "road-circle-xmark",
+  RoadCircleXmark = 'road-circle-xmark',
   /** road-lock.svg */
-  RoadLock = "road-lock",
+  RoadLock = 'road-lock',
   /** road-spikes.svg */
-  RoadSpikes = "road-spikes",
+  RoadSpikes = 'road-spikes',
   /** road.svg */
-  Road = "road",
+  Road = 'road',
   /** robot-astromech.svg */
-  RobotAstromech = "robot-astromech",
+  RobotAstromech = 'robot-astromech',
   /** robot.svg */
-  Robot = "robot",
+  Robot = 'robot',
   /** rocket-launch.svg */
-  RocketLaunch = "rocket-launch",
+  RocketLaunch = 'rocket-launch',
   /** rocket.svg */
-  Rocket = "rocket",
+  Rocket = 'rocket',
   /** roller-coaster.svg */
-  RollerCoaster = "roller-coaster",
+  RollerCoaster = 'roller-coaster',
   /** rotate-exclamation.svg */
-  RotateExclamation = "rotate-exclamation",
+  RotateExclamation = 'rotate-exclamation',
   /** rotate-left.svg */
-  RotateLeft = "rotate-left",
+  RotateLeft = 'rotate-left',
   /** rotate-reverse.svg */
-  RotateReverse = "rotate-reverse",
+  RotateReverse = 'rotate-reverse',
   /** rotate-right.svg */
-  RotateRight = "rotate-right",
+  RotateRight = 'rotate-right',
   /** rotate.svg */
-  Rotate = "rotate",
+  Rotate = 'rotate',
   /** route-highway.svg */
-  RouteHighway = "route-highway",
+  RouteHighway = 'route-highway',
   /** route-interstate.svg */
-  RouteInterstate = "route-interstate",
+  RouteInterstate = 'route-interstate',
   /** route.svg */
-  Route = "route",
+  Route = 'route',
   /** router.svg */
-  Router = "router",
+  Router = 'router',
   /** rss.svg */
-  Rss = "rss",
+  Rss = 'rss',
   /** ruble-sign.svg */
-  RubleSign = "ruble-sign",
+  RubleSign = 'ruble-sign',
   /** rug.svg */
-  Rug = "rug",
+  Rug = 'rug',
   /** rugby-ball.svg */
-  RugbyBall = "rugby-ball",
+  RugbyBall = 'rugby-ball',
   /** ruler-combined.svg */
-  RulerCombined = "ruler-combined",
+  RulerCombined = 'ruler-combined',
   /** ruler-horizontal.svg */
-  RulerHorizontal = "ruler-horizontal",
+  RulerHorizontal = 'ruler-horizontal',
   /** ruler-triangle.svg */
-  RulerTriangle = "ruler-triangle",
+  RulerTriangle = 'ruler-triangle',
   /** ruler-vertical.svg */
-  RulerVertical = "ruler-vertical",
+  RulerVertical = 'ruler-vertical',
   /** ruler.svg */
-  Ruler = "ruler",
+  Ruler = 'ruler',
   /** rupee-sign.svg */
-  RupeeSign = "rupee-sign",
+  RupeeSign = 'rupee-sign',
   /** rupiah-sign.svg */
-  RupiahSign = "rupiah-sign",
+  RupiahSign = 'rupiah-sign',
   /** rv.svg */
-  Rv = "rv",
+  Rv = 'rv',
   /** s.svg */
-  S = "s",
+  S = 's',
   /** sack-dollar.svg */
-  SackDollar = "sack-dollar",
+  SackDollar = 'sack-dollar',
   /** sack-xmark.svg */
-  SackXmark = "sack-xmark",
+  SackXmark = 'sack-xmark',
   /** sack.svg */
-  Sack = "sack",
+  Sack = 'sack',
   /** sailboat.svg */
-  Sailboat = "sailboat",
+  Sailboat = 'sailboat',
   /** salad.svg */
-  Salad = "salad",
+  Salad = 'salad',
   /** salt-shaker.svg */
-  SaltShaker = "salt-shaker",
+  SaltShaker = 'salt-shaker',
   /** sandwich.svg */
-  Sandwich = "sandwich",
+  Sandwich = 'sandwich',
   /** satellite-dish.svg */
-  SatelliteDish = "satellite-dish",
+  SatelliteDish = 'satellite-dish',
   /** satellite.svg */
-  Satellite = "satellite",
+  Satellite = 'satellite',
   /** sausage.svg */
-  Sausage = "sausage",
+  Sausage = 'sausage',
   /** saxophone-fire.svg */
-  SaxophoneFire = "saxophone-fire",
+  SaxophoneFire = 'saxophone-fire',
   /** saxophone.svg */
-  Saxophone = "saxophone",
+  Saxophone = 'saxophone',
   /** scale-balanced.svg */
-  ScaleBalanced = "scale-balanced",
+  ScaleBalanced = 'scale-balanced',
   /** scale-unbalanced-flip.svg */
-  ScaleUnbalancedFlip = "scale-unbalanced-flip",
+  ScaleUnbalancedFlip = 'scale-unbalanced-flip',
   /** scale-unbalanced.svg */
-  ScaleUnbalanced = "scale-unbalanced",
+  ScaleUnbalanced = 'scale-unbalanced',
   /** scalpel-line-dashed.svg */
-  ScalpelLineDashed = "scalpel-line-dashed",
+  ScalpelLineDashed = 'scalpel-line-dashed',
   /** scalpel.svg */
-  Scalpel = "scalpel",
+  Scalpel = 'scalpel',
   /** scanner-gun.svg */
-  ScannerGun = "scanner-gun",
+  ScannerGun = 'scanner-gun',
   /** scanner-image.svg */
-  ScannerImage = "scanner-image",
+  ScannerImage = 'scanner-image',
   /** scanner-keyboard.svg */
-  ScannerKeyboard = "scanner-keyboard",
+  ScannerKeyboard = 'scanner-keyboard',
   /** scanner-touchscreen.svg */
-  ScannerTouchscreen = "scanner-touchscreen",
+  ScannerTouchscreen = 'scanner-touchscreen',
   /** scarecrow.svg */
-  Scarecrow = "scarecrow",
+  Scarecrow = 'scarecrow',
   /** scarf.svg */
-  Scarf = "scarf",
+  Scarf = 'scarf',
   /** school-circle-check.svg */
-  SchoolCircleCheck = "school-circle-check",
+  SchoolCircleCheck = 'school-circle-check',
   /** school-circle-exclamation.svg */
-  SchoolCircleExclamation = "school-circle-exclamation",
+  SchoolCircleExclamation = 'school-circle-exclamation',
   /** school-circle-xmark.svg */
-  SchoolCircleXmark = "school-circle-xmark",
+  SchoolCircleXmark = 'school-circle-xmark',
   /** school-flag.svg */
-  SchoolFlag = "school-flag",
+  SchoolFlag = 'school-flag',
   /** school-lock.svg */
-  SchoolLock = "school-lock",
+  SchoolLock = 'school-lock',
   /** school.svg */
-  School = "school",
+  School = 'school',
   /** scissors.svg */
-  Scissors = "scissors",
+  Scissors = 'scissors',
   /** screen-users.svg */
-  ScreenUsers = "screen-users",
+  ScreenUsers = 'screen-users',
   /** screencast.svg */
-  Screencast = "screencast",
+  Screencast = 'screencast',
   /** screwdriver-wrench.svg */
-  ScrewdriverWrench = "screwdriver-wrench",
+  ScrewdriverWrench = 'screwdriver-wrench',
   /** screwdriver.svg */
-  Screwdriver = "screwdriver",
+  Screwdriver = 'screwdriver',
   /** scribble.svg */
-  Scribble = "scribble",
+  Scribble = 'scribble',
   /** scroll-old.svg */
-  ScrollOld = "scroll-old",
+  ScrollOld = 'scroll-old',
   /** scroll-torah.svg */
-  ScrollTorah = "scroll-torah",
+  ScrollTorah = 'scroll-torah',
   /** scroll.svg */
-  Scroll = "scroll",
+  Scroll = 'scroll',
   /** scrubber.svg */
-  Scrubber = "scrubber",
+  Scrubber = 'scrubber',
   /** scythe.svg */
-  Scythe = "scythe",
+  Scythe = 'scythe',
   /** sd-card.svg */
-  SdCard = "sd-card",
+  SdCard = 'sd-card',
   /** sd-cards.svg */
-  SdCards = "sd-cards",
+  SdCards = 'sd-cards',
   /** seal-exclamation.svg */
-  SealExclamation = "seal-exclamation",
+  SealExclamation = 'seal-exclamation',
   /** seal-question.svg */
-  SealQuestion = "seal-question",
+  SealQuestion = 'seal-question',
   /** seal.svg */
-  Seal = "seal",
+  Seal = 'seal',
   /** seat-airline.svg */
-  SeatAirline = "seat-airline",
+  SeatAirline = 'seat-airline',
   /** section.svg */
-  Section = "section",
+  Section = 'section',
   /** seedling.svg */
-  Seedling = "seedling",
+  Seedling = 'seedling',
   /** semicolon.svg */
-  Semicolon = "semicolon",
+  Semicolon = 'semicolon',
   /** send-back.svg */
-  SendBack = "send-back",
+  SendBack = 'send-back',
   /** send-backward.svg */
-  SendBackward = "send-backward",
+  SendBackward = 'send-backward',
   /** sensor-cloud.svg */
-  SensorCloud = "sensor-cloud",
+  SensorCloud = 'sensor-cloud',
   /** sensor-fire.svg */
-  SensorFire = "sensor-fire",
+  SensorFire = 'sensor-fire',
   /** sensor-on.svg */
-  SensorOn = "sensor-on",
+  SensorOn = 'sensor-on',
   /** sensor-triangle-exclamation.svg */
-  SensorTriangleExclamation = "sensor-triangle-exclamation",
+  SensorTriangleExclamation = 'sensor-triangle-exclamation',
   /** sensor.svg */
-  Sensor = "sensor",
+  Sensor = 'sensor',
   /** server.svg */
-  Server = "server",
+  Server = 'server',
   /** shapes.svg */
-  Shapes = "shapes",
+  Shapes = 'shapes',
   /** share-all.svg */
-  ShareAll = "share-all",
+  ShareAll = 'share-all',
   /** share-from-square.svg */
-  ShareFromSquare = "share-from-square",
+  ShareFromSquare = 'share-from-square',
   /** share-nodes.svg */
-  ShareNodes = "share-nodes",
+  ShareNodes = 'share-nodes',
   /** share.svg */
-  Share = "share",
+  Share = 'share',
   /** sheep.svg */
-  Sheep = "sheep",
+  Sheep = 'sheep',
   /** sheet-plastic.svg */
-  SheetPlastic = "sheet-plastic",
+  SheetPlastic = 'sheet-plastic',
   /** shekel-sign.svg */
-  ShekelSign = "shekel-sign",
+  ShekelSign = 'shekel-sign',
   /** shelves-empty.svg */
-  ShelvesEmpty = "shelves-empty",
+  ShelvesEmpty = 'shelves-empty',
   /** shelves.svg */
-  Shelves = "shelves",
+  Shelves = 'shelves',
   /** shield-cat.svg */
-  ShieldCat = "shield-cat",
+  ShieldCat = 'shield-cat',
   /** shield-check.svg */
-  ShieldCheck = "shield-check",
+  ShieldCheck = 'shield-check',
   /** shield-cross.svg */
-  ShieldCross = "shield-cross",
+  ShieldCross = 'shield-cross',
   /** shield-dog.svg */
-  ShieldDog = "shield-dog",
+  ShieldDog = 'shield-dog',
   /** shield-exclamation.svg */
-  ShieldExclamation = "shield-exclamation",
+  ShieldExclamation = 'shield-exclamation',
   /** shield-halved.svg */
-  ShieldHalved = "shield-halved",
+  ShieldHalved = 'shield-halved',
   /** shield-heart.svg */
-  ShieldHeart = "shield-heart",
+  ShieldHeart = 'shield-heart',
   /** shield-keyhole.svg */
-  ShieldKeyhole = "shield-keyhole",
+  ShieldKeyhole = 'shield-keyhole',
   /** shield-minus.svg */
-  ShieldMinus = "shield-minus",
+  ShieldMinus = 'shield-minus',
   /** shield-plus.svg */
-  ShieldPlus = "shield-plus",
+  ShieldPlus = 'shield-plus',
   /** shield-quartered.svg */
-  ShieldQuartered = "shield-quartered",
+  ShieldQuartered = 'shield-quartered',
   /** shield-slash.svg */
-  ShieldSlash = "shield-slash",
+  ShieldSlash = 'shield-slash',
   /** shield-virus.svg */
-  ShieldVirus = "shield-virus",
+  ShieldVirus = 'shield-virus',
   /** shield-xmark.svg */
-  ShieldXmark = "shield-xmark",
+  ShieldXmark = 'shield-xmark',
   /** shield.svg */
-  Shield = "shield",
+  Shield = 'shield',
   /** ship.svg */
-  Ship = "ship",
+  Ship = 'ship',
   /** shirt-long-sleeve.svg */
-  ShirtLongSleeve = "shirt-long-sleeve",
+  ShirtLongSleeve = 'shirt-long-sleeve',
   /** shirt-running.svg */
-  ShirtRunning = "shirt-running",
+  ShirtRunning = 'shirt-running',
   /** shirt-tank-top.svg */
-  ShirtTankTop = "shirt-tank-top",
+  ShirtTankTop = 'shirt-tank-top',
   /** shirt.svg */
-  Shirt = "shirt",
+  Shirt = 'shirt',
   /** shish-kebab.svg */
-  ShishKebab = "shish-kebab",
+  ShishKebab = 'shish-kebab',
   /** shoe-prints.svg */
-  ShoePrints = "shoe-prints",
+  ShoePrints = 'shoe-prints',
   /** shop-lock.svg */
-  ShopLock = "shop-lock",
+  ShopLock = 'shop-lock',
   /** shop-slash.svg */
-  ShopSlash = "shop-slash",
+  ShopSlash = 'shop-slash',
   /** shop.svg */
-  Shop = "shop",
+  Shop = 'shop',
   /** shovel-snow.svg */
-  ShovelSnow = "shovel-snow",
+  ShovelSnow = 'shovel-snow',
   /** shovel.svg */
-  Shovel = "shovel",
+  Shovel = 'shovel',
   /** shower-down.svg */
-  ShowerDown = "shower-down",
+  ShowerDown = 'shower-down',
   /** shower.svg */
-  Shower = "shower",
+  Shower = 'shower',
   /** shredder.svg */
-  Shredder = "shredder",
+  Shredder = 'shredder',
   /** shrimp.svg */
-  Shrimp = "shrimp",
+  Shrimp = 'shrimp',
   /** shuffle.svg */
-  Shuffle = "shuffle",
+  Shuffle = 'shuffle',
   /** shutters.svg */
-  Shutters = "shutters",
+  Shutters = 'shutters',
   /** shuttle-space.svg */
-  ShuttleSpace = "shuttle-space",
+  ShuttleSpace = 'shuttle-space',
   /** shuttlecock.svg */
-  Shuttlecock = "shuttlecock",
+  Shuttlecock = 'shuttlecock',
   /** sickle.svg */
-  Sickle = "sickle",
+  Sickle = 'sickle',
   /** sidebar-flip.svg */
-  SidebarFlip = "sidebar-flip",
+  SidebarFlip = 'sidebar-flip',
   /** sidebar.svg */
-  Sidebar = "sidebar",
+  Sidebar = 'sidebar',
   /** sigma.svg */
-  Sigma = "sigma",
+  Sigma = 'sigma',
   /** sign-hanging.svg */
-  SignHanging = "sign-hanging",
+  SignHanging = 'sign-hanging',
   /** sign-post.svg */
-  SignPost = "sign-post",
+  SignPost = 'sign-post',
   /** sign-posts-wrench.svg */
-  SignPostsWrench = "sign-posts-wrench",
+  SignPostsWrench = 'sign-posts-wrench',
   /** sign-posts.svg */
-  SignPosts = "sign-posts",
+  SignPosts = 'sign-posts',
   /** signal-bars-fair.svg */
-  SignalBarsFair = "signal-bars-fair",
+  SignalBarsFair = 'signal-bars-fair',
   /** signal-bars-good.svg */
-  SignalBarsGood = "signal-bars-good",
+  SignalBarsGood = 'signal-bars-good',
   /** signal-bars-slash.svg */
-  SignalBarsSlash = "signal-bars-slash",
+  SignalBarsSlash = 'signal-bars-slash',
   /** signal-bars-weak.svg */
-  SignalBarsWeak = "signal-bars-weak",
+  SignalBarsWeak = 'signal-bars-weak',
   /** signal-bars.svg */
-  SignalBars = "signal-bars",
+  SignalBars = 'signal-bars',
   /** signal-fair.svg */
-  SignalFair = "signal-fair",
+  SignalFair = 'signal-fair',
   /** signal-good.svg */
-  SignalGood = "signal-good",
+  SignalGood = 'signal-good',
   /** signal-slash.svg */
-  SignalSlash = "signal-slash",
+  SignalSlash = 'signal-slash',
   /** signal-stream-slash.svg */
-  SignalStreamSlash = "signal-stream-slash",
+  SignalStreamSlash = 'signal-stream-slash',
   /** signal-stream.svg */
-  SignalStream = "signal-stream",
+  SignalStream = 'signal-stream',
   /** signal-strong.svg */
-  SignalStrong = "signal-strong",
+  SignalStrong = 'signal-strong',
   /** signal-weak.svg */
-  SignalWeak = "signal-weak",
+  SignalWeak = 'signal-weak',
   /** signal.svg */
-  Signal = "signal",
+  Signal = 'signal',
   /** signature-lock.svg */
-  SignatureLock = "signature-lock",
+  SignatureLock = 'signature-lock',
   /** signature-slash.svg */
-  SignatureSlash = "signature-slash",
+  SignatureSlash = 'signature-slash',
   /** signature.svg */
-  Signature = "signature",
+  Signature = 'signature',
   /** signs-post.svg */
-  SignsPost = "signs-post",
+  SignsPost = 'signs-post',
   /** sim-card.svg */
-  SimCard = "sim-card",
+  SimCard = 'sim-card',
   /** sim-cards.svg */
-  SimCards = "sim-cards",
+  SimCards = 'sim-cards',
   /** sink.svg */
-  Sink = "sink",
+  Sink = 'sink',
   /** siren-on.svg */
-  SirenOn = "siren-on",
+  SirenOn = 'siren-on',
   /** siren.svg */
-  Siren = "siren",
+  Siren = 'siren',
   /** sitemap.svg */
-  Sitemap = "sitemap",
+  Sitemap = 'sitemap',
   /** skeleton-ribs.svg */
-  SkeletonRibs = "skeleton-ribs",
+  SkeletonRibs = 'skeleton-ribs',
   /** skeleton.svg */
-  Skeleton = "skeleton",
+  Skeleton = 'skeleton',
   /** ski-boot-ski.svg */
-  SkiBootSki = "ski-boot-ski",
+  SkiBootSki = 'ski-boot-ski',
   /** ski-boot.svg */
-  SkiBoot = "ski-boot",
+  SkiBoot = 'ski-boot',
   /** skull-cow.svg */
-  SkullCow = "skull-cow",
+  SkullCow = 'skull-cow',
   /** skull-crossbones.svg */
-  SkullCrossbones = "skull-crossbones",
+  SkullCrossbones = 'skull-crossbones',
   /** skull.svg */
-  Skull = "skull",
+  Skull = 'skull',
   /** slash-back.svg */
-  SlashBack = "slash-back",
+  SlashBack = 'slash-back',
   /** slash-forward.svg */
-  SlashForward = "slash-forward",
+  SlashForward = 'slash-forward',
   /** slash.svg */
-  Slash = "slash",
+  Slash = 'slash',
   /** sleigh.svg */
-  Sleigh = "sleigh",
+  Sleigh = 'sleigh',
   /** slider.svg */
-  Slider = "slider",
+  Slider = 'slider',
   /** sliders-simple.svg */
-  SlidersSimple = "sliders-simple",
+  SlidersSimple = 'sliders-simple',
   /** sliders-up.svg */
-  SlidersUp = "sliders-up",
+  SlidersUp = 'sliders-up',
   /** sliders.svg */
-  Sliders = "sliders",
+  Sliders = 'sliders',
   /** slot-machine.svg */
-  SlotMachine = "slot-machine",
+  SlotMachine = 'slot-machine',
   /** smog.svg */
-  Smog = "smog",
+  Smog = 'smog',
   /** smoke.svg */
-  Smoke = "smoke",
+  Smoke = 'smoke',
   /** smoking.svg */
-  Smoking = "smoking",
+  Smoking = 'smoking',
   /** snake.svg */
-  Snake = "snake",
+  Snake = 'snake',
   /** snooze.svg */
-  Snooze = "snooze",
+  Snooze = 'snooze',
   /** snow-blowing.svg */
-  SnowBlowing = "snow-blowing",
+  SnowBlowing = 'snow-blowing',
   /** snowflake-droplets.svg */
-  SnowflakeDroplets = "snowflake-droplets",
+  SnowflakeDroplets = 'snowflake-droplets',
   /** snowflake.svg */
-  Snowflake = "snowflake",
+  Snowflake = 'snowflake',
   /** snowflakes.svg */
-  Snowflakes = "snowflakes",
+  Snowflakes = 'snowflakes',
   /** snowman-head.svg */
-  SnowmanHead = "snowman-head",
+  SnowmanHead = 'snowman-head',
   /** snowman.svg */
-  Snowman = "snowman",
+  Snowman = 'snowman',
   /** snowplow.svg */
-  Snowplow = "snowplow",
+  Snowplow = 'snowplow',
   /** soap.svg */
-  Soap = "soap",
+  Soap = 'soap',
   /** socks.svg */
-  Socks = "socks",
+  Socks = 'socks',
   /** soft-serve.svg */
-  SoftServe = "soft-serve",
+  SoftServe = 'soft-serve',
   /** solar-panel.svg */
-  SolarPanel = "solar-panel",
+  SolarPanel = 'solar-panel',
   /** solar-system.svg */
-  SolarSystem = "solar-system",
+  SolarSystem = 'solar-system',
   /** sort-down.svg */
-  SortDown = "sort-down",
+  SortDown = 'sort-down',
   /** sort-up.svg */
-  SortUp = "sort-up",
+  SortUp = 'sort-up',
   /** sort.svg */
-  Sort = "sort",
+  Sort = 'sort',
   /** spa.svg */
-  Spa = "spa",
+  Spa = 'spa',
   /** space-station-moon-construction.svg */
-  SpaceStationMoonConstruction = "space-station-moon-construction",
+  SpaceStationMoonConstruction = 'space-station-moon-construction',
   /** space-station-moon.svg */
-  SpaceStationMoon = "space-station-moon",
+  SpaceStationMoon = 'space-station-moon',
   /** spade.svg */
-  Spade = "spade",
+  Spade = 'spade',
   /** spaghetti-monster-flying.svg */
-  SpaghettiMonsterFlying = "spaghetti-monster-flying",
+  SpaghettiMonsterFlying = 'spaghetti-monster-flying',
   /** sparkle.svg */
-  Sparkle = "sparkle",
+  Sparkle = 'sparkle',
   /** sparkles.svg */
-  Sparkles = "sparkles",
+  Sparkles = 'sparkles',
   /** speaker.svg */
-  Speaker = "speaker",
+  Speaker = 'speaker',
   /** speakers.svg */
-  Speakers = "speakers",
+  Speakers = 'speakers',
   /** spell-check.svg */
-  SpellCheck = "spell-check",
+  SpellCheck = 'spell-check',
   /** spider-black-widow.svg */
-  SpiderBlackWidow = "spider-black-widow",
+  SpiderBlackWidow = 'spider-black-widow',
   /** spider-web.svg */
-  SpiderWeb = "spider-web",
+  SpiderWeb = 'spider-web',
   /** spider.svg */
-  Spider = "spider",
+  Spider = 'spider',
   /** spinner-scale.svg */
-  SpinnerScale = "spinner-scale",
+  SpinnerScale = 'spinner-scale',
   /** spinner-third.svg */
-  SpinnerThird = "spinner-third",
+  SpinnerThird = 'spinner-third',
   /** spinner.svg */
-  Spinner = "spinner",
+  Spinner = 'spinner',
   /** split.svg */
-  Split = "split",
+  Split = 'split',
   /** splotch.svg */
-  Splotch = "splotch",
+  Splotch = 'splotch',
   /** spoon.svg */
-  Spoon = "spoon",
+  Spoon = 'spoon',
   /** sportsball.svg */
-  Sportsball = "sportsball",
+  Sportsball = 'sportsball',
   /** spray-can-sparkles.svg */
-  SprayCanSparkles = "spray-can-sparkles",
+  SprayCanSparkles = 'spray-can-sparkles',
   /** spray-can.svg */
-  SprayCan = "spray-can",
+  SprayCan = 'spray-can',
   /** sprinkler-ceiling.svg */
-  SprinklerCeiling = "sprinkler-ceiling",
+  SprinklerCeiling = 'sprinkler-ceiling',
   /** sprinkler.svg */
-  Sprinkler = "sprinkler",
+  Sprinkler = 'sprinkler',
   /** square-0.svg */
-  Square0 = "square-0",
+  Square0 = 'square-0',
   /** square-1.svg */
-  Square1 = "square-1",
+  Square1 = 'square-1',
   /** square-2.svg */
-  Square2 = "square-2",
+  Square2 = 'square-2',
   /** square-3.svg */
-  Square3 = "square-3",
+  Square3 = 'square-3',
   /** square-4.svg */
-  Square4 = "square-4",
+  Square4 = 'square-4',
   /** square-5.svg */
-  Square5 = "square-5",
+  Square5 = 'square-5',
   /** square-6.svg */
-  Square6 = "square-6",
+  Square6 = 'square-6',
   /** square-7.svg */
-  Square7 = "square-7",
+  Square7 = 'square-7',
   /** square-8.svg */
-  Square8 = "square-8",
+  Square8 = 'square-8',
   /** square-9.svg */
-  Square9 = "square-9",
+  Square9 = 'square-9',
   /** square-a-lock.svg */
-  SquareALock = "square-a-lock",
+  SquareALock = 'square-a-lock',
   /** square-a.svg */
-  SquareA = "square-a",
+  SquareA = 'square-a',
   /** square-ampersand.svg */
-  SquareAmpersand = "square-ampersand",
+  SquareAmpersand = 'square-ampersand',
   /** square-arrow-down-left.svg */
-  SquareArrowDownLeft = "square-arrow-down-left",
+  SquareArrowDownLeft = 'square-arrow-down-left',
   /** square-arrow-down-right.svg */
-  SquareArrowDownRight = "square-arrow-down-right",
+  SquareArrowDownRight = 'square-arrow-down-right',
   /** square-arrow-down.svg */
-  SquareArrowDown = "square-arrow-down",
+  SquareArrowDown = 'square-arrow-down',
   /** square-arrow-left.svg */
-  SquareArrowLeft = "square-arrow-left",
+  SquareArrowLeft = 'square-arrow-left',
   /** square-arrow-right.svg */
-  SquareArrowRight = "square-arrow-right",
+  SquareArrowRight = 'square-arrow-right',
   /** square-arrow-up-left.svg */
-  SquareArrowUpLeft = "square-arrow-up-left",
+  SquareArrowUpLeft = 'square-arrow-up-left',
   /** square-arrow-up-right.svg */
-  SquareArrowUpRight = "square-arrow-up-right",
+  SquareArrowUpRight = 'square-arrow-up-right',
   /** square-arrow-up.svg */
-  SquareArrowUp = "square-arrow-up",
+  SquareArrowUp = 'square-arrow-up',
   /** square-b.svg */
-  SquareB = "square-b",
+  SquareB = 'square-b',
   /** square-bolt.svg */
-  SquareBolt = "square-bolt",
+  SquareBolt = 'square-bolt',
   /** square-c.svg */
-  SquareC = "square-c",
+  SquareC = 'square-c',
   /** square-caret-down.svg */
-  SquareCaretDown = "square-caret-down",
+  SquareCaretDown = 'square-caret-down',
   /** square-caret-left.svg */
-  SquareCaretLeft = "square-caret-left",
+  SquareCaretLeft = 'square-caret-left',
   /** square-caret-right.svg */
-  SquareCaretRight = "square-caret-right",
+  SquareCaretRight = 'square-caret-right',
   /** square-caret-up.svg */
-  SquareCaretUp = "square-caret-up",
+  SquareCaretUp = 'square-caret-up',
   /** square-check.svg */
-  SquareCheck = "square-check",
+  SquareCheck = 'square-check',
   /** square-chevron-down.svg */
-  SquareChevronDown = "square-chevron-down",
+  SquareChevronDown = 'square-chevron-down',
   /** square-chevron-left.svg */
-  SquareChevronLeft = "square-chevron-left",
+  SquareChevronLeft = 'square-chevron-left',
   /** square-chevron-right.svg */
-  SquareChevronRight = "square-chevron-right",
+  SquareChevronRight = 'square-chevron-right',
   /** square-chevron-up.svg */
-  SquareChevronUp = "square-chevron-up",
+  SquareChevronUp = 'square-chevron-up',
   /** square-code.svg */
-  SquareCode = "square-code",
+  SquareCode = 'square-code',
   /** square-d.svg */
-  SquareD = "square-d",
+  SquareD = 'square-d',
   /** square-dashed-circle-plus.svg */
-  SquareDashedCirclePlus = "square-dashed-circle-plus",
+  SquareDashedCirclePlus = 'square-dashed-circle-plus',
   /** square-dashed.svg */
-  SquareDashed = "square-dashed",
+  SquareDashed = 'square-dashed',
   /** square-divide.svg */
-  SquareDivide = "square-divide",
+  SquareDivide = 'square-divide',
   /** square-dollar.svg */
-  SquareDollar = "square-dollar",
+  SquareDollar = 'square-dollar',
   /** square-down-left.svg */
-  SquareDownLeft = "square-down-left",
+  SquareDownLeft = 'square-down-left',
   /** square-down-right.svg */
-  SquareDownRight = "square-down-right",
+  SquareDownRight = 'square-down-right',
   /** square-down.svg */
-  SquareDown = "square-down",
+  SquareDown = 'square-down',
   /** square-e.svg */
-  SquareE = "square-e",
+  SquareE = 'square-e',
   /** square-ellipsis-vertical.svg */
-  SquareEllipsisVertical = "square-ellipsis-vertical",
+  SquareEllipsisVertical = 'square-ellipsis-vertical',
   /** square-ellipsis.svg */
-  SquareEllipsis = "square-ellipsis",
+  SquareEllipsis = 'square-ellipsis',
   /** square-envelope.svg */
-  SquareEnvelope = "square-envelope",
+  SquareEnvelope = 'square-envelope',
   /** square-exclamation.svg */
-  SquareExclamation = "square-exclamation",
+  SquareExclamation = 'square-exclamation',
   /** square-f.svg */
-  SquareF = "square-f",
+  SquareF = 'square-f',
   /** square-fragile.svg */
-  SquareFragile = "square-fragile",
+  SquareFragile = 'square-fragile',
   /** square-full.svg */
-  SquareFull = "square-full",
+  SquareFull = 'square-full',
   /** square-g.svg */
-  SquareG = "square-g",
+  SquareG = 'square-g',
   /** square-h.svg */
-  SquareH = "square-h",
+  SquareH = 'square-h',
   /** square-heart.svg */
-  SquareHeart = "square-heart",
+  SquareHeart = 'square-heart',
   /** square-i.svg */
-  SquareI = "square-i",
+  SquareI = 'square-i',
   /** square-info.svg */
-  SquareInfo = "square-info",
+  SquareInfo = 'square-info',
   /** square-j.svg */
-  SquareJ = "square-j",
+  SquareJ = 'square-j',
   /** square-k.svg */
-  SquareK = "square-k",
+  SquareK = 'square-k',
   /** square-kanban.svg */
-  SquareKanban = "square-kanban",
+  SquareKanban = 'square-kanban',
   /** square-l.svg */
-  SquareL = "square-l",
+  SquareL = 'square-l',
   /** square-left.svg */
-  SquareLeft = "square-left",
+  SquareLeft = 'square-left',
   /** square-list.svg */
-  SquareList = "square-list",
+  SquareList = 'square-list',
   /** square-m.svg */
-  SquareM = "square-m",
+  SquareM = 'square-m',
   /** square-minus.svg */
-  SquareMinus = "square-minus",
+  SquareMinus = 'square-minus',
   /** square-n.svg */
-  SquareN = "square-n",
+  SquareN = 'square-n',
   /** square-nfi.svg */
-  SquareNfi = "square-nfi",
+  SquareNfi = 'square-nfi',
   /** square-o.svg */
-  SquareO = "square-o",
+  SquareO = 'square-o',
   /** square-p.svg */
-  SquareP = "square-p",
+  SquareP = 'square-p',
   /** square-parking-slash.svg */
-  SquareParkingSlash = "square-parking-slash",
+  SquareParkingSlash = 'square-parking-slash',
   /** square-parking.svg */
-  SquareParking = "square-parking",
+  SquareParking = 'square-parking',
   /** square-pen.svg */
-  SquarePen = "square-pen",
+  SquarePen = 'square-pen',
   /** square-person-confined.svg */
-  SquarePersonConfined = "square-person-confined",
+  SquarePersonConfined = 'square-person-confined',
   /** square-phone-flip.svg */
-  SquarePhoneFlip = "square-phone-flip",
+  SquarePhoneFlip = 'square-phone-flip',
   /** square-phone-hangup.svg */
-  SquarePhoneHangup = "square-phone-hangup",
+  SquarePhoneHangup = 'square-phone-hangup',
   /** square-phone.svg */
-  SquarePhone = "square-phone",
+  SquarePhone = 'square-phone',
   /** square-plus.svg */
-  SquarePlus = "square-plus",
+  SquarePlus = 'square-plus',
   /** square-poll-horizontal.svg */
-  SquarePollHorizontal = "square-poll-horizontal",
+  SquarePollHorizontal = 'square-poll-horizontal',
   /** square-poll-vertical.svg */
-  SquarePollVertical = "square-poll-vertical",
+  SquarePollVertical = 'square-poll-vertical',
   /** square-q.svg */
-  SquareQ = "square-q",
+  SquareQ = 'square-q',
   /** square-quarters.svg */
-  SquareQuarters = "square-quarters",
+  SquareQuarters = 'square-quarters',
   /** square-question.svg */
-  SquareQuestion = "square-question",
+  SquareQuestion = 'square-question',
   /** square-quote.svg */
-  SquareQuote = "square-quote",
+  SquareQuote = 'square-quote',
   /** square-r.svg */
-  SquareR = "square-r",
+  SquareR = 'square-r',
   /** square-right.svg */
-  SquareRight = "square-right",
+  SquareRight = 'square-right',
   /** square-ring.svg */
-  SquareRing = "square-ring",
+  SquareRing = 'square-ring',
   /** square-root-variable.svg */
-  SquareRootVariable = "square-root-variable",
+  SquareRootVariable = 'square-root-variable',
   /** square-root.svg */
-  SquareRoot = "square-root",
+  SquareRoot = 'square-root',
   /** square-rss.svg */
-  SquareRss = "square-rss",
+  SquareRss = 'square-rss',
   /** square-s.svg */
-  SquareS = "square-s",
+  SquareS = 'square-s',
   /** square-share-nodes.svg */
-  SquareShareNodes = "square-share-nodes",
+  SquareShareNodes = 'square-share-nodes',
   /** square-sliders-vertical.svg */
-  SquareSlidersVertical = "square-sliders-vertical",
+  SquareSlidersVertical = 'square-sliders-vertical',
   /** square-sliders.svg */
-  SquareSliders = "square-sliders",
+  SquareSliders = 'square-sliders',
   /** square-small.svg */
-  SquareSmall = "square-small",
+  SquareSmall = 'square-small',
   /** square-star.svg */
-  SquareStar = "square-star",
+  SquareStar = 'square-star',
   /** square-t.svg */
-  SquareT = "square-t",
+  SquareT = 'square-t',
   /** square-terminal.svg */
-  SquareTerminal = "square-terminal",
+  SquareTerminal = 'square-terminal',
   /** square-this-way-up.svg */
-  SquareThisWayUp = "square-this-way-up",
+  SquareThisWayUp = 'square-this-way-up',
   /** square-u.svg */
-  SquareU = "square-u",
+  SquareU = 'square-u',
   /** square-up-left.svg */
-  SquareUpLeft = "square-up-left",
+  SquareUpLeft = 'square-up-left',
   /** square-up-right.svg */
-  SquareUpRight = "square-up-right",
+  SquareUpRight = 'square-up-right',
   /** square-up.svg */
-  SquareUp = "square-up",
+  SquareUp = 'square-up',
   /** square-user.svg */
-  SquareUser = "square-user",
+  SquareUser = 'square-user',
   /** square-v.svg */
-  SquareV = "square-v",
+  SquareV = 'square-v',
   /** square-virus.svg */
-  SquareVirus = "square-virus",
+  SquareVirus = 'square-virus',
   /** square-w.svg */
-  SquareW = "square-w",
+  SquareW = 'square-w',
   /** square-x.svg */
-  SquareX = "square-x",
+  SquareX = 'square-x',
   /** square-xmark.svg */
-  SquareXmark = "square-xmark",
+  SquareXmark = 'square-xmark',
   /** square-y.svg */
-  SquareY = "square-y",
+  SquareY = 'square-y',
   /** square-z.svg */
-  SquareZ = "square-z",
+  SquareZ = 'square-z',
   /** square.svg */
-  Square = "square",
+  Square = 'square',
   /** squid.svg */
-  Squid = "squid",
+  Squid = 'squid',
   /** squirrel.svg */
-  Squirrel = "squirrel",
+  Squirrel = 'squirrel',
   /** staff-snake.svg */
-  StaffSnake = "staff-snake",
+  StaffSnake = 'staff-snake',
   /** staff.svg */
-  Staff = "staff",
+  Staff = 'staff',
   /** stairs.svg */
-  Stairs = "stairs",
+  Stairs = 'stairs',
   /** stamp.svg */
-  Stamp = "stamp",
+  Stamp = 'stamp',
   /** standard-definition.svg */
-  StandardDefinition = "standard-definition",
+  StandardDefinition = 'standard-definition',
   /** stapler.svg */
-  Stapler = "stapler",
+  Stapler = 'stapler',
   /** star-and-crescent.svg */
-  StarAndCrescent = "star-and-crescent",
+  StarAndCrescent = 'star-and-crescent',
   /** star-christmas.svg */
-  StarChristmas = "star-christmas",
+  StarChristmas = 'star-christmas',
   /** star-exclamation.svg */
-  StarExclamation = "star-exclamation",
+  StarExclamation = 'star-exclamation',
   /** star-half-stroke.svg */
-  StarHalfStroke = "star-half-stroke",
+  StarHalfStroke = 'star-half-stroke',
   /** star-half.svg */
-  StarHalf = "star-half",
+  StarHalf = 'star-half',
   /** star-of-david.svg */
-  StarOfDavid = "star-of-david",
+  StarOfDavid = 'star-of-david',
   /** star-of-life.svg */
-  StarOfLife = "star-of-life",
+  StarOfLife = 'star-of-life',
   /** star-sharp-half-stroke.svg */
-  StarSharpHalfStroke = "star-sharp-half-stroke",
+  StarSharpHalfStroke = 'star-sharp-half-stroke',
   /** star-sharp-half.svg */
-  StarSharpHalf = "star-sharp-half",
+  StarSharpHalf = 'star-sharp-half',
   /** star-sharp.svg */
-  StarSharp = "star-sharp",
+  StarSharp = 'star-sharp',
   /** star-shooting.svg */
-  StarShooting = "star-shooting",
+  StarShooting = 'star-shooting',
   /** star.svg */
-  Star = "star",
+  Star = 'star',
   /** starfighter-twin-ion-engine-advanced.svg */
-  StarfighterTwinIonEngineAdvanced = "starfighter-twin-ion-engine-advanced",
+  StarfighterTwinIonEngineAdvanced = 'starfighter-twin-ion-engine-advanced',
   /** starfighter-twin-ion-engine.svg */
-  StarfighterTwinIonEngine = "starfighter-twin-ion-engine",
+  StarfighterTwinIonEngine = 'starfighter-twin-ion-engine',
   /** starfighter.svg */
-  Starfighter = "starfighter",
+  Starfighter = 'starfighter',
   /** stars.svg */
-  Stars = "stars",
+  Stars = 'stars',
   /** starship-freighter.svg */
-  StarshipFreighter = "starship-freighter",
+  StarshipFreighter = 'starship-freighter',
   /** starship.svg */
-  Starship = "starship",
+  Starship = 'starship',
   /** steak.svg */
-  Steak = "steak",
+  Steak = 'steak',
   /** steering-wheel.svg */
-  SteeringWheel = "steering-wheel",
+  SteeringWheel = 'steering-wheel',
   /** sterling-sign.svg */
-  SterlingSign = "sterling-sign",
+  SterlingSign = 'sterling-sign',
   /** stethoscope.svg */
-  Stethoscope = "stethoscope",
+  Stethoscope = 'stethoscope',
   /** stocking.svg */
-  Stocking = "stocking",
+  Stocking = 'stocking',
   /** stomach.svg */
-  Stomach = "stomach",
+  Stomach = 'stomach',
   /** stop.svg */
-  Stop = "stop",
+  Stop = 'stop',
   /** stopwatch-20.svg */
-  Stopwatch20 = "stopwatch-20",
+  Stopwatch20 = 'stopwatch-20',
   /** stopwatch.svg */
-  Stopwatch = "stopwatch",
+  Stopwatch = 'stopwatch',
   /** store-lock.svg */
-  StoreLock = "store-lock",
+  StoreLock = 'store-lock',
   /** store-slash.svg */
-  StoreSlash = "store-slash",
+  StoreSlash = 'store-slash',
   /** store.svg */
-  Store = "store",
+  Store = 'store',
   /** strawberry.svg */
-  Strawberry = "strawberry",
+  Strawberry = 'strawberry',
   /** street-view.svg */
-  StreetView = "street-view",
+  StreetView = 'street-view',
   /** stretcher.svg */
-  Stretcher = "stretcher",
+  Stretcher = 'stretcher',
   /** strikethrough.svg */
-  Strikethrough = "strikethrough",
+  Strikethrough = 'strikethrough',
   /** stroopwafel.svg */
-  Stroopwafel = "stroopwafel",
+  Stroopwafel = 'stroopwafel',
   /** subscript.svg */
-  Subscript = "subscript",
+  Subscript = 'subscript',
   /** subtitles-slash.svg */
-  SubtitlesSlash = "subtitles-slash",
+  SubtitlesSlash = 'subtitles-slash',
   /** subtitles.svg */
-  Subtitles = "subtitles",
+  Subtitles = 'subtitles',
   /** suitcase-medical.svg */
-  SuitcaseMedical = "suitcase-medical",
+  SuitcaseMedical = 'suitcase-medical',
   /** suitcase-rolling.svg */
-  SuitcaseRolling = "suitcase-rolling",
+  SuitcaseRolling = 'suitcase-rolling',
   /** suitcase.svg */
-  Suitcase = "suitcase",
+  Suitcase = 'suitcase',
   /** sun-bright.svg */
-  SunBright = "sun-bright",
+  SunBright = 'sun-bright',
   /** sun-cloud.svg */
-  SunCloud = "sun-cloud",
+  SunCloud = 'sun-cloud',
   /** sun-dust.svg */
-  SunDust = "sun-dust",
+  SunDust = 'sun-dust',
   /** sun-haze.svg */
-  SunHaze = "sun-haze",
+  SunHaze = 'sun-haze',
   /** sun-plant-wilt.svg */
-  SunPlantWilt = "sun-plant-wilt",
+  SunPlantWilt = 'sun-plant-wilt',
   /** sun.svg */
-  Sun = "sun",
+  Sun = 'sun',
   /** sunglasses.svg */
-  Sunglasses = "sunglasses",
+  Sunglasses = 'sunglasses',
   /** sunrise.svg */
-  Sunrise = "sunrise",
+  Sunrise = 'sunrise',
   /** sunset.svg */
-  Sunset = "sunset",
+  Sunset = 'sunset',
   /** superscript.svg */
-  Superscript = "superscript",
+  Superscript = 'superscript',
   /** sushi-roll.svg */
-  SushiRoll = "sushi-roll",
+  SushiRoll = 'sushi-roll',
   /** sushi.svg */
-  Sushi = "sushi",
+  Sushi = 'sushi',
   /** swap-arrows.svg */
-  SwapArrows = "swap-arrows",
+  SwapArrows = 'swap-arrows',
   /** swap.svg */
-  Swap = "swap",
+  Swap = 'swap',
   /** swatchbook.svg */
-  Swatchbook = "swatchbook",
+  Swatchbook = 'swatchbook',
   /** sword-laser-alt.svg */
-  SwordLaserAlt = "sword-laser-alt",
+  SwordLaserAlt = 'sword-laser-alt',
   /** sword-laser.svg */
-  SwordLaser = "sword-laser",
+  SwordLaser = 'sword-laser',
   /** sword.svg */
-  Sword = "sword",
+  Sword = 'sword',
   /** swords-laser.svg */
-  SwordsLaser = "swords-laser",
+  SwordsLaser = 'swords-laser',
   /** swords.svg */
-  Swords = "swords",
+  Swords = 'swords',
   /** symbols.svg */
-  Symbols = "symbols",
+  Symbols = 'symbols',
   /** synagogue.svg */
-  Synagogue = "synagogue",
+  Synagogue = 'synagogue',
   /** syringe.svg */
-  Syringe = "syringe",
+  Syringe = 'syringe',
   /** t-rex.svg */
-  TRex = "t-rex",
+  TRex = 't-rex',
   /** t.svg */
-  T = "t",
+  T = 't',
   /** table-cells-large.svg */
-  TableCellsLarge = "table-cells-large",
+  TableCellsLarge = 'table-cells-large',
   /** table-cells.svg */
-  TableCells = "table-cells",
+  TableCells = 'table-cells',
   /** table-columns.svg */
-  TableColumns = "table-columns",
+  TableColumns = 'table-columns',
   /** table-layout.svg */
-  TableLayout = "table-layout",
+  TableLayout = 'table-layout',
   /** table-list.svg */
-  TableList = "table-list",
+  TableList = 'table-list',
   /** table-picnic.svg */
-  TablePicnic = "table-picnic",
+  TablePicnic = 'table-picnic',
   /** table-pivot.svg */
-  TablePivot = "table-pivot",
+  TablePivot = 'table-pivot',
   /** table-rows.svg */
-  TableRows = "table-rows",
+  TableRows = 'table-rows',
   /** table-tennis-paddle-ball.svg */
-  TableTennisPaddleBall = "table-tennis-paddle-ball",
+  TableTennisPaddleBall = 'table-tennis-paddle-ball',
   /** table-tree.svg */
-  TableTree = "table-tree",
+  TableTree = 'table-tree',
   /** table.svg */
-  Table = "table",
+  Table = 'table',
   /** tablet-button.svg */
-  TabletButton = "tablet-button",
+  TabletButton = 'tablet-button',
   /** tablet-rugged.svg */
-  TabletRugged = "tablet-rugged",
+  TabletRugged = 'tablet-rugged',
   /** tablet-screen-button.svg */
-  TabletScreenButton = "tablet-screen-button",
+  TabletScreenButton = 'tablet-screen-button',
   /** tablet-screen.svg */
-  TabletScreen = "tablet-screen",
+  TabletScreen = 'tablet-screen',
   /** tablet.svg */
-  Tablet = "tablet",
+  Tablet = 'tablet',
   /** tablets.svg */
-  Tablets = "tablets",
+  Tablets = 'tablets',
   /** tachograph-digital.svg */
-  TachographDigital = "tachograph-digital",
+  TachographDigital = 'tachograph-digital',
   /** taco.svg */
-  Taco = "taco",
+  Taco = 'taco',
   /** tag.svg */
-  Tag = "tag",
+  Tag = 'tag',
   /** tags.svg */
-  Tags = "tags",
+  Tags = 'tags',
   /** tally-1.svg */
-  Tally1 = "tally-1",
+  Tally1 = 'tally-1',
   /** tally-2.svg */
-  Tally2 = "tally-2",
+  Tally2 = 'tally-2',
   /** tally-3.svg */
-  Tally3 = "tally-3",
+  Tally3 = 'tally-3',
   /** tally-4.svg */
-  Tally4 = "tally-4",
+  Tally4 = 'tally-4',
   /** tally.svg */
-  Tally = "tally",
+  Tally = 'tally',
   /** tamale.svg */
-  Tamale = "tamale",
+  Tamale = 'tamale',
   /** tank-water.svg */
-  TankWater = "tank-water",
+  TankWater = 'tank-water',
   /** tape.svg */
-  Tape = "tape",
+  Tape = 'tape',
   /** tarp-droplet.svg */
-  TarpDroplet = "tarp-droplet",
+  TarpDroplet = 'tarp-droplet',
   /** tarp.svg */
-  Tarp = "tarp",
+  Tarp = 'tarp',
   /** taxi-bus.svg */
-  TaxiBus = "taxi-bus",
+  TaxiBus = 'taxi-bus',
   /** taxi.svg */
-  Taxi = "taxi",
+  Taxi = 'taxi',
   /** teddy-bear.svg */
-  TeddyBear = "teddy-bear",
+  TeddyBear = 'teddy-bear',
   /** teeth-open.svg */
-  TeethOpen = "teeth-open",
+  TeethOpen = 'teeth-open',
   /** teeth.svg */
-  Teeth = "teeth",
+  Teeth = 'teeth',
   /** telescope.svg */
-  Telescope = "telescope",
+  Telescope = 'telescope',
   /** temperature-arrow-down.svg */
-  TemperatureArrowDown = "temperature-arrow-down",
+  TemperatureArrowDown = 'temperature-arrow-down',
   /** temperature-arrow-up.svg */
-  TemperatureArrowUp = "temperature-arrow-up",
+  TemperatureArrowUp = 'temperature-arrow-up',
   /** temperature-empty.svg */
-  TemperatureEmpty = "temperature-empty",
+  TemperatureEmpty = 'temperature-empty',
   /** temperature-full.svg */
-  TemperatureFull = "temperature-full",
+  TemperatureFull = 'temperature-full',
   /** temperature-half.svg */
-  TemperatureHalf = "temperature-half",
+  TemperatureHalf = 'temperature-half',
   /** temperature-high.svg */
-  TemperatureHigh = "temperature-high",
+  TemperatureHigh = 'temperature-high',
   /** temperature-list.svg */
-  TemperatureList = "temperature-list",
+  TemperatureList = 'temperature-list',
   /** temperature-low.svg */
-  TemperatureLow = "temperature-low",
+  TemperatureLow = 'temperature-low',
   /** temperature-quarter.svg */
-  TemperatureQuarter = "temperature-quarter",
+  TemperatureQuarter = 'temperature-quarter',
   /** temperature-snow.svg */
-  TemperatureSnow = "temperature-snow",
+  TemperatureSnow = 'temperature-snow',
   /** temperature-sun.svg */
-  TemperatureSun = "temperature-sun",
+  TemperatureSun = 'temperature-sun',
   /** temperature-three-quarters.svg */
-  TemperatureThreeQuarters = "temperature-three-quarters",
+  TemperatureThreeQuarters = 'temperature-three-quarters',
   /** tenge-sign.svg */
-  TengeSign = "tenge-sign",
+  TengeSign = 'tenge-sign',
   /** tennis-ball.svg */
-  TennisBall = "tennis-ball",
+  TennisBall = 'tennis-ball',
   /** tent-arrow-down-to-line.svg */
-  TentArrowDownToLine = "tent-arrow-down-to-line",
+  TentArrowDownToLine = 'tent-arrow-down-to-line',
   /** tent-arrow-left-right.svg */
-  TentArrowLeftRight = "tent-arrow-left-right",
+  TentArrowLeftRight = 'tent-arrow-left-right',
   /** tent-arrow-turn-left.svg */
-  TentArrowTurnLeft = "tent-arrow-turn-left",
+  TentArrowTurnLeft = 'tent-arrow-turn-left',
   /** tent-arrows-down.svg */
-  TentArrowsDown = "tent-arrows-down",
+  TentArrowsDown = 'tent-arrows-down',
   /** tent-double-peak.svg */
-  TentDoublePeak = "tent-double-peak",
+  TentDoublePeak = 'tent-double-peak',
   /** tent.svg */
-  Tent = "tent",
+  Tent = 'tent',
   /** tents.svg */
-  Tents = "tents",
+  Tents = 'tents',
   /** terminal.svg */
-  Terminal = "terminal",
+  Terminal = 'terminal',
   /** text-height.svg */
-  TextHeight = "text-height",
+  TextHeight = 'text-height',
   /** text-size.svg */
-  TextSize = "text-size",
+  TextSize = 'text-size',
   /** text-slash.svg */
-  TextSlash = "text-slash",
+  TextSlash = 'text-slash',
   /** text-width.svg */
-  TextWidth = "text-width",
+  TextWidth = 'text-width',
   /** text.svg */
-  Text = "text",
+  Text = 'text',
   /** thermometer.svg */
-  Thermometer = "thermometer",
+  Thermometer = 'thermometer',
   /** theta.svg */
-  Theta = "theta",
+  Theta = 'theta',
   /** thought-bubble.svg */
-  ThoughtBubble = "thought-bubble",
+  ThoughtBubble = 'thought-bubble',
   /** thumbs-down.svg */
-  ThumbsDown = "thumbs-down",
+  ThumbsDown = 'thumbs-down',
   /** thumbs-up.svg */
-  ThumbsUp = "thumbs-up",
+  ThumbsUp = 'thumbs-up',
   /** thumbtack.svg */
-  Thumbtack = "thumbtack",
+  Thumbtack = 'thumbtack',
   /** tick.svg */
-  Tick = "tick",
+  Tick = 'tick',
   /** ticket-airline.svg */
-  TicketAirline = "ticket-airline",
+  TicketAirline = 'ticket-airline',
   /** ticket-perforated.svg */
-  TicketPerforated = "ticket-perforated",
+  TicketPerforated = 'ticket-perforated',
   /** ticket-simple.svg */
-  TicketSimple = "ticket-simple",
+  TicketSimple = 'ticket-simple',
   /** ticket.svg */
-  Ticket = "ticket",
+  Ticket = 'ticket',
   /** tickets-airline.svg */
-  TicketsAirline = "tickets-airline",
+  TicketsAirline = 'tickets-airline',
   /** tickets-perforated.svg */
-  TicketsPerforated = "tickets-perforated",
+  TicketsPerforated = 'tickets-perforated',
   /** tickets-simple.svg */
-  TicketsSimple = "tickets-simple",
+  TicketsSimple = 'tickets-simple',
   /** tickets.svg */
-  Tickets = "tickets",
+  Tickets = 'tickets',
   /** tilde.svg */
-  Tilde = "tilde",
+  Tilde = 'tilde',
   /** timeline-arrow.svg */
-  TimelineArrow = "timeline-arrow",
+  TimelineArrow = 'timeline-arrow',
   /** timeline.svg */
-  Timeline = "timeline",
+  Timeline = 'timeline',
   /** timer.svg */
-  Timer = "timer",
+  Timer = 'timer',
   /** tire-flat.svg */
-  TireFlat = "tire-flat",
+  TireFlat = 'tire-flat',
   /** tire-pressure-warning.svg */
-  TirePressureWarning = "tire-pressure-warning",
+  TirePressureWarning = 'tire-pressure-warning',
   /** tire-rugged.svg */
-  TireRugged = "tire-rugged",
+  TireRugged = 'tire-rugged',
   /** tire.svg */
-  Tire = "tire",
+  Tire = 'tire',
   /** toggle-large-off.svg */
-  ToggleLargeOff = "toggle-large-off",
+  ToggleLargeOff = 'toggle-large-off',
   /** toggle-large-on.svg */
-  ToggleLargeOn = "toggle-large-on",
+  ToggleLargeOn = 'toggle-large-on',
   /** toggle-off.svg */
-  ToggleOff = "toggle-off",
+  ToggleOff = 'toggle-off',
   /** toggle-on.svg */
-  ToggleOn = "toggle-on",
+  ToggleOn = 'toggle-on',
   /** toilet-paper-blank-under.svg */
-  ToiletPaperBlankUnder = "toilet-paper-blank-under",
+  ToiletPaperBlankUnder = 'toilet-paper-blank-under',
   /** toilet-paper-blank.svg */
-  ToiletPaperBlank = "toilet-paper-blank",
+  ToiletPaperBlank = 'toilet-paper-blank',
   /** toilet-paper-check.svg */
-  ToiletPaperCheck = "toilet-paper-check",
+  ToiletPaperCheck = 'toilet-paper-check',
   /** toilet-paper-slash.svg */
-  ToiletPaperSlash = "toilet-paper-slash",
+  ToiletPaperSlash = 'toilet-paper-slash',
   /** toilet-paper-under-slash.svg */
-  ToiletPaperUnderSlash = "toilet-paper-under-slash",
+  ToiletPaperUnderSlash = 'toilet-paper-under-slash',
   /** toilet-paper-under.svg */
-  ToiletPaperUnder = "toilet-paper-under",
+  ToiletPaperUnder = 'toilet-paper-under',
   /** toilet-paper-xmark.svg */
-  ToiletPaperXmark = "toilet-paper-xmark",
+  ToiletPaperXmark = 'toilet-paper-xmark',
   /** toilet-paper.svg */
-  ToiletPaper = "toilet-paper",
+  ToiletPaper = 'toilet-paper',
   /** toilet-portable.svg */
-  ToiletPortable = "toilet-portable",
+  ToiletPortable = 'toilet-portable',
   /** toilet.svg */
-  Toilet = "toilet",
+  Toilet = 'toilet',
   /** toilets-portable.svg */
-  ToiletsPortable = "toilets-portable",
+  ToiletsPortable = 'toilets-portable',
   /** tomato.svg */
-  Tomato = "tomato",
+  Tomato = 'tomato',
   /** tombstone-blank.svg */
-  TombstoneBlank = "tombstone-blank",
+  TombstoneBlank = 'tombstone-blank',
   /** tombstone.svg */
-  Tombstone = "tombstone",
+  Tombstone = 'tombstone',
   /** toolbox.svg */
-  Toolbox = "toolbox",
+  Toolbox = 'toolbox',
   /** tooth.svg */
-  Tooth = "tooth",
+  Tooth = 'tooth',
   /** toothbrush.svg */
-  Toothbrush = "toothbrush",
+  Toothbrush = 'toothbrush',
   /** torii-gate.svg */
-  ToriiGate = "torii-gate",
+  ToriiGate = 'torii-gate',
   /** tornado.svg */
-  Tornado = "tornado",
+  Tornado = 'tornado',
   /** tower-broadcast.svg */
-  TowerBroadcast = "tower-broadcast",
+  TowerBroadcast = 'tower-broadcast',
   /** tower-cell.svg */
-  TowerCell = "tower-cell",
+  TowerCell = 'tower-cell',
   /** tower-control.svg */
-  TowerControl = "tower-control",
+  TowerControl = 'tower-control',
   /** tower-observation.svg */
-  TowerObservation = "tower-observation",
+  TowerObservation = 'tower-observation',
   /** tractor.svg */
-  Tractor = "tractor",
+  Tractor = 'tractor',
   /** trademark.svg */
-  Trademark = "trademark",
+  Trademark = 'trademark',
   /** traffic-cone.svg */
-  TrafficCone = "traffic-cone",
+  TrafficCone = 'traffic-cone',
   /** traffic-light-go.svg */
-  TrafficLightGo = "traffic-light-go",
+  TrafficLightGo = 'traffic-light-go',
   /** traffic-light-slow.svg */
-  TrafficLightSlow = "traffic-light-slow",
+  TrafficLightSlow = 'traffic-light-slow',
   /** traffic-light-stop.svg */
-  TrafficLightStop = "traffic-light-stop",
+  TrafficLightStop = 'traffic-light-stop',
   /** traffic-light.svg */
-  TrafficLight = "traffic-light",
+  TrafficLight = 'traffic-light',
   /** trailer.svg */
-  Trailer = "trailer",
+  Trailer = 'trailer',
   /** train-subway-tunnel.svg */
-  TrainSubwayTunnel = "train-subway-tunnel",
+  TrainSubwayTunnel = 'train-subway-tunnel',
   /** train-subway.svg */
-  TrainSubway = "train-subway",
+  TrainSubway = 'train-subway',
   /** train-track.svg */
-  TrainTrack = "train-track",
+  TrainTrack = 'train-track',
   /** train-tram.svg */
-  TrainTram = "train-tram",
+  TrainTram = 'train-tram',
   /** train-tunnel.svg */
-  TrainTunnel = "train-tunnel",
+  TrainTunnel = 'train-tunnel',
   /** train.svg */
-  Train = "train",
+  Train = 'train',
   /** transformer-bolt.svg */
-  TransformerBolt = "transformer-bolt",
+  TransformerBolt = 'transformer-bolt',
   /** transgender.svg */
-  Transgender = "transgender",
+  Transgender = 'transgender',
   /** transporter-1.svg */
-  Transporter1 = "transporter-1",
+  Transporter1 = 'transporter-1',
   /** transporter-2.svg */
-  Transporter2 = "transporter-2",
+  Transporter2 = 'transporter-2',
   /** transporter-3.svg */
-  Transporter3 = "transporter-3",
+  Transporter3 = 'transporter-3',
   /** transporter-4.svg */
-  Transporter4 = "transporter-4",
+  Transporter4 = 'transporter-4',
   /** transporter-5.svg */
-  Transporter5 = "transporter-5",
+  Transporter5 = 'transporter-5',
   /** transporter-6.svg */
-  Transporter6 = "transporter-6",
+  Transporter6 = 'transporter-6',
   /** transporter-7.svg */
-  Transporter7 = "transporter-7",
+  Transporter7 = 'transporter-7',
   /** transporter-empty.svg */
-  TransporterEmpty = "transporter-empty",
+  TransporterEmpty = 'transporter-empty',
   /** transporter.svg */
-  Transporter = "transporter",
+  Transporter = 'transporter',
   /** trash-arrow-up.svg */
-  TrashArrowUp = "trash-arrow-up",
+  TrashArrowUp = 'trash-arrow-up',
   /** trash-can-arrow-up.svg */
-  TrashCanArrowUp = "trash-can-arrow-up",
+  TrashCanArrowUp = 'trash-can-arrow-up',
   /** trash-can-check.svg */
-  TrashCanCheck = "trash-can-check",
+  TrashCanCheck = 'trash-can-check',
   /** trash-can-clock.svg */
-  TrashCanClock = "trash-can-clock",
+  TrashCanClock = 'trash-can-clock',
   /** trash-can-list.svg */
-  TrashCanList = "trash-can-list",
+  TrashCanList = 'trash-can-list',
   /** trash-can-plus.svg */
-  TrashCanPlus = "trash-can-plus",
+  TrashCanPlus = 'trash-can-plus',
   /** trash-can-slash.svg */
-  TrashCanSlash = "trash-can-slash",
+  TrashCanSlash = 'trash-can-slash',
   /** trash-can-undo.svg */
-  TrashCanUndo = "trash-can-undo",
+  TrashCanUndo = 'trash-can-undo',
   /** trash-can-xmark.svg */
-  TrashCanXmark = "trash-can-xmark",
+  TrashCanXmark = 'trash-can-xmark',
   /** trash-can.svg */
-  TrashCan = "trash-can",
+  TrashCan = 'trash-can',
   /** trash-check.svg */
-  TrashCheck = "trash-check",
+  TrashCheck = 'trash-check',
   /** trash-clock.svg */
-  TrashClock = "trash-clock",
+  TrashClock = 'trash-clock',
   /** trash-list.svg */
-  TrashList = "trash-list",
+  TrashList = 'trash-list',
   /** trash-plus.svg */
-  TrashPlus = "trash-plus",
+  TrashPlus = 'trash-plus',
   /** trash-slash.svg */
-  TrashSlash = "trash-slash",
+  TrashSlash = 'trash-slash',
   /** trash-undo.svg */
-  TrashUndo = "trash-undo",
+  TrashUndo = 'trash-undo',
   /** trash-xmark.svg */
-  TrashXmark = "trash-xmark",
+  TrashXmark = 'trash-xmark',
   /** trash.svg */
-  Trash = "trash",
+  Trash = 'trash',
   /** treasure-chest.svg */
-  TreasureChest = "treasure-chest",
+  TreasureChest = 'treasure-chest',
   /** tree-christmas.svg */
-  TreeChristmas = "tree-christmas",
+  TreeChristmas = 'tree-christmas',
   /** tree-city.svg */
-  TreeCity = "tree-city",
+  TreeCity = 'tree-city',
   /** tree-deciduous.svg */
-  TreeDeciduous = "tree-deciduous",
+  TreeDeciduous = 'tree-deciduous',
   /** tree-decorated.svg */
-  TreeDecorated = "tree-decorated",
+  TreeDecorated = 'tree-decorated',
   /** tree-large.svg */
-  TreeLarge = "tree-large",
+  TreeLarge = 'tree-large',
   /** tree-palm.svg */
-  TreePalm = "tree-palm",
+  TreePalm = 'tree-palm',
   /** tree.svg */
-  Tree = "tree",
+  Tree = 'tree',
   /** trees.svg */
-  Trees = "trees",
+  Trees = 'trees',
   /** triangle-exclamation.svg */
-  TriangleExclamation = "triangle-exclamation",
+  TriangleExclamation = 'triangle-exclamation',
   /** triangle-instrument.svg */
-  TriangleInstrument = "triangle-instrument",
+  TriangleInstrument = 'triangle-instrument',
   /** triangle-person-digging.svg */
-  TrianglePersonDigging = "triangle-person-digging",
+  TrianglePersonDigging = 'triangle-person-digging',
   /** triangle.svg */
-  Triangle = "triangle",
+  Triangle = 'triangle',
   /** tricycle-adult.svg */
-  TricycleAdult = "tricycle-adult",
+  TricycleAdult = 'tricycle-adult',
   /** tricycle.svg */
-  Tricycle = "tricycle",
+  Tricycle = 'tricycle',
   /** trillium.svg */
-  Trillium = "trillium",
+  Trillium = 'trillium',
   /** trophy-star.svg */
-  TrophyStar = "trophy-star",
+  TrophyStar = 'trophy-star',
   /** trophy.svg */
-  Trophy = "trophy",
+  Trophy = 'trophy',
   /** trowel-bricks.svg */
-  TrowelBricks = "trowel-bricks",
+  TrowelBricks = 'trowel-bricks',
   /** trowel.svg */
-  Trowel = "trowel",
+  Trowel = 'trowel',
   /** truck-arrow-right.svg */
-  TruckArrowRight = "truck-arrow-right",
+  TruckArrowRight = 'truck-arrow-right',
   /** truck-bolt.svg */
-  TruckBolt = "truck-bolt",
+  TruckBolt = 'truck-bolt',
   /** truck-clock.svg */
-  TruckClock = "truck-clock",
+  TruckClock = 'truck-clock',
   /** truck-container-empty.svg */
-  TruckContainerEmpty = "truck-container-empty",
+  TruckContainerEmpty = 'truck-container-empty',
   /** truck-container.svg */
-  TruckContainer = "truck-container",
+  TruckContainer = 'truck-container',
   /** truck-droplet.svg */
-  TruckDroplet = "truck-droplet",
+  TruckDroplet = 'truck-droplet',
   /** truck-fast.svg */
-  TruckFast = "truck-fast",
+  TruckFast = 'truck-fast',
   /** truck-field-un.svg */
-  TruckFieldUn = "truck-field-un",
+  TruckFieldUn = 'truck-field-un',
   /** truck-field.svg */
-  TruckField = "truck-field",
+  TruckField = 'truck-field',
   /** truck-fire.svg */
-  TruckFire = "truck-fire",
+  TruckFire = 'truck-fire',
   /** truck-flatbed.svg */
-  TruckFlatbed = "truck-flatbed",
+  TruckFlatbed = 'truck-flatbed',
   /** truck-front.svg */
-  TruckFront = "truck-front",
+  TruckFront = 'truck-front',
   /** truck-ladder.svg */
-  TruckLadder = "truck-ladder",
+  TruckLadder = 'truck-ladder',
   /** truck-medical.svg */
-  TruckMedical = "truck-medical",
+  TruckMedical = 'truck-medical',
   /** truck-monster.svg */
-  TruckMonster = "truck-monster",
+  TruckMonster = 'truck-monster',
   /** truck-moving.svg */
-  TruckMoving = "truck-moving",
+  TruckMoving = 'truck-moving',
   /** truck-pickup.svg */
-  TruckPickup = "truck-pickup",
+  TruckPickup = 'truck-pickup',
   /** truck-plane.svg */
-  TruckPlane = "truck-plane",
+  TruckPlane = 'truck-plane',
   /** truck-plow.svg */
-  TruckPlow = "truck-plow",
+  TruckPlow = 'truck-plow',
   /** truck-ramp-box.svg */
-  TruckRampBox = "truck-ramp-box",
+  TruckRampBox = 'truck-ramp-box',
   /** truck-ramp-couch.svg */
-  TruckRampCouch = "truck-ramp-couch",
+  TruckRampCouch = 'truck-ramp-couch',
   /** truck-ramp.svg */
-  TruckRamp = "truck-ramp",
+  TruckRamp = 'truck-ramp',
   /** truck-tow.svg */
-  TruckTow = "truck-tow",
+  TruckTow = 'truck-tow',
   /** truck-utensils.svg */
-  TruckUtensils = "truck-utensils",
+  TruckUtensils = 'truck-utensils',
   /** truck.svg */
-  Truck = "truck",
+  Truck = 'truck',
   /** trumpet.svg */
-  Trumpet = "trumpet",
+  Trumpet = 'trumpet',
   /** tty-answer.svg */
-  TtyAnswer = "tty-answer",
+  TtyAnswer = 'tty-answer',
   /** tty.svg */
-  Tty = "tty",
+  Tty = 'tty',
   /** tugrik-sign.svg */
-  TugrikSign = "tugrik-sign",
+  TugrikSign = 'tugrik-sign',
   /** turkey.svg */
-  Turkey = "turkey",
+  Turkey = 'turkey',
   /** turkish-lira-sign.svg */
-  TurkishLiraSign = "turkish-lira-sign",
+  TurkishLiraSign = 'turkish-lira-sign',
   /** turn-down-left.svg */
-  TurnDownLeft = "turn-down-left",
+  TurnDownLeft = 'turn-down-left',
   /** turn-down-right.svg */
-  TurnDownRight = "turn-down-right",
+  TurnDownRight = 'turn-down-right',
   /** turn-down.svg */
-  TurnDown = "turn-down",
+  TurnDown = 'turn-down',
   /** turn-left-down.svg */
-  TurnLeftDown = "turn-left-down",
+  TurnLeftDown = 'turn-left-down',
   /** turn-left-up.svg */
-  TurnLeftUp = "turn-left-up",
+  TurnLeftUp = 'turn-left-up',
   /** turn-left.svg */
-  TurnLeft = "turn-left",
+  TurnLeft = 'turn-left',
   /** turn-right.svg */
-  TurnRight = "turn-right",
+  TurnRight = 'turn-right',
   /** turn-up.svg */
-  TurnUp = "turn-up",
+  TurnUp = 'turn-up',
   /** turntable.svg */
-  Turntable = "turntable",
+  Turntable = 'turntable',
   /** turtle.svg */
-  Turtle = "turtle",
+  Turtle = 'turtle',
   /** tv-music.svg */
-  TvMusic = "tv-music",
+  TvMusic = 'tv-music',
   /** tv-retro.svg */
-  TvRetro = "tv-retro",
+  TvRetro = 'tv-retro',
   /** tv.svg */
-  Tv = "tv",
+  Tv = 'tv',
   /** typewriter.svg */
-  Typewriter = "typewriter",
+  Typewriter = 'typewriter',
   /** u.svg */
-  U = "u",
+  U = 'u',
   /** ufo-beam.svg */
-  UfoBeam = "ufo-beam",
+  UfoBeam = 'ufo-beam',
   /** ufo.svg */
-  Ufo = "ufo",
+  Ufo = 'ufo',
   /** umbrella-beach.svg */
-  UmbrellaBeach = "umbrella-beach",
+  UmbrellaBeach = 'umbrella-beach',
   /** umbrella-simple.svg */
-  UmbrellaSimple = "umbrella-simple",
+  UmbrellaSimple = 'umbrella-simple',
   /** umbrella.svg */
-  Umbrella = "umbrella",
+  Umbrella = 'umbrella',
   /** underline.svg */
-  Underline = "underline",
+  Underline = 'underline',
   /** unicorn.svg */
-  Unicorn = "unicorn",
+  Unicorn = 'unicorn',
   /** uniform-martial-arts.svg */
-  UniformMartialArts = "uniform-martial-arts",
+  UniformMartialArts = 'uniform-martial-arts',
   /** union.svg */
-  Union = "union",
+  Union = 'union',
   /** universal-access.svg */
-  UniversalAccess = "universal-access",
+  UniversalAccess = 'universal-access',
   /** unlock-keyhole.svg */
-  UnlockKeyhole = "unlock-keyhole",
+  UnlockKeyhole = 'unlock-keyhole',
   /** unlock.svg */
-  Unlock = "unlock",
+  Unlock = 'unlock',
   /** up-down-left-right.svg */
-  UpDownLeftRight = "up-down-left-right",
+  UpDownLeftRight = 'up-down-left-right',
   /** up-down.svg */
-  UpDown = "up-down",
+  UpDown = 'up-down',
   /** up-from-bracket.svg */
-  UpFromBracket = "up-from-bracket",
+  UpFromBracket = 'up-from-bracket',
   /** up-from-dotted-line.svg */
-  UpFromDottedLine = "up-from-dotted-line",
+  UpFromDottedLine = 'up-from-dotted-line',
   /** up-from-line.svg */
-  UpFromLine = "up-from-line",
+  UpFromLine = 'up-from-line',
   /** up-left.svg */
-  UpLeft = "up-left",
+  UpLeft = 'up-left',
   /** up-long.svg */
-  UpLong = "up-long",
+  UpLong = 'up-long',
   /** up-right-and-down-left-from-center.svg */
-  UpRightAndDownLeftFromCenter = "up-right-and-down-left-from-center",
+  UpRightAndDownLeftFromCenter = 'up-right-and-down-left-from-center',
   /** up-right-from-square.svg */
-  UpRightFromSquare = "up-right-from-square",
+  UpRightFromSquare = 'up-right-from-square',
   /** up-right.svg */
-  UpRight = "up-right",
+  UpRight = 'up-right',
   /** up-to-dotted-line.svg */
-  UpToDottedLine = "up-to-dotted-line",
+  UpToDottedLine = 'up-to-dotted-line',
   /** up-to-line.svg */
-  UpToLine = "up-to-line",
+  UpToLine = 'up-to-line',
   /** up.svg */
-  Up = "up",
+  Up = 'up',
   /** upload.svg */
-  Upload = "upload",
+  Upload = 'upload',
   /** usb-drive.svg */
-  UsbDrive = "usb-drive",
+  UsbDrive = 'usb-drive',
   /** user-alien.svg */
-  UserAlien = "user-alien",
+  UserAlien = 'user-alien',
   /** user-astronaut.svg */
-  UserAstronaut = "user-astronaut",
+  UserAstronaut = 'user-astronaut',
   /** user-bounty-hunter.svg */
-  UserBountyHunter = "user-bounty-hunter",
+  UserBountyHunter = 'user-bounty-hunter',
   /** user-check.svg */
-  UserCheck = "user-check",
+  UserCheck = 'user-check',
   /** user-chef.svg */
-  UserChef = "user-chef",
+  UserChef = 'user-chef',
   /** user-clock.svg */
-  UserClock = "user-clock",
+  UserClock = 'user-clock',
   /** user-cowboy.svg */
-  UserCowboy = "user-cowboy",
+  UserCowboy = 'user-cowboy',
   /** user-crown.svg */
-  UserCrown = "user-crown",
+  UserCrown = 'user-crown',
   /** user-doctor-hair-long.svg */
-  UserDoctorHairLong = "user-doctor-hair-long",
+  UserDoctorHairLong = 'user-doctor-hair-long',
   /** user-doctor-hair.svg */
-  UserDoctorHair = "user-doctor-hair",
+  UserDoctorHair = 'user-doctor-hair',
   /** user-doctor-message.svg */
-  UserDoctorMessage = "user-doctor-message",
+  UserDoctorMessage = 'user-doctor-message',
   /** user-doctor.svg */
-  UserDoctor = "user-doctor",
+  UserDoctor = 'user-doctor',
   /** user-gear.svg */
-  UserGear = "user-gear",
+  UserGear = 'user-gear',
   /** user-graduate.svg */
-  UserGraduate = "user-graduate",
+  UserGraduate = 'user-graduate',
   /** user-group-crown.svg */
-  UserGroupCrown = "user-group-crown",
+  UserGroupCrown = 'user-group-crown',
   /** user-group-simple.svg */
-  UserGroupSimple = "user-group-simple",
+  UserGroupSimple = 'user-group-simple',
   /** user-group.svg */
-  UserGroup = "user-group",
+  UserGroup = 'user-group',
   /** user-hair-buns.svg */
-  UserHairBuns = "user-hair-buns",
+  UserHairBuns = 'user-hair-buns',
   /** user-hair-long.svg */
-  UserHairLong = "user-hair-long",
+  UserHairLong = 'user-hair-long',
   /** user-hair-mullet.svg */
-  UserHairMullet = "user-hair-mullet",
+  UserHairMullet = 'user-hair-mullet',
   /** user-hair.svg */
-  UserHair = "user-hair",
+  UserHair = 'user-hair',
   /** user-headset.svg */
-  UserHeadset = "user-headset",
+  UserHeadset = 'user-headset',
   /** user-helmet-safety.svg */
-  UserHelmetSafety = "user-helmet-safety",
+  UserHelmetSafety = 'user-helmet-safety',
   /** user-injured.svg */
-  UserInjured = "user-injured",
+  UserInjured = 'user-injured',
   /** user-large-slash.svg */
-  UserLargeSlash = "user-large-slash",
+  UserLargeSlash = 'user-large-slash',
   /** user-large.svg */
-  UserLarge = "user-large",
+  UserLarge = 'user-large',
   /** user-lock.svg */
-  UserLock = "user-lock",
+  UserLock = 'user-lock',
   /** user-magnifying-glass.svg */
-  UserMagnifyingGlass = "user-magnifying-glass",
+  UserMagnifyingGlass = 'user-magnifying-glass',
   /** user-minus.svg */
-  UserMinus = "user-minus",
+  UserMinus = 'user-minus',
   /** user-music.svg */
-  UserMusic = "user-music",
+  UserMusic = 'user-music',
   /** user-ninja.svg */
-  UserNinja = "user-ninja",
+  UserNinja = 'user-ninja',
   /** user-nurse-hair-long.svg */
-  UserNurseHairLong = "user-nurse-hair-long",
+  UserNurseHairLong = 'user-nurse-hair-long',
   /** user-nurse-hair.svg */
-  UserNurseHair = "user-nurse-hair",
+  UserNurseHair = 'user-nurse-hair',
   /** user-nurse.svg */
-  UserNurse = "user-nurse",
+  UserNurse = 'user-nurse',
   /** user-pen.svg */
-  UserPen = "user-pen",
+  UserPen = 'user-pen',
   /** user-pilot-tie.svg */
-  UserPilotTie = "user-pilot-tie",
+  UserPilotTie = 'user-pilot-tie',
   /** user-pilot.svg */
-  UserPilot = "user-pilot",
+  UserPilot = 'user-pilot',
   /** user-plus.svg */
-  UserPlus = "user-plus",
+  UserPlus = 'user-plus',
   /** user-police-tie.svg */
-  UserPoliceTie = "user-police-tie",
+  UserPoliceTie = 'user-police-tie',
   /** user-police.svg */
-  UserPolice = "user-police",
+  UserPolice = 'user-police',
   /** user-robot-xmarks.svg */
-  UserRobotXmarks = "user-robot-xmarks",
+  UserRobotXmarks = 'user-robot-xmarks',
   /** user-robot.svg */
-  UserRobot = "user-robot",
+  UserRobot = 'user-robot',
   /** user-secret.svg */
-  UserSecret = "user-secret",
+  UserSecret = 'user-secret',
   /** user-shakespeare.svg */
-  UserShakespeare = "user-shakespeare",
+  UserShakespeare = 'user-shakespeare',
   /** user-shield.svg */
-  UserShield = "user-shield",
+  UserShield = 'user-shield',
   /** user-slash.svg */
-  UserSlash = "user-slash",
+  UserSlash = 'user-slash',
   /** user-tag.svg */
-  UserTag = "user-tag",
+  UserTag = 'user-tag',
   /** user-tie-hair-long.svg */
-  UserTieHairLong = "user-tie-hair-long",
+  UserTieHairLong = 'user-tie-hair-long',
   /** user-tie-hair.svg */
-  UserTieHair = "user-tie-hair",
+  UserTieHair = 'user-tie-hair',
   /** user-tie.svg */
-  UserTie = "user-tie",
+  UserTie = 'user-tie',
   /** user-unlock.svg */
-  UserUnlock = "user-unlock",
+  UserUnlock = 'user-unlock',
   /** user-visor.svg */
-  UserVisor = "user-visor",
+  UserVisor = 'user-visor',
   /** user-vneck-hair-long.svg */
-  UserVneckHairLong = "user-vneck-hair-long",
+  UserVneckHairLong = 'user-vneck-hair-long',
   /** user-vneck-hair.svg */
-  UserVneckHair = "user-vneck-hair",
+  UserVneckHair = 'user-vneck-hair',
   /** user-vneck.svg */
-  UserVneck = "user-vneck",
+  UserVneck = 'user-vneck',
   /** user-xmark.svg */
-  UserXmark = "user-xmark",
+  UserXmark = 'user-xmark',
   /** user.svg */
-  User = "user",
+  User = 'user',
   /** users-between-lines.svg */
-  UsersBetweenLines = "users-between-lines",
+  UsersBetweenLines = 'users-between-lines',
   /** users-gear.svg */
-  UsersGear = "users-gear",
+  UsersGear = 'users-gear',
   /** users-line.svg */
-  UsersLine = "users-line",
+  UsersLine = 'users-line',
   /** users-medical.svg */
-  UsersMedical = "users-medical",
+  UsersMedical = 'users-medical',
   /** users-rays.svg */
-  UsersRays = "users-rays",
+  UsersRays = 'users-rays',
   /** users-rectangle.svg */
-  UsersRectangle = "users-rectangle",
+  UsersRectangle = 'users-rectangle',
   /** users-slash.svg */
-  UsersSlash = "users-slash",
+  UsersSlash = 'users-slash',
   /** users-viewfinder.svg */
-  UsersViewfinder = "users-viewfinder",
+  UsersViewfinder = 'users-viewfinder',
   /** users.svg */
-  Users = "users",
+  Users = 'users',
   /** utensils-slash.svg */
-  UtensilsSlash = "utensils-slash",
+  UtensilsSlash = 'utensils-slash',
   /** utensils.svg */
-  Utensils = "utensils",
+  Utensils = 'utensils',
   /** utility-pole-double.svg */
-  UtilityPoleDouble = "utility-pole-double",
+  UtilityPoleDouble = 'utility-pole-double',
   /** utility-pole.svg */
-  UtilityPole = "utility-pole",
+  UtilityPole = 'utility-pole',
   /** v.svg */
-  V = "v",
+  V = 'v',
   /** vacuum-robot.svg */
-  VacuumRobot = "vacuum-robot",
+  VacuumRobot = 'vacuum-robot',
   /** vacuum.svg */
-  Vacuum = "vacuum",
+  Vacuum = 'vacuum',
   /** value-absolute.svg */
-  ValueAbsolute = "value-absolute",
+  ValueAbsolute = 'value-absolute',
   /** van-shuttle.svg */
-  VanShuttle = "van-shuttle",
+  VanShuttle = 'van-shuttle',
   /** vault.svg */
-  Vault = "vault",
+  Vault = 'vault',
   /** vector-circle.svg */
-  VectorCircle = "vector-circle",
+  VectorCircle = 'vector-circle',
   /** vector-polygon.svg */
-  VectorPolygon = "vector-polygon",
+  VectorPolygon = 'vector-polygon',
   /** vector-square.svg */
-  VectorSquare = "vector-square",
+  VectorSquare = 'vector-square',
   /** vent-damper.svg */
-  VentDamper = "vent-damper",
+  VentDamper = 'vent-damper',
   /** venus-double.svg */
-  VenusDouble = "venus-double",
+  VenusDouble = 'venus-double',
   /** venus-mars.svg */
-  VenusMars = "venus-mars",
+  VenusMars = 'venus-mars',
   /** venus.svg */
-  Venus = "venus",
+  Venus = 'venus',
   /** vest-patches.svg */
-  VestPatches = "vest-patches",
+  VestPatches = 'vest-patches',
   /** vest.svg */
-  Vest = "vest",
+  Vest = 'vest',
   /** vial-circle-check.svg */
-  VialCircleCheck = "vial-circle-check",
+  VialCircleCheck = 'vial-circle-check',
   /** vial-virus.svg */
-  VialVirus = "vial-virus",
+  VialVirus = 'vial-virus',
   /** vial.svg */
-  Vial = "vial",
+  Vial = 'vial',
   /** vials.svg */
-  Vials = "vials",
+  Vials = 'vials',
   /** video-arrow-down-left.svg */
-  VideoArrowDownLeft = "video-arrow-down-left",
+  VideoArrowDownLeft = 'video-arrow-down-left',
   /** video-arrow-up-right.svg */
-  VideoArrowUpRight = "video-arrow-up-right",
+  VideoArrowUpRight = 'video-arrow-up-right',
   /** video-plus.svg */
-  VideoPlus = "video-plus",
+  VideoPlus = 'video-plus',
   /** video-slash.svg */
-  VideoSlash = "video-slash",
+  VideoSlash = 'video-slash',
   /** video.svg */
-  Video = "video",
+  Video = 'video',
   /** vihara.svg */
-  Vihara = "vihara",
+  Vihara = 'vihara',
   /** violin.svg */
-  Violin = "violin",
+  Violin = 'violin',
   /** virus-covid-slash.svg */
-  VirusCovidSlash = "virus-covid-slash",
+  VirusCovidSlash = 'virus-covid-slash',
   /** virus-covid.svg */
-  VirusCovid = "virus-covid",
+  VirusCovid = 'virus-covid',
   /** virus-slash.svg */
-  VirusSlash = "virus-slash",
+  VirusSlash = 'virus-slash',
   /** virus.svg */
-  Virus = "virus",
+  Virus = 'virus',
   /** viruses.svg */
-  Viruses = "viruses",
+  Viruses = 'viruses',
   /** voicemail.svg */
-  Voicemail = "voicemail",
+  Voicemail = 'voicemail',
   /** volcano.svg */
-  Volcano = "volcano",
+  Volcano = 'volcano',
   /** volleyball.svg */
-  Volleyball = "volleyball",
+  Volleyball = 'volleyball',
   /** volume-high.svg */
-  VolumeHigh = "volume-high",
+  VolumeHigh = 'volume-high',
   /** volume-low.svg */
-  VolumeLow = "volume-low",
+  VolumeLow = 'volume-low',
   /** volume-off.svg */
-  VolumeOff = "volume-off",
+  VolumeOff = 'volume-off',
   /** volume-slash.svg */
-  VolumeSlash = "volume-slash",
+  VolumeSlash = 'volume-slash',
   /** volume-xmark.svg */
-  VolumeXmark = "volume-xmark",
+  VolumeXmark = 'volume-xmark',
   /** volume.svg */
-  Volume = "volume",
+  Volume = 'volume',
   /** vr-cardboard.svg */
-  VrCardboard = "vr-cardboard",
+  VrCardboard = 'vr-cardboard',
   /** w.svg */
-  W = "w",
+  W = 'w',
   /** waffle.svg */
-  Waffle = "waffle",
+  Waffle = 'waffle',
   /** wagon-covered.svg */
-  WagonCovered = "wagon-covered",
+  WagonCovered = 'wagon-covered',
   /** walker.svg */
-  Walker = "walker",
+  Walker = 'walker',
   /** walkie-talkie.svg */
-  WalkieTalkie = "walkie-talkie",
+  WalkieTalkie = 'walkie-talkie',
   /** wallet.svg */
-  Wallet = "wallet",
+  Wallet = 'wallet',
   /** wand-magic-sparkles.svg */
-  WandMagicSparkles = "wand-magic-sparkles",
+  WandMagicSparkles = 'wand-magic-sparkles',
   /** wand-magic.svg */
-  WandMagic = "wand-magic",
+  WandMagic = 'wand-magic',
   /** wand-sparkles.svg */
-  WandSparkles = "wand-sparkles",
+  WandSparkles = 'wand-sparkles',
   /** wand.svg */
-  Wand = "wand",
+  Wand = 'wand',
   /** warehouse-full.svg */
-  WarehouseFull = "warehouse-full",
+  WarehouseFull = 'warehouse-full',
   /** warehouse.svg */
-  Warehouse = "warehouse",
+  Warehouse = 'warehouse',
   /** washing-machine.svg */
-  WashingMachine = "washing-machine",
+  WashingMachine = 'washing-machine',
   /** watch-apple.svg */
-  WatchApple = "watch-apple",
+  WatchApple = 'watch-apple',
   /** watch-calculator.svg */
-  WatchCalculator = "watch-calculator",
+  WatchCalculator = 'watch-calculator',
   /** watch-fitness.svg */
-  WatchFitness = "watch-fitness",
+  WatchFitness = 'watch-fitness',
   /** watch-smart.svg */
-  WatchSmart = "watch-smart",
+  WatchSmart = 'watch-smart',
   /** watch.svg */
-  Watch = "watch",
+  Watch = 'watch',
   /** water-arrow-down.svg */
-  WaterArrowDown = "water-arrow-down",
+  WaterArrowDown = 'water-arrow-down',
   /** water-arrow-up.svg */
-  WaterArrowUp = "water-arrow-up",
+  WaterArrowUp = 'water-arrow-up',
   /** water-ladder.svg */
-  WaterLadder = "water-ladder",
+  WaterLadder = 'water-ladder',
   /** water.svg */
-  Water = "water",
+  Water = 'water',
   /** watermelon-slice.svg */
-  WatermelonSlice = "watermelon-slice",
+  WatermelonSlice = 'watermelon-slice',
   /** wave-pulse.svg */
-  WavePulse = "wave-pulse",
+  WavePulse = 'wave-pulse',
   /** wave-sine.svg */
-  WaveSine = "wave-sine",
+  WaveSine = 'wave-sine',
   /** wave-square.svg */
-  WaveSquare = "wave-square",
+  WaveSquare = 'wave-square',
   /** wave-triangle.svg */
-  WaveTriangle = "wave-triangle",
+  WaveTriangle = 'wave-triangle',
   /** wave.svg */
-  Wave = "wave",
+  Wave = 'wave',
   /** waveform-lines.svg */
-  WaveformLines = "waveform-lines",
+  WaveformLines = 'waveform-lines',
   /** waveform.svg */
-  Waveform = "waveform",
+  Waveform = 'waveform',
   /** waves-sine.svg */
-  WavesSine = "waves-sine",
+  WavesSine = 'waves-sine',
   /** webhook.svg */
-  Webhook = "webhook",
+  Webhook = 'webhook',
   /** weight-hanging.svg */
-  WeightHanging = "weight-hanging",
+  WeightHanging = 'weight-hanging',
   /** weight-scale.svg */
-  WeightScale = "weight-scale",
+  WeightScale = 'weight-scale',
   /** whale.svg */
-  Whale = "whale",
+  Whale = 'whale',
   /** wheat-awn-circle-exclamation.svg */
-  WheatAwnCircleExclamation = "wheat-awn-circle-exclamation",
+  WheatAwnCircleExclamation = 'wheat-awn-circle-exclamation',
   /** wheat-awn-slash.svg */
-  WheatAwnSlash = "wheat-awn-slash",
+  WheatAwnSlash = 'wheat-awn-slash',
   /** wheat-awn.svg */
-  WheatAwn = "wheat-awn",
+  WheatAwn = 'wheat-awn',
   /** wheat-slash.svg */
-  WheatSlash = "wheat-slash",
+  WheatSlash = 'wheat-slash',
   /** wheat.svg */
-  Wheat = "wheat",
+  Wheat = 'wheat',
   /** wheelchair-move.svg */
-  WheelchairMove = "wheelchair-move",
+  WheelchairMove = 'wheelchair-move',
   /** wheelchair.svg */
-  Wheelchair = "wheelchair",
+  Wheelchair = 'wheelchair',
   /** whiskey-glass-ice.svg */
-  WhiskeyGlassIce = "whiskey-glass-ice",
+  WhiskeyGlassIce = 'whiskey-glass-ice',
   /** whiskey-glass.svg */
-  WhiskeyGlass = "whiskey-glass",
+  WhiskeyGlass = 'whiskey-glass',
   /** whistle.svg */
-  Whistle = "whistle",
+  Whistle = 'whistle',
   /** wifi-exclamation.svg */
-  WifiExclamation = "wifi-exclamation",
+  WifiExclamation = 'wifi-exclamation',
   /** wifi-fair.svg */
-  WifiFair = "wifi-fair",
+  WifiFair = 'wifi-fair',
   /** wifi-slash.svg */
-  WifiSlash = "wifi-slash",
+  WifiSlash = 'wifi-slash',
   /** wifi-weak.svg */
-  WifiWeak = "wifi-weak",
+  WifiWeak = 'wifi-weak',
   /** wifi.svg */
-  Wifi = "wifi",
+  Wifi = 'wifi',
   /** wind-turbine.svg */
-  WindTurbine = "wind-turbine",
+  WindTurbine = 'wind-turbine',
   /** wind-warning.svg */
-  WindWarning = "wind-warning",
+  WindWarning = 'wind-warning',
   /** wind.svg */
-  Wind = "wind",
+  Wind = 'wind',
   /** window-flip.svg */
-  WindowFlip = "window-flip",
+  WindowFlip = 'window-flip',
   /** window-frame-open.svg */
-  WindowFrameOpen = "window-frame-open",
+  WindowFrameOpen = 'window-frame-open',
   /** window-frame.svg */
-  WindowFrame = "window-frame",
+  WindowFrame = 'window-frame',
   /** window-maximize.svg */
-  WindowMaximize = "window-maximize",
+  WindowMaximize = 'window-maximize',
   /** window-minimize.svg */
-  WindowMinimize = "window-minimize",
+  WindowMinimize = 'window-minimize',
   /** window-restore.svg */
-  WindowRestore = "window-restore",
+  WindowRestore = 'window-restore',
   /** window.svg */
-  Window = "window",
+  Window = 'window',
   /** windsock.svg */
-  Windsock = "windsock",
+  Windsock = 'windsock',
   /** wine-bottle.svg */
-  WineBottle = "wine-bottle",
+  WineBottle = 'wine-bottle',
   /** wine-glass-crack.svg */
-  WineGlassCrack = "wine-glass-crack",
+  WineGlassCrack = 'wine-glass-crack',
   /** wine-glass-empty.svg */
-  WineGlassEmpty = "wine-glass-empty",
+  WineGlassEmpty = 'wine-glass-empty',
   /** wine-glass.svg */
-  WineGlass = "wine-glass",
+  WineGlass = 'wine-glass',
   /** won-sign.svg */
-  WonSign = "won-sign",
+  WonSign = 'won-sign',
   /** worm.svg */
-  Worm = "worm",
+  Worm = 'worm',
   /** wreath-laurel.svg */
-  WreathLaurel = "wreath-laurel",
+  WreathLaurel = 'wreath-laurel',
   /** wreath.svg */
-  Wreath = "wreath",
+  Wreath = 'wreath',
   /** wrench-simple.svg */
-  WrenchSimple = "wrench-simple",
+  WrenchSimple = 'wrench-simple',
   /** wrench.svg */
-  Wrench = "wrench",
+  Wrench = 'wrench',
   /** x-ray.svg */
-  XRay = "x-ray",
+  XRay = 'x-ray',
   /** x.svg */
-  X = "x",
+  X = 'x',
   /** xmark-large.svg */
-  XmarkLarge = "xmark-large",
+  XmarkLarge = 'xmark-large',
   /** xmark-to-slot.svg */
-  XmarkToSlot = "xmark-to-slot",
+  XmarkToSlot = 'xmark-to-slot',
   /** xmark.svg */
-  Xmark = "xmark",
+  Xmark = 'xmark',
   /** xmarks-lines.svg */
-  XmarksLines = "xmarks-lines",
+  XmarksLines = 'xmarks-lines',
   /** y.svg */
-  Y = "y",
+  Y = 'y',
   /** yen-sign.svg */
-  YenSign = "yen-sign",
+  YenSign = 'yen-sign',
   /** yin-yang.svg */
-  YinYang = "yin-yang",
+  YinYang = 'yin-yang',
   /** z.svg */
-  Z = "z"
+  Z = 'z',
 }
 
 /**
@@ -6574,971 +6574,971 @@ export enum BIconName {
  */
 export enum BIconBrandName {
   /** 42-group.svg */
-  N42Group = "42-group",
+  N42Group = '42-group',
   /** 500px.svg */
-  N500px = "500px",
+  N500px = '500px',
   /** accessible-icon.svg */
-  AccessibleIcon = "accessible-icon",
+  AccessibleIcon = 'accessible-icon',
   /** accusoft.svg */
-  Accusoft = "accusoft",
+  Accusoft = 'accusoft',
   /** adn.svg */
-  Adn = "adn",
+  Adn = 'adn',
   /** adversal.svg */
-  Adversal = "adversal",
+  Adversal = 'adversal',
   /** affiliatetheme.svg */
-  Affiliatetheme = "affiliatetheme",
+  Affiliatetheme = 'affiliatetheme',
   /** airbnb.svg */
-  Airbnb = "airbnb",
+  Airbnb = 'airbnb',
   /** algolia.svg */
-  Algolia = "algolia",
+  Algolia = 'algolia',
   /** alipay.svg */
-  Alipay = "alipay",
+  Alipay = 'alipay',
   /** amazon-pay.svg */
-  AmazonPay = "amazon-pay",
+  AmazonPay = 'amazon-pay',
   /** amazon.svg */
-  Amazon = "amazon",
+  Amazon = 'amazon',
   /** amilia.svg */
-  Amilia = "amilia",
+  Amilia = 'amilia',
   /** android.svg */
-  Android = "android",
+  Android = 'android',
   /** angellist.svg */
-  Angellist = "angellist",
+  Angellist = 'angellist',
   /** angrycreative.svg */
-  Angrycreative = "angrycreative",
+  Angrycreative = 'angrycreative',
   /** angular.svg */
-  Angular = "angular",
+  Angular = 'angular',
   /** app-store-ios.svg */
-  AppStoreIos = "app-store-ios",
+  AppStoreIos = 'app-store-ios',
   /** app-store.svg */
-  AppStore = "app-store",
+  AppStore = 'app-store',
   /** apper.svg */
-  Apper = "apper",
+  Apper = 'apper',
   /** apple-pay.svg */
-  ApplePay = "apple-pay",
+  ApplePay = 'apple-pay',
   /** apple.svg */
-  Apple = "apple",
+  Apple = 'apple',
   /** artstation.svg */
-  Artstation = "artstation",
+  Artstation = 'artstation',
   /** asymmetrik.svg */
-  Asymmetrik = "asymmetrik",
+  Asymmetrik = 'asymmetrik',
   /** atlassian.svg */
-  Atlassian = "atlassian",
+  Atlassian = 'atlassian',
   /** audible.svg */
-  Audible = "audible",
+  Audible = 'audible',
   /** autoprefixer.svg */
-  Autoprefixer = "autoprefixer",
+  Autoprefixer = 'autoprefixer',
   /** avianex.svg */
-  Avianex = "avianex",
+  Avianex = 'avianex',
   /** aviato.svg */
-  Aviato = "aviato",
+  Aviato = 'aviato',
   /** aws.svg */
-  Aws = "aws",
+  Aws = 'aws',
   /** bandcamp.svg */
-  Bandcamp = "bandcamp",
+  Bandcamp = 'bandcamp',
   /** battle-net.svg */
-  BattleNet = "battle-net",
+  BattleNet = 'battle-net',
   /** behance.svg */
-  Behance = "behance",
+  Behance = 'behance',
   /** bilibili.svg */
-  Bilibili = "bilibili",
+  Bilibili = 'bilibili',
   /** bimobject.svg */
-  Bimobject = "bimobject",
+  Bimobject = 'bimobject',
   /** bitbucket.svg */
-  Bitbucket = "bitbucket",
+  Bitbucket = 'bitbucket',
   /** bitcoin.svg */
-  Bitcoin = "bitcoin",
+  Bitcoin = 'bitcoin',
   /** bity.svg */
-  Bity = "bity",
+  Bity = 'bity',
   /** black-tie.svg */
-  BlackTie = "black-tie",
+  BlackTie = 'black-tie',
   /** blackberry.svg */
-  Blackberry = "blackberry",
+  Blackberry = 'blackberry',
   /** blogger-b.svg */
-  BloggerB = "blogger-b",
+  BloggerB = 'blogger-b',
   /** blogger.svg */
-  Blogger = "blogger",
+  Blogger = 'blogger',
   /** bluetooth-b.svg */
-  BluetoothB = "bluetooth-b",
+  BluetoothB = 'bluetooth-b',
   /** bluetooth.svg */
-  Bluetooth = "bluetooth",
+  Bluetooth = 'bluetooth',
   /** bootstrap.svg */
-  Bootstrap = "bootstrap",
+  Bootstrap = 'bootstrap',
   /** bots.svg */
-  Bots = "bots",
+  Bots = 'bots',
   /** brave-reverse.svg */
-  BraveReverse = "brave-reverse",
+  BraveReverse = 'brave-reverse',
   /** brave.svg */
-  Brave = "brave",
+  Brave = 'brave',
   /** btc.svg */
-  Btc = "btc",
+  Btc = 'btc',
   /** buffer.svg */
-  Buffer = "buffer",
+  Buffer = 'buffer',
   /** buromobelexperte.svg */
-  Buromobelexperte = "buromobelexperte",
+  Buromobelexperte = 'buromobelexperte',
   /** buy-n-large.svg */
-  BuyNLarge = "buy-n-large",
+  BuyNLarge = 'buy-n-large',
   /** buysellads.svg */
-  Buysellads = "buysellads",
+  Buysellads = 'buysellads',
   /** canadian-maple-leaf.svg */
-  CanadianMapleLeaf = "canadian-maple-leaf",
+  CanadianMapleLeaf = 'canadian-maple-leaf',
   /** cc-amazon-pay.svg */
-  CcAmazonPay = "cc-amazon-pay",
+  CcAmazonPay = 'cc-amazon-pay',
   /** cc-amex.svg */
-  CcAmex = "cc-amex",
+  CcAmex = 'cc-amex',
   /** cc-apple-pay.svg */
-  CcApplePay = "cc-apple-pay",
+  CcApplePay = 'cc-apple-pay',
   /** cc-diners-club.svg */
-  CcDinersClub = "cc-diners-club",
+  CcDinersClub = 'cc-diners-club',
   /** cc-discover.svg */
-  CcDiscover = "cc-discover",
+  CcDiscover = 'cc-discover',
   /** cc-jcb.svg */
-  CcJcb = "cc-jcb",
+  CcJcb = 'cc-jcb',
   /** cc-mastercard.svg */
-  CcMastercard = "cc-mastercard",
+  CcMastercard = 'cc-mastercard',
   /** cc-paypal.svg */
-  CcPaypal = "cc-paypal",
+  CcPaypal = 'cc-paypal',
   /** cc-stripe.svg */
-  CcStripe = "cc-stripe",
+  CcStripe = 'cc-stripe',
   /** cc-visa.svg */
-  CcVisa = "cc-visa",
+  CcVisa = 'cc-visa',
   /** centercode.svg */
-  Centercode = "centercode",
+  Centercode = 'centercode',
   /** centos.svg */
-  Centos = "centos",
+  Centos = 'centos',
   /** chrome.svg */
-  Chrome = "chrome",
+  Chrome = 'chrome',
   /** chromecast.svg */
-  Chromecast = "chromecast",
+  Chromecast = 'chromecast',
   /** cloudflare.svg */
-  Cloudflare = "cloudflare",
+  Cloudflare = 'cloudflare',
   /** cloudscale.svg */
-  Cloudscale = "cloudscale",
+  Cloudscale = 'cloudscale',
   /** cloudsmith.svg */
-  Cloudsmith = "cloudsmith",
+  Cloudsmith = 'cloudsmith',
   /** cloudversify.svg */
-  Cloudversify = "cloudversify",
+  Cloudversify = 'cloudversify',
   /** cmplid.svg */
-  Cmplid = "cmplid",
+  Cmplid = 'cmplid',
   /** codepen.svg */
-  Codepen = "codepen",
+  Codepen = 'codepen',
   /** codiepie.svg */
-  Codiepie = "codiepie",
+  Codiepie = 'codiepie',
   /** confluence.svg */
-  Confluence = "confluence",
+  Confluence = 'confluence',
   /** connectdevelop.svg */
-  Connectdevelop = "connectdevelop",
+  Connectdevelop = 'connectdevelop',
   /** contao.svg */
-  Contao = "contao",
+  Contao = 'contao',
   /** cotton-bureau.svg */
-  CottonBureau = "cotton-bureau",
+  CottonBureau = 'cotton-bureau',
   /** cpanel.svg */
-  Cpanel = "cpanel",
+  Cpanel = 'cpanel',
   /** creative-commons-by.svg */
-  CreativeCommonsBy = "creative-commons-by",
+  CreativeCommonsBy = 'creative-commons-by',
   /** creative-commons-nc-eu.svg */
-  CreativeCommonsNcEu = "creative-commons-nc-eu",
+  CreativeCommonsNcEu = 'creative-commons-nc-eu',
   /** creative-commons-nc-jp.svg */
-  CreativeCommonsNcJp = "creative-commons-nc-jp",
+  CreativeCommonsNcJp = 'creative-commons-nc-jp',
   /** creative-commons-nc.svg */
-  CreativeCommonsNc = "creative-commons-nc",
+  CreativeCommonsNc = 'creative-commons-nc',
   /** creative-commons-nd.svg */
-  CreativeCommonsNd = "creative-commons-nd",
+  CreativeCommonsNd = 'creative-commons-nd',
   /** creative-commons-pd-alt.svg */
-  CreativeCommonsPdAlt = "creative-commons-pd-alt",
+  CreativeCommonsPdAlt = 'creative-commons-pd-alt',
   /** creative-commons-pd.svg */
-  CreativeCommonsPd = "creative-commons-pd",
+  CreativeCommonsPd = 'creative-commons-pd',
   /** creative-commons-remix.svg */
-  CreativeCommonsRemix = "creative-commons-remix",
+  CreativeCommonsRemix = 'creative-commons-remix',
   /** creative-commons-sa.svg */
-  CreativeCommonsSa = "creative-commons-sa",
+  CreativeCommonsSa = 'creative-commons-sa',
   /** creative-commons-sampling-plus.svg */
-  CreativeCommonsSamplingPlus = "creative-commons-sampling-plus",
+  CreativeCommonsSamplingPlus = 'creative-commons-sampling-plus',
   /** creative-commons-sampling.svg */
-  CreativeCommonsSampling = "creative-commons-sampling",
+  CreativeCommonsSampling = 'creative-commons-sampling',
   /** creative-commons-share.svg */
-  CreativeCommonsShare = "creative-commons-share",
+  CreativeCommonsShare = 'creative-commons-share',
   /** creative-commons-zero.svg */
-  CreativeCommonsZero = "creative-commons-zero",
+  CreativeCommonsZero = 'creative-commons-zero',
   /** creative-commons.svg */
-  CreativeCommons = "creative-commons",
+  CreativeCommons = 'creative-commons',
   /** critical-role.svg */
-  CriticalRole = "critical-role",
+  CriticalRole = 'critical-role',
   /** css3-alt.svg */
-  Css3Alt = "css3-alt",
+  Css3Alt = 'css3-alt',
   /** css3.svg */
-  Css3 = "css3",
+  Css3 = 'css3',
   /** cuttlefish.svg */
-  Cuttlefish = "cuttlefish",
+  Cuttlefish = 'cuttlefish',
   /** d-and-d-beyond.svg */
-  DAndDBeyond = "d-and-d-beyond",
+  DAndDBeyond = 'd-and-d-beyond',
   /** d-and-d.svg */
-  DAndD = "d-and-d",
+  DAndD = 'd-and-d',
   /** dailymotion.svg */
-  Dailymotion = "dailymotion",
+  Dailymotion = 'dailymotion',
   /** dashcube.svg */
-  Dashcube = "dashcube",
+  Dashcube = 'dashcube',
   /** debian.svg */
-  Debian = "debian",
+  Debian = 'debian',
   /** deezer.svg */
-  Deezer = "deezer",
+  Deezer = 'deezer',
   /** delicious.svg */
-  Delicious = "delicious",
+  Delicious = 'delicious',
   /** deploydog.svg */
-  Deploydog = "deploydog",
+  Deploydog = 'deploydog',
   /** deskpro.svg */
-  Deskpro = "deskpro",
+  Deskpro = 'deskpro',
   /** dev.svg */
-  Dev = "dev",
+  Dev = 'dev',
   /** deviantart.svg */
-  Deviantart = "deviantart",
+  Deviantart = 'deviantart',
   /** dhl.svg */
-  Dhl = "dhl",
+  Dhl = 'dhl',
   /** diaspora.svg */
-  Diaspora = "diaspora",
+  Diaspora = 'diaspora',
   /** digg.svg */
-  Digg = "digg",
+  Digg = 'digg',
   /** digital-ocean.svg */
-  DigitalOcean = "digital-ocean",
+  DigitalOcean = 'digital-ocean',
   /** discord.svg */
-  Discord = "discord",
+  Discord = 'discord',
   /** discourse.svg */
-  Discourse = "discourse",
+  Discourse = 'discourse',
   /** dochub.svg */
-  Dochub = "dochub",
+  Dochub = 'dochub',
   /** docker.svg */
-  Docker = "docker",
+  Docker = 'docker',
   /** draft2digital.svg */
-  Draft2digital = "draft2digital",
+  Draft2digital = 'draft2digital',
   /** dribbble.svg */
-  Dribbble = "dribbble",
+  Dribbble = 'dribbble',
   /** dropbox.svg */
-  Dropbox = "dropbox",
+  Dropbox = 'dropbox',
   /** drupal.svg */
-  Drupal = "drupal",
+  Drupal = 'drupal',
   /** dyalog.svg */
-  Dyalog = "dyalog",
+  Dyalog = 'dyalog',
   /** earlybirds.svg */
-  Earlybirds = "earlybirds",
+  Earlybirds = 'earlybirds',
   /** ebay.svg */
-  Ebay = "ebay",
+  Ebay = 'ebay',
   /** edge-legacy.svg */
-  EdgeLegacy = "edge-legacy",
+  EdgeLegacy = 'edge-legacy',
   /** edge.svg */
-  Edge = "edge",
+  Edge = 'edge',
   /** elementor.svg */
-  Elementor = "elementor",
+  Elementor = 'elementor',
   /** ello.svg */
-  Ello = "ello",
+  Ello = 'ello',
   /** ember.svg */
-  Ember = "ember",
+  Ember = 'ember',
   /** empire.svg */
-  Empire = "empire",
+  Empire = 'empire',
   /** envira.svg */
-  Envira = "envira",
+  Envira = 'envira',
   /** erlang.svg */
-  Erlang = "erlang",
+  Erlang = 'erlang',
   /** ethereum.svg */
-  Ethereum = "ethereum",
+  Ethereum = 'ethereum',
   /** etsy.svg */
-  Etsy = "etsy",
+  Etsy = 'etsy',
   /** evernote.svg */
-  Evernote = "evernote",
+  Evernote = 'evernote',
   /** expeditedssl.svg */
-  Expeditedssl = "expeditedssl",
+  Expeditedssl = 'expeditedssl',
   /** facebook-f.svg */
-  FacebookF = "facebook-f",
+  FacebookF = 'facebook-f',
   /** facebook-messenger.svg */
-  FacebookMessenger = "facebook-messenger",
+  FacebookMessenger = 'facebook-messenger',
   /** facebook.svg */
-  Facebook = "facebook",
+  Facebook = 'facebook',
   /** fantasy-flight-games.svg */
-  FantasyFlightGames = "fantasy-flight-games",
+  FantasyFlightGames = 'fantasy-flight-games',
   /** fedex.svg */
-  Fedex = "fedex",
+  Fedex = 'fedex',
   /** fedora.svg */
-  Fedora = "fedora",
+  Fedora = 'fedora',
   /** figma.svg */
-  Figma = "figma",
+  Figma = 'figma',
   /** firefox-browser.svg */
-  FirefoxBrowser = "firefox-browser",
+  FirefoxBrowser = 'firefox-browser',
   /** firefox.svg */
-  Firefox = "firefox",
+  Firefox = 'firefox',
   /** first-order-alt.svg */
-  FirstOrderAlt = "first-order-alt",
+  FirstOrderAlt = 'first-order-alt',
   /** first-order.svg */
-  FirstOrder = "first-order",
+  FirstOrder = 'first-order',
   /** firstdraft.svg */
-  Firstdraft = "firstdraft",
+  Firstdraft = 'firstdraft',
   /** flickr.svg */
-  Flickr = "flickr",
+  Flickr = 'flickr',
   /** flipboard.svg */
-  Flipboard = "flipboard",
+  Flipboard = 'flipboard',
   /** fly.svg */
-  Fly = "fly",
+  Fly = 'fly',
   /** font-awesome.svg */
-  FontAwesome = "font-awesome",
+  FontAwesome = 'font-awesome',
   /** fonticons-fi.svg */
-  FonticonsFi = "fonticons-fi",
+  FonticonsFi = 'fonticons-fi',
   /** fonticons.svg */
-  Fonticons = "fonticons",
+  Fonticons = 'fonticons',
   /** fort-awesome-alt.svg */
-  FortAwesomeAlt = "fort-awesome-alt",
+  FortAwesomeAlt = 'fort-awesome-alt',
   /** fort-awesome.svg */
-  FortAwesome = "fort-awesome",
+  FortAwesome = 'fort-awesome',
   /** forumbee.svg */
-  Forumbee = "forumbee",
+  Forumbee = 'forumbee',
   /** foursquare.svg */
-  Foursquare = "foursquare",
+  Foursquare = 'foursquare',
   /** free-code-camp.svg */
-  FreeCodeCamp = "free-code-camp",
+  FreeCodeCamp = 'free-code-camp',
   /** freebsd.svg */
-  Freebsd = "freebsd",
+  Freebsd = 'freebsd',
   /** fulcrum.svg */
-  Fulcrum = "fulcrum",
+  Fulcrum = 'fulcrum',
   /** galactic-republic.svg */
-  GalacticRepublic = "galactic-republic",
+  GalacticRepublic = 'galactic-republic',
   /** galactic-senate.svg */
-  GalacticSenate = "galactic-senate",
+  GalacticSenate = 'galactic-senate',
   /** get-pocket.svg */
-  GetPocket = "get-pocket",
+  GetPocket = 'get-pocket',
   /** gg-circle.svg */
-  GgCircle = "gg-circle",
+  GgCircle = 'gg-circle',
   /** gg.svg */
-  Gg = "gg",
+  Gg = 'gg',
   /** git-alt.svg */
-  GitAlt = "git-alt",
+  GitAlt = 'git-alt',
   /** git.svg */
-  Git = "git",
+  Git = 'git',
   /** github-alt.svg */
-  GithubAlt = "github-alt",
+  GithubAlt = 'github-alt',
   /** github.svg */
-  Github = "github",
+  Github = 'github',
   /** gitkraken.svg */
-  Gitkraken = "gitkraken",
+  Gitkraken = 'gitkraken',
   /** gitlab.svg */
-  Gitlab = "gitlab",
+  Gitlab = 'gitlab',
   /** gitter.svg */
-  Gitter = "gitter",
+  Gitter = 'gitter',
   /** glide-g.svg */
-  GlideG = "glide-g",
+  GlideG = 'glide-g',
   /** glide.svg */
-  Glide = "glide",
+  Glide = 'glide',
   /** gofore.svg */
-  Gofore = "gofore",
+  Gofore = 'gofore',
   /** golang.svg */
-  Golang = "golang",
+  Golang = 'golang',
   /** goodreads-g.svg */
-  GoodreadsG = "goodreads-g",
+  GoodreadsG = 'goodreads-g',
   /** goodreads.svg */
-  Goodreads = "goodreads",
+  Goodreads = 'goodreads',
   /** google-drive.svg */
-  GoogleDrive = "google-drive",
+  GoogleDrive = 'google-drive',
   /** google-pay.svg */
-  GooglePay = "google-pay",
+  GooglePay = 'google-pay',
   /** google-play.svg */
-  GooglePlay = "google-play",
+  GooglePlay = 'google-play',
   /** google-plus-g.svg */
-  GooglePlusG = "google-plus-g",
+  GooglePlusG = 'google-plus-g',
   /** google-plus.svg */
-  GooglePlus = "google-plus",
+  GooglePlus = 'google-plus',
   /** google-scholar.svg */
-  GoogleScholar = "google-scholar",
+  GoogleScholar = 'google-scholar',
   /** google-wallet.svg */
-  GoogleWallet = "google-wallet",
+  GoogleWallet = 'google-wallet',
   /** google.svg */
-  Google = "google",
+  Google = 'google',
   /** gratipay.svg */
-  Gratipay = "gratipay",
+  Gratipay = 'gratipay',
   /** grav.svg */
-  Grav = "grav",
+  Grav = 'grav',
   /** gripfire.svg */
-  Gripfire = "gripfire",
+  Gripfire = 'gripfire',
   /** grunt.svg */
-  Grunt = "grunt",
+  Grunt = 'grunt',
   /** guilded.svg */
-  Guilded = "guilded",
+  Guilded = 'guilded',
   /** gulp.svg */
-  Gulp = "gulp",
+  Gulp = 'gulp',
   /** hacker-news.svg */
-  HackerNews = "hacker-news",
+  HackerNews = 'hacker-news',
   /** hackerrank.svg */
-  Hackerrank = "hackerrank",
+  Hackerrank = 'hackerrank',
   /** hashnode.svg */
-  Hashnode = "hashnode",
+  Hashnode = 'hashnode',
   /** hips.svg */
-  Hips = "hips",
+  Hips = 'hips',
   /** hire-a-helper.svg */
-  HireAHelper = "hire-a-helper",
+  HireAHelper = 'hire-a-helper',
   /** hive.svg */
-  Hive = "hive",
+  Hive = 'hive',
   /** hooli.svg */
-  Hooli = "hooli",
+  Hooli = 'hooli',
   /** hornbill.svg */
-  Hornbill = "hornbill",
+  Hornbill = 'hornbill',
   /** hotjar.svg */
-  Hotjar = "hotjar",
+  Hotjar = 'hotjar',
   /** houzz.svg */
-  Houzz = "houzz",
+  Houzz = 'houzz',
   /** html5.svg */
-  Html5 = "html5",
+  Html5 = 'html5',
   /** hubspot.svg */
-  Hubspot = "hubspot",
+  Hubspot = 'hubspot',
   /** ideal.svg */
-  Ideal = "ideal",
+  Ideal = 'ideal',
   /** imdb.svg */
-  Imdb = "imdb",
+  Imdb = 'imdb',
   /** instagram.svg */
-  Instagram = "instagram",
+  Instagram = 'instagram',
   /** instalod.svg */
-  Instalod = "instalod",
+  Instalod = 'instalod',
   /** intercom.svg */
-  Intercom = "intercom",
+  Intercom = 'intercom',
   /** internet-explorer.svg */
-  InternetExplorer = "internet-explorer",
+  InternetExplorer = 'internet-explorer',
   /** invision.svg */
-  Invision = "invision",
+  Invision = 'invision',
   /** ioxhost.svg */
-  Ioxhost = "ioxhost",
+  Ioxhost = 'ioxhost',
   /** itch-io.svg */
-  ItchIo = "itch-io",
+  ItchIo = 'itch-io',
   /** itunes-note.svg */
-  ItunesNote = "itunes-note",
+  ItunesNote = 'itunes-note',
   /** itunes.svg */
-  Itunes = "itunes",
+  Itunes = 'itunes',
   /** java.svg */
-  Java = "java",
+  Java = 'java',
   /** jedi-order.svg */
-  JediOrder = "jedi-order",
+  JediOrder = 'jedi-order',
   /** jenkins.svg */
-  Jenkins = "jenkins",
+  Jenkins = 'jenkins',
   /** jira.svg */
-  Jira = "jira",
+  Jira = 'jira',
   /** joget.svg */
-  Joget = "joget",
+  Joget = 'joget',
   /** joomla.svg */
-  Joomla = "joomla",
+  Joomla = 'joomla',
   /** js.svg */
-  Js = "js",
+  Js = 'js',
   /** jsfiddle.svg */
-  Jsfiddle = "jsfiddle",
+  Jsfiddle = 'jsfiddle',
   /** kaggle.svg */
-  Kaggle = "kaggle",
+  Kaggle = 'kaggle',
   /** keybase.svg */
-  Keybase = "keybase",
+  Keybase = 'keybase',
   /** keycdn.svg */
-  Keycdn = "keycdn",
+  Keycdn = 'keycdn',
   /** kickstarter-k.svg */
-  KickstarterK = "kickstarter-k",
+  KickstarterK = 'kickstarter-k',
   /** kickstarter.svg */
-  Kickstarter = "kickstarter",
+  Kickstarter = 'kickstarter',
   /** korvue.svg */
-  Korvue = "korvue",
+  Korvue = 'korvue',
   /** laravel.svg */
-  Laravel = "laravel",
+  Laravel = 'laravel',
   /** lastfm.svg */
-  Lastfm = "lastfm",
+  Lastfm = 'lastfm',
   /** leanpub.svg */
-  Leanpub = "leanpub",
+  Leanpub = 'leanpub',
   /** less.svg */
-  Less = "less",
+  Less = 'less',
   /** letterboxd.svg */
-  Letterboxd = "letterboxd",
+  Letterboxd = 'letterboxd',
   /** line.svg */
-  Line = "line",
+  Line = 'line',
   /** linkedin-in.svg */
-  LinkedinIn = "linkedin-in",
+  LinkedinIn = 'linkedin-in',
   /** linkedin.svg */
-  Linkedin = "linkedin",
+  Linkedin = 'linkedin',
   /** linode.svg */
-  Linode = "linode",
+  Linode = 'linode',
   /** linux.svg */
-  Linux = "linux",
+  Linux = 'linux',
   /** lyft.svg */
-  Lyft = "lyft",
+  Lyft = 'lyft',
   /** magento.svg */
-  Magento = "magento",
+  Magento = 'magento',
   /** mailchimp.svg */
-  Mailchimp = "mailchimp",
+  Mailchimp = 'mailchimp',
   /** mandalorian.svg */
-  Mandalorian = "mandalorian",
+  Mandalorian = 'mandalorian',
   /** markdown.svg */
-  Markdown = "markdown",
+  Markdown = 'markdown',
   /** mastodon.svg */
-  Mastodon = "mastodon",
+  Mastodon = 'mastodon',
   /** maxcdn.svg */
-  Maxcdn = "maxcdn",
+  Maxcdn = 'maxcdn',
   /** mdb.svg */
-  Mdb = "mdb",
+  Mdb = 'mdb',
   /** medapps.svg */
-  Medapps = "medapps",
+  Medapps = 'medapps',
   /** medium.svg */
-  Medium = "medium",
+  Medium = 'medium',
   /** medrt.svg */
-  Medrt = "medrt",
+  Medrt = 'medrt',
   /** meetup.svg */
-  Meetup = "meetup",
+  Meetup = 'meetup',
   /** megaport.svg */
-  Megaport = "megaport",
+  Megaport = 'megaport',
   /** mendeley.svg */
-  Mendeley = "mendeley",
+  Mendeley = 'mendeley',
   /** meta.svg */
-  Meta = "meta",
+  Meta = 'meta',
   /** microblog.svg */
-  Microblog = "microblog",
+  Microblog = 'microblog',
   /** microsoft.svg */
-  Microsoft = "microsoft",
+  Microsoft = 'microsoft',
   /** mintbit.svg */
-  Mintbit = "mintbit",
+  Mintbit = 'mintbit',
   /** mix.svg */
-  Mix = "mix",
+  Mix = 'mix',
   /** mixcloud.svg */
-  Mixcloud = "mixcloud",
+  Mixcloud = 'mixcloud',
   /** mixer.svg */
-  Mixer = "mixer",
+  Mixer = 'mixer',
   /** mizuni.svg */
-  Mizuni = "mizuni",
+  Mizuni = 'mizuni',
   /** modx.svg */
-  Modx = "modx",
+  Modx = 'modx',
   /** monero.svg */
-  Monero = "monero",
+  Monero = 'monero',
   /** napster.svg */
-  Napster = "napster",
+  Napster = 'napster',
   /** neos.svg */
-  Neos = "neos",
+  Neos = 'neos',
   /** nfc-directional.svg */
-  NfcDirectional = "nfc-directional",
+  NfcDirectional = 'nfc-directional',
   /** nfc-symbol.svg */
-  NfcSymbol = "nfc-symbol",
+  NfcSymbol = 'nfc-symbol',
   /** nimblr.svg */
-  Nimblr = "nimblr",
+  Nimblr = 'nimblr',
   /** node-js.svg */
-  NodeJs = "node-js",
+  NodeJs = 'node-js',
   /** node.svg */
-  Node = "node",
+  Node = 'node',
   /** npm.svg */
-  Npm = "npm",
+  Npm = 'npm',
   /** ns8.svg */
-  Ns8 = "ns8",
+  Ns8 = 'ns8',
   /** nutritionix.svg */
-  Nutritionix = "nutritionix",
+  Nutritionix = 'nutritionix',
   /** octopus-deploy.svg */
-  OctopusDeploy = "octopus-deploy",
+  OctopusDeploy = 'octopus-deploy',
   /** odnoklassniki.svg */
-  Odnoklassniki = "odnoklassniki",
+  Odnoklassniki = 'odnoklassniki',
   /** odysee.svg */
-  Odysee = "odysee",
+  Odysee = 'odysee',
   /** old-republic.svg */
-  OldRepublic = "old-republic",
+  OldRepublic = 'old-republic',
   /** opencart.svg */
-  Opencart = "opencart",
+  Opencart = 'opencart',
   /** openid.svg */
-  Openid = "openid",
+  Openid = 'openid',
   /** opensuse.svg */
-  Opensuse = "opensuse",
+  Opensuse = 'opensuse',
   /** opera.svg */
-  Opera = "opera",
+  Opera = 'opera',
   /** optin-monster.svg */
-  OptinMonster = "optin-monster",
+  OptinMonster = 'optin-monster',
   /** orcid.svg */
-  Orcid = "orcid",
+  Orcid = 'orcid',
   /** osi.svg */
-  Osi = "osi",
+  Osi = 'osi',
   /** padlet.svg */
-  Padlet = "padlet",
+  Padlet = 'padlet',
   /** page4.svg */
-  Page4 = "page4",
+  Page4 = 'page4',
   /** pagelines.svg */
-  Pagelines = "pagelines",
+  Pagelines = 'pagelines',
   /** palfed.svg */
-  Palfed = "palfed",
+  Palfed = 'palfed',
   /** patreon.svg */
-  Patreon = "patreon",
+  Patreon = 'patreon',
   /** paypal.svg */
-  Paypal = "paypal",
+  Paypal = 'paypal',
   /** perbyte.svg */
-  Perbyte = "perbyte",
+  Perbyte = 'perbyte',
   /** periscope.svg */
-  Periscope = "periscope",
+  Periscope = 'periscope',
   /** phabricator.svg */
-  Phabricator = "phabricator",
+  Phabricator = 'phabricator',
   /** phoenix-framework.svg */
-  PhoenixFramework = "phoenix-framework",
+  PhoenixFramework = 'phoenix-framework',
   /** phoenix-squadron.svg */
-  PhoenixSquadron = "phoenix-squadron",
+  PhoenixSquadron = 'phoenix-squadron',
   /** php.svg */
-  Php = "php",
+  Php = 'php',
   /** pied-piper-alt.svg */
-  PiedPiperAlt = "pied-piper-alt",
+  PiedPiperAlt = 'pied-piper-alt',
   /** pied-piper-hat.svg */
-  PiedPiperHat = "pied-piper-hat",
+  PiedPiperHat = 'pied-piper-hat',
   /** pied-piper-pp.svg */
-  PiedPiperPp = "pied-piper-pp",
+  PiedPiperPp = 'pied-piper-pp',
   /** pied-piper.svg */
-  PiedPiper = "pied-piper",
+  PiedPiper = 'pied-piper',
   /** pinterest-p.svg */
-  PinterestP = "pinterest-p",
+  PinterestP = 'pinterest-p',
   /** pinterest.svg */
-  Pinterest = "pinterest",
+  Pinterest = 'pinterest',
   /** pix.svg */
-  Pix = "pix",
+  Pix = 'pix',
   /** pixiv.svg */
-  Pixiv = "pixiv",
+  Pixiv = 'pixiv',
   /** playstation.svg */
-  Playstation = "playstation",
+  Playstation = 'playstation',
   /** product-hunt.svg */
-  ProductHunt = "product-hunt",
+  ProductHunt = 'product-hunt',
   /** pushed.svg */
-  Pushed = "pushed",
+  Pushed = 'pushed',
   /** python.svg */
-  Python = "python",
+  Python = 'python',
   /** qq.svg */
-  Qq = "qq",
+  Qq = 'qq',
   /** quinscape.svg */
-  Quinscape = "quinscape",
+  Quinscape = 'quinscape',
   /** quora.svg */
-  Quora = "quora",
+  Quora = 'quora',
   /** r-project.svg */
-  RProject = "r-project",
+  RProject = 'r-project',
   /** raspberry-pi.svg */
-  RaspberryPi = "raspberry-pi",
+  RaspberryPi = 'raspberry-pi',
   /** ravelry.svg */
-  Ravelry = "ravelry",
+  Ravelry = 'ravelry',
   /** react.svg */
-  React = "react",
+  React = 'react',
   /** reacteurope.svg */
-  Reacteurope = "reacteurope",
+  Reacteurope = 'reacteurope',
   /** readme.svg */
-  Readme = "readme",
+  Readme = 'readme',
   /** rebel.svg */
-  Rebel = "rebel",
+  Rebel = 'rebel',
   /** red-river.svg */
-  RedRiver = "red-river",
+  RedRiver = 'red-river',
   /** reddit-alien.svg */
-  RedditAlien = "reddit-alien",
+  RedditAlien = 'reddit-alien',
   /** reddit.svg */
-  Reddit = "reddit",
+  Reddit = 'reddit',
   /** redhat.svg */
-  Redhat = "redhat",
+  Redhat = 'redhat',
   /** renren.svg */
-  Renren = "renren",
+  Renren = 'renren',
   /** replyd.svg */
-  Replyd = "replyd",
+  Replyd = 'replyd',
   /** researchgate.svg */
-  Researchgate = "researchgate",
+  Researchgate = 'researchgate',
   /** resolving.svg */
-  Resolving = "resolving",
+  Resolving = 'resolving',
   /** rev.svg */
-  Rev = "rev",
+  Rev = 'rev',
   /** rocketchat.svg */
-  Rocketchat = "rocketchat",
+  Rocketchat = 'rocketchat',
   /** rockrms.svg */
-  Rockrms = "rockrms",
+  Rockrms = 'rockrms',
   /** rust.svg */
-  Rust = "rust",
+  Rust = 'rust',
   /** safari.svg */
-  Safari = "safari",
+  Safari = 'safari',
   /** salesforce.svg */
-  Salesforce = "salesforce",
+  Salesforce = 'salesforce',
   /** sass.svg */
-  Sass = "sass",
+  Sass = 'sass',
   /** schlix.svg */
-  Schlix = "schlix",
+  Schlix = 'schlix',
   /** screenpal.svg */
-  Screenpal = "screenpal",
+  Screenpal = 'screenpal',
   /** scribd.svg */
-  Scribd = "scribd",
+  Scribd = 'scribd',
   /** searchengin.svg */
-  Searchengin = "searchengin",
+  Searchengin = 'searchengin',
   /** sellcast.svg */
-  Sellcast = "sellcast",
+  Sellcast = 'sellcast',
   /** sellsy.svg */
-  Sellsy = "sellsy",
+  Sellsy = 'sellsy',
   /** servicestack.svg */
-  Servicestack = "servicestack",
+  Servicestack = 'servicestack',
   /** shirtsinbulk.svg */
-  Shirtsinbulk = "shirtsinbulk",
+  Shirtsinbulk = 'shirtsinbulk',
   /** shoelace.svg */
-  Shoelace = "shoelace",
+  Shoelace = 'shoelace',
   /** shopify.svg */
-  Shopify = "shopify",
+  Shopify = 'shopify',
   /** shopware.svg */
-  Shopware = "shopware",
+  Shopware = 'shopware',
   /** signal-messenger.svg */
-  SignalMessenger = "signal-messenger",
+  SignalMessenger = 'signal-messenger',
   /** simplybuilt.svg */
-  Simplybuilt = "simplybuilt",
+  Simplybuilt = 'simplybuilt',
   /** sistrix.svg */
-  Sistrix = "sistrix",
+  Sistrix = 'sistrix',
   /** sith.svg */
-  Sith = "sith",
+  Sith = 'sith',
   /** sitrox.svg */
-  Sitrox = "sitrox",
+  Sitrox = 'sitrox',
   /** sketch.svg */
-  Sketch = "sketch",
+  Sketch = 'sketch',
   /** skyatlas.svg */
-  Skyatlas = "skyatlas",
+  Skyatlas = 'skyatlas',
   /** skype.svg */
-  Skype = "skype",
+  Skype = 'skype',
   /** slack.svg */
-  Slack = "slack",
+  Slack = 'slack',
   /** slideshare.svg */
-  Slideshare = "slideshare",
+  Slideshare = 'slideshare',
   /** snapchat.svg */
-  Snapchat = "snapchat",
+  Snapchat = 'snapchat',
   /** soundcloud.svg */
-  Soundcloud = "soundcloud",
+  Soundcloud = 'soundcloud',
   /** sourcetree.svg */
-  Sourcetree = "sourcetree",
+  Sourcetree = 'sourcetree',
   /** space-awesome.svg */
-  SpaceAwesome = "space-awesome",
+  SpaceAwesome = 'space-awesome',
   /** speakap.svg */
-  Speakap = "speakap",
+  Speakap = 'speakap',
   /** speaker-deck.svg */
-  SpeakerDeck = "speaker-deck",
+  SpeakerDeck = 'speaker-deck',
   /** spotify.svg */
-  Spotify = "spotify",
+  Spotify = 'spotify',
   /** square-behance.svg */
-  SquareBehance = "square-behance",
+  SquareBehance = 'square-behance',
   /** square-dribbble.svg */
-  SquareDribbble = "square-dribbble",
+  SquareDribbble = 'square-dribbble',
   /** square-facebook.svg */
-  SquareFacebook = "square-facebook",
+  SquareFacebook = 'square-facebook',
   /** square-font-awesome-stroke.svg */
-  SquareFontAwesomeStroke = "square-font-awesome-stroke",
+  SquareFontAwesomeStroke = 'square-font-awesome-stroke',
   /** square-font-awesome.svg */
-  SquareFontAwesome = "square-font-awesome",
+  SquareFontAwesome = 'square-font-awesome',
   /** square-git.svg */
-  SquareGit = "square-git",
+  SquareGit = 'square-git',
   /** square-github.svg */
-  SquareGithub = "square-github",
+  SquareGithub = 'square-github',
   /** square-gitlab.svg */
-  SquareGitlab = "square-gitlab",
+  SquareGitlab = 'square-gitlab',
   /** square-google-plus.svg */
-  SquareGooglePlus = "square-google-plus",
+  SquareGooglePlus = 'square-google-plus',
   /** square-hacker-news.svg */
-  SquareHackerNews = "square-hacker-news",
+  SquareHackerNews = 'square-hacker-news',
   /** square-instagram.svg */
-  SquareInstagram = "square-instagram",
+  SquareInstagram = 'square-instagram',
   /** square-js.svg */
-  SquareJs = "square-js",
+  SquareJs = 'square-js',
   /** square-lastfm.svg */
-  SquareLastfm = "square-lastfm",
+  SquareLastfm = 'square-lastfm',
   /** square-letterboxd.svg */
-  SquareLetterboxd = "square-letterboxd",
+  SquareLetterboxd = 'square-letterboxd',
   /** square-odnoklassniki.svg */
-  SquareOdnoklassniki = "square-odnoklassniki",
+  SquareOdnoklassniki = 'square-odnoklassniki',
   /** square-pied-piper.svg */
-  SquarePiedPiper = "square-pied-piper",
+  SquarePiedPiper = 'square-pied-piper',
   /** square-pinterest.svg */
-  SquarePinterest = "square-pinterest",
+  SquarePinterest = 'square-pinterest',
   /** square-reddit.svg */
-  SquareReddit = "square-reddit",
+  SquareReddit = 'square-reddit',
   /** square-snapchat.svg */
-  SquareSnapchat = "square-snapchat",
+  SquareSnapchat = 'square-snapchat',
   /** square-steam.svg */
-  SquareSteam = "square-steam",
+  SquareSteam = 'square-steam',
   /** square-threads.svg */
-  SquareThreads = "square-threads",
+  SquareThreads = 'square-threads',
   /** square-tumblr.svg */
-  SquareTumblr = "square-tumblr",
+  SquareTumblr = 'square-tumblr',
   /** square-twitter.svg */
-  SquareTwitter = "square-twitter",
+  SquareTwitter = 'square-twitter',
   /** square-viadeo.svg */
-  SquareViadeo = "square-viadeo",
+  SquareViadeo = 'square-viadeo',
   /** square-vimeo.svg */
-  SquareVimeo = "square-vimeo",
+  SquareVimeo = 'square-vimeo',
   /** square-whatsapp.svg */
-  SquareWhatsapp = "square-whatsapp",
+  SquareWhatsapp = 'square-whatsapp',
   /** square-x-twitter.svg */
-  SquareXTwitter = "square-x-twitter",
+  SquareXTwitter = 'square-x-twitter',
   /** square-xing.svg */
-  SquareXing = "square-xing",
+  SquareXing = 'square-xing',
   /** square-youtube.svg */
-  SquareYoutube = "square-youtube",
+  SquareYoutube = 'square-youtube',
   /** squarespace.svg */
-  Squarespace = "squarespace",
+  Squarespace = 'squarespace',
   /** stack-exchange.svg */
-  StackExchange = "stack-exchange",
+  StackExchange = 'stack-exchange',
   /** stack-overflow.svg */
-  StackOverflow = "stack-overflow",
+  StackOverflow = 'stack-overflow',
   /** stackpath.svg */
-  Stackpath = "stackpath",
+  Stackpath = 'stackpath',
   /** staylinked.svg */
-  Staylinked = "staylinked",
+  Staylinked = 'staylinked',
   /** steam-symbol.svg */
-  SteamSymbol = "steam-symbol",
+  SteamSymbol = 'steam-symbol',
   /** steam.svg */
-  Steam = "steam",
+  Steam = 'steam',
   /** sticker-mule.svg */
-  StickerMule = "sticker-mule",
+  StickerMule = 'sticker-mule',
   /** strava.svg */
-  Strava = "strava",
+  Strava = 'strava',
   /** stripe-s.svg */
-  StripeS = "stripe-s",
+  StripeS = 'stripe-s',
   /** stripe.svg */
-  Stripe = "stripe",
+  Stripe = 'stripe',
   /** stubber.svg */
-  Stubber = "stubber",
+  Stubber = 'stubber',
   /** studiovinari.svg */
-  Studiovinari = "studiovinari",
+  Studiovinari = 'studiovinari',
   /** stumbleupon-circle.svg */
-  StumbleuponCircle = "stumbleupon-circle",
+  StumbleuponCircle = 'stumbleupon-circle',
   /** stumbleupon.svg */
-  Stumbleupon = "stumbleupon",
+  Stumbleupon = 'stumbleupon',
   /** superpowers.svg */
-  Superpowers = "superpowers",
+  Superpowers = 'superpowers',
   /** supple.svg */
-  Supple = "supple",
+  Supple = 'supple',
   /** suse.svg */
-  Suse = "suse",
+  Suse = 'suse',
   /** swift.svg */
-  Swift = "swift",
+  Swift = 'swift',
   /** symfony.svg */
-  Symfony = "symfony",
+  Symfony = 'symfony',
   /** teamspeak.svg */
-  Teamspeak = "teamspeak",
+  Teamspeak = 'teamspeak',
   /** telegram.svg */
-  Telegram = "telegram",
+  Telegram = 'telegram',
   /** tencent-weibo.svg */
-  TencentWeibo = "tencent-weibo",
+  TencentWeibo = 'tencent-weibo',
   /** the-red-yeti.svg */
-  TheRedYeti = "the-red-yeti",
+  TheRedYeti = 'the-red-yeti',
   /** themeco.svg */
-  Themeco = "themeco",
+  Themeco = 'themeco',
   /** themeisle.svg */
-  Themeisle = "themeisle",
+  Themeisle = 'themeisle',
   /** think-peaks.svg */
-  ThinkPeaks = "think-peaks",
+  ThinkPeaks = 'think-peaks',
   /** threads.svg */
-  Threads = "threads",
+  Threads = 'threads',
   /** tiktok.svg */
-  Tiktok = "tiktok",
+  Tiktok = 'tiktok',
   /** trade-federation.svg */
-  TradeFederation = "trade-federation",
+  TradeFederation = 'trade-federation',
   /** trello.svg */
-  Trello = "trello",
+  Trello = 'trello',
   /** tumblr.svg */
-  Tumblr = "tumblr",
+  Tumblr = 'tumblr',
   /** twitch.svg */
-  Twitch = "twitch",
+  Twitch = 'twitch',
   /** twitter.svg */
-  Twitter = "twitter",
+  Twitter = 'twitter',
   /** typo3.svg */
-  Typo3 = "typo3",
+  Typo3 = 'typo3',
   /** uber.svg */
-  Uber = "uber",
+  Uber = 'uber',
   /** ubuntu.svg */
-  Ubuntu = "ubuntu",
+  Ubuntu = 'ubuntu',
   /** uikit.svg */
-  Uikit = "uikit",
+  Uikit = 'uikit',
   /** umbraco.svg */
-  Umbraco = "umbraco",
+  Umbraco = 'umbraco',
   /** uncharted.svg */
-  Uncharted = "uncharted",
+  Uncharted = 'uncharted',
   /** uniregistry.svg */
-  Uniregistry = "uniregistry",
+  Uniregistry = 'uniregistry',
   /** unity.svg */
-  Unity = "unity",
+  Unity = 'unity',
   /** unsplash.svg */
-  Unsplash = "unsplash",
+  Unsplash = 'unsplash',
   /** untappd.svg */
-  Untappd = "untappd",
+  Untappd = 'untappd',
   /** ups.svg */
-  Ups = "ups",
+  Ups = 'ups',
   /** upwork.svg */
-  Upwork = "upwork",
+  Upwork = 'upwork',
   /** usb.svg */
-  Usb = "usb",
+  Usb = 'usb',
   /** usps.svg */
-  Usps = "usps",
+  Usps = 'usps',
   /** ussunnah.svg */
-  Ussunnah = "ussunnah",
+  Ussunnah = 'ussunnah',
   /** vaadin.svg */
-  Vaadin = "vaadin",
+  Vaadin = 'vaadin',
   /** viacoin.svg */
-  Viacoin = "viacoin",
+  Viacoin = 'viacoin',
   /** viadeo.svg */
-  Viadeo = "viadeo",
+  Viadeo = 'viadeo',
   /** viber.svg */
-  Viber = "viber",
+  Viber = 'viber',
   /** vimeo-v.svg */
-  VimeoV = "vimeo-v",
+  VimeoV = 'vimeo-v',
   /** vimeo.svg */
-  Vimeo = "vimeo",
+  Vimeo = 'vimeo',
   /** vine.svg */
-  Vine = "vine",
+  Vine = 'vine',
   /** vk.svg */
-  Vk = "vk",
+  Vk = 'vk',
   /** vnv.svg */
-  Vnv = "vnv",
+  Vnv = 'vnv',
   /** vuejs.svg */
-  Vuejs = "vuejs",
+  Vuejs = 'vuejs',
   /** watchman-monitoring.svg */
-  WatchmanMonitoring = "watchman-monitoring",
+  WatchmanMonitoring = 'watchman-monitoring',
   /** waze.svg */
-  Waze = "waze",
+  Waze = 'waze',
   /** webflow.svg */
-  Webflow = "webflow",
+  Webflow = 'webflow',
   /** weebly.svg */
-  Weebly = "weebly",
+  Weebly = 'weebly',
   /** weibo.svg */
-  Weibo = "weibo",
+  Weibo = 'weibo',
   /** weixin.svg */
-  Weixin = "weixin",
+  Weixin = 'weixin',
   /** whatsapp.svg */
-  Whatsapp = "whatsapp",
+  Whatsapp = 'whatsapp',
   /** whmcs.svg */
-  Whmcs = "whmcs",
+  Whmcs = 'whmcs',
   /** wikipedia-w.svg */
-  WikipediaW = "wikipedia-w",
+  WikipediaW = 'wikipedia-w',
   /** windows.svg */
-  Windows = "windows",
+  Windows = 'windows',
   /** wirsindhandwerk.svg */
-  Wirsindhandwerk = "wirsindhandwerk",
+  Wirsindhandwerk = 'wirsindhandwerk',
   /** wix.svg */
-  Wix = "wix",
+  Wix = 'wix',
   /** wizards-of-the-coast.svg */
-  WizardsOfTheCoast = "wizards-of-the-coast",
+  WizardsOfTheCoast = 'wizards-of-the-coast',
   /** wodu.svg */
-  Wodu = "wodu",
+  Wodu = 'wodu',
   /** wolf-pack-battalion.svg */
-  WolfPackBattalion = "wolf-pack-battalion",
+  WolfPackBattalion = 'wolf-pack-battalion',
   /** wordpress-simple.svg */
-  WordpressSimple = "wordpress-simple",
+  WordpressSimple = 'wordpress-simple',
   /** wordpress.svg */
-  Wordpress = "wordpress",
+  Wordpress = 'wordpress',
   /** wpbeginner.svg */
-  Wpbeginner = "wpbeginner",
+  Wpbeginner = 'wpbeginner',
   /** wpexplorer.svg */
-  Wpexplorer = "wpexplorer",
+  Wpexplorer = 'wpexplorer',
   /** wpforms.svg */
-  Wpforms = "wpforms",
+  Wpforms = 'wpforms',
   /** wpressr.svg */
-  Wpressr = "wpressr",
+  Wpressr = 'wpressr',
   /** x-twitter.svg */
-  XTwitter = "x-twitter",
+  XTwitter = 'x-twitter',
   /** xbox.svg */
-  Xbox = "xbox",
+  Xbox = 'xbox',
   /** xing.svg */
-  Xing = "xing",
+  Xing = 'xing',
   /** y-combinator.svg */
-  YCombinator = "y-combinator",
+  YCombinator = 'y-combinator',
   /** yahoo.svg */
-  Yahoo = "yahoo",
+  Yahoo = 'yahoo',
   /** yammer.svg */
-  Yammer = "yammer",
+  Yammer = 'yammer',
   /** yandex-international.svg */
-  YandexInternational = "yandex-international",
+  YandexInternational = 'yandex-international',
   /** yandex.svg */
-  Yandex = "yandex",
+  Yandex = 'yandex',
   /** yarn.svg */
-  Yarn = "yarn",
+  Yarn = 'yarn',
   /** yelp.svg */
-  Yelp = "yelp",
+  Yelp = 'yelp',
   /** yoast.svg */
-  Yoast = "yoast",
+  Yoast = 'yoast',
   /** youtube.svg */
-  Youtube = "youtube",
+  Youtube = 'youtube',
   /** zhihu.svg */
-  Zhihu = "zhihu"
+  Zhihu = 'zhihu',
 }

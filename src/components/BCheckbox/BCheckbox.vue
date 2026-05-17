@@ -85,12 +85,12 @@ function handleChange(event: Event) {
 
 <template>
   <label
-    class="b-checkbox b:inline-flex b:items-center b:cursor-pointer b:select-none b:gap-2 b:leading-none"
+    class="b-checkbox b:inline-flex b:cursor-pointer b:items-center b:gap-2 b:leading-none b:select-none"
     :class="{ 'b-checkbox--disabled b:cursor-not-allowed b:opacity-50': isDisabled }"
     :for="inputId"
   >
     <span
-      class="b-checkbox__indicator b:relative b:inline-flex b:items-center b:justify-center b:shrink-0"
+      class="b-checkbox__indicator b:relative b:inline-flex b:shrink-0 b:items-center b:justify-center"
       :class="{
         'b-checkbox__indicator--checked': isChecked,
         'b-checkbox__indicator--indeterminate': indeterminate,

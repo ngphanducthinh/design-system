@@ -142,10 +142,7 @@ describe('BAvatar – events', () => {
   });
 
   it('falls back to text slot when image errors', async () => {
-    const wrapper = mountAvatar(
-      { src: 'https://example.com/bad.png' },
-      { default: () => 'AB' },
-    );
+    const wrapper = mountAvatar({ src: 'https://example.com/bad.png' }, { default: () => 'AB' });
     expect(wrapper.find('img').exists()).toBe(true);
 
     await wrapper.find('img').trigger('error');
@@ -306,10 +303,7 @@ describe('BAvatar – edge cases', () => {
   });
 
   it('prefers image over text slot content', () => {
-    const wrapper = mountAvatar(
-      { src: 'https://example.com/avatar.png' },
-      { default: () => 'AB' },
-    );
+    const wrapper = mountAvatar({ src: 'https://example.com/avatar.png' }, { default: () => 'AB' });
     expect(wrapper.find('img').exists()).toBe(true);
     expect(wrapper.find('.b-avatar__text').exists()).toBe(false);
   });

@@ -351,13 +351,7 @@ onBeforeUnmount(() => {
         role="listitem"
       >
         <!-- Named item slot (prop-driven items) -->
-        <slot
-          v-if="$slots.item"
-          name="item"
-          :item="item"
-          :index="originalIndex"
-          :column="colIdx"
-        />
+        <slot v-if="$slots.item" name="item" :item="item" :index="originalIndex" :column="colIdx" />
         <!-- Default slot fallback when using raw children (no items prop) -->
         <template v-else>
           <slot />

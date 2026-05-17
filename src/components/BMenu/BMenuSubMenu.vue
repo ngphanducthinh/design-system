@@ -95,9 +95,7 @@ const paddingLeft = computed(() => {
 // ─────────────────────────────────────────────
 // Popup positioning (vertical / horizontal)
 // ─────────────────────────────────────────────
-const isPopupMode = computed(
-  () => menu.mode.value !== 'inline' || menu.inlineCollapsed.value,
-);
+const isPopupMode = computed(() => menu.mode.value !== 'inline' || menu.inlineCollapsed.value);
 
 const titleRef = ref<HTMLElement | null>(null);
 const popupRef = ref<HTMLElement | null>(null);
@@ -106,8 +104,14 @@ let openTimer: ReturnType<typeof setTimeout> | null = null;
 let closeTimer: ReturnType<typeof setTimeout> | null = null;
 
 function clearTimers() {
-  if (openTimer) { clearTimeout(openTimer); openTimer = null; }
-  if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+  if (openTimer) {
+    clearTimeout(openTimer);
+    openTimer = null;
+  }
+  if (closeTimer) {
+    clearTimeout(closeTimer);
+    closeTimer = null;
+  }
 }
 
 // ─────────────────────────────────────────────
@@ -218,8 +222,7 @@ const popupClasses = computed(() => [
   {
     'b-menu-submenu__popup--visible': isOpen.value,
     'b-menu-submenu__popup--horizontal': menu.mode.value === 'horizontal',
-    'b-menu-submenu__popup--vertical':
-      menu.mode.value === 'vertical' || menu.inlineCollapsed.value,
+    'b-menu-submenu__popup--vertical': menu.mode.value === 'vertical' || menu.inlineCollapsed.value,
   },
 ]);
 
@@ -258,19 +261,11 @@ const inlineContentClasses = computed(() => [
       <span v-if="!menu.inlineCollapsed.value" class="b-menu-submenu__label">
         <slot name="title">{{ props.label }}</slot>
       </span>
-      <span
-        v-if="!menu.inlineCollapsed.value"
-        class="b-menu-submenu__arrow"
-        aria-hidden="true"
-      />
+      <span v-if="!menu.inlineCollapsed.value" class="b-menu-submenu__arrow" aria-hidden="true" />
     </div>
 
     <!-- Inline content (inline mode) -->
-    <div
-      v-if="!isPopupMode"
-      :class="inlineContentClasses"
-      role="none"
-    >
+    <div v-if="!isPopupMode" :class="inlineContentClasses" role="none">
       <ul class="b-menu-submenu__inline-list" role="menu">
         <slot>
           <template v-for="item in props.children" :key="item.key ?? (item as any).type">
@@ -304,12 +299,7 @@ const inlineContentClasses = computed(() => [
     </div>
 
     <!-- Popup content (vertical / horizontal / collapsed) -->
-    <div
-      v-if="isPopupMode"
-      ref="popupRef"
-      :class="popupClasses"
-      role="none"
-    >
+    <div v-if="isPopupMode" ref="popupRef" :class="popupClasses" role="none">
       <ul class="b-menu-submenu__popup-inner" role="menu">
         <slot>
           <template v-for="item in props.children" :key="item.key ?? (item as any).type">

@@ -67,11 +67,23 @@ const {
   /** Expandable config */
   expandable?: BTableExpandable<T>;
   /** Make table header sticky */
-  sticky?: boolean | { offsetHeader?: number; offsetScroll?: number; getContainer?: () => HTMLElement };
+  sticky?:
+    | boolean
+    | { offsetHeader?: number; offsetScroll?: number; getContainer?: () => HTMLElement };
   /** Table caption (accessibility) */
   caption?: string;
   /** Custom locale text */
-  locale?: { emptyText?: string; filterConfirm?: string; filterReset?: string; selectAll?: string; selectInvert?: string; selectionAll?: string; sortTitle?: string; expand?: string; collapse?: string };
+  locale?: {
+    emptyText?: string;
+    filterConfirm?: string;
+    filterReset?: string;
+    selectAll?: string;
+    selectInvert?: string;
+    selectionAll?: string;
+    sortTitle?: string;
+    expand?: string;
+    collapse?: string;
+  };
   /** Custom row class name */
   rowClassName?: (record: T, index: number) => string;
   /** Custom row event handlers */
@@ -91,7 +103,13 @@ const {
 // ─────────────────────────────────────────────
 
 const emit = defineEmits<{
-  (e: 'change', pagination: BTablePaginationConfig, filters: BTableFilterState, sorter: BTableSorterResult<T> | BTableSorterResult<T>[], extra: BTableChangeExtra<T>): void;
+  (
+    e: 'change',
+    pagination: BTablePaginationConfig,
+    filters: BTableFilterState,
+    sorter: BTableSorterResult<T> | BTableSorterResult<T>[],
+    extra: BTableChangeExtra<T>,
+  ): void;
   (e: 'expandedRowsChange', expandedRows: (string | number)[]): void;
   (e: 'expand', expanded: boolean, record: T): void;
 }>();
@@ -156,7 +174,9 @@ interface ColumnSortState {
 const internalSortState = ref<ColumnSortState>({ key: '', order: null });
 
 function columnSortKey(col: BTableColumnType<T>): string | number {
-  return col.key ?? (Array.isArray(col.dataIndex) ? col.dataIndex.join('.') : (col.dataIndex ?? ''));
+  return (
+    col.key ?? (Array.isArray(col.dataIndex) ? col.dataIndex.join('.') : (col.dataIndex ?? ''))
+  );
 }
 
 function getColumnSortOrder(col: BTableColumnType<T>): BTableSortOrder {
@@ -205,7 +225,9 @@ const openFilterKey = ref<string | number | null>(null);
 const filterSearchMap = ref<Record<string | number, string>>({});
 
 function getColumnFilterKey(col: BTableColumnType<T>): string | number {
-  return col.key ?? (Array.isArray(col.dataIndex) ? col.dataIndex.join('.') : (col.dataIndex ?? ''));
+  return (
+    col.key ?? (Array.isArray(col.dataIndex) ? col.dataIndex.join('.') : (col.dataIndex ?? ''))
+  );
 }
 
 function getColumnFilterValue(col: BTableColumnType<T>): BTableFilterValue | null {
@@ -261,7 +283,7 @@ function resetFilter(col: BTableColumnType<T>) {
 }
 
 function buildActiveSorter(): BTableSorterResult<T> {
-  const sortCol = flatColumns.value.find(c => getColumnSortOrder(c) !== null);
+  const sortCol = flatColumns.value.find((c) => getColumnSortOrder(c) !== null);
   if (!sortCol) return { order: null };
   return {
     column: sortCol,
@@ -275,10 +297,12 @@ function getFilteredOptions(col: BTableColumnType<T>): BTableFilterOption[] {
   const search = filterSearchMap.value[getColumnFilterKey(col)] ?? '';
   if (!search) return col.filters ?? [];
   const lc = search.toLowerCase();
-  const filterFn = typeof col.filterSearch === 'function'
-    ? col.filterSearch
-    : (input: string, opt: BTableFilterOption) => opt.text.toLowerCase().includes(input.toLowerCase());
-  return (col.filters ?? []).filter(opt => filterFn(lc, opt));
+  const filterFn =
+    typeof col.filterSearch === 'function'
+      ? col.filterSearch
+      : (input: string, opt: BTableFilterOption) =>
+          opt.text.toLowerCase().includes(input.toLowerCase());
+  return (col.filters ?? []).filter((opt) => filterFn(lc, opt));
 }
 
 // Temp filter selections while the dropdown is open
@@ -295,7 +319,8 @@ function toggleTempFilter(col: BTableColumnType<T>, value: string | number | boo
   const current = tempFilterValues.value[key] ?? [];
   if (col.filterMultiple !== false) {
     const idx = current.indexOf(value);
-    tempFilterValues.value[key] = idx === -1 ? [...current, value] : current.filter(v => v !== value);
+    tempFilterValues.value[key] =
+      idx === -1 ? [...current, value] : current.filter((v) => v !== value);
   } else {
     tempFilterValues.value[key] = [value];
   }
@@ -315,9 +340,12 @@ const internalPageSize = ref(
   typeof pagination === 'object' ? (pagination.defaultPageSize ?? pagination.pageSize ?? 10) : 10,
 );
 
-watch(() => (typeof pagination === 'object' ? pagination.pageSize : undefined), (ps) => {
-  if (ps != null) internalPageSize.value = ps;
-});
+watch(
+  () => (typeof pagination === 'object' ? pagination.pageSize : undefined),
+  (ps) => {
+    if (ps != null) internalPageSize.value = ps;
+  },
+);
 
 const currentPage = computed(() =>
   typeof pagination === 'object' && pagination.current != null
@@ -344,10 +372,16 @@ function goToPage(page: number) {
   if (typeof pagination === 'object') {
     pagination.onChange?.(page, currentPageSize.value);
   }
-  emit('change', { ...currentPagination.value, current: page }, currentFilters.value, buildActiveSorter(), {
-    currentDataSource: processedData.value,
-    action: 'paginate',
-  });
+  emit(
+    'change',
+    { ...currentPagination.value, current: page },
+    currentFilters.value,
+    buildActiveSorter(),
+    {
+      currentDataSource: processedData.value,
+      action: 'paginate',
+    },
+  );
 }
 
 function changePageSize(size: number) {
@@ -378,13 +412,15 @@ const filteredData = computed<T[]>(() => {
     if (!filterValues || filterValues.length === 0) continue;
 
     if (col.onFilter) {
-      data = data.filter(record =>
-        (filterValues as (string | number | boolean)[]).some(v => col.onFilter!(v, record)),
+      data = data.filter((record) =>
+        (filterValues as (string | number | boolean)[]).some((v) => col.onFilter!(v, record)),
       );
     } else if (col.dataIndex) {
-      data = data.filter(record => {
+      data = data.filter((record) => {
         const val = getValue(record, col.dataIndex);
-        return (filterValues as (string | number | boolean)[]).some(v => String(val) === String(v));
+        return (filterValues as (string | number | boolean)[]).some(
+          (v) => String(val) === String(v),
+        );
       });
     }
   }
@@ -393,7 +429,7 @@ const filteredData = computed<T[]>(() => {
 
 const sortedData = computed<T[]>(() => {
   const data = [...filteredData.value];
-  const sortCol = flatColumns.value.find(c => getColumnSortOrder(c) !== null);
+  const sortCol = flatColumns.value.find((c) => getColumnSortOrder(c) !== null);
   if (!sortCol || !sortCol.sorter) return data;
 
   const order = getColumnSortOrder(sortCol);
@@ -457,7 +493,12 @@ const headerRows = computed<HeaderCell[][]>(() => {
 
   const maxDepth = Math.max(...columns.map(getDepth), 1);
 
-  function buildRows(cols: BTableColumnType<T>[], depth: number, rows: HeaderCell[][], rowIdx: number) {
+  function buildRows(
+    cols: BTableColumnType<T>[],
+    depth: number,
+    rows: HeaderCell[][],
+    rowIdx: number,
+  ) {
     for (const col of cols) {
       const isLeaf = !col.children?.length;
       const cell: HeaderCell = {
@@ -499,9 +540,7 @@ const selectedKeys = computed<Set<string | number>>(() => {
 
 const isCheckbox = computed(() => rowSelection?.type !== 'radio');
 
-const pageRowKeys = computed(() =>
-  processedData.value.map((r, i) => getRowKey(r, i)),
-);
+const pageRowKeys = computed(() => processedData.value.map((r, i) => getRowKey(r, i)));
 
 const selectablePageKeys = computed(() =>
   pageRowKeys.value.filter((key, i) => {
@@ -510,13 +549,14 @@ const selectablePageKeys = computed(() =>
   }),
 );
 
-const allPageSelected = computed(() =>
-  selectablePageKeys.value.length > 0 &&
-  selectablePageKeys.value.every(k => selectedKeys.value.has(k)),
+const allPageSelected = computed(
+  () =>
+    selectablePageKeys.value.length > 0 &&
+    selectablePageKeys.value.every((k) => selectedKeys.value.has(k)),
 );
 
-const somePageSelected = computed(() =>
-  !allPageSelected.value && selectablePageKeys.value.some(k => selectedKeys.value.has(k)),
+const somePageSelected = computed(
+  () => !allPageSelected.value && selectablePageKeys.value.some((k) => selectedKeys.value.has(k)),
 );
 
 function setSelectedKeys(keys: Set<string | number>) {
@@ -534,10 +574,20 @@ function toggleRow(record: T, index: number, event: Event) {
   if (isCheckbox.value) {
     if (keys.has(key)) {
       keys.delete(key);
-      rowSelection?.onSelect?.(record, false, [...keys].map(k => dataSource.find((r, i) => getRowKey(r, i) === k)!), event);
+      rowSelection?.onSelect?.(
+        record,
+        false,
+        [...keys].map((k) => dataSource.find((r, i) => getRowKey(r, i) === k)!),
+        event,
+      );
     } else {
       keys.add(key);
-      rowSelection?.onSelect?.(record, true, [...keys].map(k => dataSource.find((r, i) => getRowKey(r, i) === k)!), event);
+      rowSelection?.onSelect?.(
+        record,
+        true,
+        [...keys].map((k) => dataSource.find((r, i) => getRowKey(r, i) === k)!),
+        event,
+      );
     }
   } else {
     keys.clear();
@@ -550,16 +600,18 @@ function toggleRow(record: T, index: number, event: Event) {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function toggleAllPage(_event: Event) {
   const keys = new Set(
-    rowSelection?.preserveSelectedRowKeys
-      ? selectedKeys.value
-      : new Set<string | number>(),
+    rowSelection?.preserveSelectedRowKeys ? selectedKeys.value : new Set<string | number>(),
   );
   if (allPageSelected.value) {
-    selectablePageKeys.value.forEach(k => keys.delete(k));
+    selectablePageKeys.value.forEach((k) => keys.delete(k));
     rowSelection?.onSelectAll?.(false, [], processedData.value);
   } else {
-    selectablePageKeys.value.forEach(k => keys.add(k));
-    rowSelection?.onSelectAll?.(true, [...keys].map(k => dataSource.find((r, i) => getRowKey(r, i) === k)!), processedData.value);
+    selectablePageKeys.value.forEach((k) => keys.add(k));
+    rowSelection?.onSelectAll?.(
+      true,
+      [...keys].map((k) => dataSource.find((r, i) => getRowKey(r, i) === k)!),
+      processedData.value,
+    );
   }
   setSelectedKeys(keys);
 }
@@ -616,7 +668,9 @@ function getCellValue(record: T, col: BTableColumnType<T>): unknown {
 }
 
 function getColumnKey(col: BTableColumnType<T>, idx: number): string | number {
-  return col.key ?? (Array.isArray(col.dataIndex) ? col.dataIndex.join('.') : (col.dataIndex ?? idx));
+  return (
+    col.key ?? (Array.isArray(col.dataIndex) ? col.dataIndex.join('.') : (col.dataIndex ?? idx))
+  );
 }
 
 // ─────────────────────────────────────────────
@@ -638,7 +692,10 @@ onMounted(() => {
   checkScroll();
 });
 
-watch(() => columns, () => nextTick(checkScroll));
+watch(
+  () => columns,
+  () => nextTick(checkScroll),
+);
 
 function checkScroll() {
   if (!scrollRef.value) return;
@@ -754,7 +811,11 @@ function handleFilterKeydown(e: KeyboardEvent) {
 // Get cell style
 // ─────────────────────────────────────────────
 
-function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CSSProperties | undefined {
+function getCellStyle(
+  col: BTableColumnType<T>,
+  record: T,
+  rowIndex: number,
+): CSSProperties | undefined {
   if (!col.cellStyle) return undefined;
   if (typeof col.cellStyle === 'function') return col.cellStyle(record, rowIndex);
   return col.cellStyle;
@@ -762,9 +823,20 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
 </script>
 
 <template>
-  <div :class="rootClasses" role="region" :aria-label="caption ?? undefined" :aria-busy="loading ? 'true' : undefined">
+  <div
+    :class="rootClasses"
+    role="region"
+    :aria-label="caption ?? undefined"
+    :aria-busy="loading ? 'true' : undefined"
+  >
     <!-- Loading overlay -->
-    <div v-if="loading" class="b-table__loading-overlay" role="status" aria-live="polite" aria-label="Loading data">
+    <div
+      v-if="loading"
+      class="b-table__loading-overlay"
+      role="status"
+      aria-live="polite"
+      aria-label="Loading data"
+    >
       <div class="b-table__spin" aria-hidden="true">
         <span class="b-table__spin-dot" />
         <span class="b-table__spin-dot" />
@@ -789,16 +861,29 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
       class="b-table__scroll-wrapper"
       :style="[wrapperStyle, loading ? { visibility: 'hidden' } : {}]"
       :aria-hidden="loading ? 'true' : undefined"
-      :tabindex="(scroll?.x || scroll?.y) ? 0 : undefined"
+      :tabindex="scroll?.x || scroll?.y ? 0 : undefined"
     >
       <table class="b-table__table" :style="tableStyle" role="table">
         <!-- Caption (a11y) -->
-        <caption v-if="caption" class="b-table__caption">{{ caption }}</caption>
+        <caption v-if="caption" class="b-table__caption">
+          {{
+            caption
+          }}
+        </caption>
 
         <!-- Colgroup for widths -->
         <colgroup>
-          <col v-if="rowSelection" :style="{ width: rowSelection.columnWidth ? (typeof rowSelection.columnWidth === 'number' ? `${rowSelection.columnWidth}px` : rowSelection.columnWidth) : '48px' }" />
-          <col v-if="expandable && expandable.showExpandColumn !== false" style="width:48px" />
+          <col
+            v-if="rowSelection"
+            :style="{
+              width: rowSelection.columnWidth
+                ? typeof rowSelection.columnWidth === 'number'
+                  ? `${rowSelection.columnWidth}px`
+                  : rowSelection.columnWidth
+                : '48px',
+            }"
+          />
+          <col v-if="expandable && expandable.showExpandColumn !== false" style="width: 48px" />
           <col
             v-for="(col, ci) in flatColumns"
             :key="getColumnKey(col, ci)"
@@ -823,7 +908,10 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
               :aria-label="resolvedLocale.selectAll"
             >
               <span v-if="rowSelection.columnTitle">{{ rowSelection.columnTitle }}</span>
-              <label v-else-if="isCheckbox && !rowSelection.hideSelectAll" class="b-table__checkbox-wrapper">
+              <label
+                v-else-if="isCheckbox && !rowSelection.hideSelectAll"
+                class="b-table__checkbox-wrapper"
+              >
                 <input
                   type="checkbox"
                   class="b-table__checkbox"
@@ -832,7 +920,14 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
                   :aria-label="resolvedLocale.selectAll"
                   @change="toggleAllPage($event)"
                 />
-                <span class="b-table__checkbox-inner" :class="{ 'b-table__checkbox-inner--indeterminate': somePageSelected, 'b-table__checkbox-inner--checked': allPageSelected }" aria-hidden="true" />
+                <span
+                  class="b-table__checkbox-inner"
+                  :class="{
+                    'b-table__checkbox-inner--indeterminate': somePageSelected,
+                    'b-table__checkbox-inner--checked': allPageSelected,
+                  }"
+                  aria-hidden="true"
+                />
               </label>
             </th>
 
@@ -861,7 +956,15 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
               :rowspan="cell.rowSpan > 1 ? cell.rowSpan : undefined"
               :style="colWidthStyle(cell.col)"
               scope="col"
-              :aria-sort="cell.col.sorter ? (getColumnSortOrder(cell.col) === 'ascend' ? 'ascending' : getColumnSortOrder(cell.col) === 'descend' ? 'descending' : 'none') : undefined"
+              :aria-sort="
+                cell.col.sorter
+                  ? getColumnSortOrder(cell.col) === 'ascend'
+                    ? 'ascending'
+                    : getColumnSortOrder(cell.col) === 'descend'
+                      ? 'descending'
+                      : 'none'
+                  : undefined
+              "
               v-bind="onHeaderRow?.(columns, 0)"
             >
               <div class="b-table__th-inner">
@@ -869,7 +972,8 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
                 <span
                   class="b-table__col-title"
                   :class="{ 'b-table__col-title--rowspan': cell.rowSpan > 1 }"
-                >{{ cell.col.titleText ?? cell.col.title }}</span>
+                  >{{ cell.col.titleText ?? cell.col.title }}</span
+                >
 
                 <!-- Sorter -->
                 <button
@@ -881,8 +985,32 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
                   @click.stop="handleSort(cell.col)"
                 >
                   <span class="b-table__sorter-inner" aria-hidden="true">
-                    <svg class="b-table__sort-up" :class="{ active: getSortIcon(cell.col) === 'asc' }" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M858.9 689L530.5 308.2a24 24 0 0 0-36.9 0L165.1 689c-4.7 5.2-.4 13 6.5 13h496.8c6.9 0 11.2-7.8 6.5-13z" /></svg>
-                    <svg class="b-table__sort-down" :class="{ active: getSortIcon(cell.col) === 'desc' }" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z" /></svg>
+                    <svg
+                      class="b-table__sort-up"
+                      :class="{ active: getSortIcon(cell.col) === 'asc' }"
+                      viewBox="0 0 1024 1024"
+                      width="1em"
+                      height="1em"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M858.9 689L530.5 308.2a24 24 0 0 0-36.9 0L165.1 689c-4.7 5.2-.4 13 6.5 13h496.8c6.9 0 11.2-7.8 6.5-13z"
+                      />
+                    </svg>
+                    <svg
+                      class="b-table__sort-down"
+                      :class="{ active: getSortIcon(cell.col) === 'desc' }"
+                      viewBox="0 0 1024 1024"
+                      width="1em"
+                      height="1em"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"
+                      />
+                    </svg>
                   </span>
                 </button>
 
@@ -890,16 +1018,32 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
                 <div
                   v-if="cell.col.filters && cell.isLeaf"
                   class="b-table__filter-trigger"
-                  :class="{ 'b-table__filter-trigger--active': (getColumnFilterValue(cell.col)?.length ?? 0) > 0 || openFilterKey === getColumnFilterKey(cell.col) }"
+                  :class="{
+                    'b-table__filter-trigger--active':
+                      (getColumnFilterValue(cell.col)?.length ?? 0) > 0 ||
+                      openFilterKey === getColumnFilterKey(cell.col),
+                  }"
                 >
                   <button
                     type="button"
                     class="b-table__filter-btn"
-                    :aria-expanded="openFilterKey === getColumnFilterKey(cell.col) ? 'true' : 'false'"
+                    :aria-expanded="
+                      openFilterKey === getColumnFilterKey(cell.col) ? 'true' : 'false'
+                    "
                     :aria-label="`Filter ${cell.col.titleText ?? cell.col.title}`"
                     @click.stop="openFilter(cell.col)"
                   >
-                    <svg viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M880.1 154H143.9c-24.5 0-39.8 26.7-27.5 48L349 597.4V838c0 17.8 14.5 32 32.3 32h263.4c17.8 0 32.3-14.2 32.3-32V597.4L909.6 202c12.3-21.3-3-48-29.5-48z" /></svg>
+                    <svg
+                      viewBox="0 0 1024 1024"
+                      width="1em"
+                      height="1em"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M880.1 154H143.9c-24.5 0-39.8 26.7-27.5 48L349 597.4V838c0 17.8 14.5 32 32.3 32h263.4c17.8 0 32.3-14.2 32.3-32V597.4L909.6 202c12.3-21.3-3-48-29.5-48z"
+                      />
+                    </svg>
                   </button>
 
                   <!-- Filter dropdown -->
@@ -922,19 +1066,29 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
                     </div>
 
                     <!-- Options -->
-                    <ul class="b-table__filter-list" role="listbox" :aria-multiselectable="cell.col.filterMultiple !== false ? 'true' : 'false'">
+                    <ul
+                      class="b-table__filter-list"
+                      role="listbox"
+                      :aria-multiselectable="cell.col.filterMultiple !== false ? 'true' : 'false'"
+                    >
                       <li
                         v-for="opt in getFilteredOptions(cell.col)"
                         :key="String(opt.value)"
                         class="b-table__filter-item"
                         role="option"
-                        :aria-selected="(tempFilterValues[getColumnFilterKey(cell.col)] ?? []).includes(opt.value)"
+                        :aria-selected="
+                          (tempFilterValues[getColumnFilterKey(cell.col)] ?? []).includes(opt.value)
+                        "
                       >
                         <label class="b-table__filter-item-label">
                           <input
                             :type="cell.col.filterMultiple !== false ? 'checkbox' : 'radio'"
                             class="b-table__filter-item-input"
-                            :checked="(tempFilterValues[getColumnFilterKey(cell.col)] ?? []).includes(opt.value)"
+                            :checked="
+                              (tempFilterValues[getColumnFilterKey(cell.col)] ?? []).includes(
+                                opt.value,
+                              )
+                            "
                             @change="toggleTempFilter(cell.col, opt.value)"
                           />
                           <span>{{ opt.text }}</span>
@@ -944,8 +1098,20 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
 
                     <!-- Actions -->
                     <div class="b-table__filter-actions">
-                      <button type="button" class="b-table__filter-reset" @click="resetFilter(cell.col)">{{ resolvedLocale.filterReset }}</button>
-                      <button type="button" class="b-table__filter-confirm" @click="confirmFilter(cell.col)">{{ resolvedLocale.filterConfirm }}</button>
+                      <button
+                        type="button"
+                        class="b-table__filter-reset"
+                        @click="resetFilter(cell.col)"
+                      >
+                        {{ resolvedLocale.filterReset }}
+                      </button>
+                      <button
+                        type="button"
+                        class="b-table__filter-confirm"
+                        @click="confirmFilter(cell.col)"
+                      >
+                        {{ resolvedLocale.filterConfirm }}
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -960,16 +1126,31 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
           <tr v-if="processedData.length === 0" class="b-table__tr--empty">
             <td
               class="b-table__td b-table__td--empty"
-              :colspan="flatColumns.length + (rowSelection ? 1 : 0) + (expandable && expandable.showExpandColumn !== false ? 1 : 0)"
+              :colspan="
+                flatColumns.length +
+                (rowSelection ? 1 : 0) +
+                (expandable && expandable.showExpandColumn !== false ? 1 : 0)
+              "
             >
               <slot name="emptyText">
                 <div class="b-table__empty">
-                  <svg class="b-table__empty-icon" viewBox="0 0 64 41" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <svg
+                    class="b-table__empty-icon"
+                    viewBox="0 0 64 41"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
                     <g transform="translate(0 1)" fill="none" fill-rule="evenodd">
                       <ellipse cx="32" cy="33" rx="32" ry="7" fill="currentColor" opacity=".2" />
                       <g fill-rule="nonzero" stroke="currentColor">
-                        <path d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z" />
-                        <path d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z" fill="currentColor" opacity=".08" />
+                        <path
+                          d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z"
+                        />
+                        <path
+                          d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z"
+                          fill="currentColor"
+                          opacity=".08"
+                        />
                       </g>
                     </g>
                   </svg>
@@ -1006,7 +1187,11 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
                   />
                   <span
                     class="b-table__checkbox-inner"
-                    :class="{ 'b-table__checkbox-inner--checked': selectedKeys.has(getRowKey(record, rowIndex)) }"
+                    :class="{
+                      'b-table__checkbox-inner--checked': selectedKeys.has(
+                        getRowKey(record, rowIndex),
+                      ),
+                    }"
                     aria-hidden="true"
                   />
                 </label>
@@ -1022,12 +1207,25 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
                   type="button"
                   class="b-table__expand-btn"
                   :class="{ 'b-table__expand-btn--expanded': isRowExpanded(record, rowIndex) }"
-                  :aria-label="isRowExpanded(record, rowIndex) ? resolvedLocale.collapse : resolvedLocale.expand"
+                  :aria-label="
+                    isRowExpanded(record, rowIndex)
+                      ? resolvedLocale.collapse
+                      : resolvedLocale.expand
+                  "
                   :aria-expanded="isRowExpanded(record, rowIndex) ? 'true' : 'false'"
                   @click="toggleExpand(record, rowIndex, $event)"
                 >
-                  <svg class="b-table__expand-icon" viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                    <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z" />
+                  <svg
+                    class="b-table__expand-icon"
+                    viewBox="0 0 1024 1024"
+                    width="1em"
+                    height="1em"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"
+                    />
                   </svg>
                 </button>
               </td>
@@ -1056,15 +1254,28 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
                 <!-- customRender function -->
                 <component
                   v-else-if="col.customRender"
-                  :is="() => col.customRender!({ value: getCellValue(record, col), record, index: rowIndex, column: col })"
+                  :is="
+                    () =>
+                      col.customRender!({
+                        value: getCellValue(record, col),
+                        record,
+                        index: rowIndex,
+                        column: col,
+                      })
+                  "
                 />
                 <!-- Default: raw cell value -->
                 <template v-else>
                   <span
                     v-if="getEllipsis(col)"
                     class="b-table__cell-ellipsis"
-                    :title="typeof (col.ellipsis) === 'object' && col.ellipsis.showTitle !== false ? String(getCellValue(record, col) ?? '') : undefined"
-                  >{{ getCellValue(record, col) }}</span>
+                    :title="
+                      typeof col.ellipsis === 'object' && col.ellipsis.showTitle !== false
+                        ? String(getCellValue(record, col) ?? '')
+                        : undefined
+                    "
+                    >{{ getCellValue(record, col) }}</span
+                  >
                   <template v-else>{{ getCellValue(record, col) }}</template>
                 </template>
               </td>
@@ -1077,12 +1288,24 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
               :key="`${getRowKey(record, rowIndex)}-expanded`"
             >
               <td
-                :colspan="flatColumns.length + (rowSelection ? 1 : 0) + (expandable && expandable.showExpandColumn !== false ? 1 : 0)"
+                :colspan="
+                  flatColumns.length +
+                  (rowSelection ? 1 : 0) +
+                  (expandable && expandable.showExpandColumn !== false ? 1 : 0)
+                "
                 class="b-table__td b-table__td--expanded"
               >
                 <component
                   v-if="expandable.expandedRowRender"
-                  :is="() => expandable.expandedRowRender!(record, rowIndex, 0, isRowExpanded(record, rowIndex))"
+                  :is="
+                    () =>
+                      expandable.expandedRowRender!(
+                        record,
+                        rowIndex,
+                        0,
+                        isRowExpanded(record, rowIndex),
+                      )
+                  "
                 />
                 <slot v-else name="expandedRow" :record="record" :index="rowIndex" />
               </td>
@@ -1115,8 +1338,16 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
       :style="loading ? { visibility: 'hidden' } : {}"
     >
       <!-- Total info -->
-      <span v-if="typeof pagination === 'object' && pagination.showTotal" class="b-table__pagination-total">
-        {{ pagination.showTotal(filteredData.length, [(currentPage - 1) * currentPageSize + 1, Math.min(currentPage * currentPageSize, filteredData.length)]) }}
+      <span
+        v-if="typeof pagination === 'object' && pagination.showTotal"
+        class="b-table__pagination-total"
+      >
+        {{
+          pagination.showTotal(filteredData.length, [
+            (currentPage - 1) * currentPageSize + 1,
+            Math.min(currentPage * currentPageSize, filteredData.length),
+          ])
+        }}
       </span>
 
       <div class="b-table__pagination-controls">
@@ -1128,30 +1359,49 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
           :aria-label="'Previous page'"
           @click="goToPage(currentPage - 1)"
         >
-          <svg viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.96 31.96 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z" /></svg>
+          <svg
+            viewBox="0 0 1024 1024"
+            width="1em"
+            height="1em"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.96 31.96 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+            />
+          </svg>
         </button>
 
         <!-- Page numbers -->
         <template v-for="page in totalPages" :key="page">
           <button
-            v-if="totalPages <= 7 || page === 1 || page === totalPages || Math.abs(page - currentPage) <= 1"
+            v-if="
+              totalPages <= 7 ||
+              page === 1 ||
+              page === totalPages ||
+              Math.abs(page - currentPage) <= 1
+            "
             type="button"
             class="b-table__page-btn"
             :class="{ 'b-table__page-btn--active': page === currentPage }"
             :aria-label="`Page ${page}`"
             :aria-current="page === currentPage ? 'page' : undefined"
             @click="goToPage(page)"
-          >{{ page }}</button>
+          >
+            {{ page }}
+          </button>
           <span
             v-else-if="page === 2 && currentPage > 4"
             class="b-table__page-ellipsis"
             aria-hidden="true"
-          >…</span>
+            >…</span
+          >
           <span
             v-else-if="page === totalPages - 1 && currentPage < totalPages - 3"
             class="b-table__page-ellipsis"
             aria-hidden="true"
-          >…</span>
+            >…</span
+          >
         </template>
 
         <!-- Next -->
@@ -1162,7 +1412,17 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
           :aria-label="'Next page'"
           @click="goToPage(currentPage + 1)"
         >
-          <svg viewBox="0 0 1024 1024" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z" /></svg>
+          <svg
+            viewBox="0 0 1024 1024"
+            width="1em"
+            height="1em"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"
+            />
+          </svg>
         </button>
 
         <!-- Page size changer -->
@@ -1177,7 +1437,10 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
         </select>
 
         <!-- Quick jump -->
-        <span v-if="typeof pagination === 'object' && pagination.showQuickJumper" class="b-table__page-jump">
+        <span
+          v-if="typeof pagination === 'object' && pagination.showQuickJumper"
+          class="b-table__page-jump"
+        >
           Go to
           <input
             v-model="jumpInput"
@@ -1332,8 +1595,12 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   padding: var(--b-table-cell-padding-small);
 }
 
-.b-table__th--align-center { text-align: center; }
-.b-table__th--align-right  { text-align: right;  }
+.b-table__th--align-center {
+  text-align: center;
+}
+.b-table__th--align-right {
+  text-align: right;
+}
 
 .b-table__th-inner {
   display: flex;
@@ -1393,8 +1660,12 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   transition: color var(--b-table-transition-duration);
 }
 
-.b-table__sort-up.active  { color: var(--b-table-sorter-active-color); }
-.b-table__sort-down.active { color: var(--b-table-sorter-active-color); }
+.b-table__sort-up.active {
+  color: var(--b-table-sorter-active-color);
+}
+.b-table__sort-down.active {
+  color: var(--b-table-sorter-active-color);
+}
 
 /* ── Filter ── */
 .b-table__filter-trigger {
@@ -1413,7 +1684,9 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   border: none;
   padding: 2px 4px;
   border-radius: 4px;
-  transition: color var(--b-table-transition-duration), background var(--b-table-transition-duration);
+  transition:
+    color var(--b-table-transition-duration),
+    background var(--b-table-transition-duration);
 }
 
 .b-table__filter-btn:hover,
@@ -1506,7 +1779,9 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   transition: background var(--b-table-transition-duration);
 }
 
-.b-table__filter-reset:hover { background: var(--b-table-row-hover-bg); }
+.b-table__filter-reset:hover {
+  background: var(--b-table-row-hover-bg);
+}
 
 .b-table__filter-confirm {
   background: oklch(54.6% 0.245 262.881);
@@ -1519,7 +1794,9 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   transition: background var(--b-table-transition-duration);
 }
 
-.b-table__filter-confirm:hover { background: oklch(49% 0.24 262.881); }
+.b-table__filter-confirm:hover {
+  background: oklch(49% 0.24 262.881);
+}
 
 /* ── Selection cells ── */
 .b-table__th--selection,
@@ -1624,10 +1901,15 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   cursor: pointer;
   color: var(--b-table-expand-icon-color);
   padding: 0;
-  transition: color var(--b-table-transition-duration), border-color var(--b-table-transition-duration);
+  transition:
+    color var(--b-table-transition-duration),
+    border-color var(--b-table-transition-duration);
 }
 
-.b-table__expand-btn:hover { color: var(--b-table-expand-icon-hover-color); border-color: var(--b-table-expand-icon-hover-color); }
+.b-table__expand-btn:hover {
+  color: var(--b-table-expand-icon-hover-color);
+  border-color: var(--b-table-expand-icon-hover-color);
+}
 
 .b-table__expand-icon {
   transition: transform var(--b-table-transition-duration);
@@ -1648,13 +1930,23 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   transition: background var(--b-table-transition-duration);
 }
 
-.b-table--middle .b-table__td { padding: var(--b-table-cell-padding-middle); }
-.b-table--small  .b-table__td { padding: var(--b-table-cell-padding-small); }
+.b-table--middle .b-table__td {
+  padding: var(--b-table-cell-padding-middle);
+}
+.b-table--small .b-table__td {
+  padding: var(--b-table-cell-padding-small);
+}
 
-.b-table__td--align-center { text-align: center; }
-.b-table__td--align-right  { text-align: right;  }
+.b-table__td--align-center {
+  text-align: center;
+}
+.b-table__td--align-right {
+  text-align: right;
+}
 
-.b-table__td--ellipsis { overflow: hidden; }
+.b-table__td--ellipsis {
+  overflow: hidden;
+}
 
 .b-table__cell-ellipsis {
   display: block;
@@ -1727,8 +2019,14 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   border: 1px solid var(--b-table-border-color);
 }
 
-.b-table__title { border-bottom: none; border-radius: var(--b-table-border-radius) var(--b-table-border-radius) 0 0; }
-.b-table__footer { border-top: none; border-radius: 0 0 var(--b-table-border-radius) var(--b-table-border-radius); }
+.b-table__title {
+  border-bottom: none;
+  border-radius: var(--b-table-border-radius) var(--b-table-border-radius) 0 0;
+}
+.b-table__footer {
+  border-top: none;
+  border-radius: 0 0 var(--b-table-border-radius) var(--b-table-border-radius);
+}
 
 /* ── Loading ── */
 .b-table__loading-overlay {
@@ -1757,14 +2055,30 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   animation: b-table-spin-bounce 1.2s ease-in-out infinite;
 }
 
-.b-table__spin-dot:nth-child(1) { animation-delay: 0ms; }
-.b-table__spin-dot:nth-child(2) { animation-delay: 160ms; }
-.b-table__spin-dot:nth-child(3) { animation-delay: 320ms; }
-.b-table__spin-dot:nth-child(4) { animation-delay: 480ms; }
+.b-table__spin-dot:nth-child(1) {
+  animation-delay: 0ms;
+}
+.b-table__spin-dot:nth-child(2) {
+  animation-delay: 160ms;
+}
+.b-table__spin-dot:nth-child(3) {
+  animation-delay: 320ms;
+}
+.b-table__spin-dot:nth-child(4) {
+  animation-delay: 480ms;
+}
 
 @keyframes b-table-spin-bounce {
-  0%, 60%, 100% { transform: scale(1);   opacity: 0.5; }
-  30%            { transform: scale(1.4); opacity: 1;   }
+  0%,
+  60%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  30% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
 }
 
 /* ── Pagination ── */
@@ -1779,7 +2093,9 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   font-size: 14px;
 }
 
-.b-table__pagination-total { margin-right: auto; }
+.b-table__pagination-total {
+  margin-right: auto;
+}
 
 .b-table__pagination-controls {
   display: flex;
@@ -1801,7 +2117,10 @@ function getCellStyle(col: BTableColumnType<T>, record: T, rowIndex: number): CS
   color: var(--b-table-pagination-color);
   cursor: pointer;
   font-size: 14px;
-  transition: background var(--b-table-transition-duration), border-color var(--b-table-transition-duration), color var(--b-table-transition-duration);
+  transition:
+    background var(--b-table-transition-duration),
+    border-color var(--b-table-transition-duration),
+    color var(--b-table-transition-duration);
 }
 
 .b-table__page-btn:hover:not(:disabled) {

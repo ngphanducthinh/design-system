@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { computed, ref, watch, nextTick } from 'vue';
+import { computed, nextTick, ref, watch } from 'vue';
 import type {
-  BTreeNodeKey,
-  BTreeNodeData,
-  BTreeFieldNames,
   BTreeCheckedKeys,
-  BTreeDropInfo,
-  BTreeDragInfo,
-  BTreeSelectInfo,
   BTreeCheckInfo,
+  BTreeDragInfo,
+  BTreeDropInfo,
   BTreeExpandInfo,
+  BTreeFieldNames,
   BTreeFlatNode,
+  BTreeNodeData,
+  BTreeNodeKey,
   BTreeScrollToOptions,
+  BTreeSelectInfo,
 } from './types';
 
 // ─── Props ────────────────────────────────────────────────────────────────────
@@ -193,7 +193,9 @@ const activeSelected = computed<Set<BTreeNodeKey>>(() => {
 
 const activeChecked = computed<Set<BTreeNodeKey>>(() => {
   if (isControlledChecked.value) {
-    const raw = checkedKeysProp as BTreeNodeKey[] | { checked: BTreeNodeKey[]; halfChecked: BTreeNodeKey[] };
+    const raw = checkedKeysProp as
+      | BTreeNodeKey[]
+      | { checked: BTreeNodeKey[]; halfChecked: BTreeNodeKey[] };
     if (Array.isArray(raw)) return new Set(raw);
     return new Set(raw.checked);
   }
@@ -202,7 +204,9 @@ const activeChecked = computed<Set<BTreeNodeKey>>(() => {
 
 const activeHalfChecked = computed<Set<BTreeNodeKey>>(() => {
   if (isControlledChecked.value) {
-    const raw = checkedKeysProp as BTreeNodeKey[] | { checked: BTreeNodeKey[]; halfChecked: BTreeNodeKey[] };
+    const raw = checkedKeysProp as
+      | BTreeNodeKey[]
+      | { checked: BTreeNodeKey[]; halfChecked: BTreeNodeKey[] };
     if (!Array.isArray(raw) && 'halfChecked' in raw) return new Set(raw.halfChecked);
   }
   return internalHalfChecked.value;
@@ -215,11 +219,7 @@ const activeLoaded = computed<Set<BTreeNodeKey>>(() => {
 
 // ─── Flatten tree ─────────────────────────────────────────────────────────────
 
-function flattenTree(
-  nodes: BTreeNodeData[],
-  depth = 0,
-  parentVisible = true,
-): BTreeFlatNode[] {
+function flattenTree(nodes: BTreeNodeData[], depth = 0, parentVisible = true): BTreeFlatNode[] {
   const result: BTreeFlatNode[] = [];
   for (const node of nodes) {
     const key = nodeKey(node);
@@ -249,10 +249,7 @@ function collectAllKeys(nodes: BTreeNodeData[]): BTreeNodeKey[] {
   return keys;
 }
 
-function collectParentKeys(
-  nodes: BTreeNodeData[],
-  targetKeys: Set<BTreeNodeKey>,
-): BTreeNodeKey[] {
+function collectParentKeys(nodes: BTreeNodeData[], targetKeys: Set<BTreeNodeKey>): BTreeNodeKey[] {
   const parents: BTreeNodeKey[] = [];
   function walk(nodes: BTreeNodeData[]) {
     for (const n of nodes) {
@@ -273,10 +270,12 @@ function collectParentKeys(
 // Initialise uncontrolled state once
 if (!isControlledExpanded.value) {
   if (defaultExpandAll) {
-    internalExpanded.value = new Set(collectAllKeys(treeData).filter((k) => {
-      const flat = flatNodes.value.find((n) => n.key === k);
-      return flat ? !!nodeChildren(flat.data)?.length : false;
-    }));
+    internalExpanded.value = new Set(
+      collectAllKeys(treeData).filter((k) => {
+        const flat = flatNodes.value.find((n) => n.key === k);
+        return flat ? !!nodeChildren(flat.data)?.length : false;
+      }),
+    );
   } else if (defaultExpandedKeys.length) {
     const init = new Set<BTreeNodeKey>(defaultExpandedKeys);
     if (defaultExpandParent) {
@@ -433,9 +432,7 @@ function handleSelect(node: BTreeNodeData, event: MouseEvent | KeyboardEvent) {
     event,
     selected: nextSet.has(key),
     node,
-    selectedNodes: flatNodes.value
-      .filter((n) => nextSet.has(n.key))
-      .map((n) => n.data),
+    selectedNodes: flatNodes.value.filter((n) => nextSet.has(n.key)).map((n) => n.data),
     nativeEvent: event,
   };
   emit('select', [...nextSet], info);
@@ -449,7 +446,9 @@ function handleCheck(node: BTreeNodeData, event: MouseEvent | KeyboardEvent) {
 
   let nextChecked: Set<BTreeNodeKey>;
   if (isControlledChecked.value) {
-    const raw = checkedKeysProp as BTreeNodeKey[] | { checked: BTreeNodeKey[]; halfChecked: BTreeNodeKey[] };
+    const raw = checkedKeysProp as
+      | BTreeNodeKey[]
+      | { checked: BTreeNodeKey[]; halfChecked: BTreeNodeKey[] };
     nextChecked = new Set(Array.isArray(raw) ? raw : raw.checked);
   } else {
     nextChecked = new Set(internalChecked.value);
@@ -489,9 +488,7 @@ function handleCheck(node: BTreeNodeData, event: MouseEvent | KeyboardEvent) {
     propagateChecks(nextChecked);
   }
 
-  const checkedNodes = flatNodes.value
-    .filter((n) => nextChecked.has(n.key))
-    .map((n) => n.data);
+  const checkedNodes = flatNodes.value.filter((n) => nextChecked.has(n.key)).map((n) => n.data);
 
   const info: BTreeCheckInfo = {
     event,
@@ -570,13 +567,13 @@ const treeRef = ref<HTMLElement | null>(null);
 function getFocusableItems(): HTMLElement[] {
   if (!treeRef.value) return [];
   return Array.from(
-    treeRef.value.querySelectorAll<HTMLElement>('[role="treeitem"][tabindex="0"],[role="treeitem"][tabindex="-1"]'),
+    treeRef.value.querySelectorAll<HTMLElement>(
+      '[role="treeitem"][tabindex="0"],[role="treeitem"][tabindex="-1"]',
+    ),
   ).filter((el) => !el.closest('[aria-hidden="true"]'));
 }
 
-const focusedNodeKey = ref<BTreeNodeKey | null>(
-  visibleNodes.value[0]?.key ?? null,
-);
+const focusedNodeKey = ref<BTreeNodeKey | null>(visibleNodes.value[0]?.key ?? null);
 
 function handleTreeKeydown(event: KeyboardEvent) {
   const visible = visibleNodes.value;
@@ -667,7 +664,9 @@ function handleTreeKeydown(event: KeyboardEvent) {
 }
 
 function focusNode(key: BTreeNodeKey) {
-  const el = treeRef.value?.querySelector<HTMLElement>(`[data-node-key="${String(key).replace(/["\\]/g, '\\$&')}"]`);
+  const el = treeRef.value?.querySelector<HTMLElement>(
+    `[data-node-key="${String(key).replace(/["\\]/g, '\\$&')}"]`,
+  );
   el?.focus();
 }
 
@@ -760,18 +759,14 @@ function handleRightClick(event: MouseEvent, node: BTreeNodeData) {
         @drop="handleDrop($event, flatNode.data)"
       >
         <!-- Drag handle (visible on row hover when draggable) -->
-        <span
-          v-if="draggable"
-          class="b-tree__drag-handle"
-          aria-hidden="true"
-        >
+        <span v-if="draggable" class="b-tree__drag-handle" aria-hidden="true">
           <!-- HolderOutlined: 2×3 dot grid -->
           <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <circle cx="5" cy="3.5" r="1.25" />
-            <circle cx="5" cy="8"   r="1.25" />
+            <circle cx="5" cy="8" r="1.25" />
             <circle cx="5" cy="12.5" r="1.25" />
             <circle cx="11" cy="3.5" r="1.25" />
-            <circle cx="11" cy="8"   r="1.25" />
+            <circle cx="11" cy="8" r="1.25" />
             <circle cx="11" cy="12.5" r="1.25" />
           </svg>
         </span>
@@ -804,7 +799,13 @@ function handleRightClick(event: MouseEvent, node: BTreeNodeData) {
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
             >
-              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M9 18L15 12L9 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </slot>
           <!-- Loading spinner -->
@@ -816,7 +817,16 @@ function handleRightClick(event: MouseEvent, node: BTreeNodeData) {
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
           >
-            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" stroke-dasharray="42" stroke-dashoffset="14" stroke-linecap="round" />
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-dasharray="42"
+              stroke-dashoffset="14"
+              stroke-linecap="round"
+            />
           </svg>
         </span>
         <!-- Leaf placeholder -->
@@ -833,12 +843,15 @@ function handleRightClick(event: MouseEvent, node: BTreeNodeData) {
           :class="{
             'b-tree__checkbox--checked': isChecked(flatNode.key),
             'b-tree__checkbox--indeterminate': isHalfChecked(flatNode.key),
-            'b-tree__checkbox--disabled': flatNode.data.disableCheckbox || flatNode.data.disabled || disabled,
+            'b-tree__checkbox--disabled':
+              flatNode.data.disableCheckbox || flatNode.data.disabled || disabled,
           }"
           role="checkbox"
           :aria-label="nodeTitle(flatNode.data)"
           :aria-checked="isHalfChecked(flatNode.key) ? 'mixed' : isChecked(flatNode.key)"
-          :aria-disabled="flatNode.data.disableCheckbox || flatNode.data.disabled || disabled || undefined"
+          :aria-disabled="
+            flatNode.data.disableCheckbox || flatNode.data.disabled || disabled || undefined
+          "
           tabindex="-1"
           @click.stop="handleCheck(flatNode.data, $event)"
           @keydown.enter.prevent="handleCheck(flatNode.data, $event)"
@@ -1033,8 +1046,12 @@ function handleRightClick(event: MouseEvent, node: BTreeNodeData) {
 
 /* Loading spinner */
 @keyframes b-tree-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .b-tree__switcher-icon--spin {

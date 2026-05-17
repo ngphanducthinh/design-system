@@ -145,7 +145,7 @@ const sampleOptions: BCascaderOption[] = [
         value: 'suzhou',
         label: 'Suzhou',
         children: [
-          { value: 'zhuozhengyuan', label: 'Humble Administrator\'s Garden' },
+          { value: 'zhuozhengyuan', label: "Humble Administrator's Garden" },
           { value: 'huqiushan', label: 'Tiger Hill' },
         ],
       },
@@ -569,7 +569,9 @@ export const InteractionTest: Story = {
     });
 
     // Select first level
-    const firstOptions = canvasElement.querySelectorAll('.b-cascader__menu:first-child .b-cascader__option');
+    const firstOptions = canvasElement.querySelectorAll(
+      '.b-cascader__menu:first-child .b-cascader__option',
+    );
     await userEvent.click(firstOptions[0]);
 
     // Wait for second level
@@ -579,7 +581,9 @@ export const InteractionTest: Story = {
     });
 
     // Select second level
-    const secondOptions = canvasElement.querySelectorAll('.b-cascader__menu:nth-child(2) .b-cascader__option');
+    const secondOptions = canvasElement.querySelectorAll(
+      '.b-cascader__menu:nth-child(2) .b-cascader__option',
+    );
     await userEvent.click(secondOptions[0]);
 
     // Wait for third level
@@ -589,7 +593,9 @@ export const InteractionTest: Story = {
     });
 
     // Select leaf
-    const thirdOptions = canvasElement.querySelectorAll('.b-cascader__menu:nth-child(3) .b-cascader__option');
+    const thirdOptions = canvasElement.querySelectorAll(
+      '.b-cascader__menu:nth-child(3) .b-cascader__option',
+    );
     await userEvent.click(thirdOptions[0]);
 
     // Verify selection
@@ -603,40 +609,176 @@ export const DesignTokens: Story = {
   render: () => ({
     setup() {
       const tokens = [
-        { variable: '--b-cascader-control-width', default: '184px', description: 'Width of the cascader control' },
-        { variable: '--b-cascader-control-item-width', default: '111px', description: 'Width of each menu column' },
-        { variable: '--b-cascader-dropdown-height', default: '180px', description: 'Max height of dropdown menu' },
-        { variable: '--b-cascader-menu-padding', default: '4px', description: 'Padding inside each menu column' },
-        { variable: '--b-cascader-option-padding', default: '5px 12px', description: 'Padding of each option item' },
-        { variable: '--b-cascader-option-selected-bg', default: '#e6f4ff', description: 'Background color of selected option' },
-        { variable: '--b-cascader-option-selected-color', default: 'rgba(0, 0, 0, 0.88)', description: 'Text color of selected option' },
-        { variable: '--b-cascader-option-selected-font-weight', default: '600', description: 'Font weight of selected option' },
-        { variable: '--b-cascader-bg', default: '#fff', description: 'Background of the input control' },
-        { variable: '--b-cascader-color', default: 'rgba(0, 0, 0, 0.88)', description: 'Text color of the input' },
-        { variable: '--b-cascader-border-color', default: '#d9d9d9', description: 'Border color of the input' },
-        { variable: '--b-cascader-border-radius', default: '6px', description: 'Border radius of the input' },
-        { variable: '--b-cascader-font-size', default: '14px', description: 'Font size of the input' },
-        { variable: '--b-cascader-height', default: '32px', description: 'Height of the input control' },
-        { variable: '--b-cascader-padding-x', default: '11px', description: 'Horizontal padding inside the input' },
-        { variable: '--b-cascader-placeholder-color', default: 'rgba(0, 0, 0, 0.25)', description: 'Placeholder text color' },
-        { variable: '--b-cascader-hover-border-color', default: '#4096ff', description: 'Border color on hover' },
-        { variable: '--b-cascader-focus-border-color', default: '#1677ff', description: 'Border color on focus' },
-        { variable: '--b-cascader-focus-shadow', default: '0 0 0 2px rgba(5, 145, 255, 0.1)', description: 'Box shadow on focus' },
-        { variable: '--b-cascader-disabled-bg', default: 'rgba(0, 0, 0, 0.04)', description: 'Background when disabled' },
-        { variable: '--b-cascader-disabled-color', default: 'rgba(0, 0, 0, 0.25)', description: 'Text color when disabled' },
-        { variable: '--b-cascader-popup-bg', default: '#fff', description: 'Background of the dropdown popup' },
-        { variable: '--b-cascader-popup-shadow', default: '0 6px 16px ...', description: 'Box shadow of the popup' },
-        { variable: '--b-cascader-popup-border-radius', default: '8px', description: 'Border radius of the popup' },
-        { variable: '--b-cascader-popup-z-index', default: '1050', description: 'Z-index of the popup' },
-        { variable: '--b-cascader-option-hover-bg', default: 'rgba(0, 0, 0, 0.04)', description: 'Background of option on hover' },
-        { variable: '--b-cascader-option-border-radius', default: '4px', description: 'Border radius of options' },
-        { variable: '--b-cascader-option-disabled-color', default: 'rgba(0, 0, 0, 0.25)', description: 'Color of disabled options' },
-        { variable: '--b-cascader-tag-bg', default: 'rgba(0, 0, 0, 0.06)', description: 'Background of tags (multiple mode)' },
-        { variable: '--b-cascader-tag-color', default: 'rgba(0, 0, 0, 0.88)', description: 'Color of tags (multiple mode)' },
-        { variable: '--b-cascader-tag-border-radius', default: '4px', description: 'Border radius of tags' },
-        { variable: '--b-cascader-transition-duration', default: '200ms', description: 'Duration of transitions' },
-        { variable: '--b-cascader-menu-border-color', default: 'rgba(5, 5, 5, 0.06)', description: 'Border between menu columns' },
-        { variable: '--b-cascader-checkbox-size', default: '16px', description: 'Size of checkboxes (multiple mode)' },
+        {
+          variable: '--b-cascader-control-width',
+          default: '184px',
+          description: 'Width of the cascader control',
+        },
+        {
+          variable: '--b-cascader-control-item-width',
+          default: '111px',
+          description: 'Width of each menu column',
+        },
+        {
+          variable: '--b-cascader-dropdown-height',
+          default: '180px',
+          description: 'Max height of dropdown menu',
+        },
+        {
+          variable: '--b-cascader-menu-padding',
+          default: '4px',
+          description: 'Padding inside each menu column',
+        },
+        {
+          variable: '--b-cascader-option-padding',
+          default: '5px 12px',
+          description: 'Padding of each option item',
+        },
+        {
+          variable: '--b-cascader-option-selected-bg',
+          default: '#e6f4ff',
+          description: 'Background color of selected option',
+        },
+        {
+          variable: '--b-cascader-option-selected-color',
+          default: 'rgba(0, 0, 0, 0.88)',
+          description: 'Text color of selected option',
+        },
+        {
+          variable: '--b-cascader-option-selected-font-weight',
+          default: '600',
+          description: 'Font weight of selected option',
+        },
+        {
+          variable: '--b-cascader-bg',
+          default: '#fff',
+          description: 'Background of the input control',
+        },
+        {
+          variable: '--b-cascader-color',
+          default: 'rgba(0, 0, 0, 0.88)',
+          description: 'Text color of the input',
+        },
+        {
+          variable: '--b-cascader-border-color',
+          default: '#d9d9d9',
+          description: 'Border color of the input',
+        },
+        {
+          variable: '--b-cascader-border-radius',
+          default: '6px',
+          description: 'Border radius of the input',
+        },
+        {
+          variable: '--b-cascader-font-size',
+          default: '14px',
+          description: 'Font size of the input',
+        },
+        {
+          variable: '--b-cascader-height',
+          default: '32px',
+          description: 'Height of the input control',
+        },
+        {
+          variable: '--b-cascader-padding-x',
+          default: '11px',
+          description: 'Horizontal padding inside the input',
+        },
+        {
+          variable: '--b-cascader-placeholder-color',
+          default: 'rgba(0, 0, 0, 0.25)',
+          description: 'Placeholder text color',
+        },
+        {
+          variable: '--b-cascader-hover-border-color',
+          default: '#4096ff',
+          description: 'Border color on hover',
+        },
+        {
+          variable: '--b-cascader-focus-border-color',
+          default: '#1677ff',
+          description: 'Border color on focus',
+        },
+        {
+          variable: '--b-cascader-focus-shadow',
+          default: '0 0 0 2px rgba(5, 145, 255, 0.1)',
+          description: 'Box shadow on focus',
+        },
+        {
+          variable: '--b-cascader-disabled-bg',
+          default: 'rgba(0, 0, 0, 0.04)',
+          description: 'Background when disabled',
+        },
+        {
+          variable: '--b-cascader-disabled-color',
+          default: 'rgba(0, 0, 0, 0.25)',
+          description: 'Text color when disabled',
+        },
+        {
+          variable: '--b-cascader-popup-bg',
+          default: '#fff',
+          description: 'Background of the dropdown popup',
+        },
+        {
+          variable: '--b-cascader-popup-shadow',
+          default: '0 6px 16px ...',
+          description: 'Box shadow of the popup',
+        },
+        {
+          variable: '--b-cascader-popup-border-radius',
+          default: '8px',
+          description: 'Border radius of the popup',
+        },
+        {
+          variable: '--b-cascader-popup-z-index',
+          default: '1050',
+          description: 'Z-index of the popup',
+        },
+        {
+          variable: '--b-cascader-option-hover-bg',
+          default: 'rgba(0, 0, 0, 0.04)',
+          description: 'Background of option on hover',
+        },
+        {
+          variable: '--b-cascader-option-border-radius',
+          default: '4px',
+          description: 'Border radius of options',
+        },
+        {
+          variable: '--b-cascader-option-disabled-color',
+          default: 'rgba(0, 0, 0, 0.25)',
+          description: 'Color of disabled options',
+        },
+        {
+          variable: '--b-cascader-tag-bg',
+          default: 'rgba(0, 0, 0, 0.06)',
+          description: 'Background of tags (multiple mode)',
+        },
+        {
+          variable: '--b-cascader-tag-color',
+          default: 'rgba(0, 0, 0, 0.88)',
+          description: 'Color of tags (multiple mode)',
+        },
+        {
+          variable: '--b-cascader-tag-border-radius',
+          default: '4px',
+          description: 'Border radius of tags',
+        },
+        {
+          variable: '--b-cascader-transition-duration',
+          default: '200ms',
+          description: 'Duration of transitions',
+        },
+        {
+          variable: '--b-cascader-menu-border-color',
+          default: 'rgba(5, 5, 5, 0.06)',
+          description: 'Border between menu columns',
+        },
+        {
+          variable: '--b-cascader-checkbox-size',
+          default: '16px',
+          description: 'Size of checkboxes (multiple mode)',
+        },
       ];
       return { tokens };
     },

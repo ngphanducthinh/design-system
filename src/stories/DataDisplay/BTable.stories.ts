@@ -20,8 +20,20 @@ const BASIC_DATA: User[] = [
   { key: '1', name: 'Alice Johnson', age: 32, address: '10 Downing St, London', status: 'active' },
   { key: '2', name: 'Bob Smith', age: 42, address: '221B Baker St, London', status: 'active' },
   { key: '3', name: 'Carol White', age: 28, address: '4 Privet Drive, Surrey', status: 'inactive' },
-  { key: '4', name: 'Dave Brown', age: 55, address: '12 Grimmauld Place, London', status: 'active' },
-  { key: '5', name: 'Eve Green', age: 19, address: '1 Railway Cuttings, East Cheam', status: 'inactive' },
+  {
+    key: '4',
+    name: 'Dave Brown',
+    age: 55,
+    address: '12 Grimmauld Place, London',
+    status: 'active',
+  },
+  {
+    key: '5',
+    name: 'Eve Green',
+    age: 19,
+    address: '1 Railway Cuttings, East Cheam',
+    status: 'inactive',
+  },
 ];
 
 const BASIC_COLUMNS: BTableColumnType<User>[] = [
@@ -109,7 +121,7 @@ const meta = {
           '<strong>expandable rows</strong>, <strong>pagination</strong>, <strong>column groups</strong>, ' +
           'sticky header, bordered mode, and three sizes.<br>' +
           'Theming via <code>--b-table-*</code> CSS custom properties. ' +
-          'Respects <code>prefers-reduced-motion</code> and <code>[data-prefers-color=\'dark\']</code>.',
+          "Respects <code>prefers-reduced-motion</code> and <code>[data-prefers-color='dark']</code>.",
       },
     },
   },
@@ -139,7 +151,9 @@ export const Playground: Story = {
   },
   render: (args) => ({
     components: { BTable },
-    setup() { return { args }; },
+    setup() {
+      return { args };
+    },
     template: `
       <div style="padding: 2rem;">
         <BTable v-bind="args" />
@@ -170,7 +184,9 @@ export const Basic: Story = {
   },
   render: () => ({
     components: { BTable },
-    setup() { return { data: BASIC_DATA, columns: BASIC_COLUMNS }; },
+    setup() {
+      return { data: BASIC_DATA, columns: BASIC_COLUMNS };
+    },
     template: `
       <div style="padding: 2rem;">
         <BTable data-testid="basic-table" :dataSource="data" :columns="columns" />
@@ -204,7 +220,9 @@ export const Sizes: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { BTable },
-    setup() { return { data: BASIC_DATA.slice(0, 3), columns: BASIC_COLUMNS.slice(0, 3) }; },
+    setup() {
+      return { data: BASIC_DATA.slice(0, 3), columns: BASIC_COLUMNS.slice(0, 3) };
+    },
     template: `
       <div style="padding: 2rem; display: flex; flex-direction: column; gap: 2rem;">
         <div>
@@ -235,7 +253,9 @@ export const Bordered: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { BTable },
-    setup() { return { data: BASIC_DATA.slice(0, 3), columns: BASIC_COLUMNS }; },
+    setup() {
+      return { data: BASIC_DATA.slice(0, 3), columns: BASIC_COLUMNS };
+    },
     template: `
       <div style="padding: 2rem; display: flex; flex-direction: column; gap: 2rem;">
         <div>
@@ -294,7 +314,9 @@ export const Empty: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { BTable },
-    setup() { return { data: [], columns: BASIC_COLUMNS }; },
+    setup() {
+      return { data: [], columns: BASIC_COLUMNS };
+    },
     template: `
       <div style="padding: 2rem;">
         <BTable data-testid="empty-table" :dataSource="data" :columns="columns" />
@@ -325,7 +347,13 @@ export const Sorting: Story = {
     setup() {
       const columns: BTableColumnType<User>[] = [
         { title: 'Name', dataIndex: 'name', key: 'name', sorter: true },
-        { title: 'Age', dataIndex: 'age', key: 'age', sorter: (a, b) => a.age - b.age, align: 'right' },
+        {
+          title: 'Age',
+          dataIndex: 'age',
+          key: 'age',
+          sorter: (a, b) => a.age - b.age,
+          align: 'right',
+        },
         { title: 'Address', dataIndex: 'address', key: 'address' },
       ];
       return { data: BASIC_DATA, columns };
@@ -375,7 +403,9 @@ export const Filtering: Story = {
       const columns: BTableColumnType<User>[] = [
         { title: 'Name', dataIndex: 'name', key: 'name' },
         {
-          title: 'Status', dataIndex: 'status', key: 'status',
+          title: 'Status',
+          dataIndex: 'status',
+          key: 'status',
           filters: [
             { text: 'Active', value: 'active' },
             { text: 'Inactive', value: 'inactive' },
@@ -454,7 +484,9 @@ export const RowSelectionCheckbox: Story = {
       const selectedKeys = ref<string[]>([]);
       const rowSelection: BTableRowSelection<User> = {
         type: 'checkbox',
-        onChange: (keys) => { selectedKeys.value = keys as string[]; },
+        onChange: (keys) => {
+          selectedKeys.value = keys as string[];
+        },
       };
       return { data: BASIC_DATA, columns: BASIC_COLUMNS, rowSelection, selectedKeys };
     },
@@ -471,10 +503,14 @@ export const RowSelectionCheckbox: Story = {
     const canvas = within(canvasElement);
     const table = canvas.getByTestId('selection-table');
 
-    const selectAllCb = table.querySelector<HTMLInputElement>('.b-table__th--selection .b-table__checkbox');
+    const selectAllCb = table.querySelector<HTMLInputElement>(
+      '.b-table__th--selection .b-table__checkbox',
+    );
     expect(selectAllCb).toBeTruthy();
 
-    const rowCbs = table.querySelectorAll<HTMLInputElement>('.b-table__td--selection .b-table__checkbox');
+    const rowCbs = table.querySelectorAll<HTMLInputElement>(
+      '.b-table__td--selection .b-table__checkbox',
+    );
     expect(rowCbs.length).toBe(BASIC_DATA.length);
 
     // Select first row
@@ -540,7 +576,11 @@ export const Pagination: Story = {
       return {
         data: MANY_DATA,
         columns: BASIC_COLUMNS,
-        pagination: { pageSize: 10, showSizeChanger: true, showTotal: (total: number) => `Total ${total} items` },
+        pagination: {
+          pageSize: 10,
+          showSizeChanger: true,
+          showTotal: (total: number) => `Total ${total} items`,
+        },
       };
     },
     template: `
@@ -668,12 +708,18 @@ export const CustomCellRendering: Story = {
         { title: 'Name', dataIndex: 'name', key: 'name' },
         { title: 'Age', dataIndex: 'age', key: 'age', align: 'right' },
         {
-          title: 'Status', dataIndex: 'status', key: 'status',
+          title: 'Status',
+          dataIndex: 'status',
+          key: 'status',
           customRender: ({ value }) => {
             const active = value === 'active';
-            return h('span', {
-              style: `display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;background:${active ? '#e6f4ff' : '#fff1f0'};color:${active ? '#0958d9' : '#cf1322'}`,
-            }, active ? 'Active' : 'Inactive');
+            return h(
+              'span',
+              {
+                style: `display:inline-block;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:600;background:${active ? '#e6f4ff' : '#fff1f0'};color:${active ? '#0958d9' : '#cf1322'}`,
+              },
+              active ? 'Active' : 'Inactive',
+            );
           },
         },
         { title: 'Action', key: 'action' },
@@ -706,7 +752,9 @@ export const StickyHeader: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { BTable },
-    setup() { return { data: MANY_DATA.slice(0, 20), columns: BASIC_COLUMNS, scroll: { y: 240 } }; },
+    setup() {
+      return { data: MANY_DATA.slice(0, 20), columns: BASIC_COLUMNS, scroll: { y: 240 } };
+    },
     template: `
       <div style="padding: 2rem;">
         <BTable :dataSource="data" :columns="columns" :scroll="scroll" :sticky="true" />
@@ -726,7 +774,9 @@ export const TitleAndFooter: Story = {
   parameters: { controls: { disable: true } },
   render: () => ({
     components: { BTable },
-    setup() { return { data: BASIC_DATA.slice(0, 3), columns: BASIC_COLUMNS }; },
+    setup() {
+      return { data: BASIC_DATA.slice(0, 3), columns: BASIC_COLUMNS };
+    },
     template: `
       <div style="padding: 2rem;">
         <BTable :dataSource="data" :columns="columns" :bordered="true">
@@ -767,12 +817,24 @@ export const Accessibility: Story = {
       const columns: BTableColumnType<User>[] = [
         { title: 'Name', dataIndex: 'name', key: 'name', sorter: true },
         {
-          title: 'Status', dataIndex: 'status', key: 'status',
-          filters: [{ text: 'Active', value: 'active' }]
+          title: 'Status',
+          dataIndex: 'status',
+          key: 'status',
+          filters: [{ text: 'Active', value: 'active' }],
         },
-        { title: 'Age', dataIndex: 'age', key: 'age', sorter: (a, b) => a.age - b.age, align: 'right' },
+        {
+          title: 'Age',
+          dataIndex: 'age',
+          key: 'age',
+          sorter: (a, b) => a.age - b.age,
+          align: 'right',
+        },
       ];
-      return { data: BASIC_DATA, columns, rowSelection: { type: 'checkbox' } as BTableRowSelection<User> };
+      return {
+        data: BASIC_DATA,
+        columns,
+        rowSelection: { type: 'checkbox' } as BTableRowSelection<User>,
+      };
     },
     template: `
       <div style="padding: 2rem;">
@@ -797,7 +859,7 @@ export const Accessibility: Story = {
     expect(tableEl!.getAttribute('role')).toBe('table');
 
     // ── Scope on header cells ──
-    table.querySelectorAll('.b-table__th').forEach(th => {
+    table.querySelectorAll('.b-table__th').forEach((th) => {
       expect(th.getAttribute('scope')).toBe('col');
     });
 
@@ -839,11 +901,13 @@ export const Accessibility: Story = {
     // Close via Escape - dispatch KeyboardEvent directly on the dropdown element
     // since the Escape handler is bound to the dropdown div itself
     dropdown!.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
-    await new Promise(r => requestAnimationFrame(r));
+    await new Promise((r) => requestAnimationFrame(r));
     expect(filterBtn!.getAttribute('aria-expanded')).toBe('false');
 
     // ── Select-all checkbox aria-label ──
-    const selectAll = table.querySelector<HTMLElement>('.b-table__th--selection .b-table__checkbox');
+    const selectAll = table.querySelector<HTMLElement>(
+      '.b-table__th--selection .b-table__checkbox',
+    );
     expect(selectAll).toBeTruthy();
     expect(selectAll!.getAttribute('aria-label')).toBeTruthy();
   },
@@ -884,7 +948,9 @@ export const Theming: Story = {
   },
   render: () => ({
     components: { BTable },
-    setup() { return { data: BASIC_DATA, columns: BASIC_COLUMNS }; },
+    setup() {
+      return { data: BASIC_DATA, columns: BASIC_COLUMNS };
+    },
     template: `
       <div style="padding: 2rem; display: flex; flex-direction: column; gap: 2rem;">
         <div>

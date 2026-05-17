@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils';
-import { defineComponent, h, nextTick, ref } from 'vue';
 import { describe, expect, it } from 'vitest';
+import { defineComponent, h, nextTick, ref } from 'vue';
 
-import BTabs from './BTabs.vue';
 import BTabPane from './BTabPane.vue';
+import BTabs from './BTabs.vue';
 import type { BTabItem } from './types';
 
 const defaultItems: BTabItem[] = [
@@ -662,7 +662,11 @@ describe('BTabs', () => {
         slots: {
           default: () => [
             h(BTabPane, { tabKey: 'a', tab: 'Tab A' }, { default: () => 'Content A' }),
-            h(BTabPane, { tabKey: 'b', tab: 'Tab B', disabled: true }, { default: () => 'Content B' }),
+            h(
+              BTabPane,
+              { tabKey: 'b', tab: 'Tab B', disabled: true },
+              { default: () => 'Content B' },
+            ),
           ],
         },
       });
@@ -678,10 +682,14 @@ describe('BTabs', () => {
       const wrapper = mount(BTabs, {
         slots: {
           default: () => [
-            h(BTabPane, { tabKey: 'a' }, {
-              default: () => 'Content A',
-              tab: () => h('span', { class: 'custom-label' }, 'Custom Label'),
-            }),
+            h(
+              BTabPane,
+              { tabKey: 'a' },
+              {
+                default: () => 'Content A',
+                tab: () => h('span', { class: 'custom-label' }, 'Custom Label'),
+              },
+            ),
           ],
         },
       });
@@ -699,17 +707,20 @@ describe('BTabs', () => {
 
       const TestComp = defineComponent({
         setup() {
-          return () => h(BTabs, null, {
-            default: () => {
-              const panes = [
-                h(BTabPane, { tabKey: 'a', tab: 'Tab A' }, { default: () => 'Content A' }),
-              ];
-              if (show.value) {
-                panes.push(h(BTabPane, { tabKey: 'b', tab: 'Tab B' }, { default: () => 'Content B' }));
-              }
-              return panes;
-            },
-          });
+          return () =>
+            h(BTabs, null, {
+              default: () => {
+                const panes = [
+                  h(BTabPane, { tabKey: 'a', tab: 'Tab A' }, { default: () => 'Content A' }),
+                ];
+                if (show.value) {
+                  panes.push(
+                    h(BTabPane, { tabKey: 'b', tab: 'Tab B' }, { default: () => 'Content B' }),
+                  );
+                }
+                return panes;
+              },
+            });
         },
       });
 

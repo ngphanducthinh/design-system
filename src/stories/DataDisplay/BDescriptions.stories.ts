@@ -171,8 +171,12 @@ export const Bordered: Story = {
     const canvas = within(canvasElement);
     const el = canvas.getByTestId('bordered');
     expect(el.classList.contains('b-descriptions--bordered')).toBe(true);
-    expect(el.querySelectorAll('th.b-descriptions__item-label--bordered').length).toBeGreaterThan(0);
-    expect(el.querySelectorAll('td.b-descriptions__item-content--bordered').length).toBeGreaterThan(0);
+    expect(el.querySelectorAll('th.b-descriptions__item-label--bordered').length).toBeGreaterThan(
+      0,
+    );
+    expect(el.querySelectorAll('td.b-descriptions__item-content--bordered').length).toBeGreaterThan(
+      0,
+    );
   },
 };
 
@@ -331,7 +335,11 @@ export const CustomSpan: Story = {
         { label: 'Negotiated Amount', children: '$80.00' },
         { label: 'Discount', children: '$20.00' },
         { label: 'Official Receipts', children: '$60.00' },
-        { label: 'Config Info', children: 'Data disk type: MongoDB | Database version: 3.4 | Package: dds.mongo.mid', span: 3 },
+        {
+          label: 'Config Info',
+          children: 'Data disk type: MongoDB | Database version: 3.4 | Package: dds.mongo.mid',
+          span: 3,
+        },
       ];
       return { items };
     },
@@ -516,7 +524,9 @@ export const InteractionTests: Story = {
     const basic = canvas.getByTestId('int-basic');
     expect(basic.querySelector('.b-descriptions__title')?.textContent).toBe('Basic');
     expect(basic.querySelectorAll('.b-descriptions__item-label').length).toBeGreaterThanOrEqual(5);
-    expect(basic.querySelectorAll('.b-descriptions__item-content').length).toBeGreaterThanOrEqual(5);
+    expect(basic.querySelectorAll('.b-descriptions__item-content').length).toBeGreaterThanOrEqual(
+      5,
+    );
     expect(basic.classList.contains('b-descriptions--horizontal')).toBe(true);
     expect(basic.classList.contains('b-descriptions--colon')).toBe(true);
 

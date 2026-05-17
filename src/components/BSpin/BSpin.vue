@@ -149,10 +149,7 @@ const rootClasses = computed(() => [
   </template>
 
   <!-- Nested (wraps children) -->
-  <div
-    v-else
-    :class="rootClasses"
-  >
+  <div v-else :class="rootClasses">
     <div
       v-if="shouldShow"
       class="b-spin__overlay-container"

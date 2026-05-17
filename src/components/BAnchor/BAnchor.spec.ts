@@ -129,9 +129,7 @@ describe('BAnchor – props behavior', () => {
   });
 
   it('sets target attribute on links when provided', () => {
-    const items: BAnchorItem[] = [
-      { key: '1', href: '#s1', title: 'Link', target: '_blank' },
-    ];
+    const items: BAnchorItem[] = [{ key: '1', href: '#s1', title: 'Link', target: '_blank' }];
     const w = mountAnchor({ items });
     expect(w.find('.b-anchor-link__title').attributes('target')).toBe('_blank');
   });

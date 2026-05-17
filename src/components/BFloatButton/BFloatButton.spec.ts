@@ -2,9 +2,9 @@ import { mount } from '@vue/test-utils';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { nextTick } from 'vue';
 import BFloatButton from './BFloatButton.vue';
-import BFloatButtonGroup from './BFloatButtonGroup.vue';
 import BFloatButtonBackTop from './BFloatButtonBackTop.vue';
-import { BFloatButtonShape, BFloatButtonType, BFloatButtonTrigger } from './types.ts';
+import BFloatButtonGroup from './BFloatButtonGroup.vue';
+import { BFloatButtonShape, BFloatButtonTrigger, BFloatButtonType } from './types.ts';
 
 // ─────────────────────────────────────────────
 // BFloatButton
@@ -219,7 +219,9 @@ describe('BFloatButtonGroup', () => {
     await nextTick();
     await wrapper.find('.b-float-button-group__trigger').trigger('click');
     await nextTick();
-    expect(wrapper.find('.b-float-button-group__trigger').attributes('aria-expanded')).toBe('false');
+    expect(wrapper.find('.b-float-button-group__trigger').attributes('aria-expanded')).toBe(
+      'false',
+    );
     expect(wrapper.emitted('openChange')).toEqual([[true], [false]]);
   });
 
@@ -324,7 +326,11 @@ describe('BFloatButtonBackTop', () => {
 
   it('applies shape and type props to inner button', async () => {
     const wrapper = mount(BFloatButtonBackTop, {
-      props: { visibilityHeight: 0, shape: BFloatButtonShape.Square, type: BFloatButtonType.Primary },
+      props: {
+        visibilityHeight: 0,
+        shape: BFloatButtonShape.Square,
+        type: BFloatButtonType.Primary,
+      },
     });
     Object.defineProperty(window, 'scrollY', { value: 1, writable: true, configurable: true });
     window.dispatchEvent(new Event('scroll'));

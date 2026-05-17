@@ -7,8 +7,19 @@ import { expect, within } from 'storybook/test';
 // Meta
 // ─────────────────────────────────────────────
 const PRESET_COLORS = [
-  'pink', 'red', 'yellow', 'orange', 'cyan', 'green', 'blue',
-  'purple', 'geekblue', 'magenta', 'volcano', 'gold', 'lime',
+  'pink',
+  'red',
+  'yellow',
+  'orange',
+  'cyan',
+  'green',
+  'blue',
+  'purple',
+  'geekblue',
+  'magenta',
+  'volcano',
+  'gold',
+  'lime',
 ];
 
 const meta = {
@@ -89,7 +100,8 @@ type Story = StoryObj<typeof meta>;
 // ─────────────────────────────────────────────
 // Helper: simple box to wrap
 // ─────────────────────────────────────────────
-const boxStyle = 'display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:oklch(90% 0 0);border-radius:6px;font-size:12px;color:#525252;';
+const boxStyle =
+  'display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:oklch(90% 0 0);border-radius:6px;font-size:12px;color:#525252;';
 
 // ─────────────────────────────────────────────
 // 1. Playground (all controls)
@@ -276,7 +288,8 @@ export const PresetColors: Story = {
   render: () => ({
     components: { BBadge },
     setup() {
-      const presetBoxStyle = 'display:inline-flex;align-items:end;justify-content:center;width:56px;height:56px;padding-bottom:8px;background:oklch(90% 0 0);border-radius:6px;font-size:12px;color:#525252;';
+      const presetBoxStyle =
+        'display:inline-flex;align-items:end;justify-content:center;width:56px;height:56px;padding-bottom:8px;background:oklch(90% 0 0);border-radius:6px;font-size:12px;color:#525252;';
       return { colors: PRESET_COLORS, presetBoxStyle };
     },
     template: `
@@ -454,7 +467,8 @@ export const Theming: Story = {
   render: () => ({
     components: { BBadge },
     setup() {
-      const themeBoxStyle = 'display:inline-flex;align-items:end;justify-content:center;width:56px;height:56px;padding-bottom:8px;background:oklch(90% 0 0);border-radius:6px;font-size:12px;color:#525252;';
+      const themeBoxStyle =
+        'display:inline-flex;align-items:end;justify-content:center;width:56px;height:56px;padding-bottom:8px;background:oklch(90% 0 0);border-radius:6px;font-size:12px;color:#525252;';
       return { themeBoxStyle };
     },
     template: `
@@ -504,7 +518,8 @@ export const InteractionTests: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Automated play function: verifies count rendering, overflow text, dot visibility, and zero handling.',
+        story:
+          'Automated play function: verifies count rendering, overflow text, dot visibility, and zero handling.',
       },
     },
   },

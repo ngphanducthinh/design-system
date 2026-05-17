@@ -512,7 +512,9 @@ export const Accessibility: Story = {
 
     // Per-item disabled
     const partial = canvas.getByTestId('a11y-partial');
-    expect(partial.querySelectorAll('.b-segmented__item')[1].getAttribute('aria-disabled')).toBe('true');
+    expect(partial.querySelectorAll('.b-segmented__item')[1].getAttribute('aria-disabled')).toBe(
+      'true',
+    );
 
     // Keyboard: click item 0, then ArrowRight should move focus to item 1
     const firstItem = items[0] as HTMLElement;
@@ -594,7 +596,8 @@ export const InteractionTests: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Automated play function verifying click selection, keyboard navigation, and disabled guard.',
+        story:
+          'Automated play function verifying click selection, keyboard navigation, and disabled guard.',
       },
     },
   },

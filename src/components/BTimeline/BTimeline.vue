@@ -159,7 +159,10 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
           { 'b-timeline-item--pending': item.loading },
           item.className,
         ]"
-        :style="[dotColorStyle(item.color), typeof item.style === 'string' ? item.style : item.style]"
+        :style="[
+          dotColorStyle(item.color),
+          typeof item.style === 'string' ? item.style : item.style,
+        ]"
       >
         <!-- Label / title (opposing side) - always rendered as structural spacer; CSS hides in start mode -->
         <span class="b-timeline-item__label">{{ item.title ?? '' }}</span>
@@ -200,7 +203,12 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
       <div class="b-timeline-item__tail" aria-hidden="true" />
       <div class="b-timeline-item__dot-wrapper" aria-hidden="true">
         <slot name="pendingDot">
-          <span v-if="pendingDot" class="b-timeline-item__dot--custom" :data-icon="pendingDot" aria-hidden="true" />
+          <span
+            v-if="pendingDot"
+            class="b-timeline-item__dot--custom"
+            :data-icon="pendingDot"
+            aria-hidden="true"
+          />
           <span v-else class="b-timeline-item__dot--pending-spinner" aria-hidden="true" />
         </slot>
       </div>
@@ -221,7 +229,7 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
 
   /* ── Dot ── */
   --b-timeline-dot-size: 10px;
-  --b-timeline-dot-offset: 0px;       /* fine-tune vertical alignment */
+  --b-timeline-dot-offset: 0px; /* fine-tune vertical alignment */
   --b-timeline-dot-border-width: 2px;
   --b-timeline-custom-dot-font-size: 20px; /* emoji / text custom dots */
 
@@ -290,7 +298,9 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
 .b-timeline-item__tail {
   position: absolute;
   top: calc(var(--b-timeline-dot-size) + 4px);
-  left: calc((var(--b-timeline-dot-size) / 2) - (var(--b-timeline-line-width) / 2)); /* overridden per-mode */
+  left: calc(
+    (var(--b-timeline-dot-size) / 2) - (var(--b-timeline-line-width) / 2)
+  ); /* overridden per-mode */
   height: calc(100% - var(--b-timeline-dot-size) - 4px);
   width: var(--b-timeline-line-width);
   background: var(--b-timeline-line-color);
@@ -598,7 +608,8 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
    Pending item
    ───────────────────────────────────────────── */
 .b-timeline-item--pending .b-timeline-item__tail {
-  border-left: var(--b-timeline-line-width) var(--b-timeline-pending-line-style) var(--b-timeline-line-color);
+  border-left: var(--b-timeline-line-width) var(--b-timeline-pending-line-style)
+    var(--b-timeline-line-color);
   background: transparent;
 }
 
@@ -610,7 +621,8 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
 /* Horizontal pending tail */
 .b-timeline--horizontal .b-timeline-item--pending .b-timeline-item__tail {
   border-left: none;
-  border-top: var(--b-timeline-line-width) var(--b-timeline-pending-line-style) var(--b-timeline-line-color);
+  border-top: var(--b-timeline-line-width) var(--b-timeline-pending-line-style)
+    var(--b-timeline-line-color);
   background: transparent;
   height: 0;
 }
@@ -628,7 +640,9 @@ function itemPositionClass(index: number, placement?: BTimelineItemPlacement): s
 }
 
 @keyframes b-timeline-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ─────────────────────────────────────────────

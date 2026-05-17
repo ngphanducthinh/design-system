@@ -8,7 +8,12 @@ import type {
   BCascaderShowSearchConfig,
   BCascaderValueType,
 } from './types.ts';
-import { BCascaderExpandTrigger, BCascaderPlacement, BCascaderSize, BCascaderStatus } from './types.ts';
+import {
+  BCascaderExpandTrigger,
+  BCascaderPlacement,
+  BCascaderSize,
+  BCascaderStatus,
+} from './types.ts';
 
 const {
   options = [],
@@ -63,7 +68,11 @@ const model = defineModel<BCascaderValueType | BCascaderValueType[]>();
 
 const emit = defineEmits<{
   /** Fired when selection changes. */
-  (e: 'change', value: BCascaderValueType | BCascaderValueType[], selectedOptions: BCascaderOption[][]): void;
+  (
+    e: 'change',
+    value: BCascaderValueType | BCascaderValueType[],
+    selectedOptions: BCascaderOption[][],
+  ): void;
   /** Fired when popup visibility changes. */
   (e: 'openChange', open: boolean): void;
   /** Fired when search input changes. */
@@ -97,7 +106,9 @@ function getValue(option: BCascaderOption): string | number {
 }
 
 function getChildren(option: BCascaderOption): BCascaderOption[] | undefined {
-  return (option as unknown as Record<string, unknown>)[childrenField.value] as BCascaderOption[] | undefined;
+  return (option as unknown as Record<string, unknown>)[childrenField.value] as
+    | BCascaderOption[]
+    | undefined;
 }
 
 // ─────────────────────────────────────────────
@@ -157,11 +168,13 @@ function toggleOpen() {
   }
 }
 
-
 // ─────────────────────────────────────────────
 // Option resolution
 // ─────────────────────────────────────────────
-function findOptionPath(value: BCascaderValueType, opts: BCascaderOption[] = options): BCascaderOption[] {
+function findOptionPath(
+  value: BCascaderValueType,
+  opts: BCascaderOption[] = options,
+): BCascaderOption[] {
   for (const opt of opts) {
     if (getValue(opt) === value[0]) {
       if (value.length === 1) return [opt];
@@ -245,7 +258,11 @@ function selectOption(option: BCascaderOption, columnIndex: number) {
         multipleSelections.value.push(pathValues);
       }
       model.value = [...multipleSelections.value];
-      emit('change', model.value, multipleSelections.value.map((v) => findOptionPath(v)));
+      emit(
+        'change',
+        model.value,
+        multipleSelections.value.map((v) => findOptionPath(v)),
+      );
     } else {
       model.value = pathValues;
       emit('change', pathValues, [newPath]);
@@ -363,7 +380,11 @@ function selectSearchResult(path: BCascaderOption[]) {
       multipleSelections.value.push(pathValues);
     }
     model.value = [...multipleSelections.value];
-    emit('change', model.value, multipleSelections.value.map((v) => findOptionPath(v)));
+    emit(
+      'change',
+      model.value,
+      multipleSelections.value.map((v) => findOptionPath(v)),
+    );
   } else {
     selectedPath.value = path;
     model.value = pathValues;
@@ -395,13 +416,15 @@ function onClear(event: Event) {
 
 function removeTag(val: BCascaderValueType, event: Event) {
   event.stopPropagation();
-  const idx = multipleSelections.value.findIndex(
-    (v) => JSON.stringify(v) === JSON.stringify(val),
-  );
+  const idx = multipleSelections.value.findIndex((v) => JSON.stringify(v) === JSON.stringify(val));
   if (idx >= 0) {
     multipleSelections.value.splice(idx, 1);
     model.value = [...multipleSelections.value];
-    emit('change', model.value, multipleSelections.value.map((v) => findOptionPath(v)));
+    emit(
+      'change',
+      model.value,
+      multipleSelections.value.map((v) => findOptionPath(v)),
+    );
   }
 }
 
@@ -511,7 +534,9 @@ function focusOptionAt(col: number, idx: number) {
   nextTick(() => {
     const menuEl = popoverRef.value?.querySelectorAll('.b-cascader__menu')[col];
     if (!menuEl) return;
-    const items = menuEl.querySelectorAll<HTMLElement>('.b-cascader__option:not([aria-disabled="true"])');
+    const items = menuEl.querySelectorAll<HTMLElement>(
+      '.b-cascader__option:not([aria-disabled="true"])',
+    );
     items[idx]?.focus();
   });
 }
@@ -589,8 +614,10 @@ const isSearching = computed(() => searchEnabled.value && searchValue.value.leng
 // ─────────────────────────────────────────────
 function isOptionSelected(option: BCascaderOption, columnIndex: number): boolean {
   if (!multiple) {
-    return selectedPath.value[columnIndex] !== undefined &&
-      getValue(selectedPath.value[columnIndex]) === getValue(option);
+    return (
+      selectedPath.value[columnIndex] !== undefined &&
+      getValue(selectedPath.value[columnIndex]) === getValue(option)
+    );
   }
   // In multiple mode, check if any selection passes through this option at this column
   return multipleSelections.value.some((val) => val[columnIndex] === getValue(option));
@@ -621,11 +648,7 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
   >
     <!-- Multiple tags -->
     <div v-if="multiple" class="b-cascader__selections">
-      <span
-        v-for="tag in visibleTags"
-        :key="JSON.stringify(tag.value)"
-        class="b-cascader__tag"
-      >
+      <span v-for="tag in visibleTags" :key="JSON.stringify(tag.value)" class="b-cascader__tag">
         <span class="b-cascader__tag-text">{{ tag.label }}</span>
         <span
           class="b-cascader__tag-remove"
@@ -654,10 +677,9 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
         @input="onSearchInput"
         @click.stop
       />
-      <span
-        v-if="!hasValue && !searchEnabled"
-        class="b-cascader__placeholder"
-      >{{ placeholder }}</span>
+      <span v-if="!hasValue && !searchEnabled" class="b-cascader__placeholder">{{
+        placeholder
+      }}</span>
     </div>
 
     <!-- Single mode -->
@@ -677,8 +699,21 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
         @input="onSearchInput"
         @click.stop
       />
-      <span v-else class="b-cascader__value-display" role="combobox" :aria-expanded="isOpen" :aria-label="hasValue ? displayText : placeholder" :aria-disabled="disabled || undefined" :aria-controls="isOpen ? popupId : undefined">
-        <slot name="displayRender" v-if="hasValue" :labels="displayLabels" :selected-options="selectedPath">
+      <span
+        v-else
+        class="b-cascader__value-display"
+        role="combobox"
+        :aria-expanded="isOpen"
+        :aria-label="hasValue ? displayText : placeholder"
+        :aria-disabled="disabled || undefined"
+        :aria-controls="isOpen ? popupId : undefined"
+      >
+        <slot
+          name="displayRender"
+          v-if="hasValue"
+          :labels="displayLabels"
+          :selected-options="selectedPath"
+        >
           {{ displayText }}
         </slot>
         <span v-if="!hasValue" class="b-cascader__placeholder">{{ placeholder }}</span>
@@ -694,7 +729,9 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
       @click="onClear"
     >
       <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true">
-        <path d="M8 1a7 7 0 110 14A7 7 0 018 1zm2.828 4.172a.5.5 0 00-.707 0L8 7.293 5.879 5.172a.5.5 0 10-.707.707L7.293 8l-2.121 2.121a.5.5 0 00.707.707L8 8.707l2.121 2.121a.5.5 0 00.707-.707L8.707 8l2.121-2.121a.5.5 0 000-.707z"/>
+        <path
+          d="M8 1a7 7 0 110 14A7 7 0 018 1zm2.828 4.172a.5.5 0 00-.707 0L8 7.293 5.879 5.172a.5.5 0 10-.707.707L7.293 8l-2.121 2.121a.5.5 0 00.707.707L8 8.707l2.121 2.121a.5.5 0 00.707-.707L8.707 8l2.121-2.121a.5.5 0 000-.707z"
+        />
       </svg>
     </span>
 
@@ -708,7 +745,9 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
           height="12"
           fill="currentColor"
         >
-          <path d="M4.427 5.427a.75.75 0 011.06-.073L8 7.585l2.513-2.231a.75.75 0 01.987 1.132l-3 2.666a.75.75 0 01-.987 0l-3-2.666a.75.75 0 01-.086-1.06z"/>
+          <path
+            d="M4.427 5.427a.75.75 0 011.06-.073L8 7.585l2.513-2.231a.75.75 0 01.987 1.132l-3 2.666a.75.75 0 01-.987 0l-3-2.666a.75.75 0 01-.086-1.06z"
+          />
         </svg>
       </slot>
     </span>
@@ -724,78 +763,87 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
       @click.stop
       @keydown="onMenuKeydown"
     >
-    <!-- Search results -->
-    <div v-if="isSearching" class="b-cascader__search-panel" role="listbox">
-      <template v-if="filteredPaths.length > 0">
-        <div
-          v-for="(path, idx) in filteredPaths"
-          :key="idx"
-          class="b-cascader__search-item"
-          role="option"
-          tabindex="0"
-          :aria-selected="false"
-          @click="selectSearchResult(path)"
-          @keydown.enter.prevent="selectSearchResult(path)"
-        >
-          <span v-for="(opt, i) in path" :key="getValue(opt)">
-            <span>{{ getLabel(opt) }}</span>
-            <span v-if="i < path.length - 1" class="b-cascader__search-separator"> / </span>
-          </span>
+      <!-- Search results -->
+      <div v-if="isSearching" class="b-cascader__search-panel" role="listbox">
+        <template v-if="filteredPaths.length > 0">
+          <div
+            v-for="(path, idx) in filteredPaths"
+            :key="idx"
+            class="b-cascader__search-item"
+            role="option"
+            tabindex="0"
+            :aria-selected="false"
+            @click="selectSearchResult(path)"
+            @keydown.enter.prevent="selectSearchResult(path)"
+          >
+            <span v-for="(opt, i) in path" :key="getValue(opt)">
+              <span>{{ getLabel(opt) }}</span>
+              <span v-if="i < path.length - 1" class="b-cascader__search-separator"> / </span>
+            </span>
+          </div>
+        </template>
+        <div v-else class="b-cascader__empty">
+          <slot name="notFoundContent">{{ notFoundContent }}</slot>
         </div>
-      </template>
-      <div v-else class="b-cascader__empty">
-        <slot name="notFoundContent">{{ notFoundContent }}</slot>
+      </div>
+
+      <!-- Cascading menus -->
+      <div v-else class="b-cascader__menus">
+        <ul
+          v-for="(column, colIdx) in activeColumns"
+          :key="colIdx"
+          class="b-cascader__menu"
+          role="listbox"
+          :aria-label="`Level ${colIdx + 1}`"
+        >
+          <li
+            v-for="option in column"
+            :key="getValue(option)"
+            :class="[
+              'b-cascader__option',
+              {
+                'b-cascader__option--selected': isOptionSelected(option, colIdx),
+                'b-cascader__option--disabled': option.disabled,
+                'b-cascader__option--expanded':
+                  selectedPath[colIdx] && getValue(selectedPath[colIdx]) === getValue(option),
+              },
+            ]"
+            role="option"
+            :tabindex="option.disabled ? -1 : 0"
+            :aria-selected="isOptionSelected(option, colIdx)"
+            :aria-disabled="option.disabled || undefined"
+            @click.stop="selectOption(option, colIdx)"
+            @mouseenter="expandOnHover(option, colIdx)"
+            @keydown.enter.prevent="selectOption(option, colIdx)"
+          >
+            <span v-if="multiple" class="b-cascader__checkbox" aria-hidden="true">
+              <span
+                :class="[
+                  'b-cascader__checkbox-inner',
+                  { 'b-cascader__checkbox-inner--checked': isOptionSelected(option, colIdx) },
+                ]"
+              />
+            </span>
+            <span class="b-cascader__option-label">{{ getLabel(option) }}</span>
+            <span
+              v-if="getChildren(option) && getChildren(option)!.length > 0"
+              class="b-cascader__option-expand"
+              aria-hidden="true"
+            >
+              <slot name="expandIcon">
+                <svg viewBox="0 0 16 16" width="10" height="10" fill="currentColor">
+                  <path
+                    d="M6.427 4.427a.75.75 0 011.146.96l-.073.087L5.768 8l1.732 2.527a.75.75 0 01-.96 1.146l-.087-.073-2.25-3.28a.75.75 0 01-.007-.98l.08-.093 2.25-2.82zm3 0a.75.75 0 011.146.96l-.073.087L8.768 8l1.732 2.527a.75.75 0 01-.96 1.146l-.087-.073-2.25-3.28a.75.75 0 01-.007-.98l.08-.093 2.25-2.82z"
+                    transform="rotate(180 8 8)"
+                  />
+                </svg>
+              </slot>
+            </span>
+          </li>
+        </ul>
       </div>
     </div>
-
-    <!-- Cascading menus -->
-    <div v-else class="b-cascader__menus">
-      <ul
-        v-for="(column, colIdx) in activeColumns"
-        :key="colIdx"
-        class="b-cascader__menu"
-        role="listbox"
-        :aria-label="`Level ${colIdx + 1}`"
-      >
-        <li
-          v-for="option in column"
-          :key="getValue(option)"
-          :class="[
-            'b-cascader__option',
-            {
-              'b-cascader__option--selected': isOptionSelected(option, colIdx),
-              'b-cascader__option--disabled': option.disabled,
-              'b-cascader__option--expanded': selectedPath[colIdx] && getValue(selectedPath[colIdx]) === getValue(option),
-            },
-          ]"
-          role="option"
-          :tabindex="option.disabled ? -1 : 0"
-          :aria-selected="isOptionSelected(option, colIdx)"
-          :aria-disabled="option.disabled || undefined"
-          @click.stop="selectOption(option, colIdx)"
-          @mouseenter="expandOnHover(option, colIdx)"
-          @keydown.enter.prevent="selectOption(option, colIdx)"
-        >
-          <span v-if="multiple" class="b-cascader__checkbox" aria-hidden="true">
-            <span :class="['b-cascader__checkbox-inner', { 'b-cascader__checkbox-inner--checked': isOptionSelected(option, colIdx) }]" />
-          </span>
-          <span class="b-cascader__option-label">{{ getLabel(option) }}</span>
-          <span
-            v-if="getChildren(option) && getChildren(option)!.length > 0"
-            class="b-cascader__option-expand"
-            aria-hidden="true"
-          >
-            <slot name="expandIcon">
-              <svg viewBox="0 0 16 16" width="10" height="10" fill="currentColor">
-                <path d="M6.427 4.427a.75.75 0 011.146.96l-.073.087L5.768 8l1.732 2.527a.75.75 0 01-.96 1.146l-.087-.073-2.25-3.28a.75.75 0 01-.007-.98l.08-.093 2.25-2.82zm3 0a.75.75 0 011.146.96l-.073.087L8.768 8l1.732 2.527a.75.75 0 01-.96 1.146l-.087-.073-2.25-3.28a.75.75 0 01-.007-.98l.08-.093 2.25-2.82z" transform="rotate(180 8 8)"/>
-              </svg>
-            </slot>
-          </span>
-        </li>
-      </ul>
-    </div>
   </div>
-</div>
 </template>
 
 <style>
@@ -830,8 +878,9 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
   --b-cascader-clear-hover-color: rgba(0, 0, 0, 0.45);
   --b-cascader-arrow-color: rgba(0, 0, 0, 0.25);
   --b-cascader-popup-bg: #fff;
-  --b-cascader-popup-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --b-cascader-popup-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
   --b-cascader-popup-border-radius: 8px;
   --b-cascader-popup-z-index: 1050;
   --b-cascader-option-hover-bg: rgba(0, 0, 0, 0.04);
@@ -866,8 +915,9 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
   --b-cascader-clear-hover-color: rgba(255, 255, 255, 0.45);
   --b-cascader-arrow-color: rgba(255, 255, 255, 0.25);
   --b-cascader-popup-bg: #1f1f1f;
-  --b-cascader-popup-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.24),
-    0 3px 6px -4px rgba(0, 0, 0, 0.36), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+  --b-cascader-popup-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
+    0 9px 28px 8px rgba(0, 0, 0, 0.2);
   --b-cascader-option-selected-bg: rgba(22, 119, 255, 0.15);
   --b-cascader-option-selected-color: rgba(255, 255, 255, 0.85);
   --b-cascader-option-hover-bg: rgba(255, 255, 255, 0.08);
@@ -893,8 +943,9 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
     --b-cascader-clear-hover-color: rgba(255, 255, 255, 0.45);
     --b-cascader-arrow-color: rgba(255, 255, 255, 0.25);
     --b-cascader-popup-bg: #1f1f1f;
-    --b-cascader-popup-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.24),
-      0 3px 6px -4px rgba(0, 0, 0, 0.36), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+    --b-cascader-popup-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
+      0 9px 28px 8px rgba(0, 0, 0, 0.2);
     --b-cascader-option-selected-bg: rgba(22, 119, 255, 0.15);
     --b-cascader-option-selected-color: rgba(255, 255, 255, 0.85);
     --b-cascader-option-hover-bg: rgba(255, 255, 255, 0.08);
@@ -1109,7 +1160,9 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
   color: var(--b-cascader-clear-color);
   cursor: pointer;
   opacity: 0;
-  transition: opacity 150ms, color 150ms;
+  transition:
+    opacity 150ms,
+    color 150ms;
   margin-left: 4px;
   flex-shrink: 0;
 

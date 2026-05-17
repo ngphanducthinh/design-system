@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { inject } from 'vue';
 import BMenuItem from './BMenuItem.vue';
-import {
-  BMenuContextKey,
-  type BMenuContext,
-  type BMenuItemType,
-} from './types';
+import { BMenuContextKey, type BMenuContext, type BMenuItemType } from './types';
 
 // ─────────────────────────────────────────────
 // Props
@@ -33,11 +29,7 @@ const menu = inject<BMenuContext>(BMenuContextKey)!;
 
 <template>
   <li class="b-menu-item-group" role="presentation">
-    <div
-      v-if="!menu.inlineCollapsed.value"
-      class="b-menu-item-group__title"
-      role="presentation"
-    >
+    <div v-if="!menu.inlineCollapsed.value" class="b-menu-item-group__title" role="presentation">
       <slot name="title">{{ props.label }}</slot>
     </div>
     <ul class="b-menu-item-group__list" role="group" :aria-label="props.label">

@@ -165,8 +165,15 @@ const rootTag = computed(() => (href ? 'a' : 'button'));
         <slot name="icon">
           <BIcon v-if="icon" :icon="icon" size="md" />
           <!-- Default plus icon when no icon prop or slot is provided -->
-          <svg v-else width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+          <svg
+            v-else
+            width="1em"
+            height="1em"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z" />
           </svg>
         </slot>
       </span>
@@ -181,7 +188,11 @@ const rootTag = computed(() => (href ? 'a' : 'button'));
     </span>
 
     <!-- Tooltip overlay -->
-    <span v-if="$slots.tooltip || (tooltip && !ariaLabel)" class="b-float-button__tooltip" role="tooltip">
+    <span
+      v-if="$slots.tooltip || (tooltip && !ariaLabel)"
+      class="b-float-button__tooltip"
+      role="tooltip"
+    >
       <slot name="tooltip">{{ tooltip }}</slot>
     </span>
   </component>
@@ -213,7 +224,9 @@ const rootTag = computed(() => (href ? 'a' : 'button'));
   --b-float-button-border-radius-circle: 50%;
   --b-float-button-border-radius-square: 0.5rem;
   /* Shadow — AntD: boxShadowSecondary */
-  --b-float-button-shadow: 0 6px 16px 0 rgba(0,0,0,.08), 0 3px 6px -4px rgba(0,0,0,.12), 0 9px 28px 8px rgba(0,0,0,.05);
+  --b-float-button-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
   /* Bottom inset — AntD: floatButtonInsetBlockEnd (48px) */
   --b-float-button-inset-block-end: 3rem;
   /* Inline inset — AntD: floatButtonInsetInlineEnd (24px) */
@@ -241,7 +254,9 @@ const rootTag = computed(() => (href ? 'a' : 'button'));
   --b-float-button-color: oklch(88% 0.01 260);
   --b-float-button-primary-bg: oklch(50% 0.2 264);
   --b-float-button-primary-bg-hover: oklch(57% 0.2 264);
-  --b-float-button-shadow: 0 6px 16px 0 oklch(0% 0 0 / 30%), 0 3px 6px -4px oklch(0% 0 0 / 40%), 0 9px 28px 8px oklch(0% 0 0 / 25%);
+  --b-float-button-shadow:
+    0 6px 16px 0 oklch(0% 0 0 / 30%), 0 3px 6px -4px oklch(0% 0 0 / 40%),
+    0 9px 28px 8px oklch(0% 0 0 / 25%);
   --b-float-button-tooltip-bg: oklch(30% 0.02 260);
   --b-float-button-tooltip-color: oklch(88% 0.01 260);
   --b-float-button-badge-bg: oklch(55% 0.22 25);

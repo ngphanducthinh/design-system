@@ -73,7 +73,6 @@ const ICONS_BASE_URL = import.meta.env.DEV
   ? '/src/assets/icons'
   : `/node_modules/${__PACKAGE_NAME__}/dist/assets/icons`;
 
-
 const svgStyle = computed(() => ({
   width: width || `${BIconSizeMap[size]}rem`,
   height: height || `${BIconSizeMap[size]}rem`,

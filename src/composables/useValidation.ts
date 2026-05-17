@@ -26,9 +26,7 @@ export interface ValidationFieldState<T = unknown> {
 }
 
 export const PIKey = {
-  FormValidation: Symbol() as InjectionKey<
-    Record<string, Ref<ValidationFieldState>>
-  >,
+  FormValidation: Symbol() as InjectionKey<Record<string, Ref<ValidationFieldState>>>,
 };
 
 /**
@@ -73,11 +71,7 @@ export function useValidationForm() {
  * Registers the field into the form's validation registry,
  * validates using the provided Zod schema, and tracks dirty/touched state.
  */
-export function useValidationField<T>(
-  key: string,
-  fieldValue: Ref<T>,
-  schema: ZodType<T>,
-) {
+export function useValidationField<T>(key: string, fieldValue: Ref<T>, schema: ZodType<T>) {
   const initialValue = structuredClone(fieldValue.value);
 
   const fieldState = ref<ValidationFieldState<T>>({
@@ -106,9 +100,7 @@ export function useValidationField<T>(
       fieldState.value.errors = [];
       fieldState.value.isValid = true;
     } else {
-      fieldState.value.errors = result.error.issues.map(
-        (issue) => issue.message,
-      );
+      fieldState.value.errors = result.error.issues.map((issue) => issue.message);
       fieldState.value.isValid = false;
     }
 

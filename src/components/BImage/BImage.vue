@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref, watch, nextTick } from 'vue';
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
 
 // ─────────────────────────────────────────────
 // Types
@@ -187,9 +187,7 @@ const dimensionStyle = computed(() => {
 // ─────────────────────────────────────────────
 // Show mask logic
 // ─────────────────────────────────────────────
-const showMask = computed(
-  () => props.preview && props.mask && loadStatus.value === 'loaded',
-);
+const showMask = computed(() => props.preview && props.mask && loadStatus.value === 'loaded');
 
 // ─────────────────────────────────────────────
 // Preview overlay
@@ -327,10 +325,7 @@ function handlePreviewPointerDown(event: PointerEvent) {
   if (!props.movable) return;
   // Only initiate drag on the image body (not toolbar/close)
   const target = event.target as HTMLElement;
-  if (
-    target.closest('.b-image-preview__toolbar') ||
-    target.closest('.b-image-preview__close')
-  ) {
+  if (target.closest('.b-image-preview__toolbar') || target.closest('.b-image-preview__close')) {
     return;
   }
 
@@ -385,9 +380,7 @@ function handleOverlayKeydown(event: KeyboardEvent) {
 
   if (event.key === 'Tab' && overlayRef.value) {
     const focusable = Array.from(
-      overlayRef.value.querySelectorAll<HTMLElement>(
-        'button, [tabindex]:not([tabindex="-1"])',
-      ),
+      overlayRef.value.querySelectorAll<HTMLElement>('button, [tabindex]:not([tabindex="-1"])'),
     );
     if (focusable.length === 0) return;
 
@@ -453,9 +446,7 @@ function handleToolbarKeydown(event: KeyboardEvent) {
 
   const toolbar = target.closest('.b-image-preview__toolbar');
   if (!toolbar) return;
-  const buttons = Array.from(
-    toolbar.querySelectorAll<HTMLElement>('button:not(:disabled)'),
-  );
+  const buttons = Array.from(toolbar.querySelectorAll<HTMLElement>('button:not(:disabled)'));
   const index = buttons.indexOf(target);
 
   let nextIndex = -1;
@@ -588,10 +579,7 @@ function handleToolbarKeydown(event: KeyboardEvent) {
           @pointercancel="handlePreviewPointerUp"
         >
           <!-- Backdrop -->
-          <div
-            class="b-image-preview__backdrop"
-            @click="closePreview"
-          />
+          <div class="b-image-preview__backdrop" @click="closePreview" />
 
           <!-- Close button -->
           <button
@@ -600,7 +588,16 @@ function handleToolbarKeydown(event: KeyboardEvent) {
             aria-label="Close preview"
             @click="closePreview"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              focusable="false"
+            >
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
@@ -631,7 +628,14 @@ function handleToolbarKeydown(event: KeyboardEvent) {
               :aria-pressed="String(flipX)"
               @click="toggleFlipX"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+                focusable="false"
+              >
                 <path d="M8 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h3" />
                 <path d="M16 3h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-3" />
                 <line x1="12" y1="1" x2="12" y2="23" stroke-dasharray="2 2" />
@@ -645,7 +649,14 @@ function handleToolbarKeydown(event: KeyboardEvent) {
               :aria-pressed="String(flipY)"
               @click="toggleFlipY"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+                focusable="false"
+              >
                 <path d="M3 8V5a2 2 0 0 1 2-2h14c1.1 0 2 .9 2 2v3" />
                 <path d="M3 16v3a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3" />
                 <line x1="1" y1="12" x2="23" y2="12" stroke-dasharray="2 2" />
@@ -653,24 +664,34 @@ function handleToolbarKeydown(event: KeyboardEvent) {
             </button>
 
             <!-- Rotate Left -->
-            <button
-              type="button"
-              aria-label="Rotate left"
-              @click="rotateLeft"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <button type="button" aria-label="Rotate left" @click="rotateLeft">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
                 <polyline points="1 4 1 10 7 10" />
                 <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
               </svg>
             </button>
 
             <!-- Rotate Right -->
-            <button
-              type="button"
-              aria-label="Rotate right"
-              @click="rotateRight"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <button type="button" aria-label="Rotate right" @click="rotateRight">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
                 <polyline points="23 4 23 10 17 10" />
                 <path d="M20.49 15a9 9 0 1 1-2.13-9.36L23 10" />
               </svg>
@@ -683,7 +704,16 @@ function handleToolbarKeydown(event: KeyboardEvent) {
               :disabled="scale <= minScale"
               @click="zoomOut"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
                 <circle cx="11" cy="11" r="8" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 <line x1="8" y1="11" x2="14" y2="11" />
@@ -691,11 +721,7 @@ function handleToolbarKeydown(event: KeyboardEvent) {
             </button>
 
             <!-- Scale indicator -->
-            <span
-              class="b-image-preview__scale"
-              aria-live="polite"
-              aria-atomic="true"
-            >
+            <span class="b-image-preview__scale" aria-live="polite" aria-atomic="true">
               {{ Math.round(scale * 100) }}%
             </span>
 
@@ -706,7 +732,16 @@ function handleToolbarKeydown(event: KeyboardEvent) {
               :disabled="scale >= maxScale"
               @click="zoomIn"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
                 <circle cx="11" cy="11" r="8" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
                 <line x1="11" y1="8" x2="11" y2="14" />
@@ -715,14 +750,30 @@ function handleToolbarKeydown(event: KeyboardEvent) {
             </button>
 
             <!-- Reset (1:1) -->
-            <button
-              type="button"
-              aria-label="Reset to original size"
-              @click="doResetTransform"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <button type="button" aria-label="Reset to original size" @click="doResetTransform">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+              >
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-size="10" font-weight="600" font-family="system-ui">1:1</text>
+                <text
+                  x="12"
+                  y="16"
+                  text-anchor="middle"
+                  fill="currentColor"
+                  stroke="none"
+                  font-size="10"
+                  font-weight="600"
+                  font-family="system-ui"
+                >
+                  1:1
+                </text>
               </svg>
             </button>
           </div>

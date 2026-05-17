@@ -100,10 +100,7 @@ const variantClass = computed(() =>
 </script>
 
 <template>
-  <li
-    :class="rootClasses"
-    :style="colorStyle"
-  >
+  <li :class="rootClasses" :style="colorStyle">
     <!-- Label - always rendered as a structural spacer; CSS hides it in start mode -->
     <span class="b-timeline-item__label">
       <slot name="label" />
@@ -116,7 +113,11 @@ const variantClass = computed(() =>
     <div class="b-timeline-item__dot-wrapper" aria-hidden="true">
       <slot name="icon">
         <template v-if="icon">
-          <span class="b-timeline-item__dot b-timeline-item__dot--custom" :data-icon="icon" aria-hidden="true" />
+          <span
+            class="b-timeline-item__dot b-timeline-item__dot--custom"
+            :data-icon="icon"
+            aria-hidden="true"
+          />
         </template>
         <template v-else-if="loading">
           <span class="b-timeline-item__dot--pending-spinner" />

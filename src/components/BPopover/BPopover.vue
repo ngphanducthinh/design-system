@@ -67,9 +67,7 @@ const popoverId = useId();
 const titleId = `${popoverId}-title`;
 
 const internalOpen = ref(false);
-const isOpen = computed(() =>
-  modelValue !== undefined ? modelValue : internalOpen.value,
-);
+const isOpen = computed(() => (modelValue !== undefined ? modelValue : internalOpen.value));
 
 const hasBeenOpened = ref(false);
 const shouldRender = computed(() => {
@@ -89,8 +87,14 @@ let showTimer: ReturnType<typeof setTimeout> | null = null;
 let hideTimer: ReturnType<typeof setTimeout> | null = null;
 
 function clearTimers() {
-  if (showTimer) { clearTimeout(showTimer); showTimer = null; }
-  if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+  if (showTimer) {
+    clearTimeout(showTimer);
+    showTimer = null;
+  }
+  if (hideTimer) {
+    clearTimeout(hideTimer);
+    hideTimer = null;
+  }
 }
 
 function requestOpen(delay = 0) {
@@ -166,9 +170,7 @@ function focusPopoverContent() {
 function trapFocus(event: KeyboardEvent) {
   if (event.key !== 'Tab' || !popoverRef.value) return;
 
-  const focusable = Array.from(
-    popoverRef.value.querySelectorAll<HTMLElement>(focusableSelector),
-  );
+  const focusable = Array.from(popoverRef.value.querySelectorAll<HTMLElement>(focusableSelector));
   if (focusable.length === 0) {
     event.preventDefault();
     return;
@@ -357,22 +359,14 @@ defineExpose({ open: doOpen, close: doClose });
 </script>
 
 <template>
-  <div
-    ref="toggleRef"
-    class="b-popover__toggle"
-    :style="{ anchorName: anchorName }"
-  >
+  <div ref="toggleRef" class="b-popover__toggle" :style="{ anchorName: anchorName }">
     <slot />
   </div>
 
   <div
     ref="popoverRef"
     popover="manual"
-    :class="[
-      'b-popover__content',
-      placementClass,
-      { 'b-popover__content--no-arrow': !arrow },
-    ]"
+    :class="['b-popover__content', placementClass, { 'b-popover__content--no-arrow': !arrow }]"
     :style="{ zIndex, positionAnchor: anchorName }"
     role="tooltip"
     :aria-labelledby="titleId"
@@ -384,17 +378,9 @@ defineExpose({ open: doOpen, close: doClose });
     @mouseleave="onPopoverMouseLeave"
   >
     <template v-if="shouldRender || !destroyTooltipOnHide">
-      <div
-        v-if="arrow"
-        class="b-popover__arrow"
-        aria-hidden="true"
-      />
+      <div v-if="arrow" class="b-popover__arrow" aria-hidden="true" />
       <div class="b-popover__inner">
-        <div
-          v-if="title || $slots.title"
-          :id="titleId"
-          class="b-popover__title"
-        >
+        <div v-if="title || $slots.title" :id="titleId" class="b-popover__title">
           <slot name="title">{{ title }}</slot>
         </div>
         <div class="b-popover__body">
@@ -423,8 +409,8 @@ defineExpose({ open: doOpen, close: doClose });
   --b-popover-arrow-color: #fff;
   --b-popover-gap: 8px;
   --b-popover-transition-duration: 200ms;
-  --b-popover-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+  --b-popover-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 9px 28px 8px rgba(0, 0, 0, 0.05);
   --b-popover-title-font-weight: 600;
   --b-popover-title-font-size: 0.875rem;
@@ -440,8 +426,8 @@ defineExpose({ open: doOpen, close: doClose });
   --b-popover-bg: oklch(22% 0 0);
   --b-popover-color: oklch(90% 0 0);
   --b-popover-arrow-color: oklch(22% 0 0);
-  --b-popover-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.24),
-    0 3px 6px -4px rgba(0, 0, 0, 0.36),
+  --b-popover-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
     0 9px 28px 8px rgba(0, 0, 0, 0.2);
   --b-popover-title-color: oklch(95% 0 0);
   --b-popover-title-border-bottom: 1px solid oklch(30% 0 0);

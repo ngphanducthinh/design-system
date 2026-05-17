@@ -85,18 +85,12 @@ describe('BEmpty – props map to DOM', () => {
   });
 
   it('renders description slot overriding prop', () => {
-    const wrapper = mountEmpty(
-      { description: 'Prop text' },
-      { description: () => 'Slot text' },
-    );
+    const wrapper = mountEmpty({ description: 'Prop text' }, { description: () => 'Slot text' });
     expect(wrapper.find('.b-empty__description').text()).toBe('Slot text');
   });
 
   it('renders image slot overriding built-in image', () => {
-    const wrapper = mountEmpty(
-      {},
-      { image: () => 'Custom Image Content' },
-    );
+    const wrapper = mountEmpty({}, { image: () => 'Custom Image Content' });
     expect(wrapper.find('.b-empty__image').text()).toContain('Custom Image Content');
     expect(wrapper.find('.b-empty__svg').exists()).toBe(false);
   });
@@ -127,10 +121,7 @@ describe('BEmpty – slots', () => {
   });
 
   it('image slot renders custom HTML', () => {
-    const wrapper = mountEmpty(
-      {},
-      { image: () => '<div class="custom-svg">Icon</div>' },
-    );
+    const wrapper = mountEmpty({}, { image: () => '<div class="custom-svg">Icon</div>' });
     expect(wrapper.find('.b-empty__image').text()).toContain('Icon');
   });
 

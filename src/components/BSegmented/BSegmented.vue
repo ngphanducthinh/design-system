@@ -61,7 +61,12 @@ const normalizedOptions = computed<BSegmentedOption[]>(() =>
     if (typeof opt === 'string' || typeof opt === 'number') {
       return { label: String(opt), value: opt, disabled: false };
     }
-    return { label: String(opt.label ?? opt.value), value: opt.value, disabled: opt.disabled ?? false, icon: opt.icon };
+    return {
+      label: String(opt.label ?? opt.value),
+      value: opt.value,
+      disabled: opt.disabled ?? false,
+      icon: opt.icon,
+    };
   }),
 );
 
@@ -89,9 +94,7 @@ watch(normalizedOptions, (opts) => {
   }
 });
 
-const selectedValue = computed(() =>
-  isControlled.value ? modelValue : internalValue.value,
-);
+const selectedValue = computed(() => (isControlled.value ? modelValue : internalValue.value));
 
 // ─────────────────────────────────────────────
 // Thumb (animated indicator) positioning
@@ -219,18 +222,16 @@ const rootClasses = computed(() => [
       role="radio"
       :aria-label="opt.label"
       :aria-checked="opt.value === selectedValue"
-      :aria-disabled="(opt.disabled || disabled) ? 'true' : undefined"
+      :aria-disabled="opt.disabled || disabled ? 'true' : undefined"
       :tabindex="disabled || opt.disabled ? -1 : opt.value === selectedValue ? 0 : -1"
       @click="select(opt)"
       @keydown="onKeydown($event, opt)"
     >
       <div class="b-segmented__item-inner">
         <!-- Icon -->
-        <span
-          v-if="opt.icon"
-          class="b-segmented__item-icon"
-          aria-hidden="true"
-        >{{ opt.icon }}</span>
+        <span v-if="opt.icon" class="b-segmented__item-icon" aria-hidden="true">{{
+          opt.icon
+        }}</span>
 
         <!-- Label - slot or prop -->
         <span class="b-segmented__item-label">
@@ -261,7 +262,8 @@ const rootClasses = computed(() => [
   /* Selected thumb */
   --b-segmented-thumb-bg: oklch(100% 0 0);
   --b-segmented-thumb-shadow: 0 1px 2px oklch(0% 0 0 / 10%), 0 0 0 1px oklch(0% 0 0 / 6%);
-  --b-segmented-thumb-transition: transform 200ms cubic-bezier(0.34, 0.69, 0.1, 1), width 200ms cubic-bezier(0.34, 0.69, 0.1, 1);
+  --b-segmented-thumb-transition:
+    transform 200ms cubic-bezier(0.34, 0.69, 0.1, 1), width 200ms cubic-bezier(0.34, 0.69, 0.1, 1);
 
   /* Selected text */
   --b-segmented-selected-color: oklch(20% 0.02 260);
@@ -342,8 +344,9 @@ const rootClasses = computed(() => [
   border-radius: var(--b-segmented-item-border-radius);
   color: var(--b-segmented-item-color);
   cursor: pointer;
-  transition: color var(--b-segmented-transition-duration),
-              background var(--b-segmented-transition-duration);
+  transition:
+    color var(--b-segmented-transition-duration),
+    background var(--b-segmented-transition-duration);
   white-space: nowrap;
   outline: none;
   box-sizing: border-box;

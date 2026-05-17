@@ -227,7 +227,9 @@ export const Sizes: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByTestId('size-small').classList.contains('b-pagination--small')).toBe(true);
-    expect(canvas.getByTestId('size-default').classList.contains('b-pagination--small')).toBe(false);
+    expect(canvas.getByTestId('size-default').classList.contains('b-pagination--small')).toBe(
+      false,
+    );
     expect(canvas.getByTestId('size-large').classList.contains('b-pagination--large')).toBe(true);
   },
 };
@@ -476,9 +478,15 @@ export const Alignment: Story = {
   }),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByTestId('align-start').classList.contains('b-pagination--align-start')).toBe(true);
-    expect(canvas.getByTestId('align-center').classList.contains('b-pagination--align-center')).toBe(true);
-    expect(canvas.getByTestId('align-end').classList.contains('b-pagination--align-end')).toBe(true);
+    expect(canvas.getByTestId('align-start').classList.contains('b-pagination--align-start')).toBe(
+      true,
+    );
+    expect(
+      canvas.getByTestId('align-center').classList.contains('b-pagination--align-center'),
+    ).toBe(true);
+    expect(canvas.getByTestId('align-end').classList.contains('b-pagination--align-end')).toBe(
+      true,
+    );
   },
 };
 
@@ -531,13 +539,19 @@ export const Accessibility: Story = {
     expect(pages[0].getAttribute('aria-label')).toBe('Page 1');
 
     // Prev/Next aria-label
-    expect(basic.querySelector('.b-pagination__prev')?.getAttribute('aria-label')).toBe('Previous Page');
-    expect(basic.querySelector('.b-pagination__next')?.getAttribute('aria-label')).toBe('Next Page');
+    expect(basic.querySelector('.b-pagination__prev')?.getAttribute('aria-label')).toBe(
+      'Previous Page',
+    );
+    expect(basic.querySelector('.b-pagination__next')?.getAttribute('aria-label')).toBe(
+      'Next Page',
+    );
 
     // Disabled state
     const disabled = canvas.getByTestId('a11y-disabled');
     expect(disabled.classList.contains('b-pagination--disabled')).toBe(true);
-    expect(disabled.querySelector('.b-pagination__prev')?.getAttribute('aria-disabled')).toBe('true');
+    expect(disabled.querySelector('.b-pagination__prev')?.getAttribute('aria-disabled')).toBe(
+      'true',
+    );
   },
 };
 
@@ -614,7 +628,8 @@ export const InteractionTests: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Automated play function verifying click navigation, size changer, and quick jumper.',
+        story:
+          'Automated play function verifying click navigation, size changer, and quick jumper.',
       },
     },
   },
@@ -686,28 +701,116 @@ export const DesignTokens: Story = {
     components: { BPagination },
     setup() {
       const tokens = [
-        { variable: '--b-pagination-item-bg', defaultValue: '#ffffff', description: 'Background color of page items' },
-        { variable: '--b-pagination-item-bg-hover', defaultValue: 'rgba(0, 0, 0, 0.04)', description: 'Hover background color of page items' },
-        { variable: '--b-pagination-item-size', defaultValue: '32px', description: 'Height and min-width of page items' },
-        { variable: '--b-pagination-item-size-sm', defaultValue: '24px', description: 'Item size in small mode' },
-        { variable: '--b-pagination-item-size-lg', defaultValue: '40px', description: 'Item size in large mode' },
-        { variable: '--b-pagination-item-border-radius', defaultValue: '6px', description: 'Border radius of page items' },
-        { variable: '--b-pagination-item-font-size', defaultValue: '14px', description: 'Font size of page items' },
-        { variable: '--b-pagination-item-active-bg', defaultValue: '#ffffff', description: 'Background of active page item' },
-        { variable: '--b-pagination-item-active-color', defaultValue: '#0958d9', description: 'Text color of active page item' },
-        { variable: '--b-pagination-item-active-border-color', defaultValue: '#0958d9', description: 'Border color of active page item' },
-        { variable: '--b-pagination-item-active-color-hover', defaultValue: '#1677ff', description: 'Hover text color of active item' },
-        { variable: '--b-pagination-item-active-border-color-hover', defaultValue: '#1677ff', description: 'Hover border color of active item' },
-        { variable: '--b-pagination-item-active-bg-disabled', defaultValue: 'rgba(0, 0, 0, 0.15)', description: 'Active item background when disabled' },
-        { variable: '--b-pagination-item-active-color-disabled', defaultValue: 'rgba(0, 0, 0, 0.25)', description: 'Active item color when disabled' },
-        { variable: '--b-pagination-item-color-disabled', defaultValue: 'rgba(0, 0, 0, 0.25)', description: 'Item color when disabled' },
-        { variable: '--b-pagination-item-input-bg', defaultValue: '#ffffff', description: 'Background of input elements' },
-        { variable: '--b-pagination-item-link-bg', defaultValue: '#ffffff', description: 'Background of prev/next buttons' },
-        { variable: '--b-pagination-gap', defaultValue: '8px', description: 'Gap between pagination items' },
-        { variable: '--b-pagination-color', defaultValue: 'rgba(0, 0, 0, 0.88)', description: 'Default text color' },
-        { variable: '--b-pagination-font-family', defaultValue: 'inherit', description: 'Font family' },
-        { variable: '--b-pagination-mini-options-size-changer-top', defaultValue: '0px', description: 'Vertical offset of size changer' },
-        { variable: '--b-pagination-focus-ring', defaultValue: '0 0 0 2px rgba(22, 119, 255, 0.2)', description: 'Focus ring box-shadow' },
+        {
+          variable: '--b-pagination-item-bg',
+          defaultValue: '#ffffff',
+          description: 'Background color of page items',
+        },
+        {
+          variable: '--b-pagination-item-bg-hover',
+          defaultValue: 'rgba(0, 0, 0, 0.04)',
+          description: 'Hover background color of page items',
+        },
+        {
+          variable: '--b-pagination-item-size',
+          defaultValue: '32px',
+          description: 'Height and min-width of page items',
+        },
+        {
+          variable: '--b-pagination-item-size-sm',
+          defaultValue: '24px',
+          description: 'Item size in small mode',
+        },
+        {
+          variable: '--b-pagination-item-size-lg',
+          defaultValue: '40px',
+          description: 'Item size in large mode',
+        },
+        {
+          variable: '--b-pagination-item-border-radius',
+          defaultValue: '6px',
+          description: 'Border radius of page items',
+        },
+        {
+          variable: '--b-pagination-item-font-size',
+          defaultValue: '14px',
+          description: 'Font size of page items',
+        },
+        {
+          variable: '--b-pagination-item-active-bg',
+          defaultValue: '#ffffff',
+          description: 'Background of active page item',
+        },
+        {
+          variable: '--b-pagination-item-active-color',
+          defaultValue: '#0958d9',
+          description: 'Text color of active page item',
+        },
+        {
+          variable: '--b-pagination-item-active-border-color',
+          defaultValue: '#0958d9',
+          description: 'Border color of active page item',
+        },
+        {
+          variable: '--b-pagination-item-active-color-hover',
+          defaultValue: '#1677ff',
+          description: 'Hover text color of active item',
+        },
+        {
+          variable: '--b-pagination-item-active-border-color-hover',
+          defaultValue: '#1677ff',
+          description: 'Hover border color of active item',
+        },
+        {
+          variable: '--b-pagination-item-active-bg-disabled',
+          defaultValue: 'rgba(0, 0, 0, 0.15)',
+          description: 'Active item background when disabled',
+        },
+        {
+          variable: '--b-pagination-item-active-color-disabled',
+          defaultValue: 'rgba(0, 0, 0, 0.25)',
+          description: 'Active item color when disabled',
+        },
+        {
+          variable: '--b-pagination-item-color-disabled',
+          defaultValue: 'rgba(0, 0, 0, 0.25)',
+          description: 'Item color when disabled',
+        },
+        {
+          variable: '--b-pagination-item-input-bg',
+          defaultValue: '#ffffff',
+          description: 'Background of input elements',
+        },
+        {
+          variable: '--b-pagination-item-link-bg',
+          defaultValue: '#ffffff',
+          description: 'Background of prev/next buttons',
+        },
+        {
+          variable: '--b-pagination-gap',
+          defaultValue: '8px',
+          description: 'Gap between pagination items',
+        },
+        {
+          variable: '--b-pagination-color',
+          defaultValue: 'rgba(0, 0, 0, 0.88)',
+          description: 'Default text color',
+        },
+        {
+          variable: '--b-pagination-font-family',
+          defaultValue: 'inherit',
+          description: 'Font family',
+        },
+        {
+          variable: '--b-pagination-mini-options-size-changer-top',
+          defaultValue: '0px',
+          description: 'Vertical offset of size changer',
+        },
+        {
+          variable: '--b-pagination-focus-ring',
+          defaultValue: '0 0 0 2px rgba(22, 119, 255, 0.2)',
+          description: 'Focus ring box-shadow',
+        },
       ];
       return { tokens };
     },

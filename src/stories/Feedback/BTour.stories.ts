@@ -1,7 +1,7 @@
 import { BTour } from '@/components';
 import { BTourPlacement, BTourType, type BTourStep } from '@/components/BTour/types.ts';
-import { expect, fireEvent, userEvent, waitFor, within } from 'storybook/test';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { expect, fireEvent, userEvent, waitFor, within } from 'storybook/test';
 import { ref } from 'vue';
 
 // ─────────────────────────────────────────────
@@ -234,7 +234,9 @@ export const Playground: Story = {
         />
       </div>
     `,
-    data() { return { UI }; },
+    data() {
+      return { UI };
+    },
   }),
 };
 
@@ -303,7 +305,9 @@ export const Default: Story = {
         <BTour :steps="steps" v-model:open="isOpen" v-model:current="step" />
       </div>
     `,
-    data() { return { UI }; },
+    data() {
+      return { UI };
+    },
   }),
   parameters: {
     docs: {
@@ -403,12 +407,15 @@ export const Primary: Story = {
         <BTour :steps="steps" type="primary" v-model:open="isOpen" v-model:current="step" />
       </div>
     `,
-    data() { return { UI }; },
+    data() {
+      return { UI };
+    },
   }),
   parameters: {
     docs: {
       description: {
-        story: 'Primary type spotlighting four dashboard regions - overview panel, activity feed, quick actions, and user menu.',
+        story:
+          'Primary type spotlighting four dashboard regions - overview panel, activity feed, quick actions, and user menu.',
       },
       source: {
         code: `<BTour :steps="steps" type="primary" v-model:open="open" v-model:current="current" />`,
@@ -421,7 +428,8 @@ export const Primary: Story = {
 // With cover image - onboarding wizard
 // ─────────────────────────────────────────────
 
-const COVER_IMG = 'https://user-images.githubusercontent.com/5378891/197385811-55df8480-7ff4-44bd-9d43-a7dade598d70.png';
+const COVER_IMG =
+  'https://user-images.githubusercontent.com/5378891/197385811-55df8480-7ff4-44bd-9d43-a7dade598d70.png';
 
 export const WithCover: Story = {
   render: () => ({
@@ -514,12 +522,15 @@ export const WithCover: Story = {
         <BTour :steps="steps" v-model:open="isOpen" v-model:current="step" />
       </div>
     `,
-    data() { return { UI }; },
+    data() {
+      return { UI };
+    },
   }),
   parameters: {
     docs: {
       description: {
-        story: 'Each step includes a cover image above the title. The tour spotlights logo, storage bar, recent files, and notifications.',
+        story:
+          'Each step includes a cover image above the title. The tour spotlights logo, storage bar, recent files, and notifications.',
       },
     },
   },
@@ -601,12 +612,15 @@ export const NoMask: Story = {
         <BTour :steps="steps" :mask="false" v-model:open="isOpen" v-model:current="step" />
       </div>
     `,
-    data() { return { UI }; },
+    data() {
+      return { UI };
+    },
   }),
   parameters: {
     docs: {
       description: {
-        story: '`mask=false` - the overlay is removed so users can still interact with the page while the tour runs.',
+        story:
+          '`mask=false` - the overlay is removed so users can still interact with the page while the tour runs.',
       },
     },
   },
@@ -696,12 +710,15 @@ export const WithTargets: Story = {
         <BTour :steps="steps" v-model:open="isOpen" v-model:current="step" />
       </div>
     `,
-    data() { return { UI }; },
+    data() {
+      return { UI };
+    },
   }),
   parameters: {
     docs: {
       description: {
-        story: 'Five targeted steps across a code-editor toolbar - Run, Format, Terminal, Extensions, and Settings.',
+        story:
+          'Five targeted steps across a code-editor toolbar - Run, Format, Terminal, Extensions, and Settings.',
       },
     },
   },
@@ -811,12 +828,15 @@ export const CustomIndicators: Story = {
         </BTour>
       </div>
     `,
-    data() { return { UI }; },
+    data() {
+      return { UI };
+    },
   }),
   parameters: {
     docs: {
       description: {
-        story: 'The `indicatorsRender` slot replaces dots with a "current / total" counter. Tour targets a checkout page.',
+        story:
+          'The `indicatorsRender` slot replaces dots with a "current / total" counter. Tour targets a checkout page.',
       },
     },
   },
@@ -918,7 +938,9 @@ export const Accessibility: Story = {
         <BTour :steps="steps" :keyboard="true" v-model:open="isOpen" v-model:current="step" />
       </div>
     `,
-    data() { return { UI }; },
+    data() {
+      return { UI };
+    },
   }),
   play: async ({ canvasElement }) => {
     // BTour uses <Teleport to="body"> - popup lives outside canvasElement.
@@ -962,7 +984,10 @@ export const Accessibility: Story = {
     // ── 8. Navigate to step 2 - wait for Vue re-render, then check ────────
     await user.click(nextBtn);
     await waitFor(() =>
-      expect(document.body.querySelector('[role="dialog"]')).toHaveAttribute('aria-label', 'Role Filter'),
+      expect(document.body.querySelector('[role="dialog"]')).toHaveAttribute(
+        'aria-label',
+        'Role Filter',
+      ),
     );
 
     // Re-query popup after navigation to avoid stale reference
@@ -982,7 +1007,8 @@ export const Accessibility: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Targets four toolbar controls on a team management table. Interaction test verifies `role`, `aria-modal`, button labels, and `aria-current`.',
+        story:
+          'Targets four toolbar controls on a team management table. Interaction test verifies `role`, `aria-modal`, button labels, and `aria-current`.',
       },
     },
   },
@@ -1083,12 +1109,15 @@ export const Theming: Story = {
         </div>
       </div>
     `,
-    data() { return { UI }; },
+    data() {
+      return { UI };
+    },
   }),
   parameters: {
     docs: {
       description: {
-        story: 'Overrides `--b-tour-popup-bg`, `--b-tour-title-color`, `--b-tour-next-btn-bg`, `--b-tour-indicator-active-bg`, and `--b-tour-mask-bg`. Tour targets an analytics dashboard.',
+        story:
+          'Overrides `--b-tour-popup-bg`, `--b-tour-title-color`, `--b-tour-next-btn-bg`, `--b-tour-indicator-active-bg`, and `--b-tour-mask-bg`. Tour targets an analytics dashboard.',
       },
       source: {
         code: `<div style="
@@ -1166,7 +1195,9 @@ export const InteractionFlow: Story = {
         <BTour :steps="steps" v-model:open="isOpen" v-model:current="step" />
       </div>
     `,
-    data() { return { UI }; },
+    data() {
+      return { UI };
+    },
   }),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -1181,34 +1212,55 @@ export const InteractionFlow: Story = {
 
     // 3. Step 1 visible - re-query popup each time to avoid stale refs after Vue re-renders
     await waitFor(() =>
-      expect(document.body.querySelector('.b-tour__popup .b-tour__title')?.textContent?.trim()).toBe('Upload File'),
+      expect(
+        document.body.querySelector('.b-tour__popup .b-tour__title')?.textContent?.trim(),
+      ).toBe('Upload File'),
     );
 
     // 4. No prev on step 0
     expect(document.body.querySelector('.b-tour__popup .b-tour__btn--prev')).toBeNull();
 
     // 5. Next → step 2
-    await user.click(within(document.body.querySelector<HTMLElement>('.b-tour__popup')!).getByRole('button', { name: /next/i }));
+    await user.click(
+      within(document.body.querySelector<HTMLElement>('.b-tour__popup')!).getByRole('button', {
+        name: /next/i,
+      }),
+    );
     await waitFor(() =>
-      expect(document.body.querySelector('.b-tour__popup .b-tour__title')?.textContent?.trim()).toBe('Save to Local Drive'),
+      expect(
+        document.body.querySelector('.b-tour__popup .b-tour__title')?.textContent?.trim(),
+      ).toBe('Save to Local Drive'),
     );
     expect(document.body.querySelector('.b-tour__popup .b-tour__btn--prev')).toBeTruthy();
 
     // 6. Next → step 3 (last - button label changes to "Finish")
-    await user.click(within(document.body.querySelector<HTMLElement>('.b-tour__popup')!).getByRole('button', { name: /next/i }));
-    await waitFor(() =>
-      expect(document.body.querySelector('.b-tour__popup .b-tour__title')?.textContent?.trim()).toBe('Share'),
+    await user.click(
+      within(document.body.querySelector<HTMLElement>('.b-tour__popup')!).getByRole('button', {
+        name: /next/i,
+      }),
     );
-    expect(document.body.querySelector('.b-tour__popup .b-tour__btn--next')?.textContent?.trim()).toBe('Finish');
+    await waitFor(() =>
+      expect(
+        document.body.querySelector('.b-tour__popup .b-tour__title')?.textContent?.trim(),
+      ).toBe('Share'),
+    );
+    expect(
+      document.body.querySelector('.b-tour__popup .b-tour__btn--next')?.textContent?.trim(),
+    ).toBe('Finish');
 
     // 7. Finish closes the tour
-    await user.click(within(document.body.querySelector<HTMLElement>('.b-tour__popup')!).getByRole('button', { name: /finish/i }));
+    await user.click(
+      within(document.body.querySelector<HTMLElement>('.b-tour__popup')!).getByRole('button', {
+        name: /finish/i,
+      }),
+    );
     await waitFor(() => expect(document.body.querySelector('.b-tour__popup')).toBeNull());
   },
   parameters: {
     docs: {
       description: {
-        story: 'Automated interaction test: open → step through Upload / Save / Share → Finish → verify closed.',
+        story:
+          'Automated interaction test: open → step through Upload / Save / Share → Finish → verify closed.',
       },
     },
   },

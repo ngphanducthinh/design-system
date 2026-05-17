@@ -240,9 +240,7 @@ const rootClasses = computed(() => [
 ]);
 
 const ariaRole = computed(() => 'menu');
-const ariaOrientation = computed(() =>
-  props.mode === 'horizontal' ? 'horizontal' : 'vertical',
-);
+const ariaOrientation = computed(() => (props.mode === 'horizontal' ? 'horizontal' : 'vertical'));
 </script>
 
 <template>
@@ -254,10 +252,7 @@ const ariaOrientation = computed(() =>
   >
     <slot>
       <template v-for="item in props.items" :key="item.key ?? (item as any).type">
-        <BMenuDivider
-          v-if="isDivider(item)"
-          :dashed="item.dashed"
-        />
+        <BMenuDivider v-if="isDivider(item)" :dashed="item.dashed" />
         <BMenuItemGroup
           v-else-if="isItemGroup(item)"
           :label="item.label"
@@ -319,8 +314,9 @@ const ariaOrientation = computed(() =>
   --b-menu-sub-menu-item-border-radius: 4px;
   --b-menu-sub-menu-item-selected-color: #0958d9;
   --b-menu-popup-bg: #ffffff;
-  --b-menu-popup-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --b-menu-popup-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
   --b-menu-popup-border-radius: 8px;
   --b-menu-popup-z-index: 1050;
   --b-menu-dropdown-width: 160px;
@@ -393,7 +389,8 @@ const ariaOrientation = computed(() =>
   line-height: 1.5714;
   box-sizing: border-box;
   outline: none;
-  transition: background var(--b-menu-transition-duration),
+  transition:
+    background var(--b-menu-transition-duration),
     width var(--b-menu-transition-duration);
 }
 

@@ -3,7 +3,12 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import BCascader from './BCascader.vue';
 import type { BCascaderOption } from './types.ts';
-import { BCascaderExpandTrigger, BCascaderPlacement, BCascaderSize, BCascaderStatus } from './types.ts';
+import {
+  BCascaderExpandTrigger,
+  BCascaderPlacement,
+  BCascaderSize,
+  BCascaderStatus,
+} from './types.ts';
 
 const basicOptions: BCascaderOption[] = [
   {

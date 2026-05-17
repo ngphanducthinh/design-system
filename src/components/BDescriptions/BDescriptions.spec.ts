@@ -1,6 +1,6 @@
-import { h } from 'vue';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
+import { h } from 'vue';
 
 import BDescriptions from './BDescriptions.vue';
 import BDescriptionsItem from './BDescriptionsItem.vue';
@@ -289,9 +289,7 @@ describe('BDescriptions – vertical layout', () => {
   });
 
   it('bordered vertical labels use th elements', () => {
-    const items: BDescriptionsItemData[] = [
-      { label: 'A', children: '1' },
-    ];
+    const items: BDescriptionsItemData[] = [{ label: 'A', children: '1' }];
     const wrapper = mountDescriptions({ items, layout: 'vertical', bordered: true });
     expect(wrapper.find('th.b-descriptions__item-label--bordered').exists()).toBe(true);
   });
@@ -415,27 +413,27 @@ describe('BDescriptions – edge cases', () => {
   });
 
   it('header appears when only extra slot is provided', () => {
-    const wrapper = mountDescriptions(
-      { items: sampleItems },
-      { extra: () => 'Extra only' },
-    );
+    const wrapper = mountDescriptions({ items: sampleItems }, { extra: () => 'Extra only' });
     expect(wrapper.find('.b-descriptions__header').exists()).toBe(true);
     expect(wrapper.find('.b-descriptions__extra').text()).toBe('Extra only');
   });
 
   it('renders with BDescriptionsItem label slot', () => {
-    const wrapper = mountDescriptions({}, {
-      default: () => [
-        h(
-          BDescriptionsItem,
-          {},
-          {
-            label: () => h('strong', 'Bold Label'),
-            default: () => 'Content',
-          },
-        ),
-      ],
-    });
+    const wrapper = mountDescriptions(
+      {},
+      {
+        default: () => [
+          h(
+            BDescriptionsItem,
+            {},
+            {
+              label: () => h('strong', 'Bold Label'),
+              default: () => 'Content',
+            },
+          ),
+        ],
+      },
+    );
     // Debug: check what's actually rendered
     const html = wrapper.html();
     // When using VNodes with h(), the parent BDescriptions extracts slots from the VNode.children
@@ -489,7 +487,9 @@ describe('BDescriptionsItem – standalone', () => {
       props: { label: 'Name', labelStyle: { color: 'blue' } },
       slots: { default: () => 'Value' },
     });
-    expect(wrapper.find('.b-descriptions-item__label').attributes('style')).toContain('color: blue');
+    expect(wrapper.find('.b-descriptions-item__label').attributes('style')).toContain(
+      'color: blue',
+    );
   });
 
   it('applies contentStyle', () => {
@@ -497,7 +497,9 @@ describe('BDescriptionsItem – standalone', () => {
       props: { label: 'Name', contentStyle: { fontWeight: 'bold' } },
       slots: { default: () => 'Value' },
     });
-    expect(wrapper.find('.b-descriptions-item__content').attributes('style')).toContain('font-weight: bold');
+    expect(wrapper.find('.b-descriptions-item__content').attributes('style')).toContain(
+      'font-weight: bold',
+    );
   });
 
   it('defaults span to 1', () => {

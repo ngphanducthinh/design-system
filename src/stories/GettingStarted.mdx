@@ -4,7 +4,9 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 <div className="gs-hero">
   <h1>@7pmlabs/design-system</h1>
-  <p className="gs-tagline">A Vue 3 component library built with TypeScript and Tailwind CSS 4, inspired by Ant Design.</p>
+  <p className="gs-tagline">
+    A Vue 3 component library built with TypeScript and Tailwind CSS 4, inspired by Ant Design.
+  </p>
   <div className="gs-badges">
     <span className="gs-badge">Vue 3.5</span>
     <span className="gs-badge">TypeScript</span>
@@ -32,14 +34,14 @@ bun add @7pmlabs/design-system
 **1. Import the styles** in your app entry point:
 
 ```ts
-import '@7pmlabs/design-system/style.css'
+import '@7pmlabs/design-system/style.css';
 ```
 
 **2. Use components** anywhere in your app:
 
 ```vue
 <script setup lang="ts">
-import { BButton, BInput, BModal } from '@7pmlabs/design-system'
+import { BButton, BInput, BModal } from '@7pmlabs/design-system';
 </script>
 
 <template>
@@ -53,12 +55,17 @@ import { BButton, BInput, BModal } from '@7pmlabs/design-system'
   <div className="gs-card">
     <div className="gs-card-icon">🌗</div>
     <h4>Dark Mode</h4>
-    <p>Set <code>data-prefers-color="dark"</code> on your <code>&lt;html&gt;</code> element. All components adapt automatically.</p>
+    <p>
+      Set <code>data-prefers-color="dark"</code> on your <code>&lt;html&gt;</code> element. All
+      components adapt automatically.
+    </p>
   </div>
   <div className="gs-card">
     <div className="gs-card-icon">🎨</div>
     <h4>Scoped Styles</h4>
-    <p>All classes use the <code>b:</code> prefix to avoid conflicts with your host app's styles.</p>
+    <p>
+      All classes use the <code>b:</code> prefix to avoid conflicts with your host app's styles.
+    </p>
   </div>
   <div className="gs-card">
     <div className="gs-card-icon">♿</div>
@@ -75,32 +82,41 @@ import { BButton, BInput, BModal } from '@7pmlabs/design-system'
   <div className="gs-component-category">
     <h4>General</h4>
     <div className="gs-chip-list">
-      <code>BButton</code> <code>BDivider</code> <code>BFloatButton</code> <code>BIcon</code> <code>BInput</code> <code>BSelect</code> <code>BSwitch</code> <code>BTag</code>
+      <code>BButton</code> <code>BDivider</code> <code>BFloatButton</code> <code>BIcon</code>{' '}
+      <code>BInput</code> <code>BSelect</code> <code>BSwitch</code> <code>BTag</code>
     </div>
   </div>
   <div className="gs-component-category">
     <h4>Data Display</h4>
     <div className="gs-chip-list">
-      <code>BAvatar</code> <code>BBadge</code> <code>BCard</code> <code>BCollapse</code> <code>BDescriptions</code> <code>BEmpty</code> <code>BImage</code> <code>BMasonry</code> <code>BPagination</code> <code>BProgress</code> <code>BSegmented</code> <code>BSteps</code> <code>BTable</code> <code>BTabs</code> <code>BTimeline</code> <code>BTree</code> <code>BTour</code>
+      <code>BAvatar</code> <code>BBadge</code> <code>BCard</code> <code>BCollapse</code>{' '}
+      <code>BDescriptions</code> <code>BEmpty</code> <code>BImage</code> <code>BMasonry</code>{' '}
+      <code>BPagination</code> <code>BProgress</code> <code>BSegmented</code> <code>BSteps</code>{' '}
+      <code>BTable</code> <code>BTabs</code> <code>BTimeline</code> <code>BTree</code>{' '}
+      <code>BTour</code>
     </div>
   </div>
   <div className="gs-component-category">
     <h4>Feedback</h4>
     <div className="gs-chip-list">
-      <code>BAlert</code> <code>BMessage</code> <code>BModal</code> <code>BNotification</code> <code>BSpin</code>
+      <code>BAlert</code> <code>BMessage</code> <code>BModal</code> <code>BNotification</code>{' '}
+      <code>BSpin</code>
     </div>
   </div>
   <div className="gs-component-category">
     <h4>Navigation</h4>
     <div className="gs-chip-list">
-      <code>BAnchor</code> <code>BBreadcrumb</code> <code>BDrawer</code> <code>BDropdown</code> <code>BMenu</code> <code>BPopconfirm</code> <code>BPopover</code> <code>BTooltip</code>
+      <code>BAnchor</code> <code>BBreadcrumb</code> <code>BDrawer</code> <code>BDropdown</code>{' '}
+      <code>BMenu</code> <code>BPopconfirm</code> <code>BPopover</code> <code>BTooltip</code>
     </div>
   </div>
 </div>
 
 </div>
 
-<p className="gs-footer">Browse the sidebar to see live examples and documentation for each component.</p>
+<p className="gs-footer">
+  Browse the sidebar to see live examples and documentation for each component.
+</p>
 
 <style>
   {`

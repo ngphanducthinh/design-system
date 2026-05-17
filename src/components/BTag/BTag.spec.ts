@@ -75,7 +75,23 @@ describe('BTag – defaults and variants', () => {
 // ─────────────────────────────────────────────
 describe('BTag – props map to DOM', () => {
   it('preset color adds corresponding class', () => {
-    const colors = ['success', 'processing', 'error', 'warning', 'magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue', 'geekblue', 'purple'] as const;
+    const colors = [
+      'success',
+      'processing',
+      'error',
+      'warning',
+      'magenta',
+      'red',
+      'volcano',
+      'orange',
+      'gold',
+      'lime',
+      'green',
+      'cyan',
+      'blue',
+      'geekblue',
+      'purple',
+    ] as const;
     colors.forEach((c) => {
       const w = mountTag({ color: c });
       expect(w.find('.b-tag').classes()).toContain(`b-tag--${c}`);
@@ -350,17 +366,31 @@ describe('BTag – edge cases', () => {
   });
 
   it('renders all preset colors without throwing', () => {
-    const colors = ['default', 'success', 'processing', 'error', 'warning', 'magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue', 'geekblue', 'purple'] as const;
+    const colors = [
+      'default',
+      'success',
+      'processing',
+      'error',
+      'warning',
+      'magenta',
+      'red',
+      'volcano',
+      'orange',
+      'gold',
+      'lime',
+      'green',
+      'cyan',
+      'blue',
+      'geekblue',
+      'purple',
+    ] as const;
     colors.forEach((c) => {
       expect(() => mountTag({ color: c })).not.toThrow();
     });
   });
 
   it('renders with icon slot and closable simultaneously', () => {
-    const w = mountTag(
-      { closable: true },
-      { icon: '<svg />', default: 'With Icon' },
-    );
+    const w = mountTag({ closable: true }, { icon: '<svg />', default: 'With Icon' });
     expect(w.find('.b-tag__icon').exists()).toBe(true);
     expect(w.find('.b-tag__close').exists()).toBe(true);
     expect(w.find('.b-tag__content').text()).toBe('With Icon');

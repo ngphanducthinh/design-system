@@ -106,9 +106,7 @@ const PRESET_COLORS: BTagPresetColor[] = [
   'purple',
 ];
 
-const isPreset = computed(() =>
-  color === undefined || (PRESET_COLORS as string[]).includes(color),
-);
+const isPreset = computed(() => color === undefined || (PRESET_COLORS as string[]).includes(color));
 
 const effectiveColor = computed<BTagPresetColor>(() =>
   isPreset.value ? ((color ?? 'default') as BTagPresetColor) : 'default',
@@ -128,9 +126,7 @@ watch(
   },
 );
 
-const isVisible = computed(() =>
-  isControlled.value ? visible! : internalVisible.value,
-);
+const isVisible = computed(() => (isControlled.value ? visible! : internalVisible.value));
 
 // ─────────────────────────────────────────────
 // Close logic
@@ -189,11 +185,7 @@ const customColorStyle = computed(() => {
 
 <template>
   <Transition name="b-tag-fade" @after-leave="onAfterLeave">
-    <span
-      v-if="isVisible"
-      :class="rootClasses"
-      :style="customColorStyle"
-    >
+    <span v-if="isVisible" :class="rootClasses" :style="customColorStyle">
       <!-- Leading icon -->
       <span
         v-if="$slots.icon || icon"
@@ -219,7 +211,12 @@ const customColorStyle = computed(() => {
         @keydown="onCloseKeydown"
       >
         <slot name="closeIcon">
-          <span v-if="closeIcon" class="b-tag__close-label" aria-hidden="true" :data-icon="closeIcon" />
+          <span
+            v-if="closeIcon"
+            class="b-tag__close-label"
+            aria-hidden="true"
+            :data-icon="closeIcon"
+          />
           <svg
             v-else
             class="b-tag__close-icon"
@@ -228,7 +225,9 @@ const customColorStyle = computed(() => {
             aria-hidden="true"
             focusable="false"
           >
-            <path d="M9.5 3.205 8.795 2.5 6 5.295 3.205 2.5 2.5 3.205 5.295 6 2.5 8.795 3.205 9.5 6 6.705 8.795 9.5 9.5 8.795 6.705 6z" />
+            <path
+              d="M9.5 3.205 8.795 2.5 6 5.295 3.205 2.5 2.5 3.205 5.295 6 2.5 8.795 3.205 9.5 6 6.705 8.795 9.5 9.5 8.795 6.705 6z"
+            />
           </svg>
         </slot>
       </button>

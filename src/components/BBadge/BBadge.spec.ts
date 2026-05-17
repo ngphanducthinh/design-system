@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { BBadgeSize, BBadgeStatus } from '@/types.ts';
 import BBadge from './BBadge.vue';
@@ -44,13 +44,10 @@ describe('BBadge – defaults and variants', () => {
     expect(wrapper.find('.b-badge__status-text').text()).toBe('Success');
   });
 
-  it.each(Object.values(BBadgeStatus))(
-    'renders status=%s with correct class',
-    (status) => {
-      const wrapper = mountBadge({ status });
-      expect(wrapper.find(`.b-badge__status-dot--${status}`).exists()).toBe(true);
-    },
-  );
+  it.each(Object.values(BBadgeStatus))('renders status=%s with correct class', (status) => {
+    const wrapper = mountBadge({ status });
+    expect(wrapper.find(`.b-badge__status-dot--${status}`).exists()).toBe(true);
+  });
 });
 
 // ─────────────────────────────────────────────
@@ -98,15 +95,15 @@ describe('BBadge – props map to DOM', () => {
   });
 
   it('applies title attribute on dot', () => {
-    const wrapper = mountBadge({ dot: true, count: 5, title: 'Updates' }, { default: () => 'child' });
+    const wrapper = mountBadge(
+      { dot: true, count: 5, title: 'Updates' },
+      { default: () => 'child' },
+    );
     expect(wrapper.find('.b-badge__dot').attributes('title')).toBe('Updates');
   });
 
   it('applies offset as style', () => {
-    const wrapper = mountBadge(
-      { count: 5, offset: [10, 10] },
-      { default: () => 'child' },
-    );
+    const wrapper = mountBadge({ count: 5, offset: [10, 10] }, { default: () => 'child' });
     const style = wrapper.find('.b-badge__count').attributes('style');
     expect(style).toContain('margin-top: 10px');
   });
@@ -134,10 +131,7 @@ describe('BBadge – props map to DOM', () => {
   });
 
   it('renders count slot instead of number', () => {
-    const wrapper = mountBadge(
-      { count: 5 },
-      { default: () => 'child', count: () => 'CUSTOM' },
-    );
+    const wrapper = mountBadge({ count: 5 }, { default: () => 'child', count: () => 'CUSTOM' });
     expect(wrapper.find('.b-badge__count').text()).toBe('CUSTOM');
   });
 
@@ -252,17 +246,25 @@ describe('BBadge – accessibility', () => {
 // ─────────────────────────────────────────────
 describe('BBadge – colors', () => {
   const presetColors = [
-    'pink', 'red', 'yellow', 'orange', 'cyan', 'green', 'blue',
-    'purple', 'geekblue', 'magenta', 'volcano', 'gold', 'lime',
+    'pink',
+    'red',
+    'yellow',
+    'orange',
+    'cyan',
+    'green',
+    'blue',
+    'purple',
+    'geekblue',
+    'magenta',
+    'volcano',
+    'gold',
+    'lime',
   ];
 
-  it.each(presetColors)(
-    'applies preset color class for "%s" on status dot',
-    (clr) => {
-      const wrapper = mountBadge({ color: clr, text: clr });
-      expect(wrapper.find(`.b-badge__status-dot--${clr}`).exists()).toBe(true);
-    },
-  );
+  it.each(presetColors)('applies preset color class for "%s" on status dot', (clr) => {
+    const wrapper = mountBadge({ color: clr, text: clr });
+    expect(wrapper.find(`.b-badge__status-dot--${clr}`).exists()).toBe(true);
+  });
 
   it('applies custom hex color as inline style on status dot', () => {
     const wrapper = mountBadge({ color: '#abcdef', text: 'custom' });
@@ -325,10 +327,7 @@ describe('BBadge – edge cases', () => {
   });
 
   it('offset with string values works', () => {
-    const wrapper = mountBadge(
-      { count: 5, offset: ['1em', '2em'] },
-      { default: () => 'child' },
-    );
+    const wrapper = mountBadge({ count: 5, offset: ['1em', '2em'] }, { default: () => 'child' });
     const style = wrapper.find('.b-badge__count').attributes('style');
     expect(style).toContain('margin-top: 2em');
   });

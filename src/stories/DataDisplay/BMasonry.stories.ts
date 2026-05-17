@@ -1,5 +1,5 @@
-import { BMasonry } from '@/components';
 import type { BMasonryItem, BMasonryLayoutChangePayload } from '@/components';
+import { BMasonry } from '@/components';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, userEvent } from 'storybook/test';
 import { ref } from 'vue';
@@ -26,8 +26,7 @@ const meta = {
     },
     fresh: {
       control: 'boolean',
-      description:
-        'Monitor each item\'s size via ResizeObserver and reflow on change.',
+      description: "Monitor each item's size via ResizeObserver and reflow on change.",
       table: { defaultValue: { summary: 'false' }, category: 'Props' },
     },
     items: {
@@ -37,14 +36,12 @@ const meta = {
     },
     classNames: {
       control: false,
-      description:
-        'Customise CSS classes on `root`, `column`, or `item` semantic elements.',
+      description: 'Customise CSS classes on `root`, `column`, or `item` semantic elements.',
       table: { category: 'Props' },
     },
     styles: {
       control: false,
-      description:
-        'Customise inline styles on `root`, `column`, or `item` semantic elements.',
+      description: 'Customise inline styles on `root`, `column`, or `item` semantic elements.',
       table: { category: 'Props' },
     },
     onLayoutChange: {
@@ -178,8 +175,7 @@ export const GutterVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story:
-          'Show `gutter` as a fixed number, a `[colGap, rowGap]` tuple, or zero.',
+        story: 'Show `gutter` as a fixed number, a `[colGap, rowGap]` tuple, or zero.',
       },
     },
   },

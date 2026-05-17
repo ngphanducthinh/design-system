@@ -1,5 +1,5 @@
-import type { BIconBrandName, BIconName } from './components/BIcon/BIconEnum.ts';
 import type { RouteLocationRaw } from 'vue-router';
+import type { BIconBrandName, BIconName } from './components/BIcon/BIconEnum.ts';
 
 export enum BCommonSize {
   Small = 'sm',
@@ -45,7 +45,6 @@ export enum BIconVariant {
   Thin = 'thin',
 }
 
-
 export interface BSelectOption {
   label: string;
   value: unknown;
@@ -69,16 +68,11 @@ export type {
   BSegmentedSize,
 } from './components/BSegmented/types';
 
-export type {
-  BTagColor,
-  BTagPresetColor,
-  BTagSize,
-  BTagVariant,
-} from './components/BTag/types';
+export type { BTagColor, BTagPresetColor, BTagSize, BTagVariant } from './components/BTag/types';
 
 export type {
-  BTimelineItem as BTimelineItemData,
   BTimelineItemColor,
+  BTimelineItem as BTimelineItemData,
   BTimelineItemPlacement,
   BTimelineItemStatus,
   BTimelineMode,
@@ -90,8 +84,8 @@ export type {
   BTableAlign,
   BTableChangeExtra,
   BTableColumnType,
-  BTableExpandIconProps,
   BTableExpandable,
+  BTableExpandIconProps,
   BTableFilterOption,
   BTableFilterState,
   BTableFilterValue,
@@ -102,11 +96,10 @@ export type {
   BTableScrollConfig,
   BTableSelectionItem,
   BTableSize,
-  BTableSortOrder,
   BTableSorterResult,
+  BTableSortOrder,
   BTableSummaryCell,
 } from './components/BTable/types';
-
 
 export interface BBreadcrumbItem {
   /** Display text for the breadcrumb item. */

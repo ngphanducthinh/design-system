@@ -423,7 +423,9 @@ export const InteractionTest: Story = {
     const activeLink = canvasElement.querySelector('.b-anchor-link--active');
     expect(activeLink).not.toBeNull();
 
-    const activeTitleEl = canvasElement.querySelector('.b-anchor-link--active .b-anchor-link__title');
+    const activeTitleEl = canvasElement.querySelector(
+      '.b-anchor-link--active .b-anchor-link__title',
+    );
     expect(activeTitleEl?.textContent).toBe('Section 2');
 
     // Verify aria-current is applied

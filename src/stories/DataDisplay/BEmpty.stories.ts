@@ -13,8 +13,7 @@ const meta = {
   argTypes: {
     description: {
       control: 'text',
-      description:
-        'Customize description text. Pass `false` to hide completely.',
+      description: 'Customize description text. Pass `false` to hide completely.',
       table: { defaultValue: { summary: '"No data"' }, category: 'Props' },
     },
     image: {
@@ -29,8 +28,7 @@ const meta = {
     },
     hideDescription: {
       control: 'boolean',
-      description:
-        'Set to true to hide the description area completely.',
+      description: 'Set to true to hide the description area completely.',
       table: { defaultValue: { summary: 'false' }, category: 'Props' },
     },
     imageStyle: {
@@ -408,18 +406,16 @@ export const InteractionTests: Story = {
     // Default rendering
     const defaultEl = canvas.getByTestId('int-default');
     expect(defaultEl.querySelector('.b-empty__svg--default')).toBeTruthy();
-    expect(
-      defaultEl.querySelector('.b-empty__description')?.textContent?.trim(),
-    ).toBe('No data');
+    expect(defaultEl.querySelector('.b-empty__description')?.textContent?.trim()).toBe('No data');
     expect(defaultEl.querySelector('.b-empty__footer')).toBeNull();
 
     // Simple variant
     const simpleEl = canvas.getByTestId('int-simple');
     expect(simpleEl.classList.contains('b-empty--simple')).toBe(true);
     expect(simpleEl.querySelector('.b-empty__svg--simple')).toBeTruthy();
-    expect(
-      simpleEl.querySelector('.b-empty__description')?.textContent?.trim(),
-    ).toBe('Simple variant');
+    expect(simpleEl.querySelector('.b-empty__description')?.textContent?.trim()).toBe(
+      'Simple variant',
+    );
 
     // With action footer
     const actionEl = canvas.getByTestId('int-action');

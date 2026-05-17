@@ -65,9 +65,7 @@ const internalVisible = ref(true);
  *  - controlled  → honour `modelValue`
  *  - uncontrolled → use `internalVisible`
  */
-const isVisible = computed(() =>
-  modelValue !== undefined ? modelValue : internalVisible.value,
-);
+const isVisible = computed(() => (modelValue !== undefined ? modelValue : internalVisible.value));
 
 // ─────────────────────────────────────────────
 // Derived state
@@ -160,11 +158,7 @@ function onAfterLeave() {
       :aria-describedby="hasDescription ? descriptionId : undefined"
     >
       <!-- Status icon -->
-      <span
-        v-if="showIcon"
-        class="b-alert__icon"
-        aria-hidden="true"
-      >
+      <span v-if="showIcon" class="b-alert__icon" aria-hidden="true">
         <slot name="icon">
           <svg
             class="b-alert__icon-svg"
@@ -185,11 +179,7 @@ function onAfterLeave() {
         </div>
 
         <!-- Description -->
-        <div
-          v-if="hasDescription"
-          :id="descriptionId"
-          class="b-alert__description"
-        >
+        <div v-if="hasDescription" :id="descriptionId" class="b-alert__description">
           <slot name="description">{{ description }}</slot>
         </div>
       </div>
@@ -218,7 +208,9 @@ function onAfterLeave() {
               aria-hidden="true"
               focusable="false"
             >
-              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+              <path
+                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+              />
             </svg>
           </slot>
         </button>
@@ -473,5 +465,3 @@ function onAfterLeave() {
   }
 }
 </style>
-
-

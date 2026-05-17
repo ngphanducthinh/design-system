@@ -1,6 +1,6 @@
 import { BDropdown } from '@/components';
-import { BDropdownPlacement, BDropdownTrigger } from '@/components/BDropdown/types.ts';
 import type { BDropdownMenuProps } from '@/components/BDropdown/types.ts';
+import { BDropdownPlacement, BDropdownTrigger } from '@/components/BDropdown/types.ts';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { ref } from 'vue';

@@ -2,8 +2,8 @@ import { mount } from '@vue/test-utils';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import BDropdown from './BDropdown.vue';
-import { BDropdownPlacement, BDropdownTrigger } from './types.ts';
 import type { BDropdownMenuProps } from './types.ts';
+import { BDropdownPlacement, BDropdownTrigger } from './types.ts';
 
 // ─────────────────────────────────────────────
 // Helpers

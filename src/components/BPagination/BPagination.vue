@@ -297,17 +297,9 @@ const rootClasses = computed(() => [
 </script>
 
 <template>
-  <nav
-    v-if="!shouldHide"
-    :class="rootClasses"
-    role="navigation"
-    :aria-label="props.ariaLabel"
-  >
+  <nav v-if="!shouldHide" :class="rootClasses" role="navigation" :aria-label="props.ariaLabel">
     <!-- Total display -->
-    <span
-      v-if="props.showTotal"
-      class="b-pagination__total"
-    >
+    <span v-if="props.showTotal" class="b-pagination__total">
       {{ totalRangeText }}
     </span>
 
@@ -384,7 +376,13 @@ const rootClasses = computed(() => [
           class="b-pagination__item b-pagination__ellipsis"
           type="button"
           :disabled="props.disabled"
-          :title="props.showTitle ? (item.type === 'prev-ellipsis' ? 'Previous 5 Pages' : 'Next 5 Pages') : undefined"
+          :title="
+            props.showTitle
+              ? item.type === 'prev-ellipsis'
+                ? 'Previous 5 Pages'
+                : 'Next 5 Pages'
+              : undefined
+          "
           :aria-label="item.type === 'prev-ellipsis' ? 'Previous 5 Pages' : 'Next 5 Pages'"
           @click="setPage(item.page)"
         >
@@ -430,20 +428,11 @@ const rootClasses = computed(() => [
       aria-label="Items per page"
       @change="setPageSize(Number(($event.target as HTMLSelectElement).value))"
     >
-      <option
-        v-for="opt in pageSizeOptions"
-        :key="opt"
-        :value="opt"
-      >
-        {{ opt }} / page
-      </option>
+      <option v-for="opt in pageSizeOptions" :key="opt" :value="opt">{{ opt }} / page</option>
     </select>
 
     <!-- Quick jumper -->
-    <span
-      v-if="props.showQuickJumper && !isSimple"
-      class="b-pagination__quick-jumper"
-    >
+    <span v-if="props.showQuickJumper && !isSimple" class="b-pagination__quick-jumper">
       <span>Go to</span>
       <input
         class="b-pagination__jumper-input"
@@ -557,7 +546,10 @@ const rootClasses = computed(() => [
   text-align: center;
   cursor: pointer;
   user-select: none;
-  transition: color 200ms, border-color 200ms, background 200ms;
+  transition:
+    color 200ms,
+    border-color 200ms,
+    background 200ms;
   outline: none;
   box-sizing: border-box;
 }

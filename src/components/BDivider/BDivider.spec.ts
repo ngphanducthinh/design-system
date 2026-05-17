@@ -122,10 +122,13 @@ describe('BDivider – plain', () => {
 // 6. titlePlacement prop
 // ─────────────────────────────────────────────
 describe('BDivider – titlePlacement', () => {
-  it.each(['start', 'center', 'end'] as const)('applies b-divider--text-%s when there is content', (placement) => {
-    const wrapper = mountDivider({ titlePlacement: placement }, { default: 'Label' });
-    expect(root(wrapper).classes()).toContain(`b-divider--text-${placement}`);
-  });
+  it.each(['start', 'center', 'end'] as const)(
+    'applies b-divider--text-%s when there is content',
+    (placement) => {
+      const wrapper = mountDivider({ titlePlacement: placement }, { default: 'Label' });
+      expect(root(wrapper).classes()).toContain(`b-divider--text-${placement}`);
+    },
+  );
 
   it('does NOT add text placement class when there is no content', () => {
     const wrapper = mountDivider({ titlePlacement: 'start' });

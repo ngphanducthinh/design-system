@@ -137,7 +137,11 @@ describe('BDatePicker – props to DOM', () => {
   });
 
   it('does not show clear button when disabled', () => {
-    const wrapper = mountPicker({ modelValue: new Date(2024, 0, 1), allowClear: true, disabled: true });
+    const wrapper = mountPicker({
+      modelValue: new Date(2024, 0, 1),
+      allowClear: true,
+      disabled: true,
+    });
     expect(wrapper.find('.b-date-picker__clear').exists()).toBe(false);
   });
 
@@ -180,7 +184,9 @@ describe('BDatePicker – events', () => {
     const wrapper = mountPicker();
     await wrapper.find('.b-date-picker__input-wrap').trigger('click');
 
-    const cells = wrapper.findAll('.b-date-picker__cell:not(.b-date-picker__cell--other):not(.b-date-picker__cell--disabled)');
+    const cells = wrapper.findAll(
+      '.b-date-picker__cell:not(.b-date-picker__cell--other):not(.b-date-picker__cell--disabled)',
+    );
     const firstCell = cells[0];
     await firstCell.trigger('click');
 
@@ -194,7 +200,9 @@ describe('BDatePicker – events', () => {
     const wrapper = mountPicker();
     await wrapper.find('.b-date-picker__input-wrap').trigger('click');
 
-    const cells = wrapper.findAll('.b-date-picker__cell:not(.b-date-picker__cell--other):not(.b-date-picker__cell--disabled)');
+    const cells = wrapper.findAll(
+      '.b-date-picker__cell:not(.b-date-picker__cell--other):not(.b-date-picker__cell--disabled)',
+    );
     await cells[0].trigger('click');
 
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();

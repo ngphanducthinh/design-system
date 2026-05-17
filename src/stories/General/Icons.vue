@@ -55,7 +55,9 @@ const sizeOptions = Object.values(BIconSize).map((s) => ({ label: s, value: s })
       class="b:flex b:flex-wrap b:items-end b:gap-4 b:rounded-xl b:border b:border-gray-200 b:bg-gray-50 b:px-4 b:py-3"
     >
       <div class="b:flex b:min-w-56 b:flex-1 b:flex-col b:gap-1">
-        <label class="b:text-xs b:font-medium b:uppercase b:tracking-wide b:text-gray-500">Search</label>
+        <label class="b:text-xs b:font-medium b:tracking-wide b:text-gray-500 b:uppercase"
+          >Search</label
+        >
         <BInput
           v-model="searchText"
           placeholder="e.g. arrow, home, star…"
@@ -64,20 +66,29 @@ const sizeOptions = Object.values(BIconSize).map((s) => ({ label: s, value: s })
       </div>
 
       <div class="b:flex b:flex-col b:gap-1">
-        <label class="b:text-xs b:font-medium b:uppercase b:tracking-wide b:text-gray-500">Variant</label>
+        <label class="b:text-xs b:font-medium b:tracking-wide b:text-gray-500 b:uppercase"
+          >Variant</label
+        >
         <BSelect v-model="variant" :options="variantOptions" />
       </div>
 
       <div class="b:flex b:flex-col b:gap-1">
-        <label class="b:text-xs b:font-medium b:uppercase b:tracking-wide b:text-gray-500">Size</label>
+        <label class="b:text-xs b:font-medium b:tracking-wide b:text-gray-500 b:uppercase"
+          >Size</label
+        >
         <BSelect v-model="size" :options="sizeOptions" />
       </div>
 
       <div class="b:ml-auto b:self-end b:pb-0.5 b:text-right">
-        <span class="b:text-sm b:font-semibold b:text-gray-700">{{ totalIcons.toLocaleString() }}</span>
+        <span class="b:text-sm b:font-semibold b:text-gray-700">{{
+          totalIcons.toLocaleString()
+        }}</span>
         <span class="b:ml-1 b:text-sm b:text-gray-400">icon{{ totalIcons === 1 ? '' : 's' }}</span>
         <template v-if="searchText">
-          <br /><span class="b:text-xs b:text-gray-400">matching "<em>{{ searchText }}</em>"</span>
+          <br /><span class="b:text-xs b:text-gray-400"
+            >matching "<em>{{ searchText }}</em
+            >"</span
+          >
         </template>
       </div>
     </div>
@@ -112,7 +123,7 @@ const sizeOptions = Object.values(BIconSize).map((s) => ({ label: s, value: s })
               : 'b:transition-transform b:duration-150 b:group-hover:scale-110'
           "
         >
-          <BIcon :icon="(icon.name as any)" :size="size" :variant="variant" />
+          <BIcon :icon="icon.name as any" :size="size" :variant="variant" />
         </div>
 
         <span
@@ -129,7 +140,11 @@ const sizeOptions = Object.values(BIconSize).map((s) => ({ label: s, value: s })
       <p class="b:m-0 b:text-base">No icons found for "{{ searchText }}"</p>
       <button
         class="b:cursor-pointer b:border-none b:bg-transparent b:text-sm b:text-primary b:underline"
-        @click="searchText = ''; page = 1; search()"
+        @click="
+          searchText = '';
+          page = 1;
+          search();
+        "
       >
         Clear search
       </button>

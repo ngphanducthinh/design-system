@@ -27,6 +27,5 @@ export interface BCollapseGroupContext {
   size: ComputedRef<BCollapseSize>;
 }
 
-export const BCollapseGroupContextKey: InjectionKey<BCollapseGroupContext> = Symbol(
-  'BCollapseGroupContext',
-);
+export const BCollapseGroupContextKey: InjectionKey<BCollapseGroupContext> =
+  Symbol('BCollapseGroupContext');

@@ -50,7 +50,9 @@ describe('BInput', () => {
 
   describe('v-model and controlled/uncontrolled', () => {
     it('supports v-model binding', async () => {
-      const wrapper = mount(BInput, { props: { modelValue: 'hello', 'onUpdate:modelValue': vi.fn() } });
+      const wrapper = mount(BInput, {
+        props: { modelValue: 'hello', 'onUpdate:modelValue': vi.fn() },
+      });
       expect(getInput(wrapper).value).toBe('hello');
     });
 
@@ -136,7 +138,9 @@ describe('BInput', () => {
     });
 
     it('emits clear event when clear button is clicked', async () => {
-      const wrapper = mount(BInput, { props: { modelValue: 'text', allowClear: true, 'onUpdate:modelValue': vi.fn() } });
+      const wrapper = mount(BInput, {
+        props: { modelValue: 'text', allowClear: true, 'onUpdate:modelValue': vi.fn() },
+      });
       await wrapper.find('.b-input__clear').trigger('mousedown');
       expect(wrapper.emitted('clear')).toBeTruthy();
       expect(wrapper.emitted('change')![0][0]).toBe('');
@@ -155,12 +159,16 @@ describe('BInput', () => {
     });
 
     it('hides clear button when disabled', () => {
-      const wrapper = mount(BInput, { props: { modelValue: 'hello', allowClear: true, disabled: true } });
+      const wrapper = mount(BInput, {
+        props: { modelValue: 'hello', allowClear: true, disabled: true },
+      });
       expect(wrapper.find('.b-input__clear').exists()).toBe(false);
     });
 
     it('hides clear button when readOnly', () => {
-      const wrapper = mount(BInput, { props: { modelValue: 'hello', allowClear: true, readOnly: true } });
+      const wrapper = mount(BInput, {
+        props: { modelValue: 'hello', allowClear: true, readOnly: true },
+      });
       expect(wrapper.find('.b-input__clear').exists()).toBe(false);
     });
 
@@ -214,19 +222,31 @@ describe('BInput', () => {
     });
 
     it('shows count with maxLength', () => {
-      const wrapper = mount(BInput, { props: { modelValue: 'hi', showCount: true, maxLength: 10 } });
+      const wrapper = mount(BInput, {
+        props: { modelValue: 'hi', showCount: true, maxLength: 10 },
+      });
       expect(wrapper.find('.b-input__count').text()).toBe('2 / 10');
     });
 
     it('shows over-count class when exceeding max', () => {
-      const wrapper = mount(BInput, { props: { modelValue: 'hello world', showCount: true, maxLength: 5 } });
+      const wrapper = mount(BInput, {
+        props: { modelValue: 'hello world', showCount: true, maxLength: 5 },
+      });
       expect(wrapper.find('.b-input__count--over').exists()).toBe(true);
     });
 
     it('supports custom formatter function', () => {
-      const formatter = ({ count, maxLength }: { value: string; count: number; maxLength?: number }) =>
-        `${count}/${maxLength ?? '∞'}`;
-      const wrapper = mount(BInput, { props: { modelValue: 'ab', showCount: formatter, maxLength: 5 } });
+      const formatter = ({
+        count,
+        maxLength,
+      }: {
+        value: string;
+        count: number;
+        maxLength?: number;
+      }) => `${count}/${maxLength ?? '∞'}`;
+      const wrapper = mount(BInput, {
+        props: { modelValue: 'ab', showCount: formatter, maxLength: 5 },
+      });
       expect(wrapper.find('.b-input__count').text()).toBe('2/5');
     });
 

@@ -65,12 +65,12 @@ function handleChange(event: Event) {
 
 <template>
   <label
-    class="b-radio b:inline-flex b:items-center b:cursor-pointer b:select-none b:gap-2 b:leading-none"
+    class="b-radio b:inline-flex b:cursor-pointer b:items-center b:gap-2 b:leading-none b:select-none"
     :class="{ 'b-radio--disabled b:cursor-not-allowed b:opacity-50': isDisabled }"
     :for="inputId"
   >
     <span
-      class="b-radio__indicator b:relative b:inline-flex b:items-center b:justify-center b:shrink-0"
+      class="b-radio__indicator b:relative b:inline-flex b:shrink-0 b:items-center b:justify-center"
       :class="{
         'b-radio__indicator--checked': isChecked,
         'b-radio__indicator--disabled': isDisabled,

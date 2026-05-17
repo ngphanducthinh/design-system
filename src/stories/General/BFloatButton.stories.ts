@@ -1,13 +1,10 @@
-import { expect, userEvent, within } from 'storybook/test';
-import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { ref } from 'vue';
 import BFloatButton from '@/components/BFloatButton/BFloatButton.vue';
-import BFloatButtonGroup from '@/components/BFloatButton/BFloatButtonGroup.vue';
 import BFloatButtonBackTop from '@/components/BFloatButton/BFloatButtonBackTop.vue';
-import {
-  BFloatButtonShape,
-  BFloatButtonType,
-} from '@/components/BFloatButton/types.ts';
+import BFloatButtonGroup from '@/components/BFloatButton/BFloatButtonGroup.vue';
+import { BFloatButtonShape, BFloatButtonType } from '@/components/BFloatButton/types.ts';
+import type { Meta, StoryObj } from '@storybook/vue3-vite';
+import { expect, userEvent, within } from 'storybook/test';
+import { ref } from 'vue';
 
 // ─────────────────────────────────────────────
 // Meta
@@ -396,4 +393,3 @@ export const Disabled: Story = {
     `,
   }),
 };
-

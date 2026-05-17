@@ -418,7 +418,9 @@ describe('BSegmented – edge cases', () => {
     expect(w.findAll('.b-segmented__item')[0].classes()).toContain('b-segmented__item--selected');
     await w.setProps({ modelValue: 'Monthly' });
     expect(w.findAll('.b-segmented__item')[2].classes()).toContain('b-segmented__item--selected');
-    expect(w.findAll('.b-segmented__item')[0].classes()).not.toContain('b-segmented__item--selected');
+    expect(w.findAll('.b-segmented__item')[0].classes()).not.toContain(
+      'b-segmented__item--selected',
+    );
   });
 
   it('updates disabled state reactively', async () => {

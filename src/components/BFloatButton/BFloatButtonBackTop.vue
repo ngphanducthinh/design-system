@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import BFloatButton from './BFloatButton.vue';
 import { BFloatButtonShape, BFloatButtonType } from './types.ts';
 
@@ -132,7 +132,7 @@ const isVisible = visible;
             aria-hidden="true"
             focusable="false"
           >
-            <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/>
+            <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z" />
           </svg>
         </slot>
       </template>

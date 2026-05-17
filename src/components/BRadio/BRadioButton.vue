@@ -67,7 +67,7 @@ function handleChange(event: Event) {
 
 <template>
   <label
-    class="b-radio-button b:relative b:inline-flex b:items-center b:justify-center b:cursor-pointer b:select-none b:leading-none"
+    class="b-radio-button b:relative b:inline-flex b:cursor-pointer b:items-center b:justify-center b:leading-none b:select-none"
     :class="[
       `b-radio-button--${groupSize}`,
       `b-radio-button--${groupButtonStyle}`,

@@ -74,14 +74,12 @@ const meta = {
     },
     previewSrc: {
       control: 'text',
-      description:
-        'Custom source for the preview overlay (e.g. a higher-resolution version).',
+      description: 'Custom source for the preview overlay (e.g. a higher-resolution version).',
       table: { category: 'Props' },
     },
     previewVisible: {
       control: 'boolean',
-      description:
-        'Controlled preview visibility. Use with `v-model:previewVisible`.',
+      description: 'Controlled preview visibility. Use with `v-model:previewVisible`.',
       table: { category: 'Two-Way Binding Props' },
     },
     scaleStep: {
@@ -674,9 +672,7 @@ export const Accessibility: Story = {
     if (mask) {
       expect(mask.getAttribute('role')).toBe('button');
       expect(mask.getAttribute('tabindex')).toBe('0');
-      expect(mask.getAttribute('aria-label')).toBe(
-        'Preview image: Scenic mountain landscape',
-      );
+      expect(mask.getAttribute('aria-label')).toBe('Preview image: Scenic mountain landscape');
 
       // Decorative SVG
       const svg = mask.querySelector('svg');
@@ -871,9 +867,7 @@ export const InteractionTests: Story = {
         }
 
         // Close via close button
-        const closeBtn = previewOverlay.querySelector(
-          '.b-image-preview__close',
-        ) as HTMLElement;
+        const closeBtn = previewOverlay.querySelector('.b-image-preview__close') as HTMLElement;
         expect(closeBtn?.getAttribute('aria-label')).toBe('Close preview');
         await userEvent.click(closeBtn);
         await new Promise((r) => setTimeout(r, 400));

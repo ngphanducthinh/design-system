@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { inject, onBeforeUnmount, onMounted, useSlots, watch } from 'vue';
 import type { VNode } from 'vue';
+import { inject, onBeforeUnmount, onMounted, useSlots, watch } from 'vue';
 
 import { BTabsContextKey } from './types';
 
@@ -67,7 +67,14 @@ onBeforeUnmount(() => {
 });
 
 watch(
-  () => [props.tab, props.disabled, props.closable, props.destroyOnHidden, props.forceRender, props.keepAlive],
+  () => [
+    props.tab,
+    props.disabled,
+    props.closable,
+    props.destroyOnHidden,
+    props.forceRender,
+    props.keepAlive,
+  ],
   () => {
     tabsContext?.update(props.tabKey, buildRegistration());
   },

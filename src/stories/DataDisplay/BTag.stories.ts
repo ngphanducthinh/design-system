@@ -56,7 +56,8 @@ const meta = {
     },
     icon: {
       control: 'text',
-      description: 'Leading icon string (emoji / unicode). For accessible icons prefer the `#icon` slot.',
+      description:
+        'Leading icon string (emoji / unicode). For accessible icons prefer the `#icon` slot.',
       table: { category: 'Props' },
     },
   },
@@ -170,7 +171,19 @@ export const PresetColors: Story = {
     components: { BTag },
     setup() {
       const statusColors: BTagColor[] = ['default', 'success', 'processing', 'error', 'warning'];
-      const palette: BTagColor[] = ['magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan', 'blue', 'geekblue', 'purple'];
+      const palette: BTagColor[] = [
+        'magenta',
+        'red',
+        'volcano',
+        'orange',
+        'gold',
+        'lime',
+        'green',
+        'cyan',
+        'blue',
+        'geekblue',
+        'purple',
+      ];
       return { statusColors, palette };
     },
     template: `
@@ -202,7 +215,15 @@ export const PresetColors: Story = {
   }),
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const colorsToCheck = ['success', 'processing', 'error', 'warning', 'magenta', 'blue', 'purple'];
+    const colorsToCheck = [
+      'success',
+      'processing',
+      'error',
+      'warning',
+      'magenta',
+      'blue',
+      'purple',
+    ];
     colorsToCheck.forEach((c) => {
       const el = canvas.getByTestId(`color-${c}`);
       expect(el.classList.contains(`b-tag--${c}`)).toBe(true);
@@ -638,7 +659,8 @@ export const InteractionTests: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Automated play function verifying click-to-close, keyboard close, controlled visibility, and event order.',
+        story:
+          'Automated play function verifying click-to-close, keyboard close, controlled visibility, and event order.',
       },
     },
   },

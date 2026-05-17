@@ -131,9 +131,15 @@ export const Playground: Story = {
     setup() {
       const open = ref(args.modelValue ?? undefined);
       const argsRef = toRef(() => args.modelValue);
-      watch(argsRef, (v) => { open.value = v; });
-      function onConfirm() { console.log('Confirmed!'); }
-      function onCancel() { console.log('Cancelled!'); }
+      watch(argsRef, (v) => {
+        open.value = v;
+      });
+      function onConfirm() {
+        console.log('Confirmed!');
+      }
+      function onCancel() {
+        console.log('Cancelled!');
+      }
       return { args, open, onConfirm, onCancel };
     },
     template: `
@@ -415,8 +421,12 @@ export const InteractionConfirmFlow: Story = {
     components: { BButton, BPopconfirm },
     setup() {
       const status = ref('idle');
-      function onConfirm() { status.value = 'confirmed'; }
-      function onCancel() { status.value = 'cancelled'; }
+      function onConfirm() {
+        status.value = 'confirmed';
+      }
+      function onCancel() {
+        status.value = 'cancelled';
+      }
       return { status, onConfirm, onCancel };
     },
     template: `
@@ -466,8 +476,12 @@ export const InteractionCancelFlow: Story = {
     components: { BButton, BPopconfirm },
     setup() {
       const status = ref('idle');
-      function onConfirm() { status.value = 'confirmed'; }
-      function onCancel() { status.value = 'cancelled'; }
+      function onConfirm() {
+        status.value = 'confirmed';
+      }
+      function onCancel() {
+        status.value = 'cancelled';
+      }
       return { status, onConfirm, onCancel };
     },
     template: `

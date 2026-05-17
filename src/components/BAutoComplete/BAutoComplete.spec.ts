@@ -80,7 +80,11 @@ describe('BAutoComplete', () => {
 
     it('renders borderless variant', () => {
       const wrapper = mount(BAutoComplete, {
-        props: { options: defaultOptions, modelValue: '', variant: BAutoCompleteVariant.Borderless },
+        props: {
+          options: defaultOptions,
+          modelValue: '',
+          variant: BAutoCompleteVariant.Borderless,
+        },
       });
       const input = getInput(wrapper);
       expect(input.classes()).toContain('b:border-none');
@@ -333,7 +337,12 @@ describe('BAutoComplete', () => {
 
     it('backfills input with active option value when backfill is true', async () => {
       const wrapper = mount(BAutoComplete, {
-        props: { options: defaultOptions, modelValue: '', backfill: true, defaultActiveFirstOption: false },
+        props: {
+          options: defaultOptions,
+          modelValue: '',
+          backfill: true,
+          defaultActiveFirstOption: false,
+        },
         attachTo: document.body,
       });
       await getInput(wrapper).trigger('focus');
@@ -513,7 +522,12 @@ describe('BAutoComplete', () => {
 
     it('wraps around when navigating past the last option', async () => {
       const wrapper = mount(BAutoComplete, {
-        props: { options: defaultOptions, modelValue: '', backfill: true, defaultActiveFirstOption: false },
+        props: {
+          options: defaultOptions,
+          modelValue: '',
+          backfill: true,
+          defaultActiveFirstOption: false,
+        },
         attachTo: document.body,
       });
       await getInput(wrapper).trigger('focus');

@@ -24,8 +24,7 @@ const meta = {
     },
     duration: {
       control: 'number',
-      description:
-        'Time (seconds) before auto-close. Set to `0` to disable auto-close.',
+      description: 'Time (seconds) before auto-close. Set to `0` to disable auto-close.',
       table: { defaultValue: { summary: '3' } },
     },
     showIcon: {
@@ -599,4 +598,3 @@ export const InteractionHoverPause: Story = {
     expect(msg.getAttribute('aria-live')).toBe('assertive');
   },
 };
-

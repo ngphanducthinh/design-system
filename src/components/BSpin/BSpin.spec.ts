@@ -102,19 +102,13 @@ describe('BSpin – props map to DOM', () => {
 // ─────────────────────────────────────────────
 describe('BSpin – slot overrides', () => {
   it('renders custom indicator via indicator slot', () => {
-    const wrapper = mountSpin(
-      {},
-      { indicator: () => '<div class="custom-spinner">⟳</div>' },
-    );
+    const wrapper = mountSpin({}, { indicator: () => '<div class="custom-spinner">⟳</div>' });
     expect(wrapper.find('.b-spin__dot').exists()).toBe(false);
     expect(wrapper.text()).toContain('⟳');
   });
 
   it('renders custom tip via tip slot', () => {
-    const wrapper = mountSpin(
-      { tip: 'Prop tip' },
-      { tip: () => 'Slot tip' },
-    );
+    const wrapper = mountSpin({ tip: 'Prop tip' }, { tip: () => 'Slot tip' });
     expect(wrapper.find('.b-spin__tip').text()).toBe('Slot tip');
   });
 });
@@ -274,10 +268,7 @@ describe('BSpin – edge cases', () => {
 
   it('nested with delay toggles correctly', async () => {
     vi.useFakeTimers();
-    const wrapper = mountSpin(
-      { spinning: true, delay: 300 },
-      { default: () => 'Content' },
-    );
+    const wrapper = mountSpin({ spinning: true, delay: 300 }, { default: () => 'Content' });
 
     // Initially overlay should not show (delay pending)
     expect(wrapper.find('.b-spin__overlay-container').exists()).toBe(false);

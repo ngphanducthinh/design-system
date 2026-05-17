@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { ref, nextTick } from 'vue';
+import { describe, expect, it, vi } from 'vitest';
+import { nextTick } from 'vue';
 import BTree from './BTree.vue';
 import type { BTreeNodeData, BTreeNodeKey } from './types';
 
@@ -133,7 +133,11 @@ describe('BTree – props to DOM', () => {
 
   it('fieldNames remaps key/title/children fields', () => {
     const customData: BTreeNodeData[] = [
-      { id: 'a', label: 'Alpha', items: [{ id: 'a1', label: 'Alpha 1' }] } as unknown as BTreeNodeData,
+      {
+        id: 'a',
+        label: 'Alpha',
+        items: [{ id: 'a1', label: 'Alpha 1' }],
+      } as unknown as BTreeNodeData,
     ];
     const w = mount(BTree, {
       props: {
@@ -278,9 +282,9 @@ describe('BTree – selection', () => {
 
   it('does not select disabled nodes', async () => {
     const w = mountTree({ defaultExpandedKeys: ['1'] });
-    const disabledNode = w.findAll('[role="treeitem"]').find((el) =>
-      el.text().includes('Child 1-2'),
-    )!;
+    const disabledNode = w
+      .findAll('[role="treeitem"]')
+      .find((el) => el.text().includes('Child 1-2'))!;
     await disabledNode.trigger('click');
     expect(w.emitted('select')).toBeFalsy();
   });
@@ -560,12 +564,13 @@ describe('BTree – async loadData', () => {
   it('shows loading spinner when loadData is pending', async () => {
     let resolve!: () => void;
     const loadData = vi.fn(
-      () => new Promise<void>((r) => { resolve = r; }),
+      () =>
+        new Promise<void>((r) => {
+          resolve = r;
+        }),
     );
 
-    const asyncTree: BTreeNodeData[] = [
-      { key: 'async-1', title: 'Async Parent' },
-    ];
+    const asyncTree: BTreeNodeData[] = [{ key: 'async-1', title: 'Async Parent' }];
     const w = mount(BTree, { props: { treeData: asyncTree, loadData } });
 
     await w.findAll('.b-tree__switcher')[0].trigger('click');
@@ -618,9 +623,7 @@ describe('BTree – filterTreeNode', () => {
     const w = mountTree({
       filterTreeNode: (node: BTreeNodeData) => node.title === 'Leaf 3',
     });
-    const leaf3 = w
-      .findAll('[role="treeitem"]')
-      .find((el) => el.text().includes('Leaf 3'));
+    const leaf3 = w.findAll('[role="treeitem"]').find((el) => el.text().includes('Leaf 3'));
     expect(leaf3?.find('.b-tree__title').classes()).toContain('b-tree__title--filtered');
   });
 

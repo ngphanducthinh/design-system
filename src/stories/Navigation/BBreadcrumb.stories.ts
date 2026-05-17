@@ -1,7 +1,7 @@
 import { BBreadcrumb } from '@/components';
 import type { BBreadcrumbItem } from '@/types';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { expect, userEvent, within } from 'storybook/test';
+import { expect, within } from 'storybook/test';
 
 const SAMPLE_ITEMS: BBreadcrumbItem[] = [
   { text: 'Home', href: '/' },
@@ -221,7 +221,7 @@ export const Theming: Story = {
     docs: {
       description: {
         story:
-          'Override CSS variables via <code>:style</code> on the component (not a wrapper element) so inline styles beat the component\'s own stylesheet declarations. All colours pass WCAG AA contrast against the <code>#f5f3ff</code> background.',
+          "Override CSS variables via <code>:style</code> on the component (not a wrapper element) so inline styles beat the component's own stylesheet declarations. All colours pass WCAG AA contrast against the <code>#f5f3ff</code> background.",
       },
     },
   },

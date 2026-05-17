@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, ref, useId, watch } from 'vue';
 import type { BDrawerPlacement, BDrawerSize } from '@/types';
+import { computed, nextTick, onBeforeUnmount, ref, useId, watch } from 'vue';
 
 // ─────────────────────────────────────────────
 // Props & emits
@@ -106,9 +106,7 @@ const titleId = useId();
 const internalOpen = ref(false);
 
 /** Effective visibility. */
-const isOpen = computed(() =>
-  modelValue !== undefined ? modelValue : internalOpen.value,
-);
+const isOpen = computed(() => (modelValue !== undefined ? modelValue : internalOpen.value));
 
 /** Whether the drawer has ever been opened (for lazy rendering). */
 const hasBeenOpened = ref(false);
@@ -172,9 +170,7 @@ function trapFocus(event: KeyboardEvent) {
 
   const focusableSelectors =
     'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
-  const focusable = Array.from(
-    drawerRef.value.querySelectorAll<HTMLElement>(focusableSelectors),
-  );
+  const focusable = Array.from(drawerRef.value.querySelectorAll<HTMLElement>(focusableSelectors));
 
   if (focusable.length === 0) {
     event.preventDefault();
@@ -283,11 +279,7 @@ defineExpose({ open });
 
 <template>
   <Teleport :to="teleportTarget">
-    <Transition
-      name="b-drawer"
-      @after-enter="onAfterEnter"
-      @after-leave="onAfterLeave"
-    >
+    <Transition name="b-drawer" @after-enter="onAfterEnter" @after-leave="onAfterLeave">
       <div
         v-if="isOpen"
         class="b-drawer-root"
@@ -295,12 +287,7 @@ defineExpose({ open });
         :style="{ zIndex }"
       >
         <!-- Mask -->
-        <div
-          v-if="mask"
-          class="b-drawer__mask"
-          aria-hidden="true"
-          @click="onMaskClick"
-        />
+        <div v-if="mask" class="b-drawer__mask" aria-hidden="true" @click="onMaskClick" />
 
         <!-- Panel -->
         <div
@@ -341,17 +328,15 @@ defineExpose({ open });
                     aria-hidden="true"
                     focusable="false"
                   >
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                    <path
+                      d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                    />
                   </svg>
                 </slot>
               </button>
 
               <!-- Title -->
-              <div
-                v-if="hasTitle"
-                :id="titleId"
-                class="b-drawer__title"
-              >
+              <div v-if="hasTitle" :id="titleId" class="b-drawer__title">
                 <slot name="title">{{ title }}</slot>
               </div>
             </div>
@@ -372,7 +357,16 @@ defineExpose({ open });
                 aria-hidden="true"
                 focusable="false"
               >
-                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round" />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-dasharray="31.4 31.4"
+                  stroke-linecap="round"
+                />
               </svg>
               <span class="b-drawer__loading-text">Loading…</span>
             </div>
@@ -407,8 +401,8 @@ defineExpose({ open });
   --b-drawer-title-font-weight: 600;
   --b-drawer-title-line-height: 1.5;
   --b-drawer-transition-duration: 300ms;
-  --b-drawer-shadow: -6px 0 16px 0 rgba(0, 0, 0, 0.08),
-    -3px 0 6px -4px rgba(0, 0, 0, 0.12),
+  --b-drawer-shadow:
+    -6px 0 16px 0 rgba(0, 0, 0, 0.08), -3px 0 6px -4px rgba(0, 0, 0, 0.12),
     -9px 0 28px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -420,8 +414,8 @@ defineExpose({ open });
   --b-drawer-border-color: oklch(30% 0 0);
   --b-drawer-close-color: oklch(65% 0 0);
   --b-drawer-close-hover-color: oklch(90% 0 0);
-  --b-drawer-shadow: -6px 0 16px 0 rgba(0, 0, 0, 0.24),
-    -3px 0 6px -4px rgba(0, 0, 0, 0.36),
+  --b-drawer-shadow:
+    -6px 0 16px 0 rgba(0, 0, 0, 0.24), -3px 0 6px -4px rgba(0, 0, 0, 0.36),
     -9px 0 28px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -670,4 +664,3 @@ defineExpose({ open });
   }
 }
 </style>
-

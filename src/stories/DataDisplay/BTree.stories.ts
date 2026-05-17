@@ -708,16 +708,24 @@ export const Draggable: Story = {
         key: BTreeNodeKey,
       ): { list: BTreeNodeData[]; removed: BTreeNodeData | null } {
         let removed: BTreeNodeData | null = null;
-        const list = nodes.filter((n) => {
-          if (n.key === key) { removed = n; return false; }
-          return true;
-        }).map((n) => {
-          if (n.children?.length) {
-            const sub = removeNode(n.children, key);
-            if (sub.removed) { removed = sub.removed; return { ...n, children: sub.list }; }
-          }
-          return n;
-        });
+        const list = nodes
+          .filter((n) => {
+            if (n.key === key) {
+              removed = n;
+              return false;
+            }
+            return true;
+          })
+          .map((n) => {
+            if (n.children?.length) {
+              const sub = removeNode(n.children, key);
+              if (sub.removed) {
+                removed = sub.removed;
+                return { ...n, children: sub.list };
+              }
+            }
+            return n;
+          });
         return { list, removed };
       }
 
@@ -738,13 +746,20 @@ export const Draggable: Story = {
             return dropPosition < 0 ? [node, n] : [n, node];
           }
           if (n.children?.length) {
-            return [{ ...n, children: insertNode(n.children, targetKey, node, dropToGap, dropPosition) }];
+            return [
+              { ...n, children: insertNode(n.children, targetKey, node, dropToGap, dropPosition) },
+            ];
           }
           return [n];
         });
       }
 
-      function onDrop({ node, dragNode, dropPosition, dropToGap }: {
+      function onDrop({
+        node,
+        dragNode,
+        dropPosition,
+        dropToGap,
+      }: {
         node: BTreeNodeData;
         dragNode: BTreeNodeData;
         dropPosition: number;
@@ -792,14 +807,10 @@ export const Draggable: Story = {
     // dragstart fires on the first node and applies the dragging class
     const firstNode = items[0];
     fireEvent.dragStart(firstNode);
-    await waitFor(() =>
-      expect(firstNode.classList.contains('b-tree__node--dragging')).toBe(true),
-    );
+    await waitFor(() => expect(firstNode.classList.contains('b-tree__node--dragging')).toBe(true));
 
     // dragend clears the dragging class
     fireEvent.dragEnd(firstNode);
-    await waitFor(() =>
-      expect(firstNode.classList.contains('b-tree__node--dragging')).toBe(false),
-    );
+    await waitFor(() => expect(firstNode.classList.contains('b-tree__node--dragging')).toBe(false));
   },
 };

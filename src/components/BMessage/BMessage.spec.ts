@@ -445,4 +445,3 @@ describe('BMessage – animation (fake timers)', () => {
     expect(wrapper.emitted('close')).toHaveLength(2);
   });
 });
-

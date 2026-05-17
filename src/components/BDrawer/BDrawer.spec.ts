@@ -38,13 +38,10 @@ describe('BDrawer – defaults and variants', () => {
     expect(wrapper.find('.b-drawer--right').exists()).toBe(true);
   });
 
-  it.each(['top', 'right', 'bottom', 'left'] as const)(
-    'renders with placement=%s',
-    (placement) => {
-      const wrapper = mountDrawer({ modelValue: true, placement });
-      expect(wrapper.find(`.b-drawer--${placement}`).exists()).toBe(true);
-    },
-  );
+  it.each(['top', 'right', 'bottom', 'left'] as const)('renders with placement=%s', (placement) => {
+    const wrapper = mountDrawer({ modelValue: true, placement });
+    expect(wrapper.find(`.b-drawer--${placement}`).exists()).toBe(true);
+  });
 
   it.each(['default', 'large'] as const)('renders with size=%s', (size) => {
     const wrapper = mountDrawer({ modelValue: true, size });
@@ -67,10 +64,7 @@ describe('BDrawer – props map to DOM', () => {
   });
 
   it('renders title via slot', () => {
-    const wrapper = mountDrawer(
-      { modelValue: true },
-      { title: () => 'Slot Title' },
-    );
+    const wrapper = mountDrawer({ modelValue: true }, { title: () => 'Slot Title' });
     expect(wrapper.find('.b-drawer__title').text()).toBe('Slot Title');
   });
 
@@ -101,10 +95,7 @@ describe('BDrawer – props map to DOM', () => {
   });
 
   it('renders extra via slot', () => {
-    const wrapper = mountDrawer(
-      { modelValue: true },
-      { extra: () => 'Slot Extra' },
-    );
+    const wrapper = mountDrawer({ modelValue: true }, { extra: () => 'Slot Extra' });
     expect(wrapper.find('.b-drawer__extra').text()).toBe('Slot Extra');
   });
 
@@ -114,10 +105,7 @@ describe('BDrawer – props map to DOM', () => {
   });
 
   it('renders footer via slot', () => {
-    const wrapper = mountDrawer(
-      { modelValue: true },
-      { footer: () => 'Slot Footer' },
-    );
+    const wrapper = mountDrawer({ modelValue: true }, { footer: () => 'Slot Footer' });
     expect(wrapper.find('.b-drawer__footer').text()).toBe('Slot Footer');
   });
 
@@ -158,10 +146,7 @@ describe('BDrawer – props map to DOM', () => {
   });
 
   it('renders default slot content', () => {
-    const wrapper = mountDrawer(
-      { modelValue: true },
-      { default: () => 'Body content' },
-    );
+    const wrapper = mountDrawer({ modelValue: true }, { default: () => 'Body content' });
     expect(wrapper.find('.b-drawer__body').text()).toBe('Body content');
   });
 
@@ -300,10 +285,7 @@ describe('BDrawer – accessibility', () => {
 describe('BDrawer – edge cases', () => {
   it('handles long content without overflow errors', () => {
     const longContent = 'A'.repeat(5000);
-    const wrapper = mountDrawer(
-      { modelValue: true },
-      { default: () => longContent },
-    );
+    const wrapper = mountDrawer({ modelValue: true }, { default: () => longContent });
     expect(wrapper.find('.b-drawer__body').text()).toBe(longContent);
   });
 
@@ -410,4 +392,3 @@ describe('BDrawer – animation (fake timers)', () => {
     expect(wrapper.emitted('afterOpenChange')![0]).toEqual([true]);
   });
 });
-

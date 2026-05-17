@@ -10,7 +10,12 @@ import BCollapsePanel from './BCollapsePanel.vue';
 // ─────────────────────────────────────────────
 function mountCollapse(
   props: Record<string, unknown> = {},
-  panels: { key: string | number; header: string; content: string; panelProps?: Record<string, unknown> }[] = [
+  panels: {
+    key: string | number;
+    header: string;
+    content: string;
+    panelProps?: Record<string, unknown>;
+  }[] = [
     { key: '1', header: 'Panel 1', content: 'Content 1' },
     { key: '2', header: 'Panel 2', content: 'Content 2' },
     { key: '3', header: 'Panel 3', content: 'Content 3' },
@@ -19,9 +24,16 @@ function mountCollapse(
   return mount(BCollapse, {
     props,
     slots: {
-      default: panels.map((p) =>
-        `<BCollapsePanel panel-key="${p.key}" header="${p.header}" ${Object.entries(p.panelProps ?? {}).map(([k, v]) => `${k}="${v}"`).join(' ')}>${p.content}</BCollapsePanel>`,
-      ).join('\n'),
+      default: panels
+        .map(
+          (p) =>
+            `<BCollapsePanel panel-key="${p.key}" header="${p.header}" ${Object.entries(
+              p.panelProps ?? {},
+            )
+              .map(([k, v]) => `${k}="${v}"`)
+              .join(' ')}>${p.content}</BCollapsePanel>`,
+        )
+        .join('\n'),
     },
     global: {
       components: { BCollapsePanel },
@@ -101,7 +113,9 @@ describe('BCollapse – props map to DOM', () => {
     expect(wrapper.findAll('.b-collapse-panel')[0].classes()).toContain('b-collapse-panel--active');
 
     await header.trigger('click');
-    expect(wrapper.findAll('.b-collapse-panel')[0].classes()).not.toContain('b-collapse-panel--active');
+    expect(wrapper.findAll('.b-collapse-panel')[0].classes()).not.toContain(
+      'b-collapse-panel--active',
+    );
   });
 
   it('multiple panels can be open simultaneously (non-accordion)', async () => {
@@ -123,7 +137,9 @@ describe('BCollapse – props map to DOM', () => {
     expect(wrapper.findAll('.b-collapse-panel')[0].classes()).toContain('b-collapse-panel--active');
 
     await headers[1].trigger('click');
-    expect(wrapper.findAll('.b-collapse-panel')[0].classes()).not.toContain('b-collapse-panel--active');
+    expect(wrapper.findAll('.b-collapse-panel')[0].classes()).not.toContain(
+      'b-collapse-panel--active',
+    );
     expect(wrapper.findAll('.b-collapse-panel')[1].classes()).toContain('b-collapse-panel--active');
   });
 
@@ -135,7 +151,9 @@ describe('BCollapse – props map to DOM', () => {
     expect(wrapper.findAll('.b-collapse-panel')[0].classes()).toContain('b-collapse-panel--active');
 
     await header.trigger('click');
-    expect(wrapper.findAll('.b-collapse-panel')[0].classes()).not.toContain('b-collapse-panel--active');
+    expect(wrapper.findAll('.b-collapse-panel')[0].classes()).not.toContain(
+      'b-collapse-panel--active',
+    );
   });
 
   it('expand icon position end flips header layout', () => {
@@ -148,7 +166,9 @@ describe('BCollapse – props map to DOM', () => {
     const header = wrapper.findAll('.b-collapse-panel__header')[0];
 
     await header.trigger('click');
-    expect(wrapper.findAll('.b-collapse-panel')[0].classes()).not.toContain('b-collapse-panel--active');
+    expect(wrapper.findAll('.b-collapse-panel')[0].classes()).not.toContain(
+      'b-collapse-panel--active',
+    );
   });
 
   it('collapsible="icon" allows icon click to toggle', async () => {
@@ -313,13 +333,17 @@ describe('BCollapse – accessibility', () => {
 
   it('content has aria-hidden="true" when collapsed', () => {
     const wrapper = mountStandalonePanel();
-    expect(wrapper.find('.b-collapse-panel__content-wrapper').attributes('aria-hidden')).toBe('true');
+    expect(wrapper.find('.b-collapse-panel__content-wrapper').attributes('aria-hidden')).toBe(
+      'true',
+    );
   });
 
   it('content has aria-hidden="false" when expanded', async () => {
     const wrapper = mountStandalonePanel();
     await wrapper.find('.b-collapse-panel__header').trigger('click');
-    expect(wrapper.find('.b-collapse-panel__content-wrapper').attributes('aria-hidden')).toBe('false');
+    expect(wrapper.find('.b-collapse-panel__content-wrapper').attributes('aria-hidden')).toBe(
+      'false',
+    );
   });
 
   it('disabled panel has aria-disabled="true"', () => {
@@ -364,7 +388,9 @@ describe('BCollapse – controlled vs uncontrolled', () => {
 
     const wrapper = mount(TestHost);
     expect(wrapper.findAll('.b-collapse-panel')[0].classes()).toContain('b-collapse-panel--active');
-    expect(wrapper.findAll('.b-collapse-panel')[1].classes()).not.toContain('b-collapse-panel--active');
+    expect(wrapper.findAll('.b-collapse-panel')[1].classes()).not.toContain(
+      'b-collapse-panel--active',
+    );
 
     // Click panel 2
     await wrapper.findAll('.b-collapse-panel__header')[1].trigger('click');
@@ -395,7 +421,9 @@ describe('BCollapse – edge cases', () => {
   it('collapsible="disabled" at group level disables all panels', async () => {
     const wrapper = mountCollapse({ collapsible: 'disabled' });
     await wrapper.findAll('.b-collapse-panel__header')[0].trigger('click');
-    expect(wrapper.findAll('.b-collapse-panel')[0].classes()).not.toContain('b-collapse-panel--active');
+    expect(wrapper.findAll('.b-collapse-panel')[0].classes()).not.toContain(
+      'b-collapse-panel--active',
+    );
   });
 
   it('panel-level collapsible overrides group-level', async () => {
@@ -416,7 +444,9 @@ describe('BCollapse – edge cases', () => {
 
     // Panel 2 inherits group disabled
     await wrapper.findAll('.b-collapse-panel__header')[1].trigger('click');
-    expect(wrapper.findAll('.b-collapse-panel')[1].classes()).not.toContain('b-collapse-panel--active');
+    expect(wrapper.findAll('.b-collapse-panel')[1].classes()).not.toContain(
+      'b-collapse-panel--active',
+    );
   });
 
   it('forceRender renders content even when collapsed', () => {

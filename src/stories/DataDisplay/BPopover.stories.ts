@@ -106,7 +106,9 @@ export const Playground: Story = {
     setup() {
       const open = ref(args.modelValue ?? undefined);
       const argsRef = toRef(() => args.modelValue);
-      watch(argsRef, (v) => { open.value = v; });
+      watch(argsRef, (v) => {
+        open.value = v;
+      });
       return { args, open };
     },
     template: `
@@ -152,7 +154,9 @@ export const BasicPopover: Story = {
       const popover = document.querySelector('.b-popover__content');
       expect(popover).toBeTruthy();
       expect(document.querySelector('.b-popover__title')?.textContent).toBe('Title');
-      expect(document.querySelector('.b-popover__body')?.textContent).toBe('Content of the popover.');
+      expect(document.querySelector('.b-popover__body')?.textContent).toBe(
+        'Content of the popover.',
+      );
     });
     await userEvent.unhover(buttons[0]);
   },

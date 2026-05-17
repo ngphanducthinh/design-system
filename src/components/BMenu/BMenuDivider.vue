@@ -9,10 +9,7 @@ const { dashed = false } = defineProps<{
 </script>
 
 <template>
-  <li
-    :class="['b-menu-divider', { 'b-menu-divider--dashed': dashed }]"
-    role="separator"
-  />
+  <li :class="['b-menu-divider', { 'b-menu-divider--dashed': dashed }]" role="separator" />
 </template>
 
 <style>

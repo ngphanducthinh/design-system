@@ -72,9 +72,7 @@ const { componentUID } = useComponentId();
 const tooltipId = useId();
 
 const internalOpen = ref(false);
-const isOpen = computed(() =>
-  modelValue !== undefined ? modelValue : internalOpen.value,
-);
+const isOpen = computed(() => (modelValue !== undefined ? modelValue : internalOpen.value));
 
 const hasBeenOpened = ref(false);
 const shouldRender = computed(() => {
@@ -94,8 +92,14 @@ let showTimer: ReturnType<typeof setTimeout> | null = null;
 let hideTimer: ReturnType<typeof setTimeout> | null = null;
 
 function clearTimers() {
-  if (showTimer) { clearTimeout(showTimer); showTimer = null; }
-  if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+  if (showTimer) {
+    clearTimeout(showTimer);
+    showTimer = null;
+  }
+  if (hideTimer) {
+    clearTimeout(hideTimer);
+    hideTimer = null;
+  }
 }
 
 function requestOpen(delay = 0) {
@@ -324,10 +328,7 @@ defineExpose({ open: doOpen, close: doClose });
       { 'b-tooltip__content--no-arrow': !arrow },
       tooltipClass,
     ]"
-    :style="[
-      { zIndex, positionAnchor: anchorName },
-      customColorStyle,
-    ]"
+    :style="[{ zIndex, positionAnchor: anchorName }, customColorStyle]"
     role="tooltip"
     :id="tooltipId"
     @toggle="onPopoverToggle"
@@ -335,14 +336,8 @@ defineExpose({ open: doOpen, close: doClose });
     @mouseleave="onTooltipMouseLeave"
   >
     <template v-if="shouldRender || !destroyTooltipOnHide">
-      <div
-        v-if="arrow"
-        class="b-tooltip__arrow"
-        aria-hidden="true"
-      />
-      <div
-        :class="['b-tooltip__inner', tooltipInnerClass]"
-      >
+      <div v-if="arrow" class="b-tooltip__arrow" aria-hidden="true" />
+      <div :class="['b-tooltip__inner', tooltipInnerClass]">
         <slot name="title">
           {{ title }}
         </slot>
@@ -368,8 +363,8 @@ defineExpose({ open: doOpen, close: doClose });
   --b-tooltip-arrow-color: oklch(20% 0 0);
   --b-tooltip-gap: 8px;
   --b-tooltip-transition-duration: 200ms;
-  --b-tooltip-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+  --b-tooltip-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -377,8 +372,8 @@ defineExpose({ open: doOpen, close: doClose });
 [data-prefers-color='dark'] {
   --b-tooltip-bg: oklch(35% 0 0);
   --b-tooltip-arrow-color: oklch(35% 0 0);
-  --b-tooltip-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.24),
-    0 3px 6px -4px rgba(0, 0, 0, 0.36),
+  --b-tooltip-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
     0 9px 28px 8px rgba(0, 0, 0, 0.2);
 }
 

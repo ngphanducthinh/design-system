@@ -43,7 +43,12 @@ export interface BTableColumnType<T = Record<string, unknown>> {
   /** Unique column key (falls back to dataIndex) */
   key?: string | number;
   /** Custom render function or slot name */
-  customRender?: (params: { value: unknown; record: T; index: number; column: BTableColumnType<T> }) => VNode | string | number;
+  customRender?: (params: {
+    value: unknown;
+    record: T;
+    index: number;
+    column: BTableColumnType<T>;
+  }) => VNode | string | number;
   /** Slot name to use for rendering cells */
   customCell?: string;
   /** Text alignment */
@@ -212,7 +217,14 @@ export interface BTablePaginationConfig {
   hideOnSinglePage?: boolean;
   simple?: boolean;
   disabled?: boolean;
-  position?: ('topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight')[];
+  position?: (
+    | 'topLeft'
+    | 'topCenter'
+    | 'topRight'
+    | 'bottomLeft'
+    | 'bottomCenter'
+    | 'bottomRight'
+  )[];
   onChange?: (page: number, pageSize: number) => void;
   onShowSizeChange?: (current: number, size: number) => void;
 }

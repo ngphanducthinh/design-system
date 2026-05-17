@@ -137,9 +137,7 @@ describe('BTour – props map to DOM', () => {
   });
 
   it('renders cover image when step.cover is a URL string', () => {
-    const steps: BTourStep[] = [
-      { title: 'Cover Step', cover: 'https://example.com/img.png' },
-    ];
+    const steps: BTourStep[] = [{ title: 'Cover Step', cover: 'https://example.com/img.png' }];
     const wrapper = mountTour({ steps });
     expect(wrapper.find('.b-tour__cover-img').exists()).toBe(true);
     expect(wrapper.find('.b-tour__cover-img').attributes('src')).toBe(
@@ -495,9 +493,7 @@ describe('BTour – edge cases', () => {
   });
 
   it('step-level type overrides tour-level type', () => {
-    const steps: BTourStep[] = [
-      { title: 'Override', type: BTourType.Primary },
-    ];
+    const steps: BTourStep[] = [{ title: 'Override', type: BTourType.Primary }];
     const wrapper = mountTour({ steps, type: BTourType.Default });
     // The b-tour root class reflects effective type
     expect(wrapper.find('.b-tour').classes()).toContain('b-tour--primary');

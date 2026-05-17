@@ -1,23 +1,15 @@
 <script setup lang="ts">
 import { useComponentId } from '@/composables/useComponentId.ts';
-import {
-  computed,
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-  useId,
-  watch,
-} from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue';
 import {
   BColorPickerFormat,
   BColorPickerPlacement,
   BColorPickerSize,
   BColorPickerTrigger,
   type BColorHsb,
+  type BColorHsl,
   type BColorPickerPreset,
   type BColorRgb,
-  type BColorHsl,
 } from './types';
 
 // ─────────────────────────────────────────────
@@ -158,12 +150,36 @@ function hsbToRgb(hsb: BColorHsb): BColorRgb {
   const q = v * (1 - f * s);
   const t = v * (1 - (1 - f) * s);
   switch (i % 6) {
-    case 0: r = v; g = t; b = p; break;
-    case 1: r = q; g = v; b = p; break;
-    case 2: r = p; g = v; b = t; break;
-    case 3: r = p; g = q; b = v; break;
-    case 4: r = t; g = p; b = v; break;
-    case 5: r = v; g = p; b = q; break;
+    case 0:
+      r = v;
+      g = t;
+      b = p;
+      break;
+    case 1:
+      r = q;
+      g = v;
+      b = p;
+      break;
+    case 2:
+      r = p;
+      g = v;
+      b = t;
+      break;
+    case 3:
+      r = p;
+      g = q;
+      b = v;
+      break;
+    case 4:
+      r = t;
+      g = p;
+      b = v;
+      break;
+    case 5:
+      r = v;
+      g = p;
+      b = q;
+      break;
   }
   return {
     r: Math.round(r * 255),
@@ -234,9 +250,7 @@ function parseColor(input: string): BColorHsb {
   const s = input.trim().toLowerCase();
 
   // HSL string
-  const hslMatch = s.match(
-    /hsla?\(\s*(\d+)\s*,\s*(\d+)%?\s*,\s*(\d+)%?\s*(?:,\s*([\d.]+))?\s*\)/,
-  );
+  const hslMatch = s.match(/hsla?\(\s*(\d+)\s*,\s*(\d+)%?\s*,\s*(\d+)%?\s*(?:,\s*([\d.]+))?\s*\)/);
   if (hslMatch) {
     const hsl: BColorHsl = {
       h: parseInt(hslMatch[1]),
@@ -248,9 +262,7 @@ function parseColor(input: string): BColorHsb {
   }
 
   // RGB string
-  const rgbMatch = s.match(
-    /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+))?\s*\)/,
-  );
+  const rgbMatch = s.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+))?\s*\)/);
   if (rgbMatch) {
     const rgb: BColorRgb = {
       r: parseInt(rgbMatch[1]),
@@ -262,9 +274,7 @@ function parseColor(input: string): BColorHsb {
   }
 
   // HSB string
-  const hsbMatch = s.match(
-    /hsb\(\s*(\d+)\s*,\s*(\d+)%?\s*,\s*(\d+)%?\s*(?:,\s*([\d.]+))?\s*\)/,
-  );
+  const hsbMatch = s.match(/hsb\(\s*(\d+)\s*,\s*(\d+)%?\s*,\s*(\d+)%?\s*(?:,\s*([\d.]+))?\s*\)/);
   if (hsbMatch) {
     return {
       h: parseInt(hsbMatch[1]),
@@ -433,10 +443,7 @@ function onKeydown(event: KeyboardEvent) {
 function onDocumentClick(event: MouseEvent) {
   if (!isOpen.value) return;
   const target = event.target as Node;
-  if (
-    triggerRef.value?.contains(target) ||
-    panelRef.value?.contains(target)
-  ) {
+  if (triggerRef.value?.contains(target) || panelRef.value?.contains(target)) {
     return;
   }
   setOpen(false);
@@ -669,7 +676,9 @@ function onInputChange(event: Event) {
       case BColorPickerFormat.Hsl: {
         const parts = val.split(',').map((s) => parseInt(s.trim()));
         if (parts.length >= 3) {
-          parsed = rgbToHsb(hslToRgb({ h: parts[0], s: parts[1], l: parts[2], a: internalHsb.value.a }));
+          parsed = rgbToHsb(
+            hslToRgb({ h: parts[0], s: parts[1], l: parts[2], a: internalHsb.value.a }),
+          );
         } else return;
         break;
       }
@@ -763,9 +772,12 @@ const alphaGradient = computed(() => {
 
 const sizeClass = computed(() => {
   switch (size) {
-    case BColorPickerSize.Small: return 'b-color-picker--sm';
-    case BColorPickerSize.Large: return 'b-color-picker--lg';
-    default: return 'b-color-picker--md';
+    case BColorPickerSize.Small:
+      return 'b-color-picker--sm';
+    case BColorPickerSize.Large:
+      return 'b-color-picker--lg';
+    default:
+      return 'b-color-picker--md';
   }
 });
 
@@ -787,10 +799,7 @@ defineExpose({ open: () => setOpen(true), close: () => setOpen(false) });
 </script>
 
 <template>
-  <div
-    class="b-color-picker"
-    :class="[sizeClass, { 'b-color-picker--disabled': disabled }]"
-  >
+  <div class="b-color-picker" :class="[sizeClass, { 'b-color-picker--disabled': disabled }]">
     <!-- Trigger -->
     <div
       ref="triggerRef"
@@ -857,19 +866,13 @@ defineExpose({ open: () => setOpen(true), close: () => setOpen(false) });
       >
         <div class="b-color-picker__saturation-white" />
         <div class="b-color-picker__saturation-black" />
-        <div
-          class="b-color-picker__saturation-handle"
-          :style="saturationHandleStyle"
-        />
+        <div class="b-color-picker__saturation-handle" :style="saturationHandleStyle" />
       </div>
 
       <!-- Sliders + preview row -->
       <div class="b-color-picker__controls">
         <div class="b-color-picker__preview">
-          <div
-            class="b-color-picker__preview-color"
-            :style="{ backgroundColor: cssColor }"
-          />
+          <div class="b-color-picker__preview-color" :style="{ backgroundColor: cssColor }" />
         </div>
 
         <div class="b-color-picker__sliders">
@@ -902,10 +905,7 @@ defineExpose({ open: () => setOpen(true), close: () => setOpen(false) });
             tabindex="0"
             @mousedown="onAlphaMouseDown"
           >
-            <div
-              class="b-color-picker__alpha-handle"
-              :style="alphaHandleStyle"
-            />
+            <div class="b-color-picker__alpha-handle" :style="alphaHandleStyle" />
           </div>
         </div>
       </div>
@@ -945,11 +945,7 @@ defineExpose({ open: () => setOpen(true), close: () => setOpen(false) });
 
       <!-- Presets -->
       <div v-if="presets && presets.length" class="b-color-picker__presets">
-        <div
-          v-for="preset in presets"
-          :key="preset.label"
-          class="b-color-picker__preset-group"
-        >
+        <div v-for="preset in presets" :key="preset.label" class="b-color-picker__preset-group">
           <div class="b-color-picker__preset-label">{{ preset.label }}</div>
           <div class="b-color-picker__preset-colors">
             <button
@@ -998,8 +994,9 @@ defineExpose({ open: () => setOpen(true), close: () => setOpen(false) });
   --b-color-picker-line-height: 1.5714;
   --b-color-picker-bg: #ffffff;
   --b-color-picker-border-color: #d9d9d9;
-  --b-color-picker-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --b-color-picker-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
   --b-color-picker-trigger-height: 32px;
   --b-color-picker-trigger-height-sm: 24px;
   --b-color-picker-trigger-height-lg: 40px;
@@ -1023,8 +1020,9 @@ defineExpose({ open: () => setOpen(true), close: () => setOpen(false) });
   .b-color-picker {
     --b-color-picker-bg: #1f1f1f;
     --b-color-picker-border-color: #424242;
-    --b-color-picker-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.24),
-      0 3px 6px -4px rgba(0, 0, 0, 0.36), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+    --b-color-picker-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
+      0 9px 28px 8px rgba(0, 0, 0, 0.2);
     --b-color-picker-input-bg: #141414;
     --b-color-picker-input-border: #424242;
     --b-color-picker-text-color: rgba(255, 255, 255, 0.88);
@@ -1122,13 +1120,7 @@ defineExpose({ open: () => setOpen(true), close: () => setOpen(false) });
 }
 
 .b-color-picker__swatch--cleared {
-  background: linear-gradient(
-      135deg,
-      transparent 45%,
-      #ff4d4f 45%,
-      #ff4d4f 55%,
-      transparent 55%
-    )
+  background: linear-gradient(135deg, transparent 45%, #ff4d4f 45%, #ff4d4f 55%, transparent 55%)
     center/100% 100%;
 }
 

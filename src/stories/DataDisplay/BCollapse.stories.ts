@@ -58,7 +58,8 @@ const meta = {
   },
   decorators: [
     () => ({
-      template: '<div style="display:flex;justify-content:center;padding:2rem;"><div style="width:100%;max-width:600px;"><story /></div></div>',
+      template:
+        '<div style="display:flex;justify-content:center;padding:2rem;"><div style="width:100%;max-width:600px;"><story /></div></div>',
     }),
   ],
   parameters: {
@@ -80,8 +81,10 @@ type Story = StoryObj<typeof meta>;
 // ─────────────────────────────────────────────
 // Sample content
 // ─────────────────────────────────────────────
-const loremShort = 'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.';
-const loremLong = 'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world. Dogs come in various breeds, each with unique characteristics and temperaments. They have been human companions for thousands of years, serving as guards, herders, hunters, and beloved family pets. Regular exercise, proper nutrition, and veterinary care are essential for maintaining a healthy and happy dog.';
+const loremShort =
+  'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.';
+const loremLong =
+  'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world. Dogs come in various breeds, each with unique characteristics and temperaments. They have been human companions for thousands of years, serving as guards, herders, hunters, and beloved family pets. Regular exercise, proper nutrition, and veterinary care are essential for maintaining a healthy and happy dog.';
 
 // ─────────────────────────────────────────────
 // 1. Playground
@@ -251,7 +254,8 @@ export const ExpandIconAndTrigger: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Expand icon at start/end and collapsible trigger area: header (default), icon only.',
+        story:
+          'Expand icon at start/end and collapsible trigger area: header (default), icon only.',
       },
     },
   },
@@ -290,7 +294,8 @@ export const DisabledAndExtra: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Panels can be individually disabled. Extra content appears at the end of the header.',
+        story:
+          'Panels can be individually disabled. Extra content appears at the end of the header.',
       },
     },
   },
@@ -324,7 +329,8 @@ export const Controlled: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Use `v-model` for fully controlled active key state. The badge shows which panels are active.',
+        story:
+          'Use `v-model` for fully controlled active key state. The badge shows which panels are active.',
       },
     },
   },
@@ -503,7 +509,8 @@ export const InteractionTests: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Automated play function: verifies click toggling, accordion behavior, keyboard navigation, and disabled state.',
+        story:
+          'Automated play function: verifies click toggling, accordion behavior, keyboard navigation, and disabled state.',
       },
     },
   },

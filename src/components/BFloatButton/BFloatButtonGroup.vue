@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { provide, ref, computed, watch, onBeforeUnmount } from 'vue';
-import { BFloatButtonShape, BFloatButtonTrigger, BFloatButtonGroupPlacement } from './types.ts';
+import { computed, onBeforeUnmount, provide, ref, watch } from 'vue';
+import { BFloatButtonGroupPlacement, BFloatButtonShape, BFloatButtonTrigger } from './types.ts';
 
 // ─────────────────────────────────────────────
 // Props & emits
@@ -89,7 +89,10 @@ let hideTimer: ReturnType<typeof setTimeout> | null = null;
 
 function onMouseEnter() {
   if (props.trigger !== BFloatButtonTrigger.Hover) return;
-  if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+  if (hideTimer) {
+    clearTimeout(hideTimer);
+    hideTimer = null;
+  }
   openGroup();
 }
 
@@ -105,11 +108,18 @@ onBeforeUnmount(() => {
 // ─────────────────────────────────────────────
 // Provide shape to children
 // ─────────────────────────────────────────────
-provide('bFloatButtonGroupShape', computed(() => props.shape ?? BFloatButtonShape.Circle));
+provide(
+  'bFloatButtonGroupShape',
+  computed(() => props.shape ?? BFloatButtonShape.Circle),
+);
 
 const isGroup = computed(() => props.trigger !== undefined);
-const placementClass = computed(() => `b-float-button-group--${props.placement ?? BFloatButtonGroupPlacement.Top}`);
-const shapeClass = computed(() => `b-float-button-group--shape-${props.shape ?? BFloatButtonShape.Circle}`);
+const placementClass = computed(
+  () => `b-float-button-group--${props.placement ?? BFloatButtonGroupPlacement.Top}`,
+);
+const shapeClass = computed(
+  () => `b-float-button-group--shape-${props.shape ?? BFloatButtonShape.Circle}`,
+);
 </script>
 
 <template>
@@ -155,15 +165,29 @@ const shapeClass = computed(() => `b-float-button-group--shape-${props.shape ?? 
         <span class="b-float-button__icon" aria-hidden="true">
           <template v-if="internalOpen">
             <slot name="closeIcon">
-              <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+              <svg
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                />
               </svg>
             </slot>
           </template>
           <template v-else>
             <slot name="icon">
-              <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              <svg
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z" />
               </svg>
             </slot>
           </template>

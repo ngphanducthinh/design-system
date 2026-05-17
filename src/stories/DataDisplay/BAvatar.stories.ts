@@ -449,7 +449,8 @@ export const InteractionImageFallback: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Automated play function: verifies that broken images fall back to text or default icon.',
+        story:
+          'Automated play function: verifies that broken images fall back to text or default icon.',
       },
     },
   },

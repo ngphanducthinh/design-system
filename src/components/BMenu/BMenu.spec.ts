@@ -472,9 +472,7 @@ describe('BMenu', () => {
       const wrapper = mountMenu({ items: nestedItems, defaultOpenKeys: ['sub1'] });
       const subItems = wrapper.findAll('.b-menu-item');
       // Find the sub-item (Sub Item 1 with key sub1-1)
-      const subItem = subItems.find(
-        (el) => el.attributes('data-menu-key') === 'sub1-1',
-      );
+      const subItem = subItems.find((el) => el.attributes('data-menu-key') === 'sub1-1');
       expect(subItem).toBeTruthy();
       await subItem!.trigger('click');
       const clickEvent = wrapper.emitted('click')![0][0] as { keyPath: string[] };

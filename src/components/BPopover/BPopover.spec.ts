@@ -63,10 +63,7 @@ describe('BPopover – defaults and variants', () => {
   });
 
   it('renders title from slot, overriding prop', () => {
-    const wrapper = mountPopover(
-      { title: 'Prop title' },
-      { title: () => 'Slot title' },
-    );
+    const wrapper = mountPopover({ title: 'Prop title' }, { title: () => 'Slot title' });
     expect(wrapper.find('.b-popover__title').text()).toBe('Slot title');
   });
 
@@ -76,10 +73,7 @@ describe('BPopover – defaults and variants', () => {
   });
 
   it('renders content from slot, overriding prop', () => {
-    const wrapper = mountPopover(
-      { content: 'Prop content' },
-      { content: () => 'Slot content' },
-    );
+    const wrapper = mountPopover({ content: 'Prop content' }, { content: () => 'Slot content' });
     expect(wrapper.find('.b-popover__body').text()).toBe('Slot content');
   });
 
@@ -111,10 +105,18 @@ describe('BPopover – defaults and variants', () => {
   });
 
   it.each([
-    'top-left', 'top-center', 'top-right',
-    'right-top', 'right-center', 'right-bottom',
-    'bottom-right', 'bottom-center', 'bottom-left',
-    'left-bottom', 'left-center', 'left-top',
+    'top-left',
+    'top-center',
+    'top-right',
+    'right-top',
+    'right-center',
+    'right-bottom',
+    'bottom-right',
+    'bottom-center',
+    'bottom-left',
+    'left-bottom',
+    'left-center',
+    'left-top',
   ])('renders with placement=%s', (placement) => {
     const wrapper = mountPopover({ placement });
     expect(wrapper.find(`.b-popover__content.${placement}`).exists()).toBe(true);

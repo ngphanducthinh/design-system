@@ -1,5 +1,5 @@
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
-import { mount, flushPromises } from '@vue/test-utils';
+import { flushPromises, mount } from '@vue/test-utils';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import BMasonry from './BMasonry.vue';
 import type { BMasonryItem } from './types';
 
@@ -223,7 +223,11 @@ describe('BMasonry', () => {
         },
       },
     });
-    expect(receivedProps[0]).toMatchObject({ item: { key: 'z', height: 100 }, index: 0, column: 0 });
+    expect(receivedProps[0]).toMatchObject({
+      item: { key: 'z', height: 100 },
+      index: 0,
+      column: 0,
+    });
   });
 
   // ── data-masonry-key attribute ───────────────────────────────────────────────
@@ -257,9 +261,7 @@ describe('BMasonry', () => {
 
   it('does not throw when ResizeObserver is unavailable', () => {
     vi.stubGlobal('ResizeObserver', undefined);
-    expect(() =>
-      mount(BMasonry, { props: { items: makeItems(3), fresh: true } }),
-    ).not.toThrow();
+    expect(() => mount(BMasonry, { props: { items: makeItems(3), fresh: true } })).not.toThrow();
   });
 
   it('re-renders when items prop changes', async () => {

@@ -87,7 +87,26 @@ const meta = {
     },
     locale: {
       control: 'select',
-      options: ['en-US', 'en-GB', 'de-DE', 'fr-FR', 'es-ES', 'it-IT', 'pt-BR', 'ja-JP', 'ko-KR', 'zh-CN', 'zh-TW', 'vi-VN', 'th-TH', 'ar-SA', 'ru-RU', 'nl-NL', 'pl-PL', 'tr-TR'],
+      options: [
+        'en-US',
+        'en-GB',
+        'de-DE',
+        'fr-FR',
+        'es-ES',
+        'it-IT',
+        'pt-BR',
+        'ja-JP',
+        'ko-KR',
+        'zh-CN',
+        'zh-TW',
+        'vi-VN',
+        'th-TH',
+        'ar-SA',
+        'ru-RU',
+        'nl-NL',
+        'pl-PL',
+        'tr-TR',
+      ],
       description: 'BCP 47 locale tag for weekday/month labels.',
     },
   },
@@ -295,8 +314,22 @@ export const Presets: Story = {
       const date = ref<Date | null>(null);
       const presets = [
         { label: 'Today', value: () => new Date() },
-        { label: 'Yesterday', value: () => { const d = new Date(); d.setDate(d.getDate() - 1); return d; } },
-        { label: 'Last Week', value: () => { const d = new Date(); d.setDate(d.getDate() - 7); return d; } },
+        {
+          label: 'Yesterday',
+          value: () => {
+            const d = new Date();
+            d.setDate(d.getDate() - 1);
+            return d;
+          },
+        },
+        {
+          label: 'Last Week',
+          value: () => {
+            const d = new Date();
+            d.setDate(d.getDate() - 7);
+            return d;
+          },
+        },
       ];
       return { date, presets };
     },
@@ -422,7 +455,9 @@ export const Interactions: Story = {
     });
 
     // Click a date cell (first current month cell)
-    const cells = canvasElement.querySelectorAll('.b-date-picker__cell:not(.b-date-picker__cell--other):not(.b-date-picker__cell--disabled)');
+    const cells = canvasElement.querySelectorAll(
+      '.b-date-picker__cell:not(.b-date-picker__cell--other):not(.b-date-picker__cell--disabled)',
+    );
     expect(cells.length).toBeGreaterThan(0);
     await userEvent.click(cells[0]);
 
@@ -511,7 +546,6 @@ export const LocaleAndFormat: Story = {
 // 14. Theming (CSS variable overrides)
 // ═════════════════════════════════════════════
 export const Theming: Story = {
-
   render: () => ({
     components: { BDatePicker },
     template: `
@@ -558,44 +592,192 @@ export const DesignTokens: Story = {
   render: () => ({
     setup() {
       const tokens = [
-        { variable: '--b-date-picker-active-bg', default: '#ffffff', description: 'Background color when input is activated' },
-        { variable: '--b-date-picker-active-border-color', default: '#1677ff', description: 'Border color when input is focused' },
-        { variable: '--b-date-picker-active-shadow', default: '0 0 0 2px rgba(5,145,255,0.1)', description: 'Box-shadow when active' },
-        { variable: '--b-date-picker-hover-bg', default: '#ffffff', description: 'Background color on hover' },
-        { variable: '--b-date-picker-hover-border-color', default: '#4096ff', description: 'Border color on hover' },
-        { variable: '--b-date-picker-cell-active-with-range-bg', default: '#e6f4ff', description: 'Background of cell in range' },
-        { variable: '--b-date-picker-cell-bg-disabled', default: 'rgba(0,0,0,0.04)', description: 'Background of disabled cell' },
-        { variable: '--b-date-picker-cell-height', default: '24px', description: 'Height of date cell' },
-        { variable: '--b-date-picker-cell-width', default: '36px', description: 'Width of date cell' },
-        { variable: '--b-date-picker-cell-hover-bg', default: 'rgba(0,0,0,0.04)', description: 'Background of hovered cell' },
-        { variable: '--b-date-picker-cell-hover-with-range-bg', default: '#c8dfff', description: 'Background of hovered cell in range' },
-        { variable: '--b-date-picker-cell-range-border-color', default: '#82b4f9', description: 'Border color of cell in range' },
-        { variable: '--b-date-picker-error-active-shadow', default: '0 0 0 2px rgba(255,38,5,0.06)', description: 'Box-shadow in error status' },
-        { variable: '--b-date-picker-warning-active-shadow', default: '0 0 0 2px rgba(255,215,5,0.1)', description: 'Box-shadow in warning status' },
-        { variable: '--b-date-picker-input-font-size', default: '14px', description: 'Input font size (medium)' },
-        { variable: '--b-date-picker-input-font-size-lg', default: '16px', description: 'Input font size (large)' },
-        { variable: '--b-date-picker-input-font-size-sm', default: '12px', description: 'Input font size (small)' },
-        { variable: '--b-date-picker-padding-block', default: '4px', description: 'Vertical padding of input' },
-        { variable: '--b-date-picker-padding-block-lg', default: '7px', description: 'Vertical padding (large)' },
-        { variable: '--b-date-picker-padding-block-sm', default: '0px', description: 'Vertical padding (small)' },
-        { variable: '--b-date-picker-padding-inline', default: '11px', description: 'Horizontal padding of input' },
-        { variable: '--b-date-picker-presets-width', default: '120px', description: 'Width of presets area' },
-        { variable: '--b-date-picker-presets-max-width', default: '200px', description: 'Max width of presets area' },
-        { variable: '--b-date-picker-text-height', default: '40px', description: 'Height of text cell' },
-        { variable: '--b-date-picker-without-time-cell-height', default: '66px', description: 'Height of month/year/quarter cell' },
-        { variable: '--b-date-picker-z-index-popup', default: '1050', description: 'z-index of popup panel' },
-        { variable: '--b-date-picker-bg', default: '#ffffff', description: 'Input background color' },
-        { variable: '--b-date-picker-border-color', default: '#d9d9d9', description: 'Input border color' },
+        {
+          variable: '--b-date-picker-active-bg',
+          default: '#ffffff',
+          description: 'Background color when input is activated',
+        },
+        {
+          variable: '--b-date-picker-active-border-color',
+          default: '#1677ff',
+          description: 'Border color when input is focused',
+        },
+        {
+          variable: '--b-date-picker-active-shadow',
+          default: '0 0 0 2px rgba(5,145,255,0.1)',
+          description: 'Box-shadow when active',
+        },
+        {
+          variable: '--b-date-picker-hover-bg',
+          default: '#ffffff',
+          description: 'Background color on hover',
+        },
+        {
+          variable: '--b-date-picker-hover-border-color',
+          default: '#4096ff',
+          description: 'Border color on hover',
+        },
+        {
+          variable: '--b-date-picker-cell-active-with-range-bg',
+          default: '#e6f4ff',
+          description: 'Background of cell in range',
+        },
+        {
+          variable: '--b-date-picker-cell-bg-disabled',
+          default: 'rgba(0,0,0,0.04)',
+          description: 'Background of disabled cell',
+        },
+        {
+          variable: '--b-date-picker-cell-height',
+          default: '24px',
+          description: 'Height of date cell',
+        },
+        {
+          variable: '--b-date-picker-cell-width',
+          default: '36px',
+          description: 'Width of date cell',
+        },
+        {
+          variable: '--b-date-picker-cell-hover-bg',
+          default: 'rgba(0,0,0,0.04)',
+          description: 'Background of hovered cell',
+        },
+        {
+          variable: '--b-date-picker-cell-hover-with-range-bg',
+          default: '#c8dfff',
+          description: 'Background of hovered cell in range',
+        },
+        {
+          variable: '--b-date-picker-cell-range-border-color',
+          default: '#82b4f9',
+          description: 'Border color of cell in range',
+        },
+        {
+          variable: '--b-date-picker-error-active-shadow',
+          default: '0 0 0 2px rgba(255,38,5,0.06)',
+          description: 'Box-shadow in error status',
+        },
+        {
+          variable: '--b-date-picker-warning-active-shadow',
+          default: '0 0 0 2px rgba(255,215,5,0.1)',
+          description: 'Box-shadow in warning status',
+        },
+        {
+          variable: '--b-date-picker-input-font-size',
+          default: '14px',
+          description: 'Input font size (medium)',
+        },
+        {
+          variable: '--b-date-picker-input-font-size-lg',
+          default: '16px',
+          description: 'Input font size (large)',
+        },
+        {
+          variable: '--b-date-picker-input-font-size-sm',
+          default: '12px',
+          description: 'Input font size (small)',
+        },
+        {
+          variable: '--b-date-picker-padding-block',
+          default: '4px',
+          description: 'Vertical padding of input',
+        },
+        {
+          variable: '--b-date-picker-padding-block-lg',
+          default: '7px',
+          description: 'Vertical padding (large)',
+        },
+        {
+          variable: '--b-date-picker-padding-block-sm',
+          default: '0px',
+          description: 'Vertical padding (small)',
+        },
+        {
+          variable: '--b-date-picker-padding-inline',
+          default: '11px',
+          description: 'Horizontal padding of input',
+        },
+        {
+          variable: '--b-date-picker-presets-width',
+          default: '120px',
+          description: 'Width of presets area',
+        },
+        {
+          variable: '--b-date-picker-presets-max-width',
+          default: '200px',
+          description: 'Max width of presets area',
+        },
+        {
+          variable: '--b-date-picker-text-height',
+          default: '40px',
+          description: 'Height of text cell',
+        },
+        {
+          variable: '--b-date-picker-without-time-cell-height',
+          default: '66px',
+          description: 'Height of month/year/quarter cell',
+        },
+        {
+          variable: '--b-date-picker-z-index-popup',
+          default: '1050',
+          description: 'z-index of popup panel',
+        },
+        {
+          variable: '--b-date-picker-bg',
+          default: '#ffffff',
+          description: 'Input background color',
+        },
+        {
+          variable: '--b-date-picker-border-color',
+          default: '#d9d9d9',
+          description: 'Input border color',
+        },
         { variable: '--b-date-picker-border-radius', default: '6px', description: 'Border radius' },
-        { variable: '--b-date-picker-text-color', default: 'rgba(0,0,0,0.88)', description: 'Primary text color' },
-        { variable: '--b-date-picker-text-color-secondary', default: 'rgba(0,0,0,0.45)', description: 'Secondary text color' },
-        { variable: '--b-date-picker-text-color-disabled', default: 'rgba(0,0,0,0.25)', description: 'Disabled text color' },
-        { variable: '--b-date-picker-panel-bg', default: '#ffffff', description: 'Panel background' },
-        { variable: '--b-date-picker-panel-shadow', default: '0 6px 16px 0 rgba(0,0,0,0.08), ...', description: 'Panel box shadow' },
-        { variable: '--b-date-picker-selected-bg', default: '#1677ff', description: 'Selected cell background' },
-        { variable: '--b-date-picker-selected-color', default: '#ffffff', description: 'Selected cell text color' },
-        { variable: '--b-date-picker-today-border-color', default: '#1677ff', description: 'Today cell border color' },
-        { variable: '--b-date-picker-transition-duration', default: '200ms', description: 'Transition duration for animations' },
+        {
+          variable: '--b-date-picker-text-color',
+          default: 'rgba(0,0,0,0.88)',
+          description: 'Primary text color',
+        },
+        {
+          variable: '--b-date-picker-text-color-secondary',
+          default: 'rgba(0,0,0,0.45)',
+          description: 'Secondary text color',
+        },
+        {
+          variable: '--b-date-picker-text-color-disabled',
+          default: 'rgba(0,0,0,0.25)',
+          description: 'Disabled text color',
+        },
+        {
+          variable: '--b-date-picker-panel-bg',
+          default: '#ffffff',
+          description: 'Panel background',
+        },
+        {
+          variable: '--b-date-picker-panel-shadow',
+          default: '0 6px 16px 0 rgba(0,0,0,0.08), ...',
+          description: 'Panel box shadow',
+        },
+        {
+          variable: '--b-date-picker-selected-bg',
+          default: '#1677ff',
+          description: 'Selected cell background',
+        },
+        {
+          variable: '--b-date-picker-selected-color',
+          default: '#ffffff',
+          description: 'Selected cell text color',
+        },
+        {
+          variable: '--b-date-picker-today-border-color',
+          default: '#1677ff',
+          description: 'Today cell border color',
+        },
+        {
+          variable: '--b-date-picker-transition-duration',
+          default: '200ms',
+          description: 'Transition duration for animations',
+        },
       ];
       return { tokens };
     },

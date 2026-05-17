@@ -69,10 +69,7 @@ describe('BTooltip – defaults and variants', () => {
   });
 
   it('renders title from slot, overriding prop', () => {
-    const wrapper = mountTooltip(
-      { title: 'Prop title' },
-      { title: () => 'Slot title' },
-    );
+    const wrapper = mountTooltip({ title: 'Prop title' }, { title: () => 'Slot title' });
     expect(wrapper.find('.b-tooltip__inner').text()).toBe('Slot title');
   });
 
@@ -93,10 +90,18 @@ describe('BTooltip – defaults and variants', () => {
   });
 
   it.each([
-    'top-left', 'top-center', 'top-right',
-    'right-top', 'right-center', 'right-bottom',
-    'bottom-right', 'bottom-center', 'bottom-left',
-    'left-bottom', 'left-center', 'left-top',
+    'top-left',
+    'top-center',
+    'top-right',
+    'right-top',
+    'right-center',
+    'right-bottom',
+    'bottom-right',
+    'bottom-center',
+    'bottom-left',
+    'left-bottom',
+    'left-center',
+    'left-top',
   ])('renders with placement=%s', (placement) => {
     const wrapper = mountTooltip({ placement });
     expect(wrapper.find(`.b-tooltip__content.${placement}`).exists()).toBe(true);

@@ -122,7 +122,10 @@ const resolvedItems = computed<ResolvedItem[]>(() => {
       }
 
       const props = (vnode.props || {}) as Record<string, unknown>;
-      const children = vnode.children as Record<string, ((...args: unknown[]) => VNode | VNode[])> | null;
+      const children = vnode.children as Record<
+        string,
+        (...args: unknown[]) => VNode | VNode[]
+      > | null;
 
       const rawLabel = children?.label?.();
       const rawContent = children?.default?.();
@@ -133,7 +136,11 @@ const resolvedItems = computed<ResolvedItem[]>(() => {
         labelStyle: props.labelStyle as CSSProperties | undefined,
         contentStyle: props.contentStyle as CSSProperties | undefined,
         labelSlot: rawLabel ? (Array.isArray(rawLabel) ? rawLabel : [rawLabel]) : undefined,
-        contentSlot: rawContent ? (Array.isArray(rawContent) ? rawContent : [rawContent]) : undefined,
+        contentSlot: rawContent
+          ? Array.isArray(rawContent)
+            ? rawContent
+            : [rawContent]
+          : undefined,
       });
     }
   }
@@ -231,11 +238,7 @@ function mergedContentStyle(item: ResolvedItem): CSSProperties | undefined {
         <tbody>
           <!-- Horizontal layout with border -->
           <template v-if="layout === 'horizontal'">
-            <tr
-              v-for="(row, rowIndex) in rows"
-              :key="rowIndex"
-              class="b-descriptions__row"
-            >
+            <tr v-for="(row, rowIndex) in rows" :key="rowIndex" class="b-descriptions__row">
               <template v-for="(item, itemIndex) in row.items" :key="itemIndex">
                 <th
                   class="b-descriptions__item-label b-descriptions__item-label--bordered"
@@ -305,31 +308,21 @@ function mergedContentStyle(item: ResolvedItem): CSSProperties | undefined {
         <tbody>
           <!-- Horizontal layout (default) -->
           <template v-if="layout === 'horizontal'">
-            <tr
-              v-for="(row, rowIndex) in rows"
-              :key="rowIndex"
-              class="b-descriptions__row"
-            >
+            <tr v-for="(row, rowIndex) in rows" :key="rowIndex" class="b-descriptions__row">
               <td
                 v-for="(item, itemIndex) in row.items"
                 :key="itemIndex"
                 class="b-descriptions__item"
                 :colspan="item.effectiveSpan"
               >
-                <span
-                  class="b-descriptions__item-label"
-                  :style="mergedLabelStyle(item)"
-                >
+                <span class="b-descriptions__item-label" :style="mergedLabelStyle(item)">
                   <component
                     v-if="item.labelSlot && item.labelSlot.length"
                     :is="() => item.labelSlot"
                   />
                   <template v-else>{{ item.label }}</template>
                 </span>
-                <span
-                  class="b-descriptions__item-content"
-                  :style="mergedContentStyle(item)"
-                >
+                <span class="b-descriptions__item-content" :style="mergedContentStyle(item)">
                   <component
                     v-if="item.contentSlot && item.contentSlot.length"
                     :is="() => item.contentSlot"
@@ -350,10 +343,7 @@ function mergedContentStyle(item: ResolvedItem): CSSProperties | undefined {
                   class="b-descriptions__item"
                   :colspan="item.effectiveSpan"
                 >
-                  <span
-                    class="b-descriptions__item-label"
-                    :style="mergedLabelStyle(item)"
-                  >
+                  <span class="b-descriptions__item-label" :style="mergedLabelStyle(item)">
                     <component
                       v-if="item.labelSlot && item.labelSlot.length"
                       :is="() => item.labelSlot"
@@ -369,10 +359,7 @@ function mergedContentStyle(item: ResolvedItem): CSSProperties | undefined {
                   class="b-descriptions__item"
                   :colspan="item.effectiveSpan"
                 >
-                  <span
-                    class="b-descriptions__item-content"
-                    :style="mergedContentStyle(item)"
-                  >
+                  <span class="b-descriptions__item-content" :style="mergedContentStyle(item)">
                     <component
                       v-if="item.contentSlot && item.contentSlot.length"
                       :is="() => item.contentSlot"
@@ -532,7 +519,9 @@ function mergedContentStyle(item: ResolvedItem): CSSProperties | undefined {
 }
 
 /* ── Colon ── */
-.b-descriptions--colon:not(.b-descriptions--vertical) .b-descriptions__item .b-descriptions__item-label::after {
+.b-descriptions--colon:not(.b-descriptions--vertical)
+  .b-descriptions__item
+  .b-descriptions__item-label::after {
   content: ':';
   position: relative;
   margin-inline-start: var(--b-descriptions-colon-margin-left);

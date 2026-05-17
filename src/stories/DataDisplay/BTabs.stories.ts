@@ -645,8 +645,16 @@ export const KeepAliveDemo: Story = {
         return () =>
           h('div', { style: 'padding: 16px;' }, [
             h('p', {}, `${props.label} — Count: ${count.value}`),
-            h('button', { onClick: () => count.value++, style: 'margin-top: 8px; padding: 4px 12px;' }, 'Increment'),
-            h('p', { style: 'margin-top: 8px; color: #666; font-size: 12px;' }, 'Switch tabs and come back — state is preserved with keepAlive!'),
+            h(
+              'button',
+              { onClick: () => count.value++, style: 'margin-top: 8px; padding: 4px 12px;' },
+              'Increment',
+            ),
+            h(
+              'p',
+              { style: 'margin-top: 8px; color: #666; font-size: 12px;' },
+              'Switch tabs and come back — state is preserved with keepAlive!',
+            ),
           ]);
       },
     });
@@ -686,35 +694,151 @@ export const DesignTokens: Story = {
     components: { BTabs },
     setup() {
       const tokens = [
-        { variable: '--b-tabs-ink-bar-color', defaultValue: 'oklch(54.6% 0.245 262.881)', description: 'Color of the active tab indicator bar' },
-        { variable: '--b-tabs-item-active-color', defaultValue: 'oklch(35% 0.2 260)', description: 'Text color of active (pressed) tab' },
-        { variable: '--b-tabs-item-color', defaultValue: 'oklch(30% 0.02 260 / 88%)', description: 'Default text color of tab items' },
-        { variable: '--b-tabs-item-hover-color', defaultValue: 'oklch(54.6% 0.245 262.881)', description: 'Text color of hovered tab' },
-        { variable: '--b-tabs-item-selected-color', defaultValue: 'oklch(54.6% 0.245 262.881)', description: 'Text color of selected tab' },
-        { variable: '--b-tabs-item-disabled-color', defaultValue: 'oklch(30% 0.02 260 / 25%)', description: 'Text color of disabled tab' },
-        { variable: '--b-tabs-title-font-size', defaultValue: '14px', description: 'Font size of tab titles' },
-        { variable: '--b-tabs-title-font-size-lg', defaultValue: '16px', description: 'Font size of large tab titles' },
-        { variable: '--b-tabs-title-font-size-sm', defaultValue: '14px', description: 'Font size of small tab titles' },
-        { variable: '--b-tabs-card-bg', defaultValue: 'oklch(97% 0.003 260 / 50%)', description: 'Background color of card-type tabs' },
-        { variable: '--b-tabs-card-height', defaultValue: '40px', description: 'Height of card-type tabs' },
-        { variable: '--b-tabs-card-height-lg', defaultValue: '48px', description: 'Height of large card-type tabs' },
-        { variable: '--b-tabs-card-height-sm', defaultValue: '32px', description: 'Height of small card-type tabs' },
-        { variable: '--b-tabs-card-padding', defaultValue: '8px 16px', description: 'Padding inside card-type tabs' },
-        { variable: '--b-tabs-card-padding-lg', defaultValue: '11px 16px', description: 'Padding inside large card-type tabs' },
-        { variable: '--b-tabs-card-padding-sm', defaultValue: '4px 8px', description: 'Padding inside small card-type tabs' },
-        { variable: '--b-tabs-card-gutter', defaultValue: '2px', description: 'Gap between card-type tabs' },
-        { variable: '--b-tabs-card-border-radius', defaultValue: '8px 8px 0 0', description: 'Border radius of card-type tabs' },
-        { variable: '--b-tabs-horizontal-item-gutter', defaultValue: '32px', description: 'Gap between horizontal tab items' },
-        { variable: '--b-tabs-horizontal-item-padding', defaultValue: '12px 0', description: 'Padding of horizontal tab items' },
-        { variable: '--b-tabs-horizontal-item-padding-lg', defaultValue: '16px 0', description: 'Padding of large horizontal tab items' },
-        { variable: '--b-tabs-horizontal-item-padding-sm', defaultValue: '8px 0', description: 'Padding of small horizontal tab items' },
-        { variable: '--b-tabs-horizontal-margin', defaultValue: '0 0 16px 0', description: 'Margin below horizontal tab bar' },
-        { variable: '--b-tabs-vertical-item-margin', defaultValue: '16px 0 0 0', description: 'Margin between vertical tab items' },
-        { variable: '--b-tabs-vertical-item-padding', defaultValue: '8px 24px', description: 'Padding of vertical tab items' },
-        { variable: '--b-tabs-border-color', defaultValue: 'oklch(80% 0.005 260)', description: 'Border color separating header from content' },
-        { variable: '--b-tabs-content-min-height', defaultValue: '0', description: 'Minimum height of the content area' },
-        { variable: '--b-tabs-focus-ring', defaultValue: '0 0 0 2px oklch(54.6% 0.245 262.881 / 20%)', description: 'Focus ring style for keyboard navigation' },
-        { variable: '--b-tabs-transition-duration', defaultValue: '200ms', description: 'Duration of all transitions and animations' },
+        {
+          variable: '--b-tabs-ink-bar-color',
+          defaultValue: 'oklch(54.6% 0.245 262.881)',
+          description: 'Color of the active tab indicator bar',
+        },
+        {
+          variable: '--b-tabs-item-active-color',
+          defaultValue: 'oklch(35% 0.2 260)',
+          description: 'Text color of active (pressed) tab',
+        },
+        {
+          variable: '--b-tabs-item-color',
+          defaultValue: 'oklch(30% 0.02 260 / 88%)',
+          description: 'Default text color of tab items',
+        },
+        {
+          variable: '--b-tabs-item-hover-color',
+          defaultValue: 'oklch(54.6% 0.245 262.881)',
+          description: 'Text color of hovered tab',
+        },
+        {
+          variable: '--b-tabs-item-selected-color',
+          defaultValue: 'oklch(54.6% 0.245 262.881)',
+          description: 'Text color of selected tab',
+        },
+        {
+          variable: '--b-tabs-item-disabled-color',
+          defaultValue: 'oklch(30% 0.02 260 / 25%)',
+          description: 'Text color of disabled tab',
+        },
+        {
+          variable: '--b-tabs-title-font-size',
+          defaultValue: '14px',
+          description: 'Font size of tab titles',
+        },
+        {
+          variable: '--b-tabs-title-font-size-lg',
+          defaultValue: '16px',
+          description: 'Font size of large tab titles',
+        },
+        {
+          variable: '--b-tabs-title-font-size-sm',
+          defaultValue: '14px',
+          description: 'Font size of small tab titles',
+        },
+        {
+          variable: '--b-tabs-card-bg',
+          defaultValue: 'oklch(97% 0.003 260 / 50%)',
+          description: 'Background color of card-type tabs',
+        },
+        {
+          variable: '--b-tabs-card-height',
+          defaultValue: '40px',
+          description: 'Height of card-type tabs',
+        },
+        {
+          variable: '--b-tabs-card-height-lg',
+          defaultValue: '48px',
+          description: 'Height of large card-type tabs',
+        },
+        {
+          variable: '--b-tabs-card-height-sm',
+          defaultValue: '32px',
+          description: 'Height of small card-type tabs',
+        },
+        {
+          variable: '--b-tabs-card-padding',
+          defaultValue: '8px 16px',
+          description: 'Padding inside card-type tabs',
+        },
+        {
+          variable: '--b-tabs-card-padding-lg',
+          defaultValue: '11px 16px',
+          description: 'Padding inside large card-type tabs',
+        },
+        {
+          variable: '--b-tabs-card-padding-sm',
+          defaultValue: '4px 8px',
+          description: 'Padding inside small card-type tabs',
+        },
+        {
+          variable: '--b-tabs-card-gutter',
+          defaultValue: '2px',
+          description: 'Gap between card-type tabs',
+        },
+        {
+          variable: '--b-tabs-card-border-radius',
+          defaultValue: '8px 8px 0 0',
+          description: 'Border radius of card-type tabs',
+        },
+        {
+          variable: '--b-tabs-horizontal-item-gutter',
+          defaultValue: '32px',
+          description: 'Gap between horizontal tab items',
+        },
+        {
+          variable: '--b-tabs-horizontal-item-padding',
+          defaultValue: '12px 0',
+          description: 'Padding of horizontal tab items',
+        },
+        {
+          variable: '--b-tabs-horizontal-item-padding-lg',
+          defaultValue: '16px 0',
+          description: 'Padding of large horizontal tab items',
+        },
+        {
+          variable: '--b-tabs-horizontal-item-padding-sm',
+          defaultValue: '8px 0',
+          description: 'Padding of small horizontal tab items',
+        },
+        {
+          variable: '--b-tabs-horizontal-margin',
+          defaultValue: '0 0 16px 0',
+          description: 'Margin below horizontal tab bar',
+        },
+        {
+          variable: '--b-tabs-vertical-item-margin',
+          defaultValue: '16px 0 0 0',
+          description: 'Margin between vertical tab items',
+        },
+        {
+          variable: '--b-tabs-vertical-item-padding',
+          defaultValue: '8px 24px',
+          description: 'Padding of vertical tab items',
+        },
+        {
+          variable: '--b-tabs-border-color',
+          defaultValue: 'oklch(80% 0.005 260)',
+          description: 'Border color separating header from content',
+        },
+        {
+          variable: '--b-tabs-content-min-height',
+          defaultValue: '0',
+          description: 'Minimum height of the content area',
+        },
+        {
+          variable: '--b-tabs-focus-ring',
+          defaultValue: '0 0 0 2px oklch(54.6% 0.245 262.881 / 20%)',
+          description: 'Focus ring style for keyboard navigation',
+        },
+        {
+          variable: '--b-tabs-transition-duration',
+          defaultValue: '200ms',
+          description: 'Duration of all transitions and animations',
+        },
       ];
       return { tokens };
     },

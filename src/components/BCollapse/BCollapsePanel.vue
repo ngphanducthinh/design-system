@@ -156,11 +156,7 @@ function handleKeydown(e: KeyboardEvent) {
         @click="handleIconClick"
       >
         <slot name="expandIcon" :is-active="isActive">
-          <BIcon
-            icon="chevron-right"
-            size="sm"
-            class="b-collapse-panel__arrow-icon"
-          />
+          <BIcon icon="chevron-right" size="sm" class="b-collapse-panel__arrow-icon" />
         </slot>
       </span>
 
@@ -184,10 +180,7 @@ function handleKeydown(e: KeyboardEvent) {
       :aria-labelledby="headerId"
       :aria-hidden="!isActive"
     >
-      <div
-        v-if="isActive || hasRendered || forceRender"
-        class="b-collapse-panel__content"
-      >
+      <div v-if="isActive || hasRendered || forceRender" class="b-collapse-panel__content">
         <div class="b-collapse-panel__body">
           <slot />
         </div>

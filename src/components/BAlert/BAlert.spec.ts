@@ -26,15 +26,13 @@ describe('BAlert – defaults and variants', () => {
     expect(wrapper.text()).toContain('Hello');
   });
 
-  it.each([
-    BAlertType.Success,
-    BAlertType.Info,
-    BAlertType.Warning,
-    BAlertType.Error,
-  ])('renders type=%s with correct class', (type) => {
-    const wrapper = mountAlert({ type, message: type });
-    expect(wrapper.find(`.b-alert--${type}`).exists()).toBe(true);
-  });
+  it.each([BAlertType.Success, BAlertType.Info, BAlertType.Warning, BAlertType.Error])(
+    'renders type=%s with correct class',
+    (type) => {
+      const wrapper = mountAlert({ type, message: type });
+      expect(wrapper.find(`.b-alert--${type}`).exists()).toBe(true);
+    },
+  );
 
   it('renders icon when showIcon=true', () => {
     const wrapper = mountAlert({ showIcon: true });
@@ -333,6 +331,3 @@ describe('BAlert – animation (fake timers)', () => {
     expect(wrapper.emitted('afterClose')).toBeTruthy();
   });
 });
-
-
-

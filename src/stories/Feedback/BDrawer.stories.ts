@@ -701,8 +701,7 @@ export const InteractionMaskNotClosable: Story = {
     a11y: { test: 'off' },
     docs: {
       description: {
-        story:
-          'With `maskClosable=false`, clicking the mask overlay does NOT close the drawer.',
+        story: 'With `maskClosable=false`, clicking the mask overlay does NOT close the drawer.',
       },
     },
   },
@@ -1332,4 +1331,3 @@ export const EdgeCaseVerticalPlacement: Story = {
     });
   },
 };
-

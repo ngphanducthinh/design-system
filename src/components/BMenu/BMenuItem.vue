@@ -131,10 +131,7 @@ function handleKeydown(e: KeyboardEvent) {
     <span v-if="!menu.inlineCollapsed.value" class="b-menu-item__label">
       <slot>{{ label }}</slot>
     </span>
-    <span
-      v-if="extra && !menu.inlineCollapsed.value"
-      class="b-menu-item__extra"
-    >
+    <span v-if="extra && !menu.inlineCollapsed.value" class="b-menu-item__extra">
       <slot name="extra">{{ extra }}</slot>
     </span>
   </li>

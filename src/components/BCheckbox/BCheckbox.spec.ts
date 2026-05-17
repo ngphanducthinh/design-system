@@ -184,7 +184,10 @@ describe('BCheckbox', () => {
     });
 
     it('indeterminate state is communicated via native indeterminate property', () => {
-      const wrapper = mount(BCheckbox, { props: { indeterminate: true, modelValue: false }, attachTo: document.body });
+      const wrapper = mount(BCheckbox, {
+        props: { indeterminate: true, modelValue: false },
+        attachTo: document.body,
+      });
       expect((getInput(wrapper).element as HTMLInputElement).indeterminate).toBe(true);
       wrapper.unmount();
     });

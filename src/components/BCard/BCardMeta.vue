@@ -4,10 +4,7 @@ import { useSlots } from 'vue';
 // ─────────────────────────────────────────────
 // Props
 // ─────────────────────────────────────────────
-const {
-  title,
-  description,
-} = defineProps<{
+const { title, description } = defineProps<{
   /** Title of the meta section */
   title?: string;
   /** Description text below the title */

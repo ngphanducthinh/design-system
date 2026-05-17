@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import BImage from './BImage.vue';
 
@@ -45,9 +45,7 @@ describe('BImage – defaults and variants', () => {
 
   it('renders an <img> with the correct src', () => {
     const wrapper = mountImage({ src: 'https://example.com/photo.jpg' });
-    expect(wrapper.find('.b-image__img').attributes('src')).toBe(
-      'https://example.com/photo.jpg',
-    );
+    expect(wrapper.find('.b-image__img').attributes('src')).toBe('https://example.com/photo.jpg');
   });
 
   it('renders with default preview enabled (has --preview modifier)', () => {
@@ -317,9 +315,7 @@ describe('BImage – transform event', () => {
     const btn = document.querySelector('[aria-label="Rotate left"]') as HTMLElement;
     btn?.click();
     await wrapper.vm.$nextTick();
-    const events = wrapper.emitted('transform') as Array<
-      [{ transform: unknown; action: string }]
-    >;
+    const events = wrapper.emitted('transform') as Array<[{ transform: unknown; action: string }]>;
     const last = events[events.length - 1][0];
     expect(last.action).toBe('rotateLeft');
     expect((last.transform as { rotate: number }).rotate).toBe(-90);
@@ -335,9 +331,7 @@ describe('BImage – transform event', () => {
     const btn = document.querySelector('[aria-label="Flip horizontal"]') as HTMLElement;
     btn?.click();
     await wrapper.vm.$nextTick();
-    const events = wrapper.emitted('transform') as Array<
-      [{ transform: unknown; action: string }]
-    >;
+    const events = wrapper.emitted('transform') as Array<[{ transform: unknown; action: string }]>;
     const last = events[events.length - 1][0];
     expect(last.action).toBe('flipX');
     expect((last.transform as { flipX: boolean }).flipX).toBe(true);
@@ -355,14 +349,10 @@ describe('BImage – transform event', () => {
     zoomInBtn?.click();
     await wrapper.vm.$nextTick();
     // Reset
-    const resetBtn = document.querySelector(
-      '[aria-label="Reset to original size"]',
-    ) as HTMLElement;
+    const resetBtn = document.querySelector('[aria-label="Reset to original size"]') as HTMLElement;
     resetBtn?.click();
     await wrapper.vm.$nextTick();
-    const events = wrapper.emitted('transform') as Array<
-      [{ transform: unknown; action: string }]
-    >;
+    const events = wrapper.emitted('transform') as Array<[{ transform: unknown; action: string }]>;
     const last = events[events.length - 1][0];
     expect(last.action).toBe('reset');
     expect((last.transform as { scale: number }).scale).toBe(1);
@@ -427,9 +417,7 @@ describe('BImage – keyboard and focus', () => {
     const wrapper = mountImage({ src: 'test.jpg', alt: 'Sunset' });
     fireImgLoad(wrapper);
     await wrapper.vm.$nextTick();
-    expect(wrapper.find('.b-image__mask').attributes('aria-label')).toBe(
-      'Preview image: Sunset',
-    );
+    expect(wrapper.find('.b-image__mask').attributes('aria-label')).toBe('Preview image: Sunset');
   });
 });
 
@@ -662,17 +650,11 @@ describe('BImage – preview toolbar', () => {
     zoomInBtn?.click();
     zoomInBtn?.click();
     await wrapper.vm.$nextTick();
-    expect(document.querySelector('.b-image-preview__scale')?.textContent?.trim()).toBe(
-      '200%',
-    );
-    const resetBtn = document.querySelector(
-      '[aria-label="Reset to original size"]',
-    ) as HTMLElement;
+    expect(document.querySelector('.b-image-preview__scale')?.textContent?.trim()).toBe('200%');
+    const resetBtn = document.querySelector('[aria-label="Reset to original size"]') as HTMLElement;
     resetBtn?.click();
     await wrapper.vm.$nextTick();
-    expect(document.querySelector('.b-image-preview__scale')?.textContent?.trim()).toBe(
-      '100%',
-    );
+    expect(document.querySelector('.b-image-preview__scale')?.textContent?.trim()).toBe('100%');
     wrapper.unmount();
   });
 });
@@ -691,10 +673,7 @@ describe('BImage – slots', () => {
   });
 
   it('renders custom preview-mask slot', async () => {
-    const wrapper = mountImage(
-      { src: 'test.jpg' },
-      { 'preview-mask': () => 'Click to zoom' },
-    );
+    const wrapper = mountImage({ src: 'test.jpg' }, { 'preview-mask': () => 'Click to zoom' });
     fireImgLoad(wrapper);
     await wrapper.vm.$nextTick();
     expect(wrapper.find('.b-image__mask').text()).toContain('Click to zoom');
@@ -764,17 +743,13 @@ describe('BImage – edge cases', () => {
     const zoomInBtn = document.querySelector('[aria-label="Zoom in"]') as HTMLElement;
     zoomInBtn?.click();
     await wrapper.vm.$nextTick();
-    expect(
-      document.querySelector('.b-image-preview__scale')?.textContent?.trim(),
-    ).toBe('150%');
+    expect(document.querySelector('.b-image-preview__scale')?.textContent?.trim()).toBe('150%');
     const closeBtn = document.querySelector('.b-image-preview__close') as HTMLElement;
     closeBtn?.click();
     await wrapper.vm.$nextTick();
     await wrapper.find('.b-image__mask').trigger('click');
     await wrapper.vm.$nextTick();
-    expect(
-      document.querySelector('.b-image-preview__scale')?.textContent?.trim(),
-    ).toBe('100%');
+    expect(document.querySelector('.b-image-preview__scale')?.textContent?.trim()).toBe('100%');
     wrapper.unmount();
   });
 
@@ -785,9 +760,7 @@ describe('BImage – edge cases', () => {
     await wrapper.find('.b-image__mask').trigger('click');
     await wrapper.vm.$nextTick();
     expect(document.querySelector('.b-image-preview')).toBeTruthy();
-    const backdrop = document.querySelector(
-      '.b-image-preview__backdrop',
-    ) as HTMLElement;
+    const backdrop = document.querySelector('.b-image-preview__backdrop') as HTMLElement;
     backdrop?.click();
     await wrapper.vm.$nextTick();
     wrapper.unmount();

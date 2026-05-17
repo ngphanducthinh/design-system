@@ -103,19 +103,25 @@ describe('BCard – props map to DOM', () => {
   });
 
   it('renders cover slot', () => {
-    const wrapper = mountCard({}, {
-      default: () => 'Content',
-      cover: () => '<img src="test.png" alt="cover" />',
-    });
+    const wrapper = mountCard(
+      {},
+      {
+        default: () => 'Content',
+        cover: () => '<img src="test.png" alt="cover" />',
+      },
+    );
     expect(wrapper.find('.b-card__cover').exists()).toBe(true);
     expect(wrapper.find('.b-card--has-cover').exists()).toBe(true);
   });
 
   it('renders actions slot', () => {
-    const wrapper = mountCard({}, {
-      default: () => 'Content',
-      actions: () => '<button>Edit</button>',
-    });
+    const wrapper = mountCard(
+      {},
+      {
+        default: () => 'Content',
+        actions: () => '<button>Edit</button>',
+      },
+    );
     expect(wrapper.find('.b-card__actions').exists()).toBe(true);
     expect(wrapper.find('.b-card--has-actions').exists()).toBe(true);
   });
@@ -179,10 +185,7 @@ describe('BCard – tabs', () => {
   });
 
   it('uses activeTabKey for controlled active tab', () => {
-    const wrapper = mountCard(
-      { tabList, activeTabKey: 'tab3' },
-      { default: () => 'Content' },
-    );
+    const wrapper = mountCard({ tabList, activeTabKey: 'tab3' }, { default: () => 'Content' });
     const tabs = wrapper.findAll('.b-card__tab');
     expect(tabs[2].classes()).toContain('b-card__tab--active');
   });
@@ -291,14 +294,20 @@ describe('BCard – keyboard and focus', () => {
   });
 
   it('ArrowRight wraps from last to first tab', async () => {
-    const wrapper = mountCard({ tabList, defaultActiveTabKey: 'tab3' }, { default: () => 'Content' });
+    const wrapper = mountCard(
+      { tabList, defaultActiveTabKey: 'tab3' },
+      { default: () => 'Content' },
+    );
     const tabs = wrapper.findAll('.b-card__tab');
     await tabs[2].trigger('keydown', { key: 'ArrowRight' });
     expect(wrapper.emitted('tabChange')![0]).toEqual(['tab1']);
   });
 
   it('Home moves to first tab', async () => {
-    const wrapper = mountCard({ tabList, defaultActiveTabKey: 'tab3' }, { default: () => 'Content' });
+    const wrapper = mountCard(
+      { tabList, defaultActiveTabKey: 'tab3' },
+      { default: () => 'Content' },
+    );
     const tabs = wrapper.findAll('.b-card__tab');
     await tabs[2].trigger('keydown', { key: 'Home' });
     expect(wrapper.emitted('tabChange')![0]).toEqual(['tab1']);
@@ -384,10 +393,13 @@ describe('BCard – accessibility', () => {
   });
 
   it('actions area has role="group" and aria-label', () => {
-    const wrapper = mountCard({}, {
-      default: () => 'Content',
-      actions: () => '<button>Edit</button>',
-    });
+    const wrapper = mountCard(
+      {},
+      {
+        default: () => 'Content',
+        actions: () => '<button>Edit</button>',
+      },
+    );
     const actions = wrapper.find('.b-card__actions');
     expect(actions.attributes('role')).toBe('group');
     expect(actions.attributes('aria-label')).toBe('Card actions');
@@ -472,10 +484,13 @@ describe('BCard – edge cases', () => {
   });
 
   it('head appears when only extra slot is provided', () => {
-    const wrapper = mountCard({}, {
-      default: () => 'Content',
-      extra: () => 'Extra only',
-    });
+    const wrapper = mountCard(
+      {},
+      {
+        default: () => 'Content',
+        extra: () => 'Extra only',
+      },
+    );
     expect(wrapper.find('.b-card__head').exists()).toBe(true);
     expect(wrapper.find('.b-card__extra').text()).toBe('Extra only');
   });
@@ -533,26 +548,17 @@ describe('BCardMeta', () => {
   });
 
   it('renders title slot overriding prop', () => {
-    const wrapper = mountMeta(
-      { title: 'Prop' },
-      { title: () => 'Slot Title' },
-    );
+    const wrapper = mountMeta({ title: 'Prop' }, { title: () => 'Slot Title' });
     expect(wrapper.find('.b-card-meta__title').text()).toBe('Slot Title');
   });
 
   it('renders description slot overriding prop', () => {
-    const wrapper = mountMeta(
-      { description: 'Prop Desc' },
-      { description: () => 'Slot Desc' },
-    );
+    const wrapper = mountMeta({ description: 'Prop Desc' }, { description: () => 'Slot Desc' });
     expect(wrapper.find('.b-card-meta__description').text()).toBe('Slot Desc');
   });
 
   it('renders avatar slot', () => {
-    const wrapper = mountMeta(
-      { title: 'Title' },
-      { avatar: () => '<img src="test.png" />' },
-    );
+    const wrapper = mountMeta({ title: 'Title' }, { avatar: () => '<img src="test.png" />' });
     expect(wrapper.find('.b-card-meta__avatar').exists()).toBe(true);
   });
 

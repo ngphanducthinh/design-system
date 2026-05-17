@@ -437,7 +437,8 @@ export const InteractionToggle: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Automated play function: toggles the nested spinner and asserts overlay and blur state.',
+        story:
+          'Automated play function: toggles the nested spinner and asserts overlay and blur state.',
       },
     },
   },

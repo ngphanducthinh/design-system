@@ -240,16 +240,27 @@ function parseByFormat(value: string, fmt: string): Date | null {
     groups.forEach(({ token }, i) => {
       const val = Number(match[i + 1]);
       switch (token) {
-        case 'YYYY': year = val; break;
-        case 'YY': year = 2000 + val; break;
-        case 'MM': case 'M': month = val; break;
-        case 'DD': case 'D': day = val; break;
+        case 'YYYY':
+          year = val;
+          break;
+        case 'YY':
+          year = 2000 + val;
+          break;
+        case 'MM':
+        case 'M':
+          month = val;
+          break;
+        case 'DD':
+        case 'D':
+          day = val;
+          break;
       }
     });
 
     const date = new Date(year, month - 1, day);
     if (isNaN(date.getTime())) return null;
-    if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) return null;
+    if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day)
+      return null;
     return date;
   } catch {
     return null;
@@ -291,7 +302,9 @@ const todayLabel = computed(() => {
     const parts = rtf.formatToParts(0, 'day');
     const value = parts.find((p) => p.type === 'literal')?.value;
     if (value && value.trim()) return value.trim().charAt(0).toUpperCase() + value.trim().slice(1);
-  } catch { /* fallback */ }
+  } catch {
+    /* fallback */
+  }
   return 'Today';
 });
 
@@ -362,7 +375,11 @@ const panelHeading = computed(() => {
 // Date checks
 // ─────────────────────────────────────────────
 function isSameDay(a: Date, b: Date): boolean {
-  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  );
 }
 
 function isToday(d: Date): boolean {
@@ -374,8 +391,10 @@ function isSelected(d: Date): boolean {
 }
 
 function isDateDisabled(d: Date): boolean {
-  if (minDate && d < new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate())) return true;
-  if (maxDate && d > new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate())) return true;
+  if (minDate && d < new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate()))
+    return true;
+  if (maxDate && d > new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate()))
+    return true;
   if (disabledDate) return disabledDate(d, { type: picker as `${BDatePickerType}` });
   return false;
 }
@@ -593,11 +612,19 @@ function handleDateKeydown(e: KeyboardEvent) {
       selectDate(panelDate.value);
       return;
     case 'PageUp':
-      if (e.shiftKey) { prevYear(); } else { prevMonth(); }
+      if (e.shiftKey) {
+        prevYear();
+      } else {
+        prevMonth();
+      }
       e.preventDefault();
       return;
     case 'PageDown':
-      if (e.shiftKey) { nextYear(); } else { nextMonth(); }
+      if (e.shiftKey) {
+        nextYear();
+      } else {
+        nextMonth();
+      }
       e.preventDefault();
       return;
   }
@@ -770,14 +797,18 @@ watch(isPanelOpen, (val) => {
         @click="clearValue"
       >
         <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-          <path d="M8 1a7 7 0 110 14A7 7 0 018 1zm2.828 4.172a.5.5 0 00-.707 0L8 7.293 5.879 5.172a.5.5 0 10-.707.707L7.293 8l-2.121 2.121a.5.5 0 10.707.707L8 8.707l2.121 2.121a.5.5 0 10.707-.707L8.707 8l2.121-2.121a.5.5 0 000-.707z" />
+          <path
+            d="M8 1a7 7 0 110 14A7 7 0 018 1zm2.828 4.172a.5.5 0 00-.707 0L8 7.293 5.879 5.172a.5.5 0 10-.707.707L7.293 8l-2.121 2.121a.5.5 0 10.707.707L8 8.707l2.121 2.121a.5.5 0 10.707-.707L8.707 8l2.121-2.121a.5.5 0 000-.707z"
+          />
         </svg>
       </button>
 
       <!-- Suffix icon -->
       <span class="b-date-picker__suffix" aria-hidden="true">
         <svg viewBox="0 0 16 16" fill="currentColor">
-          <path d="M4.5 1a.5.5 0 01.5.5V2h6v-.5a.5.5 0 011 0V2h1.5A1.5 1.5 0 0115 3.5v10a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 011 13.5v-10A1.5 1.5 0 012.5 2H4v-.5a.5.5 0 01.5-.5zM14 6H2v7.5a.5.5 0 00.5.5h11a.5.5 0 00.5-.5V6zm-1.5-3H12v.5a.5.5 0 01-1 0V3H5v.5a.5.5 0 01-1 0V3H2.5a.5.5 0 00-.5.5V5h12V3.5a.5.5 0 00-.5-.5z" />
+          <path
+            d="M4.5 1a.5.5 0 01.5.5V2h6v-.5a.5.5 0 011 0V2h1.5A1.5 1.5 0 0115 3.5v10a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 011 13.5v-10A1.5 1.5 0 012.5 2H4v-.5a.5.5 0 01.5-.5zM14 6H2v7.5a.5.5 0 00.5.5h11a.5.5 0 00.5-.5V6zm-1.5-3H12v.5a.5.5 0 01-1 0V3H5v.5a.5.5 0 01-1 0V3H2.5a.5.5 0 00-.5.5V5h12V3.5a.5.5 0 00-.5-.5z"
+          />
         </svg>
       </span>
     </div>
@@ -819,8 +850,12 @@ watch(isPanelOpen, (val) => {
               @click="prevYear"
             >
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M9.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L4.707 8l4.647-4.646z" />
-                <path d="M12.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L7.707 8l4.647-4.646z" />
+                <path
+                  d="M9.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L4.707 8l4.647-4.646z"
+                />
+                <path
+                  d="M12.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L7.707 8l4.647-4.646z"
+                />
               </svg>
             </button>
             <button
@@ -831,8 +866,12 @@ watch(isPanelOpen, (val) => {
               @click="prevDecade"
             >
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M9.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L4.707 8l4.647-4.646z" />
-                <path d="M12.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L7.707 8l4.647-4.646z" />
+                <path
+                  d="M9.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L4.707 8l4.647-4.646z"
+                />
+                <path
+                  d="M12.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L7.707 8l4.647-4.646z"
+                />
               </svg>
             </button>
             <button
@@ -843,7 +882,9 @@ watch(isPanelOpen, (val) => {
               @click="prevMonth"
             >
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M10.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L5.707 8l4.647-4.646z" />
+                <path
+                  d="M10.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L5.707 8l4.647-4.646z"
+                />
               </svg>
             </button>
             <button
@@ -854,7 +895,9 @@ watch(isPanelOpen, (val) => {
               @click="prevYear"
             >
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M10.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L5.707 8l4.647-4.646z" />
+                <path
+                  d="M10.354 3.354a.5.5 0 00-.708-.708l-5 5a.5.5 0 000 .708l5 5a.5.5 0 00.708-.708L5.707 8l4.647-4.646z"
+                />
               </svg>
             </button>
 
@@ -863,7 +906,15 @@ watch(isPanelOpen, (val) => {
               class="b-date-picker__heading"
               type="button"
               :aria-label="`Current view: ${panelHeading}`"
-              @click="switchPanelMode(panelMode === 'date' || panelMode === 'week' ? 'month' : panelMode === 'month' || panelMode === 'quarter' ? 'year' : 'year')"
+              @click="
+                switchPanelMode(
+                  panelMode === 'date' || panelMode === 'week'
+                    ? 'month'
+                    : panelMode === 'month' || panelMode === 'quarter'
+                      ? 'year'
+                      : 'year',
+                )
+              "
             >
               {{ panelHeading }}
             </button>
@@ -876,7 +927,9 @@ watch(isPanelOpen, (val) => {
               @click="nextMonth"
             >
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M5.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L10.293 8 5.646 3.354z" />
+                <path
+                  d="M5.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L10.293 8 5.646 3.354z"
+                />
               </svg>
             </button>
             <button
@@ -887,7 +940,9 @@ watch(isPanelOpen, (val) => {
               @click="nextYear"
             >
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M5.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L10.293 8 5.646 3.354z" />
+                <path
+                  d="M5.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L10.293 8 5.646 3.354z"
+                />
               </svg>
             </button>
             <button
@@ -898,8 +953,12 @@ watch(isPanelOpen, (val) => {
               @click="nextYear"
             >
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M5.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L10.293 8 5.646 3.354z" />
-                <path d="M2.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L7.293 8 2.646 3.354z" />
+                <path
+                  d="M5.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L10.293 8 5.646 3.354z"
+                />
+                <path
+                  d="M2.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L7.293 8 2.646 3.354z"
+                />
               </svg>
             </button>
             <button
@@ -910,8 +969,12 @@ watch(isPanelOpen, (val) => {
               @click="nextDecade"
             >
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path d="M5.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L10.293 8 5.646 3.354z" />
-                <path d="M2.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L7.293 8 2.646 3.354z" />
+                <path
+                  d="M5.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L10.293 8 5.646 3.354z"
+                />
+                <path
+                  d="M2.646 3.354a.5.5 0 01.708-.708l5 5a.5.5 0 010 .708l-5 5a.5.5 0 01-.708-.708L7.293 8 2.646 3.354z"
+                />
               </svg>
             </button>
           </div>
@@ -938,16 +1001,8 @@ watch(isPanelOpen, (val) => {
               </div>
             </div>
 
-            <div
-              v-for="(row, rowIdx) in 6"
-              :key="rowIdx"
-              class="b-date-picker__row"
-              role="row"
-            >
-              <div
-                v-if="showWeek"
-                class="b-date-picker__cell b-date-picker__week-number"
-              >
+            <div v-for="(row, rowIdx) in 6" :key="rowIdx" class="b-date-picker__row" role="row">
+              <div v-if="showWeek" class="b-date-picker__cell b-date-picker__week-number">
                 {{ getWeekNumber(calendarDates[rowIdx * 7].date) }}
               </div>
               <button
@@ -977,18 +1032,29 @@ watch(isPanelOpen, (val) => {
           </div>
 
           <!-- Month grid -->
-          <div v-if="showMonthGrid" class="b-date-picker__body b-date-picker__grid-3x4" role="grid" aria-label="Month selection">
+          <div
+            v-if="showMonthGrid"
+            class="b-date-picker__body b-date-picker__grid-3x4"
+            role="grid"
+            aria-label="Month selection"
+          >
             <button
               v-for="item in calendarMonths"
               :key="item.month"
               class="b-date-picker__cell b-date-picker__cell--large"
               :class="{
-                'b-date-picker__cell--selected': selectedDate && selectedDate.getFullYear() === item.year && selectedDate.getMonth() === item.month,
-                'b-date-picker__cell--current': new Date().getMonth() === item.month && new Date().getFullYear() === item.year,
+                'b-date-picker__cell--selected':
+                  selectedDate &&
+                  selectedDate.getFullYear() === item.year &&
+                  selectedDate.getMonth() === item.month,
+                'b-date-picker__cell--current':
+                  new Date().getMonth() === item.month && new Date().getFullYear() === item.year,
               }"
               type="button"
               :aria-label="item.label"
-              :aria-selected="selectedDate?.getMonth() === item.month && selectedDate?.getFullYear() === item.year"
+              :aria-selected="
+                selectedDate?.getMonth() === item.month && selectedDate?.getFullYear() === item.year
+              "
               @click="selectMonth(item.month)"
             >
               {{ item.label }}
@@ -996,14 +1062,20 @@ watch(isPanelOpen, (val) => {
           </div>
 
           <!-- Year grid -->
-          <div v-if="showYearGrid" class="b-date-picker__body b-date-picker__grid-3x4" role="grid" aria-label="Year selection">
+          <div
+            v-if="showYearGrid"
+            class="b-date-picker__body b-date-picker__grid-3x4"
+            role="grid"
+            aria-label="Year selection"
+          >
             <button
               v-for="item in calendarYears"
               :key="item.year"
               class="b-date-picker__cell b-date-picker__cell--large"
               :class="{
                 'b-date-picker__cell--other': !item.current,
-                'b-date-picker__cell--selected': selectedDate && selectedDate.getFullYear() === item.year,
+                'b-date-picker__cell--selected':
+                  selectedDate && selectedDate.getFullYear() === item.year,
                 'b-date-picker__cell--current': new Date().getFullYear() === item.year,
               }"
               type="button"
@@ -1016,13 +1088,21 @@ watch(isPanelOpen, (val) => {
           </div>
 
           <!-- Quarter grid -->
-          <div v-if="showQuarterGrid" class="b-date-picker__body b-date-picker__grid-2x2" role="grid" aria-label="Quarter selection">
+          <div
+            v-if="showQuarterGrid"
+            class="b-date-picker__body b-date-picker__grid-2x2"
+            role="grid"
+            aria-label="Quarter selection"
+          >
             <button
               v-for="item in calendarQuarters"
               :key="item.quarter"
               class="b-date-picker__cell b-date-picker__cell--large"
               :class="{
-                'b-date-picker__cell--selected': selectedDate && Math.ceil((selectedDate.getMonth() + 1) / 3) === item.quarter && selectedDate.getFullYear() === item.year,
+                'b-date-picker__cell--selected':
+                  selectedDate &&
+                  Math.ceil((selectedDate.getMonth() + 1) / 3) === item.quarter &&
+                  selectedDate.getFullYear() === item.year,
               }"
               type="button"
               :aria-label="`Quarter ${item.quarter}`"
@@ -1033,12 +1113,11 @@ watch(isPanelOpen, (val) => {
           </div>
 
           <!-- Footer -->
-          <div v-if="showNow && (panelMode === 'date' || panelMode === 'week')" class="b-date-picker__footer">
-            <button
-              class="b-date-picker__today-btn"
-              type="button"
-              @click="selectToday"
-            >
+          <div
+            v-if="showNow && (panelMode === 'date' || panelMode === 'week')"
+            class="b-date-picker__footer"
+          >
+            <button class="b-date-picker__today-btn" type="button" @click="selectToday">
               {{ todayLabel }}
             </button>
           </div>
@@ -1085,7 +1164,9 @@ watch(isPanelOpen, (val) => {
   --b-date-picker-text-color-secondary: rgba(0, 0, 0, 0.45);
   --b-date-picker-text-color-disabled: rgba(0, 0, 0, 0.25);
   --b-date-picker-panel-bg: #ffffff;
-  --b-date-picker-panel-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  --b-date-picker-panel-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
   --b-date-picker-selected-bg: #1677ff;
   --b-date-picker-selected-color: #ffffff;
   --b-date-picker-today-border-color: #1677ff;
@@ -1325,7 +1406,9 @@ watch(isPanelOpen, (val) => {
   background: transparent;
   cursor: pointer;
   color: var(--b-date-picker-text-color-secondary);
-  transition: color var(--b-date-picker-transition-duration), background var(--b-date-picker-transition-duration);
+  transition:
+    color var(--b-date-picker-transition-duration),
+    background var(--b-date-picker-transition-duration);
 }
 .b-date-picker__nav-btn:hover {
   color: var(--b-date-picker-text-color);
@@ -1403,7 +1486,9 @@ watch(isPanelOpen, (val) => {
   font-size: 14px;
   cursor: pointer;
   color: var(--b-date-picker-text-color);
-  transition: background var(--b-date-picker-transition-duration), color var(--b-date-picker-transition-duration);
+  transition:
+    background var(--b-date-picker-transition-duration),
+    color var(--b-date-picker-transition-duration);
 }
 .b-date-picker__cell:hover:not(:disabled) {
   background: var(--b-date-picker-cell-hover-bg);
@@ -1479,7 +1564,9 @@ watch(isPanelOpen, (val) => {
   --b-date-picker-cell-bg-disabled: rgba(255, 255, 255, 0.08);
   --b-date-picker-selected-bg: #1668dc;
   --b-date-picker-today-border-color: #1668dc;
-  --b-date-picker-panel-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+  --b-date-picker-panel-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 3px 6px -4px rgba(0, 0, 0, 0.48),
+    0 9px 28px 8px rgba(0, 0, 0, 0.2);
   --b-date-picker-hover-bg: #141414;
   --b-date-picker-active-bg: #141414;
 }

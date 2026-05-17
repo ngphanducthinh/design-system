@@ -245,7 +245,12 @@ describe('BPagination – events', () => {
   });
 
   it('changing page size adjusts current page if it exceeds new total', async () => {
-    const w = mountPagination({ total: 50, defaultCurrent: 5, defaultPageSize: 10, showSizeChanger: true });
+    const w = mountPagination({
+      total: 50,
+      defaultCurrent: 5,
+      defaultPageSize: 10,
+      showSizeChanger: true,
+    });
     const select = w.find('.b-pagination__size-changer');
     await select.setValue('50');
     expect(w.emitted('update:current')?.[0]).toEqual([1]);

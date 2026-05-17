@@ -132,9 +132,7 @@ describe('BTable – props map to DOM', () => {
 
   it('supports nested dataIndex via dot-path', () => {
     const data = [{ key: '1', address: { city: 'London' } }];
-    const cols: AnyCol[] = [
-      { title: 'City', dataIndex: 'address.city', key: 'city' },
-    ];
+    const cols: AnyCol[] = [{ title: 'City', dataIndex: 'address.city', key: 'city' }];
     const w = mount(BTable, { props: { dataSource: data, columns: cols } });
     expect(w.find('.b-table__td').text()).toBe('London');
   });
@@ -157,9 +155,7 @@ describe('BTable – props map to DOM', () => {
   });
 
   it('applies column text alignment via CSS class', () => {
-    const cols: AnyCol[] = [
-      { title: 'Name', dataIndex: 'name', key: 'name', align: 'center' },
-    ];
+    const cols: AnyCol[] = [{ title: 'Name', dataIndex: 'name', key: 'name', align: 'center' }];
     const w = mount(BTable, { props: { dataSource: DATA as AnyData, columns: cols } });
     expect(w.find('.b-table__td--align-center').exists()).toBe(true);
   });
@@ -247,7 +243,7 @@ describe('BTable – row selection', () => {
     const w = mountTable({ rowSelection: { type: 'checkbox', onChange } });
     await w.find('.b-table__th--selection .b-table__checkbox').trigger('change');
     expect(onChange).toHaveBeenCalledWith(
-      DATA.map(d => d.key),
+      DATA.map((d) => d.key),
       DATA,
     );
   });
@@ -333,7 +329,7 @@ describe('BTable – sorting', () => {
     const w = mount(BTable, { props: { dataSource: DATA as AnyData, columns: sortableColumns } });
     await w.findAll('.b-table__sorter')[1].trigger('click');
     const rows = w.findAll('.b-table__tr--data');
-    const ages = rows.map(r => r.findAll('.b-table__td')[1].text());
+    const ages = rows.map((r) => r.findAll('.b-table__td')[1].text());
     expect(ages).toEqual(['28', '32', '42']);
   });
 
@@ -342,7 +338,7 @@ describe('BTable – sorting', () => {
     await w.findAll('.b-table__sorter')[1].trigger('click');
     await w.findAll('.b-table__sorter')[1].trigger('click');
     const rows = w.findAll('.b-table__tr--data');
-    const ages = rows.map(r => r.findAll('.b-table__td')[1].text());
+    const ages = rows.map((r) => r.findAll('.b-table__td')[1].text());
     expect(ages).toEqual(['42', '32', '28']);
   });
 
@@ -360,7 +356,9 @@ describe('BTable – sorting', () => {
 describe('BTable – filtering', () => {
   const filterColumns: AnyCol[] = [
     {
-      title: 'Name', dataIndex: 'name', key: 'name',
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
       filters: [
         { text: 'Alice', value: 'Alice' },
         { text: 'Bob', value: 'Bob' },
@@ -462,21 +460,33 @@ describe('BTable – pagination', () => {
 
   it('renders pagination controls when data exceeds page size', () => {
     const w = mount(BTable, {
-      props: { dataSource: manyUsers as AnyData, columns: COLUMNS as AnyCol[], pagination: { pageSize: 10 } },
+      props: {
+        dataSource: manyUsers as AnyData,
+        columns: COLUMNS as AnyCol[],
+        pagination: { pageSize: 10 },
+      },
     });
     expect(w.find('.b-table__pagination').exists()).toBe(true);
   });
 
   it('renders only 10 rows per page by default', () => {
     const w = mount(BTable, {
-      props: { dataSource: manyUsers as AnyData, columns: COLUMNS as AnyCol[], pagination: { pageSize: 10 } },
+      props: {
+        dataSource: manyUsers as AnyData,
+        columns: COLUMNS as AnyCol[],
+        pagination: { pageSize: 10 },
+      },
     });
     expect(w.findAll('.b-table__tr--data').length).toBe(10);
   });
 
   it('navigates to next page on next button click', async () => {
     const w = mount(BTable, {
-      props: { dataSource: manyUsers as AnyData, columns: COLUMNS as AnyCol[], pagination: { pageSize: 10 } },
+      props: {
+        dataSource: manyUsers as AnyData,
+        columns: COLUMNS as AnyCol[],
+        pagination: { pageSize: 10 },
+      },
     });
     const buttons = w.findAll('.b-table__page-btn');
     const nextBtn = buttons[buttons.length - 1];
@@ -488,7 +498,11 @@ describe('BTable – pagination', () => {
 
   it('prev button is disabled on first page', () => {
     const w = mount(BTable, {
-      props: { dataSource: manyUsers as AnyData, columns: COLUMNS as AnyCol[], pagination: { pageSize: 10 } },
+      props: {
+        dataSource: manyUsers as AnyData,
+        columns: COLUMNS as AnyCol[],
+        pagination: { pageSize: 10 },
+      },
     });
     const prevBtn = w.findAll('.b-table__page-btn')[0];
     expect(prevBtn.attributes('disabled')).toBeDefined();
@@ -496,7 +510,11 @@ describe('BTable – pagination', () => {
 
   it('emits change with paginate action on page change', async () => {
     const w = mount(BTable, {
-      props: { dataSource: manyUsers as AnyData, columns: COLUMNS as AnyCol[], pagination: { pageSize: 10 } },
+      props: {
+        dataSource: manyUsers as AnyData,
+        columns: COLUMNS as AnyCol[],
+        pagination: { pageSize: 10 },
+      },
     });
     const buttons = w.findAll('.b-table__page-btn');
     await buttons[buttons.length - 1].trigger('click');
@@ -507,7 +525,11 @@ describe('BTable – pagination', () => {
 
   it('page 1 btn has aria-current="page"', () => {
     const w = mount(BTable, {
-      props: { dataSource: manyUsers as AnyData, columns: COLUMNS as AnyCol[], pagination: { pageSize: 10 } },
+      props: {
+        dataSource: manyUsers as AnyData,
+        columns: COLUMNS as AnyCol[],
+        pagination: { pageSize: 10 },
+      },
     });
     const activePage = w.find('.b-table__page-btn--active');
     expect(activePage.attributes('aria-current')).toBe('page');
@@ -515,7 +537,11 @@ describe('BTable – pagination', () => {
 
   it('renders page size selector when showSizeChanger=true', () => {
     const w = mount(BTable, {
-      props: { dataSource: manyUsers as AnyData, columns: COLUMNS as AnyCol[], pagination: { pageSize: 10, showSizeChanger: true } },
+      props: {
+        dataSource: manyUsers as AnyData,
+        columns: COLUMNS as AnyCol[],
+        pagination: { pageSize: 10, showSizeChanger: true },
+      },
     });
     expect(w.find('.b-table__page-size').exists()).toBe(true);
   });
@@ -528,7 +554,10 @@ describe('BTable – pagination', () => {
 describe('BTable – expandable', () => {
   const expandableData: User[] = [
     {
-      key: '1', name: 'Alice', age: 32, address: 'London',
+      key: '1',
+      name: 'Alice',
+      age: 32,
+      address: 'London',
       children: [{ key: '1-1', name: 'Alice Jr', age: 5, address: 'London' }],
     },
     { key: '2', name: 'Bob', age: 42, address: 'Baker St' },
@@ -536,7 +565,11 @@ describe('BTable – expandable', () => {
 
   it('renders expand toggle button for expandable rows', () => {
     const w = mount(BTable, {
-      props: { dataSource: expandableData as AnyData, columns: COLUMNS as AnyCol[], expandable: {} },
+      props: {
+        dataSource: expandableData as AnyData,
+        columns: COLUMNS as AnyCol[],
+        expandable: {},
+      },
     });
     const btns = w.findAll('.b-table__expand-btn');
     expect(btns.length).toBe(1); // only Alice has children
@@ -544,14 +577,22 @@ describe('BTable – expandable', () => {
 
   it('expand button has aria-expanded="false" initially', () => {
     const w = mount(BTable, {
-      props: { dataSource: expandableData as AnyData, columns: COLUMNS as AnyCol[], expandable: {} },
+      props: {
+        dataSource: expandableData as AnyData,
+        columns: COLUMNS as AnyCol[],
+        expandable: {},
+      },
     });
     expect(w.find('.b-table__expand-btn').attributes('aria-expanded')).toBe('false');
   });
 
   it('clicking expand button toggles expanded content row', async () => {
     const w = mount(BTable, {
-      props: { dataSource: expandableData as AnyData, columns: COLUMNS as AnyCol[], expandable: {} },
+      props: {
+        dataSource: expandableData as AnyData,
+        columns: COLUMNS as AnyCol[],
+        expandable: {},
+      },
     });
     expect(w.find('.b-table__tr--expanded-content').exists()).toBe(false);
     await w.find('.b-table__expand-btn').trigger('click');
@@ -560,7 +601,11 @@ describe('BTable – expandable', () => {
 
   it('expand button has aria-expanded="true" after click', async () => {
     const w = mount(BTable, {
-      props: { dataSource: expandableData as AnyData, columns: COLUMNS as AnyCol[], expandable: {} },
+      props: {
+        dataSource: expandableData as AnyData,
+        columns: COLUMNS as AnyCol[],
+        expandable: {},
+      },
     });
     await w.find('.b-table__expand-btn').trigger('click');
     expect(w.find('.b-table__expand-btn').attributes('aria-expanded')).toBe('true');
@@ -568,7 +613,11 @@ describe('BTable – expandable', () => {
 
   it('emits expand event when row is toggled', async () => {
     const w = mount(BTable, {
-      props: { dataSource: expandableData as AnyData, columns: COLUMNS as AnyCol[], expandable: {} },
+      props: {
+        dataSource: expandableData as AnyData,
+        columns: COLUMNS as AnyCol[],
+        expandable: {},
+      },
     });
     await w.find('.b-table__expand-btn').trigger('click');
     expect(w.emitted('expand')).toBeDefined();
@@ -577,7 +626,11 @@ describe('BTable – expandable', () => {
 
   it('emits expandedRowsChange with expanded keys', async () => {
     const w = mount(BTable, {
-      props: { dataSource: expandableData as AnyData, columns: COLUMNS as AnyCol[], expandable: {} },
+      props: {
+        dataSource: expandableData as AnyData,
+        columns: COLUMNS as AnyCol[],
+        expandable: {},
+      },
     });
     await w.find('.b-table__expand-btn').trigger('click');
     expect(w.emitted('expandedRowsChange')).toBeDefined();
@@ -587,7 +640,8 @@ describe('BTable – expandable', () => {
   it('supports defaultExpandedRowKeys', () => {
     const w = mount(BTable, {
       props: {
-        dataSource: expandableData as AnyData, columns: COLUMNS as AnyCol[],
+        dataSource: expandableData as AnyData,
+        columns: COLUMNS as AnyCol[],
         expandable: { defaultExpandedRowKeys: ['1'] },
       },
     });
@@ -596,7 +650,11 @@ describe('BTable – expandable', () => {
 
   it('applies .b-table__expand-btn--expanded class to expanded row', async () => {
     const w = mount(BTable, {
-      props: { dataSource: expandableData as AnyData, columns: COLUMNS as AnyCol[], expandable: {} },
+      props: {
+        dataSource: expandableData as AnyData,
+        columns: COLUMNS as AnyCol[],
+        expandable: {},
+      },
     });
     await w.find('.b-table__expand-btn').trigger('click');
     expect(w.find('.b-table__expand-btn').classes()).toContain('b-table__expand-btn--expanded');
@@ -611,7 +669,9 @@ describe('BTable – custom render and slots', () => {
   it('renders column via customRender function', () => {
     const cols: AnyCol[] = [
       {
-        title: 'Name', dataIndex: 'name', key: 'name',
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
         customRender: ({ value }: { value: unknown }) => `★ ${value}`,
       },
     ];
@@ -675,15 +735,13 @@ describe('BTable – accessibility', () => {
 
   it('header cells have scope="col"', () => {
     const w = mountTable();
-    w.findAll('.b-table__th').forEach(th => {
+    w.findAll('.b-table__th').forEach((th) => {
       expect(th.attributes('scope')).toBe('col');
     });
   });
 
   it('sortable th has aria-sort="none" initially', () => {
-    const cols: AnyCol[] = [
-      { title: 'Name', dataIndex: 'name', key: 'name', sorter: true },
-    ];
+    const cols: AnyCol[] = [{ title: 'Name', dataIndex: 'name', key: 'name', sorter: true }];
     const w = mount(BTable, { props: { dataSource: DATA as AnyData, columns: cols } });
     expect(w.find('.b-table__th').attributes('aria-sort')).toBe('none');
   });
@@ -695,10 +753,15 @@ describe('BTable – accessibility', () => {
   });
 
   it('expand buttons have meaningful aria-label', () => {
-    const data: User[] = [{
-      key: '1', name: 'Alice', age: 32, address: 'London',
-      children: [{ key: '1-1', name: 'Alice Jr', age: 5, address: 'London' }],
-    }];
+    const data: User[] = [
+      {
+        key: '1',
+        name: 'Alice',
+        age: 32,
+        address: 'London',
+        children: [{ key: '1-1', name: 'Alice Jr', age: 5, address: 'London' }],
+      },
+    ];
     const w = mount(BTable, {
       props: { dataSource: data as AnyData, columns: COLUMNS as AnyCol[], expandable: {} },
     });
@@ -707,10 +770,17 @@ describe('BTable – accessibility', () => {
 
   it('pagination nav has role="navigation"', () => {
     const manyUsers: User[] = Array.from({ length: 25 }, (_, i) => ({
-      key: String(i), name: `User ${i}`, age: i, address: `Addr ${i}`,
+      key: String(i),
+      name: `User ${i}`,
+      age: i,
+      address: `Addr ${i}`,
     }));
     const w = mount(BTable, {
-      props: { dataSource: manyUsers as AnyData, columns: COLUMNS as AnyCol[], pagination: { pageSize: 10 } },
+      props: {
+        dataSource: manyUsers as AnyData,
+        columns: COLUMNS as AnyCol[],
+        pagination: { pageSize: 10 },
+      },
     });
     expect(w.find('.b-table__pagination').attributes('role')).toBe('navigation');
   });
@@ -723,7 +793,12 @@ describe('BTable – accessibility', () => {
 
   it('filter dropdown has role="dialog"', async () => {
     const cols: AnyCol[] = [
-      { title: 'Name', dataIndex: 'name', key: 'name', filters: [{ text: 'Alice', value: 'Alice' }] },
+      {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+        filters: [{ text: 'Alice', value: 'Alice' }],
+      },
     ];
     const w = mount(BTable, { props: { dataSource: DATA as AnyData, columns: cols } });
     await w.find('.b-table__filter-btn').trigger('click');
@@ -737,10 +812,13 @@ describe('BTable – accessibility', () => {
 
 describe('BTable – column groups', () => {
   const groupedColumns: AnyCol[] = [
-    { title: 'Basic Info', children: [
-      { title: 'Name', dataIndex: 'name', key: 'name' },
-      { title: 'Age',  dataIndex: 'age',  key: 'age'  },
-    ]},
+    {
+      title: 'Basic Info',
+      children: [
+        { title: 'Name', dataIndex: 'name', key: 'name' },
+        { title: 'Age', dataIndex: 'age', key: 'age' },
+      ],
+    },
     { title: 'Address', dataIndex: 'address', key: 'address' },
   ];
 
@@ -773,9 +851,7 @@ describe('BTable – edge cases', () => {
   });
 
   it('handles column without dataIndex (renders empty cell)', () => {
-    const cols: AnyCol[] = [
-      { title: 'Actions', key: 'actions' },
-    ];
+    const cols: AnyCol[] = [{ title: 'Actions', key: 'actions' }];
     const w = mount(BTable, { props: { dataSource: [DATA[0]] as AnyData, columns: cols } });
     expect(w.findAll('.b-table__td').length).toBe(1);
   });
@@ -802,7 +878,7 @@ describe('BTable – edge cases', () => {
   });
 
   it('rowClassName applies custom class to rows', () => {
-    const w = mountTable({ rowClassName: (r: User) => r.key === '1' ? 'highlight' : '' });
+    const w = mountTable({ rowClassName: (r: User) => (r.key === '1' ? 'highlight' : '') });
     const rows = w.findAll('.b-table__tr--data');
     expect(rows[0].classes()).toContain('highlight');
     expect(rows[1].classes()).not.toContain('highlight');
@@ -821,8 +897,12 @@ describe('BTable – edge cases', () => {
 // ─────────────────────────────────────────────
 
 describe('BTable – loading animation (fake timers)', () => {
-  beforeEach(() => { vi.useFakeTimers(); });
-  afterEach(() => { vi.useRealTimers(); });
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+  afterEach(() => {
+    vi.useRealTimers();
+  });
 
   it('loading overlay is present when loading=true', () => {
     const w = mountTable({ loading: true });

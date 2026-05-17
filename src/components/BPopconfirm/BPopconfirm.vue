@@ -93,9 +93,7 @@ const titleId = `${popconfirmId}-title`;
 const descId = `${popconfirmId}-desc`;
 
 const internalOpen = ref(false);
-const isOpen = computed(() =>
-  modelValue !== undefined ? modelValue : internalOpen.value,
-);
+const isOpen = computed(() => (modelValue !== undefined ? modelValue : internalOpen.value));
 
 const hasBeenOpened = ref(false);
 const shouldRender = computed(() => {
@@ -114,8 +112,14 @@ let showTimer: ReturnType<typeof setTimeout> | null = null;
 let hideTimer: ReturnType<typeof setTimeout> | null = null;
 
 function clearTimers() {
-  if (showTimer) { clearTimeout(showTimer); showTimer = null; }
-  if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+  if (showTimer) {
+    clearTimeout(showTimer);
+    showTimer = null;
+  }
+  if (hideTimer) {
+    clearTimeout(hideTimer);
+    hideTimer = null;
+  }
 }
 
 function requestOpen(delay = 0) {
@@ -408,11 +412,7 @@ defineExpose({ open: doOpen, close: doClose });
 </script>
 
 <template>
-  <div
-    ref="toggleRef"
-    class="b-popconfirm__toggle"
-    :style="{ anchorName: anchorName }"
-  >
+  <div ref="toggleRef" class="b-popconfirm__toggle" :style="{ anchorName: anchorName }">
     <slot />
   </div>
 
@@ -437,11 +437,7 @@ defineExpose({ open: doOpen, close: doClose });
     @mouseleave="onPopconfirmMouseLeave"
   >
     <template v-if="shouldRender || !destroyTooltipOnHide">
-      <div
-        v-if="arrow"
-        class="b-popconfirm__arrow"
-        aria-hidden="true"
-      />
+      <div v-if="arrow" class="b-popconfirm__arrow" aria-hidden="true" />
       <div class="b-popconfirm__inner">
         <div class="b-popconfirm__message">
           <span class="b-popconfirm__icon" aria-hidden="true">
@@ -453,7 +449,9 @@ defineExpose({ open: doOpen, close: doClose });
                 height="16"
                 aria-hidden="true"
               >
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                />
               </svg>
             </slot>
           </span>
@@ -482,11 +480,7 @@ defineExpose({ open: doOpen, close: doClose });
             </button>
           </slot>
           <slot name="okButton">
-            <button
-              type="button"
-              :class="['b-popconfirm__btn', okButtonClass]"
-              @click="onConfirm"
-            >
+            <button type="button" :class="['b-popconfirm__btn', okButtonClass]" @click="onConfirm">
               {{ okText }}
             </button>
           </slot>
@@ -513,8 +507,8 @@ defineExpose({ open: doOpen, close: doClose });
   --b-popconfirm-arrow-color: #fff;
   --b-popconfirm-gap: 8px;
   --b-popconfirm-transition-duration: 200ms;
-  --b-popconfirm-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
-    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+  --b-popconfirm-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
     0 9px 28px 8px rgba(0, 0, 0, 0.05);
   --b-popconfirm-icon-color: oklch(75% 0.15 85);
   --b-popconfirm-title-font-weight: 600;
@@ -535,8 +529,8 @@ defineExpose({ open: doOpen, close: doClose });
   --b-popconfirm-bg: oklch(22% 0 0);
   --b-popconfirm-color: oklch(90% 0 0);
   --b-popconfirm-arrow-color: oklch(22% 0 0);
-  --b-popconfirm-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.24),
-    0 3px 6px -4px rgba(0, 0, 0, 0.36),
+  --b-popconfirm-shadow:
+    0 6px 16px 0 rgba(0, 0, 0, 0.24), 0 3px 6px -4px rgba(0, 0, 0, 0.36),
     0 9px 28px 8px rgba(0, 0, 0, 0.2);
   --b-popconfirm-icon-color: oklch(80% 0.15 85);
   --b-popconfirm-description-color: oklch(65% 0 0);
