@@ -1,5 +1,5 @@
 import { BTabPane, BTabs } from '@/components';
-import type { BTabItem } from '@/components/BTabs/types';
+import type { BTabItem } from '@/components/BTabs/types.ts';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { defineComponent, h, ref } from 'vue';
@@ -8,7 +8,7 @@ import { defineComponent, h, ref } from 'vue';
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'DataDisplay/BTabs',
+  title: 'Navigation/Tabs',
   component: BTabs,
   tags: ['autodocs'],
   argTypes: {

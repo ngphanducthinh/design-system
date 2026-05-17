@@ -7,7 +7,7 @@ import { expect, userEvent, within } from 'storybook/test';
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'DataDisplay/Card',
+  title: 'Data Display/Card',
   component: BCard,
   tags: ['autodocs'],
   argTypes: {

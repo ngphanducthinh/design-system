@@ -23,7 +23,7 @@ const PRESET_COLORS = [
 ];
 
 const meta = {
-  title: 'DataDisplay/Badge',
+  title: 'Data Display/Badge',
   component: BBadge,
   tags: ['autodocs'],
   argTypes: {

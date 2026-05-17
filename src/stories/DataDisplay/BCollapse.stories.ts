@@ -7,7 +7,7 @@ import { ref } from 'vue';
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'DataDisplay/Collapse',
+  title: 'Data Display/Collapse',
   component: BCollapse,
   subcomponents: { BCollapsePanel },
   tags: ['autodocs'],

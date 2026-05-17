@@ -7,7 +7,7 @@ import { expect, within } from 'storybook/test';
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'DataDisplay/Empty',
+  title: 'Data Display/Empty',
   component: BEmpty,
   tags: ['autodocs'],
   argTypes: {

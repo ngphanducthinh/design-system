@@ -8,7 +8,7 @@ import { ref } from 'vue';
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'DataDisplay/Segmented',
+  title: 'Data Display/Segmented',
   component: BSegmented,
   tags: ['autodocs'],
   argTypes: {

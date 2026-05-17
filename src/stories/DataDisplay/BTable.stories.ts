@@ -36,7 +36,7 @@ const BASIC_DATA: User[] = [
   },
 ];
 
-const BASIC_COLUMNS: BTableColumnType<User>[] = [
+const BASIC_COLUMNS: BTableColumnType[] = [
   { title: 'Name', dataIndex: 'name', key: 'name' },
   { title: 'Age', dataIndex: 'age', key: 'age', align: 'right' },
   { title: 'Address', dataIndex: 'address', key: 'address' },
@@ -56,7 +56,7 @@ const MANY_DATA: User[] = Array.from({ length: 46 }, (_, i) => ({
 // ─────────────────────────────────────────────
 
 const meta = {
-  title: 'DataDisplay/Table',
+  title: 'Data Display/Table',
   component: BTable,
   tags: ['autodocs'],
   argTypes: {
@@ -125,7 +125,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof BTable>;
+} as Meta<typeof BTable>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

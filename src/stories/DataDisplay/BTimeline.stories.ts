@@ -13,7 +13,7 @@ import { ref } from 'vue';
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'DataDisplay/Timeline',
+  title: 'Data Display/Timeline',
   component: BTimeline,
   tags: ['autodocs'],
   argTypes: {

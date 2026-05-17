@@ -1,5 +1,5 @@
 import { BTour } from '@/components';
-import { BTourPlacement, BTourType, type BTourStep } from '@/components/BTour/types.ts';
+import { BTourPlacement, type BTourStep, BTourType } from '@/components/BTour/types.ts';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, fireEvent, userEvent, waitFor, within } from 'storybook/test';
 import { ref } from 'vue';
@@ -72,7 +72,7 @@ const UI = {
 // ─────────────────────────────────────────────
 
 const meta = {
-  title: 'Feedback/Tour',
+  title: 'Data Display/Tour',
   component: BTour,
   tags: ['autodocs'],
   argTypes: {

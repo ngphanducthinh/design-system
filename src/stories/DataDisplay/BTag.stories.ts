@@ -8,7 +8,7 @@ import { ref } from 'vue';
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'DataDisplay/Tag',
+  title: 'Data Display/Tag',
   component: BTag,
   tags: ['autodocs'],
   argTypes: {

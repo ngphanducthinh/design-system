@@ -8,7 +8,7 @@ import { ref, toRef, watch } from 'vue';
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'DataDisplay/Popover',
+  title: 'Data Display/Popover',
   component: BPopover,
   tags: ['autodocs'],
   argTypes: {

@@ -9,7 +9,7 @@ import { ref } from 'vue';
 // ─────────────────────────────────────────────
 
 const meta = {
-  title: 'DataDisplay/Masonry',
+  title: 'Layout/Masonry',
   component: BMasonry,
   tags: ['autodocs'],
   argTypes: {

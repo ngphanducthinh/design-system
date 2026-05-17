@@ -20,7 +20,7 @@ const SAMPLE_IMG_2 =
 // Meta
 // ─────────────────────────────────────────────
 const meta = {
-  title: 'DataDisplay/Image',
+  title: 'Data Display/Image',
   component: BImage,
   tags: ['autodocs'],
   argTypes: {
