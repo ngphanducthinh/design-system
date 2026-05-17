@@ -83,9 +83,9 @@ const sizeOptions = Object.values(BIconSize).map((s) => ({ label: s, value: s })
         <span class="b:text-sm b:font-semibold b:text-gray-700">{{
           totalIcons.toLocaleString()
         }}</span>
-        <span class="b:ml-1 b:text-sm b:text-gray-400">icon{{ totalIcons === 1 ? '' : 's' }}</span>
+        <span class="b:ml-1 b:text-sm b:text-gray-600">icon{{ totalIcons === 1 ? '' : 's' }}</span>
         <template v-if="searchText">
-          <br /><span class="b:text-xs b:text-gray-400"
+          <br /><span class="b:text-xs b:text-gray-600"
             >matching "<em>{{ searchText }}</em
             >"</span
           >
@@ -127,7 +127,7 @@ const sizeOptions = Object.values(BIconSize).map((s) => ({ label: s, value: s })
         </div>
 
         <span
-          class="b:line-clamp-2 b:h-8 b:w-full b:text-center b:text-xs b:leading-tight b:text-gray-400 b:transition-colors b:group-hover:text-primary"
+          class="b:line-clamp-2 b:h-8 b:w-full b:text-center b:text-xs b:leading-tight b:text-gray-600 b:transition-colors b:group-hover:text-primary"
         >
           {{ icon.name }}
         </span>
@@ -135,7 +135,7 @@ const sizeOptions = Object.values(BIconSize).map((s) => ({ label: s, value: s })
     </div>
 
     <!-- ── Empty state ────────────────────────────────────── -->
-    <div v-else class="b:flex b:flex-col b:items-center b:gap-3 b:py-20 b:text-gray-400">
+    <div v-else class="b:flex b:flex-col b:items-center b:gap-3 b:py-20 b:text-gray-600">
       <BIcon icon="magnifying-glass" :size="BIconSize.XXLarge" />
       <p class="b:m-0 b:text-base">No icons found for "{{ searchText }}"</p>
       <button

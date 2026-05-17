@@ -127,10 +127,10 @@ const iconClass = (status: `${BStepsStatus}`) => ({
 const titleClass = (status: `${BStepsStatus}`) => ({
   'b:text-black-base': status === BStepsStatus.Process || status === BStepsStatus.Finish,
   'b:text-failure': status === BStepsStatus.Error,
-  'b:text-black/[0.45]': status === BStepsStatus.Wait,
+  'b:text-black/65': status === BStepsStatus.Wait,
 });
 const descriptionClass = (status: `${BStepsStatus}`) => ({
-  'b:text-black/[0.45]': status !== BStepsStatus.Error,
+  'b:text-black/65': status !== BStepsStatus.Error,
   'b:text-failure': status === BStepsStatus.Error,
 });
 </script>
@@ -214,7 +214,7 @@ const descriptionClass = (status: `${BStepsStatus}`) => ({
             </span>
             <span
               v-if="item.subTitle"
-              class="b:text-xs b:text-black/[0.45]"
+              class="b:text-xs b:text-black/65"
               :class="titleClass(getStepStatus(item, index))"
             >
               {{ item.subTitle }}

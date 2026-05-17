@@ -526,6 +526,12 @@ const maskStyle = computed<Record<string, string>>(() => {
 // Cover image helpers
 // ─────────────────────────────────────────────
 const hasCover = computed(() => Boolean(activeStep.value?.cover));
+
+function stripBtnProps(props: Record<string, unknown> | undefined) {
+  if (!props) return {};
+  const { onClick, children, ...rest } = props;
+  return rest;
+}
 </script>
 
 <template>
@@ -687,7 +693,7 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
                 v-if="currentStep > 0"
                 type="button"
                 class="b-tour__btn b-tour__btn--prev"
-                v-bind="activeStep?.prevButtonProps ?? {}"
+                v-bind="stripBtnProps(activeStep?.prevButtonProps)"
                 @click="
                   () => {
                     activeStep?.prevButtonProps?.onClick?.();
@@ -702,7 +708,7 @@ const hasCover = computed(() => Boolean(activeStep.value?.cover));
               <button
                 type="button"
                 class="b-tour__btn b-tour__btn--next"
-                v-bind="activeStep?.nextButtonProps ?? {}"
+                v-bind="stripBtnProps(activeStep?.nextButtonProps)"
                 @click="
                   () => {
                     activeStep?.nextButtonProps?.onClick?.();

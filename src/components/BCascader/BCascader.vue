@@ -671,6 +671,7 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
         :placeholder="!hasValue ? placeholder : ''"
         :disabled="disabled"
         role="combobox"
+        aria-haspopup="listbox"
         aria-autocomplete="list"
         :aria-expanded="isOpen"
         :aria-controls="isOpen ? popupId : undefined"
@@ -693,6 +694,7 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
         :placeholder="hasValue ? displayText : placeholder"
         :disabled="disabled"
         role="combobox"
+        aria-haspopup="listbox"
         aria-autocomplete="list"
         :aria-expanded="isOpen"
         :aria-controls="isOpen ? popupId : undefined"
@@ -703,6 +705,7 @@ defineExpose({ focus: () => inputRef.value?.focus(), blur: () => inputRef.value?
         v-else
         class="b-cascader__value-display"
         role="combobox"
+        aria-haspopup="listbox"
         :aria-expanded="isOpen"
         :aria-label="hasValue ? displayText : placeholder"
         :aria-disabled="disabled || undefined"

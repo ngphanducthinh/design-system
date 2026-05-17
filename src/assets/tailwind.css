@@ -3,17 +3,17 @@
 @theme {
   --color-primary: oklch(55% 0.169 237.323);
   --color-secondary: oklch(92% 0.004 286.32);
-  --color-success: oklch(72.3% 0.219 149.579);
-  --color-failure: oklch(63.7% 0.237 25.331);
-  --color-warning: oklch(75% 0.183 55.934);
-  --color-info: oklch(62.3% 0.214 259.815);
+  --color-success: oklch(50% 0.17 149.579);
+  --color-failure: oklch(55% 0.22 25.331);
+  --color-warning: oklch(55% 0.16 55.934);
+  --color-info: oklch(55% 0.2 259.815);
 
   --color-primary-hover: oklch(48% 0.158 241.966);
   --color-secondary-hover: oklch(87.1% 0.006 286.286);
-  --color-success-hover: oklch(62.7% 0.194 149.214);
-  --color-failure-hover: oklch(57.7% 0.245 27.325);
-  --color-warning-hover: oklch(70.5% 0.213 47.604);
-  --color-info-hover: oklch(54.6% 0.245 262.881);
+  --color-success-hover: oklch(43% 0.15 149.214);
+  --color-failure-hover: oklch(49% 0.21 27.325);
+  --color-warning-hover: oklch(48% 0.15 47.604);
+  --color-info-hover: oklch(48% 0.2 262.881);
 
   --color-primary-hover-light: oklch(80% 0.058 230.902);
   --color-secondary-hover-light: oklch(96.7% 0.001 286.375);

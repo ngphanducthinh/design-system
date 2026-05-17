@@ -389,10 +389,10 @@ describe('BCascader', () => {
       expect(combobox.attributes('aria-expanded')).toBe('false');
     });
 
-    it('does not set aria-haspopup when closed (avoids axe inconclusive)', () => {
+    it('sets aria-haspopup to listbox on combobox', () => {
       const wrapper = mountCascader();
       const combobox = wrapper.find('[role="combobox"]');
-      expect(combobox.attributes('aria-haspopup')).toBeUndefined();
+      expect(combobox.attributes('aria-haspopup')).toBe('listbox');
     });
 
     it('popup has dialog role', () => {

@@ -4,6 +4,23 @@ import BTour from './BTour.vue';
 import { BTourPlacement, BTourType, type BTourStep } from './types.ts';
 
 // ─────────────────────────────────────────────
+// ResizeObserver stub (not available in jsdom)
+// ─────────────────────────────────────────────
+class ResizeObserverStub {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+}
+
+beforeEach(() => {
+  vi.stubGlobal('ResizeObserver', ResizeObserverStub);
+});
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
+
+// ─────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────
 

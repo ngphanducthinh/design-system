@@ -141,7 +141,7 @@ export const Sizes: Story = {
       <div style="display:flex;align-items:flex-end;gap:1.5rem;padding:2rem;flex-wrap:wrap;">
         <div v-for="s in sizes" :key="s" style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
           <BIcon icon="star" :size="s" />
-          <span style="font-size:11px;color:#999;">{{ s }}</span>
+          <span style="font-size:11px;color:#595959;">{{ s }}</span>
         </div>
       </div>
     `,
@@ -177,7 +177,7 @@ export const Variants: Story = {
       <div style="display:flex;flex-wrap:wrap;gap:2rem;padding:2rem;">
         <div v-for="v in variants" :key="v" style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
           <BIcon icon="bookmark" :variant="v" size="xl" />
-          <span style="font-size:11px;color:#999;">{{ v }}</span>
+          <span style="font-size:11px;color:#595959;">{{ v }}</span>
         </div>
       </div>
     `,
@@ -215,20 +215,20 @@ export const Colors: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:1.5rem;padding:2rem;">
         <div>
-          <p style="font-size:12px;color:#999;margin:0 0 8px;">Theme tokens</p>
+          <p style="font-size:12px;color:#595959;margin:0 0 8px;">Theme tokens</p>
           <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;">
             <div v-for="c in tokens" :key="c" style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
               <BIcon icon="circle-check" :color="c" size="xl" variant="solid" />
-              <span style="font-size:11px;color:#999;">{{ c }}</span>
+              <span style="font-size:11px;color:#595959;">{{ c }}</span>
             </div>
           </div>
         </div>
         <div>
-          <p style="font-size:12px;color:#999;margin:0 0 8px;">Custom CSS colors</p>
+          <p style="font-size:12px;color:#595959;margin:0 0 8px;">Custom CSS colors</p>
           <div style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:center;">
             <div v-for="c in custom" :key="c" style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
               <BIcon icon="circle-check" :color="c" size="xl" variant="solid" />
-              <span style="font-size:11px;color:#999;">{{ c }}</span>
+              <span style="font-size:11px;color:#595959;">{{ c }}</span>
             </div>
           </div>
         </div>
@@ -265,7 +265,7 @@ export const Rotate: Story = {
       <div style="display:flex;flex-wrap:wrap;gap:2rem;padding:2rem;align-items:center;">
         <div v-for="a in angles" :key="a" style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
           <BIcon icon="arrow-right" size="xl" :rotate="a" />
-          <span style="font-size:11px;color:#999;">{{ a }}°</span>
+          <span style="font-size:11px;color:#595959;">{{ a }}°</span>
         </div>
       </div>
     `,

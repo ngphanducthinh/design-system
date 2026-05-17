@@ -6,7 +6,7 @@ import { computed, nextTick, onUnmounted, ref, useId, watch } from 'vue';
 // Props & emits
 // ─────────────────────────────────────────────
 const {
-  type = BNotificationType.Info,
+  type = undefined,
   message = '',
   description = '',
   placement = BNotificationPlacement.TopRight,
