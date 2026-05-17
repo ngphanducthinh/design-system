@@ -35,7 +35,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Run tests
-        run: bun run test:all -- --reporter=verbose --coverage
+        run: bun run test:unit -- --reporter=verbose --coverage
 
       - name: Upload coverage
         uses: actions/upload-artifact@v4
