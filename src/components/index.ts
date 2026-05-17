@@ -17,6 +17,7 @@ export * from './BDrawer';
 export * from './BDropdown';
 export * from './BEmpty';
 export * from './BFloatButton';
+export * from './BForm';
 export { default as BIcon } from './BIcon/BIcon.vue';
 export * from './BImage';
 export * from './BInput';
