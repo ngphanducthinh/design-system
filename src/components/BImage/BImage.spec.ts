@@ -6,7 +6,7 @@ import BImage from './BImage.vue';
 // ─────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────
-function mountImage(props = {}, slots: Record<string, unknown> = {}) {
+function mountImage(props = {}, slots: Record<string, any> = {}) {
   return mount(BImage, {
     props,
     slots,
@@ -18,7 +18,7 @@ function mountImage(props = {}, slots: Record<string, unknown> = {}) {
   });
 }
 
-function mountImageReal(props = {}, slots: Record<string, unknown> = {}) {
+function mountImageReal(props = {}, slots: Record<string, any> = {}) {
   return mount(BImage, {
     props,
     slots,

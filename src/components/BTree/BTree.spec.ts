@@ -29,7 +29,7 @@ const basicTree: BTreeNodeData[] = [
   { key: '3', title: 'Leaf 3', isLeaf: true },
 ];
 
-function mountTree(props: Record<string, unknown> = {}, slots: Record<string, unknown> = {}) {
+function mountTree(props: Record<string, unknown> = {}, slots: Record<string, any> = {}) {
   return mount(BTree, {
     props: { treeData: basicTree, ...props },
     slots,

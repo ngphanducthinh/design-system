@@ -9,7 +9,7 @@ import type { BDescriptionsItem as BDescriptionsItemData } from './types';
 // ─────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────
-function mountDescriptions(props = {}, slots: Record<string, unknown> = {}) {
+function mountDescriptions(props = {}, slots: Record<string, any> = {}) {
   return mount(BDescriptions, { props, slots });
 }
 

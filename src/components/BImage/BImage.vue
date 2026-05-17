@@ -625,7 +625,7 @@ function handleToolbarKeydown(event: KeyboardEvent) {
             <button
               type="button"
               aria-label="Flip horizontal"
-              :aria-pressed="String(flipX)"
+              :aria-pressed="flipX"
               @click="toggleFlipX"
             >
               <svg
@@ -646,7 +646,7 @@ function handleToolbarKeydown(event: KeyboardEvent) {
             <button
               type="button"
               aria-label="Flip vertical"
-              :aria-pressed="String(flipY)"
+              :aria-pressed="flipY"
               @click="toggleFlipY"
             >
               <svg

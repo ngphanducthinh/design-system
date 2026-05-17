@@ -4,27 +4,6 @@ import { defineComponent, nextTick, ref } from 'vue';
 import { z } from 'zod';
 import { useValidationField, useValidationForm } from './useValidation';
 
-function mountWithForm(setup: () => Record<string, unknown>) {
-  const Parent = defineComponent({
-    setup() {
-      const form = useValidationForm();
-      return { form };
-    },
-    template: '<slot />',
-  });
-
-  const Child = defineComponent({ setup, template: '<div />' });
-
-  const wrapper = mount(Parent, {
-    slots: { default: () => ({ render: () => null, ...Child }) },
-    global: {
-      components: { Child },
-    },
-  });
-
-  return wrapper;
-}
-
 describe('useValidationField', () => {
   function mountField<T>(fieldValue: ReturnType<typeof ref<T>>, schema: z.ZodType<T>) {
     let result: ReturnType<typeof useValidationField<T>>;
@@ -257,13 +236,12 @@ describe('useValidationForm', () => {
   });
 
   it('unregisters field on unmount', async () => {
-    let field: ReturnType<typeof useValidationField<string>>;
     const value = ref('');
     const show = ref(true);
 
     const Child = defineComponent({
       setup() {
-        field = useValidationField('dynamic', value, z.string().min(1, 'Required'));
+        useValidationField('dynamic', value, z.string().min(1, 'Required'));
         return {};
       },
       template: '<div />',
@@ -280,7 +258,7 @@ describe('useValidationForm', () => {
       template: '<Child v-if="show" />',
     });
 
-    const wrapper = mount(Parent);
+    mount(Parent);
 
     expect(form!.fields['dynamic']).toBeDefined();
 

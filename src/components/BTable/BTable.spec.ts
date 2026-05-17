@@ -4,9 +4,9 @@ import BTable from './BTable.vue';
 import type { BTableColumnType, BTableRowSelection } from './types';
 
 // Convenience alias for untyped column/data to avoid invariance errors at mount() call sites
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 type AnyCol = BTableColumnType<any>;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+ 
 type AnyData = Record<string, any>[];
 
 // ─────────────────────────────────────────────

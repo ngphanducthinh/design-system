@@ -41,7 +41,7 @@ const {
   loadedKeys: loadedKeysProp = undefined,
   filterTreeNode = undefined,
   height = undefined,
-  virtual = false,
+  virtual: _virtual = false,
   directory = false,
   expandAction = 'click',
 } = defineProps<{
@@ -548,7 +548,6 @@ function handleDrop(event: DragEvent, node: BTreeNodeData) {
   const dragFlat = flatNodes.value.find((n) => n.key === dragNodeKey.value);
   if (!dragFlat) return;
 
-  const dropPos = node;
   emit('drop', {
     event,
     node,
@@ -563,15 +562,6 @@ function handleDrop(event: DragEvent, node: BTreeNodeData) {
 // ─── Keyboard navigation ──────────────────────────────────────────────────────
 
 const treeRef = ref<HTMLElement | null>(null);
-
-function getFocusableItems(): HTMLElement[] {
-  if (!treeRef.value) return [];
-  return Array.from(
-    treeRef.value.querySelectorAll<HTMLElement>(
-      '[role="treeitem"][tabindex="0"],[role="treeitem"][tabindex="-1"]',
-    ),
-  ).filter((el) => !el.closest('[aria-hidden="true"]'));
-}
 
 const focusedNodeKey = ref<BTreeNodeKey | null>(visibleNodes.value[0]?.key ?? null);
 
@@ -693,7 +683,8 @@ function scrollTo(opts: BTreeScrollToOptions) {
     const el = treeRef.value?.querySelector<HTMLElement>(
       `[data-node-key="${String(opts.key).replace(/["\\]/g, '\\$&')}"]`,
     );
-    el?.scrollIntoView?.({ block: opts.align ?? 'nearest' });
+    const alignMap = { top: 'start', bottom: 'end', auto: 'nearest' } as const;
+    el?.scrollIntoView?.({ block: alignMap[opts.align ?? 'auto'] });
   });
 }
 
@@ -776,7 +767,7 @@ function handleRightClick(event: MouseEvent, node: BTreeNodeData) {
 
         <!-- Switcher (expand/collapse) -->
         <span
-          v-if="hasChildren(flatNode.data) || showLine"
+          v-if="hasChildren(flatNode.data)"
           class="b-tree__switcher"
           :class="{
             'b-tree__switcher--expanded': isExpanded(flatNode.key),

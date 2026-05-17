@@ -141,7 +141,7 @@ const shapeClass = computed(
     <!-- Child buttons list (always rendered; hidden when group is collapsed) -->
     <div
       class="b-float-button-group__list"
-      :aria-hidden="isGroup ? String(!internalOpen) : undefined"
+      :aria-hidden="isGroup ? !internalOpen : undefined"
       :inert="isGroup && !internalOpen ? true : undefined"
     >
       <slot />
@@ -157,7 +157,7 @@ const shapeClass = computed(
         `b-float-button--${props.shape ?? 'circle'}`,
         'b-float-button--primary',
       ]"
-      :aria-expanded="String(internalOpen)"
+      :aria-expanded="internalOpen"
       :aria-label="internalOpen ? 'Collapse button group' : 'Expand button group'"
       @click="toggle"
     >

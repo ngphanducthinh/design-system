@@ -6,10 +6,6 @@ function getHandle(wrapper: VueWrapper, index = 0): HTMLElement {
   return wrapper.findAll('.b-slider__handle')[index].element as HTMLElement;
 }
 
-function getRail(wrapper: VueWrapper): HTMLElement {
-  return wrapper.find('.b-slider__rail').element as HTMLElement;
-}
-
 describe('BSlider', () => {
   describe('defaults and variants', () => {
     it('renders with default props', () => {
@@ -101,7 +97,6 @@ describe('BSlider', () => {
       const wrapper = mount(BSlider, {
         props: { range: true, modelValue: [20, 60], dots: true, step: 20 },
       });
-      const dots = wrapper.findAll('.b-slider__dot');
       const activeDots = wrapper.findAll('.b-slider__dot--active');
       expect(activeDots.length).toBeGreaterThan(0);
     });

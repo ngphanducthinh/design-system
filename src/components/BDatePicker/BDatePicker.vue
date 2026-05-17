@@ -24,7 +24,7 @@ const {
   showWeek = false,
   format,
   locale,
-  placement = BDatePickerPlacement.BottomLeft,
+  placement: _placement = BDatePickerPlacement.BottomLeft,
   status,
   presets,
   disabledDate,

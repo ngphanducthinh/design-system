@@ -4,6 +4,7 @@ import {
   BTourPlacement,
   BTourType,
   type BTourArrowOptions,
+  type BTourButtonProps,
   type BTourGapOptions,
   type BTourResolvedStep,
   type BTourScrollIntoViewOptions,
@@ -26,7 +27,7 @@ const {
   zIndex = 1070,
   keyboard = true,
   scrollIntoViewOptions = true,
-  getPopupContainer = undefined,
+  getPopupContainer: _getPopupContainer = undefined,
   closeIcon = true,
   disabledInteraction = false,
 } = defineProps<{
@@ -85,6 +86,8 @@ const emit = defineEmits<{
 }>();
 
 defineSlots<{
+  /** Custom cover content for the tour step. */
+  cover?(): unknown;
   /** Override indicator dots/numbers rendering. Receives `{ current, total }`. */
   indicatorsRender?(props: { current: number; total: number }): unknown;
 }>();
@@ -336,14 +339,6 @@ const arrowClass = computed(() => {
 // ─────────────────────────────────────────────
 // Open / close helpers
 // ─────────────────────────────────────────────
-function doOpen() {
-  if (isControlledOpen.value) {
-    emit('update:open', true);
-  } else {
-    internalOpen.value = true;
-  }
-}
-
 function doClose() {
   emit('close', currentStep.value);
   if (isControlledOpen.value) {
@@ -527,9 +522,9 @@ const maskStyle = computed<Record<string, string>>(() => {
 // ─────────────────────────────────────────────
 const hasCover = computed(() => Boolean(activeStep.value?.cover));
 
-function stripBtnProps(props: Record<string, unknown> | undefined) {
+function stripBtnProps(props: BTourButtonProps | undefined) {
   if (!props) return {};
-  const { onClick, children, ...rest } = props;
+  const { onClick: _onClick, children: _children, ...rest } = props;
   return rest;
 }
 </script>

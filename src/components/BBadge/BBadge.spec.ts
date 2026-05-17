@@ -7,7 +7,7 @@ import BBadge from './BBadge.vue';
 // ─────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────
-function mountBadge(props = {}, slots: Record<string, unknown> = {}) {
+function mountBadge(props = {}, slots: Record<string, any> = {}) {
   return mount(BBadge, { props, slots });
 }
 

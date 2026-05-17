@@ -40,7 +40,7 @@ const {
   rowClassName,
   onRow,
   onHeaderRow,
-  components: _customComponents, // eslint-disable-line @typescript-eslint/no-unused-vars
+  components: _customComponents,  
 } = defineProps<{
   /** Data array */
   dataSource?: T[];
@@ -495,7 +495,6 @@ const headerRows = computed<HeaderCell[][]>(() => {
 
   function buildRows(
     cols: BTableColumnType<T>[],
-    depth: number,
     rows: HeaderCell[][],
     rowIdx: number,
   ) {
@@ -510,7 +509,7 @@ const headerRows = computed<HeaderCell[][]>(() => {
       if (!rows[rowIdx]) rows[rowIdx] = [];
       rows[rowIdx].push(cell);
       if (!isLeaf) {
-        buildRows(col.children!, depth, rows, rowIdx + 1);
+        buildRows(col.children!, rows, rowIdx + 1);
       }
     }
   }
@@ -521,7 +520,7 @@ const headerRows = computed<HeaderCell[][]>(() => {
   }
 
   const rows: HeaderCell[][] = [];
-  buildRows(columns, maxDepth, rows, 0);
+  buildRows(columns, rows, 0);
   return rows;
 });
 
@@ -597,7 +596,7 @@ function toggleRow(record: T, index: number, event: Event) {
   setSelectedKeys(keys);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 function toggleAllPage(_event: Event) {
   const keys = new Set(
     rowSelection?.preserveSelectedRowKeys ? selectedKeys.value : new Set<string | number>(),
@@ -629,7 +628,7 @@ const expandedKeys = computed<Set<string | number>>(() => {
   return internalExpandedKeys.value;
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 function toggleExpand(record: T, index: number, _event: MouseEvent) {
   const key = getRowKey(record, index);
   const keys = new Set(expandedKeys.value);

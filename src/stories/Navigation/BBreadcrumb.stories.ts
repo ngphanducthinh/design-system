@@ -161,7 +161,7 @@ export const Accessibility: Story = {
     },
   },
   play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+    within(canvasElement);
 
     // Last item should be aria-current=page
     const links = canvasElement.querySelectorAll('a.b-breadcrumb__link');

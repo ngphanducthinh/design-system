@@ -23,7 +23,7 @@ const {
   minuteStep = 1,
   secondStep = 1,
   format,
-  placement = BTimePickerPlacement.BottomLeft,
+  placement: _placement = BTimePickerPlacement.BottomLeft,
   status,
   hideDisabledOptions = false,
   needConfirm = true,
@@ -148,7 +148,7 @@ function pad(n: number): string {
 
 function formatTime(d: Date | null): string {
   if (!d) return '';
-  let h = d.getHours();
+  const h = d.getHours();
   const m = d.getMinutes();
   const s = d.getSeconds();
   const ampm = h >= 12 ? 'PM' : 'AM';

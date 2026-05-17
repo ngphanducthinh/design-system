@@ -635,8 +635,6 @@ function cycleFormat() {
 // ─────────────────────────────────────────────
 // Input handling
 // ─────────────────────────────────────────────
-const hexInput = ref('');
-
 const inputValue = computed(() => {
   switch (activeFormat.value) {
     case BColorPickerFormat.Hex:

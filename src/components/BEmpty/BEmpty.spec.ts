@@ -7,7 +7,7 @@ import BEmpty from './BEmpty.vue';
 // ─────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────
-function mountEmpty(props = {}, slots: Record<string, unknown> = {}) {
+function mountEmpty(props = {}, slots: Record<string, any> = {}) {
   return mount(BEmpty, { props, slots });
 }
 

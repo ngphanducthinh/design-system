@@ -13,6 +13,7 @@ import type {
 
 const {
   columns = 3,
+  // eslint-disable-next-line vue/require-valid-default-prop
   gutter = 0,
   items = [],
   fresh = false,
@@ -202,8 +203,6 @@ const columnBuckets = computed<{ item: BMasonryItem; originalIndex: number }[][]
   const heights = Array<number>(cols).fill(0);
   const [, rowGap] = resolvedGutter.value;
 
-  const columnMap: Record<string | number, number> = {};
-
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     let targetCol: number;
@@ -219,16 +218,27 @@ const columnBuckets = computed<{ item: BMasonryItem; originalIndex: number }[][]
     buckets[targetCol].push({ item, originalIndex: i });
     const h = itemHeights.value[item.key] ?? item.height ?? 0;
     heights[targetCol] += h + (buckets[targetCol].length > 1 ? rowGap : 0);
-    columnMap[item.key] = targetCol;
   }
-
-  // Emit layout change (do it in a microtask to avoid mutating during render)
-  Promise.resolve().then(() => {
-    emit('layoutChange', { columns: cols, columnMap });
-  });
 
   return buckets;
 });
+
+const layoutColumnMap = computed(() => {
+  const cols = resolvedColumns.value;
+  const map: Record<string | number, number> = {};
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const bucket = columnBuckets.value.findIndex((b) =>
+      b.some((entry) => entry.item.key === item.key),
+    );
+    if (bucket >= 0) map[item.key] = bucket;
+  }
+  return { columns: cols, columnMap: map };
+});
+
+watch(layoutColumnMap, (val) => {
+  emit('layoutChange', val);
+}, { immediate: true });
 
 // ─── CSS class/style helpers ──────────────────────────────────────────────────
 
@@ -256,14 +266,14 @@ function getItemStyles(item: BMasonryItem, columnIndex: number): Record<string, 
   return {};
 }
 
-function getColumnClasses(colIndex: number): string[] {
+function getColumnClasses(_colIndex: number): string[] {
   const base = ['b-masonry__column'];
   if (!classNames || typeof classNames === 'function') return base;
   if (classNames.column) base.push(classNames.column);
   return base;
 }
 
-function getColumnStyles(colIndex: number): Record<string, string> {
+function getColumnStyles(_colIndex: number): Record<string, string> {
   if (!styles || typeof styles === 'function') return {};
   return (styles.column as Record<string, string>) ?? {};
 }

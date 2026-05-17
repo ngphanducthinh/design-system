@@ -24,8 +24,27 @@ export default defineConfigWithVueTs(
   vueTsConfigs.recommended,
 
   {
+    name: 'app/custom-rules',
+    files: ['**/*.{ts,mts,tsx,vue}'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+        },
+      ],
+    },
+  },
+
+  {
     ...pluginVitest.configs.recommended,
     files: ['src/**/*.spec.ts'],
+    rules: {
+      ...pluginVitest.configs.recommended.rules,
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
   },
 
   {

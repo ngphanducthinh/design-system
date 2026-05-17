@@ -44,7 +44,7 @@ const dangerItems: BMenuItemUnion[] = [
   { key: '2', label: 'Danger Item', danger: true },
 ];
 
-function mountMenu(props: Record<string, unknown> = {}, slots: Record<string, unknown> = {}) {
+function mountMenu(props: Record<string, unknown> = {}, slots: Record<string, any> = {}) {
   return mount(BMenu, {
     props: { items: basicItems, ...props },
     slots,

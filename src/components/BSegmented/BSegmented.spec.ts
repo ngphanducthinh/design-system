@@ -15,7 +15,7 @@ const OBJECT_OPTS: BSegmentedRawOption[] = [
   { label: 'Satellite', value: 'satellite', disabled: true },
 ];
 
-function mountSegmented(props: Record<string, unknown> = {}, slots: Record<string, unknown> = {}) {
+function mountSegmented(props: Record<string, unknown> = {}, slots: Record<string, any> = {}) {
   return mount(BSegmented, {
     props: { options: STRING_OPTS, ...props },
     slots,
@@ -276,7 +276,7 @@ describe('BSegmented – keyboard navigation', () => {
   it('ArrowRight moves focus to the next enabled item', async () => {
     const w = mountSegmented();
     const items = w.findAll('.b-segmented__item');
-    items[0].element.focus();
+    (items[0].element as HTMLElement).focus();
     await items[0].trigger('keydown', { key: 'ArrowRight' });
     expect(document.activeElement).toBe(items[1].element);
   });
@@ -284,7 +284,7 @@ describe('BSegmented – keyboard navigation', () => {
   it('ArrowLeft moves focus to the previous enabled item', async () => {
     const w = mountSegmented();
     const items = w.findAll('.b-segmented__item');
-    items[1].element.focus();
+    (items[1].element as HTMLElement).focus();
     await items[1].trigger('keydown', { key: 'ArrowLeft' });
     expect(document.activeElement).toBe(items[0].element);
   });
@@ -292,7 +292,7 @@ describe('BSegmented – keyboard navigation', () => {
   it('ArrowRight wraps around from last to first', async () => {
     const w = mountSegmented();
     const items = w.findAll('.b-segmented__item');
-    items[2].element.focus();
+    (items[2].element as HTMLElement).focus();
     await items[2].trigger('keydown', { key: 'ArrowRight' });
     expect(document.activeElement).toBe(items[0].element);
   });
@@ -300,7 +300,7 @@ describe('BSegmented – keyboard navigation', () => {
   it('ArrowLeft wraps from first to last', async () => {
     const w = mountSegmented();
     const items = w.findAll('.b-segmented__item');
-    items[0].element.focus();
+    (items[0].element as HTMLElement).focus();
     await items[0].trigger('keydown', { key: 'ArrowLeft' });
     expect(document.activeElement).toBe(items[2].element);
   });
@@ -308,7 +308,7 @@ describe('BSegmented – keyboard navigation', () => {
   it('ArrowDown is equivalent to ArrowRight', async () => {
     const w = mountSegmented();
     const items = w.findAll('.b-segmented__item');
-    items[0].element.focus();
+    (items[0].element as HTMLElement).focus();
     await items[0].trigger('keydown', { key: 'ArrowDown' });
     expect(document.activeElement).toBe(items[1].element);
   });
@@ -316,7 +316,7 @@ describe('BSegmented – keyboard navigation', () => {
   it('ArrowUp is equivalent to ArrowLeft', async () => {
     const w = mountSegmented();
     const items = w.findAll('.b-segmented__item');
-    items[1].element.focus();
+    (items[1].element as HTMLElement).focus();
     await items[1].trigger('keydown', { key: 'ArrowUp' });
     expect(document.activeElement).toBe(items[0].element);
   });
@@ -324,8 +324,7 @@ describe('BSegmented – keyboard navigation', () => {
   it('keyboard navigation skips disabled items', async () => {
     const w = mountSegmented({ options: OBJECT_OPTS });
     const allItems = w.findAll('.b-segmented__item');
-    // Focus map (index 0), ArrowRight should jump to transit (index 1), skipping satellite
-    allItems[0].element.focus();
+    (allItems[0].element as HTMLElement).focus();
     await allItems[0].trigger('keydown', { key: 'ArrowRight' });
     expect(document.activeElement).toBe(allItems[1].element);
   });

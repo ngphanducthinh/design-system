@@ -83,8 +83,6 @@ type Story = StoryObj<typeof meta>;
 // ─────────────────────────────────────────────
 const loremShort =
   'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world.';
-const loremLong =
-  'A dog is a type of domesticated animal. Known for its loyalty and faithfulness, it can be found as a welcome guest in many households across the world. Dogs come in various breeds, each with unique characteristics and temperaments. They have been human companions for thousands of years, serving as guards, herders, hunters, and beloved family pets. Regular exercise, proper nutrition, and veterinary care are essential for maintaining a healthy and happy dog.';
 
 // ─────────────────────────────────────────────
 // 1. Playground

@@ -9,15 +9,15 @@ import BCardMeta from './BCardMeta.vue';
 // ─────────────────────────────────────────────
 // Helpers
 // ─────────────────────────────────────────────
-function mountCard(props = {}, slots: Record<string, unknown> = {}) {
+function mountCard(props = {}, slots: Record<string, any> = {}) {
   return mount(BCard, { props, slots });
 }
 
-function mountMeta(props = {}, slots: Record<string, unknown> = {}) {
+function mountMeta(props = {}, slots: Record<string, any> = {}) {
   return mount(BCardMeta, { props, slots });
 }
 
-function mountGrid(props = {}, slots: Record<string, unknown> = {}) {
+function mountGrid(props = {}, slots: Record<string, any> = {}) {
   return mount(BCardGrid, { props, slots });
 }
 

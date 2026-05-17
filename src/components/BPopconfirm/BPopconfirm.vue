@@ -13,7 +13,7 @@ const {
   cancelText = 'No',
   okType = 'primary',
   disabled = false,
-  icon,
+  icon: _icon,
   showCancel = true,
   trigger = BPopconfirmTrigger.Click,
   placement = BPopconfirmPlacement.TopCenter,

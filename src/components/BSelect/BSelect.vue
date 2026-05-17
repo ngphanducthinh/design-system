@@ -27,7 +27,7 @@ const {
   loading = false,
   maxTagCount,
   maxCount,
-  placement = BSelectPlacement.BottomLeft,
+  placement: _placement = BSelectPlacement.BottomLeft,
   filterOption = true,
   notFoundContent = 'No data',
   fieldNames,

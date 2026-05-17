@@ -214,7 +214,7 @@ describe('BMasonry', () => {
   it('passes correct slot props (item, index, column)', () => {
     const items: BMasonryItem[] = [{ key: 'z', height: 100 }];
     const receivedProps: Record<string, unknown>[] = [];
-    const wrapper = mount(BMasonry, {
+    mount(BMasonry, {
       props: { columns: 1, items },
       slots: {
         item: (props: Record<string, unknown>) => {
