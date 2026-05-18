@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { version } from '../../package.json';
 
 <Meta title="Getting Started" />
 
@@ -8,6 +9,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
     A Vue 3 component library built with TypeScript and Tailwind CSS 4, inspired by Ant Design.
   </p>
   <div className="gs-badges">
+    <span className="gs-badge gs-badge-version">v{version}</span>
     <span className="gs-badge">Vue 3.5</span>
     <span className="gs-badge">TypeScript</span>
     <span className="gs-badge">Tailwind CSS 4</span>
@@ -171,6 +173,13 @@ import { BButton, BInput, BModal } from '@7pmlabs/design-system';
     color: #444;
     border: 1px solid rgba(0, 0, 0, 0.08);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  }
+
+  .gs-badge-version {
+    background: #1a1a2e;
+    color: white;
+    border-color: #1a1a2e;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
   .gs-section {
