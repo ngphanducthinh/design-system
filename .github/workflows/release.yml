@@ -112,8 +112,6 @@ jobs:
       - name: Publish to NPM
         if: github.event.inputs.dry-run == 'false'
         run: npm publish --access public --tag latest
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create git tag
         if: github.event.inputs.dry-run == 'false'
