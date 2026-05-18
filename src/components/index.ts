@@ -37,6 +37,7 @@ export * from './BSegmented';
 export * from './BSelect';
 export * from './BSlider';
 export * from './BSpin';
+export * from './BSplitter';
 export { default as BSteps } from './BSteps/BSteps.vue';
 export * from './BSwitch';
 export * from './BTable';
