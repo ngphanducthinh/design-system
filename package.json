@@ -4,6 +4,13 @@
   "private": false,
   "type": "module",
   "homepage": "https://github.com/ngphanducthinh/design-system",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngphanducthinh/design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ngphanducthinh/design-system/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-s lint-all build:lib",
