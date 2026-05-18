@@ -21,6 +21,10 @@ concurrency:
   group: release
   cancel-in-progress: false
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 jobs:
   quality:
     name: Quality Checks
