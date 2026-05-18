@@ -69,12 +69,21 @@ jobs:
       - name: Build Storybook
         run: bun run build-storybook
 
-      - name: Deploy to Storybook repository
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Checkout Storybook repository
+        uses: actions/checkout@v4
         with:
-          personal_token: ${{ secrets.DESIGN_SYSTEM_STORYBOOK }}
-          external_repository: ngphanducthinh/7pmlabs-design-system
-          publish_dir: ./storybook-static
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'deploy: update storybook (${{ github.sha }})'
+          repository: ngphanducthinh/7pmlabs-design-system
+          token: ${{ secrets.DESIGN_SYSTEM_STORYBOOK }}
+          path: 7pmlabs-design-system
+
+      - name: Copy Built Files
+        run: cp -R storybook-static/* 7pmlabs-design-system/
+
+      - name: Commit and Push Changes
+        run: |
+          cd 7pmlabs-design-system
+          git config user.email "ngphanducthinh@gmail.com"
+          git config user.name "Thinh Nguyen"
+          git add .
+          git commit -m "deploy: update storybook (${{ github.sha }})" || echo "No changes to commit"
+          git push
