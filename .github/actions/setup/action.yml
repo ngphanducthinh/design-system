@@ -4,6 +4,12 @@ description: 'Checkout, install Bun, optionally Node.js, and install cached depe
 runs:
   using: 'composite'
   steps:
+    # Update to the latest version of Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 24
+
     - name: Set up Bun
       uses: oven-sh/setup-bun@v2
       with:
