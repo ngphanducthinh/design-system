@@ -35,6 +35,7 @@ export * from './BRadio';
 export * from './BRate';
 export * from './BSegmented';
 export * from './BSelect';
+export * from './BSkeleton';
 export * from './BSlider';
 export * from './BSpin';
 export { default as BSteps } from './BSteps/BSteps.vue';
