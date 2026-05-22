@@ -44,6 +44,10 @@ jobs:
       - name: Build main library (required for module's local dep)
         run: bun run build:lib
 
+      - name: Prepare Nuxt module (.nuxt types)
+        run: bun run dev:prepare
+        working-directory: packages/design-system-nuxt
+
       - name: Build Nuxt module
         run: bun run build
         working-directory: packages/design-system-nuxt
