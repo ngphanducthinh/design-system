@@ -52,4 +52,5 @@ export * from './BTimeline';
 export * from './BTooltip';
 export * from './BTour';
 export * from './BTree';
+export * from './BTreeSelect';
 export * from './BUpload';
