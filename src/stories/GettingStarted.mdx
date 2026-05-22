@@ -9,9 +9,9 @@ import { version } from '../../package.json';
       <h1>@7pmlabs/design-system</h1>
       <span className="gs-version">v{version}</span>
     </div>
-    <p className="gs-tagline">
+    <div className="gs-tagline">
       A Vue 3 component library built with TypeScript and Tailwind CSS 4, inspired by Ant Design.
-    </p>
+    </div>
     <div className="gs-badges">
       <span className="gs-badge">Vue 3.5</span>
       <span className="gs-badge">TypeScript</span>
@@ -47,16 +47,16 @@ import { version } from '../../package.json';
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       7:00 PM
     </div>
-    <p>
+    <div>
       It started at <strong>7&nbsp;PM</strong>, the hour the office emptied and the real work began.
       A few of us would regroup over coffee gone cold, pick whichever idea had been buzzing in the
       group chat that week, and build until the lights felt too bright.
-    </p>
-    <p>
+    </div>
+    <div>
       I held the frontend. This library was born in those quiet hours - one component at a time,
       shaped by every shipped weekend and every &ldquo;just one more tweak&rdquo;.
-    </p>
-    <p className="gs-story-coda">The 7&nbsp;PM ritual is over, but the name stuck.</p>
+    </div>
+    <div className="gs-story-coda">The 7&nbsp;PM ritual is over, but the name stuck.</div>
   </div>
 </div>
 
@@ -85,6 +85,43 @@ import '@7pmlabs/design-system/style.css';
 import { BButton } from '@7pmlabs/design-system';
 ```
 
+  </div>
+</div>
+
+<div className="gs-block gs-nuxt">
+  <div className="gs-block-head">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.4 21.225h8.535c.27 0 .536-.072.77-.207a1.55 1.55 0 0 0 .563-.566 1.57 1.57 0 0 0 0-1.554L17.539 8.857a1.55 1.55 0 0 0-.563-.566 1.526 1.526 0 0 0-1.541 0 1.55 1.55 0 0 0-.563.566l-1.473 2.561-2.879-5.013a1.55 1.55 0 0 0-.564-.566 1.526 1.526 0 0 0-1.541 0 1.55 1.55 0 0 0-.564.566L.207 18.898a1.57 1.57 0 0 0 0 1.554c.135.236.33.43.563.566.234.135.5.207.77.207h5.358c2.123 0 3.69-.945 4.768-2.78l2.616-4.557 1.402-2.441 4.205 7.337H15.99zM7.01 18.444l-3.74-.001L8.88 8.665l2.804 4.889z"/></svg>
+    <h3>Using with Nuxt 4</h3>
+  </div>
+  <div className="gs-block-intro">
+    Install the companion module to skip manual imports — every component and composable
+    auto-loads, and the stylesheet is injected for you.
+  </div>
+
+```bash
+bun add @7pmlabs/design-system @7pmlabs/design-system-nuxt
+```
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: ['@7pmlabs/design-system-nuxt'],
+});
+```
+
+```vue
+<script setup>
+const form = useValidationForm();
+</script>
+
+<template>
+  <BButton variant="solid" color="primary">Click me</BButton>
+</template>
+```
+
+  <div className="gs-block-foot">
+    No <code>import</code> statements needed for <code>BButton</code>,{' '}
+    <code>useValidationForm</code>, or any other component / composable.
   </div>
 </div>
 
@@ -161,10 +198,10 @@ import { BButton } from '@7pmlabs/design-system';
   </div>
 </div>
 
-<p className="gs-footer">
+<div className="gs-footer">
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
   Browse the sidebar for live examples and full docs.
-</p>
+</div>
 
 <style>
   {`
@@ -381,6 +418,44 @@ import { BButton } from '@7pmlabs/design-system';
   .gs-block pre {
     margin: 0 !important;
     font-size: 0.78rem !important;
+  }
+
+  .gs-nuxt {
+    border-color: rgba(0, 220, 130, 0.25);
+    background: linear-gradient(180deg, #f5fff9 0%, #fafbfc 100%);
+  }
+
+  .gs-nuxt .gs-block-head svg {
+    color: #00dc82;
+  }
+
+  .gs-nuxt pre {
+    margin-bottom: 10px !important;
+  }
+
+  .gs-nuxt pre:last-of-type {
+    margin-bottom: 0 !important;
+  }
+
+  .gs-block-intro {
+    margin: 0 0 12px 0;
+    font-size: 0.85rem;
+    color: #4a4a55;
+    line-height: 1.55;
+  }
+
+  .gs-block-foot {
+    margin: 12px 0 0 0;
+    font-size: 0.78rem;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .gs-block-foot code {
+    font-size: 0.74rem;
+    background: #e8ecf0;
+    padding: 1px 5px;
+    border-radius: 3px;
   }
 
   .gs-cards {

@@ -282,8 +282,8 @@ const visibleFlatNodes = computed(() => {
 
 // ─── Value / model helpers ────────────────────────────────────────────────────
 function toRawValue(v: BTreeSelectValue | BTreeSelectLabeledValue): BTreeSelectValue {
-  if (typeof v === 'object' && v !== null && 'value' in v) return v.value;
-  return v;
+  if (typeof v === 'object' && v !== null) return v.value;
+  return v as BTreeSelectValue;
 }
 
 const selectedValues = computed<BTreeSelectValue[]>(() => {

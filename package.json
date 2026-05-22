@@ -1,7 +1,6 @@
 {
   "name": "@7pmlabs/design-system",
   "version": "1.0.10",
-  "private": false,
   "type": "module",
   "homepage": "https://github.com/ngphanducthinh/design-system",
   "repository": {
@@ -30,7 +29,8 @@
     "format": "prettier --write src/",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test:int": "bun run scripts/test-integration.ts"
+    "test:int": "bun run scripts/test-integration.ts",
+    "test:int:nuxt": "bun run scripts/test-integration-nuxt.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
@@ -116,5 +116,8 @@
     "vue",
     "ui library",
     "design system"
+  ],
+  "workspaces": [
+    "packages/*"
   ]
 }

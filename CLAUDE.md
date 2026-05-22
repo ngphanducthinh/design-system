@@ -5,6 +5,27 @@
 - **Package:** `@7pmlabs/design-system` (v0.0.117)
 - **Type:** Vue 3 component library published to NPM
 - **Purpose:** Custom design system inspired by Ant Design, built from scratch
+- **Companion package:** `@7pmlabs/design-system-nuxt` — Nuxt 4 module that auto-imports every component, registers `useValidationForm` / `useValidationField`, and injects the bundled stylesheet
+
+## Repository Layout
+
+This repo is a **Bun workspace** with the main library at the root and the Nuxt module as a sibling package:
+
+```
+design-system/                          # @7pmlabs/design-system (root)
+├── src/                                # main lib source
+├── packages/
+│   └── design-system-nuxt/             # @7pmlabs/design-system-nuxt
+│       ├── src/module.ts               # defineNuxtModule entry
+│       ├── src/components.ts           # list of B* component names to auto-register
+│       ├── playground/                 # minimal Nuxt 4 app for manual verification
+│       └── build.config.ts             # @nuxt/module-builder config
+└── scripts/
+    ├── test-integration.ts             # consumes the lib from a fresh Vue app via tarball
+    └── test-integration-nuxt.ts        # consumes both packages from a fresh Nuxt 4 app via tarball
+```
+
+Bun workspaces don't allow the root package to be a workspace member, so the module declares the main lib via `"@7pmlabs/design-system": "file:../.."` instead of `workspace:*`. The Nuxt integration test temporarily rewrites that to `"*"` before packing so the published tarball is consumable from outside the workspace.
 
 ## Tech Stack
 
@@ -75,9 +96,20 @@ bun run storybook        # Storybook dev (port 6006)
 bun run test:unit        # Vitest unit tests
 bun run test:storybook   # Storybook browser/a11y tests
 bun run test:e2e         # Playwright e2e
+bun run test:int         # Integration test — consume the lib from a fresh Vue app via .tgz
+bun run test:int:nuxt    # Integration test — consume both packages from a fresh Nuxt 4 app via .tgz
 bun run lint-all         # ESLint + oxlint + type-check
 bun run type-check       # vue-tsc
 bun run format           # Prettier
+```
+
+Inside `packages/design-system-nuxt/` (the Nuxt module):
+
+```bash
+bun run dev:prepare      # build module stubs + prepare playground
+bun run dev              # nuxi dev playground (http://localhost:3000)
+bun run build            # nuxt-module-build build → dist/module.mjs + types
+bun run dev:build        # nuxi build playground (production build)
 ```
 
 ---
@@ -106,3 +138,30 @@ bun run format           # Prettier
 - **Composables:** `src/composables/` — `useComponentId.ts`, `useValidation.ts` (Zod-based form/field validation with dirty/touched tracking)
 - **Component barrel:** `src/components/index.ts`
 - **Design tokens:** `src/assets/tailwind.css`
+
+---
+
+## Nuxt Module (`packages/design-system-nuxt/`)
+
+A thin Nuxt 4 module that consumes the main lib and exposes it idiomatically to Nuxt apps. Its surface area is small but adding components requires keeping two lists in sync.
+
+### When you add a component to the main lib
+
+1. Export it from `src/components/<BComponentName>/index.ts` and re-export through `src/components/index.ts`.
+2. **Add the component name to `packages/design-system-nuxt/src/components.ts`** in the `COMPONENT_NAMES` array — sub-components too (e.g. `BFormItem`, `BModalHeader`). Without this, the component won't auto-import in Nuxt apps.
+
+### When you add a composable to the main lib
+
+1. Export it from `src/index.ts`.
+2. Add its name to the `COMPOSABLE_NAMES` array in `packages/design-system-nuxt/src/components.ts`.
+
+### Verifying the module
+
+After changing the module or any auto-imported surface, both must pass:
+
+1. `cd packages/design-system-nuxt && bun run dev` — playground at http://localhost:3000 renders without console errors and components render in `view-source` (SSR).
+2. `bun run test:int:nuxt` (from root) — packs both packages and consumes them from a fresh Nuxt app; runs `nuxi prepare`, `nuxi typecheck`, `nuxi build`. This is the closest signal we have to "would this work for a real consumer".
+
+### Releasing
+
+The module's `package.json` references the main lib via `file:../..`. Before publishing to npm, replace it with a real version range (`^1.0.10`) — the integration test demonstrates this rewrite. The main lib must be published first.

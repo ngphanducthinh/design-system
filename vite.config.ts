@@ -36,6 +36,7 @@ export default defineConfig({
   },
   build: {
     outDir: './dist',
+    sourcemap: true,
     // https://vite.dev/guide/build#library-mode
     lib: {
       name: 'DesignSystem',
@@ -47,7 +48,6 @@ export default defineConfig({
       // Vue is provided by the parent project, don't compile Vue source-code inside our library.
       external: ['vue'],
       output: {
-        sourcemap: true,
         preserveModules: true,
       },
     },

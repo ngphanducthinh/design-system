@@ -36,7 +36,14 @@ playwright-report/
 storybook-static
 
 .integration-test/
+.integration-test-nuxt/
 *.tgz
 
 PROMPT.md
 .claude/*
+
+# Nuxt
+.nuxt
+.output
+.data
+.nitro

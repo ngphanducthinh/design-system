@@ -1,0 +1,62 @@
+{
+  "name": "@7pmlabs/design-system-nuxt",
+  "version": "0.0.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Nuxt 4 module for @7pmlabs/design-system — auto-imports components, composables, and the design system stylesheet.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngphanducthinh/design-system.git",
+    "directory": "packages/design-system-nuxt"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "./dist/module.mjs",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/types.d.mts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "build": "nuxt-module-build build",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@7pmlabs/design-system": "file:../..",
+    "@nuxt/kit": "^4.0.0"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^1.0.1",
+    "@nuxt/schema": "^4.0.0",
+    "@types/node": "^24.12.4",
+    "nuxt": "^4.0.0",
+    "typescript": "^5.9.3",
+    "vue": "^3.5.34"
+  },
+  "peerDependencies": {
+    "nuxt": "^3.0.0 || ^4.0.0"
+  },
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "vue",
+    "design-system",
+    "ui-library"
+  ]
+}
