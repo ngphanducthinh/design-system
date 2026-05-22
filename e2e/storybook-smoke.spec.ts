@@ -1,3 +1,9 @@
+/* eslint-disable playwright/no-conditional-in-test --
+ * This single smoke test runs across mobile/tablet/desktop projects and must
+ * branch on viewport, plus use idempotent visibility checks when opening the
+ * sidebar dialog and expanding groups. Splitting into per-viewport tests would
+ * duplicate the journey body without changing what is exercised.
+ */
 import { expect, test } from '@playwright/test'
 
 /**

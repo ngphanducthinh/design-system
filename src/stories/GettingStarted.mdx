@@ -18,25 +18,28 @@ import { version } from '../../package.json';
       <span className="gs-badge">Tailwind 4</span>
       <span className="gs-badge">51 Components</span>
     </div>
-    <div className="gs-links">
-      <a
-        className="gs-author"
-        href="https://github.com/ngphanducthinh/design-system"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.93 10.93 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
-        <span>by Nguyễn Phan Đức Thịnh</span>
-      </a>
-      <a
-        className="gs-author"
-        href="https://www.npmjs.com/package/@7pmlabs/design-system"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.665H5.334v-4H3.999v4H1.335V8.667h5.331v5.332zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.332zM10.665 10H12v2.667h-1.335V10z"/></svg>
-        <span>npm</span>
-      </a>
+    <div className="gs-links-wrap">
+      <div className="gs-links">
+        <a
+          className="gs-author"
+          href="https://github.com/ngphanducthinh/design-system"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.93 10.93 0 0 1 5.74 0c2.18-1.49 3.14-1.18 3.14-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+          <span>GitHub</span>
+        </a>
+        <a
+          className="gs-author"
+          href="https://www.npmjs.com/package/@7pmlabs/design-system"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.665H5.334v-4H3.999v4H1.335V8.667h5.331v5.332zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.332zM10.665 10H12v2.667h-1.335V10z"/></svg>
+          <span>npm</span>
+        </a>
+      </div>
+      <p className="gs-author-name">by Nguyễn Phan Đức Thịnh</p>
     </div>
   </div>
   <div className="gs-hero-story">
@@ -45,9 +48,13 @@ import { version } from '../../package.json';
       7:00 PM
     </div>
     <p>
-      <strong>7pmlabs</strong> began as a ritual - friends meeting after work to build whatever
-      side project we were excited about that week. I owned the frontend, and this library grew up
-      alongside those late-night sessions.
+      It started at <strong>7&nbsp;PM</strong>, the hour the office emptied and the real work began.
+      A few of us would regroup over coffee gone cold, pick whichever idea had been buzzing in the
+      group chat that week, and build until the lights felt too bright.
+    </p>
+    <p>
+      I held the frontend. This library was born in those quiet hours - one component at a time,
+      shaped by every shipped weekend and every &ldquo;just one more tweak&rdquo;.
     </p>
     <p className="gs-story-coda">The 7&nbsp;PM ritual is over, but the name stuck.</p>
   </div>
@@ -164,7 +171,7 @@ import { BButton } from '@7pmlabs/design-system';
   .gs-hero {
     position: relative;
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0;
     margin-bottom: 28px;
     border-radius: 12px;
@@ -242,31 +249,54 @@ import { BButton } from '@7pmlabs/design-system';
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  .gs-links-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 18px;
+  }
+
   .gs-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 14px;
+    justify-content: flex-end;
+    gap: 8px;
   }
 
   .gs-author {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 4px 10px;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #c8ccd6;
-    font-size: 0.75rem;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(255, 184, 77, 0.12);
+    border: 1px solid rgba(255, 184, 77, 0.35);
+    color: #ffb84d;
+    font-size: 0.82rem;
+    font-weight: 600;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .gs-author svg {
+    width: 16px;
+    height: 16px;
   }
 
   .gs-author:hover {
-    background: rgba(255, 184, 77, 0.12);
-    border-color: rgba(255, 184, 77, 0.3);
-    color: #ffb84d;
+    background: rgba(255, 184, 77, 0.22);
+    border-color: rgba(255, 184, 77, 0.6);
+    color: #ffd699;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 184, 77, 0.18);
+  }
+
+  .gs-author-name {
+    margin: 14px 0 0 0;
+    font-size: 0.78rem;
+    color: #9aa0ad;
+    font-style: italic;
+    text-align: right;
   }
 
   .gs-hero-story {
@@ -290,6 +320,8 @@ import { BButton } from '@7pmlabs/design-system';
     font-weight: 600;
     letter-spacing: 0.3px;
     margin-bottom: 10px;
+
+    height: 36px;
   }
 
   .gs-hero-story p {
@@ -379,8 +411,10 @@ import { BButton } from '@7pmlabs/design-system';
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    background: linear-gradient(135deg, #1a1a2e 0%, #2a1f4a 100%);
-    color: #ffb84d;
+    background: linear-gradient(135deg, #fff7e6 0%, #ffe8b8 100%);
+    color: #d97706;
+    border: 1px solid rgba(255, 184, 77, 0.4);
+    box-shadow: 0 4px 12px rgba(255, 184, 77, 0.25), 0 1px 2px rgba(0, 0, 0, 0.04);
     margin-bottom: 10px;
   }
 

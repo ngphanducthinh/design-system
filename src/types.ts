@@ -66,6 +66,31 @@ export type {
 export type { BTagColor, BTagPresetColor, BTagSize, BTagVariant } from './components/BTag/types';
 
 export type {
+  BStatisticFormatter,
+  BStatisticTimerType,
+  BStatisticValue,
+} from './components/BStatistic/types';
+
+export type {
+  BCarouselAutoplayConfig,
+  BCarouselBeforeChangePayload,
+  BCarouselDotPlacement,
+  BCarouselEffect,
+} from './components/BCarousel/types';
+
+export type {
+  BCalendarCellRenderType,
+  BCalendarCellSlotScope,
+  BCalendarEvent,
+  BCalendarEventDetailsSlotScope,
+  BCalendarEventType,
+  BCalendarHeaderSlotScope,
+  BCalendarMode,
+  BCalendarSelectInfo,
+  BCalendarSelectSource,
+} from './components/BCalendar/types';
+
+export type {
   BTimelineItemColor,
   BTimelineItem as BTimelineItemData,
   BTimelineItemPlacement,
