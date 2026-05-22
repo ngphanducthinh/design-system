@@ -66,6 +66,12 @@ export type {
 export type { BTagColor, BTagPresetColor, BTagSize, BTagVariant } from './components/BTag/types';
 
 export type {
+  BStatisticFormatter,
+  BStatisticTimerType,
+  BStatisticValue,
+} from './components/BStatistic/types';
+
+export type {
   BTimelineItemColor,
   BTimelineItem as BTimelineItemData,
   BTimelineItemPlacement,

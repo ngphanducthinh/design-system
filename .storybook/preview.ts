@@ -44,7 +44,7 @@ const preview: Preview = {
     options: {
       // https://storybook.js.org/docs/writing-stories/naming-components-and-hierarchy#sorting-stories
       storySort: {
-        order: ['General', 'Data Display', 'Feedback'],
+        order: ['Getting Started', 'General', 'Data Display', 'Feedback'],
       },
     },
     // Accessibility testing: automatically run axe-core on every story.
