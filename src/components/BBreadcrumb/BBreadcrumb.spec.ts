@@ -141,7 +141,7 @@ describe('BBreadcrumb – accessibility', () => {
 describe('BBreadcrumb – ellipsis button', () => {
   it('ellipsis control is not rendered when nothing is hidden', () => {
     const w = mountBreadcrumb({ items: ITEMS });
-    // v-if="isCollapsed" — absent from DOM when all items fit
+    // v-if="isCollapsed" - absent from DOM when all items fit
     expect(w.find('.b-breadcrumb__ellipsis').exists()).toBe(false);
   });
 
@@ -178,7 +178,7 @@ describe('BBreadcrumb – ellipsis button', () => {
 
     const btn = w.find('.b-breadcrumb__ellipsis-btn');
     // btn.trigger('click') dispatches a real event that calls stopPropagation,
-    // so the document listener won't see it — state should stay open.
+    // so the document listener won't see it - state should stay open.
     await btn.trigger('click');
     expect(vm.collapsedBreadcrumbMenu).toBe(true);
     expect(btn.attributes('aria-expanded')).toBe('true');

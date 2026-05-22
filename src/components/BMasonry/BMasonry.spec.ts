@@ -12,7 +12,7 @@ function makeItems(count: number): BMasonryItem[] {
   }));
 }
 
-// ResizeObserver is not available in jsdom — stub it
+// ResizeObserver is not available in jsdom - stub it
 class ResizeObserverStub {
   observe = vi.fn();
   unobserve = vi.fn();

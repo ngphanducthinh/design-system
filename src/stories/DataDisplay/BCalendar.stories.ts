@@ -311,7 +311,7 @@ export const WithEvents: Story = {
     docs: {
       description: {
         story:
-          'Pass an `events` function returning items per date — the calendar auto-renders ' +
+          'Pass an `events` function returning items per date - the calendar auto-renders ' +
           'colored markers in each day cell and pops a built-in details modal on click. ' +
           'No slot or external modal wiring needed.',
       },
@@ -346,8 +346,7 @@ export const WithEvents: Story = {
           { type: 'error', title: 'This is error event 4' },
         ],
       };
-      const getEvents = (date: Date): BCalendarEvent[] =>
-        eventsByDay[date.getDate()] ?? [];
+      const getEvents = (date: Date): BCalendarEvent[] => eventsByDay[date.getDate()] ?? [];
 
       return { getEvents };
     },
@@ -394,9 +393,7 @@ export const WithEvents: Story = {
     expect(modalBody.textContent).toContain('This is very long usual event......');
 
     // Close modal via built-in close button.
-    const closeBtn = modalBody.querySelector(
-      '.b-calendar__modal-close',
-    ) as HTMLButtonElement;
+    const closeBtn = modalBody.querySelector('.b-calendar__modal-close') as HTMLButtonElement;
     expect(closeBtn).toBeTruthy();
     await userEvent.click(closeBtn);
   },
@@ -658,7 +655,7 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 15. Design Tokens — MUST be the LAST story
+// 15. Design Tokens - MUST be the LAST story
 // ─────────────────────────────────────────────
 type TokenRow = { token: string; defaultValue: string; description: string };
 
@@ -784,7 +781,7 @@ export const DesignTokens: Story = {
     setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
       <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
-        <h2 style="margin:0 0 8px;">BCalendar — Design Tokens</h2>
+        <h2 style="margin:0 0 8px;">BCalendar - Design Tokens</h2>
         <p style="margin:0 0 24px;color:#595959;">
           All tokens scoped to <code>.b-calendar</code>. Override inline or via a CSS class.
         </p>

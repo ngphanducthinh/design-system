@@ -643,7 +643,7 @@ export const DesignTokens: Story = {
           name: '--b-statistic-content-font-weight',
           fallback: '400',
           desc: 'Value font weight.',
-          antd: '—',
+          antd: '-',
         },
         // ── Prefix / Suffix ──
         {
@@ -656,7 +656,7 @@ export const DesignTokens: Story = {
           name: '--b-statistic-prefix-font-size',
           fallback: 'inherit',
           desc: 'Prefix font size.',
-          antd: '—',
+          antd: '-',
         },
         {
           name: '--b-statistic-prefix-margin-end',
@@ -674,7 +674,7 @@ export const DesignTokens: Story = {
           name: '--b-statistic-suffix-font-size',
           fallback: 'inherit',
           desc: 'Suffix font size.',
-          antd: '—',
+          antd: '-',
         },
         {
           name: '--b-statistic-suffix-margin-start',
@@ -687,37 +687,37 @@ export const DesignTokens: Story = {
           name: '--b-statistic-skeleton-color',
           fallback: 'oklch(92% 0.005 260)',
           desc: 'Skeleton base color (loading state).',
-          antd: '—',
+          antd: '-',
         },
         {
           name: '--b-statistic-skeleton-highlight',
           fallback: 'oklch(96% 0.003 260)',
           desc: 'Skeleton shimmer highlight color.',
-          antd: '—',
+          antd: '-',
         },
         {
           name: '--b-statistic-skeleton-width',
           fallback: '96px',
           desc: 'Skeleton placeholder width.',
-          antd: '—',
+          antd: '-',
         },
         {
           name: '--b-statistic-skeleton-height',
           fallback: '1em',
           desc: 'Skeleton placeholder height.',
-          antd: '—',
+          antd: '-',
         },
         {
           name: '--b-statistic-skeleton-radius',
           fallback: '4px',
           desc: 'Skeleton corner radius.',
-          antd: '—',
+          antd: '-',
         },
         {
           name: '--b-statistic-skeleton-duration',
           fallback: '1.4s',
           desc: 'Skeleton shimmer animation duration.',
-          antd: '—',
+          antd: '-',
         },
       ];
       return { tokens };

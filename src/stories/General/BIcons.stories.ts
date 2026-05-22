@@ -13,7 +13,7 @@ const meta = {
   argTypes: {
     icon: {
       control: 'text',
-      description: 'Icon identifier — matches the SVG filename (e.g. `"home"`, `"arrow-right"`).',
+      description: 'Icon identifier - matches the SVG filename (e.g. `"home"`, `"arrow-right"`).',
       table: { category: 'Props' },
     },
     variant: {
@@ -70,7 +70,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'The <code>BIcon</code> component renders SVG icons fetched at runtime from the static assets folder — icons are <strong>not</strong> bundled as JS chunks.<br><br>' +
+          'The <code>BIcon</code> component renders SVG icons fetched at runtime from the static assets folder - icons are <strong>not</strong> bundled as JS chunks.<br><br>' +
           'Icons come in <strong>9 variants</strong>: <code>regular</code>, <code>solid</code>, <code>light</code>, <code>thin</code>, <code>duotone</code>, ' +
           '<code>sharp-light</code>, <code>sharp-regular</code>, <code>sharp-solid</code>, <code>sharp-thin</code>.<br>' +
           'Colors accept <strong>theme tokens</strong> (<code>primary</code>, <code>success</code>…) or any CSS color value.<br>' +
@@ -90,7 +90,7 @@ const baseArgs = { icon: 'house' as any };
 // 1. Default (Playground)
 // ─────────────────────────────────────────────
 /**
- * Interactive playground — tweak all props via the Controls panel.
+ * Interactive playground - tweak all props via the Controls panel.
  */
 export const Default: Story = {
   args: {
@@ -241,7 +241,7 @@ export const Colors: Story = {
 // 5. Rotate
 // ─────────────────────────────────────────────
 /**
- * Use `rotate` to spin an icon to any angle — useful for directional icons.
+ * Use `rotate` to spin an icon to any angle - useful for directional icons.
  */
 export const Rotate: Story = {
   args: baseArgs,

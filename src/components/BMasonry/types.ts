@@ -6,7 +6,7 @@
 export type BMasonryBreakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
 /**
- * Responsive column/gutter value — either a fixed number or a breakpoint map.
+ * Responsive column/gutter value - either a fixed number or a breakpoint map.
  * @example 3
  * @example { xs: 1, sm: 2, md: 3, lg: 4 }
  */
@@ -37,7 +37,7 @@ export interface BMasonryLayoutChangePayload {
 }
 
 /**
- * classNames / styles callback signature — mirrors AntD's semantic-DOM API.
+ * classNames / styles callback signature - mirrors AntD's semantic-DOM API.
  * Receives the item and its resolved column index; returns a string/object/undefined.
  */
 export type BMasonryClassNamesFunc = (

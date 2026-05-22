@@ -334,7 +334,7 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 9. Design Tokens — MUST be the LAST story
+// 9. Design Tokens - MUST be the LAST story
 // ─────────────────────────────────────────────
 export const DesignTokens: Story = {
   name: 'Design Tokens',

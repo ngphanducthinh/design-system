@@ -102,7 +102,7 @@ const meta = {
     },
     treeCheckable: {
       control: 'boolean',
-      description: 'Show checkboxes — implies multiple.',
+      description: 'Show checkboxes - implies multiple.',
       table: { defaultValue: { summary: 'false' } },
     },
     treeCheckStrictly: {
@@ -537,7 +537,7 @@ export const Accessibility: Story = {
       expect(item.getAttribute('aria-level')).not.toBeNull();
     }
 
-    // Close before a11y checks run — open popover sits in top-layer and
+    // Close before a11y checks run - open popover sits in top-layer and
     // blocks axe-core from resolving aria-controls and underlying contrast.
     await userEvent.keyboard('{Escape}');
     await waitFor(() => {

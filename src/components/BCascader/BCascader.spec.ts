@@ -312,7 +312,7 @@ describe('BCascader', () => {
       await wrapper.find('.b-cascader').trigger('click');
       expect(wrapper.emitted('openChange')?.[0]).toEqual([true]);
 
-      // Now close with Escape — the popup handles Escape via onMenuKeydown
+      // Now close with Escape - the popup handles Escape via onMenuKeydown
       const popup = wrapper.find('.b-cascader__popup');
       await popup.trigger('keydown', { key: 'Escape' });
       const events = wrapper.emitted('openChange') ?? [];

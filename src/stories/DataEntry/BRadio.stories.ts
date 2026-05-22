@@ -416,7 +416,7 @@ export const InteractionTest: Story = {
       expect(canvas.getByTestId('single-value').textContent).toContain('true');
     });
 
-    // Test group radios — selecting different options
+    // Test group radios - selecting different options
     const appleRadio = canvas.getByLabelText('Apple');
     const bananaRadio = canvas.getByLabelText('Banana');
 

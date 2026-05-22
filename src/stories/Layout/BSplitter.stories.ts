@@ -267,10 +267,10 @@ export const Accessibility: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 8. Interaction — drag to resize
+// 8. Interaction - drag to resize
 // ─────────────────────────────────────────────
 export const DragToResize: Story = {
-  name: 'Interaction — drag to resize',
+  name: 'Interaction - drag to resize',
   parameters: { controls: { disable: true } },
   args: {
     onResize: fn(),

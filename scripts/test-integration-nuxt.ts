@@ -10,15 +10,15 @@
  * 3. Scaffold a minimal Nuxt 4 app in a temp dir and install both tarballs.
  * 4. Wire the module into `nuxt.config.ts`, render auto-imported components
  *    in `app.vue`.
- * 5. Run `nuxi prepare`, `nuxi typecheck`, `nuxi build` — any failure fails
+ * 5. Run `nuxi prepare`, `nuxi typecheck`, `nuxi build` - any failure fails
  *    the test.
  * 6. Clean up the temp dir, both tarballs, and restore the module's
  *    `package.json`.
  */
 
+import { $ } from 'bun';
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { $ } from 'bun';
 
 process.env.CI = 'true';
 
@@ -80,7 +80,7 @@ async function main(): Promise<void> {
     moduleTgzPath = resolve(MODULE_ROOT, moduleFilename);
     log('PACK MODULE', `Created ${moduleFilename} ✓`);
 
-    // Restore module package.json now — packing is done
+    // Restore module package.json now - packing is done
     writeFileSync(modulePkgPath, modulePkgBackup);
     modulePkgBackup = undefined;
 
@@ -134,7 +134,7 @@ async function main(): Promise<void> {
 import { ref } from 'vue';
 import { z } from 'zod';
 
-// Composables come from the module's auto-imports — no explicit import.
+// Composables come from the module's auto-imports - no explicit import.
 const form = useValidationForm();
 const email = ref('');
 const { errors, markTouched } = useValidationField(
@@ -172,7 +172,7 @@ const submit = () => {
     await $`bun install`.cwd(appDir).quiet();
     log('INSTALL', 'Done ✓');
 
-    // 7. Prepare — generates `.nuxt/tsconfig.json` and types
+    // 7. Prepare - generates `.nuxt/tsconfig.json` and types
     log('PREPARE', 'Running nuxi prepare...');
     await $`bun run prepare`.cwd(appDir).quiet();
     log('PREPARE', 'Done ✓');

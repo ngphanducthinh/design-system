@@ -158,7 +158,7 @@ export const ResponsiveColumns: Story = {
     template: `
       <div style="padding: 24px; background: #f5f5f5; border-radius: 12px;">
         <p style="margin-bottom: 16px; font-size: 13px; color: #666;">
-          Columns: xs=1 / sm=2 / md=3 / lg=4 — resize the preview panel to see changes.
+          Columns: xs=1 / sm=2 / md=3 / lg=4 - resize the preview panel to see changes.
         </p>
         <BMasonry :columns="columns" :gutter="12" :items="items">${cardTemplate}</BMasonry>
       </div>
@@ -475,12 +475,12 @@ export const InteractionTests: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Design Tokens — MUST be the LAST story
+// Design Tokens - MUST be the LAST story
 // ─────────────────────────────────────────────
 type TokenRow = { token: string; defaultValue: string; description: string };
 
 const DESIGN_TOKENS: TokenRow[] = [
-  // BMasonry has no AntD equivalent — all tokens are local extras.
+  // BMasonry has no AntD equivalent - all tokens are local extras.
   // ── Local extras ──
   {
     token: '--b-masonry-columns',
@@ -543,7 +543,7 @@ export const DesignTokens: Story = {
     },
     template: `
       <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
-        <h2 style="margin:0 0 8px;">BMasonry — Design Tokens</h2>
+        <h2 style="margin:0 0 8px;">BMasonry - Design Tokens</h2>
         <p style="margin:0 0 24px;color:#595959;">
           All tokens scoped to <code>.b-masonry</code>. Override inline or via a CSS class.
         </p>

@@ -1,5 +1,5 @@
 /**
- * BDivider — component-specific types
+ * BDivider - component-specific types
  */
 
 /**
@@ -24,6 +24,6 @@ export type BDividerSize = 'small' | 'medium' | 'large';
 /**
  * Horizontal position of the embedded title text.
  * AntD `titlePlacement` prop (note: AntD also accepts `'left'`/`'right'`
- * on the legacy `orientation` prop — we unify under `titlePlacement`).
+ * on the legacy `orientation` prop - we unify under `titlePlacement`).
  */
 export type BDividerTitlePlacement = 'start' | 'center' | 'end';

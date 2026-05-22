@@ -356,7 +356,7 @@ export const MaxTagCount: Story = {
     },
     template: `
       <div style="padding: 40px; max-width: 400px;">
-        <p style="margin-bottom: 8px; font-size: 12px; color: #666;">maxTagCount=2 — remaining shown as +N</p>
+        <p style="margin-bottom: 8px; font-size: 12px; color: #666;">maxTagCount=2 - remaining shown as +N</p>
         <BSelect v-model="value" :options="fruitOptions" mode="multiple" :max-tag-count="2" placeholder="Select..." />
       </div>
     `,

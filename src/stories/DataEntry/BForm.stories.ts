@@ -1,7 +1,7 @@
 import { BCheckbox } from '@/components/BCheckbox';
 import { BDatePicker } from '@/components/BDatePicker';
 import { BForm, BFormItem } from '@/components/BForm';
-import { BFormLayout, BFormLabelAlign, BFormRequiredMark } from '@/components/BForm/types.ts';
+import { BFormLabelAlign, BFormLayout, BFormRequiredMark } from '@/components/BForm/types.ts';
 import { BInput } from '@/components/BInput';
 import { BRadioGroup } from '@/components/BRadio';
 import { BSelect } from '@/components/BSelect';
@@ -503,22 +503,28 @@ export const InteractionTest: Story = {
       });
       const submitted = ref(false);
       const schemas = {
-        username: z.string()
+        username: z
+          .string()
           .min(3, 'Username must be at least 3 characters')
           .max(20, 'Username cannot exceed 20 characters')
           .regex(/^[a-z0-9_]+$/, 'Only lowercase letters, numbers, and underscores'),
         email: z.string().min(1, 'Email is required').email('Invalid email format'),
-        password: z.string()
+        password: z
+          .string()
           .min(8, 'Password must be at least 8 characters')
           .regex(/[A-Z]/, 'Must contain at least one uppercase letter')
           .regex(/[0-9]/, 'Must contain at least one number')
           .regex(/[^A-Za-z0-9]/, 'Must contain at least one special character'),
         confirmPassword: z.string().min(1, 'Please confirm your password'),
-        phone: z.string()
+        phone: z
+          .string()
           .min(1, 'Phone number is required')
           .regex(/^\+?[0-9]{10,15}$/, 'Enter a valid phone number (10-15 digits)'),
-        website: z.string()
-          .refine((val) => val === '' || /^https?:\/\/.+\..+/.test(val), { message: 'Must be a valid URL starting with http:// or https://' }),
+        website: z
+          .string()
+          .refine((val) => val === '' || /^https?:\/\/.+\..+/.test(val), {
+            message: 'Must be a valid URL starting with http:// or https://',
+          }),
         role: z.string().min(1, 'Please select a role'),
       };
       const roleOptions = [
@@ -526,7 +532,9 @@ export const InteractionTest: Story = {
         { label: 'Designer', value: 'designer' },
         { label: 'Product Manager', value: 'pm' },
       ];
-      const onFinish = () => { submitted.value = true; };
+      const onFinish = () => {
+        submitted.value = true;
+      };
       return { formModel, submitted, schemas, roleOptions, onFinish };
     },
     template: `
@@ -579,10 +587,12 @@ export const InteractionTest: Story = {
     const canvas = within(canvasElement);
     const submitBtn = canvas.getByRole('button', { name: /register/i });
 
-    // Step 1: Submit empty form — should show multiple required errors
+    // Step 1: Submit empty form - should show multiple required errors
     await userEvent.click(submitBtn);
     await waitFor(() => {
-      expect(canvasElement.querySelectorAll('.b-form-item__help--error').length).toBeGreaterThanOrEqual(5);
+      expect(
+        canvasElement.querySelectorAll('.b-form-item__help--error').length,
+      ).toBeGreaterThanOrEqual(5);
       expect(canvasElement.textContent).toContain('Username must be at least 3 characters');
       expect(canvasElement.textContent).toContain('Email is required');
       expect(canvasElement.textContent).toContain('Password must be at least 8 characters');
@@ -590,12 +600,14 @@ export const InteractionTest: Story = {
       expect(canvasElement.textContent).toContain('Please select a role');
     });
 
-    // Step 2: Type invalid username (uppercase, spaces) — regex error
+    // Step 2: Type invalid username (uppercase, spaces) - regex error
     const inputs = canvasElement.querySelectorAll('input');
     await userEvent.type(inputs[0], 'Bad User!');
     await userEvent.click(submitBtn);
     await waitFor(() => {
-      expect(canvasElement.textContent).toContain('Only lowercase letters, numbers, and underscores');
+      expect(canvasElement.textContent).toContain(
+        'Only lowercase letters, numbers, and underscores',
+      );
     });
 
     // Step 3: Fix username, type invalid email

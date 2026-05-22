@@ -1333,7 +1333,7 @@ export const EdgeCaseVerticalPlacement: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Design Tokens — MUST be the LAST story
+// Design Tokens - MUST be the LAST story
 // ─────────────────────────────────────────────
 type TokenRow = { token: string; defaultValue: string; description: string };
 
@@ -1434,7 +1434,7 @@ export const DesignTokens: Story = {
     },
     template: `
       <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
-        <h2 style="margin:0 0 8px;">BDrawer — Design Tokens</h2>
+        <h2 style="margin:0 0 8px;">BDrawer - Design Tokens</h2>
         <p style="margin:0 0 24px;color:#595959;">
           All tokens scoped to <code>.b-drawer</code>. Override inline or via a CSS class.
         </p>
@@ -1457,7 +1457,7 @@ export const DesignTokens: Story = {
 
         <h3 style="margin:32px 0 12px;">Override example</h3>
         <p style="margin:0 0 12px;color:#595959;font-size:13px;">
-          Open the themed drawer below — four tokens overridden inline.
+          Open the themed drawer below - four tokens overridden inline.
         </p>
         <BButton @click="open = true">Open themed drawer</BButton>
         <BDrawer

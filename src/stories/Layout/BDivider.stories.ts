@@ -269,7 +269,7 @@ export const Vertical: Story = {
  * - Horizontal (no text): `<div role="separator" aria-orientation="horizontal">`
  * - Horizontal (with text): `<div role="separator">` wrapping the content span
  * - Vertical: `<span role="separator" aria-orientation="vertical">`
- * - No `tabindex` — dividers are purely presentational
+ * - No `tabindex` - dividers are purely presentational
  */
 export const Accessibility: Story = {
   name: 'Accessibility (roles & aria)',
@@ -290,17 +290,17 @@ export const Accessibility: Story = {
       <div style="display:flex;flex-direction:column;gap:1rem;">
         <!-- 1. Horizontal (no text) -->
         <div>
-          <p style="margin:0 0 0.25rem;font-size:0.75rem;color:#595959;">Horizontal (no text) — &lt;div role=separator aria-orientation=horizontal&gt;</p>
+          <p style="margin:0 0 0.25rem;font-size:0.75rem;color:#595959;">Horizontal (no text) - &lt;div role=separator aria-orientation=horizontal&gt;</p>
           <BDivider />
         </div>
         <!-- 2. div with text -->
         <div>
-          <p style="margin:0 0 0.25rem;font-size:0.75rem;color:#595959;">Horizontal (with text) — &lt;div role=separator&gt;</p>
+          <p style="margin:0 0 0.25rem;font-size:0.75rem;color:#595959;">Horizontal (with text) - &lt;div role=separator&gt;</p>
           <BDivider>Section Title</BDivider>
         </div>
         <!-- 3. Vertical -->
         <div>
-          <p style="margin:0 0 0.25rem;font-size:0.75rem;color:#595959;">Vertical — &lt;span role=separator aria-orientation=vertical&gt;</p>
+          <p style="margin:0 0 0.25rem;font-size:0.75rem;color:#595959;">Vertical - &lt;span role=separator aria-orientation=vertical&gt;</p>
           <span>Item A</span>
           <BDivider orientation="vertical" />
           <span>Item B</span>
@@ -347,9 +347,9 @@ export const Accessibility: Story = {
  * Override CSS custom properties to customise the divider without touching source.
  *
  * Demonstrated tokens:
- * - `--b-divider-color` — line colour
- * - `--b-divider-text-color` — embedded text colour
- * - `--b-divider-text-padding-inline` — padding around the text
+ * - `--b-divider-color` - line colour
+ * - `--b-divider-text-color` - embedded text colour
+ * - `--b-divider-text-padding-inline` - padding around the text
  */
 export const Theming: Story = {
   name: 'Theming (CSS vars)',
@@ -416,7 +416,7 @@ export const Theming: Story = {
         <!-- Custom: vertical with wider margin -->
         <div>
           <p style="margin:0 0 0.25rem;font-size:0.75rem;color:#595959;">
-            Vertical — --b-divider-vertical-margin-inline
+            Vertical - --b-divider-vertical-margin-inline
           </p>
           <span>Left</span>
           <BDivider
@@ -463,7 +463,7 @@ export const InteractionStructure: Story = {
     `,
   }),
   play: async ({ canvasElement }) => {
-    // 1. Plain horizontal — now a <div role=separator>, not <hr>
+    // 1. Plain horizontal - now a <div role=separator>, not <hr>
     const plainSep = canvasElement.querySelector('[data-testid="plain-hr"]');
     expect(plainSep).not.toBeNull();
     expect(plainSep!.tagName).toBe('DIV');
@@ -491,7 +491,7 @@ export const InteractionStructure: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Design Tokens — MUST be the LAST story
+// Design Tokens - MUST be the LAST story
 // ─────────────────────────────────────────────
 type TokenRow = { token: string; defaultValue: string; description: string };
 
@@ -500,7 +500,8 @@ const DESIGN_TOKENS: TokenRow[] = [
   {
     token: '--b-divider-orientation-margin',
     defaultValue: '5%',
-    description: 'Distance between text and edge when orientation is left/right (AntD: orientationMargin).',
+    description:
+      'Distance between text and edge when orientation is left/right (AntD: orientationMargin).',
   },
   {
     token: '--b-divider-text-padding-inline',
@@ -572,7 +573,7 @@ export const DesignTokens: Story = {
     setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
       <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
-        <h2 style="margin:0 0 8px;">BDivider — Design Tokens</h2>
+        <h2 style="margin:0 0 8px;">BDivider - Design Tokens</h2>
         <p style="margin:0 0 24px;color:#595959;">
           All tokens scoped to <code>.b-divider</code>. Override inline or via a CSS class.
         </p>

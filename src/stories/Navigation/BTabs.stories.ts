@@ -600,7 +600,7 @@ export const KeepAliveDemo: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    // Tab 1 is active by default — increment counter 3 times
+    // Tab 1 is active by default - increment counter 3 times
     const tabs = canvas.getAllByRole('tab');
     let incrementBtn = canvas.getByRole('button', { name: 'Increment' });
     await userEvent.click(incrementBtn);
@@ -616,11 +616,11 @@ export const KeepAliveDemo: Story = {
     await userEvent.click(incrementBtn);
     expect(canvas.getByRole('tabpanel')).toHaveTextContent('Count: 1');
 
-    // Switch back to Tab 1 — state should be preserved (keepAlive: true)
+    // Switch back to Tab 1 - state should be preserved (keepAlive: true)
     await userEvent.click(tabs[0]);
     expect(canvas.getByRole('tabpanel')).toHaveTextContent('Count: 3');
 
-    // Switch back to Tab 2 — state should also be preserved
+    // Switch back to Tab 2 - state should also be preserved
     await userEvent.click(tabs[1]);
     expect(canvas.getByRole('tabpanel')).toHaveTextContent('Count: 1');
 
@@ -631,7 +631,7 @@ export const KeepAliveDemo: Story = {
     await userEvent.click(incrementBtn);
     expect(canvas.getByRole('tabpanel')).toHaveTextContent('Count: 2');
 
-    // Switch away and back — state should reset to 0 (destroyOnHidden)
+    // Switch away and back - state should reset to 0 (destroyOnHidden)
     await userEvent.click(tabs[0]);
     await userEvent.click(tabs[2]);
     expect(canvas.getByRole('tabpanel')).toHaveTextContent('Count: 0');
@@ -644,7 +644,7 @@ export const KeepAliveDemo: Story = {
         const count = ref(0);
         return () =>
           h('div', { style: 'padding: 16px;' }, [
-            h('p', {}, `${props.label} — Count: ${count.value}`),
+            h('p', {}, `${props.label} - Count: ${count.value}`),
             h(
               'button',
               { onClick: () => count.value++, style: 'margin-top: 8px; padding: 4px 12px;' },
@@ -653,7 +653,7 @@ export const KeepAliveDemo: Story = {
             h(
               'p',
               { style: 'margin-top: 8px; color: #666; font-size: 12px;' },
-              'Switch tabs and come back — state is preserved with keepAlive!',
+              'Switch tabs and come back - state is preserved with keepAlive!',
             ),
           ]);
       },
@@ -672,8 +672,8 @@ export const KeepAliveDemo: Story = {
       template: `
         <div>
           <p style="margin-bottom: 16px; color: #666; font-size: 14px;">
-            Tabs 1 &amp; 2 have <code>keepAlive: true</code> — their counter state persists when switching.<br/>
-            Tab 3 has <code>destroyOnHidden: true</code> — its state resets on every switch.
+            Tabs 1 &amp; 2 have <code>keepAlive: true</code> - their counter state persists when switching.<br/>
+            Tab 3 has <code>destroyOnHidden: true</code> - its state resets on every switch.
           </p>
           <BTabs :items="items" keep-alive>
             <template #default="{ item }">

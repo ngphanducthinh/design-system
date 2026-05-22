@@ -348,7 +348,7 @@ export const InteractionTest: Story = {
       expect(options.length).toBeGreaterThan(0);
     });
 
-    // First item (Alice) is already active on open — Enter selects it
+    // First item (Alice) is already active on open - Enter selects it
     await userEvent.keyboard('{Enter}');
     await waitFor(() => {
       expect(canvas.getByTestId('current-value').textContent).toContain('@alice');
@@ -361,7 +361,7 @@ export const InteractionTest: Story = {
       expect(options.length).toBe(1);
     });
 
-    // First (only) filtered option is active — Enter selects Bob
+    // First (only) filtered option is active - Enter selects Bob
     await userEvent.keyboard('{Enter}');
     await waitFor(() => {
       expect(canvas.getByTestId('current-value').textContent).toContain('@bob');

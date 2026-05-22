@@ -735,7 +735,7 @@ export const InteractionTests: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Design Tokens — MUST be the LAST story
+// Design Tokens - MUST be the LAST story
 // ─────────────────────────────────────────────
 type TokenRow = { token: string; defaultValue: string; description: string };
 
@@ -744,12 +744,14 @@ const DESIGN_TOKENS: TokenRow[] = [
   {
     token: '--b-tag-bg',
     defaultValue: 'oklch(96% 0.003 260)',
-    description: 'Background of the default tag (AntD: defaultBg). Each preset color overrides this.',
+    description:
+      'Background of the default tag (AntD: defaultBg). Each preset color overrides this.',
   },
   {
     token: '--b-tag-color',
     defaultValue: 'oklch(32% 0.02 260)',
-    description: 'Text color of the default tag (AntD: defaultColor). Each preset color overrides this.',
+    description:
+      'Text color of the default tag (AntD: defaultColor). Each preset color overrides this.',
   },
   // Note: AntD solidTextColor is not yet implemented as a dedicated var.
   // ── Local extras ──
@@ -766,7 +768,8 @@ const DESIGN_TOKENS: TokenRow[] = [
   {
     token: '--b-tag-custom-color',
     defaultValue: 'initial',
-    description: 'Seed color used when the consumer passes a custom hex/oklch via the `color` prop. Other tokens derive from it via color-mix.',
+    description:
+      'Seed color used when the consumer passes a custom hex/oklch via the `color` prop. Other tokens derive from it via color-mix.',
   },
   {
     token: '--b-tag-font-size',
@@ -837,7 +840,7 @@ export const DesignTokens: Story = {
     setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
       <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
-        <h2 style="margin:0 0 8px;">BTag — Design Tokens</h2>
+        <h2 style="margin:0 0 8px;">BTag - Design Tokens</h2>
         <p style="margin:0 0 24px;color:#595959;">
           All tokens scoped to <code>.b-tag</code>. Override inline or via a CSS class.
         </p>

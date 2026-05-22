@@ -1267,7 +1267,7 @@ export const InteractionFlow: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Design Tokens — MUST be the LAST story
+// Design Tokens - MUST be the LAST story
 // ─────────────────────────────────────────────
 type TokenRow = { token: string; defaultValue: string; description: string };
 
@@ -1286,7 +1286,8 @@ const DESIGN_TOKENS: TokenRow[] = [
   {
     token: '--b-tour-primary-next-btn-hover-bg',
     defaultValue: 'rgb(240, 240, 240)',
-    description: 'Hover background of the next button in the primary type (AntD: primaryNextBtnHoverBg).',
+    description:
+      'Hover background of the next button in the primary type (AntD: primaryNextBtnHoverBg).',
   },
   {
     token: '--b-tour-z-index',
@@ -1523,7 +1524,7 @@ export const DesignTokens: Story = {
     setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
       <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
-        <h2 style="margin:0 0 8px;">BTour — Design Tokens</h2>
+        <h2 style="margin:0 0 8px;">BTour - Design Tokens</h2>
         <p style="margin:0 0 24px;color:#595959;">
           All tokens scoped to <code>.b-tour</code>. Override inline or via a CSS class. See the
           <em>Theming</em> story for an interactive example with <code>--b-tour-*</code> overrides applied.
