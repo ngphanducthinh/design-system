@@ -69,6 +69,10 @@ async function main(): Promise<void> {
     writeFileSync(modulePkgPath, JSON.stringify(modulePkg, null, 2));
 
     // 4. Build & pack the module
+    log('PREP MODULE TYPES', 'Generating .nuxt types for module...');
+    await $`bun run dev:prepare`.cwd(MODULE_ROOT).quiet();
+    log('PREP MODULE TYPES', 'Done ✓');
+
     log('BUILD MODULE', 'Building @7pmlabs/design-system-nuxt...');
     await $`bun run build`.cwd(MODULE_ROOT);
     log('BUILD MODULE', 'Done ✓');
