@@ -5,6 +5,7 @@ export * from './BAvatar';
 export * from './BBadge';
 export * from './BBreadcrumb';
 export { default as BButton } from './BButton/BButton.vue';
+export * from './BCalendar';
 export * from './BCard';
 export * from './BCarousel';
 export * from './BCascader';

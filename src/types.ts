@@ -79,6 +79,18 @@ export type {
 } from './components/BCarousel/types';
 
 export type {
+  BCalendarCellRenderType,
+  BCalendarCellSlotScope,
+  BCalendarEvent,
+  BCalendarEventDetailsSlotScope,
+  BCalendarEventType,
+  BCalendarHeaderSlotScope,
+  BCalendarMode,
+  BCalendarSelectInfo,
+  BCalendarSelectSource,
+} from './components/BCalendar/types';
+
+export type {
   BTimelineItemColor,
   BTimelineItem as BTimelineItemData,
   BTimelineItemPlacement,
