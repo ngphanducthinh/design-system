@@ -70,7 +70,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Install latest npm
-        run: npm install -g npm@latest
+        run: sudo npm install -g npm@latest
 
       - name: Verify npm supports OIDC trusted publishing
         run: npm --version  # must be >= 11.5.1
