@@ -72,6 +72,13 @@ export type {
 } from './components/BStatistic/types';
 
 export type {
+  BCarouselAutoplayConfig,
+  BCarouselBeforeChangePayload,
+  BCarouselDotPlacement,
+  BCarouselEffect,
+} from './components/BCarousel/types';
+
+export type {
   BTimelineItemColor,
   BTimelineItem as BTimelineItemData,
   BTimelineItemPlacement,

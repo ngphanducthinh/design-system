@@ -6,6 +6,7 @@ export * from './BBadge';
 export * from './BBreadcrumb';
 export { default as BButton } from './BButton/BButton.vue';
 export * from './BCard';
+export * from './BCarousel';
 export * from './BCascader';
 export * from './BCheckbox';
 export * from './BCollapse';
