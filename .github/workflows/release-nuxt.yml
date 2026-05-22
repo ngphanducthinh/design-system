@@ -120,13 +120,13 @@ jobs:
       - name: Bump Nuxt module version and rewrite design-system dep
         working-directory: packages/design-system-nuxt
         run: |
-          npm version ${{ steps.version.outputs.new }} --no-git-tag-version
           node -e "
             const fs = require('fs');
             const pkg = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
             pkg.dependencies['@7pmlabs/design-system'] = '^${{ steps.version.outputs.design_system }}';
             fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
           "
+          npm version ${{ steps.version.outputs.new }} --no-git-tag-version
         shell: bash
 
       - name: Publish Nuxt module to NPM
