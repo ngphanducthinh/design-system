@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup
         uses: ./.github/actions/setup
@@ -49,7 +49,7 @@ jobs:
         working-directory: packages/design-system-nuxt
 
       - name: Upload Nuxt module build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dist-nuxt
           path: packages/design-system-nuxt/dist/
@@ -64,7 +64,7 @@ jobs:
       id-token: write  # required for npm OIDC trusted publishing
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup
         uses: ./.github/actions/setup
@@ -76,7 +76,7 @@ jobs:
         run: npm --version  # must be >= 11.5.1
 
       - name: Download Nuxt module build artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: dist-nuxt
           path: packages/design-system-nuxt/dist/
