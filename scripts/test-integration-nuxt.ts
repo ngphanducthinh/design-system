@@ -70,7 +70,7 @@ async function main(): Promise<void> {
 
     // 4. Build & pack the module
     log('BUILD MODULE', 'Building @7pmlabs/design-system-nuxt...');
-    await $`bun run build`.cwd(MODULE_ROOT).quiet();
+    await $`bun run build`.cwd(MODULE_ROOT);
     log('BUILD MODULE', 'Done ✓');
 
     log('PACK MODULE', 'Creating @7pmlabs/design-system-nuxt tarball...');
