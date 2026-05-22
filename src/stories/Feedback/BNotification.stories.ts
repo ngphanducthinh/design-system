@@ -826,3 +826,173 @@ export const InteractionHoverPause: Story = {
     expect(document.querySelector('.b-notification')).toBeTruthy();
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-notification-width',
+    defaultValue: '24rem',
+    description: 'Width of a single notification (AntD: width).',
+  },
+  {
+    token: '--b-notification-z-index',
+    defaultValue: '2050',
+    description: 'z-index of the notification stack (AntD: zIndexPopup).',
+  },
+  // Note: AntD colorErrorBg / colorInfoBg / colorSuccessBg / colorWarningBg / progressBg
+  // are not yet implemented as dedicated vars (we use single --b-notification-bg with type variants).
+  // ── Local extras ──
+  {
+    token: '--b-notification-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background color of the notification container.',
+  },
+  {
+    token: '--b-notification-border-color',
+    defaultValue: 'oklch(92% 0.005 260)',
+    description: 'Border color of the notification container.',
+  },
+  {
+    token: '--b-notification-border-radius',
+    defaultValue: '0.5rem',
+    description: 'Corner radius of the notification.',
+  },
+  {
+    token: '--b-notification-shadow',
+    defaultValue: '0 6px 16px 0 oklch(0% 0 0 / 8%)',
+    description: 'Box shadow under the notification.',
+  },
+  {
+    token: '--b-notification-padding-h',
+    defaultValue: '1.5rem',
+    description: 'Horizontal padding of the notification.',
+  },
+  {
+    token: '--b-notification-padding-v',
+    defaultValue: '1rem',
+    description: 'Vertical padding of the notification.',
+  },
+  {
+    token: '--b-notification-gap',
+    defaultValue: '0.75rem',
+    description: 'Gap between icon, content, and close button.',
+  },
+  {
+    token: '--b-notification-title-color',
+    defaultValue: 'oklch(20% 0.005 260 / 88%)',
+    description: 'Color of the notification title text.',
+  },
+  {
+    token: '--b-notification-desc-color',
+    defaultValue: 'oklch(20% 0.005 260 / 65%)',
+    description: 'Color of the notification description text.',
+  },
+  {
+    token: '--b-notification-font-size-title',
+    defaultValue: '1rem',
+    description: 'Font size of the title.',
+  },
+  {
+    token: '--b-notification-font-size-desc',
+    defaultValue: '0.875rem',
+    description: 'Font size of the description.',
+  },
+  {
+    token: '--b-notification-line-height',
+    defaultValue: '1.5',
+    description: 'Line height of notification text.',
+  },
+  {
+    token: '--b-notification-icon-color',
+    defaultValue: 'oklch(62.3% 0.214 259.815)',
+    description: 'Color of the leading status icon (varies per type).',
+  },
+  {
+    token: '--b-notification-icon-size',
+    defaultValue: '1.5rem',
+    description: 'Size of the leading status icon.',
+  },
+  {
+    token: '--b-notification-close-color',
+    defaultValue: 'oklch(50% 0.005 260)',
+    description: 'Color of the close button icon.',
+  },
+  {
+    token: '--b-notification-close-hover-color',
+    defaultValue: 'oklch(20% 0.005 260 / 88%)',
+    description: 'Hover color of the close button icon.',
+  },
+  {
+    token: '--b-notification-close-size',
+    defaultValue: '1rem',
+    description: 'Size of the close button icon.',
+  },
+  {
+    token: '--b-notification-offset',
+    defaultValue: '1.5rem',
+    description: 'Distance from the viewport edge.',
+  },
+  {
+    token: '--b-notification-transition-duration',
+    defaultValue: '300ms',
+    description: 'Enter/leave animation duration.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-notification-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BNotification },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BNotification — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-notification</code>. Notifications render in a portal anchored to the viewport edge.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Apply tokens via a global CSS class on <code>:root</code> or a wrapping element to retheme notifications.
+        </p>
+        <pre style="background:oklch(96% 0.002 260);padding:12px;border-radius:6px;font-size:12px;overflow:auto;"><code>:root {
+  --b-notification-bg: oklch(96% 0.04 290);
+  --b-notification-title-color: oklch(35% 0.18 290);
+  --b-notification-border-color: oklch(80% 0.14 290);
+  --b-notification-shadow: 0 12px 32px oklch(40% 0.18 290 / 25%);
+}</code></pre>
+      </div>
+    `,
+  }),
+};

@@ -438,3 +438,140 @@ export const InteractionTest: Story = {
     expect(newActive?.textContent).toBe('Section 3');
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-anchor-link-padding-block',
+    defaultValue: '0.25rem',
+    description: 'Vertical padding of an anchor link (AntD: linkPaddingBlock).',
+  },
+  {
+    token: '--b-anchor-link-padding-inline-start',
+    defaultValue: '1rem',
+    description: 'Horizontal padding of an anchor link (AntD: linkPaddingInlineStart).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-anchor-background',
+    defaultValue: 'transparent',
+    description: 'Background color of the anchor container.',
+  },
+  {
+    token: '--b-anchor-border-color',
+    defaultValue: 'oklch(0% 0 0 / 6%)',
+    description: 'Color of the vertical/horizontal track (AntD: colorSplit).',
+  },
+  {
+    token: '--b-anchor-indicator-color',
+    defaultValue: 'oklch(62.3% 0.214 259.815)',
+    description: 'Color of the active link indicator (AntD: colorPrimary).',
+  },
+  {
+    token: '--b-anchor-indicator-width',
+    defaultValue: '2px',
+    description: 'Thickness of the active link indicator (AntD: lineWidthBold).',
+  },
+  {
+    token: '--b-anchor-link-color',
+    defaultValue: 'oklch(20% 0.005 260 / 88%)',
+    description: 'Default color of anchor link text.',
+  },
+  {
+    token: '--b-anchor-link-color-hover',
+    defaultValue: 'oklch(62.3% 0.214 259.815)',
+    description: 'Hover color of anchor link text.',
+  },
+  {
+    token: '--b-anchor-link-color-active',
+    defaultValue: 'oklch(62.3% 0.214 259.815)',
+    description: 'Active color of anchor link text.',
+  },
+  {
+    token: '--b-anchor-font-size',
+    defaultValue: '0.875rem',
+    description: 'Font size of anchor link text.',
+  },
+  {
+    token: '--b-anchor-line-height',
+    defaultValue: '1.5',
+    description: 'Line height of anchor link text.',
+  },
+  {
+    token: '--b-anchor-child-indent',
+    defaultValue: '1rem',
+    description: 'Indentation per nested level.',
+  },
+  {
+    token: '--b-anchor-transition-duration',
+    defaultValue: '300ms',
+    description: 'Duration of indicator/color transitions.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-anchor-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BAnchor },
+    setup() {
+      const items: BAnchorItem[] = [
+        { key: 'dt-1', href: '#dt-section-1', title: 'Section 1' },
+        { key: 'dt-2', href: '#dt-section-2', title: 'Section 2' },
+        { key: 'dt-3', href: '#dt-section-3', title: 'Section 3' },
+      ];
+      return { tokens: DESIGN_TOKENS, items };
+    },
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BAnchor — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-anchor</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Three tokens overridden inline (indicator color, link active color, border color).
+        </p>
+        <BAnchor
+          :items="items"
+          style="
+            --b-anchor-indicator-color: oklch(50% 0.18 290);
+            --b-anchor-link-color-active: oklch(50% 0.18 290);
+            --b-anchor-border-color: oklch(85% 0.06 290);
+          "
+        />
+      </div>
+    `,
+  }),
+};

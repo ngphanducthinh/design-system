@@ -473,3 +473,117 @@ export const InteractionTests: Story = {
     expect(rootStyle).toContain('--b-masonry-col-gap');
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // BMasonry has no AntD equivalent — all tokens are local extras.
+  // ── Local extras ──
+  {
+    token: '--b-masonry-columns',
+    defaultValue: '3',
+    description: 'Number of columns (also driven by the `columns` prop).',
+  },
+  {
+    token: '--b-masonry-col-gap',
+    defaultValue: '1rem',
+    description: 'Horizontal gap between columns.',
+  },
+  {
+    token: '--b-masonry-row-gap',
+    defaultValue: '1rem',
+    description: 'Vertical gap between items within a column.',
+  },
+  {
+    token: '--b-masonry-item-bg',
+    defaultValue: 'transparent',
+    description: 'Background color of individual items.',
+  },
+  {
+    token: '--b-masonry-item-border-radius',
+    defaultValue: '0',
+    description: 'Corner radius of individual items.',
+  },
+  {
+    token: '--b-masonry-item-transition-duration',
+    defaultValue: '300ms',
+    description: 'Duration of item enter/move/leave transitions.',
+  },
+  {
+    token: '--b-masonry-item-transition-timing',
+    defaultValue: 'cubic-bezier(0.4, 0, 0.2, 1)',
+    description: 'Easing curve of item transitions.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-masonry-*</code> CSS custom property ' +
+          'consumers can override to retheme the component. ' +
+          'BMasonry has no AntD equivalent; all tokens are local.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BMasonry },
+    setup() {
+      const items = Array.from({ length: 6 }).map((_, i) => ({
+        key: String(i + 1),
+        height: 60 + ((i * 23) % 80),
+      }));
+      return { tokens: DESIGN_TOKENS, items };
+    },
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BMasonry — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-masonry</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Two tokens overridden inline (item bg, border radius).
+        </p>
+        <BMasonry
+          :columns="3"
+          :gutter="16"
+          :items="items"
+          style="
+            --b-masonry-item-bg: oklch(96% 0.04 290);
+            --b-masonry-item-border-radius: 12px;
+          "
+        >
+          <template #item="{ item }">
+            <div :style="{ height: item.height + 'px', padding: '12px', color: 'oklch(35% 0.18 290)' }">
+              Item {{ item.key }}
+            </div>
+          </template>
+        </BMasonry>
+      </div>
+    `,
+  }),
+};

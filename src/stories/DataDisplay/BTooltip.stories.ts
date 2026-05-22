@@ -719,3 +719,139 @@ export const EdgeCaseLongContent: Story = {
     `,
   }),
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-tooltip-max-width',
+    defaultValue: '250px',
+    description: 'Max width of the tooltip (AntD: maxWidth).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-tooltip-bg',
+    defaultValue: 'oklch(20% 0 0)',
+    description: 'Background of the tooltip body.',
+  },
+  {
+    token: '--b-tooltip-color',
+    defaultValue: '#fff',
+    description: 'Text color of the tooltip body.',
+  },
+  {
+    token: '--b-tooltip-arrow-color',
+    defaultValue: 'oklch(20% 0 0)',
+    description: 'Background color of the arrow.',
+  },
+  {
+    token: '--b-tooltip-arrow-size',
+    defaultValue: '8px',
+    description: 'Size of the tooltip arrow.',
+  },
+  {
+    token: '--b-tooltip-border-radius',
+    defaultValue: '0.375rem',
+    description: 'Corner radius of the tooltip.',
+  },
+  {
+    token: '--b-tooltip-padding-x',
+    defaultValue: '0.5rem',
+    description: 'Horizontal padding inside the tooltip.',
+  },
+  {
+    token: '--b-tooltip-padding-y',
+    defaultValue: '0.375rem',
+    description: 'Vertical padding inside the tooltip.',
+  },
+  {
+    token: '--b-tooltip-font-size',
+    defaultValue: '0.875rem',
+    description: 'Font size of the tooltip text.',
+  },
+  {
+    token: '--b-tooltip-line-height',
+    defaultValue: '1.5',
+    description: 'Line height of the tooltip text.',
+  },
+  {
+    token: '--b-tooltip-gap',
+    defaultValue: '8px',
+    description: 'Distance between the tooltip and the trigger.',
+  },
+  {
+    token: '--b-tooltip-shadow',
+    defaultValue: '0 6px 16px 0 oklch(0% 0 0 / 8%), 0 3px 6px -4px oklch(0% 0 0 / 12%)',
+    description: 'Box shadow of the tooltip.',
+  },
+  {
+    token: '--b-tooltip-transition-duration',
+    defaultValue: '200ms',
+    description: 'Open/close animation duration.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-tooltip-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BButton, BTooltip },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BTooltip — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-tooltip</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (background, color, radius, font size).
+        </p>
+        <div style="padding: 4rem; display: flex; justify-content: center;">
+          <BTooltip
+            title="Themed tooltip"
+            trigger="click"
+            style="
+              --b-tooltip-bg: oklch(42% 0.16 145);
+              --b-tooltip-arrow-color: oklch(42% 0.16 145);
+              --b-tooltip-border-radius: 12px;
+              --b-tooltip-font-size: 1rem;
+            "
+          >
+            <BButton>Click for themed tooltip</BButton>
+          </BTooltip>
+        </div>
+      </div>
+    `,
+  }),
+};

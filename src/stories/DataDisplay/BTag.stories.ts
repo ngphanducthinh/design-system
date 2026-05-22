@@ -733,3 +733,144 @@ export const InteractionTests: Story = {
     expect(canvas.queryByTestId('int-keyboard')).toBeNull();
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-tag-bg',
+    defaultValue: 'oklch(96% 0.003 260)',
+    description: 'Background of the default tag (AntD: defaultBg). Each preset color overrides this.',
+  },
+  {
+    token: '--b-tag-color',
+    defaultValue: 'oklch(32% 0.02 260)',
+    description: 'Text color of the default tag (AntD: defaultColor). Each preset color overrides this.',
+  },
+  // Note: AntD solidTextColor is not yet implemented as a dedicated var.
+  // ── Local extras ──
+  {
+    token: '--b-tag-border-color',
+    defaultValue: 'oklch(87% 0.007 260)',
+    description: 'Border color of the tag.',
+  },
+  {
+    token: '--b-tag-border-radius',
+    defaultValue: '4px',
+    description: 'Corner radius of the tag.',
+  },
+  {
+    token: '--b-tag-custom-color',
+    defaultValue: 'initial',
+    description: 'Seed color used when the consumer passes a custom hex/oklch via the `color` prop. Other tokens derive from it via color-mix.',
+  },
+  {
+    token: '--b-tag-font-size',
+    defaultValue: '12px',
+    description: 'Base font size (sizes: 11px / 12px / 14px).',
+  },
+  {
+    token: '--b-tag-line-height',
+    defaultValue: '20px',
+    description: 'Line height (sizes: 16px / 20px / 26px).',
+  },
+  {
+    token: '--b-tag-height',
+    defaultValue: '22px',
+    description: 'Tag height (sizes: 18px / 22px / 28px).',
+  },
+  {
+    token: '--b-tag-padding',
+    defaultValue: '0 7px',
+    description: 'Horizontal padding (sizes: 0 5px / 0 7px / 0 10px).',
+  },
+  {
+    token: '--b-tag-gap',
+    defaultValue: '4px',
+    description: 'Gap between icon, text, and close button.',
+  },
+  {
+    token: '--b-tag-close-size',
+    defaultValue: '12px',
+    description: 'Size of the close icon (sizes: 10px / 12px / 14px).',
+  },
+  {
+    token: '--b-tag-close-offset',
+    defaultValue: '3px',
+    description: 'Horizontal offset of the close icon.',
+  },
+  {
+    token: '--b-tag-close-opacity',
+    defaultValue: '0.45',
+    description: 'Idle opacity of the close icon.',
+  },
+  {
+    token: '--b-tag-close-hover-opacity',
+    defaultValue: '1',
+    description: 'Hovered opacity of the close icon.',
+  },
+  {
+    token: '--b-tag-transition-duration',
+    defaultValue: '200ms',
+    description: 'Transition duration for color/background changes.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-tag-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BTag },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BTag — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-tag</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (background, color, border, radius).
+        </p>
+        <BTag
+          style="
+            --b-tag-bg: oklch(95% 0.05 145);
+            --b-tag-color: oklch(30% 0.12 145);
+            --b-tag-border-color: oklch(78% 0.1 145);
+            --b-tag-border-radius: 999px;
+          "
+        >Themed</BTag>
+      </div>
+    `,
+  }),
+};

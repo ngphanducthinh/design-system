@@ -615,3 +615,179 @@ export const SnapshotMinimal: Story = {
     });
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-popover-min-width',
+    defaultValue: '177px',
+    description: 'Minimum width of the popover (AntD: titleMinWidth).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-popover-bg',
+    defaultValue: '#fff',
+    description: 'Background of the popover panel.',
+  },
+  {
+    token: '--b-popover-color',
+    defaultValue: 'oklch(25% 0 0)',
+    description: 'Default text color in the popover.',
+  },
+  {
+    token: '--b-popover-arrow-color',
+    defaultValue: '#fff',
+    description: 'Background color of the arrow (matches the panel).',
+  },
+  {
+    token: '--b-popover-arrow-size',
+    defaultValue: '8px',
+    description: 'Size (half-width) of the arrow.',
+  },
+  {
+    token: '--b-popover-border-radius',
+    defaultValue: '0.5rem',
+    description: 'Corner radius of the popover.',
+  },
+  {
+    token: '--b-popover-shadow',
+    defaultValue: '0 6px 16px 0 oklch(0% 0 0 / 8%), 0 3px 6px -4px oklch(0% 0 0 / 12%)',
+    description: 'Box shadow of the popover.',
+  },
+  {
+    token: '--b-popover-padding-x',
+    defaultValue: '0.75rem',
+    description: 'Horizontal padding inside the popover.',
+  },
+  {
+    token: '--b-popover-padding-y',
+    defaultValue: '0.75rem',
+    description: 'Vertical padding inside the popover.',
+  },
+  {
+    token: '--b-popover-gap',
+    defaultValue: '8px',
+    description: 'Distance between the popover and its trigger.',
+  },
+  {
+    token: '--b-popover-max-width',
+    defaultValue: '320px',
+    description: 'Maximum width of the popover.',
+  },
+  {
+    token: '--b-popover-font-size',
+    defaultValue: '0.875rem',
+    description: 'Font size of the popover body.',
+  },
+  {
+    token: '--b-popover-line-height',
+    defaultValue: '1.5',
+    description: 'Line height of the popover body.',
+  },
+  {
+    token: '--b-popover-body-color',
+    defaultValue: 'oklch(35% 0 0)',
+    description: 'Body text color.',
+  },
+  {
+    token: '--b-popover-title-color',
+    defaultValue: 'oklch(15% 0 0)',
+    description: 'Title text color.',
+  },
+  {
+    token: '--b-popover-title-font-size',
+    defaultValue: '0.875rem',
+    description: 'Title font size.',
+  },
+  {
+    token: '--b-popover-title-font-weight',
+    defaultValue: '600',
+    description: 'Title font weight.',
+  },
+  {
+    token: '--b-popover-title-margin-bottom',
+    defaultValue: '0.5rem',
+    description: 'Margin below the title.',
+  },
+  {
+    token: '--b-popover-title-padding-bottom',
+    defaultValue: '0.5rem',
+    description: 'Padding below the title (above the divider).',
+  },
+  {
+    token: '--b-popover-title-border-bottom',
+    defaultValue: '1px solid oklch(90% 0 0)',
+    description: 'Divider between the title and the body.',
+  },
+  {
+    token: '--b-popover-transition-duration',
+    defaultValue: '200ms',
+    description: 'Open/close animation duration.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-popover-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BButton, BPopover },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BPopover — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-popover</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (background, body color, radius, shadow).
+        </p>
+        <BPopover
+          title="Themed popover"
+          content="Override --b-popover-* tokens to retheme."
+          trigger="click"
+          style="
+            --b-popover-bg: oklch(95% 0.05 145);
+            --b-popover-body-color: oklch(25% 0.1 145);
+            --b-popover-arrow-color: oklch(95% 0.05 145);
+            --b-popover-border-radius: 16px;
+            --b-popover-shadow: 0 6px 24px oklch(42% 0.16 145 / 18%);
+          "
+        >
+          <BButton>Click for themed popover</BButton>
+        </BPopover>
+      </div>
+    `,
+  }),
+};

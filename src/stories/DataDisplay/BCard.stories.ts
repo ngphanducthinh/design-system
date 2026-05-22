@@ -720,3 +720,322 @@ export const InteractionTests: Story = {
     expect(tabs[0].classList.contains('b-card__tab--active')).toBe(true);
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-card-actions-bg',
+    defaultValue: 'transparent',
+    description: 'Background of the actions area (AntD: actionsBg).',
+  },
+  {
+    token: '--b-card-body-padding',
+    defaultValue: '24px',
+    description: 'Padding of the card body (AntD: bodyPadding).',
+  },
+  {
+    token: '--b-card-body-padding-sm',
+    defaultValue: '16px',
+    description: 'Padding of the small card body (AntD: bodyPaddingSM).',
+  },
+  {
+    token: '--b-card-extra-color',
+    defaultValue: 'oklch(45% 0.02 260)',
+    description: 'Text color of the extra area (AntD: extraColor).',
+  },
+  {
+    token: '--b-card-head-font-size',
+    defaultValue: '16px',
+    description: 'Font size of the card header (AntD: headerFontSize).',
+  },
+  {
+    token: '--b-card-head-font-size-sm',
+    defaultValue: '14px',
+    description: 'Font size of the small card header (AntD: headerFontSizeSM).',
+  },
+  {
+    token: '--b-card-head-min-height',
+    defaultValue: '56px',
+    description: 'Minimum height of the card header (AntD: headerHeight).',
+  },
+  {
+    token: '--b-card-head-min-height-sm',
+    defaultValue: '40px',
+    description: 'Minimum height of the small card header (AntD: headerHeightSM).',
+  },
+  {
+    token: '--b-card-head-padding',
+    defaultValue: '16px 24px',
+    description: 'Padding of the card header (AntD: headerPadding).',
+  },
+  {
+    token: '--b-card-head-padding-sm',
+    defaultValue: '8px 16px',
+    description: 'Padding of the small card header (AntD: headerPaddingSM).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-card-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background color of the card.',
+  },
+  {
+    token: '--b-card-color',
+    defaultValue: 'oklch(20% 0.02 260)',
+    description: 'Default text color inside the card.',
+  },
+  {
+    token: '--b-card-border-color',
+    defaultValue: 'oklch(85% 0.01 260)',
+    description: 'Border color around the card.',
+  },
+  {
+    token: '--b-card-border-width',
+    defaultValue: '1px',
+    description: 'Border width around the card.',
+  },
+  {
+    token: '--b-card-border-radius',
+    defaultValue: '8px',
+    description: 'Corner radius of the card.',
+  },
+  {
+    token: '--b-card-shadow',
+    defaultValue: '0 1px 2px 0 oklch(0% 0 0 / 6%), 0 1px 3px 0 oklch(0% 0 0 / 10%)',
+    description: 'Default box shadow.',
+  },
+  {
+    token: '--b-card-shadow-hover',
+    defaultValue: '0 4px 12px oklch(0% 0 0 / 12%)',
+    description: 'Box shadow on hover (hoverable variant).',
+  },
+  {
+    token: '--b-card-head-color',
+    defaultValue: 'oklch(20% 0.02 260)',
+    description: 'Header title color.',
+  },
+  {
+    token: '--b-card-head-font-weight',
+    defaultValue: '600',
+    description: 'Header title font weight.',
+  },
+  {
+    token: '--b-card-head-border-color',
+    defaultValue: 'oklch(90% 0.01 260)',
+    description: 'Border color separating header from body.',
+  },
+  {
+    token: '--b-card-extra-font-size',
+    defaultValue: '14px',
+    description: 'Font size of the extra slot.',
+  },
+  {
+    token: '--b-card-actions-border-color',
+    defaultValue: 'oklch(90% 0.01 260)',
+    description: 'Border between body and actions area.',
+  },
+  {
+    token: '--b-card-actions-padding',
+    defaultValue: '12px 24px',
+    description: 'Padding around action items.',
+  },
+  {
+    token: '--b-card-cover-border-radius',
+    defaultValue: 'var(--b-card-border-radius) var(--b-card-border-radius) 0 0',
+    description: 'Border radius of the cover image.',
+  },
+  {
+    token: '--b-card-grid-padding',
+    defaultValue: '24px',
+    description: 'Padding of grid cells.',
+  },
+  {
+    token: '--b-card-grid-width',
+    defaultValue: '33.33%',
+    description: 'Width of each grid cell.',
+  },
+  {
+    token: '--b-card-grid-border-color',
+    defaultValue: 'oklch(90% 0.01 260)',
+    description: 'Border color used to separate grid cells.',
+  },
+  {
+    token: '--b-card-grid-shadow-hover',
+    defaultValue: '0 4px 12px oklch(0% 0 0 / 12%)',
+    description: 'Hover shadow for grid cells.',
+  },
+  {
+    token: '--b-card-grid-transition-duration',
+    defaultValue: '200ms',
+    description: 'Transition duration for grid cell hover.',
+  },
+  {
+    token: '--b-card-inner-bg',
+    defaultValue: 'oklch(97% 0 0)',
+    description: 'Background of the type="inner" variant header.',
+  },
+  {
+    token: '--b-card-loading-line-bg',
+    defaultValue: 'oklch(92% 0.01 260)',
+    description: 'Color of skeleton lines while loading.',
+  },
+  {
+    token: '--b-card-loading-line-height',
+    defaultValue: '16px',
+    description: 'Height of skeleton lines while loading.',
+  },
+  {
+    token: '--b-card-loading-line-radius',
+    defaultValue: '4px',
+    description: 'Corner radius of skeleton lines.',
+  },
+  {
+    token: '--b-card-loading-gap',
+    defaultValue: '12px',
+    description: 'Vertical gap between skeleton lines.',
+  },
+  {
+    token: '--b-card-loading-shine-color',
+    defaultValue: 'oklch(96% 0 0)',
+    description: 'Highlight color of the loading shimmer.',
+  },
+  {
+    token: '--b-card-meta-avatar-margin-right',
+    defaultValue: '16px',
+    description: 'Spacing between meta avatar and text.',
+  },
+  {
+    token: '--b-card-meta-title-color',
+    defaultValue: 'oklch(20% 0.02 260)',
+    description: 'Meta title color.',
+  },
+  {
+    token: '--b-card-meta-title-font-size',
+    defaultValue: '16px',
+    description: 'Meta title font size.',
+  },
+  {
+    token: '--b-card-meta-title-font-weight',
+    defaultValue: '500',
+    description: 'Meta title font weight.',
+  },
+  {
+    token: '--b-card-meta-description-color',
+    defaultValue: 'oklch(45% 0.02 260)',
+    description: 'Meta description color.',
+  },
+  {
+    token: '--b-card-meta-description-font-size',
+    defaultValue: '14px',
+    description: 'Meta description font size.',
+  },
+  {
+    token: '--b-card-tab-color',
+    defaultValue: 'oklch(45% 0.02 260)',
+    description: 'Idle tab text color.',
+  },
+  {
+    token: '--b-card-tab-active-color',
+    defaultValue: 'oklch(46% 0.24 264)',
+    description: 'Active tab text color.',
+  },
+  {
+    token: '--b-card-tab-hover-color',
+    defaultValue: 'oklch(46% 0.24 264)',
+    description: 'Hovered tab text color.',
+  },
+  {
+    token: '--b-card-tab-disabled-color',
+    defaultValue: 'oklch(70% 0.01 260)',
+    description: 'Disabled tab text color.',
+  },
+  {
+    token: '--b-card-tab-indicator-color',
+    defaultValue: 'oklch(46% 0.24 264)',
+    description: 'Color of the tab underline indicator.',
+  },
+  {
+    token: '--b-card-tab-bar-border-color',
+    defaultValue: 'oklch(90% 0.01 260)',
+    description: 'Border below the tab bar.',
+  },
+  {
+    token: '--b-card-tab-padding',
+    defaultValue: '12px 16px',
+    description: 'Padding inside each tab.',
+  },
+  {
+    token: '--b-card-tab-font-size',
+    defaultValue: '14px',
+    description: 'Font size used inside tabs.',
+  },
+  {
+    token: '--b-card-transition-duration',
+    defaultValue: '200ms',
+    description: 'Transition duration for color/shadow changes.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-card-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BCard },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BCard — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-card</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (background, border color, border radius, shadow).
+        </p>
+        <BCard
+          title="Themed card"
+          style="
+            --b-card-bg: oklch(98% 0.005 145);
+            --b-card-border-color: oklch(82% 0.08 145);
+            --b-card-border-radius: 16px;
+            --b-card-shadow: 0 6px 24px oklch(42% 0.16 145 / 18%);
+            width: 360px;
+          "
+        >
+          <p>Override <code>--b-card-*</code> tokens to retheme without touching component code.</p>
+        </BCard>
+      </div>
+    `,
+  }),
+};

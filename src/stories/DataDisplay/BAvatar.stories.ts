@@ -474,3 +474,124 @@ export const InteractionImageFallback: Story = {
     expect(img?.getAttribute('alt')).toBe('Valid');
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-avatar-size-default',
+    defaultValue: '32px',
+    description: 'Default avatar size (AntD: containerSize).',
+  },
+  {
+    token: '--b-avatar-size-large',
+    defaultValue: '40px',
+    description: 'Large avatar size (AntD: containerSizeLG).',
+  },
+  {
+    token: '--b-avatar-size-small',
+    defaultValue: '24px',
+    description: 'Small avatar size (AntD: containerSizeSM).',
+  },
+  {
+    token: '--b-avatar-font-size-default',
+    defaultValue: '18px',
+    description: 'Default text/icon font size (AntD: textFontSize / iconFontSize).',
+  },
+  {
+    token: '--b-avatar-font-size-large',
+    defaultValue: '24px',
+    description: 'Large text/icon font size (AntD: textFontSizeLG / iconFontSizeLG).',
+  },
+  {
+    token: '--b-avatar-font-size-small',
+    defaultValue: '14px',
+    description: 'Small text/icon font size (AntD: textFontSizeSM / iconFontSizeSM).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-avatar-bg',
+    defaultValue: 'oklch(50% 0.06 240)',
+    description: 'Background color of the avatar.',
+  },
+  {
+    token: '--b-avatar-color',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Text color inside the avatar.',
+  },
+  {
+    token: '--b-avatar-icon-color',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Color of the icon when used inside the avatar.',
+  },
+  {
+    token: '--b-avatar-border-radius-square',
+    defaultValue: '6px',
+    description: 'Corner radius applied to the square shape variant.',
+  },
+  {
+    token: '--b-avatar-transition-duration',
+    defaultValue: '200ms',
+    description: 'Transition duration for color/background changes.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-avatar-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BAvatar },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BAvatar — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-avatar</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Three+ tokens overridden inline (background, color, size, border radius).
+        </p>
+        <BAvatar
+          shape="square"
+          style="
+            --b-avatar-bg: oklch(42% 0.16 145);
+            --b-avatar-color: oklch(98% 0.005 145);
+            --b-avatar-size-default: 56px;
+            --b-avatar-border-radius-square: 16px;
+          "
+        >TN</BAvatar>
+      </div>
+    `,
+  }),
+};

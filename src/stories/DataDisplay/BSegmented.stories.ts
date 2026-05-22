@@ -666,3 +666,164 @@ export const InteractionTests: Story = {
     expect(disabledItems[1].getAttribute('aria-checked')).toBe('false');
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-segmented-bg',
+    defaultValue: 'oklch(95% 0.003 260)',
+    description: 'Background of the segmented track (AntD: trackBg).',
+  },
+  {
+    token: '--b-segmented-padding',
+    defaultValue: '2px',
+    description: 'Padding inside the segmented track (AntD: trackPadding).',
+  },
+  {
+    token: '--b-segmented-thumb-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background of the selected thumb (AntD: itemSelectedBg).',
+  },
+  {
+    token: '--b-segmented-selected-color',
+    defaultValue: 'oklch(20% 0.02 260)',
+    description: 'Text color of the selected item (AntD: itemSelectedColor).',
+  },
+  {
+    token: '--b-segmented-item-color',
+    defaultValue: 'oklch(40% 0.02 260)',
+    description: 'Text color of unselected items (AntD: itemColor).',
+  },
+  {
+    token: '--b-segmented-item-hover-bg',
+    defaultValue: 'oklch(100% 0 0 / 50%)',
+    description: 'Background of items on hover (AntD: itemHoverBg).',
+  },
+  {
+    token: '--b-segmented-item-hover-color',
+    defaultValue: 'oklch(20% 0.02 260)',
+    description: 'Text color of items on hover (AntD: itemHoverColor).',
+  },
+  // Note: AntD itemActiveBg (mousedown) is not yet implemented.
+  // ── Local extras ──
+  {
+    token: '--b-segmented-height',
+    defaultValue: '32px',
+    description: 'Default control height (24px small / 40px large).',
+  },
+  {
+    token: '--b-segmented-item-padding',
+    defaultValue: '0 11px',
+    description: 'Padding inside each item (varies by size).',
+  },
+  {
+    token: '--b-segmented-border-radius',
+    defaultValue: '8px',
+    description: 'Outer corner radius of the track.',
+  },
+  {
+    token: '--b-segmented-item-border-radius',
+    defaultValue: '6px',
+    description: 'Corner radius of each item / the thumb.',
+  },
+  {
+    token: '--b-segmented-selected-font-weight',
+    defaultValue: '500',
+    description: 'Font weight of the selected item label.',
+  },
+  {
+    token: '--b-segmented-thumb-shadow',
+    defaultValue: '0 1px 2px oklch(0% 0 0 / 10%), 0 0 0 1px oklch(0% 0 0 / 6%)',
+    description: 'Box shadow of the selected thumb.',
+  },
+  {
+    token: '--b-segmented-thumb-transition',
+    defaultValue: '...',
+    description: 'Transition spec applied as the thumb moves between items.',
+  },
+  {
+    token: '--b-segmented-transition-duration',
+    defaultValue: '200ms',
+    description: 'Duration of color/background transitions.',
+  },
+  {
+    token: '--b-segmented-disabled-opacity',
+    defaultValue: '0.4',
+    description: 'Opacity applied when the control is disabled.',
+  },
+  {
+    token: '--b-segmented-disabled-cursor',
+    defaultValue: 'not-allowed',
+    description: 'Cursor used while disabled.',
+  },
+  {
+    token: '--b-segmented-focus-ring',
+    defaultValue: '0 0 0 2px oklch(54.6% 0.245 262.881 / 20%)',
+    description: 'Focus ring shadow for keyboard focus.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-segmented-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BSegmented },
+    setup: () => ({
+      tokens: DESIGN_TOKENS,
+      options: ['Daily', 'Weekly', 'Monthly'],
+    }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BSegmented — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-segmented</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (track background, thumb background, radius, hover).
+        </p>
+        <BSegmented
+          :options="options"
+          style="
+            --b-segmented-bg: oklch(95% 0.05 145);
+            --b-segmented-thumb-bg: oklch(42% 0.16 145);
+            --b-segmented-selected-color: oklch(98% 0.005 145);
+            --b-segmented-border-radius: 16px;
+            --b-segmented-item-border-radius: 14px;
+          "
+        />
+      </div>
+    `,
+  }),
+};

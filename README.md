@@ -1,6 +1,6 @@
 # @7pmlabs/design-system
 
-A Vue 3 component library built with TypeScript, Tailwind CSS 4, and Ant Design inspiration. 51 components covering forms, data display, feedback, navigation, and layout.
+A Vue 3 component library built with TypeScript, Tailwind CSS 4, and Ant Design inspiration. 57 components covering general, layout, forms, data display, feedback, and navigation.
 
 ## Packages
 
@@ -59,23 +59,27 @@ See [`packages/design-system-nuxt/README.md`](packages/design-system-nuxt/README
 
 ### General
 
-`BButton` · `BDivider` · `BFloatButton` · `BIcon`
+`BButton` · `BFloatButton` · `BIcon`
+
+### Layout
+
+`BDivider` · `BMasonry` · `BSplitter`
 
 ### Form
 
-`BAutoComplete` · `BCascader` · `BCheckbox` · `BColorPicker` · `BDatePicker` · `BForm` · `BInput` · `BInputNumber` · `BMentions` · `BRadio` · `BRate` · `BSelect` · `BSlider` · `BSwitch` · `BTimePicker` · `BUpload`
+`BAutoComplete` · `BCascader` · `BCheckbox` · `BColorPicker` · `BDatePicker` · `BForm` · `BInput` · `BInputNumber` · `BMentions` · `BRadio` · `BRate` · `BSelect` · `BSlider` · `BSwitch` · `BTimePicker` · `BTreeSelect` · `BUpload`
 
 ### Data Display
 
-`BAvatar` · `BBadge` · `BCard` · `BCollapse` · `BDescriptions` · `BEmpty` · `BImage` · `BMasonry` · `BPagination` · `BSegmented` · `BSteps` · `BTable` · `BTabs` · `BTag` · `BTimeline` · `BTree` · `BTour`
+`BAvatar` · `BBadge` · `BCalendar` · `BCard` · `BCarousel` · `BCollapse` · `BDescriptions` · `BEmpty` · `BImage` · `BPopover` · `BSegmented` · `BStatistic` · `BTable` · `BTag` · `BTimeline` · `BTooltip` · `BTour` · `BTree`
 
 ### Feedback
 
-`BAlert` · `BMessage` · `BModal` · `BNotification` · `BProgress` · `BSpin`
+`BAlert` · `BDrawer` · `BMessage` · `BModal` · `BNotification` · `BPopconfirm` · `BProgress` · `BSkeleton` · `BSpin`
 
 ### Navigation
 
-`BAnchor` · `BBreadcrumb` · `BDrawer` · `BDropdown` · `BMenu` · `BPopconfirm` · `BPopover` · `BTooltip`
+`BAnchor` · `BBreadcrumb` · `BDropdown` · `BMenu` · `BPagination` · `BSteps` · `BTabs`
 
 ## Tech Stack
 

@@ -978,3 +978,282 @@ export const Theming: Story = {
     `,
   }),
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-table-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background color of the table.',
+  },
+  {
+    token: '--b-table-color',
+    defaultValue: 'oklch(20% 0.02 260)',
+    description: 'Default text color of cells.',
+  },
+  {
+    token: '--b-table-border-color',
+    defaultValue: 'oklch(88% 0.01 260)',
+    description: 'Border color of the table (AntD: borderColor).',
+  },
+  {
+    token: '--b-table-cell-padding',
+    defaultValue: '12px 16px',
+    description: 'Cell padding at default size (AntD: cellPaddingBlock + cellPaddingInline).',
+  },
+  {
+    token: '--b-table-cell-padding-middle',
+    defaultValue: '8px 16px',
+    description: 'Cell padding at middle size (AntD: cellPaddingBlockMD).',
+  },
+  {
+    token: '--b-table-cell-padding-small',
+    defaultValue: '4px 8px',
+    description: 'Cell padding at small size (AntD: cellPaddingBlockSM).',
+  },
+  {
+    token: '--b-table-font-size',
+    defaultValue: '14px',
+    description: 'Font size of table cells (AntD: cellFontSize).',
+  },
+  {
+    token: '--b-table-header-bg',
+    defaultValue: 'oklch(97% 0.005 260)',
+    description: 'Background of the table header (AntD: headerBg).',
+  },
+  {
+    token: '--b-table-header-color',
+    defaultValue: 'oklch(30% 0.02 260)',
+    description: 'Color of header text (AntD: headerColor).',
+  },
+  {
+    token: '--b-table-footer-bg',
+    defaultValue: 'oklch(97% 0.005 260)',
+    description: 'Background of the footer (AntD: footerBg).',
+  },
+  {
+    token: '--b-table-row-hover-bg',
+    defaultValue: 'oklch(96% 0.01 260)',
+    description: 'Background of a hovered row (AntD: rowHoverBg).',
+  },
+  {
+    token: '--b-table-row-selected-bg',
+    defaultValue: 'oklch(94% 0.03 262)',
+    description: 'Background of a selected row (AntD: rowSelectedBg).',
+  },
+  {
+    token: '--b-table-row-expanded-bg',
+    defaultValue: 'oklch(98% 0.005 260)',
+    description: 'Background of an expanded row (AntD: rowExpandedBg).',
+  },
+  {
+    token: '--b-table-filter-dropdown-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background of the filter dropdown (AntD: filterDropdownBg).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-table-border-radius',
+    defaultValue: '8px',
+    description: 'Outer corner radius.',
+  },
+  {
+    token: '--b-table-empty-color',
+    defaultValue: 'oklch(48% 0.01 260)',
+    description: 'Color of empty-state text.',
+  },
+  {
+    token: '--b-table-checkbox-border',
+    defaultValue: '1px solid oklch(75% 0.01 260)',
+    description: 'Border of selection checkboxes.',
+  },
+  {
+    token: '--b-table-checkbox-checked-bg',
+    defaultValue: 'oklch(54.6% 0.245 262.881)',
+    description: 'Background of a checked selection checkbox.',
+  },
+  {
+    token: '--b-table-checkbox-checked-border',
+    defaultValue: 'oklch(54.6% 0.245 262.881)',
+    description: 'Border of a checked selection checkbox.',
+  },
+  {
+    token: '--b-table-checkbox-radius',
+    defaultValue: '4px',
+    description: 'Corner radius of the selection checkbox.',
+  },
+  {
+    token: '--b-table-checkbox-size',
+    defaultValue: '16px',
+    description: 'Size of the selection checkbox.',
+  },
+  {
+    token: '--b-table-expand-icon-color',
+    defaultValue: 'oklch(45% 0.02 260)',
+    description: 'Color of the row-expand chevron.',
+  },
+  {
+    token: '--b-table-expand-icon-hover-color',
+    defaultValue: 'oklch(54.6% 0.245 262.881)',
+    description: 'Hover color of the row-expand chevron.',
+  },
+  {
+    token: '--b-table-expand-icon-size',
+    defaultValue: '17px',
+    description: 'Size of the expand chevron.',
+  },
+  {
+    token: '--b-table-filter-active-color',
+    defaultValue: 'oklch(54.6% 0.245 262.881)',
+    description: 'Color of the filter button when a filter is active.',
+  },
+  {
+    token: '--b-table-filter-dropdown-shadow',
+    defaultValue: '0 6px 16px oklch(0% 0 0 / 8%), 0 3px 6px oklch(0% 0 0 / 4%)',
+    description: 'Box shadow for the filter dropdown.',
+  },
+  {
+    token: '--b-table-loading-overlay-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background of the loading overlay.',
+  },
+  {
+    token: '--b-table-pagination-btn-active-bg',
+    defaultValue: 'oklch(54.6% 0.245 262.881)',
+    description: 'Background of the active pagination button.',
+  },
+  {
+    token: '--b-table-pagination-btn-active-color',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Text color of the active pagination button.',
+  },
+  {
+    token: '--b-table-pagination-btn-border',
+    defaultValue: '1px solid oklch(88% 0.01 260)',
+    description: 'Border of pagination buttons.',
+  },
+  {
+    token: '--b-table-pagination-btn-hover-bg',
+    defaultValue: 'oklch(95% 0.01 262)',
+    description: 'Hover background of pagination buttons.',
+  },
+  {
+    token: '--b-table-pagination-btn-radius',
+    defaultValue: '6px',
+    description: 'Corner radius of pagination buttons.',
+  },
+  {
+    token: '--b-table-pagination-btn-size',
+    defaultValue: '32px',
+    description: 'Size of pagination buttons.',
+  },
+  {
+    token: '--b-table-pagination-color',
+    defaultValue: 'oklch(30% 0.02 260)',
+    description: 'Default text color of pagination.',
+  },
+  {
+    token: '--b-table-sorter-color',
+    defaultValue: 'oklch(65% 0.01 260)',
+    description: 'Color of inactive sort arrows.',
+  },
+  {
+    token: '--b-table-sorter-active-color',
+    defaultValue: 'oklch(54.6% 0.245 262.881)',
+    description: 'Color of the active sort arrow.',
+  },
+  {
+    token: '--b-table-spin-color',
+    defaultValue: 'oklch(54.6% 0.245 262.881)',
+    description: 'Color of the loading spinner.',
+  },
+  {
+    token: '--b-table-spin-size',
+    defaultValue: '32px',
+    description: 'Size of the loading spinner.',
+  },
+  {
+    token: '--b-table-sticky-z-index',
+    defaultValue: '2',
+    description: 'z-index of sticky table headers/columns.',
+  },
+  {
+    token: '--b-table-transition-duration',
+    defaultValue: '200ms',
+    description: 'Transition duration for color/background changes.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-table-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BTable },
+    setup: () => ({
+      tokens: DESIGN_TOKENS,
+      data: [
+        { id: 1, name: 'Apple', qty: 12 },
+        { id: 2, name: 'Banana', qty: 7 },
+      ],
+      columns: [
+        { key: 'name', dataIndex: 'name', title: 'Name' },
+        { key: 'qty', dataIndex: 'qty', title: 'Qty' },
+      ] as BTableColumnType[],
+    }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BTable — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-table</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (header bg, border color, row hover, radius).
+        </p>
+        <BTable
+          :dataSource="data"
+          :columns="columns"
+          :bordered="true"
+          style="
+            --b-table-header-bg: oklch(95% 0.05 145);
+            --b-table-header-color: oklch(25% 0.1 145);
+            --b-table-border-color: oklch(82% 0.08 145);
+            --b-table-row-hover-bg: oklch(96% 0.04 145);
+            --b-table-border-radius: 16px;
+          "
+        />
+      </div>
+    `,
+  }),
+};

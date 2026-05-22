@@ -586,3 +586,196 @@ export const InteractionTests: Story = {
     expect(smallEl?.classList.contains('b-badge__count--small')).toBe(true);
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-badge-dot-size',
+    defaultValue: '8px',
+    description: 'Diameter of the dot badge (AntD: dotSize).',
+  },
+  {
+    token: '--b-badge-status-dot-size',
+    defaultValue: '8px',
+    description: 'Diameter of the status dot (AntD: statusSize).',
+  },
+  {
+    token: '--b-badge-height',
+    defaultValue: '20px',
+    description: 'Height of the badge indicator (AntD: indicatorHeight).',
+  },
+  {
+    token: '--b-badge-height-small',
+    defaultValue: '14px',
+    description: 'Height of the small badge indicator (AntD: indicatorHeightSM).',
+  },
+  {
+    token: '--b-badge-z-index',
+    defaultValue: 'auto',
+    description: 'z-index of the badge (AntD: indicatorZIndex).',
+  },
+  {
+    token: '--b-badge-padding-inline',
+    defaultValue: '6px',
+    description: 'Inline padding of the badge text (AntD: paddingInline).',
+  },
+  {
+    token: '--b-badge-padding-inline-small',
+    defaultValue: '4px',
+    description: 'Inline padding of the small badge text.',
+  },
+  {
+    token: '--b-badge-font-size',
+    defaultValue: '12px',
+    description: 'Font size of badge text (AntD: textFontSize).',
+  },
+  {
+    token: '--b-badge-font-size-small',
+    defaultValue: '10px',
+    description: 'Font size of small badge text (AntD: textFontSizeSM).',
+  },
+  {
+    token: '--b-badge-font-weight',
+    defaultValue: '500',
+    description: 'Font weight of badge text (AntD: textFontWeight).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-badge-bg',
+    defaultValue: 'oklch(57.7% 0.245 27.325)',
+    description: 'Background color of the count badge.',
+  },
+  {
+    token: '--b-badge-color',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Text color of the count badge.',
+  },
+  {
+    token: '--b-badge-dot-bg',
+    defaultValue: 'oklch(57.7% 0.245 27.325)',
+    description: 'Background color of the dot badge.',
+  },
+  {
+    token: '--b-badge-shadow',
+    defaultValue: '0 0 0 1px oklch(100% 0 0)',
+    description: 'Outer ring shadow around the badge.',
+  },
+  {
+    token: '--b-badge-min-width',
+    defaultValue: '20px',
+    description: 'Minimum width of the count badge.',
+  },
+  {
+    token: '--b-badge-min-width-small',
+    defaultValue: '14px',
+    description: 'Minimum width of the small count badge.',
+  },
+  {
+    token: '--b-badge-border-radius',
+    defaultValue: '10px',
+    description: 'Corner radius of the count badge.',
+  },
+  {
+    token: '--b-badge-status-success',
+    defaultValue: 'oklch(62.7% 0.194 149.214)',
+    description: 'Color for status="success".',
+  },
+  {
+    token: '--b-badge-status-processing',
+    defaultValue: 'oklch(54.6% 0.245 262.881)',
+    description: 'Color for status="processing".',
+  },
+  {
+    token: '--b-badge-status-error',
+    defaultValue: 'oklch(57.7% 0.245 27.325)',
+    description: 'Color for status="error".',
+  },
+  {
+    token: '--b-badge-status-warning',
+    defaultValue: 'oklch(72.6% 0.191 68.916)',
+    description: 'Color for status="warning".',
+  },
+  {
+    token: '--b-badge-status-default',
+    defaultValue: 'oklch(70% 0.01 260)',
+    description: 'Color for status="default".',
+  },
+  {
+    token: '--b-badge-status-text-color',
+    defaultValue: 'oklch(27% 0.01 260)',
+    description: 'Color of the text next to a status dot.',
+  },
+  {
+    token: '--b-badge-status-text-font-size',
+    defaultValue: '14px',
+    description: 'Font size of status text.',
+  },
+  {
+    token: '--b-badge-animation-duration',
+    defaultValue: '300ms',
+    description: 'Duration of badge enter/leave animations.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-badge-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BBadge },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BBadge — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-badge</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Three+ tokens overridden inline (background, dot size, padding, font weight).
+        </p>
+        <BBadge
+          :count="42"
+          style="
+            --b-badge-bg: oklch(42% 0.16 145);
+            --b-badge-padding-inline: 10px;
+            --b-badge-font-weight: 700;
+            --b-badge-height: 24px;
+          "
+        >
+          <span style="display:inline-block;width:48px;height:48px;background:oklch(92% 0.005 260);border-radius:8px;"></span>
+        </BBadge>
+      </div>
+    `,
+  }),
+};

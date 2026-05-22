@@ -880,3 +880,220 @@ export const InteractionTests: Story = {
     expect(noPreviewEl.querySelector('.b-image__mask')).toBeNull();
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-image-preview-toolbar-color',
+    defaultValue: 'oklch(95% 0.005 260)',
+    description: 'Color of preview operation icons (AntD: previewOperationColor).',
+  },
+  {
+    token: '--b-image-preview-toolbar-icon-size',
+    defaultValue: '20px',
+    description: 'Size of preview operation icons (AntD: previewOperationSize).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-image-bg',
+    defaultValue: 'oklch(95% 0.003 260)',
+    description: 'Background color of the image wrapper while loading or empty.',
+  },
+  {
+    token: '--b-image-border-radius',
+    defaultValue: '8px',
+    description: 'Corner radius of the image wrapper.',
+  },
+  {
+    token: '--b-image-object-fit',
+    defaultValue: 'cover',
+    description: 'object-fit applied to the underlying <img>.',
+  },
+  {
+    token: '--b-image-transition-duration',
+    defaultValue: '200ms',
+    description: 'Transition duration for visibility/opacity changes.',
+  },
+  {
+    token: '--b-image-progressive-blur',
+    defaultValue: '20px',
+    description: 'Blur applied while progressive loading is in flight.',
+  },
+  {
+    token: '--b-image-placeholder-bg',
+    defaultValue: 'oklch(93% 0.005 260)',
+    description: 'Background of the placeholder shimmer.',
+  },
+  {
+    token: '--b-image-placeholder-shimmer',
+    defaultValue: 'linear-gradient(...)',
+    description: 'Shimmer gradient used while loading.',
+  },
+  {
+    token: '--b-image-error-bg',
+    defaultValue: 'oklch(95% 0.003 260)',
+    description: 'Background of the broken-image fallback.',
+  },
+  {
+    token: '--b-image-error-color',
+    defaultValue: 'oklch(55% 0.01 260)',
+    description: 'Text/icon color in the broken-image fallback.',
+  },
+  {
+    token: '--b-image-error-icon-size',
+    defaultValue: '32px',
+    description: 'Size of the broken-image icon.',
+  },
+  {
+    token: '--b-image-mask-bg',
+    defaultValue: 'oklch(0% 0 0 / 50%)',
+    description: 'Background of the hover mask shown over preview-able images.',
+  },
+  {
+    token: '--b-image-mask-color',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Foreground color of the hover mask.',
+  },
+  {
+    token: '--b-image-mask-font-size',
+    defaultValue: '14px',
+    description: 'Font size inside the hover mask.',
+  },
+  {
+    token: '--b-image-mask-icon-size',
+    defaultValue: '20px',
+    description: 'Icon size inside the hover mask.',
+  },
+  {
+    token: '--b-image-focus-ring',
+    defaultValue: '2px solid oklch(54.6% 0.245 262.881)',
+    description: 'Outline drawn when the image is focused.',
+  },
+  {
+    token: '--b-image-focus-ring-offset',
+    defaultValue: '2px',
+    description: 'Outline offset for focus ring.',
+  },
+  {
+    token: '--b-image-preview-backdrop-bg',
+    defaultValue: 'oklch(0% 0 0 / 65%)',
+    description: 'Backdrop color of the preview overlay.',
+  },
+  {
+    token: '--b-image-preview-transition-duration',
+    defaultValue: '250ms',
+    description: 'Open/close transition duration of the preview overlay.',
+  },
+  {
+    token: '--b-image-preview-toolbar-bg',
+    defaultValue: 'oklch(15% 0.005 260 / 85%)',
+    description: 'Background of the preview toolbar.',
+  },
+  {
+    token: '--b-image-preview-toolbar-padding',
+    defaultValue: '4px 16px',
+    description: 'Padding inside the preview toolbar.',
+  },
+  {
+    token: '--b-image-preview-toolbar-radius',
+    defaultValue: '24px',
+    description: 'Corner radius of the preview toolbar.',
+  },
+  {
+    token: '--b-image-preview-toolbar-gap',
+    defaultValue: '8px',
+    description: 'Gap between toolbar buttons.',
+  },
+  {
+    token: '--b-image-preview-toolbar-btn-size',
+    defaultValue: '40px',
+    description: 'Size of toolbar buttons.',
+  },
+  {
+    token: '--b-image-preview-scale-min-width',
+    defaultValue: '52px',
+    description: 'Minimum width of the scale display in the toolbar.',
+  },
+  {
+    token: '--b-image-preview-scale-font-size',
+    defaultValue: '13px',
+    description: 'Font size of the scale display.',
+  },
+  {
+    token: '--b-image-preview-close-color',
+    defaultValue: 'oklch(90% 0.005 260)',
+    description: 'Color of the preview close button.',
+  },
+  {
+    token: '--b-image-preview-close-hover-bg',
+    defaultValue: 'oklch(100% 0 0 / 12%)',
+    description: 'Hover background of the preview close button.',
+  },
+  {
+    token: '--b-image-preview-close-size',
+    defaultValue: '40px',
+    description: 'Size of the preview close button.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-image-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BImage },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BImage — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-image</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Three+ tokens overridden inline (border radius, mask background, focus ring).
+        </p>
+        <BImage
+          src="https://picsum.photos/id/40/300/200"
+          width="300"
+          height="200"
+          style="
+            --b-image-border-radius: 24px;
+            --b-image-mask-bg: oklch(42% 0.16 145 / 60%);
+            --b-image-focus-ring: 2px solid oklch(42% 0.16 145);
+          "
+        />
+      </div>
+    `,
+  }),
+};

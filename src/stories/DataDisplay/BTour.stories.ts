@@ -1265,3 +1265,286 @@ export const InteractionFlow: Story = {
     },
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-tour-close-btn-size',
+    defaultValue: '22px',
+    description: 'Size of the close button (AntD: closeBtnSize).',
+  },
+  {
+    token: '--b-tour-primary-prev-btn-bg',
+    defaultValue: 'rgba(255, 255, 255, 0.15)',
+    description: 'Background of the previous button in the primary type (AntD: primaryPrevBtnBg).',
+  },
+  {
+    token: '--b-tour-primary-next-btn-hover-bg',
+    defaultValue: 'rgb(240, 240, 240)',
+    description: 'Hover background of the next button in the primary type (AntD: primaryNextBtnHoverBg).',
+  },
+  {
+    token: '--b-tour-z-index',
+    defaultValue: '1070',
+    description: 'z-index of the tour popup (AntD: zIndexPopup).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-tour-mask-bg',
+    defaultValue: 'rgba(0, 0, 0, 0.45)',
+    description: 'Background of the highlight mask.',
+  },
+  {
+    token: '--b-tour-popup-bg',
+    defaultValue: '#fff',
+    description: 'Background of the tour popup.',
+  },
+  {
+    token: '--b-tour-popup-color',
+    defaultValue: 'oklch(25% 0 0)',
+    description: 'Default text color in the tour popup.',
+  },
+  {
+    token: '--b-tour-popup-shadow',
+    defaultValue: '0 1px 2px 0 oklch(0% 0 0 / 3%), 0 1px 6px -1px oklch(0% 0 0 / 2%)',
+    description: 'Box shadow of the tour popup.',
+  },
+  {
+    token: '--b-tour-popup-border-radius',
+    defaultValue: '0.5rem',
+    description: 'Corner radius of the tour popup.',
+  },
+  {
+    token: '--b-tour-popup-padding',
+    defaultValue: '1rem',
+    description: 'Padding inside the tour popup.',
+  },
+  {
+    token: '--b-tour-popup-min-width',
+    defaultValue: '220px',
+    description: 'Min width of the tour popup.',
+  },
+  {
+    token: '--b-tour-popup-max-width',
+    defaultValue: '320px',
+    description: 'Max width of the tour popup.',
+  },
+  {
+    token: '--b-tour-popup-font-size',
+    defaultValue: '0.875rem',
+    description: 'Body font size of the tour popup.',
+  },
+  {
+    token: '--b-tour-popup-line-height',
+    defaultValue: '1.5',
+    description: 'Body line height of the tour popup.',
+  },
+  {
+    token: '--b-tour-arrow-bg',
+    defaultValue: '#fff',
+    description: 'Background of the popup arrow (matches popup bg).',
+  },
+  {
+    token: '--b-tour-arrow-size',
+    defaultValue: '10px',
+    description: 'Arrow size.',
+  },
+  {
+    token: '--b-tour-cover-border-radius',
+    defaultValue: '0.5rem 0.5rem 0 0',
+    description: 'Corner radius of the cover image area.',
+  },
+  {
+    token: '--b-tour-title-color',
+    defaultValue: 'oklch(15% 0 0)',
+    description: 'Title text color.',
+  },
+  {
+    token: '--b-tour-title-font-size',
+    defaultValue: '1rem',
+    description: 'Title font size.',
+  },
+  {
+    token: '--b-tour-title-font-weight',
+    defaultValue: '600',
+    description: 'Title font weight.',
+  },
+  {
+    token: '--b-tour-description-color',
+    defaultValue: 'oklch(35% 0 0)',
+    description: 'Description text color.',
+  },
+  {
+    token: '--b-tour-description-font-size',
+    defaultValue: '0.875rem',
+    description: 'Description font size.',
+  },
+  {
+    token: '--b-tour-close-color',
+    defaultValue: 'oklch(55% 0 0)',
+    description: 'Color of the close icon.',
+  },
+  {
+    token: '--b-tour-close-hover-color',
+    defaultValue: 'oklch(25% 0 0)',
+    description: 'Hover color of the close icon.',
+  },
+  {
+    token: '--b-tour-indicator-bg',
+    defaultValue: 'oklch(80% 0 0)',
+    description: 'Idle background of step indicator dots.',
+  },
+  {
+    token: '--b-tour-indicator-active-bg',
+    defaultValue: 'oklch(55% 0.169 237.323)',
+    description: 'Active background of the current step indicator.',
+  },
+  {
+    token: '--b-tour-indicator-size',
+    defaultValue: '6px',
+    description: 'Size of step indicator dots.',
+  },
+  {
+    token: '--b-tour-prev-btn-bg',
+    defaultValue: 'transparent',
+    description: 'Background of the previous button.',
+  },
+  {
+    token: '--b-tour-prev-btn-color',
+    defaultValue: 'oklch(35% 0 0)',
+    description: 'Text color of the previous button.',
+  },
+  {
+    token: '--b-tour-prev-btn-border',
+    defaultValue: '1px solid oklch(80% 0 0)',
+    description: 'Border of the previous button.',
+  },
+  {
+    token: '--b-tour-prev-btn-hover-bg',
+    defaultValue: 'oklch(96% 0 0)',
+    description: 'Hover background of the previous button.',
+  },
+  {
+    token: '--b-tour-next-btn-bg',
+    defaultValue: 'oklch(55% 0.169 237.323)',
+    description: 'Background of the next/finish button.',
+  },
+  {
+    token: '--b-tour-next-btn-color',
+    defaultValue: '#fff',
+    description: 'Text color of the next/finish button.',
+  },
+  {
+    token: '--b-tour-next-btn-hover-bg',
+    defaultValue: 'oklch(48% 0.158 241.966)',
+    description: 'Hover background of the next/finish button.',
+  },
+  {
+    token: '--b-tour-btn-padding',
+    defaultValue: '0.25rem 0.75rem',
+    description: 'Padding inside tour buttons.',
+  },
+  {
+    token: '--b-tour-btn-font-size',
+    defaultValue: '0.875rem',
+    description: 'Font size of tour buttons.',
+  },
+  {
+    token: '--b-tour-btn-border-radius',
+    defaultValue: '0.375rem',
+    description: 'Corner radius of tour buttons.',
+  },
+  {
+    token: '--b-tour-primary-popup-bg',
+    defaultValue: 'oklch(55% 0.169 237.323)',
+    description: 'Background of the popup in primary type.',
+  },
+  {
+    token: '--b-tour-primary-arrow-bg',
+    defaultValue: 'oklch(55% 0.169 237.323)',
+    description: 'Arrow background in primary type.',
+  },
+  {
+    token: '--b-tour-primary-title-color',
+    defaultValue: '#fff',
+    description: 'Title color in primary type.',
+  },
+  {
+    token: '--b-tour-primary-description-color',
+    defaultValue: 'rgba(255, 255, 255, 0.85)',
+    description: 'Description color in primary type.',
+  },
+  {
+    token: '--b-tour-primary-close-color',
+    defaultValue: 'rgba(255, 255, 255, 0.75)',
+    description: 'Close icon color in primary type.',
+  },
+  {
+    token: '--b-tour-primary-close-hover-color',
+    defaultValue: '#fff',
+    description: 'Close icon hover color in primary type.',
+  },
+  {
+    token: '--b-tour-primary-indicator-bg',
+    defaultValue: 'rgba(255, 255, 255, 0.4)',
+    description: 'Indicator dot background in primary type.',
+  },
+  {
+    token: '--b-tour-primary-indicator-active-bg',
+    defaultValue: '#fff',
+    description: 'Active indicator dot background in primary type.',
+  },
+  {
+    token: '--b-tour-transition-duration',
+    defaultValue: '250ms',
+    description: 'Open/close transition duration.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-tour-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BTour },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BTour — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-tour</code>. Override inline or via a CSS class. See the
+          <em>Theming</em> story for an interactive example with <code>--b-tour-*</code> overrides applied.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `,
+  }),
+};

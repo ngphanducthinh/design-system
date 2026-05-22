@@ -393,3 +393,181 @@ export const Disabled: Story = {
     `,
   }),
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  // Note: AntD FloatButton primarily uses global tokens; we expose dedicated --b-float-button-* vars instead.
+  // ── Local extras ──
+  {
+    token: '--b-float-button-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background color of the default float button.',
+  },
+  {
+    token: '--b-float-button-bg-hover',
+    defaultValue: 'oklch(96% 0.002 260)',
+    description: 'Hover background color of the default float button.',
+  },
+  {
+    token: '--b-float-button-color',
+    defaultValue: 'oklch(20% 0.005 260 / 88%)',
+    description: 'Icon/text color of the default float button.',
+  },
+  {
+    token: '--b-float-button-primary-bg',
+    defaultValue: 'oklch(62.3% 0.214 259.815)',
+    description: 'Background color of the primary float button.',
+  },
+  {
+    token: '--b-float-button-primary-bg-hover',
+    defaultValue: 'oklch(55% 0.22 259.815)',
+    description: 'Hover background color of the primary float button.',
+  },
+  {
+    token: '--b-float-button-primary-color',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Icon/text color of the primary float button.',
+  },
+  {
+    token: '--b-float-button-size',
+    defaultValue: '2.75rem',
+    description: 'Size of the float button (AntD: controlHeightLG).',
+  },
+  {
+    token: '--b-float-button-icon-size',
+    defaultValue: '1rem',
+    description: 'Size of the leading icon.',
+  },
+  {
+    token: '--b-float-button-border-radius-circle',
+    defaultValue: '50%',
+    description: 'Corner radius for the circle shape.',
+  },
+  {
+    token: '--b-float-button-border-radius-square',
+    defaultValue: '0.5rem',
+    description: 'Corner radius for the square shape.',
+  },
+  {
+    token: '--b-float-button-shadow',
+    defaultValue: '0 6px 16px 0 oklch(0% 0 0 / 8%)',
+    description: 'Box shadow under the float button.',
+  },
+  {
+    token: '--b-float-button-description-font-size',
+    defaultValue: '0.75rem',
+    description: 'Font size of the description label inside the button.',
+  },
+  {
+    token: '--b-float-button-tooltip-bg',
+    defaultValue: 'oklch(20% 0.005 260)',
+    description: 'Background color of the tooltip.',
+  },
+  {
+    token: '--b-float-button-tooltip-color',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Text color of the tooltip.',
+  },
+  {
+    token: '--b-float-button-badge-bg',
+    defaultValue: 'oklch(60% 0.22 25)',
+    description: 'Background color of the corner badge.',
+  },
+  {
+    token: '--b-float-button-badge-color',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Text color of the corner badge.',
+  },
+  {
+    token: '--b-float-button-badge-font-size',
+    defaultValue: '0.75rem',
+    description: 'Font size of the corner badge.',
+  },
+  {
+    token: '--b-float-button-inset-block-end',
+    defaultValue: '3rem',
+    description: 'Distance from the bottom of the viewport.',
+  },
+  {
+    token: '--b-float-button-inset-inline-end',
+    defaultValue: '1.5rem',
+    description: 'Distance from the right of the viewport.',
+  },
+  {
+    token: '--b-float-button-z-index',
+    defaultValue: '1000',
+    description: 'z-index of the float button (AntD: zIndexPopupBase).',
+  },
+  {
+    token: '--b-float-button-transition-duration',
+    defaultValue: '200ms',
+    description: 'Hover/press animation duration.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-float-button-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BFloatButton },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BFloatButton — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-float-button</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (primary bg, primary hover bg, size, border-radius-square).
+        </p>
+        <div style="position:relative; min-height:140px;">
+          <BFloatButton
+            type="primary"
+            shape="square"
+            tooltip="Themed"
+            description="GO"
+            style="
+              --b-float-button-primary-bg: oklch(50% 0.18 290);
+              --b-float-button-primary-bg-hover: oklch(45% 0.2 290);
+              --b-float-button-size: 3rem;
+              --b-float-button-border-radius-square: 1rem;
+              position: static;
+            "
+          />
+        </div>
+      </div>
+    `,
+  }),
+};

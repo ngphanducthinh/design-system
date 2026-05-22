@@ -427,3 +427,189 @@ export const InteractionTests: Story = {
     expect(noDescEl.querySelector('.b-empty__description')).toBeNull();
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-empty-description-color',
+    defaultValue: 'oklch(55% 0.01 260)',
+    description: 'Color of the description text (AntD: colorTextDescription).',
+  },
+  {
+    token: '--b-empty-image-opacity',
+    defaultValue: '1',
+    description: 'Opacity of the empty image (AntD: opacityImage).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-empty-padding',
+    defaultValue: '32px 0',
+    description: 'Padding around the empty container.',
+  },
+  {
+    token: '--b-empty-text-align',
+    defaultValue: 'center',
+    description: 'Text alignment of the empty content.',
+  },
+  {
+    token: '--b-empty-image-height',
+    defaultValue: '152px',
+    description: 'Height of the default empty illustration.',
+  },
+  {
+    token: '--b-empty-image-height-simple',
+    defaultValue: '35px',
+    description: 'Height of the simple empty illustration.',
+  },
+  {
+    token: '--b-empty-image-margin-bottom',
+    defaultValue: '8px',
+    description: 'Margin below the image.',
+  },
+  {
+    token: '--b-empty-description-font-size',
+    defaultValue: '14px',
+    description: 'Font size of the description.',
+  },
+  {
+    token: '--b-empty-description-line-height',
+    defaultValue: '1.572',
+    description: 'Line height of the description.',
+  },
+  {
+    token: '--b-empty-description-margin-top',
+    defaultValue: '8px',
+    description: 'Margin above the description text.',
+  },
+  {
+    token: '--b-empty-footer-margin-top',
+    defaultValue: '16px',
+    description: 'Margin above the footer slot (e.g., action buttons).',
+  },
+  {
+    token: '--b-empty-ellipse-fill',
+    defaultValue: 'oklch(93% 0.005 260)',
+    description: 'Fill color of the shadow ellipse in the default image.',
+  },
+  {
+    token: '--b-empty-path-bg-fill',
+    defaultValue: 'oklch(95% 0.003 260)',
+    description: 'Fill color of the background path.',
+  },
+  {
+    token: '--b-empty-path-dot-fill',
+    defaultValue: 'oklch(83% 0.01 260)',
+    description: 'Fill color of decorative dots.',
+  },
+  {
+    token: '--b-empty-path-dots-group-fill',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Fill color of the dots group container.',
+  },
+  {
+    token: '--b-empty-path-front-fill',
+    defaultValue: 'oklch(97% 0.002 260)',
+    description: 'Fill color of the front path.',
+  },
+  {
+    token: '--b-empty-path-front-stroke',
+    defaultValue: 'oklch(83% 0.01 260)',
+    description: 'Stroke color of the front path.',
+  },
+  {
+    token: '--b-empty-path-main-fill',
+    defaultValue: 'oklch(97% 0.002 260)',
+    description: 'Fill color of the main path.',
+  },
+  {
+    token: '--b-empty-path-panel-fill',
+    defaultValue: 'oklch(93% 0.005 260)',
+    description: 'Fill color of the panel path.',
+  },
+  {
+    token: '--b-empty-simple-ellipse-fill',
+    defaultValue: 'oklch(93% 0.005 260)',
+    description: 'Fill color of the simple variant ellipse.',
+  },
+  {
+    token: '--b-empty-simple-group-fill',
+    defaultValue: 'oklch(97% 0.002 260)',
+    description: 'Fill color of the simple variant group.',
+  },
+  {
+    token: '--b-empty-simple-group-stroke',
+    defaultValue: 'oklch(83% 0.01 260)',
+    description: 'Stroke color of the simple variant group.',
+  },
+  {
+    token: '--b-empty-simple-inner-fill',
+    defaultValue: 'oklch(93% 0.005 260)',
+    description: 'Fill color of the simple variant inner shape.',
+  },
+  {
+    token: '--b-empty-transition-duration',
+    defaultValue: '200ms',
+    description: 'Duration of color transitions.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-empty-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BEmpty },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BEmpty — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-empty</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Three+ tokens overridden inline (description color, padding, image height, image opacity).
+        </p>
+        <BEmpty
+          description="Themed empty state"
+          style="
+            --b-empty-description-color: oklch(42% 0.16 145);
+            --b-empty-padding: 48px 0;
+            --b-empty-image-height: 120px;
+            --b-empty-image-opacity: 0.85;
+          "
+        />
+      </div>
+    `,
+  }),
+};

@@ -598,3 +598,137 @@ export const InteractionHoverPause: Story = {
     expect(msg.getAttribute('aria-live')).toBe('assertive');
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-message-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background color of the message container (AntD: contentBg).',
+  },
+  {
+    token: '--b-message-padding-h',
+    defaultValue: '1rem',
+    description: 'Horizontal padding of the message (AntD: contentPadding inline).',
+  },
+  {
+    token: '--b-message-padding-v',
+    defaultValue: '0.625rem',
+    description: 'Vertical padding of the message (AntD: contentPadding block).',
+  },
+  // Note: AntD zIndexPopup is not yet implemented as a dedicated var.
+  // ── Local extras ──
+  {
+    token: '--b-message-color',
+    defaultValue: 'oklch(20% 0.005 260 / 88%)',
+    description: 'Primary text color of the message.',
+  },
+  {
+    token: '--b-message-border-color',
+    defaultValue: 'oklch(92% 0.005 260)',
+    description: 'Border color around the message container.',
+  },
+  {
+    token: '--b-message-border-radius',
+    defaultValue: '0.5rem',
+    description: 'Corner radius of the message container.',
+  },
+  {
+    token: '--b-message-shadow',
+    defaultValue: '0 6px 16px 0 oklch(0% 0 0 / 8%)',
+    description: 'Box shadow under the message.',
+  },
+  {
+    token: '--b-message-font-size',
+    defaultValue: '0.875rem',
+    description: 'Font size of the message text.',
+  },
+  {
+    token: '--b-message-icon-color',
+    defaultValue: 'oklch(62.3% 0.214 259.815)',
+    description: 'Color of the leading status icon (varies per type).',
+  },
+  {
+    token: '--b-message-icon-size',
+    defaultValue: '1rem',
+    description: 'Size of the leading icon.',
+  },
+  {
+    token: '--b-message-gap',
+    defaultValue: '0.5rem',
+    description: 'Gap between icon and message text.',
+  },
+  {
+    token: '--b-message-max-width',
+    defaultValue: '32rem',
+    description: 'Maximum width of a single message.',
+  },
+  {
+    token: '--b-message-top',
+    defaultValue: '1rem',
+    description: 'Distance from the top of the viewport.',
+  },
+  {
+    token: '--b-message-transition-duration',
+    defaultValue: '300ms',
+    description: 'Enter/leave animation duration.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-message-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BMessage },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BMessage — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-message</code>. Messages render in a portal at the top of the viewport.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Apply tokens via a global CSS class on <code>:root</code> or a wrapping element to retheme messages.
+        </p>
+        <pre style="background:oklch(96% 0.002 260);padding:12px;border-radius:6px;font-size:12px;overflow:auto;"><code>:root {
+  --b-message-bg: oklch(96% 0.04 290);
+  --b-message-color: oklch(35% 0.18 290);
+  --b-message-border-color: oklch(80% 0.14 290);
+  --b-message-shadow: 0 8px 24px oklch(40% 0.18 290 / 25%);
+}</code></pre>
+      </div>
+    `,
+  }),
+};

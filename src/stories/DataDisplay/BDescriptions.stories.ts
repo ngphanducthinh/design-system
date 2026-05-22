@@ -545,3 +545,183 @@ export const InteractionTests: Story = {
     expect(small.classList.contains('b-descriptions--small')).toBe(true);
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-descriptions-colon-margin-left',
+    defaultValue: '2px',
+    description: 'Left margin of the colon (AntD: colonMarginLeft).',
+  },
+  {
+    token: '--b-descriptions-colon-margin-right',
+    defaultValue: '8px',
+    description: 'Right margin of the colon (AntD: colonMarginRight).',
+  },
+  {
+    token: '--b-descriptions-content-color',
+    defaultValue: 'oklch(20% 0.02 260)',
+    description: 'Text color of content cells (AntD: contentColor).',
+  },
+  {
+    token: '--b-descriptions-extra-color',
+    defaultValue: 'oklch(45% 0.02 260)',
+    description: 'Text color of the extra area (AntD: extraColor).',
+  },
+  {
+    token: '--b-descriptions-item-padding-bottom',
+    defaultValue: '16px',
+    description: 'Bottom padding of each item (AntD: itemPaddingBottom).',
+  },
+  {
+    token: '--b-descriptions-item-padding-end',
+    defaultValue: '16px',
+    description: 'End padding of each item (AntD: itemPaddingEnd).',
+  },
+  {
+    token: '--b-descriptions-label-bg',
+    defaultValue: 'oklch(97% 0.005 260)',
+    description: 'Background color of label cells in bordered mode (AntD: labelBg).',
+  },
+  {
+    token: '--b-descriptions-label-color',
+    defaultValue: 'oklch(40% 0.02 260)',
+    description: 'Text color of labels (AntD: labelColor).',
+  },
+  {
+    token: '--b-descriptions-title-color',
+    defaultValue: 'oklch(20% 0.02 260)',
+    description: 'Text color of the title (AntD: titleColor).',
+  },
+  {
+    token: '--b-descriptions-title-margin-bottom',
+    defaultValue: '20px',
+    description: 'Bottom margin of the title (AntD: titleMarginBottom).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-descriptions-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background color of the descriptions container (bordered mode).',
+  },
+  {
+    token: '--b-descriptions-color',
+    defaultValue: 'oklch(20% 0.02 260)',
+    description: 'Default text color.',
+  },
+  {
+    token: '--b-descriptions-border-color',
+    defaultValue: 'oklch(88% 0.01 260)',
+    description: 'Border color used in bordered mode.',
+  },
+  {
+    token: '--b-descriptions-border-radius',
+    defaultValue: '8px',
+    description: 'Corner radius used in bordered mode.',
+  },
+  {
+    token: '--b-descriptions-cell-padding',
+    defaultValue: '16px 24px',
+    description: 'Padding inside cells at default size (bordered).',
+  },
+  {
+    token: '--b-descriptions-cell-padding-middle',
+    defaultValue: '12px 20px',
+    description: 'Padding inside cells at middle size (bordered).',
+  },
+  {
+    token: '--b-descriptions-cell-padding-small',
+    defaultValue: '8px 16px',
+    description: 'Padding inside cells at small size (bordered).',
+  },
+  {
+    token: '--b-descriptions-label-font-weight',
+    defaultValue: '400',
+    description: 'Font weight of labels.',
+  },
+  {
+    token: '--b-descriptions-extra-font-size',
+    defaultValue: '14px',
+    description: 'Font size of the extra slot.',
+  },
+  {
+    token: '--b-descriptions-title-font-size',
+    defaultValue: '16px',
+    description: 'Font size of the title.',
+  },
+  {
+    token: '--b-descriptions-title-font-weight',
+    defaultValue: '600',
+    description: 'Font weight of the title.',
+  },
+  {
+    token: '--b-descriptions-transition-duration',
+    defaultValue: '200ms',
+    description: 'Transition duration for color/border changes.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-descriptions-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BDescriptions, BDescriptionsItem },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BDescriptions — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-descriptions</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (label background, label color, border, radius).
+        </p>
+        <BDescriptions
+          title="Themed descriptions"
+          bordered
+          style="
+            --b-descriptions-label-bg: oklch(95% 0.05 145);
+            --b-descriptions-label-color: oklch(30% 0.1 145);
+            --b-descriptions-border-color: oklch(82% 0.08 145);
+            --b-descriptions-border-radius: 16px;
+          "
+        >
+          <BDescriptionsItem label="Name">Themed</BDescriptionsItem>
+          <BDescriptionsItem label="Status">Active</BDescriptionsItem>
+        </BDescriptions>
+      </div>
+    `,
+  }),
+};

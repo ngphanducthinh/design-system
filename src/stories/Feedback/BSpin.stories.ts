@@ -487,3 +487,129 @@ export const InteractionToggle: Story = {
     });
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-spin-dot-size-default',
+    defaultValue: '1.25rem',
+    description: 'Default spinner dot size (AntD: dotSize).',
+  },
+  {
+    token: '--b-spin-dot-size-large',
+    defaultValue: '2rem',
+    description: 'Large spinner dot size (AntD: dotSizeLG).',
+  },
+  {
+    token: '--b-spin-dot-size-small',
+    defaultValue: '0.875rem',
+    description: 'Small spinner dot size (AntD: dotSizeSM).',
+  },
+  // Note: AntD contentHeight is not yet implemented as a dedicated var.
+  // ── Local extras ──
+  {
+    token: '--b-spin-dot-color',
+    defaultValue: 'oklch(62.3% 0.214 259.815)',
+    description: 'Color of the spinner dots.',
+  },
+  {
+    token: '--b-spin-tip-color',
+    defaultValue: 'oklch(62.3% 0.214 259.815)',
+    description: 'Color of the loading tip text.',
+  },
+  {
+    token: '--b-spin-tip-font-size',
+    defaultValue: '0.875rem',
+    description: 'Font size of the loading tip text.',
+  },
+  {
+    token: '--b-spin-overlay-bg',
+    defaultValue: 'oklch(100% 0 0 / 50%)',
+    description: 'Background of the overlay shown over wrapped content while loading.',
+  },
+  {
+    token: '--b-spin-fullscreen-bg',
+    defaultValue: 'oklch(0% 0 0 / 45%)',
+    description: 'Background of the fullscreen mask.',
+  },
+  {
+    token: '--b-spin-content-blur',
+    defaultValue: '0.5px',
+    description: 'Blur applied to wrapped content while loading.',
+  },
+  {
+    token: '--b-spin-animation-duration',
+    defaultValue: '1.2s',
+    description: 'Duration of the dot rotation animation.',
+  },
+  {
+    token: '--b-spin-transition-duration',
+    defaultValue: '300ms',
+    description: 'Fade-in/out duration of the spinner overlay.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-spin-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BSpin },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BSpin — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-spin</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Three tokens overridden inline (dot color, tip color, animation duration).
+        </p>
+        <BSpin
+          tip="Themed loading…"
+          :spinning="true"
+          style="
+            --b-spin-dot-color: oklch(50% 0.18 290);
+            --b-spin-tip-color: oklch(50% 0.18 290);
+            --b-spin-animation-duration: 0.8s;
+          "
+        >
+          <div style="padding:2rem;border:1px dashed oklch(85% 0.005 260);border-radius:8px;">
+            Wrapped content
+          </div>
+        </BSpin>
+      </div>
+    `,
+  }),
+};

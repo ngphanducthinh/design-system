@@ -457,3 +457,141 @@ export const InteractionClose: Story = {
     });
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-alert-padding-h',
+    defaultValue: '1rem',
+    description: 'Horizontal padding of the alert (AntD: defaultPadding inline).',
+  },
+  {
+    token: '--b-alert-padding-v',
+    defaultValue: '0.5rem',
+    description: 'Vertical padding of the alert (AntD: defaultPadding block).',
+  },
+  {
+    token: '--b-alert-icon-size-with-desc',
+    defaultValue: '1.5rem',
+    description: 'Icon size when description is present (AntD: withDescriptionIconSize).',
+  },
+  // Note: AntD withDescriptionPadding is not yet implemented as a dedicated var.
+  // ── Local extras ──
+  {
+    token: '--b-alert-bg',
+    defaultValue: 'oklch(95% 0.04 240)',
+    description: 'Background color of the alert (varies per type).',
+  },
+  {
+    token: '--b-alert-color',
+    defaultValue: 'oklch(35% 0.12 240)',
+    description: 'Text color of the alert (varies per type).',
+  },
+  {
+    token: '--b-alert-border-color',
+    defaultValue: 'oklch(80% 0.1 240)',
+    description: 'Border color of the alert (varies per type).',
+  },
+  {
+    token: '--b-alert-border-radius',
+    defaultValue: '0.5rem',
+    description: 'Corner radius of the alert.',
+  },
+  {
+    token: '--b-alert-border-width',
+    defaultValue: '1px',
+    description: 'Border width of the alert.',
+  },
+  {
+    token: '--b-alert-icon-color',
+    defaultValue: 'oklch(62.3% 0.214 259.815)',
+    description: 'Color of the leading icon (varies per type).',
+  },
+  {
+    token: '--b-alert-icon-size',
+    defaultValue: '1rem',
+    description: 'Default icon size when no description is present.',
+  },
+  {
+    token: '--b-alert-gap',
+    defaultValue: '0.5rem',
+    description: 'Gap between icon, message, and close button.',
+  },
+  {
+    token: '--b-alert-close-color',
+    defaultValue: 'oklch(50% 0.05 240)',
+    description: 'Color of the close icon.',
+  },
+  {
+    token: '--b-alert-close-hover-color',
+    defaultValue: 'oklch(35% 0.12 240)',
+    description: 'Hover color of the close icon.',
+  },
+  {
+    token: '--b-alert-transition-duration',
+    defaultValue: '300ms',
+    description: 'Open/close animation duration.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-alert-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BAlert },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BAlert — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-alert</code>. Override inline or via a CSS class. The default values listed reflect the <em>info</em> type; <em>success</em>, <em>warning</em>, and <em>error</em> override colors at the type-class level.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (background, color, border, radius).
+        </p>
+        <BAlert
+          message="Themed alert"
+          description="Override --b-alert-* tokens to retheme."
+          style="
+            --b-alert-bg: oklch(96% 0.04 290);
+            --b-alert-color: oklch(35% 0.18 290);
+            --b-alert-border-color: oklch(80% 0.14 290);
+            --b-alert-border-radius: 16px;
+          "
+        />
+      </div>
+    `,
+  }),
+};

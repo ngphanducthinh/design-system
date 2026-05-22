@@ -489,3 +489,124 @@ export const InteractionStructure: Story = {
     expect(vert!.getAttribute('aria-orientation')).toBe('vertical');
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-divider-orientation-margin',
+    defaultValue: '5%',
+    description: 'Distance between text and edge when orientation is left/right (AntD: orientationMargin).',
+  },
+  {
+    token: '--b-divider-text-padding-inline',
+    defaultValue: '1em',
+    description: 'Horizontal padding around the text label (AntD: textPaddingInline).',
+  },
+  {
+    token: '--b-divider-vertical-margin-inline',
+    defaultValue: '0.5rem',
+    description: 'Horizontal margin around vertical dividers (AntD: verticalMarginInline).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-divider-color',
+    defaultValue: 'oklch(0% 0 0 / 6%)',
+    description: 'Color of the divider line (AntD: colorSplit).',
+  },
+  {
+    token: '--b-divider-line-width',
+    defaultValue: '1px',
+    description: 'Thickness of the divider line.',
+  },
+  {
+    token: '--b-divider-text-color',
+    defaultValue: 'oklch(20% 0.005 260 / 88%)',
+    description: 'Color of the text label.',
+  },
+  {
+    token: '--b-divider-font-size',
+    defaultValue: '1rem',
+    description: 'Font size of the text label.',
+  },
+  {
+    token: '--b-divider-font-weight-text',
+    defaultValue: '500',
+    description: 'Font weight of the text label.',
+  },
+  {
+    token: '--b-divider-margin-block-small',
+    defaultValue: '0.5rem',
+    description: 'Vertical margin for small horizontal dividers.',
+  },
+  {
+    token: '--b-divider-margin-block-medium',
+    defaultValue: '1rem',
+    description: 'Vertical margin for medium horizontal dividers.',
+  },
+  {
+    token: '--b-divider-margin-block-large',
+    defaultValue: '1.5rem',
+    description: 'Vertical margin for large horizontal dividers.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-divider-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BDivider },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BDivider — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-divider</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Three tokens overridden inline (color, line-width, text-color).
+        </p>
+        <BDivider
+          style="
+            --b-divider-color: oklch(50% 0.18 290);
+            --b-divider-line-width: 2px;
+            --b-divider-text-color: oklch(35% 0.18 290);
+          "
+        >
+          Themed divider
+        </BDivider>
+      </div>
+    `,
+  }),
+};

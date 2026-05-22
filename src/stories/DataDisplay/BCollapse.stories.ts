@@ -592,3 +592,157 @@ export const InteractionTests: Story = {
     expect(accPanelA.classList.contains('b-collapse-panel--active')).toBe(false);
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-collapse-content-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background of the panel content (AntD: contentBg).',
+  },
+  {
+    token: '--b-collapse-content-padding',
+    defaultValue: '16px',
+    description: 'Padding inside the panel content (AntD: contentPadding).',
+  },
+  {
+    token: '--b-collapse-header-bg',
+    defaultValue: 'oklch(97% 0 0)',
+    description: 'Background of the panel header (AntD: headerBg).',
+  },
+  {
+    token: '--b-collapse-header-padding',
+    defaultValue: '12px 16px',
+    description: 'Padding of the panel header (AntD: headerPadding).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-collapse-border-color',
+    defaultValue: 'oklch(88% 0 0)',
+    description: 'Border color around the collapse and between panels.',
+  },
+  {
+    token: '--b-collapse-border-radius',
+    defaultValue: '8px',
+    description: 'Outer corner radius.',
+  },
+  {
+    token: '--b-collapse-header-color',
+    defaultValue: 'oklch(15% 0 0)',
+    description: 'Header text color.',
+  },
+  {
+    token: '--b-collapse-header-font-size',
+    defaultValue: '14px',
+    description: 'Header text font size.',
+  },
+  {
+    token: '--b-collapse-header-font-weight',
+    defaultValue: '500',
+    description: 'Header text font weight.',
+  },
+  {
+    token: '--b-collapse-header-line-height',
+    defaultValue: '1.5',
+    description: 'Header text line height.',
+  },
+  {
+    token: '--b-collapse-content-color',
+    defaultValue: 'oklch(27% 0.01 260)',
+    description: 'Content text color.',
+  },
+  {
+    token: '--b-collapse-arrow-color',
+    defaultValue: 'oklch(45% 0 0)',
+    description: 'Color of the chevron arrow.',
+  },
+  {
+    token: '--b-collapse-arrow-size',
+    defaultValue: '12px',
+    description: 'Size of the chevron arrow.',
+  },
+  {
+    token: '--b-collapse-extra-color',
+    defaultValue: 'oklch(45% 0 0)',
+    description: 'Color of the extra slot.',
+  },
+  {
+    token: '--b-collapse-disabled-bg',
+    defaultValue: 'oklch(96% 0 0)',
+    description: 'Background of disabled panel headers.',
+  },
+  {
+    token: '--b-collapse-disabled-color',
+    defaultValue: 'oklch(63% 0 0)',
+    description: 'Text color of disabled panel headers.',
+  },
+  {
+    token: '--b-collapse-transition-duration',
+    defaultValue: '300ms',
+    description: 'Duration of the expand/collapse transition.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-collapse-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BCollapse, BCollapsePanel },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BCollapse — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-collapse</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (header background, content background, border, radius).
+        </p>
+        <BCollapse
+          style="
+            --b-collapse-header-bg: oklch(95% 0.05 145);
+            --b-collapse-content-bg: oklch(98% 0.005 145);
+            --b-collapse-border-color: oklch(82% 0.08 145);
+            --b-collapse-border-radius: 16px;
+          "
+        >
+          <BCollapsePanel header="Themed panel" name="t1">
+            <p>Content uses the overridden tokens.</p>
+          </BCollapsePanel>
+        </BCollapse>
+      </div>
+    `,
+  }),
+};

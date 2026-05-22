@@ -733,27 +733,27 @@ export const DesignTokens: Story = {
       return { tokens };
     },
     template: `
-      <div style="max-width: 800px;">
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
         <h3 style="margin: 0 0 16px; font-size: 16px; font-weight: 600;">BMenu Design Tokens</h3>
         <p style="margin: 0 0 16px; font-size: 13px; color: #555;">
           Override these CSS variables on <code>.b-menu</code> or an ancestor to customize the menu appearance.
         </p>
-        <div role="table" aria-label="BMenu design tokens" style="width: 100%; font-size: 13px;">
-          <div role="rowgroup">
-            <div role="row" style="display: grid; grid-template-columns: minmax(280px, 1fr) minmax(140px, auto) 1fr; border-bottom: 2px solid #e5e7eb;">
-              <div role="columnheader" style="padding: 8px 12px; font-weight: 600;">Variable</div>
-              <div role="columnheader" style="padding: 8px 12px; font-weight: 600;">Default</div>
-              <div role="columnheader" style="padding: 8px 12px; font-weight: 600;">Description</div>
-            </div>
-          </div>
-          <div role="rowgroup">
-            <div v-for="token in tokens" :key="token.variable" role="row" style="display: grid; grid-template-columns: minmax(280px, 1fr) minmax(140px, auto) 1fr; border-bottom: 1px solid #f0f0f0;">
-              <div role="cell" style="padding: 6px 12px; font-family: monospace; font-size: 12px; color: #86198f; white-space: nowrap;">{{ token.variable }}</div>
-              <div role="cell" style="padding: 6px 12px; font-family: monospace; font-size: 12px;">{{ token.default }}</div>
-              <div role="cell" style="padding: 6px 12px; color: #555;">{{ token.description }}</div>
-            </div>
-          </div>
-        </div>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="token in tokens" :key="token.variable" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;font-size:12px;color:#86198f;white-space:nowrap;"><code>{{ token.variable }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;font-size:12px;color:#595959;">{{ token.default }}</td>
+              <td style="padding:8px 12px;color:#555;">{{ token.description }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     `,
   }),

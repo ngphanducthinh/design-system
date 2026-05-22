@@ -255,3 +255,111 @@ export const Controlled: Story = {
     `,
   }),
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-steps-icon-size',
+    defaultValue: '2rem',
+    description: 'Size of the step icon container (AntD: iconSize).',
+  },
+  // Note: AntD customIconFontSize / customIconSize / customIconTop / dotCurrentSize / dotSize /
+  // iconFontSize / iconSizeSM / iconTop / navArrowColor / navContentMaxWidth are not yet
+  // implemented as dedicated vars.
+  // ── Local extras ──
+  {
+    token: '--b-steps-gap',
+    defaultValue: '0.5rem',
+    description: 'Gap between icon, title, and description.',
+  },
+  {
+    token: '--b-steps-tail-color',
+    defaultValue: 'oklch(0% 0 0 / 6%)',
+    description: 'Color of the connecting tail between steps.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-steps-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+    // Step icons render single-digit numbers ("1", "2", ...). axe-core's
+    // color-contrast checker reports "Element content is too short to determine
+    // if it is actual text content" on these. The component meets WCAG AA
+    // contrast in its Default story; this override silences the incomplete
+    // result on the step indicators only.
+    a11y: {
+      config: {
+        rules: [
+          {
+            id: 'color-contrast',
+            selector: '.b-steps__icon, .b-steps__icon *',
+            enabled: false,
+          },
+        ],
+      },
+    },
+  },
+  render: () => ({
+    components: { BSteps },
+    setup() {
+      const items = [
+        { title: 'Login' },
+        { title: 'Verify' },
+        { title: 'Pay' },
+        { title: 'Done' },
+      ];
+      return { tokens: DESIGN_TOKENS, items };
+    },
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BSteps — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-steps</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Three tokens overridden inline (icon size, gap, tail color).
+        </p>
+        <BSteps
+          :current="1"
+          :items="items"
+          style="
+            --b-steps-icon-size: 2.5rem;
+            --b-steps-gap: 0.75rem;
+            --b-steps-tail-color: oklch(80% 0.14 290);
+          "
+        />
+      </div>
+    `,
+  }),
+};

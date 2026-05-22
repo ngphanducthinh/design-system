@@ -814,3 +814,213 @@ export const Draggable: Story = {
     await waitFor(() => expect(firstNode.classList.contains('b-tree__node--dragging')).toBe(false));
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  {
+    token: '--b-tree-node-hover-bg',
+    defaultValue: 'oklch(95% 0.003 264)',
+    description: 'Background of a hovered node (AntD: nodeHoverBg).',
+  },
+  {
+    token: '--b-tree-node-hover-color',
+    defaultValue: 'oklch(20% 0.014 264)',
+    description: 'Text color of a hovered node (AntD: nodeHoverColor).',
+  },
+  {
+    token: '--b-tree-node-selected-bg',
+    defaultValue: 'oklch(94% 0.08 254)',
+    description: 'Background of a selected node (AntD: nodeSelectedBg).',
+  },
+  {
+    token: '--b-tree-node-selected-color',
+    defaultValue: 'oklch(20% 0.014 264)',
+    description: 'Text color of a selected node (AntD: nodeSelectedColor).',
+  },
+  {
+    token: '--b-tree-directory-selected-bg',
+    defaultValue: 'oklch(55% 0.22 260)',
+    description: 'Background of the selected node in directory mode (AntD: directoryNodeSelectedBg).',
+  },
+  {
+    token: '--b-tree-directory-selected-color',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Text color of the selected node in directory mode (AntD: directoryNodeSelectedColor).',
+  },
+  {
+    token: '--b-tree-indent-size',
+    defaultValue: '24px',
+    description: 'Indent width per level (AntD: indentSize).',
+  },
+  {
+    token: '--b-tree-switcher-size',
+    defaultValue: '24px',
+    description: 'Width of the expand/collapse switcher (AntD: switcherSize).',
+  },
+  {
+    token: '--b-tree-node-height',
+    defaultValue: '24px',
+    description: 'Height of each node title (AntD: titleHeight).',
+  },
+  // ── Local extras ──
+  {
+    token: '--b-tree-border-radius',
+    defaultValue: '6px',
+    description: 'Corner radius applied to interactive node states.',
+  },
+  {
+    token: '--b-tree-font-size',
+    defaultValue: '14px',
+    description: 'Base font size of tree text.',
+  },
+  {
+    token: '--b-tree-gap',
+    defaultValue: '4px',
+    description: 'Gap between switcher, checkbox, icon, and title.',
+  },
+  {
+    token: '--b-tree-icon-size',
+    defaultValue: '14px',
+    description: 'Size of node icons.',
+  },
+  {
+    token: '--b-tree-line-color',
+    defaultValue: 'oklch(88% 0.006 264)',
+    description: 'Color of connecting lines in showLine mode.',
+  },
+  {
+    token: '--b-tree-title-color',
+    defaultValue: 'oklch(20% 0.014 264)',
+    description: 'Default node title color.',
+  },
+  {
+    token: '--b-tree-title-filtered-color',
+    defaultValue: 'oklch(55% 0.22 260)',
+    description: 'Color used to highlight nodes that match a filter.',
+  },
+  {
+    token: '--b-tree-switcher-color',
+    defaultValue: 'oklch(55% 0.008 264)',
+    description: 'Color of the expand/collapse chevron.',
+  },
+  {
+    token: '--b-tree-node-disabled-color',
+    defaultValue: 'oklch(70% 0.005 264)',
+    description: 'Text color of disabled nodes.',
+  },
+  {
+    token: '--b-tree-checkbox-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background of the node checkbox.',
+  },
+  {
+    token: '--b-tree-checkbox-border',
+    defaultValue: 'oklch(75% 0.008 264)',
+    description: 'Border of the node checkbox.',
+  },
+  {
+    token: '--b-tree-checkbox-checked-bg',
+    defaultValue: 'oklch(55% 0.22 260)',
+    description: 'Background of a checked node checkbox.',
+  },
+  {
+    token: '--b-tree-checkbox-checked-border',
+    defaultValue: 'oklch(55% 0.22 260)',
+    description: 'Border of a checked node checkbox.',
+  },
+  {
+    token: '--b-tree-checkbox-indeterminate-bg',
+    defaultValue: 'oklch(55% 0.22 260)',
+    description: 'Background of the indeterminate state.',
+  },
+  {
+    token: '--b-tree-checkbox-size',
+    defaultValue: '16px',
+    description: 'Size of the node checkbox.',
+  },
+  {
+    token: '--b-tree-spin-duration',
+    defaultValue: '700ms',
+    description: 'Duration of the loading spinner rotation.',
+  },
+  {
+    token: '--b-tree-transition-duration',
+    defaultValue: '200ms',
+    description: 'Duration of color/background transitions.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-tree-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BTree },
+    setup: () => {
+      const treeData: BTreeNodeData[] = [
+        {
+          key: '0',
+          title: 'Root',
+          children: [
+            { key: '0-0', title: 'Child A' },
+            { key: '0-1', title: 'Child B' },
+          ],
+        },
+      ];
+      return { tokens: DESIGN_TOKENS, treeData, expandedKeys: ['0'] as BTreeNodeKey[] };
+    },
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BTree — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-tree</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Four tokens overridden inline (selected bg, hover bg, indent, radius).
+        </p>
+        <BTree
+          :tree-data="treeData"
+          :expanded-keys="expandedKeys"
+          style="
+            --b-tree-node-selected-bg: oklch(94% 0.06 145);
+            --b-tree-node-selected-color: oklch(30% 0.12 145);
+            --b-tree-node-hover-bg: oklch(96% 0.04 145);
+            --b-tree-indent-size: 32px;
+            --b-tree-border-radius: 12px;
+          "
+        />
+      </div>
+    `,
+  }),
+};

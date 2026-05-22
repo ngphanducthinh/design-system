@@ -1331,3 +1331,148 @@ export const EdgeCaseVerticalPlacement: Story = {
     });
   },
 };
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  // ── AntD-aligned tokens ──
+  // Note: AntD draggerSize, footerPaddingBlock/Inline, zIndexPopup are not yet implemented as dedicated vars.
+  // ── Local extras ──
+  {
+    token: '--b-drawer-bg',
+    defaultValue: 'oklch(100% 0 0)',
+    description: 'Background color of the drawer body.',
+  },
+  {
+    token: '--b-drawer-color',
+    defaultValue: 'oklch(20% 0.005 260 / 88%)',
+    description: 'Primary text color inside the drawer.',
+  },
+  {
+    token: '--b-drawer-border-color',
+    defaultValue: 'oklch(92% 0.005 260)',
+    description: 'Border color separating header/footer from body.',
+  },
+  {
+    token: '--b-drawer-mask-bg',
+    defaultValue: 'oklch(0% 0 0 / 45%)',
+    description: 'Background color of the overlay mask.',
+  },
+  {
+    token: '--b-drawer-shadow',
+    defaultValue: '0 9px 28px 8px oklch(0% 0 0 / 5%)',
+    description: 'Box shadow of the drawer panel.',
+  },
+  {
+    token: '--b-drawer-header-padding',
+    defaultValue: '1rem 1.5rem',
+    description: 'Padding of the header area.',
+  },
+  {
+    token: '--b-drawer-body-padding',
+    defaultValue: '1.5rem',
+    description: 'Padding of the body content area.',
+  },
+  {
+    token: '--b-drawer-footer-padding',
+    defaultValue: '0.5rem 1rem',
+    description: 'Padding of the footer area.',
+  },
+  {
+    token: '--b-drawer-title-font-size',
+    defaultValue: '1rem',
+    description: 'Font size of the drawer title.',
+  },
+  {
+    token: '--b-drawer-title-font-weight',
+    defaultValue: '600',
+    description: 'Font weight of the drawer title.',
+  },
+  {
+    token: '--b-drawer-title-line-height',
+    defaultValue: '1.5',
+    description: 'Line height of the drawer title.',
+  },
+  {
+    token: '--b-drawer-close-color',
+    defaultValue: 'oklch(50% 0.005 260)',
+    description: 'Color of the close button icon.',
+  },
+  {
+    token: '--b-drawer-close-hover-color',
+    defaultValue: 'oklch(20% 0.005 260 / 88%)',
+    description: 'Hover color of the close button icon.',
+  },
+  {
+    token: '--b-drawer-transition-duration',
+    defaultValue: '300ms',
+    description: 'Open/close animation duration.',
+  },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Reference table of every <code>--b-drawer-*</code> CSS custom property ' +
+          'consumers can override to retheme the component.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BDrawer, BButton },
+    setup() {
+      const tokens = DESIGN_TOKENS;
+      const open = ref(false);
+      return { tokens, open };
+    },
+    template: `
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BDrawer — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-drawer</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin:32px 0 12px;">Override example</h3>
+        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
+          Open the themed drawer below — four tokens overridden inline.
+        </p>
+        <BButton @click="open = true">Open themed drawer</BButton>
+        <BDrawer
+          v-model="open"
+          title="Themed drawer"
+          :style="{
+            '--b-drawer-bg': 'oklch(96% 0.04 290)',
+            '--b-drawer-color': 'oklch(35% 0.18 290)',
+            '--b-drawer-border-color': 'oklch(80% 0.14 290)',
+            '--b-drawer-shadow': '0 12px 32px oklch(40% 0.18 290 / 25%)',
+          }"
+        >
+          <p>All colours driven by CSS custom properties.</p>
+        </BDrawer>
+      </div>
+    `,
+  }),
+};
