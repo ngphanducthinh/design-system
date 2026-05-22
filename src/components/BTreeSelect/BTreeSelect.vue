@@ -1083,17 +1083,11 @@ function onNodeRowDblClick(node: BTreeSelectNode) {
               >
                 <svg
                   class="b-tree-select__switcher-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
+                  viewBox="0 0 8 8"
+                  fill="currentColor"
                   aria-hidden="true"
                 >
-                  <path
-                    d="M9 18L15 12L9 6"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                  <path d="M2 1.5L6 4L2 6.5z" />
                 </svg>
               </slot>
               <svg
@@ -1178,7 +1172,7 @@ function onNodeRowDblClick(node: BTreeSelectNode) {
   /* AntD: nodeSelectedColor */
   --b-tree-select-node-selected-color: rgba(0, 0, 0, 0.88);
   /* AntD: switcherSize */
-  --b-tree-select-switcher-size: 24px;
+  --b-tree-select-switcher-size: 16px;
   /* AntD: titleHeight */
   --b-tree-select-title-height: 24px;
 
@@ -1307,6 +1301,14 @@ function onNodeRowDblClick(node: BTreeSelectNode) {
   }
 }
 
+.b-tree-select__tree {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px 0;
+  outline: none;
+}
+
 .b-tree-select__dropdown--match-width {
   width: anchor-size(width);
 }
@@ -1319,22 +1321,14 @@ function onNodeRowDblClick(node: BTreeSelectNode) {
   margin-bottom: 4px;
 }
 
-/* ─── Tree ──────────────────────────────────────────────────────────────────── */
-.b-tree-select__tree {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  outline: none;
-}
-
 .b-tree-select__node {
   position: relative;
   display: flex;
   align-items: center;
   gap: 4px;
   height: var(--b-tree-select-title-height);
-  padding-inline-start: var(--b-tree-select-node-indent, 0px);
-  padding-inline-end: 8px;
+  padding-inline-start: calc(8px + var(--b-tree-select-node-indent, 0px));
+  padding-inline-end: 12px;
   border-radius: 6px;
   cursor: pointer;
   user-select: none;
@@ -1353,7 +1347,7 @@ function onNodeRowDblClick(node: BTreeSelectNode) {
 .b-tree-select__node--selected {
   background-color: var(--b-tree-select-node-selected-bg);
   color: var(--b-tree-select-node-selected-color);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .b-tree-select__node--selected:hover {
@@ -1362,8 +1356,8 @@ function onNodeRowDblClick(node: BTreeSelectNode) {
 
 .b-tree-select__node--focused,
 .b-tree-select__node:focus-visible {
-  outline: 2px solid var(--b-tree-select-active-border-color);
-  outline-offset: -1px;
+  background-color: var(--b-tree-select-node-hover-bg);
+  outline: none;
 }
 
 .b-tree-select__node--disabled {
@@ -1398,8 +1392,8 @@ function onNodeRowDblClick(node: BTreeSelectNode) {
 }
 
 .b-tree-select__switcher-icon {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   transition: transform var(--b-tree-select-transition-duration) ease;
 }
 
