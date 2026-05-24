@@ -2,6 +2,8 @@
 
 A Vue 3 component library built with TypeScript, Tailwind CSS 4, and Ant Design inspiration. 57 components covering general, layout, forms, data display, feedback, and navigation.
 
+📖 **Documentation:** https://ngphanducthinh.github.io/7pmlabs-design-system/
+
 ## Packages
 
 | Package | Path | Use it for |

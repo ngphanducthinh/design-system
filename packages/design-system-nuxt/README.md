@@ -2,6 +2,8 @@
 
 Nuxt 4 module for [`@7pmlabs/design-system`](https://www.npmjs.com/package/@7pmlabs/design-system). Auto-imports every `B*` component, registers the `useValidationForm` / `useValidationField` composables, and injects the bundled stylesheet.
 
+📖 **Documentation:** https://ngphanducthinh.github.io/7pmlabs-design-system/
+
 ## Install
 
 ```bash
