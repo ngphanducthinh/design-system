@@ -8,10 +8,10 @@ Nuxt 4 module for [`@7pmlabs/design-system`](https://www.npmjs.com/package/@7pml
 
 ```bash
 # bun
-bun add @7pmlabs/design-system @7pmlabs/design-system-nuxt
+bun add @7pmlabs/design-system-nuxt
 
 # npm
-npm i @7pmlabs/design-system @7pmlabs/design-system-nuxt
+npm i @7pmlabs/design-system-nuxt
 ```
 
 ## Usage
