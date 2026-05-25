@@ -145,6 +145,14 @@ bun run dev:build        # nuxi build playground (production build)
 
 A thin Nuxt 4 module that consumes the main lib and exposes it idiomatically to Nuxt apps. Its surface area is small but adding components requires keeping two lists in sync.
 
+### Module options (`designSystem` config key)
+
+- `components` (default `true`) — auto-register all `B*` components
+- `css` (default `true`) — inject `@7pmlabs/design-system/style.css`
+- `composables` (default `true`) — auto-import `useValidationForm` / `useValidationField`
+- `prefix` (default `''`) — optional prefix added to every component name
+- `tailwind` (default `true`) — register `@tailwindcss/vite` so consumers can author Tailwind (incl. the `b:` prefix) without configuring it themselves. Disable if the app already wires Tailwind another way.
+
 ### When you add a component to the main lib
 
 1. Export it from `src/components/<BComponentName>/index.ts` and re-export through `src/components/index.ts`.

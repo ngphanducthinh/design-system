@@ -39,7 +39,8 @@
   },
   "dependencies": {
     "@7pmlabs/design-system": "file:../..",
-    "@nuxt/kit": "^4.0.0"
+    "@nuxt/kit": "^4.0.0",
+    "@tailwindcss/vite": "^4.3.0"
   },
   "devDependencies": {
     "@nuxt/module-builder": "^1.0.1",

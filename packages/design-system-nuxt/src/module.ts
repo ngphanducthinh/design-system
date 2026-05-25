@@ -1,4 +1,5 @@
-import { addComponent, addImports, defineNuxtModule } from '@nuxt/kit';
+import { addComponent, addImports, addVitePlugin, defineNuxtModule } from '@nuxt/kit';
+import tailwindcss from '@tailwindcss/vite';
 import { COMPONENT_NAMES, COMPOSABLE_NAMES } from './components';
 
 export interface ModuleOptions {
@@ -10,6 +11,12 @@ export interface ModuleOptions {
   composables?: boolean;
   /** Optional prefix prepended to every component name (e.g. 'X' → 'XBButton'). */
   prefix?: string;
+  /**
+   * Register the `@tailwindcss/vite` plugin so consumers can author Tailwind
+   * (incl. the design system's `b:` prefixed classes) without configuring it
+   * themselves. Disable if your app already wires Tailwind up another way.
+   */
+  tailwind?: boolean;
 }
 
 const PKG = '@7pmlabs/design-system';
@@ -25,8 +32,13 @@ export default defineNuxtModule<ModuleOptions>({
     css: true,
     composables: true,
     prefix: '',
+    tailwind: true,
   },
   setup(options, nuxt) {
+    if (options.tailwind) {
+      addVitePlugin(() => tailwindcss());
+    }
+
     if (options.css) {
       nuxt.options.css ||= [];
       const cssEntry = `${PKG}/style.css`;
