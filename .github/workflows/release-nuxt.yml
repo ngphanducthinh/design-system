@@ -44,6 +44,19 @@ jobs:
       - name: Build main library (required for module's local dep)
         run: bun run build:lib
 
+      - name: Sync built lib into Nuxt module's nested node_modules
+        # The Setup step may restore a stale `file:../..` snapshot from cache (bun's
+        # --frozen-lockfile won't refresh file: deps). Copy the freshly-built root
+        # package.json + dist/ over the nested copy so module-builder sees the
+        # current `./vite` export.
+        run: |
+          DEST=packages/design-system-nuxt/node_modules/@7pmlabs/design-system
+          mkdir -p "$DEST"
+          cp package.json "$DEST/package.json"
+          rm -rf "$DEST/dist"
+          cp -R dist "$DEST/dist"
+        shell: bash
+
       - name: Prepare Nuxt module (.nuxt types)
         run: bun run dev:prepare
         working-directory: packages/design-system-nuxt
