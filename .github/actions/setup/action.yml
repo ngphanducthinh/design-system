@@ -16,7 +16,7 @@ runs:
         path: |
           node_modules
           packages/*/node_modules
-        key: deps-v2-${{ runner.os }}-${{ hashFiles('bun.lock') }}
+        key: deps-v2-${{ runner.os }}-${{ hashFiles('bun.lock', 'package.json', 'packages/*/package.json') }}
         restore-keys: deps-v2-${{ runner.os }}-
 
     - name: Install dependencies
