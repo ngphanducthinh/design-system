@@ -54,11 +54,17 @@ export default defineNuxtConfig({
     composables: true,   // auto-register composables (default: true)
     css: true,           // inject the bundled stylesheet (default: true)
     prefix: '',          // prepend to every component name, e.g. 'D' → DBButton
+    tailwind: true,      // register @tailwindcss/vite (default: true)
+    icons: true,         // wire up the BIcon Vite plugin + Nitro asset route (default: true)
   },
 });
 ```
 
-Disable individual features when you want manual control. For example, set `css: false` if you import a custom build of the stylesheet yourself.
+Disable individual features when you want manual control. For example:
+
+- `css: false` — you import a custom build of the stylesheet yourself.
+- `tailwind: false` — your app already wires up Tailwind (or doesn't use it at all). Disabling avoids registering `@tailwindcss/vite` twice.
+- `icons: false` — you want to configure the `designSystem()` Vite plugin yourself. The module also registers the icons folder as a Nitro public asset so production `nuxi build` ships them under `/_design-system/icons/`; turning this off skips that registration too.
 
 ## Development
 

@@ -1,6 +1,6 @@
 {
   "name": "@7pmlabs/design-system",
-  "version": "2.0.0",
+  "version": "2.0.104",
   "type": "module",
   "homepage": "https://github.com/ngphanducthinh/design-system",
   "repository": {
@@ -13,7 +13,8 @@
   "scripts": {
     "dev": "vite",
     "build": "run-s lint-all build:lib",
-    "build:lib": "vite build && npm run build:types",
+    "build:lib": "vite build && npm run build:vite-plugin && npm run build:types",
+    "build:vite-plugin": "tsc -p tsconfig.vite-plugin.json",
     "build:types": "vue-tsc --project tsconfig.types.json --declaration --emitDeclarationOnly --outDir dist/types",
     "lint-all": "run-p lint type-check",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
@@ -103,10 +104,15 @@
       "import": "./dist/design-system.js",
       "types": "./dist/types/index.d.ts"
     },
+    "./vite": {
+      "import": "./dist/vite/index.js",
+      "types": "./dist/types/vite/index.d.ts"
+    },
     "./style.css": {
       "import": "./dist/design-system.css",
       "require": "./dist/design-system.css"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "sideEffects": [
     "dist/design-system.css",

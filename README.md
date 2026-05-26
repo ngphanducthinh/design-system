@@ -28,6 +28,23 @@ import { BButton, BInput, BModal } from '@7pmlabs/design-system'
 import '@7pmlabs/design-system/style.css'
 ```
 
+Add the Vite plugin so `BIcon` SVGs are served in dev and copied/inlined into your build output:
+
+```ts
+// vite.config.ts
+import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite';
+import { designSystem } from '@7pmlabs/design-system/vite';
+
+export default defineConfig({
+  plugins: [vue(), designSystem()],
+});
+```
+
+What it does: scans your `src/` for static `<BIcon icon="..." />` usages and inlines those SVGs into the bundle (no network roundtrip), serves them via middleware in `vite dev` / `vite preview`, and copies the icon set into your `dist/` so dynamic `<BIcon :icon="..." />` bindings still resolve in production. Without this plugin, `BIcon` will render empty spans in any built app.
+
+If you never use dynamic `:icon` bindings, you can opt out of the asset copy with `designSystem({ runtimeFallback: false })` to keep your `dist/` slim.
+
 ### Nuxt 4
 
 Install the companion module — components, composables, and the stylesheet are wired up automatically:

@@ -1,15 +1,14 @@
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
-import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import { defineConfig } from 'vite';
+import { designSystem } from './src/vite/index.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const { name: packageName } = JSON.parse(readFileSync('./package.json', 'utf-8'));
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -17,6 +16,10 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     tailwindcss(),
+    designSystem({
+      iconsDir: resolve(__dirname, 'src/assets/icons'),
+      emit: false,
+    }),
     viteStaticCopy({
       targets: [
         {
@@ -31,9 +34,6 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  define: {
-    __PACKAGE_NAME__: JSON.stringify(packageName),
-  },
   build: {
     outDir: './dist',
     sourcemap: true,
@@ -45,7 +45,6 @@ export default defineConfig({
       formats: ['es'],
     },
     rolldownOptions: {
-      // Vue is provided by the parent project, don't compile Vue source-code inside our library.
       external: ['vue'],
       output: {
         preserveModules: true,

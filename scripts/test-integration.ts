@@ -73,22 +73,42 @@ async function main(): Promise<void> {
     const mainTs = readFileSync(mainTsPath, 'utf-8');
     writeFileSync(mainTsPath, `import '@7pmlabs/design-system/style.css';\n${mainTs}`);
 
-    // 7b: Replace App.vue with a component that uses BButton
+    // 7b: Replace App.vue with a component that uses BButton AND BIcon (so we
+    // exercise the icon-fetch path, which is the regression we're guarding).
     const appVuePath = join(appDir, 'src', 'App.vue');
     writeFileSync(
       appVuePath,
       `<script setup lang="ts">
-import { BButton } from '@7pmlabs/design-system';
+import { BButton, BIcon } from '@7pmlabs/design-system';
 </script>
 
 <template>
   <div id="app">
     <h1>Integration Test</h1>
     <BButton>Click me</BButton>
+    <BIcon icon="check" />
   </div>
 </template>
 `,
     );
+
+    // 7c: Wire the design-system Vite plugin into the consumer's vite.config.ts
+    // so icons are served in dev and copied into dist/ at build time.
+    const viteConfigPath = join(appDir, 'vite.config.ts');
+    const viteConfig = readFileSync(viteConfigPath, 'utf-8');
+    const patchedViteConfig = viteConfig
+      .replace(
+        /import vue from '@vitejs\/plugin-vue';?/,
+        `import vue from '@vitejs/plugin-vue';\nimport { designSystem } from '@7pmlabs/design-system/vite';`,
+      )
+      .replace(/plugins:\s*\[\s*vue\(\),?/, 'plugins: [\n    vue(),\n    designSystem(),');
+    if (patchedViteConfig === viteConfig) {
+      throw new Error(
+        'Failed to patch vite.config.ts — the regex did not match. ' +
+          'create-vue may have changed its scaffold output.',
+      );
+    }
+    writeFileSync(viteConfigPath, patchedViteConfig);
     log('MODIFY', 'Done ✓');
 
     // Step 8a: Type-check
@@ -100,6 +120,66 @@ import { BButton } from '@7pmlabs/design-system';
     log('VITE BUILD', 'Running vite build...');
     await $`bun run build`.cwd(appDir).quiet();
     log('VITE BUILD', 'Passed ✓');
+
+    // Step 8c: Assert the static-inline path actually works.
+    // The plugin's AST scan sees `<BIcon icon="check" />` in App.vue, looks
+    // up regular/check.svg in node_modules, and inlines its content into
+    // the virtual module that BIcon imports. So a unique fragment of the
+    // SVG path data must appear somewhere in the built JS bundle.
+    log('STATIC INLINE', 'Asserting check.svg path data is inlined into dist/...');
+    const inlineProbe = await $`grep -r --include='*.js' -l 'M441 103c9.4 9.4 9.4 24.6 0 33.9' ${join(appDir, 'dist')}`
+      .quiet()
+      .nothrow();
+    if (inlineProbe.exitCode !== 0) {
+      throw new Error(
+        'Static inlining failed: check.svg path data not found in any built JS chunk. ' +
+          'The Vite plugin should have AST-scanned App.vue and inlined the SVG.',
+      );
+    }
+    log('STATIC INLINE', 'SVG inlined into bundle ✓');
+
+    // Step 8c: Serve the built output and verify the icon URL actually
+    // resolves. This is the gate for the original bug: previously
+    // /node_modules/... was fetched at runtime and 404'd in any production
+    // build. The plugin now copies icons into dist/_design-system/icons/.
+    log('PREVIEW', 'Starting vite preview...');
+    const previewProc = Bun.spawn(
+      ['bunx', 'vite', 'preview', '--port', '4173', '--strictPort'],
+      { cwd: appDir, stdout: 'ignore', stderr: 'ignore' },
+    );
+
+    try {
+      // Wait for the preview server to be ready (poll up to 15s).
+      const iconUrl = 'http://localhost:4173/_design-system/icons/regular/check.svg';
+      let ready = false;
+      for (let i = 0; i < 30; i++) {
+        await new Promise((r) => setTimeout(r, 500));
+        try {
+          const probe = await fetch('http://localhost:4173/');
+          if (probe.ok) {
+            ready = true;
+            break;
+          }
+        } catch {
+          /* not yet */
+        }
+      }
+      if (!ready) throw new Error('vite preview did not become ready within 15s');
+
+      log('PREVIEW', `Fetching ${iconUrl}...`);
+      const res = await fetch(iconUrl);
+      if (!res.ok) {
+        throw new Error(`Icon URL returned HTTP ${res.status}; expected 200`);
+      }
+      const body = await res.text();
+      if (!body.trimStart().startsWith('<svg')) {
+        throw new Error(`Icon URL did not return SVG markup; got: ${body.slice(0, 80)}...`);
+      }
+      log('PREVIEW', 'Icon URL serves valid SVG ✓');
+    } finally {
+      previewProc.kill();
+      await previewProc.exited;
+    }
 
     // Step 9: Success
     passed = true;

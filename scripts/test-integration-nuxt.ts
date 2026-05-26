@@ -51,6 +51,15 @@ async function main(): Promise<void> {
     await $`bun run build:lib`.cwd(PROJECT_ROOT).quiet();
     log('BUILD LIB', 'Done ✓');
 
+    // 1b. Refresh the workspace install so the Nuxt module's symlinked
+    // copy of @7pmlabs/design-system (a Bun snapshot under node_modules/.bun/)
+    // picks up the freshly-built dist/ and the latest package.json exports.
+    // Without this, `bun run dev:prepare` resolves '@7pmlabs/design-system/vite'
+    // against a stale snapshot and fails with ERR_PACKAGE_PATH_NOT_EXPORTED.
+    log('REFRESH', 'Refreshing workspace install to update file:../.. snapshot...');
+    await $`bun install --force`.cwd(PROJECT_ROOT).quiet();
+    log('REFRESH', 'Done ✓');
+
     // 2. Pack the main lib
     log('PACK LIB', 'Creating @7pmlabs/design-system tarball...');
     await $`bun pm pack --ignore-scripts`.cwd(PROJECT_ROOT).quiet();
@@ -70,7 +79,7 @@ async function main(): Promise<void> {
 
     // 4. Build & pack the module
     log('PREP MODULE TYPES', 'Generating .nuxt types for module...');
-    await $`bun run dev:prepare`.cwd(MODULE_ROOT).quiet();
+    await $`bun run dev:prepare`.cwd(MODULE_ROOT);
     log('PREP MODULE TYPES', 'Done ✓');
 
     log('BUILD MODULE', 'Building @7pmlabs/design-system-nuxt...');
@@ -103,7 +112,7 @@ async function main(): Promise<void> {
           private: true,
           type: 'module',
           scripts: {
-            prepare: 'nuxi prepare',
+            'nuxi:prepare': 'nuxi prepare',
             typecheck: 'nuxi typecheck',
             build: 'nuxi build',
           },
@@ -116,6 +125,18 @@ async function main(): Promise<void> {
           devDependencies: {
             typescript: '^5.9.0',
             'vue-tsc': '^3.0.0',
+          },
+          // Force the nested copy of @7pmlabs/design-system inside
+          // @7pmlabs/design-system-nuxt to resolve to the local tarball
+          // instead of pulling the published version from npm. The module
+          // declares "*" as its dep version (rewritten at pack time for
+          // portability) and bun would otherwise hoist npm's latest, which
+          // may lag the local source.
+          overrides: {
+            '@7pmlabs/design-system': `file:${libTgzPath}`,
+          },
+          resolutions: {
+            '@7pmlabs/design-system': `file:${libTgzPath}`,
           },
         },
         null,
@@ -160,6 +181,8 @@ const submit = () => {
     <BInput v-model="email" placeholder="email" @blur="markTouched()" />
     <p v-if="errors.length">{{ errors[0] }}</p>
     <BTag color="success">tag</BTag>
+    <!-- Exercises the BIcon fetch path so the icon-route regression is gated. -->
+    <BIcon icon="check" />
   </div>
 </template>
 `,
@@ -173,12 +196,12 @@ const submit = () => {
 
     // 6. Install dependencies
     log('INSTALL', 'Installing dependencies (this can take a minute)...');
-    await $`bun install`.cwd(appDir).quiet();
+    await $`bun install`.cwd(appDir);
     log('INSTALL', 'Done ✓');
 
     // 7. Prepare - generates `.nuxt/tsconfig.json` and types
     log('PREPARE', 'Running nuxi prepare...');
-    await $`bun run prepare`.cwd(appDir).quiet();
+    await $`bun run nuxi:prepare`.cwd(appDir);
     log('PREPARE', 'Done ✓');
 
     // 8. Type-check via vue-tsc (Nuxt's typecheck command)
@@ -190,6 +213,64 @@ const submit = () => {
     log('NUXT BUILD', 'Running nuxi build...');
     await $`bun run build`.cwd(appDir).quiet();
     log('NUXT BUILD', 'Passed ✓');
+
+    // Assert the static-inline path actually works through the Nuxt module.
+    // App.vue uses `<BIcon icon="check" />` statically; the plugin (wired by
+    // the module) should inline regular/check.svg's content into the bundle.
+    log('STATIC INLINE', 'Asserting check.svg path data is inlined into .output/...');
+    const inlineProbe = await $`grep -r -l 'M441 103c9.4 9.4 9.4 24.6 0 33.9' ${join(appDir, '.output')}`
+      .quiet()
+      .nothrow();
+    if (inlineProbe.exitCode !== 0) {
+      throw new Error(
+        'Static inlining failed: check.svg path data not found in any built artifact. ' +
+          'The Nuxt module should have wired the Vite plugin to inline the SVG.',
+      );
+    }
+    log('STATIC INLINE', 'SVG inlined into bundle ✓');
+
+    // 10. Serve the built Nitro output and verify the icon URL resolves.
+    // This is the gate for the BIcon regression: previously the runtime
+    // fetch of /node_modules/... 404'd in any production deployment.
+    log('PREVIEW', 'Starting Nitro server (.output/server/index.mjs)...');
+    const previewProc = Bun.spawn(['node', '.output/server/index.mjs'], {
+      cwd: appDir,
+      env: { ...process.env, PORT: '4174', HOST: '127.0.0.1' },
+      stdout: 'ignore',
+      stderr: 'ignore',
+    });
+
+    try {
+      const iconUrl = 'http://127.0.0.1:4174/_design-system/icons/regular/check.svg';
+      let ready = false;
+      for (let i = 0; i < 40; i++) {
+        await new Promise((r) => setTimeout(r, 500));
+        try {
+          const probe = await fetch('http://127.0.0.1:4174/');
+          if (probe.ok || probe.status === 404) {
+            ready = true;
+            break;
+          }
+        } catch {
+          /* not yet */
+        }
+      }
+      if (!ready) throw new Error('Nitro server did not become ready within 20s');
+
+      log('PREVIEW', `Fetching ${iconUrl}...`);
+      const res = await fetch(iconUrl);
+      if (!res.ok) {
+        throw new Error(`Icon URL returned HTTP ${res.status}; expected 200`);
+      }
+      const body = await res.text();
+      if (!body.trimStart().startsWith('<svg')) {
+        throw new Error(`Icon URL did not return SVG markup; got: ${body.slice(0, 80)}...`);
+      }
+      log('PREVIEW', 'Icon URL serves valid SVG ✓');
+    } finally {
+      previewProc.kill();
+      await previewProc.exited;
+    }
 
     passed = true;
     console.log('\n' + '='.repeat(50));

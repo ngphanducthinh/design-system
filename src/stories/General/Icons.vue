@@ -84,12 +84,6 @@ const sizeOptions = Object.values(BIconSize).map((s) => ({ label: s, value: s })
           totalIcons.toLocaleString()
         }}</span>
         <span class="b:ml-1 b:text-sm b:text-gray-600">icon{{ totalIcons === 1 ? '' : 's' }}</span>
-        <template v-if="searchText">
-          <br /><span class="b:text-xs b:text-gray-600"
-            >matching "<em>{{ searchText }}</em
-            >"</span
-          >
-        </template>
       </div>
     </div>
 
@@ -112,7 +106,7 @@ const sizeOptions = Object.values(BIconSize).map((s) => ({ label: s, value: s })
             v-if="copiedIcon === icon.name"
             class="b:absolute b:inset-0 b:z-10 b:flex b:items-center b:justify-center b:rounded-xl"
           >
-            <span class="b:text-xs b:font-bold b:text-primary">Copied!</span>
+            <BIcon icon="circle-check" variant="solid" color="success" size="xl" />
           </div>
         </Transition>
 

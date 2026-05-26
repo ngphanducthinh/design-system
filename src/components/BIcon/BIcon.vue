@@ -69,9 +69,7 @@ const {
   brand?: boolean;
 }>();
 
-const ICONS_BASE_URL = import.meta.env.DEV
-  ? '/src/assets/icons'
-  : `/node_modules/${__PACKAGE_NAME__}/dist/assets/icons`;
+const ICONS_BASE_URL = '/_design-system/icons';
 
 const svgStyle = computed(() => ({
   width: width || `${BIconSizeMap[size]}rem`,
@@ -83,15 +81,33 @@ const svgStyle = computed(() => ({
 const iconFolder = computed(() => (brand ? 'brands' : variant));
 
 /**
- * SVG markup fetched at runtime from the static assets folder.
- * No dynamic import() - icons are NOT bundled as JS chunks.
- * They are served as plain .svg files copied to dist/assets/icons by viteStaticCopy.
+ * Map of `<variant>/<icon-name>` → raw SVG markup.
+ *
+ * In the published library this object literal is an inert sentinel — the
+ * `__BICON_STATIC_ICONS_PLACEHOLDER__` key is never read at runtime. When the
+ * `@7pmlabs/design-system/vite` plugin is in the consumer's pipeline, its
+ * `transform` hook replaces this exact literal in the bundled BIcon module
+ * with the AST-scanned set of statically-used icons, so they render in the
+ * first frame without a network roundtrip.
+ *
+ * Consumers without the plugin keep the inert object and fall back to the
+ * runtime fetch below — the build succeeds either way.
  */
+const STATIC_ICONS: Readonly<Record<string, string>> = Object.freeze({
+  __BICON_STATIC_ICONS_PLACEHOLDER__: '',
+});
+
 const svgMarkup = ref<string>('');
 
 const loadIcon = async () => {
+  const key = `${iconFolder.value}/${icon}`;
+  const inlined = STATIC_ICONS[key];
+  if (inlined !== undefined) {
+    svgMarkup.value = inlined;
+    return;
+  }
   svgMarkup.value = '';
-  const url = `${ICONS_BASE_URL}/${iconFolder.value}/${icon}.svg`;
+  const url = `${ICONS_BASE_URL}/${key}.svg`;
   try {
     const res = await fetch(url);
     if (!res.ok) {

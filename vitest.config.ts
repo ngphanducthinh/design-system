@@ -8,8 +8,19 @@ import viteConfig from './vite.config'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
+// Drop the design-system plugin during tests — it scans src/ for static
+// `<BIcon>` usages and inlines them, which would replace the BIcon module's
+// sentinel literal with a populated map and break the runtime-fetch tests
+// in BIcon.spec.ts. The plugin itself is exercised by the integration tests.
+const viteConfigForTest = {
+  ...viteConfig,
+  plugins: viteConfig.plugins?.filter(
+    (p) => !p || typeof p !== 'object' || !('name' in p) || p.name !== '@7pmlabs/design-system',
+  ),
+}
+
 export default mergeConfig(
-  viteConfig,
+  viteConfigForTest,
   defineConfig({
     test: {
       projects: [
