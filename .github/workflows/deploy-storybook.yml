@@ -47,7 +47,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Build Storybook
-        run: bun run build-storybook
+        run: bun run build-storybook -- --base-path=/7pmlabs-design-system/
 
       - name: Checkout Storybook repository
         uses: actions/checkout@v6

@@ -1,7 +1,14 @@
 import type { StorybookConfig } from '@storybook/vue3-vite'
 
 const config: StorybookConfig = {
-  staticDirs: ['./public'],
+  staticDirs: [
+    './public',
+    // Serve BIcon SVGs at the same URL the runtime fetch expects, both in dev
+    // and in the built `storybook-static/`. The designSystem Vite plugin's
+    // emit path is bypassed here because the project's vite.config.ts is in
+    // lib mode, which short-circuits the plugin's closeBundle hook.
+    { from: '../src/assets/icons', to: '/_design-system/icons' },
+  ],
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-docs',

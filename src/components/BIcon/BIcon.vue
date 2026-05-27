@@ -69,7 +69,14 @@ const {
   brand?: boolean;
 }>();
 
-const ICONS_BASE_URL = '/_design-system/icons';
+// Resolved at build time by the consuming bundler. For lib-mode publishes this
+// bakes to '/' (default Vite base), preserving the historical `/_design-system/icons`
+// URL. For consumers that build from source with a non-root base (e.g. Storybook
+// deployed under a project subpath), the base is honored automatically.
+const ICONS_BASE_URL = `${import.meta.env.BASE_URL}_design-system/icons`.replace(
+  /\/{2,}/g,
+  '/',
+);
 
 const svgStyle = computed(() => ({
   width: width || `${BIconSizeMap[size]}rem`,
