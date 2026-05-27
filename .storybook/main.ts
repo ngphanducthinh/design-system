@@ -20,5 +20,14 @@ const config: StorybookConfig = {
     name: '@storybook/vue3-vite',
     options: {},
   },
+  // Honor STORYBOOK_BASE_PATH (set by the deploy workflow for GitHub Pages)
+  // so the built site references assets under the project subpath.
+  // Storybook v10 has no `--base-path` CLI flag for `build`, hence viteFinal.
+  async viteFinal(config) {
+    if (process.env.STORYBOOK_BASE_PATH) {
+      config.base = process.env.STORYBOOK_BASE_PATH
+    }
+    return config
+  },
 }
 export default config
