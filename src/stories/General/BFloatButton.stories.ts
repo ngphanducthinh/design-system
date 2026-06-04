@@ -215,35 +215,47 @@ export const GroupWithTrigger: Story = {
 export const GroupPlacements: Story = {
   render: () => ({
     components: { BFloatButton, BFloatButtonGroup },
+    // Each cell wraps the group in a fixed-size spacer that pre-allocates room
+    // for the fully-expanded state, anchoring the trigger at the edge opposite
+    // the expansion direction. This keeps the Storybook card stable when users
+    // toggle the group open/closed.
     template: `
-      <div style="display:flex; gap:3rem; flex-wrap:wrap; padding:2rem; align-items:flex-end;">
+      <div style="display:flex; gap:3rem; flex-wrap:wrap; padding:3rem; align-items:flex-start;">
         <div style="text-align:center;">
           <p style="font-size:0.75rem; color:#767676; margin-bottom:0.5rem;">top</p>
-          <BFloatButtonGroup trigger="click" placement="top" style="display:inline-flex;">
-            <BFloatButton tooltip="A" />
-            <BFloatButton tooltip="B" />
-          </BFloatButtonGroup>
+          <div style="min-width:2.75rem; min-height:12rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+            <BFloatButtonGroup trigger="click" placement="top" style="display:inline-flex;">
+              <BFloatButton tooltip="A" />
+              <BFloatButton tooltip="B" />
+            </BFloatButtonGroup>
+          </div>
         </div>
         <div style="text-align:center;">
           <p style="font-size:0.75rem; color:#767676; margin-bottom:0.5rem;">bottom</p>
-          <BFloatButtonGroup trigger="click" placement="bottom" style="display:inline-flex;">
-            <BFloatButton tooltip="A" />
-            <BFloatButton tooltip="B" />
-          </BFloatButtonGroup>
+          <div style="min-width:2.75rem; min-height:12rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-start;">
+            <BFloatButtonGroup trigger="click" placement="bottom" style="display:inline-flex;">
+              <BFloatButton tooltip="A" />
+              <BFloatButton tooltip="B" />
+            </BFloatButtonGroup>
+          </div>
         </div>
         <div style="text-align:center;">
           <p style="font-size:0.75rem; color:#767676; margin-bottom:0.5rem;">left</p>
-          <BFloatButtonGroup trigger="click" placement="left" style="display:inline-flex;">
-            <BFloatButton tooltip="A" />
-            <BFloatButton tooltip="B" />
-          </BFloatButtonGroup>
+          <div style="min-width:12rem; min-height:2.75rem; display:flex; flex-direction:row; align-items:center; justify-content:flex-end;">
+            <BFloatButtonGroup trigger="click" placement="left" style="display:inline-flex;">
+              <BFloatButton tooltip="A" />
+              <BFloatButton tooltip="B" />
+            </BFloatButtonGroup>
+          </div>
         </div>
         <div style="text-align:center;">
           <p style="font-size:0.75rem; color:#767676; margin-bottom:0.5rem;">right</p>
-          <BFloatButtonGroup trigger="click" placement="right" style="display:inline-flex;">
-            <BFloatButton tooltip="A" />
-            <BFloatButton tooltip="B" />
-          </BFloatButtonGroup>
+          <div style="min-width:12rem; min-height:2.75rem; display:flex; flex-direction:row; align-items:center; justify-content:flex-start;">
+            <BFloatButtonGroup trigger="click" placement="right" style="display:inline-flex;">
+              <BFloatButton tooltip="A" />
+              <BFloatButton tooltip="B" />
+            </BFloatButtonGroup>
+          </div>
         </div>
       </div>
     `,

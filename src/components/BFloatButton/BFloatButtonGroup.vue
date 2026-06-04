@@ -241,13 +241,20 @@ const shapeClass = computed(
   pointer-events: auto;
 }
 
-/* ── Placement variants for list direction ── */
+/* ── Placement variants for list direction ──
+   DOM order is always [list, trigger]. For `bottom`/`right` we reverse
+   the container so the trigger comes before the list visually. */
 .b-float-button-group--top .b-float-button-group__list {
+  flex-direction: column-reverse;
+}
+
+.b-float-button-group--bottom {
   flex-direction: column-reverse;
 }
 
 .b-float-button-group--bottom .b-float-button-group__list {
   flex-direction: column;
+  margin: 0.75rem 0 0 0;
 }
 
 .b-float-button-group--left .b-float-button-group__list {
@@ -261,9 +268,13 @@ const shapeClass = computed(
 }
 
 /* ── Horizontal layout for left/right placements ── */
-.b-float-button-group--left,
-.b-float-button-group--right {
+.b-float-button-group--left {
   flex-direction: row;
+  align-items: center;
+}
+
+.b-float-button-group--right {
+  flex-direction: row-reverse;
   align-items: center;
 }
 
