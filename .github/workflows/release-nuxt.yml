@@ -1,8 +1,10 @@
 name: Release Nuxt Module
 
-# Reusable: invoked by release-all.yml. Not directly dispatchable — the
-# orchestrator is the only entry point so npm trusted publishing sees a
-# consistent caller workflow ref.
+# Primarily reusable: invoked by release-all.yml. workflow_dispatch is kept
+# as a backup escape hatch for releasing just this package directly — note
+# that direct dispatch requires release-nuxt.yml to be a registered npm
+# trusted publisher for @7pmlabs/design-system-nuxt (the orchestrator path
+# uses release-all.yml's binding instead).
 on:
   workflow_call:
     inputs:
@@ -12,6 +14,26 @@ on:
         type: string
       design-system-version:
         description: 'Version of @7pmlabs/design-system to depend on. Empty falls back to the latest published version.'
+        required: false
+        type: string
+        default: ''
+      dry-run:
+        description: 'Dry run (skip publish)'
+        required: false
+        type: boolean
+        default: false
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version bump type — ⚠️ Prefer the "Release All" workflow (orchestrates lib + nuxt + storybook). Direct dispatch only succeeds if release-nuxt.yml is registered as an npm trusted publisher for @7pmlabs/design-system-nuxt; otherwise publish fails with ENEEDAUTH.'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      design-system-version:
+        description: 'Version of @7pmlabs/design-system to depend on (e.g. 1.0.11). Leave blank to use the latest published version.'
         required: false
         type: string
         default: ''
