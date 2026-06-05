@@ -347,12 +347,13 @@ export const WithEvents: Story = {
         ],
       };
       const getEvents = (date: Date): BCalendarEvent[] => eventsByDay[date.getDate()] ?? [];
+      const defaultValue = new Date(2026, 4, 15);
 
-      return { getEvents };
+      return { getEvents, defaultValue };
     },
     template: `
       <div data-testid="events-wrapper" style="max-width: 1100px; margin: 1rem auto;">
-        <BCalendar data-testid="events-calendar" :events="getEvents" />
+        <BCalendar data-testid="events-calendar" :events="getEvents" :default-value="defaultValue" />
       </div>
     `,
   }),
@@ -585,6 +586,7 @@ export const InteractionTests: Story = {
     onChange: fn(),
     onSelect: fn(),
     onPanelChange: fn(),
+    defaultValue: new Date(2026, 4, 15),
   } as unknown as Story['args'],
   render: (args) => ({
     components: { BCalendar },

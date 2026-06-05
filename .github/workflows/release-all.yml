@@ -1,0 +1,75 @@
+name: Release All
+
+# Orchestrates a full release: publishes @7pmlabs/design-system first, then in
+# parallel publishes @7pmlabs/design-system-nuxt (pinned to the just-released
+# lib version) and deploys the Storybook site.
+
+on:
+  workflow_dispatch:
+    inputs:
+      lib-version:
+        description: 'Version bump for @7pmlabs/design-system'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      nuxt-version:
+        description: 'Version bump for @7pmlabs/design-system-nuxt'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      dry-run:
+        description: 'Dry run (skip npm publish, git tags, and Storybook deploy)'
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: release-all
+  cancel-in-progress: false
+
+permissions:
+  id-token: write   # OIDC for npm trusted publishing in child workflows
+  contents: write   # version bump commits + tags in child workflows
+
+jobs:
+  release-lib:
+    name: Release design-system
+    uses: ./.github/workflows/release.yml
+    permissions:
+      contents: write
+      id-token: write
+    with:
+      version: ${{ inputs.lib-version }}
+      dry-run: ${{ inputs.dry-run }}
+
+  release-nuxt:
+    name: Release design-system-nuxt
+    needs: [release-lib]
+    uses: ./.github/workflows/release-nuxt.yml
+    permissions:
+      contents: write
+      id-token: write
+    with:
+      version: ${{ inputs.nuxt-version }}
+      # On a real run, pin to the lib version we just published.
+      # On a dry-run the lib was never published, so leave this empty and let
+      # release-nuxt fall back to the latest currently-published lib version.
+      design-system-version: ${{ inputs.dry-run && '' || needs.release-lib.outputs.new-version }}
+      dry-run: ${{ inputs.dry-run }}
+
+  deploy-storybook:
+    name: Deploy Storybook
+    needs: [release-lib]
+    if: ${{ !inputs.dry-run }}
+    uses: ./.github/workflows/deploy-storybook.yml
+    permissions:
+      contents: read
+    secrets: inherit
+    with:
+      run-e2e: true
