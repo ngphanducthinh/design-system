@@ -1,21 +1,9 @@
 name: Release
 
+# Reusable: invoked by release-all.yml. Not directly dispatchable — the
+# orchestrator is the only entry point so npm trusted publishing sees a
+# consistent caller workflow ref.
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version bump type'
-        required: true
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
-      dry-run:
-        description: 'Dry run (skip publish)'
-        required: false
-        type: boolean
-        default: false
   workflow_call:
     inputs:
       version:
@@ -119,6 +107,10 @@ jobs:
           git add package.json
           git commit -m "chore: release v${{ steps.version.outputs.new }}"
           git tag "v${{ steps.version.outputs.new }}"
+          # Rebase onto the latest remote in case the branch moved since
+          # checkout (defensive — release-all serializes lib before nuxt, but
+          # leaves no surprise if anything else lands on the branch).
+          git pull --rebase origin ${{ github.ref_name }}
           git push origin HEAD:${{ github.ref_name }}
           git push origin "v${{ steps.version.outputs.new }}"
 

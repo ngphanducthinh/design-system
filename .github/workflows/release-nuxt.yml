@@ -1,26 +1,9 @@
 name: Release Nuxt Module
 
+# Reusable: invoked by release-all.yml. Not directly dispatchable — the
+# orchestrator is the only entry point so npm trusted publishing sees a
+# consistent caller workflow ref.
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version bump type'
-        required: true
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
-      design-system-version:
-        description: 'Version of @7pmlabs/design-system to depend on (e.g. 1.0.11). Leave blank to use the latest published version.'
-        required: false
-        type: string
-        default: ''
-      dry-run:
-        description: 'Dry run (skip publish)'
-        required: false
-        type: boolean
-        default: false
   workflow_call:
     inputs:
       version:
@@ -179,6 +162,11 @@ jobs:
           git add packages/design-system-nuxt/package.json
           git commit -m "chore: release design-system-nuxt v${{ steps.version.outputs.new }}"
           git tag "design-system-nuxt-v${{ steps.version.outputs.new }}"
+          # Rebase onto the latest remote — release-all may have pushed the
+          # design-system version-bump commit to the same branch while this
+          # job was running, which would otherwise reject the push as
+          # non-fast-forward.
+          git pull --rebase origin ${{ github.ref_name }}
           git push origin HEAD:${{ github.ref_name }}
           git push origin "design-system-nuxt-v${{ steps.version.outputs.new }}"
 
