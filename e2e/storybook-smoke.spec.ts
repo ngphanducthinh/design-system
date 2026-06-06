@@ -40,7 +40,7 @@ test('navigates components via sidebar', async ({ page }, testInfo) => {
       ]
     : [
         { group: 'General', component: 'Button', mode: 'story', target: 'default' },
-        { group: 'Data Entry', component: 'Input', mode: 'story', target: 'playground' },
+        { group: 'Data Entry', component: 'Input', mode: 'story', target: 'default' },
         { group: 'Data Display', component: 'Table', mode: 'story', target: 'basic' },
         { group: 'Feedback', component: 'Alert', mode: 'story', target: 'all-types' },
         { group: 'Feedback', component: 'Modal', mode: 'story', target: 'default' },
