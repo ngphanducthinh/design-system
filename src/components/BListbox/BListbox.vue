@@ -3,7 +3,7 @@ import { useComponentId } from '@/composables/useComponentId.ts';
 import { BCommonSize } from '@/types.ts';
 import { computed, nextTick, ref, useAttrs, watch } from 'vue';
 
-interface BListboxOption<V> {
+export interface BListboxOption<V> {
   /** Display label for the option. */
   label: string;
   /** Value associated with the option. */
