@@ -1,6 +1,6 @@
 # @7pmlabs/design-system
 
-A Vue 3 component library built with TypeScript, Tailwind CSS 4, and Ant Design inspiration. 57 components covering general, layout, forms, data display, feedback, and navigation.
+A Vue 3 component library built with TypeScript, Tailwind CSS 4, and Ant Design inspiration. 63 components covering general, layout, forms, data display, feedback, and navigation.
 
 📖 **Documentation:** https://ngphanducthinh.github.io/7pmlabs-design-system/
 
@@ -78,7 +78,7 @@ See [`packages/design-system-nuxt/README.md`](packages/design-system-nuxt/README
 
 ### General
 
-`BButton` · `BFloatButton` · `BIcon`
+`BButton` · `BFloatButton` · `BIcon` · `BLink`
 
 ### Layout
 
@@ -86,7 +86,7 @@ See [`packages/design-system-nuxt/README.md`](packages/design-system-nuxt/README
 
 ### Form
 
-`BAutoComplete` · `BCascader` · `BCheckbox` · `BColorPicker` · `BDatePicker` · `BForm` · `BInput` · `BInputNumber` · `BMentions` · `BRadio` · `BRate` · `BSelect` · `BSlider` · `BSwitch` · `BTimePicker` · `BTreeSelect` · `BUpload`
+`BAutoComplete` · `BCascader` · `BCheckbox` · `BColorPicker` · `BDatePicker` · `BForm` · `BInput` · `BInputNumber` · `BInputTags` · `BListbox` · `BMentions` · `BPinInput` · `BRadio` · `BRate` · `BSelect` · `BSlider` · `BSwitch` · `BTextarea` · `BTimePicker` · `BTreeSelect` · `BUpload`
 
 ### Data Display
 
@@ -98,7 +98,7 @@ See [`packages/design-system-nuxt/README.md`](packages/design-system-nuxt/README
 
 ### Navigation
 
-`BAnchor` · `BBreadcrumb` · `BDropdown` · `BMenu` · `BPagination` · `BSteps` · `BTabs`
+`BAnchor` · `BBreadcrumb` · `BContextMenu` · `BDropdown` · `BMenu` · `BPagination` · `BSteps` · `BTabs`
 
 ## Tech Stack
 

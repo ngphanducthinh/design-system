@@ -25,52 +25,67 @@ const meta = {
     options: {
       control: 'object',
       description: 'Data source for autocomplete suggestions.',
+      table: { category: 'Props' },
     },
     size: {
       control: 'select',
       options: Object.values(BCommonSize),
       description: 'Size of the input.',
-      table: { defaultValue: { summary: BCommonSize.Medium } },
+      table: { category: 'Props', defaultValue: { summary: BCommonSize.Medium } },
     },
     variant: {
       control: 'select',
       options: Object.values(BAutoCompleteVariant),
       description: 'Visual variant of the input.',
-      table: { defaultValue: { summary: BAutoCompleteVariant.Outlined } },
+      table: { category: 'Props', defaultValue: { summary: BAutoCompleteVariant.Outlined } },
     },
     status: {
       control: 'select',
       options: [undefined, ...Object.values(BAutoCompleteStatus)],
       description: 'Validation status.',
+      table: { category: 'Props' },
     },
     disabled: {
       control: 'boolean',
       description: 'Whether the component is disabled.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     placeholder: {
       control: 'text',
       description: 'Placeholder text for the input.',
+      table: { category: 'Props' },
     },
     allowClear: {
       control: 'boolean',
       description: 'Show clear button.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     backfill: {
       control: 'boolean',
       description: 'Populate input with highlighted option value on keyboard navigation.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     defaultActiveFirstOption: {
       control: 'boolean',
       description: 'Auto-activate the first option.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     popupMatchSelectWidth: {
       control: 'boolean',
       description: 'Match dropdown width to input.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
+    },
+    'onUpdate:modelValue': {
+      description: 'Emitted when the input value changes.',
+      table: { category: 'Events' },
+    },
+    onSelect: {
+      description: 'Emitted when an option is selected.',
+      table: { category: 'Events' },
+    },
+    onSearch: {
+      description: 'Emitted when the user types (use to populate options).',
+      table: { category: 'Events' },
     },
   },
   parameters: {
@@ -110,9 +125,9 @@ const emailSuffixes = ['@gmail.com', '@outlook.com', '@yahoo.com', '@icloud.com'
 // ═════════════════════════════════════════════
 
 // ─────────────────────────────────────────────
-// 1. Playground
+// Usage
 // ─────────────────────────────────────────────
-export const Playground: Story = {
+export const Default: Story = {
   args: {
     options: fruitOptions,
     placeholder: 'Type a fruit name...',
@@ -123,6 +138,13 @@ export const Playground: Story = {
     backfill: false,
     defaultActiveFirstOption: true,
     popupMatchSelectWidth: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<BAutoComplete v-model="value" :options="options" placeholder="Type..." />`,
+      },
+    },
   },
   render: (args) => ({
     components: { BAutoComplete },
@@ -139,10 +161,18 @@ export const Playground: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 2. Sizes
-// ─────────────────────────────────────────────
 export const Sizes: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BAutoComplete size="sm" :options="options" />
+<BAutoComplete size="md" :options="options" />
+<BAutoComplete size="lg" :options="options" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BAutoComplete },
     setup: () => {
@@ -170,10 +200,18 @@ export const Sizes: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 3. Variants
-// ─────────────────────────────────────────────
 export const Variants: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BAutoComplete variant="outlined" :options="options" />
+<BAutoComplete variant="filled" :options="options" />
+<BAutoComplete variant="borderless" :options="options" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BAutoComplete },
     setup: () => {
@@ -201,10 +239,79 @@ export const Variants: Story = {
   }),
 };
 
+export const Status: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BAutoComplete status="error" :options="options" />
+<BAutoComplete status="warning" :options="options" />
+        `,
+      },
+    },
+  },
+  render: () => ({
+    components: { BAutoComplete },
+    setup: () => {
+      const err = ref('');
+      const warn = ref('');
+      return { err, warn, fruitOptions };
+    },
+    template: `
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 320px;">
+        <div>
+          <p style="margin-bottom: 4px; font-size: 12px; color: #666;">Error</p>
+          <BAutoComplete v-model="err" :options="fruitOptions" status="error" placeholder="Error state" />
+        </div>
+        <div>
+          <p style="margin-bottom: 4px; font-size: 12px; color: #666;">Warning</p>
+          <BAutoComplete v-model="warn" :options="fruitOptions" status="warning" placeholder="Warning state" />
+        </div>
+      </div>
+    `,
+  }),
+};
+
+export const Disabled: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<BAutoComplete disabled :options="options" model-value="Apple" />`,
+      },
+    },
+  },
+  render: () => ({
+    components: { BAutoComplete },
+    setup: () => ({ fruitOptions }),
+    template: `
+      <div style="max-width: 320px;">
+        <BAutoComplete :options="fruitOptions" disabled aria-label="Disabled autocomplete" model-value="Apple" />
+      </div>
+    `,
+  }),
+};
+
 // ─────────────────────────────────────────────
-// 4. Dynamic options (email example)
+// Examples
 // ─────────────────────────────────────────────
 export const DynamicOptions: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Populate options reactively in response to <code>@search</code>. Common pattern for email/username completion.',
+      },
+      source: {
+        code: `
+<BAutoComplete
+  v-model="value"
+  :options="options"
+  :filter-option="false"
+  @search="handleSearch"
+/>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BAutoComplete },
     setup: () => {
@@ -239,14 +346,18 @@ export const DynamicOptions: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 5. Backfill
-// ─────────────────────────────────────────────
 export const Backfill: Story = {
   args: {
     options: fruitOptions,
     backfill: true,
     placeholder: 'Use arrow keys to backfill...',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<BAutoComplete v-model="value" :options="options" backfill />`,
+      },
+    },
   },
   render: (args) => ({
     components: { BAutoComplete },
@@ -263,39 +374,86 @@ export const Backfill: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 6. Status (validation)
-// ─────────────────────────────────────────────
-export const Status: Story = {
-  render: () => ({
+export const InteractionTest: Story = {
+  args: {
+    options: fruitOptions,
+    placeholder: 'Type to search...',
+    allowClear: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Types into the input, picks the filtered result with keyboard, then clears.',
+      },
+      source: {
+        code: `<BAutoComplete v-model="value" :options="options" allow-clear @select="onSelect" />`,
+      },
+    },
+  },
+  render: (args) => ({
     components: { BAutoComplete },
     setup: () => {
-      const err = ref('');
-      const warn = ref('');
-      return { err, warn, fruitOptions };
+      const value = ref('');
+      const selected = ref('none');
+      const onSelect = (val: string) => {
+        selected.value = val;
+      };
+      return { args, value, selected, onSelect };
     },
     template: `
-      <div style="padding: 40px; display: flex; flex-direction: column; gap: 16px; max-width: 320px;">
-        <div>
-          <p style="margin-bottom: 4px; font-size: 12px; color: #666;">Error</p>
-          <BAutoComplete v-model="err" :options="fruitOptions" status="error" placeholder="Error state" />
-        </div>
-        <div>
-          <p style="margin-bottom: 4px; font-size: 12px; color: #666;">Warning</p>
-          <BAutoComplete v-model="warn" :options="fruitOptions" status="warning" placeholder="Warning state" />
-        </div>
+      <div style="max-width: 320px;">
+        <BAutoComplete v-bind="args" v-model="value" @select="onSelect" />
+        <p data-testid="selected-value" style="margin-top: 12px; font-size: 12px; color: #666;">Selected: {{ selected }}</p>
+        <p data-testid="current-value" style="font-size: 12px; color: #666;">Value: "{{ value }}"</p>
       </div>
     `,
   }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole('combobox');
+
+    await userEvent.type(input, 'ban');
+
+    await waitFor(() => {
+      const options = document.querySelectorAll('[role="option"]');
+      expect(options.length).toBe(1);
+      expect(options[0].textContent).toContain('Banana');
+    });
+
+    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.keyboard('{Enter}');
+
+    await waitFor(() => {
+      expect(canvas.getByTestId('selected-value').textContent).toContain('banana');
+      expect((input as HTMLInputElement).value).toBe('banana');
+    });
+
+    const clearBtn = canvasElement.querySelector('.b-auto-complete__clear');
+    if (clearBtn) {
+      await userEvent.click(clearBtn);
+      await waitFor(() => {
+        expect((input as HTMLInputElement).value).toBe('');
+      });
+    }
+  },
 };
 
 // ─────────────────────────────────────────────
-// 7. Accessibility
+// Accessibility
 // ─────────────────────────────────────────────
 export const Accessibility: Story = {
   args: {
     options: fruitOptions,
     placeholder: 'Accessible autocomplete',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Renders <code>role="combobox"</code> with <code>aria-haspopup="listbox"</code>, <code>aria-expanded</code>, ' +
+          '<code>aria-autocomplete="list"</code>, and <code>aria-activedescendant</code> as the user navigates.',
+      },
+    },
   },
   render: (args) => ({
     components: { BAutoComplete },
@@ -304,7 +462,7 @@ export const Accessibility: Story = {
       return { args, value };
     },
     template: `
-      <div style="padding: 40px; max-width: 320px;">
+      <div style="max-width: 320px;">
         <label id="ac-label" style="display: block; margin-bottom: 4px; font-size: 14px;">Fruit search</label>
         <BAutoComplete v-bind="args" v-model="value" aria-labelledby="ac-label" />
       </div>
@@ -355,9 +513,31 @@ export const Accessibility: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 8. Theming (CSS vars override)
+// Theming
 // ─────────────────────────────────────────────
 export const Theming: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Override <code>--b-auto-complete-active-border-color</code>, <code>--b-auto-complete-option-selected-bg</code>, ' +
+          '<code>--b-auto-complete-option-padding-x</code>, and friends on the component root.',
+      },
+      source: {
+        code: `
+<BAutoComplete
+  v-model="value"
+  :options="options"
+  style="
+    --b-auto-complete-active-border-color: #7c3aed;
+    --b-auto-complete-hover-border-color: #a78bfa;
+    --b-auto-complete-option-selected-bg: #f3e8ff;
+  "
+/>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BAutoComplete },
     setup: () => {
@@ -403,191 +583,58 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 9. Interaction test
+// Design Tokens — MUST be the LAST story
 // ─────────────────────────────────────────────
-export const InteractionTest: Story = {
-  args: {
-    options: fruitOptions,
-    placeholder: 'Type to search...',
-    allowClear: true,
-  },
-  render: (args) => ({
-    components: { BAutoComplete },
-    setup: () => {
-      const value = ref('');
-      const selected = ref('none');
-      const onSelect = (val: string) => {
-        selected.value = val;
-      };
-      return { args, value, selected, onSelect };
-    },
-    template: `
-      <div style="padding: 40px; max-width: 320px;">
-        <BAutoComplete v-bind="args" v-model="value" @select="onSelect" />
-        <p data-testid="selected-value" style="margin-top: 12px; font-size: 12px; color: #666;">Selected: {{ selected }}</p>
-        <p data-testid="current-value" style="font-size: 12px; color: #666;">Value: "{{ value }}"</p>
-      </div>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const input = canvas.getByRole('combobox');
+type TokenRow = { token: string; defaultValue: string; description: string };
 
-    // Type to filter
-    await userEvent.type(input, 'ban');
+const DESIGN_TOKENS: TokenRow[] = [
+  { token: '--b-auto-complete-active-border-color', defaultValue: '#1677ff', description: 'Border color when input is focused.' },
+  { token: '--b-auto-complete-active-outline-color', defaultValue: 'rgba(5,145,255,0.1)', description: 'Outline / glow color on focus.' },
+  { token: '--b-auto-complete-hover-border-color', defaultValue: '#4096ff', description: 'Border color on hover.' },
+  { token: '--b-auto-complete-border-color', defaultValue: '#d9d9d9', description: 'Default border color.' },
+  { token: '--b-auto-complete-clear-bg', defaultValue: '#ffffff', description: 'Background of the clear button.' },
+  { token: '--b-auto-complete-selector-bg', defaultValue: 'rgba(0,0,0,0.04)', description: 'Background of input in filled variant.' },
+  { token: '--b-auto-complete-option-active-bg', defaultValue: 'rgba(0,0,0,0.04)', description: 'Background of highlighted / hovered option.' },
+  { token: '--b-auto-complete-option-font-size', defaultValue: '14px', description: 'Font size of option text.' },
+  { token: '--b-auto-complete-option-height', defaultValue: '32px', description: 'Height of each option item.' },
+  { token: '--b-auto-complete-option-line-height', defaultValue: '1.5714', description: 'Line height of option text.' },
+  { token: '--b-auto-complete-option-padding-x', defaultValue: '12px', description: 'Horizontal padding of options.' },
+  { token: '--b-auto-complete-option-padding-y', defaultValue: '5px', description: 'Vertical padding of options.' },
+  { token: '--b-auto-complete-option-selected-bg', defaultValue: '#e6f4ff', description: 'Background of the selected option.' },
+  { token: '--b-auto-complete-option-selected-color', defaultValue: 'rgba(0,0,0,0.88)', description: 'Text color of the selected option.' },
+  { token: '--b-auto-complete-option-selected-font-weight', defaultValue: '600', description: 'Font weight of the selected option.' },
+  { token: '--b-auto-complete-z-index-popup', defaultValue: '1050', description: 'z-index of the dropdown popup.' },
+];
 
-    // Verify filtered options appear
-    await waitFor(() => {
-      const options = document.querySelectorAll('[role="option"]');
-      expect(options.length).toBe(1);
-      expect(options[0].textContent).toContain('Banana');
-    });
-
-    // Select with Enter
-    await userEvent.keyboard('{ArrowDown}');
-    await userEvent.keyboard('{Enter}');
-
-    // Verify selection
-    await waitFor(() => {
-      expect(canvas.getByTestId('selected-value').textContent).toContain('banana');
-      expect((input as HTMLInputElement).value).toBe('banana');
-    });
-
-    // Clear
-    const clearBtn = canvasElement.querySelector('.b-auto-complete__clear');
-    if (clearBtn) {
-      await userEvent.click(clearBtn);
-      await waitFor(() => {
-        expect((input as HTMLInputElement).value).toBe('');
-      });
-    }
-  },
-};
-
-// ─────────────────────────────────────────────
-// 10. Disabled
-// ─────────────────────────────────────────────
-export const Disabled: Story = {
-  args: {
-    options: fruitOptions,
-    disabled: true,
-    placeholder: 'Disabled autocomplete',
-    modelValue: 'Apple',
-  },
-  render: (args) => ({
-    components: { BAutoComplete },
-    setup: () => ({ args }),
-    template: `
-      <div style="padding: 40px; max-width: 320px;">
-        <BAutoComplete v-bind="args" />
-      </div>
-    `,
-  }),
-};
-
-// ─────────────────────────────────────────────
-// 11. Design Token Reference
-// ─────────────────────────────────────────────
 export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BAutoComplete</code>. Override on the component root or any ancestor selector.',
+      },
+    },
+  },
   render: () => ({
+    setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
-      <div style="padding: 40px; font-family: monospace; font-size: 13px; max-width: 800px;">
-        <h3 style="margin-bottom: 16px; font-size: 16px; font-family: sans-serif;">BAutoComplete Design Tokens</h3>
-        <p style="margin-bottom: 16px; font-size: 13px; font-family: sans-serif; color: #666;">
-          Override these CSS variables on <code>.b-auto-complete</code> or an ancestor to customize the component appearance.
-        </p>
-        <table style="width: 100%; border-collapse: collapse; background: #ffffff;">
-          <thead>
-            <tr style="border-bottom: 2px solid #e5e7eb;">
-              <th style="text-align: left; padding: 8px 12px;">Variable</th>
-              <th style="text-align: left; padding: 8px 12px;">Default</th>
-              <th style="text-align: left; padding: 8px 12px;">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-active-border-color</td>
-              <td style="padding: 8px 12px;">#1677ff</td>
-              <td style="padding: 8px 12px;">Border color when input is focused</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-active-outline-color</td>
-              <td style="padding: 8px 12px;">rgba(5,145,255,0.1)</td>
-              <td style="padding: 8px 12px;">Outline/glow color on focus</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-hover-border-color</td>
-              <td style="padding: 8px 12px;">#4096ff</td>
-              <td style="padding: 8px 12px;">Border color on hover</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-border-color</td>
-              <td style="padding: 8px 12px;">#d9d9d9</td>
-              <td style="padding: 8px 12px;">Default border color</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-clear-bg</td>
-              <td style="padding: 8px 12px;">#ffffff</td>
-              <td style="padding: 8px 12px;">Background of the clear button</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-selector-bg</td>
-              <td style="padding: 8px 12px;">rgba(0,0,0,0.04)</td>
-              <td style="padding: 8px 12px;">Background of input in filled variant</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-option-active-bg</td>
-              <td style="padding: 8px 12px;">rgba(0,0,0,0.04)</td>
-              <td style="padding: 8px 12px;">Background of highlighted/hovered option</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-option-font-size</td>
-              <td style="padding: 8px 12px;">14px</td>
-              <td style="padding: 8px 12px;">Font size of option text</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-option-height</td>
-              <td style="padding: 8px 12px;">32px</td>
-              <td style="padding: 8px 12px;">Height of each option item</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-option-line-height</td>
-              <td style="padding: 8px 12px;">1.5714</td>
-              <td style="padding: 8px 12px;">Line height of option text</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-option-padding-x</td>
-              <td style="padding: 8px 12px;">12px</td>
-              <td style="padding: 8px 12px;">Horizontal padding of options</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-option-padding-y</td>
-              <td style="padding: 8px 12px;">5px</td>
-              <td style="padding: 8px 12px;">Vertical padding of options</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-option-selected-bg</td>
-              <td style="padding: 8px 12px;">#e6f4ff</td>
-              <td style="padding: 8px 12px;">Background of the selected option</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-option-selected-color</td>
-              <td style="padding: 8px 12px;">rgba(0,0,0,0.88)</td>
-              <td style="padding: 8px 12px;">Text color of the selected option</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-auto-complete-option-selected-font-weight</td>
-              <td style="padding: 8px 12px;">600</td>
-              <td style="padding: 8px 12px;">Font weight of the selected option</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px;">--b-auto-complete-z-index-popup</td>
-              <td style="padding: 8px 12px;">1050</td>
-              <td style="padding: 8px 12px;">z-index of the dropdown popup</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:oklch(96% 0.002 260);">
+            <th style="text-align:left;padding:10px 12px;">CSS Variable</th>
+            <th style="text-align:left;padding:10px 12px;">Default</th>
+            <th style="text-align:left;padding:10px 12px;">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+            <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+            <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+            <td style="padding:8px 12px;">{{ t.description }}</td>
+          </tr>
+        </tbody>
+      </table>
     `,
   }),
 };

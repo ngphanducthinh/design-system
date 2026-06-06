@@ -26,71 +26,76 @@ const meta = {
     options: {
       control: 'object',
       description: 'Data source for select options.',
+      table: { category: 'Props' },
     },
     size: {
       control: 'select',
       options: Object.values(BCommonSize),
       description: 'Size of the selector.',
-      table: { defaultValue: { summary: BCommonSize.Medium } },
+      table: { category: 'Props', defaultValue: { summary: BCommonSize.Medium } },
     },
     variant: {
       control: 'select',
       options: Object.values(BSelectVariant),
       description: 'Visual variant of the selector.',
-      table: { defaultValue: { summary: BSelectVariant.Outlined } },
+      table: { category: 'Props', defaultValue: { summary: BSelectVariant.Outlined } },
     },
     mode: {
       control: 'select',
       options: [undefined, ...Object.values(BSelectMode)],
       description: 'Selection mode (multiple or tags).',
+      table: { category: 'Props' },
     },
     status: {
       control: 'select',
       options: [undefined, ...Object.values(BSelectStatus)],
       description: 'Validation status.',
+      table: { category: 'Props' },
     },
     disabled: {
       control: 'boolean',
       description: 'Whether the component is disabled.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     placeholder: {
       control: 'text',
       description: 'Placeholder text.',
+      table: { category: 'Props' },
     },
     allowClear: {
       control: 'boolean',
       description: 'Show clear button.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     showSearch: {
       control: 'boolean',
       description: 'Enable search/filter in single mode.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     loading: {
       control: 'boolean',
       description: 'Show loading spinner.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     listHeight: {
       control: 'number',
       description: 'Max height of dropdown in px.',
-      table: { defaultValue: { summary: '256' } },
+      table: { category: 'Props', defaultValue: { summary: '256' } },
     },
     maxTagCount: {
       control: 'number',
       description: 'Max visible tags (multiple/tags mode).',
+      table: { category: 'Props' },
     },
     popupMatchSelectWidth: {
       control: 'boolean',
       description: 'Match dropdown width to selector.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     defaultActiveFirstOption: {
       control: 'boolean',
       description: 'Auto-activate the first option.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
   },
   parameters: {
@@ -561,6 +566,15 @@ export const Disabled: Story = {
 // 14. Design Token Reference (LAST)
 // ─────────────────────────────────────────────
 export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BSelect</code>. Override on the component root or any ancestor selector.',
+      },
+    },
+  },
   render: () => ({
     template: `
       <div style="padding: 40px; font-family: monospace; font-size: 13px; max-width: 900px;">

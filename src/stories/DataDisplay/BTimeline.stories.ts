@@ -587,13 +587,277 @@ export const Accessibility: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 12. Design Tokens
+// 12. Theming
+// ─────────────────────────────────────────────
+/**
+ * Override `--b-timeline-*` CSS custom properties to retheme the timeline.
+ */
+export const Theming: Story = {
+  name: 'Theming (CSS vars)',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Override <code>--b-timeline-line-color</code>, <code>--b-timeline-dot-size</code>, ' +
+          'and <code>--b-timeline-color-blue</code> on the component root to retheme.',
+      },
+      source: {
+        code: `<BTimeline
+  :items="items"
+  style="
+    --b-timeline-line-color: oklch(75% 0.12 262);
+    --b-timeline-dot-size: 14px;
+    --b-timeline-color-blue: oklch(55% 0.22 310);
+  "
+/>`,
+      },
+    },
+  },
+  render: () => ({
+    components: { BTimeline },
+    setup() {
+      return { BASIC_ITEMS };
+    },
+    template: `
+      <div style="padding: 2rem; max-width: 500px;">
+        <BTimeline
+          :items="BASIC_ITEMS"
+          style="
+            --b-timeline-line-color: oklch(75% 0.12 262);
+            --b-timeline-dot-size: 14px;
+            --b-timeline-color-blue: oklch(55% 0.22 310);
+            --b-timeline-content-font-size: 15px;
+          "
+        />
+      </div>
+    `,
+  }),
+};
+
+// ─────────────────────────────────────────────
+// NEW: Variant
+// ─────────────────────────────────────────────
+/**
+ * `variant="filled"` (default) renders solid dots.
+ * `variant="outlined"` renders hollow ring dots.
+ */
+export const Variant: Story = {
+  name: 'Variant: Filled vs Outlined',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      source: {
+        code: `<!-- Filled (default) -->
+<BTimeline variant="filled" :items="items" />
+
+<!-- Outlined -->
+<BTimeline variant="outlined" :items="items" />`,
+      },
+    },
+  },
+  render: () => ({
+    components: { BTimeline },
+    setup() {
+      return { BASIC_ITEMS };
+    },
+    template: `
+      <div style="padding: 2rem; display: flex; gap: 3rem; flex-wrap: wrap;">
+        <div>
+          <p style="font-size:12px;color:#666;margin:0 0 12px;font-weight:600;">Filled (default)</p>
+          <BTimeline data-testid="filled" variant="filled" :items="BASIC_ITEMS" style="max-width:280px;" />
+        </div>
+        <div>
+          <p style="font-size:12px;color:#666;margin:0 0 12px;font-weight:600;">Outlined</p>
+          <BTimeline data-testid="outlined" variant="outlined" :items="BASIC_ITEMS" style="max-width:280px;" />
+        </div>
+      </div>
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    expect(canvas.getByTestId('filled').classList.contains('b-timeline--filled')).toBe(true);
+    expect(canvas.getByTestId('outlined').classList.contains('b-timeline--outlined')).toBe(true);
+  },
+};
+
+// ─────────────────────────────────────────────
+// NEW: Horizontal orientation
+// ─────────────────────────────────────────────
+/**
+ * `orientation="horizontal"` lays items left-to-right with a horizontal connecting line.
+ */
+export const Horizontal: Story = {
+  name: 'Orientation: Horizontal',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      source: {
+        code: `<BTimeline orientation="horizontal" :items="items" />`,
+      },
+    },
+  },
+  render: () => ({
+    components: { BTimeline },
+    setup() {
+      const steps: BTimelineItemData[] = [
+        { content: 'Order placed', color: 'blue' },
+        { content: 'Processing', color: 'green' },
+        { content: 'Shipped', color: 'blue' },
+        { content: 'Delivered', color: 'gray' },
+      ];
+      return { steps };
+    },
+    template: `
+      <div style="padding: 2rem;">
+        <BTimeline data-testid="horizontal" orientation="horizontal" :items="steps" />
+      </div>
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const el = canvas.getByTestId('horizontal');
+    expect(el.classList.contains('b-timeline--horizontal')).toBe(true);
+    expect(el.querySelectorAll('.b-timeline-item').length).toBe(4);
+  },
+};
+
+// ─────────────────────────────────────────────
+// NEW: Per-item placement
+// ─────────────────────────────────────────────
+/**
+ * `item.placement` overrides the global mode for a single item,
+ * pinning it to `'start'` or `'end'` regardless of the timeline mode.
+ */
+export const PerItemPlacement: Story = {
+  name: 'Per-item Placement',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      source: {
+        code: `<BTimeline mode="start" :items="[
+  { content: 'Default (start side)', color: 'blue' },
+  { content: 'Pinned to end', color: 'green', placement: 'end' },
+  { content: 'Default again', color: 'red' },
+  { content: 'Also pinned to end', color: 'gray', placement: 'end' },
+]" />`,
+      },
+    },
+  },
+  render: () => ({
+    components: { BTimeline },
+    setup() {
+      const mixedItems: BTimelineItemData[] = [
+        { content: 'Default (start side)', color: 'blue' },
+        { content: 'Pinned to end side', color: 'green', placement: 'end' },
+        { content: 'Default again', color: 'red' },
+        { content: 'Also pinned to end', color: 'gray', placement: 'end' },
+      ];
+      return { mixedItems };
+    },
+    template: `
+      <div style="padding: 2rem; max-width: 600px;">
+        <BTimeline data-testid="placement" mode="alternate" :items="mixedItems" />
+      </div>
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const el = canvas.getByTestId('placement');
+    const items = el.querySelectorAll('.b-timeline-item');
+    // Items 1 and 3 are pinned to 'end' → right side
+    expect(items[1].classList.contains('b-timeline-item--right')).toBe(true);
+    expect(items[3].classList.contains('b-timeline-item--right')).toBe(true);
+  },
+};
+
+// ─────────────────────────────────────────────
+// 13. Interaction tests
+// ─────────────────────────────────────────────
+/**
+ * Automated play function covering key interactions.
+ */
+export const InteractionTests: Story = {
+  name: 'Interaction – full flow',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Automated play function verifying item rendering, color classes, pending state, and label rendering.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BTimeline },
+    setup() {
+      const items: BTimelineItemData[] = [
+        { content: 'Alpha event', color: 'blue', title: 'T+0' },
+        { content: 'Beta event', color: 'green', title: 'T+1' },
+        { content: 'Gamma event', color: 'red', icon: '★', title: 'T+2' },
+        { content: 'Delta event', color: 'gray', title: 'T+3' },
+      ];
+      const reverse = ref(false);
+      return { items, reverse };
+    },
+    template: `
+      <div style="padding: 2rem; max-width: 640px;">
+        <div style="margin-bottom:1rem;">
+          <button data-testid="toggle-reverse" @click="reverse = !reverse">Toggle reverse</button>
+        </div>
+        <BTimeline data-testid="int" :items="items" mode="alternate" :reverse="reverse" />
+      </div>
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const el = canvas.getByTestId('int');
+
+    // ── Initial render ──────────────────────────────
+    expect(el.classList.contains('b-timeline--alternate')).toBe(true);
+    const items = el.querySelectorAll('.b-timeline-item');
+    expect(items.length).toBe(4);
+
+    // Colors
+    expect(items[0].classList.contains('b-timeline-item--blue')).toBe(true);
+    expect(items[1].classList.contains('b-timeline-item--green')).toBe(true);
+    expect(items[2].classList.contains('b-timeline-item--red')).toBe(true);
+    expect(items[3].classList.contains('b-timeline-item--gray')).toBe(true);
+
+    // Alternate positioning
+    expect(items[0].classList.contains('b-timeline-item--left')).toBe(true);
+    expect(items[1].classList.contains('b-timeline-item--right')).toBe(true);
+
+    // Custom dot on item 2
+    const customDot = items[2].querySelector('.b-timeline-item__dot--custom') as HTMLElement | null;
+    expect(customDot?.dataset.icon).toBe('★');
+
+    // Labels visible in alternate mode
+    const labels = el.querySelectorAll('.b-timeline-item__label');
+    expect(labels.length).toBe(4);
+    expect(labels[0].textContent?.trim()).toBe('T+0');
+
+    // ── Toggle reverse ──────────────────────────────
+    const toggleBtn = canvas.getByTestId('toggle-reverse');
+    await toggleBtn.click();
+    await new Promise((r) => setTimeout(r, 50));
+    const reversedItems = el.querySelectorAll('.b-timeline-item');
+    // After reverse, last item content should be Alpha
+    expect(reversedItems[3].querySelector('.b-timeline-item__content')?.textContent?.trim()).toBe(
+      'Alpha event',
+    );
+  },
+};
+
+
+// ─────────────────────────────────────────────
+// 13. Design Tokens (LAST)
 // ─────────────────────────────────────────────
 /**
  * Every `--b-timeline-*` CSS custom property with a live preview showing
  * what each token controls. Override any of them inline or via a class.
  */
-export const Theming: Story = {
+export const DesignTokens: Story = {
   name: 'Design Tokens',
   parameters: {
     controls: { disable: true },
@@ -825,218 +1089,4 @@ export const Theming: Story = {
 </div>
     `,
   }),
-};
-
-// ─────────────────────────────────────────────
-// NEW: Variant
-// ─────────────────────────────────────────────
-/**
- * `variant="filled"` (default) renders solid dots.
- * `variant="outlined"` renders hollow ring dots.
- */
-export const Variant: Story = {
-  name: 'Variant: Filled vs Outlined',
-  parameters: {
-    controls: { disable: true },
-    docs: {
-      source: {
-        code: `<!-- Filled (default) -->
-<BTimeline variant="filled" :items="items" />
-
-<!-- Outlined -->
-<BTimeline variant="outlined" :items="items" />`,
-      },
-    },
-  },
-  render: () => ({
-    components: { BTimeline },
-    setup() {
-      return { BASIC_ITEMS };
-    },
-    template: `
-      <div style="padding: 2rem; display: flex; gap: 3rem; flex-wrap: wrap;">
-        <div>
-          <p style="font-size:12px;color:#666;margin:0 0 12px;font-weight:600;">Filled (default)</p>
-          <BTimeline data-testid="filled" variant="filled" :items="BASIC_ITEMS" style="max-width:280px;" />
-        </div>
-        <div>
-          <p style="font-size:12px;color:#666;margin:0 0 12px;font-weight:600;">Outlined</p>
-          <BTimeline data-testid="outlined" variant="outlined" :items="BASIC_ITEMS" style="max-width:280px;" />
-        </div>
-      </div>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    expect(canvas.getByTestId('filled').classList.contains('b-timeline--filled')).toBe(true);
-    expect(canvas.getByTestId('outlined').classList.contains('b-timeline--outlined')).toBe(true);
-  },
-};
-
-// ─────────────────────────────────────────────
-// NEW: Horizontal orientation
-// ─────────────────────────────────────────────
-/**
- * `orientation="horizontal"` lays items left-to-right with a horizontal connecting line.
- */
-export const Horizontal: Story = {
-  name: 'Orientation: Horizontal',
-  parameters: {
-    controls: { disable: true },
-    docs: {
-      source: {
-        code: `<BTimeline orientation="horizontal" :items="items" />`,
-      },
-    },
-  },
-  render: () => ({
-    components: { BTimeline },
-    setup() {
-      const steps: BTimelineItemData[] = [
-        { content: 'Order placed', color: 'blue' },
-        { content: 'Processing', color: 'green' },
-        { content: 'Shipped', color: 'blue' },
-        { content: 'Delivered', color: 'gray' },
-      ];
-      return { steps };
-    },
-    template: `
-      <div style="padding: 2rem;">
-        <BTimeline data-testid="horizontal" orientation="horizontal" :items="steps" />
-      </div>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const el = canvas.getByTestId('horizontal');
-    expect(el.classList.contains('b-timeline--horizontal')).toBe(true);
-    expect(el.querySelectorAll('.b-timeline-item').length).toBe(4);
-  },
-};
-
-// ─────────────────────────────────────────────
-// NEW: Per-item placement
-// ─────────────────────────────────────────────
-/**
- * `item.placement` overrides the global mode for a single item,
- * pinning it to `'start'` or `'end'` regardless of the timeline mode.
- */
-export const PerItemPlacement: Story = {
-  name: 'Per-item Placement',
-  parameters: {
-    controls: { disable: true },
-    docs: {
-      source: {
-        code: `<BTimeline mode="start" :items="[
-  { content: 'Default (start side)', color: 'blue' },
-  { content: 'Pinned to end', color: 'green', placement: 'end' },
-  { content: 'Default again', color: 'red' },
-  { content: 'Also pinned to end', color: 'gray', placement: 'end' },
-]" />`,
-      },
-    },
-  },
-  render: () => ({
-    components: { BTimeline },
-    setup() {
-      const mixedItems: BTimelineItemData[] = [
-        { content: 'Default (start side)', color: 'blue' },
-        { content: 'Pinned to end side', color: 'green', placement: 'end' },
-        { content: 'Default again', color: 'red' },
-        { content: 'Also pinned to end', color: 'gray', placement: 'end' },
-      ];
-      return { mixedItems };
-    },
-    template: `
-      <div style="padding: 2rem; max-width: 600px;">
-        <BTimeline data-testid="placement" mode="alternate" :items="mixedItems" />
-      </div>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const el = canvas.getByTestId('placement');
-    const items = el.querySelectorAll('.b-timeline-item');
-    // Items 1 and 3 are pinned to 'end' → right side
-    expect(items[1].classList.contains('b-timeline-item--right')).toBe(true);
-    expect(items[3].classList.contains('b-timeline-item--right')).toBe(true);
-  },
-};
-
-// ─────────────────────────────────────────────
-// 13. Interaction tests
-// ─────────────────────────────────────────────
-/**
- * Automated play function covering key interactions.
- */
-export const InteractionTests: Story = {
-  name: 'Interaction – full flow',
-  parameters: {
-    controls: { disable: true },
-    docs: {
-      description: {
-        story:
-          'Automated play function verifying item rendering, color classes, pending state, and label rendering.',
-      },
-    },
-  },
-  render: () => ({
-    components: { BTimeline },
-    setup() {
-      const items: BTimelineItemData[] = [
-        { content: 'Alpha event', color: 'blue', title: 'T+0' },
-        { content: 'Beta event', color: 'green', title: 'T+1' },
-        { content: 'Gamma event', color: 'red', icon: '★', title: 'T+2' },
-        { content: 'Delta event', color: 'gray', title: 'T+3' },
-      ];
-      const reverse = ref(false);
-      return { items, reverse };
-    },
-    template: `
-      <div style="padding: 2rem; max-width: 640px;">
-        <div style="margin-bottom:1rem;">
-          <button data-testid="toggle-reverse" @click="reverse = !reverse">Toggle reverse</button>
-        </div>
-        <BTimeline data-testid="int" :items="items" mode="alternate" :reverse="reverse" />
-      </div>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const el = canvas.getByTestId('int');
-
-    // ── Initial render ──────────────────────────────
-    expect(el.classList.contains('b-timeline--alternate')).toBe(true);
-    const items = el.querySelectorAll('.b-timeline-item');
-    expect(items.length).toBe(4);
-
-    // Colors
-    expect(items[0].classList.contains('b-timeline-item--blue')).toBe(true);
-    expect(items[1].classList.contains('b-timeline-item--green')).toBe(true);
-    expect(items[2].classList.contains('b-timeline-item--red')).toBe(true);
-    expect(items[3].classList.contains('b-timeline-item--gray')).toBe(true);
-
-    // Alternate positioning
-    expect(items[0].classList.contains('b-timeline-item--left')).toBe(true);
-    expect(items[1].classList.contains('b-timeline-item--right')).toBe(true);
-
-    // Custom dot on item 2
-    const customDot = items[2].querySelector('.b-timeline-item__dot--custom') as HTMLElement | null;
-    expect(customDot?.dataset.icon).toBe('★');
-
-    // Labels visible in alternate mode
-    const labels = el.querySelectorAll('.b-timeline-item__label');
-    expect(labels.length).toBe(4);
-    expect(labels[0].textContent?.trim()).toBe('T+0');
-
-    // ── Toggle reverse ──────────────────────────────
-    const toggleBtn = canvas.getByTestId('toggle-reverse');
-    await toggleBtn.click();
-    await new Promise((r) => setTimeout(r, 50));
-    const reversedItems = el.querySelectorAll('.b-timeline-item');
-    // After reverse, last item content should be Alpha
-    expect(reversedItems[3].querySelector('.b-timeline-item__content')?.textContent?.trim()).toBe(
-      'Alpha event',
-    );
-  },
 };

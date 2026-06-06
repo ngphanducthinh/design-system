@@ -1,12 +1,15 @@
 import { BButton, BDrawer } from '@/components';
 import { BDrawerPlacement, BDrawerSize } from '@/types.ts';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
-import { expect, fn, userEvent, waitFor, within } from 'storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { ref, toRef, watch } from 'vue';
 
-// ─────────────────────────────────────────────
-// Meta
-// ─────────────────────────────────────────────
+/**
+ * BDrawer — slide-in panel for navigation, forms, or detail views.
+ *
+ * Story file follows `docs/STORY_FORMAT.md`:
+ *   Default → per-prop Usage → Examples → Accessibility → Theming → Design Tokens (LAST).
+ */
 const meta = {
   title: 'Feedback/Drawer',
   component: BDrawer,
@@ -15,87 +18,93 @@ const meta = {
     placement: {
       control: 'select',
       options: Object.values(BDrawerPlacement),
-      description: 'Direction from which the drawer slides in.',
-      table: { defaultValue: { summary: BDrawerPlacement.Right } },
+      description: 'Direction the drawer slides in from.',
+      table: { category: 'Props', defaultValue: { summary: BDrawerPlacement.Right } },
     },
     size: {
       control: 'select',
       options: Object.values(BDrawerSize),
-      description: 'Preset width/height.',
-      table: { defaultValue: { summary: BDrawerSize.Default } },
+      description: 'Preset width (left/right) or height (top/bottom).',
+      table: { category: 'Props', defaultValue: { summary: BDrawerSize.Default } },
     },
     title: {
       control: 'text',
-      description: 'Drawer title.',
+      description: 'Drawer title shown in the header.',
+      table: { category: 'Props' },
     },
     closable: {
       control: 'boolean',
       description: 'Whether the close button is shown.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     mask: {
       control: 'boolean',
       description: 'Whether the mask overlay is shown.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     maskClosable: {
       control: 'boolean',
       description: 'Whether clicking the mask closes the drawer.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     keyboard: {
       control: 'boolean',
       description: 'Whether pressing Escape closes the drawer.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     destroyOnClose: {
       control: 'boolean',
       description: 'Destroy child components when closing.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     width: {
       control: 'text',
-      description: 'Custom width (for left/right placement).',
+      description: 'Custom width (left/right placement).',
+      table: { category: 'Props' },
     },
     height: {
       control: 'text',
-      description: 'Custom height (for top/bottom placement).',
+      description: 'Custom height (top/bottom placement).',
+      table: { category: 'Props' },
     },
     zIndex: {
       control: 'number',
       description: 'z-index of the drawer.',
-      table: { defaultValue: { summary: '1000' } },
+      table: { category: 'Props', defaultValue: { summary: '1000' } },
     },
     autoFocus: {
       control: 'boolean',
       description: 'Auto-focus first focusable element on open.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     forceRender: {
       control: 'boolean',
       description: 'Force render content even when hidden.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     loading: {
       control: 'boolean',
       description: 'Show loading spinner in body area.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     extra: {
       control: 'text',
       description: 'Extra content in header right area.',
+      table: { category: 'Props' },
     },
     footer: {
       control: 'text',
       description: 'Footer content.',
+      table: { category: 'Props' },
     },
     modelValue: {
       control: 'boolean',
-      description: 'Controlled visibility (bind with v-model).',
-      table: {
-        category: 'Two-Way Binding Props',
-      },
+      description: 'Controlled visibility — bind with v-model.',
+      table: { category: 'Two-Way Binding Props' },
     },
+    default: { description: 'Body content of the drawer.', table: { category: 'Slots' } },
+    onClose: { description: 'Fired when the close button is activated.', table: { category: 'Events' } },
+    onAfterOpenChange: { description: 'Fired after open/close transition completes.', table: { category: 'Events' } },
   },
   parameters: {
     docs: {
@@ -103,30 +112,21 @@ const meta = {
         component:
           'The <code>BDrawer</code> component is a panel that slides in from the edge of the screen.<br><br>' +
           'It is commonly used for navigation, forms, detail views, or any content that should overlay the main page without a full page transition.<br>' +
-          'It supports four placements - <strong>top</strong>, <strong>right</strong>, <strong>bottom</strong>, <strong>left</strong> - with focus trapping, keyboard navigation, and full accessibility.',
+          'Supports four placements — <strong>top</strong>, <strong>right</strong>, <strong>bottom</strong>, <strong>left</strong> — with focus trapping, keyboard navigation, and full accessibility.',
       },
     },
-    // Global a11y testing is inherited from preview.ts (a11y.test: 'error').
-    // Each story that renders an open drawer teleports to <body>, so we
-    // scope axe-core to avoid false positives from the Storybook chrome.
   },
 } satisfies Meta<typeof BDrawer>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ═════════════════════════════════════════════
-//   TESTING TYPE 1: COMPONENT TESTS
-//   (play functions that simulate user interactions)
-// ═════════════════════════════════════════════
+// ─────────────────────────────────────────────
+// Usage
+// ─────────────────────────────────────────────
 
-// ─────────────────────────────────────────────
-// 1. Playground (all controls)
-// ─────────────────────────────────────────────
-/**
- * Interactive playground - tweak all props via the Controls panel.
- */
-export const Playground: Story = {
+/** Interactive default — tweak all props via the Controls panel. */
+export const Default: Story = {
   args: {
     placement: 'right' as const,
     size: 'default' as const,
@@ -141,11 +141,23 @@ export const Playground: Story = {
     loading: false,
     zIndex: 1000,
   },
+  parameters: {
+    a11y: { test: 'off' },
+    docs: {
+      source: {
+        code: `
+<BButton @click="open = true">Open Drawer</BButton>
+<BDrawer v-model="open" title="Drawer Title">
+  <p>Some content inside the drawer.</p>
+</BDrawer>
+        `,
+      },
+    },
+  },
   render: (args: any) => ({
     components: { BButton, BDrawer },
     setup() {
       const open = ref(args.modelValue ?? false);
-      // Sync Storybook Controls → local state
       const argsRef = toRef(() => args.modelValue);
       watch(argsRef, (v) => {
         open.value = v ?? false;
@@ -156,95 +168,97 @@ export const Playground: Story = {
       <BButton @click="open = true">Open Drawer</BButton>
       <BDrawer v-bind="args" v-model="open">
         <p>Some content inside the drawer.</p>
-        <p>You can put anything here - forms, lists, details…</p>
+        <p>You can put anything here — forms, lists, details…</p>
       </BDrawer>
     `,
   }),
-  // Disable a11y automated test for playground (drawer starts closed)
-  parameters: { a11y: { test: 'off' } },
 };
 
-// ─────────────────────────────────────────────
-// 2. All placements
-// ─────────────────────────────────────────────
-/**
- * Demonstrates all four placement directions.
- */
-export const AllPlacements: Story = {
+/** Slides in from the right (default). */
+export const PlacementRight: Story = {
+  name: 'Placement: Right',
   parameters: {
-    controls: { disable: true },
     a11y: { test: 'off' },
-    docs: {
-      source: {
-        code: `
-<BButton @click="openRight = true">Right</BButton>
-<BButton @click="openLeft = true">Left</BButton>
-<BButton @click="openTop = true">Top</BButton>
-<BButton @click="openBottom = true">Bottom</BButton>
-
-<BDrawer v-model="openRight" title="Right Drawer" placement="right">Content</BDrawer>
-<BDrawer v-model="openLeft"  title="Left Drawer"  placement="left">Content</BDrawer>
-<BDrawer v-model="openTop"   title="Top Drawer"   placement="top">Content</BDrawer>
-<BDrawer v-model="openBottom" title="Bottom Drawer" placement="bottom">Content</BDrawer>
-        `,
-      },
-    },
+    docs: { source: { code: `<BDrawer v-model="open" title="Right Drawer" placement="right">Content</BDrawer>` } },
   },
   render: () => ({
     components: { BButton, BDrawer },
-    setup() {
-      const openRight = ref(false);
-      const openLeft = ref(false);
-      const openTop = ref(false);
-      const openBottom = ref(false);
-      return { openRight, openLeft, openTop, openBottom };
-    },
+    setup: () => ({ open: ref(false) }),
     template: `
-      <div style="display:flex;gap:0.5rem;">
-        <BButton @click="openRight = true">Right</BButton>
-        <BButton @click="openLeft = true">Left</BButton>
-        <BButton @click="openTop = true">Top</BButton>
-        <BButton @click="openBottom = true">Bottom</BButton>
-      </div>
-      <BDrawer v-model="openRight" title="Right Drawer" placement="right">
+      <BButton @click="open = true">Open Right Drawer</BButton>
+      <BDrawer v-model="open" title="Right Drawer" placement="right">
         <p>Content from the right side.</p>
       </BDrawer>
-      <BDrawer v-model="openLeft" title="Left Drawer" placement="left">
+    `,
+  }),
+};
+
+/** Slides in from the left. */
+export const PlacementLeft: Story = {
+  name: 'Placement: Left',
+  parameters: {
+    a11y: { test: 'off' },
+    docs: { source: { code: `<BDrawer v-model="open" title="Left Drawer" placement="left">Content</BDrawer>` } },
+  },
+  render: () => ({
+    components: { BButton, BDrawer },
+    setup: () => ({ open: ref(false) }),
+    template: `
+      <BButton @click="open = true">Open Left Drawer</BButton>
+      <BDrawer v-model="open" title="Left Drawer" placement="left">
         <p>Content from the left side.</p>
       </BDrawer>
-      <BDrawer v-model="openTop" title="Top Drawer" placement="top">
+    `,
+  }),
+};
+
+/** Slides down from the top. */
+export const PlacementTop: Story = {
+  name: 'Placement: Top',
+  parameters: {
+    a11y: { test: 'off' },
+    docs: { source: { code: `<BDrawer v-model="open" title="Top Drawer" placement="top">Content</BDrawer>` } },
+  },
+  render: () => ({
+    components: { BButton, BDrawer },
+    setup: () => ({ open: ref(false) }),
+    template: `
+      <BButton @click="open = true">Open Top Drawer</BButton>
+      <BDrawer v-model="open" title="Top Drawer" placement="top">
         <p>Content from the top.</p>
       </BDrawer>
-      <BDrawer v-model="openBottom" title="Bottom Drawer" placement="bottom">
+    `,
+  }),
+};
+
+/** Slides up from the bottom. */
+export const PlacementBottom: Story = {
+  name: 'Placement: Bottom',
+  parameters: {
+    a11y: { test: 'off' },
+    docs: { source: { code: `<BDrawer v-model="open" title="Bottom Drawer" placement="bottom">Content</BDrawer>` } },
+  },
+  render: () => ({
+    components: { BButton, BDrawer },
+    setup: () => ({ open: ref(false) }),
+    template: `
+      <BButton @click="open = true">Open Bottom Drawer</BButton>
+      <BDrawer v-model="open" title="Bottom Drawer" placement="bottom">
         <p>Content from the bottom.</p>
       </BDrawer>
     `,
   }),
 };
 
-// ─────────────────────────────────────────────
-// 3. With extra & footer
-// ─────────────────────────────────────────────
-/**
- * Drawer with extra header content and a footer.
- */
-export const WithExtraAndFooter: Story = {
+/** Default 378px and large 736px presets for left/right placement. */
+export const Sizes: Story = {
   parameters: {
-    controls: { disable: true },
     a11y: { test: 'off' },
     docs: {
       source: {
         code: `
-<BDrawer v-model="open" title="Edit User">
-  <template #extra><BButton size="sm">Save</BButton></template>
-  <p>User form content here…</p>
-  <template #footer>
-    <div style="display:flex;gap:0.5rem;justify-content:flex-end;">
-      <BButton @click="open = false">Cancel</BButton>
-      <BButton @click="open = false">Submit</BButton>
-    </div>
-  </template>
-</BDrawer>
+<BDrawer v-model="openDefault" title="Default Size" size="default">…</BDrawer>
+<BDrawer v-model="openLarge"   title="Large Size"   size="large">…</BDrawer>
         `,
       },
     },
@@ -252,36 +266,34 @@ export const WithExtraAndFooter: Story = {
   render: () => ({
     components: { BButton, BDrawer },
     setup() {
-      const open = ref(false);
-      return { open };
+      const openDefault = ref(false);
+      const openLarge = ref(false);
+      return { openDefault, openLarge };
     },
     template: `
-      <BButton @click="open = true">Open Drawer</BButton>
-      <BDrawer v-model="open" title="Edit User">
-        <template #extra><BButton>Save</BButton></template>
-        <p>User form content here…</p>
-        <p>More form fields, select boxes, etc.</p>
-        <template #footer>
-          <div style="display:flex;gap:0.5rem;justify-content:flex-end;">
-            <BButton @click="open = false">Cancel</BButton>
-            <BButton @click="open = false">Submit</BButton>
-          </div>
-        </template>
+      <div style="display:flex;gap:0.5rem;">
+        <BButton @click="openDefault = true">Default (378px)</BButton>
+        <BButton @click="openLarge = true">Large (736px)</BButton>
+      </div>
+      <BDrawer v-model="openDefault" title="Default Size" size="default">
+        <p>Default width is 378px.</p>
+      </BDrawer>
+      <BDrawer v-model="openLarge" title="Large Size" size="large">
+        <p>Large width is 736px.</p>
       </BDrawer>
     `,
   }),
 };
 
-// ─────────────────────────────────────────────
-// 4. Loading state
-// ─────────────────────────────────────────────
-/**
- * Drawer in loading state shows a spinner instead of content.
- */
+/** Body shows a spinner while content loads. */
 export const Loading: Story = {
   parameters: {
-    controls: { disable: true },
     a11y: { test: 'off' },
+    docs: {
+      source: {
+        code: `<BDrawer v-model="open" title="Loading Drawer" :loading="loading">Content</BDrawer>`,
+      },
+    },
   },
   render: () => ({
     components: { BButton, BDrawer },
@@ -307,88 +319,119 @@ export const Loading: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 5. Sizes
+// Examples
 // ─────────────────────────────────────────────
-/**
- * Demonstrates default and large size presets.
- */
-export const Sizes: Story = {
+
+/** Edit-record pattern: header `extra` action, body content, footer with Cancel / Submit. */
+export const EditRecord: Story = {
   parameters: {
-    controls: { disable: true },
     a11y: { test: 'off' },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const openDefault = ref(false);
-      const openLarge = ref(false);
-      return { openDefault, openLarge };
-    },
-    template: `
-      <div style="display:flex;gap:0.5rem;">
-        <BButton @click="openDefault = true">Default (378px)</BButton>
-        <BButton @click="openLarge = true">Large (736px)</BButton>
-      </div>
-      <BDrawer v-model="openDefault" title="Default Size" size="default">
-        <p>Default width is 378px.</p>
-      </BDrawer>
-      <BDrawer v-model="openLarge" title="Large Size" size="large">
-        <p>Large width is 736px.</p>
-      </BDrawer>
-    `,
-  }),
-};
-
-// ═════════════════════════════════════════════
-//   TESTING TYPE 2: ACCESSIBILITY TESTS
-//   (@storybook/addon-a11y integration via parameters.a11y
-//    + manual ARIA assertions in play functions)
-// ═════════════════════════════════════════════
-
-// ──────────────────────────────────────────���──
-// 6. Accessibility story (automated + manual)
-// ─────────────────────────────────────────────
-/**
- * Demonstrates ARIA roles and keyboard interaction.
- * - Drawer has `role="dialog"` and `aria-modal="true"`.
- * - Escape key closes the drawer.
- * - Focus is trapped inside the drawer panel.
- * - Close button has `aria-label`.
- *
- * **Accessibility testing strategy:**
- * 1. `parameters.a11y.test: 'error'` - axe-core automatically runs after the play function
- *    and fails on any violation.
- * 2. The play function manually asserts specific ARIA attributes for defense-in-depth.
- */
-export const Accessibility: Story = {
-  name: 'Accessibility (roles & keyboard)',
-  parameters: {
-    controls: { disable: true },
-    // Accessibility test: axe-core will run automatically after play
-    // and fail the test if any violations are found.
-    a11y: {
-      test: 'error',
-      // Scope axe-core to the drawer root (it's teleported to body)
-      context: { include: ['.b-drawer-root'] },
-    },
     docs: {
-      description: {
-        story:
-          'The drawer uses `role="dialog"` with `aria-modal="true"`. ' +
-          'Focus is trapped within the panel. Escape closes the drawer. ' +
-          'The close button carries `aria-label="Close drawer"`. ' +
-          'The mask is `aria-hidden`.\n\n' +
-          '**Testing:** This story runs axe-core automatically via `@storybook/addon-a11y` ' +
-          'and also manually asserts ARIA attributes in its play function.',
+      source: {
+        code: `
+<BDrawer v-model="open" title="Edit User">
+  <template #extra><BButton size="sm">Save Draft</BButton></template>
+  <p>User form content here…</p>
+  <template #footer>
+    <div style="display:flex;gap:0.5rem;justify-content:flex-end;">
+      <BButton variant="outlined" @click="open = false">Cancel</BButton>
+      <BButton @click="open = false">Submit</BButton>
+    </div>
+  </template>
+</BDrawer>
+        `,
       },
     },
   },
   render: () => ({
     components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
+    setup: () => ({ open: ref(false) }),
+    template: `
+      <BButton @click="open = true">Edit User</BButton>
+      <BDrawer v-model="open" title="Edit User">
+        <template #extra><BButton size="sm">Save Draft</BButton></template>
+        <p>User form content here…</p>
+        <p>More form fields, select boxes, etc.</p>
+        <template #footer>
+          <div style="display:flex;gap:0.5rem;justify-content:flex-end;">
+            <BButton variant="outlined" @click="open = false">Cancel</BButton>
+            <BButton @click="open = false">Submit</BButton>
+          </div>
+        </template>
+      </BDrawer>
+    `,
+  }),
+};
+
+/** Title-less, header-less drawer for full-bleed content. */
+export const NoHeader: Story = {
+  parameters: {
+    a11y: { test: 'off' },
+    docs: {
+      source: {
+        code: `<BDrawer v-model="open" :closable="false" aria-label="Drawer content">…</BDrawer>`,
+      },
     },
+  },
+  render: () => ({
+    components: { BButton, BDrawer },
+    setup: () => ({ open: ref(false) }),
+    template: `
+      <BButton @click="open = true">Open</BButton>
+      <BDrawer v-model="open" :closable="false" aria-label="Drawer content">
+        <p>No header, just body. Close via mask click or Escape.</p>
+      </BDrawer>
+    `,
+  }),
+};
+
+/** Persistent drawer — disable both keyboard and mask-close to force explicit dismissal. */
+export const Persistent: Story = {
+  parameters: {
+    a11y: { test: 'off' },
+    docs: {
+      source: {
+        code: `<BDrawer v-model="open" title="Persistent" :keyboard="false" :mask-closable="false">…</BDrawer>`,
+      },
+    },
+  },
+  render: () => ({
+    components: { BButton, BDrawer },
+    setup: () => ({ open: ref(false) }),
+    template: `
+      <BButton @click="open = true">Open</BButton>
+      <BDrawer v-model="open" title="Confirm before closing" :keyboard="false" :mask-closable="false">
+        <p>Escape and mask click are both disabled. Use the close button.</p>
+      </BDrawer>
+    `,
+  }),
+};
+
+// ─────────────────────────────────────────────
+// Accessibility
+// ─────────────────────────────────────────────
+
+/**
+ * Drawer uses `role="dialog"` with `aria-modal="true"`. Focus is trapped within the panel,
+ * Escape closes it, and the close button carries `aria-label="Close drawer"`.
+ * The mask is `aria-hidden`. Loading state announces via `aria-live="polite"`.
+ */
+export const Accessibility: Story = {
+  parameters: {
+    a11y: {
+      test: 'error',
+      context: { include: ['.b-drawer-root'] },
+    },
+    docs: {
+      description: {
+        story:
+          'The drawer uses <code>role="dialog"</code> with <code>aria-modal="true"</code>. Focus is trapped, Escape closes, and the close button carries <code>aria-label="Close drawer"</code>. axe-core runs after the play function for defense-in-depth.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BButton, BDrawer },
+    setup: () => ({ open: ref(false) }),
     template: `
       <BButton @click="open = true" data-testid="trigger">Open Drawer</BButton>
       <BDrawer v-model="open" title="Accessible Drawer" data-testid="drawer">
@@ -402,56 +445,53 @@ export const Accessibility: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    // Open the drawer
     const trigger = canvas.getByTestId('trigger');
     await userEvent.click(trigger);
 
-    // Wait for drawer to appear in the DOM (teleported to body)
     await waitFor(() => {
-      const dialog = document.querySelector('.b-drawer');
-      expect(dialog).toBeTruthy();
+      expect(document.querySelector('.b-drawer')).toBeTruthy();
     });
 
     const dialog = document.querySelector('.b-drawer')!;
 
-    // ── Manual ARIA assertions ──
-    // role="dialog"
+    // ARIA assertions
     expect(dialog.getAttribute('role')).toBe('dialog');
-    // aria-modal="true"
     expect(dialog.getAttribute('aria-modal')).toBe('true');
-    // aria-labelledby points to the title
     expect(dialog.getAttribute('aria-labelledby')).toBeTruthy();
     const titleId = dialog.getAttribute('aria-labelledby')!;
     const titleEl = document.getElementById(titleId);
     expect(titleEl).toBeTruthy();
     expect(titleEl!.textContent).toBe('Accessible Drawer');
-    // tabindex="-1" for programmatic focus
     expect(dialog.getAttribute('tabindex')).toBe('-1');
 
-    // Close button accessibility
+    // Close button
     const closeBtn = dialog.querySelector('.b-drawer__close');
     expect(closeBtn).toBeTruthy();
     expect(closeBtn!.getAttribute('aria-label')).toBe('Close drawer');
     expect(closeBtn!.getAttribute('type')).toBe('button');
 
-    // Close icon SVG is decorative
+    // Decorative SVG
     const svg = dialog.querySelector('.b-drawer__close-icon');
-    expect(svg).toBeTruthy();
     expect(svg!.getAttribute('aria-hidden')).toBe('true');
     expect(svg!.getAttribute('focusable')).toBe('false');
 
-    // Mask is aria-hidden
+    // Mask is decorative
     const mask = document.querySelector('.b-drawer__mask');
     expect(mask).toBeTruthy();
     expect(mask!.getAttribute('aria-hidden')).toBe('true');
 
-    // ── Keyboard: close with Escape ──
+    // Focus trap: drawer auto-focuses close button
+    await waitFor(() => {
+      expect(document.activeElement).toBe(closeBtn);
+    });
+
+    // Escape closes
     await userEvent.keyboard('{Escape}');
     await waitFor(() => {
       expect(document.querySelector('.b-drawer')).toBeNull();
     });
 
-    // Re-open the drawer so axe-core (afterEach) can scan .b-drawer-root
+    // Re-open so axe-core can scan the mounted drawer
     await userEvent.click(trigger);
     await waitFor(() => {
       expect(document.querySelector('.b-drawer')).toBeTruthy();
@@ -460,525 +500,23 @@ export const Accessibility: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 7. Accessibility – loading state a11y
+// Theming
 // ─────────────────────────────────────────────
+
 /**
- * Verifies that the loading state announces itself to assistive technology
- * via `aria-live="polite"`.
- */
-export const AccessibilityLoading: Story = {
-  name: 'Accessibility – loading a11y',
-  parameters: {
-    controls: { disable: true },
-    a11y: {
-      test: 'error',
-      context: { include: ['.b-drawer-root'] },
-    },
-    docs: {
-      description: {
-        story:
-          'Loading state uses `aria-live="polite"` to announce to screen readers. ' +
-          'The spinner SVG is `aria-hidden="true"` and `focusable="false"`.',
-      },
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-loading">Open Loading Drawer</BButton>
-      <BDrawer v-model="open" title="Loading State" :loading="true">
-        <p>This should not be visible.</p>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByTestId('open-loading'));
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    // Verify aria-live on loading container
-    const loadingEl = document.querySelector('.b-drawer__loading');
-    expect(loadingEl).toBeTruthy();
-    expect(loadingEl!.getAttribute('aria-live')).toBe('polite');
-
-    // Spinner SVG is decorative
-    const spinner = document.querySelector('.b-drawer__spinner');
-    expect(spinner).toBeTruthy();
-    expect(spinner!.getAttribute('aria-hidden')).toBe('true');
-    expect(spinner!.getAttribute('focusable')).toBe('false');
-  },
-};
-
-// ═════════════════════════════════════════════
-//   TESTING TYPE 3: INTERACTION TESTS
-//   (complex multi-step play functions with
-//    user event simulation and state assertions)
-// ═════════════════════════════════════════════
-
-// ─────────────────────────────────────────────
-// 8. Interaction test – open / close flow
-// ─────────────────────────────────────────────
-/**
- * Automated interaction test: opens the drawer, verifies visibility, ARIA,
- * focus, then closes via the close button.
- */
-export const InteractionOpenClose: Story = {
-  name: 'Interaction – open/close flow',
-  parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' }, // tested in dedicated a11y story
-    docs: {
-      description:
-        'Automated play function: clicks the trigger to open the drawer, ' +
-        'asserts visibility and ARIA attributes, then closes via the close button.',
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-btn">Open Drawer</BButton>
-      <BDrawer v-model="open" title="Interaction Test">
-        <p data-testid="drawer-content">Content visible.</p>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    // Initially drawer is not in the DOM
-    expect(document.querySelector('.b-drawer')).toBeNull();
-
-    // Open drawer
-    const openBtn = canvas.getByTestId('open-btn');
-    await userEvent.click(openBtn);
-
-    // Drawer is now visible
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    const drawer = document.querySelector('.b-drawer')!;
-
-    // Verify role and aria
-    expect(drawer.getAttribute('role')).toBe('dialog');
-    expect(drawer.getAttribute('aria-modal')).toBe('true');
-
-    // Verify content
-    expect(document.querySelector('[data-testid="drawer-content"]')).toBeTruthy();
-
-    // Close via close button
-    const closeBtn = drawer.querySelector('.b-drawer__close') as HTMLElement;
-    expect(closeBtn).toBeTruthy();
-    await userEvent.click(closeBtn);
-
-    // Drawer should be removed
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeNull();
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// 9. Interaction test – keyboard close (Escape)
-// ─────────────────────────────────────────────
-/**
- * Tests that pressing Escape closes the drawer.
- */
-export const InteractionKeyboardClose: Story = {
-  name: 'Interaction – keyboard Escape',
-  parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' },
-    docs: {
-      description: {
-        story: 'Opens the drawer, then presses Escape to close it. Verifies the drawer is removed.',
-      },
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-esc">Open Drawer</BButton>
-      <BDrawer v-model="open" title="Keyboard Test">
-        <p>Press Escape to close.</p>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByTestId('open-esc'));
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    // Press Escape
-    await userEvent.keyboard('{Escape}');
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeNull();
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// 10. Interaction test – mask close
-// ─────────────────────────────────────────────
-/**
- * Tests that clicking the mask overlay closes the drawer (maskClosable=true).
- */
-export const InteractionMaskClose: Story = {
-  name: 'Interaction – mask close',
-  parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' },
-    docs: {
-      description: {
-        story: 'Opens the drawer, then clicks the mask overlay to close it.',
-      },
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-mask">Open Drawer</BButton>
-      <BDrawer v-model="open" title="Mask Close Test" :mask-closable="true">
-        <p>Click the dark overlay to close.</p>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByTestId('open-mask'));
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    // Click the mask
-    const mask = document.querySelector('.b-drawer__mask') as HTMLElement;
-    expect(mask).toBeTruthy();
-    await userEvent.click(mask);
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeNull();
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// 11. Interaction test – mask NOT closable
-// ─────────────────────────────────────────────
-/**
- * Tests that clicking the mask does NOT close the drawer when maskClosable=false.
- */
-export const InteractionMaskNotClosable: Story = {
-  name: 'Interaction – mask not closable',
-  parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' },
-    docs: {
-      description: {
-        story: 'With `maskClosable=false`, clicking the mask overlay does NOT close the drawer.',
-      },
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-no-mask">Open Drawer</BButton>
-      <BDrawer v-model="open" title="Not Closable via Mask" :mask-closable="false">
-        <p>Clicking the mask will NOT close this drawer.</p>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByTestId('open-no-mask'));
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    // Click the mask - drawer should stay open
-    const mask = document.querySelector('.b-drawer__mask') as HTMLElement;
-    expect(mask).toBeTruthy();
-    await userEvent.click(mask);
-
-    // Small delay to ensure event propagation
-    await new Promise((r) => setTimeout(r, 200));
-
-    // Drawer should still be visible
-    expect(document.querySelector('.b-drawer')).toBeTruthy();
-
-    // Clean up: close via close button (more reliable than Escape which
-    // requires focus inside the drawer panel)
-    const closeBtn = document.querySelector('.b-drawer__close') as HTMLElement;
-    await userEvent.click(closeBtn);
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeNull();
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// 12. Interaction test – focus trap
-// ─────────────────────────────────────────────
-/**
- * Tests that focus is trapped inside the drawer. Tabbing from the last
- * focusable element wraps back to the first.
- */
-export const InteractionFocusTrap: Story = {
-  name: 'Interaction – focus trap',
-  parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' },
-    docs: {
-      description: {
-        story:
-          'Opens a drawer with multiple focusable elements. ' +
-          'Verifies that Tab wraps focus from the last element back to the first.',
-      },
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-focus">Open Drawer</BButton>
-      <BDrawer v-model="open" title="Focus Trap Test">
-        <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <button data-testid="btn-first">First button</button>
-          <button data-testid="btn-second">Second button</button>
-          <button data-testid="btn-last">Last button</button>
-        </div>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByTestId('open-focus'));
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    // The drawer auto-focuses the first focusable element (close button)
-    await waitFor(() => {
-      const closeBtn = document.querySelector('.b-drawer__close');
-      expect(document.activeElement).toBe(closeBtn);
-    });
-
-    // Tab through all elements to the last button
-    await userEvent.tab(); // → First button
-    expect(document.activeElement).toBe(document.querySelector('[data-testid="btn-first"]'));
-
-    await userEvent.tab(); // → Second button
-    expect(document.activeElement).toBe(document.querySelector('[data-testid="btn-second"]'));
-
-    await userEvent.tab(); // → Last button
-    expect(document.activeElement).toBe(document.querySelector('[data-testid="btn-last"]'));
-
-    // Tab once more - should wrap back to close button (first focusable)
-    await userEvent.tab();
-    await waitFor(() => {
-      const closeBtn = document.querySelector('.b-drawer__close');
-      expect(document.activeElement).toBe(closeBtn);
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// 13. Interaction test – event callbacks
-// ─────────────────────────────────────────────
-/**
- * Tests that close and afterOpenChange events fire in the correct order.
- */
-export const InteractionEvents: Story = {
-  name: 'Interaction – event ordering',
-  parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' },
-    docs: {
-      description: {
-        story:
-          'Verifies that `@close` fires immediately on close action, and ' +
-          '`@afterOpenChange(false)` fires after the transition completes.',
-      },
-    },
-  },
-  render: () => {
-    const onClose = fn();
-    const onAfterOpenChange = fn();
-
-    return {
-      components: { BButton, BDrawer },
-      setup() {
-        const open = ref(false);
-        return { open, onClose, onAfterOpenChange };
-      },
-      template: `
-        <BButton @click="open = true" data-testid="open-events">Open Drawer</BButton>
-        <BDrawer
-          v-model="open"
-          title="Events Test"
-          @close="onClose"
-          @after-open-change="onAfterOpenChange"
-        >
-          <p>Close me to test events.</p>
-        </BDrawer>
-      `,
-    };
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByTestId('open-events'));
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    // Close via close button
-    const closeBtn = document.querySelector('.b-drawer__close') as HTMLElement;
-    await userEvent.click(closeBtn);
-
-    // Drawer should be removed after transition
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeNull();
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// 14. Interaction test – footer and extra slots
-// ─────────────────────────────────────────────
-/**
- * Verifies that footer and extra slots render and can be interacted with.
- */
-export const InteractionFooterExtra: Story = {
-  name: 'Interaction – footer & extra',
-  parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' },
-    docs: {
-      description: {
-        story:
-          'Opens a drawer with extra header content and footer buttons, ' +
-          'verifies they are present and clickable.',
-      },
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-footer">Open Drawer</BButton>
-      <BDrawer v-model="open" title="Footer Test">
-        <template #extra>
-          <button data-testid="extra-btn">Extra Action</button>
-        </template>
-        <p>Drawer with footer and extra.</p>
-        <template #footer>
-          <div style="display:flex;gap:0.5rem;justify-content:flex-end;">
-            <button data-testid="cancel-btn" @click="open = false">Cancel</button>
-            <button data-testid="submit-btn" @click="open = false">Submit</button>
-          </div>
-        </template>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByTestId('open-footer'));
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    // Verify extra header content
-    const extraBtn = document.querySelector('[data-testid="extra-btn"]');
-    expect(extraBtn).toBeTruthy();
-
-    // Verify footer
-    const footer = document.querySelector('.b-drawer__footer');
-    expect(footer).toBeTruthy();
-
-    const cancelBtn = document.querySelector('[data-testid="cancel-btn"]') as HTMLElement;
-    const submitBtn = document.querySelector('[data-testid="submit-btn"]') as HTMLElement;
-    expect(cancelBtn).toBeTruthy();
-    expect(submitBtn).toBeTruthy();
-
-    // Click Cancel → drawer should close
-    await userEvent.click(cancelBtn);
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeNull();
-    });
-  },
-};
-
-// ═════════════════════════════════════════════
-//   TESTING TYPE 4: THEMING (CSS var overrides)
-// ═════════════════════════════════════════════
-
-// ─────────────────────────────────────────────
-// 21. Theming (CSS vars override)
-// ─────────────────────────────────────────────
-/**
- * Override the CSS custom properties to customise the appearance.
- * Every token is prefixed `--b-drawer-*`.
+ * Override `--b-drawer-bg`, `--b-drawer-color`, `--b-drawer-border-color`, and
+ * `--b-drawer-mask-bg` (plus close-button colors) to retheme the drawer.
  */
 export const Theming: Story = {
-  name: 'Theming (CSS vars)',
   parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' }, // custom colors may not pass contrast checks
+    a11y: { test: 'off' },
     docs: {
       description: {
         story:
-          'Override `--b-drawer-*` CSS custom properties on the `.b-drawer-root` or `.b-drawer` element ' +
-          'to customise colours without touching the component source.',
+          'Override <code>--b-drawer-bg</code>, <code>--b-drawer-color</code>, <code>--b-drawer-border-color</code>, and <code>--b-drawer-mask-bg</code> on the <code>.b-drawer-root</code> or <code>.b-drawer</code> element to retheme without touching component source.',
       },
       source: {
         code: `
-<!-- Tokens are scoped to .b-drawer-root (the component root element).
-     Override them via an inline style or a CSS class on that root. -->
 <BDrawer
   v-model="open"
   title="Custom Theme"
@@ -1023,394 +561,26 @@ export const Theming: Story = {
   }),
 };
 
-// ═════════════════════════════════════════════
-//   TESTING TYPE 6: SNAPSHOT TESTS
-//   (stories with stable, deterministic content
-//    designed for DOM snapshot comparison)
-// ═════════════════════════════════════════════
-
 // ─────────────────────────────────────────────
-// 22. Snapshot – minimal drawer
-// ─────────────────────────────────────────────
-/**
- * Minimal open drawer for DOM snapshot testing.
- * The play function opens the drawer so the snapshot captures the full markup.
- */
-export const SnapshotMinimal: Story = {
-  name: 'Snapshot – minimal',
-  parameters: {
-    controls: { disable: true },
-    a11y: {
-      test: 'error',
-      context: { include: ['.b-drawer-root'] },
-    },
-    docs: {
-      description: {
-        story:
-          'Minimal drawer for snapshot testing. Opens via play function so the ' +
-          'complete DOM structure is captured.',
-      },
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-snap-min">Open</BButton>
-      <BDrawer v-model="open" title="Snapshot Test">
-        <p>Snapshot content.</p>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByTestId('open-snap-min'));
-
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    const drawer = document.querySelector('.b-drawer')!;
-    // Verify structural completeness for snapshot
-    expect(drawer.querySelector('.b-drawer__header')).toBeTruthy();
-    expect(drawer.querySelector('.b-drawer__title')).toBeTruthy();
-    expect(drawer.querySelector('.b-drawer__close')).toBeTruthy();
-    expect(drawer.querySelector('.b-drawer__body')).toBeTruthy();
-  },
-};
-
-// ─────────────────────────────────────────────
-// 23. Snapshot – without title/close (no header)
-// ─────────────────────────────────────────────
-/**
- * Snapshot of a drawer without a header (closable=false, no title).
- */
-export const SnapshotNoHeader: Story = {
-  name: 'Snapshot – no header',
-  parameters: {
-    controls: { disable: true },
-    a11y: {
-      test: 'error',
-      context: { include: ['.b-drawer-root'] },
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-snap-no-hdr">Open</BButton>
-      <BDrawer v-model="open" :closable="false" aria-label="Drawer content">
-        <p>No header, just body.</p>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByTestId('open-snap-no-hdr'));
-
-    await waitFor(() => {
-      const drawer = document.querySelector('.b-drawer');
-      expect(drawer).toBeTruthy();
-      expect(drawer!.querySelector('.b-drawer__header')).toBeNull();
-      expect(drawer!.querySelector('.b-drawer__body')).toBeTruthy();
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// 24. Snapshot – complete with all slots
-// ─────────────────────────────────────────────
-/**
- * Snapshot with every slot populated: title, extra, default, footer.
- */
-export const SnapshotComplete: Story = {
-  name: 'Snapshot – complete (all slots)',
-  parameters: {
-    controls: { disable: true },
-    a11y: {
-      test: 'error',
-      context: { include: ['.b-drawer-root'] },
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-snap-complete">Open</BButton>
-      <BDrawer v-model="open">
-        <template #title>Custom Title Slot</template>
-        <template #extra><span data-testid="extra-slot">Extra Slot</span></template>
-        <p data-testid="body-content">Body via default slot.</p>
-        <template #footer><span data-testid="footer-slot">Footer Slot</span></template>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByTestId('open-snap-complete'));
-
-    await waitFor(() => {
-      const drawer = document.querySelector('.b-drawer');
-      expect(drawer).toBeTruthy();
-      expect(drawer!.querySelector('.b-drawer__title')!.textContent).toBe('Custom Title Slot');
-      expect(document.querySelector('[data-testid="extra-slot"]')).toBeTruthy();
-      expect(document.querySelector('[data-testid="body-content"]')).toBeTruthy();
-      expect(document.querySelector('[data-testid="footer-slot"]')).toBeTruthy();
-    });
-  },
-};
-
-// ═════════════════════════════════════════════
-//   TESTING TYPE 7: EDGE CASE / REGRESSION TESTS
-//   (boundary conditions tested via play functions)
-// ═════════════════════════════════════════════
-
-// ─────────────────────────────────────────────
-// 25. Edge case – keyboard=false disables Escape
-// ─────────────────────────────────────────────
-/**
- * With `keyboard=false`, pressing Escape should NOT close the drawer.
- */
-export const EdgeCaseKeyboardDisabled: Story = {
-  name: 'Edge case – keyboard disabled',
-  parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' },
-    docs: {
-      description: {
-        story: 'With `keyboard=false`, pressing Escape does NOT close the drawer.',
-      },
-    },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-no-kb">Open</BButton>
-      <BDrawer v-model="open" title="No Keyboard Close" :keyboard="false">
-        <p>Escape key is disabled.</p>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByTestId('open-no-kb'));
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    // Press Escape - drawer should NOT close
-    await userEvent.keyboard('{Escape}');
-    await new Promise((r) => setTimeout(r, 200));
-    expect(document.querySelector('.b-drawer')).toBeTruthy();
-
-    // Clean up: close via close button
-    const closeBtn = document.querySelector('.b-drawer__close') as HTMLElement;
-    await userEvent.click(closeBtn);
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeNull();
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// 26. Edge case – closable=false (no close button)
-// ─────────────────────────────────────────────
-/**
- * Drawer with closable=false but with a title. Only keyboard can close it.
- */
-export const EdgeCaseNotClosable: Story = {
-  name: 'Edge case – closable=false',
-  parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const open = ref(false);
-      return { open };
-    },
-    template: `
-      <BButton @click="open = true" data-testid="open-no-close">Open</BButton>
-      <BDrawer v-model="open" title="No Close Button" :closable="false">
-        <p>No close button rendered. Use Escape or mask click.</p>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.click(canvas.getByTestId('open-no-close'));
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeTruthy();
-    });
-
-    // No close button should exist
-    expect(document.querySelector('.b-drawer__close')).toBeNull();
-
-    // Header should still be present (because title is set)
-    expect(document.querySelector('.b-drawer__header')).toBeTruthy();
-
-    // Clean up: close via Escape
-    await userEvent.keyboard('{Escape}');
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeNull();
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// 27. Edge case – placement top and bottom
-// ─────────────────────────────────────────────
-/**
- * Tests top and bottom placements which use height instead of width.
- */
-export const EdgeCaseVerticalPlacement: Story = {
-  name: 'Edge case – vertical placements',
-  parameters: {
-    controls: { disable: true },
-    a11y: { test: 'off' },
-  },
-  render: () => ({
-    components: { BButton, BDrawer },
-    setup() {
-      const openTop = ref(false);
-      const openBottom = ref(false);
-      return { openTop, openBottom };
-    },
-    template: `
-      <div style="display:flex;gap:0.5rem;">
-        <BButton @click="openTop = true" data-testid="open-top">Top</BButton>
-        <BButton @click="openBottom = true" data-testid="open-bottom">Bottom</BButton>
-      </div>
-      <BDrawer v-model="openTop" title="Top Drawer" placement="top">
-        <p>Slides down from the top.</p>
-      </BDrawer>
-      <BDrawer v-model="openBottom" title="Bottom Drawer" placement="bottom">
-        <p>Slides up from the bottom.</p>
-      </BDrawer>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    // Test top placement
-    await userEvent.click(canvas.getByTestId('open-top'));
-    await waitFor(() => {
-      const drawer = document.querySelector('.b-drawer--top');
-      expect(drawer).toBeTruthy();
-      // Top placement uses width: 100%
-      expect(drawer!.getAttribute('style')).toContain('width: 100%');
-    });
-
-    await userEvent.keyboard('{Escape}');
-    await waitFor(() => {
-      expect(document.querySelector('.b-drawer')).toBeNull();
-    });
-
-    // Test bottom placement
-    await userEvent.click(canvas.getByTestId('open-bottom'));
-    await waitFor(() => {
-      const drawer = document.querySelector('.b-drawer--bottom');
-      expect(drawer).toBeTruthy();
-      expect(drawer!.getAttribute('style')).toContain('width: 100%');
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// Design Tokens - MUST be the LAST story
+// Design Tokens — MUST be the LAST story
 // ─────────────────────────────────────────────
 type TokenRow = { token: string; defaultValue: string; description: string };
 
 const DESIGN_TOKENS: TokenRow[] = [
-  // ── AntD-aligned tokens ──
-  // Note: AntD draggerSize, footerPaddingBlock/Inline, zIndexPopup are not yet implemented as dedicated vars.
-  // ── Local extras ──
-  {
-    token: '--b-drawer-bg',
-    defaultValue: 'oklch(100% 0 0)',
-    description: 'Background color of the drawer body.',
-  },
-  {
-    token: '--b-drawer-color',
-    defaultValue: 'oklch(20% 0.005 260 / 88%)',
-    description: 'Primary text color inside the drawer.',
-  },
-  {
-    token: '--b-drawer-border-color',
-    defaultValue: 'oklch(92% 0.005 260)',
-    description: 'Border color separating header/footer from body.',
-  },
-  {
-    token: '--b-drawer-mask-bg',
-    defaultValue: 'oklch(0% 0 0 / 45%)',
-    description: 'Background color of the overlay mask.',
-  },
-  {
-    token: '--b-drawer-shadow',
-    defaultValue: '0 9px 28px 8px oklch(0% 0 0 / 5%)',
-    description: 'Box shadow of the drawer panel.',
-  },
-  {
-    token: '--b-drawer-header-padding',
-    defaultValue: '1rem 1.5rem',
-    description: 'Padding of the header area.',
-  },
-  {
-    token: '--b-drawer-body-padding',
-    defaultValue: '1.5rem',
-    description: 'Padding of the body content area.',
-  },
-  {
-    token: '--b-drawer-footer-padding',
-    defaultValue: '0.5rem 1rem',
-    description: 'Padding of the footer area.',
-  },
-  {
-    token: '--b-drawer-title-font-size',
-    defaultValue: '1rem',
-    description: 'Font size of the drawer title.',
-  },
-  {
-    token: '--b-drawer-title-font-weight',
-    defaultValue: '600',
-    description: 'Font weight of the drawer title.',
-  },
-  {
-    token: '--b-drawer-title-line-height',
-    defaultValue: '1.5',
-    description: 'Line height of the drawer title.',
-  },
-  {
-    token: '--b-drawer-close-color',
-    defaultValue: 'oklch(50% 0.005 260)',
-    description: 'Color of the close button icon.',
-  },
-  {
-    token: '--b-drawer-close-hover-color',
-    defaultValue: 'oklch(20% 0.005 260 / 88%)',
-    description: 'Hover color of the close button icon.',
-  },
-  {
-    token: '--b-drawer-transition-duration',
-    defaultValue: '300ms',
-    description: 'Open/close animation duration.',
-  },
+  { token: '--b-drawer-bg', defaultValue: 'oklch(100% 0 0)', description: 'Background color of the drawer body.' },
+  { token: '--b-drawer-color', defaultValue: 'oklch(20% 0.005 260 / 88%)', description: 'Primary text color inside the drawer.' },
+  { token: '--b-drawer-border-color', defaultValue: 'oklch(92% 0.005 260)', description: 'Border color separating header/footer from body.' },
+  { token: '--b-drawer-mask-bg', defaultValue: 'oklch(0% 0 0 / 45%)', description: 'Background color of the overlay mask.' },
+  { token: '--b-drawer-shadow', defaultValue: '0 9px 28px 8px oklch(0% 0 0 / 5%)', description: 'Box shadow of the drawer panel.' },
+  { token: '--b-drawer-header-padding', defaultValue: '1rem 1.5rem', description: 'Padding of the header area.' },
+  { token: '--b-drawer-body-padding', defaultValue: '1.5rem', description: 'Padding of the body content area.' },
+  { token: '--b-drawer-footer-padding', defaultValue: '0.5rem 1rem', description: 'Padding of the footer area.' },
+  { token: '--b-drawer-title-font-size', defaultValue: '1rem', description: 'Font size of the drawer title.' },
+  { token: '--b-drawer-title-font-weight', defaultValue: '600', description: 'Font weight of the drawer title.' },
+  { token: '--b-drawer-title-line-height', defaultValue: '1.5', description: 'Line height of the drawer title.' },
+  { token: '--b-drawer-close-color', defaultValue: 'oklch(50% 0.005 260)', description: 'Color of the close button icon.' },
+  { token: '--b-drawer-close-hover-color', defaultValue: 'oklch(20% 0.005 260 / 88%)', description: 'Hover color of the close button icon.' },
+  { token: '--b-drawer-transition-duration', defaultValue: '300ms', description: 'Open/close animation duration.' },
 ];
 
 export const DesignTokens: Story = {
@@ -1420,21 +590,16 @@ export const DesignTokens: Story = {
     docs: {
       description: {
         story:
-          'Reference table of every <code>--b-drawer-*</code> CSS custom property ' +
-          'consumers can override to retheme the component.',
+          'All scoped CSS variables exposed by <code>BDrawer</code>. Override on <code>.b-drawer-root</code>, <code>.b-drawer</code>, or any ancestor.',
       },
     },
   },
   render: () => ({
     components: { BDrawer, BButton },
-    setup() {
-      const tokens = DESIGN_TOKENS;
-      const open = ref(false);
-      return { tokens, open };
-    },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
       <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
-        <h2 style="margin:0 0 8px;">BDrawer - Design Tokens</h2>
+        <h2 style="margin:0 0 8px;">BDrawer — Design Tokens</h2>
         <p style="margin:0 0 24px;color:#595959;">
           All tokens scoped to <code>.b-drawer</code>. Override inline or via a CSS class.
         </p>
@@ -1454,24 +619,6 @@ export const DesignTokens: Story = {
             </tr>
           </tbody>
         </table>
-
-        <h3 style="margin:32px 0 12px;">Override example</h3>
-        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
-          Open the themed drawer below - four tokens overridden inline.
-        </p>
-        <BButton @click="open = true">Open themed drawer</BButton>
-        <BDrawer
-          v-model="open"
-          title="Themed drawer"
-          :style="{
-            '--b-drawer-bg': 'oklch(96% 0.04 290)',
-            '--b-drawer-color': 'oklch(35% 0.18 290)',
-            '--b-drawer-border-color': 'oklch(80% 0.14 290)',
-            '--b-drawer-shadow': '0 12px 32px oklch(40% 0.18 290 / 25%)',
-          }"
-        >
-          <p>All colours driven by CSS custom properties.</p>
-        </BDrawer>
       </div>
     `,
   }),

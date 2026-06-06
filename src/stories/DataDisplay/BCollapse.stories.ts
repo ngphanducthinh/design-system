@@ -170,6 +170,22 @@ export const Variants: Story = {
       description: {
         story: 'Three visual variants: bordered (default), borderless, and ghost.',
       },
+      source: {
+        code: `<!-- Bordered (default) -->
+<BCollapse>
+  <BCollapsePanel panel-key="1" header="Panel 1">Content</BCollapsePanel>
+</BCollapse>
+
+<!-- Borderless -->
+<BCollapse :bordered="false">
+  <BCollapsePanel panel-key="1" header="Panel 1">Content</BCollapsePanel>
+</BCollapse>
+
+<!-- Ghost -->
+<BCollapse ghost>
+  <BCollapsePanel panel-key="1" header="Panel 1">Content</BCollapsePanel>
+</BCollapse>`,
+      },
     },
   },
   render: () => ({
@@ -215,6 +231,11 @@ export const Sizes: Story = {
       description: {
         story: 'Default and small size variants.',
       },
+      source: {
+        code: `<BCollapse size="small">
+  <BCollapsePanel panel-key="1" header="Small panel">Content</BCollapsePanel>
+</BCollapse>`,
+      },
     },
   },
   render: () => ({
@@ -254,6 +275,15 @@ export const ExpandIconAndTrigger: Story = {
       description: {
         story:
           'Expand icon at start/end and collapsible trigger area: header (default), icon only.',
+      },
+      source: {
+        code: `<BCollapse expand-icon-position="end">
+  <BCollapsePanel panel-key="1" header="Panel">Content</BCollapsePanel>
+</BCollapse>
+
+<BCollapse collapsible="icon">
+  <BCollapsePanel panel-key="1" header="Click icon to toggle">Content</BCollapsePanel>
+</BCollapse>`,
       },
     },
   },
@@ -295,6 +325,16 @@ export const DisabledAndExtra: Story = {
         story:
           'Panels can be individually disabled. Extra content appears at the end of the header.',
       },
+      source: {
+        code: `<BCollapse :default-active-key="['1']">
+  <BCollapsePanel panel-key="1" header="Active panel" extra="Extra info">
+    <p>Content</p>
+  </BCollapsePanel>
+  <BCollapsePanel panel-key="2" header="Disabled panel" :disabled="true">
+    <p>Content</p>
+  </BCollapsePanel>
+</BCollapse>`,
+      },
     },
   },
   render: () => ({
@@ -329,6 +369,16 @@ export const Controlled: Story = {
       description: {
         story:
           'Use `v-model` for fully controlled active key state. The badge shows which panels are active.',
+      },
+      source: {
+        code: `<script setup>
+const activeKeys = ref(['1']);
+</script>
+
+<BCollapse v-model="activeKeys">
+  <BCollapsePanel panel-key="1" header="Panel 1">Content</BCollapsePanel>
+  <BCollapsePanel panel-key="2" header="Panel 2">Content</BCollapsePanel>
+</BCollapse>`,
       },
     },
   },

@@ -26,92 +26,95 @@ const meta = {
       control: 'select',
       options: Object.values(BTimePickerSize),
       description: 'Size of the input.',
-      table: { defaultValue: { summary: 'md' } },
+      table: { category: 'Props', defaultValue: { summary: 'md' } },
     },
     variant: {
       control: 'select',
       options: Object.values(BTimePickerVariant),
       description: 'Visual variant.',
-      table: { defaultValue: { summary: 'outlined' } },
+      table: { category: 'Props', defaultValue: { summary: 'outlined' } },
     },
     status: {
       control: 'select',
       options: [undefined, ...Object.values(BTimePickerStatus)],
       description: 'Validation status.',
+      table: { category: 'Props' },
     },
     placement: {
       control: 'select',
       options: Object.values(BTimePickerPlacement),
       description: 'Popup placement.',
-      table: { defaultValue: { summary: 'bottom-left' } },
+      table: { category: 'Props', defaultValue: { summary: 'bottom-left' } },
     },
     disabled: {
       control: 'boolean',
       description: 'Whether the picker is disabled.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     allowClear: {
       control: 'boolean',
       description: 'Show clear button.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     showNow: {
       control: 'boolean',
       description: 'Show Now button in footer.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     use12Hours: {
       control: 'boolean',
       description: 'Use 12-hour format with AM/PM.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     needConfirm: {
       control: 'boolean',
       description: 'Require OK button to confirm selection.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     showHour: {
       control: 'boolean',
       description: 'Show hour column.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     showMinute: {
       control: 'boolean',
       description: 'Show minute column.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     showSecond: {
       control: 'boolean',
       description: 'Show second column.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     hourStep: {
       control: { type: 'number', min: 1, max: 12 },
       description: 'Hour step interval.',
-      table: { defaultValue: { summary: '1' } },
+      table: { category: 'Props', defaultValue: { summary: '1' } },
     },
     minuteStep: {
       control: { type: 'number', min: 1, max: 30 },
       description: 'Minute step interval.',
-      table: { defaultValue: { summary: '1' } },
+      table: { category: 'Props', defaultValue: { summary: '1' } },
     },
     secondStep: {
       control: { type: 'number', min: 1, max: 30 },
       description: 'Second step interval.',
-      table: { defaultValue: { summary: '1' } },
+      table: { category: 'Props', defaultValue: { summary: '1' } },
     },
     inputReadOnly: {
       control: 'boolean',
       description: 'Make input read-only.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     placeholder: {
       control: 'text',
       description: 'Placeholder text for the input.',
+      table: { category: 'Props' },
     },
     format: {
       control: 'text',
       description: 'Time format string (e.g., HH:mm:ss, hh:mm a).',
+      table: { category: 'Props' },
     },
   },
   parameters: {
@@ -491,6 +494,15 @@ export const InteractionTest: Story = {
 // 14. Design Tokens
 // ═════════════════════════════════════════════
 export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BTimePicker</code>. Override on the component root or any ancestor selector.',
+      },
+    },
+  },
   render: () => ({
     setup() {
       const tokens = [

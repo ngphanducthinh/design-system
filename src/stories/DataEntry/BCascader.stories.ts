@@ -26,68 +26,71 @@ const meta = {
     options: {
       control: 'object',
       description: 'Hierarchical options data.',
+      table: { category: 'Props' },
     },
     placeholder: {
       control: 'text',
       description: 'Input placeholder text.',
-      table: { defaultValue: { summary: 'Please select' } },
+      table: { category: 'Props', defaultValue: { summary: 'Please select' } },
     },
     disabled: {
       control: 'boolean',
       description: 'Whether the cascader is disabled.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     allowClear: {
       control: 'boolean',
       description: 'Whether to show a clear button.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     expandTrigger: {
       control: 'select',
       options: Object.values(BCascaderExpandTrigger),
       description: 'Expand child options on click or hover.',
-      table: { defaultValue: { summary: BCascaderExpandTrigger.Click } },
+      table: { category: 'Props', defaultValue: { summary: BCascaderExpandTrigger.Click } },
     },
     placement: {
       control: 'select',
       options: Object.values(BCascaderPlacement),
       description: 'Popup placement.',
-      table: { defaultValue: { summary: BCascaderPlacement.BottomLeft } },
+      table: { category: 'Props', defaultValue: { summary: BCascaderPlacement.BottomLeft } },
     },
     size: {
       control: 'select',
       options: Object.values(BCascaderSize),
       description: 'Size of the input.',
-      table: { defaultValue: { summary: BCascaderSize.Medium } },
+      table: { category: 'Props', defaultValue: { summary: BCascaderSize.Medium } },
     },
     changeOnSelect: {
       control: 'boolean',
       description: 'Emit change on each level selection, not just leaf.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     showSearch: {
       control: 'boolean',
       description: 'Enable search filtering.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     multiple: {
       control: 'boolean',
       description: 'Enable multiple selection mode.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     maxTagCount: {
       control: 'number',
       description: 'Maximum tags to display in multiple mode.',
+      table: { category: 'Props' },
     },
     status: {
       control: 'select',
       options: [undefined, ...Object.values(BCascaderStatus)],
       description: 'Validation status.',
+      table: { category: 'Props' },
     },
     notFoundContent: {
       control: 'text',
       description: 'Content when no search match found.',
-      table: { defaultValue: { summary: 'No data' } },
+      table: { category: 'Props', defaultValue: { summary: 'No data' } },
     },
   },
   parameters: {
@@ -606,6 +609,15 @@ export const InteractionTest: Story = {
 };
 
 export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BCascader</code>. Override on the component root or any ancestor selector.',
+      },
+    },
+  },
   render: () => ({
     setup() {
       const tokens = [

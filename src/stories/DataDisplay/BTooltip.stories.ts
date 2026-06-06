@@ -15,57 +15,59 @@ const meta = {
     title: {
       control: 'text',
       description: 'The text shown inside the tooltip.',
+      table: { category: 'Props' },
     },
     trigger: {
       control: 'select',
       options: Object.values(BTooltipTrigger),
       description: 'The event that triggers the tooltip.',
-      table: { defaultValue: { summary: BTooltipTrigger.Hover } },
+      table: { category: 'Props', defaultValue: { summary: BTooltipTrigger.Hover } },
     },
     placement: {
       control: 'select',
       options: Object.values(BTooltipPlacement),
       description: 'Placement of the tooltip relative to the target.',
-      table: { defaultValue: { summary: BTooltipPlacement.TopCenter } },
+      table: { category: 'Props', defaultValue: { summary: BTooltipPlacement.TopCenter } },
     },
     arrow: {
       control: 'boolean',
       description: 'Whether the tooltip has an arrow.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     color: {
       control: 'color',
       description: 'Custom background color.',
+      table: { category: 'Props' },
     },
     mouseEnterDelay: {
       control: 'number',
       description: 'Delay in ms before showing on mouseenter.',
-      table: { defaultValue: { summary: '100' } },
+      table: { category: 'Props', defaultValue: { summary: '100' } },
     },
     mouseLeaveDelay: {
       control: 'number',
       description: 'Delay in ms before hiding on mouseleave.',
-      table: { defaultValue: { summary: '100' } },
+      table: { category: 'Props', defaultValue: { summary: '100' } },
     },
     destroyTooltipOnHide: {
       control: 'boolean',
       description: 'Destroy tooltip DOM when hidden.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     zIndex: {
       control: 'number',
       description: 'z-index of the tooltip.',
-      table: { defaultValue: { summary: '1070' } },
+      table: { category: 'Props', defaultValue: { summary: '1070' } },
     },
     fresh: {
       control: 'boolean',
       description: 'Force re-render when tooltip is shown.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     autoAdjustOverflow: {
       control: 'boolean',
       description: 'Auto-adjust placement on viewport overflow.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     modelValue: {
       control: 'boolean',

@@ -90,110 +90,116 @@ const meta = {
     treeData: {
       control: 'object',
       description: 'Hierarchical tree data.',
+      table: { category: 'Props' },
     },
     fieldNames: {
       control: 'object',
       description: 'Replace default `title`/`value`/`children` field names.',
+      table: { category: 'Props' },
     },
     multiple: {
       control: 'boolean',
       description: 'Allow multiple selection (no checkboxes).',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     treeCheckable: {
       control: 'boolean',
       description: 'Show checkboxes - implies multiple.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     treeCheckStrictly: {
       control: 'boolean',
       description: 'Disable parent/child cascading in checkable mode.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     labelInValue: {
       control: 'boolean',
       description: 'Return `{ value, label }` instead of just value.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     size: {
       control: 'select',
       options: Object.values(BCommonSize),
       description: 'Selector size.',
-      table: { defaultValue: { summary: BCommonSize.Medium } },
+      table: { category: 'Props', defaultValue: { summary: BCommonSize.Medium } },
     },
     variant: {
       control: 'select',
       options: Object.values(BTreeSelectVariant),
       description: 'Visual variant of the selector.',
-      table: { defaultValue: { summary: BTreeSelectVariant.Outlined } },
+      table: { category: 'Props', defaultValue: { summary: BTreeSelectVariant.Outlined } },
     },
     placement: {
       control: 'select',
       options: Object.values(BTreeSelectPlacement),
       description: 'Dropdown placement.',
-      table: { defaultValue: { summary: BTreeSelectPlacement.BottomLeft } },
+      table: { category: 'Props', defaultValue: { summary: BTreeSelectPlacement.BottomLeft } },
     },
     status: {
       control: 'select',
       options: [undefined, ...Object.values(BTreeSelectStatus)],
       description: 'Validation status.',
+      table: { category: 'Props' },
     },
     placeholder: {
       control: 'text',
       description: 'Placeholder when nothing selected.',
+      table: { category: 'Props' },
     },
     disabled: {
       control: 'boolean',
       description: 'Disable the component.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     showSearch: {
       control: 'boolean',
       description: 'Show search input.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     treeDefaultExpandAll: {
       control: 'boolean',
       description: 'Expand all nodes on mount.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     treeIcon: {
       control: 'boolean',
       description: 'Show icons next to nodes.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     treeLine: {
       control: 'boolean',
       description: 'Show connector lines.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     allowClear: {
       control: 'boolean',
       description: 'Show clear button when a value is set.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     notFoundContent: {
       control: 'text',
       description: 'Content shown when search returns no results.',
-      table: { defaultValue: { summary: 'Not Found' } },
+      table: { category: 'Props', defaultValue: { summary: 'Not Found' } },
     },
     listHeight: {
       control: 'number',
       description: 'Maximum dropdown height in px.',
-      table: { defaultValue: { summary: '256' } },
+      table: { category: 'Props', defaultValue: { summary: '256' } },
     },
     maxTagCount: {
       control: 'number',
       description: 'Max number of tags shown before collapsing into +N.',
+      table: { category: 'Props' },
     },
     maxCount: {
       control: 'number',
       description: 'Maximum selectable nodes.',
+      table: { category: 'Props' },
     },
     popupMatchSelectWidth: {
       control: 'boolean',
       description: 'Match popup width to selector. Pass a number for fixed width.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
   },
   parameters: {
@@ -652,6 +658,15 @@ export const InteractionTest: Story = {
 };
 
 export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BTreeSelect</code>. Override on the component root or any ancestor selector.',
+      },
+    },
+  },
   render: () => ({
     setup() {
       const tokens = [

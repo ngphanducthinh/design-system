@@ -8,9 +8,6 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { ref } from 'vue';
 
-// ─────────────────────────────────────────────
-// Meta
-// ─────────────────────────────────────────────
 const meta = {
   title: 'Data Entry/Upload',
   component: BUpload,
@@ -24,45 +21,52 @@ const meta = {
     accept: {
       control: 'text',
       description: 'File types that can be accepted.',
+      table: { category: 'Props' },
     },
     action: {
       control: 'text',
       description: 'Uploading URL.',
+      table: { category: 'Props' },
     },
     multiple: {
       control: 'boolean',
       description: 'Whether to support multiple file selection.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     disabled: {
       control: 'boolean',
       description: 'Whether the upload is disabled.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     directory: {
       control: 'boolean',
       description: 'Support uploading directories.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     maxCount: {
       control: 'number',
       description: 'Limit the number of uploaded files.',
+      table: { category: 'Props' },
     },
     listType: {
       control: 'select',
       options: Object.values(BUploadListType),
       description: 'Built-in style of the upload list.',
-      table: { defaultValue: { summary: BUploadListType.Text } },
+      table: { category: 'Props', defaultValue: { summary: BUploadListType.Text } },
     },
     showUploadList: {
       control: 'boolean',
       description: 'Whether to show the upload list.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     openFileDialogOnClick: {
       control: 'boolean',
       description: 'Click opens file dialog.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
+    },
+    default: {
+      description: 'Custom trigger element. When omitted, a default styled trigger is rendered.',
+      table: { category: 'Slots' },
     },
   },
   parameters: {
@@ -80,15 +84,22 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // ─────────────────────────────────────────────
-// Stories
+// Usage
 // ─────────────────────────────────────────────
 
-export const Playground: Story = {
+export const Default: Story = {
   args: {
     action: 'https://httpbin.org/post',
     multiple: false,
     disabled: false,
     listType: BUploadListType.Text,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<BUpload v-model:fileList="fileList" action="/api/upload" />`,
+      },
+    },
   },
   render: (args) => ({
     components: { BUpload },
@@ -97,16 +108,25 @@ export const Playground: Story = {
       return { args, fileList };
     },
     template: `
-      <BUpload
-        v-bind="args"
-        v-model:fileList="fileList"
-      />
+      <BUpload v-bind="args" v-model:fileList="fileList" />
       <p style="margin-top: 12px; color: #666;">Files: {{ fileList.length }}</p>
     `,
   }),
 };
 
 export const ListTypes: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BUpload list-type="text" />
+<BUpload list-type="picture" />
+<BUpload list-type="picture-card" />
+<BUpload list-type="picture-circle" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BUpload },
     setup() {
@@ -147,25 +167,23 @@ export const ListTypes: Story = {
   }),
 };
 
-export const DragAndDrop: Story = {
-  render: () => ({
-    components: { BUpload },
-    setup() {
-      const fileList = ref<BUploadFile[]>([]);
-      return { fileList };
-    },
-    template: `
-      <BUpload v-model:fileList="fileList" action="https://httpbin.org/post" multiple>
-        <div style="padding: 40px 20px; border: 2px dashed #d9d9d9; border-radius: 8px; text-align: center; cursor: pointer;">
-          <p style="margin: 0 0 8px; font-size: 16px; color: #0958d9;">Click or drag file to this area to upload</p>
-          <p style="margin: 0; color: rgba(0,0,0,0.6);">Support for single or bulk upload.</p>
-        </div>
-      </BUpload>
-    `,
-  }),
-};
-
 export const FileStatuses: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BUpload
+  v-model:fileList="[
+    { uid: '1', name: 'success.pdf', status: 'done' },
+    { uid: '2', name: 'uploading.png', status: 'uploading', percent: 65 },
+    { uid: '3', name: 'failed.doc', status: 'error' },
+  ]"
+  action="/api/upload"
+/>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BUpload },
     setup() {
@@ -176,13 +194,18 @@ export const FileStatuses: Story = {
       ]);
       return { fileList };
     },
-    template: `
-      <BUpload v-model:fileList="fileList" action="https://httpbin.org/post" />
-    `,
+    template: `<BUpload v-model:fileList="fileList" action="https://httpbin.org/post" />`,
   }),
 };
 
 export const MaxCount: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<BUpload v-model:fileList="fileList" :maxCount="3" multiple action="/api/upload" />`,
+      },
+    },
+  },
   render: () => ({
     components: { BUpload },
     setup() {
@@ -201,25 +224,118 @@ export const MaxCount: Story = {
 };
 
 export const Disabled: Story = {
-  args: {
-    disabled: true,
-    action: 'https://httpbin.org/post',
+  parameters: {
+    docs: {
+      source: { code: `<BUpload v-model:fileList="fileList" disabled action="/api/upload" />` },
+    },
   },
-  render: (args) => ({
+  render: () => ({
     components: { BUpload },
     setup() {
       const fileList = ref<BUploadFile[]>([
         { uid: '1', name: 'existing-file.txt', status: BUploadFileStatus.Done },
       ]);
-      return { args, fileList };
+      return { fileList };
+    },
+    template: `<BUpload v-model:fileList="fileList" disabled action="https://httpbin.org/post" />`,
+  }),
+};
+
+// ─────────────────────────────────────────────
+// Examples
+// ─────────────────────────────────────────────
+
+export const DragAndDrop: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BUpload v-model:fileList="fileList" action="/api/upload" multiple>
+  <div class="dropzone">
+    <p>Click or drag file to this area to upload</p>
+  </div>
+</BUpload>
+        `,
+      },
+    },
+  },
+  render: () => ({
+    components: { BUpload },
+    setup() {
+      const fileList = ref<BUploadFile[]>([]);
+      return { fileList };
     },
     template: `
-      <BUpload v-bind="args" v-model:fileList="fileList" />
+      <BUpload v-model:fileList="fileList" action="https://httpbin.org/post" multiple>
+        <div style="padding: 40px 20px; border: 2px dashed #d9d9d9; border-radius: 8px; text-align: center; cursor: pointer;">
+          <p style="margin: 0 0 8px; font-size: 16px; color: #0958d9;">Click or drag file to this area to upload</p>
+          <p style="margin: 0; color: rgba(0,0,0,0.6);">Support for single or bulk upload.</p>
+        </div>
+      </BUpload>
     `,
   }),
 };
 
+export const InteractionTest: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Removes the first file via its remove button, then verifies the trigger receives focus on Tab.',
+      },
+      source: { code: `<BUpload v-model:fileList="fileList" action="/api/upload" />` },
+    },
+  },
+  render: () => ({
+    components: { BUpload },
+    setup() {
+      const fileList = ref<BUploadFile[]>([
+        { uid: '1', name: 'removable.txt', status: BUploadFileStatus.Done },
+        { uid: '2', name: 'another.pdf', status: BUploadFileStatus.Done },
+      ]);
+      return { fileList };
+    },
+    template: `<BUpload v-model:fileList="fileList" action="https://httpbin.org/post" />`,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const items = canvas.getAllByRole('listitem');
+    expect(items.length).toBe(2);
+
+    const removeButtons = canvas.getAllByLabelText('Remove file');
+    await userEvent.click(removeButtons[0]);
+
+    await waitFor(() => {
+      const updatedItems = canvas.getAllByRole('listitem');
+      expect(updatedItems.length).toBe(1);
+    });
+
+    const trigger = canvas.getByRole('button', { name: /upload file/i });
+    expect(trigger).toBeTruthy();
+
+    await userEvent.tab();
+    await waitFor(() => {
+      expect(trigger).toHaveFocus();
+    });
+
+    await userEvent.keyboard('{Enter}');
+  },
+};
+
+// ─────────────────────────────────────────────
+// Accessibility
+// ─────────────────────────────────────────────
+
 export const Accessibility: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Trigger is a focusable <code>role="button"</code>; the file list is a <code>role="list"</code> labelled "Uploaded files". ' +
+          'Uploading items expose a <code>role="progressbar"</code>.',
+      },
+    },
+  },
   render: () => ({
     components: { BUpload },
     setup() {
@@ -274,7 +390,33 @@ export const Accessibility: Story = {
   },
 };
 
+// ─────────────────────────────────────────────
+// Theming
+// ─────────────────────────────────────────────
+
 export const Theming: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Override <code>--b-upload-color-primary</code>, <code>--b-upload-color-error</code>, ' +
+          '<code>--b-upload-border-radius</code>, and <code>--b-upload-card-size</code> on the component root.',
+      },
+      source: {
+        code: `
+<BUpload
+  v-model:fileList="fileList"
+  action="/api/upload"
+  style="
+    --b-upload-color-primary: #722ed1;
+    --b-upload-color-error: #eb2f96;
+    --b-upload-border-radius: 16px;
+  "
+/>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BUpload },
     setup() {
@@ -293,7 +435,7 @@ export const Theming: Story = {
             :showUploadList="{ showPreviewIcon: true, showRemoveIcon: true, showDownloadIcon: true }" />
         </div>
         <div>
-          <h4 style="margin-bottom: 8px;">Custom theme (purple primary, green success, rounded)</h4>
+          <h4 style="margin-bottom: 8px;">Custom theme (purple primary, pink error, rounded)</h4>
           <BUpload
             v-model:fileList="fileList"
             action="https://httpbin.org/post"
@@ -315,89 +457,54 @@ export const Theming: Story = {
   }),
 };
 
-export const InteractionTest: Story = {
-  render: () => ({
-    components: { BUpload },
-    setup() {
-      const fileList = ref<BUploadFile[]>([
-        { uid: '1', name: 'removable.txt', status: BUploadFileStatus.Done },
-        { uid: '2', name: 'another.pdf', status: BUploadFileStatus.Done },
-      ]);
-      return { fileList };
-    },
-    template: `
-      <BUpload v-model:fileList="fileList" action="https://httpbin.org/post" />
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
 
-    const items = canvas.getAllByRole('listitem');
-    expect(items.length).toBe(2);
-
-    const removeButtons = canvas.getAllByLabelText('Remove file');
-    await userEvent.click(removeButtons[0]);
-
-    await waitFor(() => {
-      const updatedItems = canvas.getAllByRole('listitem');
-      expect(updatedItems.length).toBe(1);
-    });
-
-    const trigger = canvas.getByRole('button', { name: /upload file/i });
-    expect(trigger).toBeTruthy();
-
-    await userEvent.tab();
-    await waitFor(() => {
-      expect(trigger).toHaveFocus();
-    });
-
-    await userEvent.keyboard('{Enter}');
-  },
-};
+const DESIGN_TOKENS: TokenRow[] = [
+  { token: '--b-upload-actions-color', defaultValue: 'rgba(0, 0, 0, 0.45)', description: 'Color of action buttons (preview, download, remove).' },
+  { token: '--b-upload-card-size', defaultValue: '102px', description: 'Width and height of picture-card / picture-circle items.' },
+  { token: '--b-upload-color-primary', defaultValue: '#1677ff', description: 'Primary accent color (focus rings, hover, progress bar).' },
+  { token: '--b-upload-color-error', defaultValue: '#d32f2f', description: 'Error state color for failed uploads.' },
+  { token: '--b-upload-color-success', defaultValue: '#52c41a', description: 'Success state color (reserved for status indicators).' },
+  { token: '--b-upload-color-border', defaultValue: '#d9d9d9', description: 'Border color for trigger and file list items.' },
+  { token: '--b-upload-color-bg', defaultValue: '#fafafa', description: 'Background color for card trigger and hover states.' },
+  { token: '--b-upload-color-bg-hover', defaultValue: '#f0f0f0', description: 'Background color on hover and progress track.' },
+  { token: '--b-upload-color-text', defaultValue: 'rgba(0, 0, 0, 0.88)', description: 'Primary text color.' },
+  { token: '--b-upload-color-text-secondary', defaultValue: 'rgba(0, 0, 0, 0.6)', description: 'Secondary text color (hints, icons, card trigger label).' },
+  { token: '--b-upload-border-radius', defaultValue: '8px', description: 'Border radius for trigger and list items.' },
+  { token: '--b-upload-line-height', defaultValue: '1.5715', description: 'Line height for text content.' },
+  { token: '--b-upload-font-size', defaultValue: '14px', description: 'Base font size.' },
+  { token: '--b-upload-progress-stroke-width', defaultValue: '2px', description: 'Height of the progress bar.' },
+];
 
 export const DesignTokens: Story = {
-  render: () => ({
-    setup() {
-      const tokens = [
-        { variable: '--b-upload-actions-color', fallback: 'rgba(0, 0, 0, 0.45)', description: 'Color of action buttons (preview, download, remove)' },
-        { variable: '--b-upload-card-size', fallback: '102px', description: 'Width and height of picture-card / picture-circle items' },
-        { variable: '--b-upload-color-primary', fallback: '#1677ff', description: 'Primary accent color (focus rings, hover, progress bar)' },
-        { variable: '--b-upload-color-error', fallback: '#d32f2f', description: 'Error state color for failed uploads' },
-        { variable: '--b-upload-color-success', fallback: '#52c41a', description: 'Success state color (reserved for status indicators)' },
-        { variable: '--b-upload-color-border', fallback: '#d9d9d9', description: 'Border color for trigger and file list items' },
-        { variable: '--b-upload-color-bg', fallback: '#fafafa', description: 'Background color for card trigger and hover states' },
-        { variable: '--b-upload-color-bg-hover', fallback: '#f0f0f0', description: 'Background color on hover and progress track' },
-        { variable: '--b-upload-color-text', fallback: 'rgba(0, 0, 0, 0.88)', description: 'Primary text color' },
-        { variable: '--b-upload-color-text-secondary', fallback: 'rgba(0, 0, 0, 0.6)', description: 'Secondary text color (hints, icons, card trigger label)' },
-        { variable: '--b-upload-border-radius', fallback: '8px', description: 'Border radius for trigger and list items' },
-        { variable: '--b-upload-line-height', fallback: '1.5715', description: 'Line height for text content' },
-        { variable: '--b-upload-font-size', fallback: '14px', description: 'Base font size' },
-        { variable: '--b-upload-progress-stroke-width', fallback: '2px', description: 'Height of the progress bar' },
-      ];
-      return { tokens };
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BUpload</code>. Override on the component root or any ancestor selector.',
+      },
     },
+  },
+  render: () => ({
+    setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
-      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
         <thead>
-          <tr style="border-bottom: 2px solid #eee;">
-            <th style="text-align: left; padding: 8px 12px;">CSS Variable</th>
-            <th style="text-align: left; padding: 8px 12px;">Default</th>
-            <th style="text-align: left; padding: 8px 12px;">Description</th>
+          <tr style="background:oklch(96% 0.002 260);">
+            <th style="text-align:left;padding:10px 12px;">CSS Variable</th>
+            <th style="text-align:left;padding:10px 12px;">Default</th>
+            <th style="text-align:left;padding:10px 12px;">Description</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="token in tokens" :key="token.variable" style="border-bottom: 1px solid #f0f0f0;">
-            <td style="padding: 8px 12px; font-family: monospace; white-space: nowrap;">{{ token.variable }}</td>
-            <td style="padding: 8px 12px; font-family: monospace;">
-              <span style="display: inline-flex; align-items: center; gap: 6px;">
-                <span
-                  v-if="token.fallback.startsWith('#') || token.fallback.startsWith('rgb')"
-                  :style="{ width: '14px', height: '14px', borderRadius: '3px', background: token.fallback, border: '1px solid #ddd', display: 'inline-block' }"
-                ></span>
-                {{ token.fallback }}
-              </span>
-            </td>
-            <td style="padding: 8px 12px;">{{ token.description }}</td>
+          <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+            <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+            <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+            <td style="padding:8px 12px;">{{ t.description }}</td>
           </tr>
         </tbody>
       </table>

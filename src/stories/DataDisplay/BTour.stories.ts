@@ -92,40 +92,48 @@ const meta = {
       control: 'select',
       options: Object.values(BTourType),
       description: 'Visual variant.',
+      table: { category: 'Props' },
     },
     placement: {
       control: 'select',
       options: Object.values(BTourPlacement),
       description: 'Default popup placement (step-level overrides).',
+      table: { category: 'Props' },
     },
     mask: {
       control: 'boolean',
       description: 'Show a mask overlay with spotlight cutout.',
+      table: { category: 'Props' },
     },
     arrow: {
       control: 'boolean',
       description: 'Show the directional arrow.',
+      table: { category: 'Props' },
     },
     keyboard: {
       control: 'boolean',
       description: 'Enable keyboard navigation.',
+      table: { category: 'Props' },
     },
     zIndex: {
       control: 'number',
       description: 'z-index of the popup and mask.',
+      table: { category: 'Props' },
     },
     closeIcon: {
       control: 'boolean',
       description: 'Show the close button.',
+      table: { category: 'Props' },
     },
     disabledInteraction: {
       control: 'boolean',
       description: 'Disable pointer interaction on highlighted region.',
+      table: { category: 'Props' },
     },
     // ── Events ────────────────────────────────
-    onChange: { action: 'change' },
-    onClose: { action: 'close' },
-    onFinish: { action: 'finish' },
+    onChange: { action: 'change', table: { category: 'Events' } },
+    onClose: { action: 'close', table: { category: 'Events' } },
+    onFinish: { action: 'finish', table: { category: 'Events' } },
   },
   parameters: {
     docs: {

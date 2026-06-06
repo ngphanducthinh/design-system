@@ -79,59 +79,60 @@ const meta = {
     // ── Props ──────────────────────────────────────────────────────────────
     checkable: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     checkStrictly: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     multiple: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     selectable: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     disabled: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     showIcon: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     showLine: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     blockNode: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     draggable: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     defaultExpandAll: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     directory: {
       control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     expandAction: {
       control: 'select',
       options: ['click', 'doubleClick', false],
-      table: { defaultValue: { summary: 'click' } },
+      table: { category: 'Props', defaultValue: { summary: 'click' } },
     },
     height: {
       control: { type: 'number', min: 100, max: 600, step: 50 },
-      table: { defaultValue: { summary: 'undefined' } },
+      table: { category: 'Props', defaultValue: { summary: 'undefined' } },
     },
     treeData: {
       control: 'object',
+      table: { category: 'Props' },
     },
   },
   parameters: {
@@ -173,7 +174,18 @@ export const Playground: Story = {
 // ─── 2. Basic ─────────────────────────────────────────────────────────────────
 
 export const Basic: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      source: {
+        code: `<BTree
+  :tree-data="data"
+  :default-expanded-keys="['0-0', '0-0-0']"
+  :default-selected-keys="['0-0-0-0']"
+/>`,
+      },
+    },
+  },
   render: () => ({
     components: { BTree },
     setup() {
@@ -193,7 +205,18 @@ export const Basic: Story = {
 // ─── 3. Checkable ─────────────────────────────────────────────────────────────
 
 export const Checkable: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      source: {
+        code: `<BTree
+  :tree-data="data"
+  checkable
+  :default-checked-keys="['0-0-0-0', '0-0-0-1']"
+/>`,
+      },
+    },
+  },
   render: () => ({
     components: { BTree },
     setup() {

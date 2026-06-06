@@ -27,63 +27,66 @@ const meta = {
       control: 'select',
       options: Object.values(BDatePickerType),
       description: 'Type of picker: date, week, month, quarter, year.',
-      table: { defaultValue: { summary: 'date' } },
+      table: { category: 'Props', defaultValue: { summary: 'date' } },
     },
     size: {
       control: 'select',
       options: Object.values(BDatePickerSize),
       description: 'Size of the input.',
-      table: { defaultValue: { summary: 'md' } },
+      table: { category: 'Props', defaultValue: { summary: 'md' } },
     },
     variant: {
       control: 'select',
       options: Object.values(BDatePickerVariant),
       description: 'Visual variant.',
-      table: { defaultValue: { summary: 'outlined' } },
+      table: { category: 'Props', defaultValue: { summary: 'outlined' } },
     },
     status: {
       control: 'select',
       options: [undefined, ...Object.values(BDatePickerStatus)],
       description: 'Validation status.',
+      table: { category: 'Props' },
     },
     placement: {
       control: 'select',
       options: Object.values(BDatePickerPlacement),
       description: 'Popup placement.',
-      table: { defaultValue: { summary: 'bottom-left' } },
+      table: { category: 'Props', defaultValue: { summary: 'bottom-left' } },
     },
     disabled: {
       control: 'boolean',
       description: 'Whether the picker is disabled.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     allowClear: {
       control: 'boolean',
       description: 'Show clear button.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     showNow: {
       control: 'boolean',
       description: 'Show Today button in footer.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     showWeek: {
       control: 'boolean',
       description: 'Show week number column.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     inputReadOnly: {
       control: 'boolean',
       description: 'Make input read-only.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     placeholder: {
       control: 'text',
       description: 'Placeholder text for the input.',
+      table: { category: 'Props' },
     },
     format: {
       control: 'text',
       description: 'Date format string (e.g., YYYY-MM-DD, DD/MM/YYYY).',
+      table: { category: 'Props' },
     },
     locale: {
       control: 'select',
@@ -108,6 +111,7 @@ const meta = {
         'tr-TR',
       ],
       description: 'BCP 47 locale tag for weekday/month labels.',
+      table: { category: 'Props' },
     },
   },
   parameters: {
@@ -589,6 +593,15 @@ export const Theming: Story = {
 // 15. Design Tokens (MUST BE LAST)
 // ═════════════════════════════════════════════
 export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BDatePicker</code>. Override on the component root or any ancestor selector.',
+      },
+    },
+  },
   render: () => ({
     setup() {
       const tokens = [

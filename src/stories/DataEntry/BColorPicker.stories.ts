@@ -30,71 +30,72 @@ const meta = {
     defaultValue: {
       control: 'color',
       description: 'Default color when uncontrolled.',
-      table: { defaultValue: { summary: '#1677ff' } },
+      table: { category: 'Props', defaultValue: { summary: '#1677ff' } },
     },
     disabled: {
       control: 'boolean',
       description: 'Whether the picker is disabled.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     size: {
       control: 'select',
       options: Object.values(BColorPickerSize),
       description: 'Size of the trigger.',
-      table: { defaultValue: { summary: BColorPickerSize.Medium } },
+      table: { category: 'Props', defaultValue: { summary: BColorPickerSize.Medium } },
     },
     trigger: {
       control: 'select',
       options: Object.values(BColorPickerTrigger),
       description: 'How the popup is triggered.',
-      table: { defaultValue: { summary: BColorPickerTrigger.Click } },
+      table: { category: 'Props', defaultValue: { summary: BColorPickerTrigger.Click } },
     },
     placement: {
       control: 'select',
       options: Object.values(BColorPickerPlacement),
       description: 'Popup placement.',
-      table: { defaultValue: { summary: BColorPickerPlacement.BottomLeft } },
+      table: { category: 'Props', defaultValue: { summary: BColorPickerPlacement.BottomLeft } },
     },
     format: {
       control: 'select',
       options: Object.values(BColorPickerFormat),
       description: 'Controlled color format.',
+      table: { category: 'Props' },
     },
     defaultFormat: {
       control: 'select',
       options: Object.values(BColorPickerFormat),
       description: 'Default color format.',
-      table: { defaultValue: { summary: BColorPickerFormat.Hex } },
+      table: { category: 'Props', defaultValue: { summary: BColorPickerFormat.Hex } },
     },
     disabledAlpha: {
       control: 'boolean',
       description: 'Disable the alpha channel slider.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     disabledFormat: {
       control: 'boolean',
       description: 'Disable format switching.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     showText: {
       control: 'boolean',
       description: 'Show color value text next to swatch.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     allowClear: {
       control: 'boolean',
       description: 'Allow clearing the selected color.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     arrow: {
       control: 'boolean',
       description: 'Whether the popup has an arrow.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     destroyOnHidden: {
       control: 'boolean',
       description: 'Destroy popup DOM when closed.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
   },
   parameters: {
@@ -454,6 +455,15 @@ export const Theming: Story = {
 // 12. Design Tokens
 // ═════════════════════════════════════════════
 export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BColorPicker</code>. Override on the component root or any ancestor selector.',
+      },
+    },
+  },
   render: () => ({
     setup() {
       const tokens = [

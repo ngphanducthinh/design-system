@@ -2,9 +2,12 @@ import { BSplitter, BSplitterPanel } from '@/components';
 import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
-// ─────────────────────────────────────────────
-// Meta
-// ─────────────────────────────────────────────
+/**
+ * BSplitter — resizable panel container.
+ *
+ * Story file follows `docs/STORY_FORMAT.md`:
+ *   Default → per-prop Usage → Examples → Accessibility → Theming → Design Tokens (LAST)
+ */
 const meta = {
   title: 'Layout/Splitter',
   component: BSplitter,
@@ -15,18 +18,18 @@ const meta = {
       control: 'select',
       options: ['horizontal', 'vertical'],
       description: 'Layout orientation. Takes precedence over `vertical` when set.',
-      table: { defaultValue: { summary: 'horizontal' }, category: 'Props' },
+      table: { category: 'Props', defaultValue: { summary: 'horizontal' } },
     },
     vertical: {
       control: 'boolean',
       description: 'Convenience boolean for vertical orientation.',
-      table: { defaultValue: { summary: 'false' }, category: 'Props' },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     lazy: {
       control: 'boolean',
       description:
         'Whether the resize is committed only on release (a preview line shows during the drag).',
-      table: { defaultValue: { summary: 'false' }, category: 'Props' },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     collapsible: {
       control: 'object',
@@ -34,11 +37,26 @@ const meta = {
         'Splitter-level collapsible config: `{ motion?: boolean; icon?: { start?, end? } }`.',
       table: { category: 'Props' },
     },
-    onResize: { table: { category: 'Events' } },
-    onResizeStart: { table: { category: 'Events' } },
-    onResizeEnd: { table: { category: 'Events' } },
-    onCollapse: { table: { category: 'Events' } },
-    onDraggerDoubleClick: { table: { category: 'Events' } },
+    onResize: {
+      description: 'Fires continuously while the user drags (or once on release in lazy mode).',
+      table: { category: 'Events' },
+    },
+    onResizeStart: {
+      description: 'Fires when a resize gesture begins.',
+      table: { category: 'Events' },
+    },
+    onResizeEnd: {
+      description: 'Fires when a resize gesture ends.',
+      table: { category: 'Events' },
+    },
+    onCollapse: {
+      description: 'Fires when a collapsible panel toggles.',
+      table: { category: 'Events' },
+    },
+    onDraggerDoubleClick: {
+      description: 'Fires when a dragger receives a double-click.',
+      table: { category: 'Events' },
+    },
   },
   parameters: {
     docs: {
@@ -64,13 +82,27 @@ const PANEL_CONTENT_STYLE =
   'height:100%;display:flex;align-items:center;justify-content:center;background:oklch(96% 0.01 264);font-family:sans-serif;color:#333;border-radius:4px;';
 
 // ─────────────────────────────────────────────
-// 1. Playground
+// Usage
 // ─────────────────────────────────────────────
-export const Playground: Story = {
+
+/** Default horizontal splitter with two panels, the first sized to 40%. */
+export const Default: Story = {
   args: {
     orientation: 'horizontal',
     vertical: false,
     lazy: false,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BSplitter>
+  <BSplitterPanel default-size="40%">Panel A</BSplitterPanel>
+  <BSplitterPanel>Panel B</BSplitterPanel>
+</BSplitter>
+        `,
+      },
+    },
   },
   render: (args) => ({
     components: { BSplitter, BSplitterPanel },
@@ -90,12 +122,21 @@ export const Playground: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 2. Vertical orientation
-// ─────────────────────────────────────────────
+/** Stack panels vertically with the `vertical` shorthand or `orientation="vertical"`. */
 export const Vertical: Story = {
-  name: 'Vertical orientation',
-  parameters: { controls: { disable: true } },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BSplitter vertical>
+  <BSplitterPanel default-size="30%">Top</BSplitterPanel>
+  <BSplitterPanel>Middle</BSplitterPanel>
+  <BSplitterPanel default-size="20%">Bottom</BSplitterPanel>
+</BSplitter>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BSplitter, BSplitterPanel },
     template: `
@@ -116,12 +157,20 @@ export const Vertical: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 3. Min / Max constraints
-// ─────────────────────────────────────────────
+/** Constrain panels via `min` / `max` (px or %). The dragger stops at the bounds. */
 export const MinMaxConstraints: Story = {
-  name: 'Min / max constraints',
-  parameters: { controls: { disable: true } },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BSplitter>
+  <BSplitterPanel default-size="50%" min="20%" max="70%">Panel A</BSplitterPanel>
+  <BSplitterPanel min="100">Panel B</BSplitterPanel>
+</BSplitter>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BSplitter, BSplitterPanel },
     template: `
@@ -139,12 +188,20 @@ export const MinMaxConstraints: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 4. Lazy mode
-// ─────────────────────────────────────────────
+/** With `lazy`, a preview indicator shows during the drag and the size only commits on release. */
 export const Lazy: Story = {
-  name: 'Lazy mode (preview during drag)',
-  parameters: { controls: { disable: true } },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BSplitter lazy>
+  <BSplitterPanel>Panel A</BSplitterPanel>
+  <BSplitterPanel>Panel B</BSplitterPanel>
+</BSplitter>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BSplitter, BSplitterPanel },
     template: `
@@ -158,12 +215,21 @@ export const Lazy: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 5. Collapsible
-// ─────────────────────────────────────────────
+/** Mark a panel `collapsible` to expose collapse buttons on the adjacent dragger. */
 export const Collapsible: Story = {
-  name: 'Collapsible panels',
-  parameters: { controls: { disable: true } },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BSplitter>
+  <BSplitterPanel collapsible>First</BSplitterPanel>
+  <BSplitterPanel collapsible>Second</BSplitterPanel>
+  <BSplitterPanel collapsible>Third</BSplitterPanel>
+</BSplitter>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BSplitter, BSplitterPanel },
     template: `
@@ -184,12 +250,20 @@ export const Collapsible: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 6. Disabled (non-resizable) panel
-// ─────────────────────────────────────────────
+/** Set `:resizable="false"` on a panel to lock its size — the adjacent dragger disappears. */
 export const NonResizable: Story = {
-  name: 'Non-resizable panel',
-  parameters: { controls: { disable: true } },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BSplitter>
+  <BSplitterPanel :resizable="false" default-size="200">Fixed 200px</BSplitterPanel>
+  <BSplitterPanel>Flexible</BSplitterPanel>
+</BSplitter>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BSplitter, BSplitterPanel },
     template: `
@@ -208,70 +282,124 @@ export const NonResizable: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 7. Accessibility (interaction test)
+// Examples
 // ─────────────────────────────────────────────
-export const Accessibility: Story = {
-  name: 'Accessibility (roles & keyboard)',
+
+/**
+ * Three-panel IDE shell — fixed sidebar, flexible main area, optional inspector. A
+ * common layout for editors, dashboards, and admin tools.
+ */
+export const IdeLayout: Story = {
+  name: 'IDE Layout',
   parameters: {
-    controls: { disable: true },
     docs: {
       description: {
         story:
-          'Each dragger has <code>role="separator"</code>, <code>aria-orientation</code>, ' +
-          '<code>aria-valuenow/min/max</code>, and <code>aria-controls</code> referencing the ' +
-          'two adjacent panels. Tab focuses the dragger; ' +
-          'Arrow keys resize; Enter / Space toggles collapse for the start side; ' +
-          'Home shrinks the previous panel toward 0; End grows it.',
+          'Three-panel layout: collapsible navigation sidebar, flexible editor, and a resizable inspector pane.',
+      },
+      source: {
+        code: `
+<BSplitter>
+  <BSplitterPanel collapsible default-size="220" min="160" max="400">
+    Sidebar
+  </BSplitterPanel>
+  <BSplitterPanel>Editor</BSplitterPanel>
+  <BSplitterPanel collapsible default-size="280" min="200">
+    Inspector
+  </BSplitterPanel>
+</BSplitter>
+        `,
       },
     },
   },
   render: () => ({
     components: { BSplitter, BSplitterPanel },
     template: `
-      <div data-testid="container" style="height:200px;width:600px;border:1px solid #d9d9d9;border-radius:4px;">
+      <div style="height:320px;width:100%;border:1px solid #d9d9d9;border-radius:4px;">
         <BSplitter>
-          <BSplitterPanel default-size="50%">
-            <div style="${PANEL_CONTENT_STYLE}">Panel A</div>
+          <BSplitterPanel collapsible default-size="220" min="160" max="400">
+            <div style="${PANEL_CONTENT_STYLE}">Sidebar</div>
           </BSplitterPanel>
           <BSplitterPanel>
-            <div style="${PANEL_CONTENT_STYLE}">Panel B</div>
+            <div style="${PANEL_CONTENT_STYLE}">Editor</div>
+          </BSplitterPanel>
+          <BSplitterPanel collapsible default-size="280" min="200">
+            <div style="${PANEL_CONTENT_STYLE}">Inspector</div>
           </BSplitterPanel>
         </BSplitter>
       </div>
     `,
   }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const container = canvas.getByTestId('container');
-    const dragger = container.querySelector('.b-splitter__dragger') as HTMLElement;
-
-    // Roles & ARIA
-    expect(dragger.getAttribute('role')).toBe('separator');
-    expect(dragger.getAttribute('aria-orientation')).toBe('vertical');
-    expect(dragger.getAttribute('aria-valuemin')).toBe('0');
-    expect(dragger.getAttribute('aria-valuemax')).toBe('100');
-    expect(Number(dragger.getAttribute('aria-valuenow'))).toBeGreaterThanOrEqual(0);
-    expect(dragger.getAttribute('aria-controls')).toMatch(/panel-0\s.*panel-1/);
-
-    // Tabindex
-    expect(dragger.getAttribute('tabindex')).toBe('0');
-
-    // Focus and arrow-key resize
-    dragger.focus();
-    expect(document.activeElement).toBe(dragger);
-    const before = Number(dragger.getAttribute('aria-valuenow'));
-    await userEvent.keyboard('{ArrowRight}');
-    const after = Number(dragger.getAttribute('aria-valuenow'));
-    expect(after).toBeGreaterThan(before);
-  },
 };
 
-// ─────────────────────────────────────────────
-// 8. Interaction - drag to resize
-// ─────────────────────────────────────────────
+/** Vertical splitter inside a horizontal splitter — chat preview / editor / console. */
+export const NestedSplitters: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Compose a vertical splitter as a child of a horizontal one for multi-axis layouts.',
+      },
+      source: {
+        code: `
+<BSplitter>
+  <BSplitterPanel default-size="40%">Files</BSplitterPanel>
+  <BSplitterPanel>
+    <BSplitter vertical>
+      <BSplitterPanel default-size="60%">Editor</BSplitterPanel>
+      <BSplitterPanel>Console</BSplitterPanel>
+    </BSplitter>
+  </BSplitterPanel>
+</BSplitter>
+        `,
+      },
+    },
+  },
+  render: () => ({
+    components: { BSplitter, BSplitterPanel },
+    template: `
+      <div style="height:360px;width:100%;border:1px solid #d9d9d9;border-radius:4px;">
+        <BSplitter>
+          <BSplitterPanel default-size="40%">
+            <div style="${PANEL_CONTENT_STYLE}">Files</div>
+          </BSplitterPanel>
+          <BSplitterPanel>
+            <BSplitter vertical>
+              <BSplitterPanel default-size="60%">
+                <div style="${PANEL_CONTENT_STYLE}">Editor</div>
+              </BSplitterPanel>
+              <BSplitterPanel>
+                <div style="${PANEL_CONTENT_STYLE}">Console</div>
+              </BSplitterPanel>
+            </BSplitter>
+          </BSplitterPanel>
+        </BSplitter>
+      </div>
+    `,
+  }),
+};
+
+/**
+ * Drag-to-resize interaction test — fires `mousedown` → `mousemove` → `mouseup` and verifies
+ * the corresponding events emit.
+ */
 export const DragToResize: Story = {
-  name: 'Interaction - drag to resize',
-  parameters: { controls: { disable: true } },
+  name: 'Drag to Resize',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Programmatically drives the dragger via synthetic mouse events and asserts <code>onResize</code> / <code>onResizeEnd</code> fire.',
+      },
+      source: {
+        code: `
+<BSplitter @resize="onResize" @resize-end="onResizeEnd">
+  <BSplitterPanel default-size="50%">Left</BSplitterPanel>
+  <BSplitterPanel>Right</BSplitterPanel>
+</BSplitter>
+        `,
+      },
+    },
+  },
   args: {
     onResize: fn(),
     onResizeEnd: fn(),
@@ -317,12 +445,85 @@ export const DragToResize: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 9. Theming (CSS vars)
+// Accessibility
 // ─────────────────────────────────────────────
-export const Theming: Story = {
-  name: 'Theming (CSS vars)',
+
+/**
+ * Each dragger is a `role="separator"` with `aria-orientation`, `aria-valuenow/min/max`,
+ * and `aria-controls` referencing the two adjacent panels.
+ */
+export const Accessibility: Story = {
   parameters: {
-    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'Each dragger has <code>role="separator"</code>, <code>aria-orientation</code>, ' +
+          '<code>aria-valuenow/min/max</code>, and <code>aria-controls</code> referencing the ' +
+          'two adjacent panels. Tab focuses the dragger; ' +
+          'Arrow keys resize; Enter / Space toggles collapse for the start side; ' +
+          'Home shrinks the previous panel toward 0; End grows it.',
+      },
+      source: {
+        code: `
+<BSplitter>
+  <BSplitterPanel default-size="50%">Panel A</BSplitterPanel>
+  <BSplitterPanel>Panel B</BSplitterPanel>
+</BSplitter>
+        `,
+      },
+    },
+  },
+  render: () => ({
+    components: { BSplitter, BSplitterPanel },
+    template: `
+      <div data-testid="container" style="height:200px;width:600px;border:1px solid #d9d9d9;border-radius:4px;">
+        <BSplitter>
+          <BSplitterPanel default-size="50%">
+            <div style="${PANEL_CONTENT_STYLE}">Panel A</div>
+          </BSplitterPanel>
+          <BSplitterPanel>
+            <div style="${PANEL_CONTENT_STYLE}">Panel B</div>
+          </BSplitterPanel>
+        </BSplitter>
+      </div>
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const container = canvas.getByTestId('container');
+    const dragger = container.querySelector('.b-splitter__dragger') as HTMLElement;
+
+    // Roles & ARIA
+    expect(dragger.getAttribute('role')).toBe('separator');
+    expect(dragger.getAttribute('aria-orientation')).toBe('vertical');
+    expect(dragger.getAttribute('aria-valuemin')).toBe('0');
+    expect(dragger.getAttribute('aria-valuemax')).toBe('100');
+    expect(Number(dragger.getAttribute('aria-valuenow'))).toBeGreaterThanOrEqual(0);
+    expect(dragger.getAttribute('aria-controls')).toMatch(/panel-0\s.*panel-1/);
+
+    // Tabindex
+    expect(dragger.getAttribute('tabindex')).toBe('0');
+
+    // Focus and arrow-key resize
+    dragger.focus();
+    expect(document.activeElement).toBe(dragger);
+    const before = Number(dragger.getAttribute('aria-valuenow'));
+    await userEvent.keyboard('{ArrowRight}');
+    const after = Number(dragger.getAttribute('aria-valuenow'));
+    expect(after).toBeGreaterThan(before);
+  },
+};
+
+// ─────────────────────────────────────────────
+// Theming
+// ─────────────────────────────────────────────
+
+/**
+ * Override `--b-splitter-bg`, `--b-splitter-bg-active`, and `--b-splitter-dragger-size`
+ * on the splitter (or any ancestor) to retheme without touching the source.
+ */
+export const Theming: Story = {
+  parameters: {
     docs: {
       description: {
         story:
@@ -398,78 +599,80 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 10. Design Tokens (LAST story)
+// Design Tokens — MUST be the LAST story
 // ─────────────────────────────────────────────
-const TOKENS: Array<{ name: string; def: string; desc: string }> = [
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
   {
-    name: '--b-splitter-split-bar-size',
-    def: '2px',
-    desc: 'Thickness of the visible split bar drawn at the centre of the dragger.',
+    token: '--b-splitter-split-bar-size',
+    defaultValue: '2px',
+    description: 'Thickness of the visible split bar drawn at the centre of the dragger.',
   },
   {
-    name: '--b-splitter-dragger-size',
-    def: '6px',
-    desc: 'Total hit-area thickness of the dragger (AntD `splitTriggerSize`).',
+    token: '--b-splitter-dragger-size',
+    defaultValue: '6px',
+    description: 'Total hit-area thickness of the dragger (AntD `splitTriggerSize`).',
   },
   {
-    name: '--b-splitter-dragger-draggable-size',
-    def: '20px',
-    desc: 'Length of the visible drag handle (AntD `splitBarDraggableSize`).',
+    token: '--b-splitter-dragger-draggable-size',
+    defaultValue: '20px',
+    description: 'Length of the visible drag handle (AntD `splitBarDraggableSize`).',
   },
   {
-    name: '--b-splitter-bg',
-    def: 'oklch(94% 0 0)',
-    desc: 'Default colour of the split bar (maps to AntD `colorFill`).',
+    token: '--b-splitter-bg',
+    defaultValue: 'oklch(94% 0 0)',
+    description: 'Default colour of the split bar (maps to AntD `colorFill`).',
   },
   {
-    name: '--b-splitter-bg-hover',
-    def: 'oklch(85% 0 0)',
-    desc: 'Hover colour of the split bar (maps to AntD `colorFillSecondary`).',
+    token: '--b-splitter-bg-hover',
+    defaultValue: 'oklch(85% 0 0)',
+    description: 'Hover colour of the split bar (maps to AntD `colorFillSecondary`).',
   },
   {
-    name: '--b-splitter-bg-active',
-    def: 'oklch(60% 0.18 264)',
-    desc: 'Active / dragging / focused colour (maps to AntD `colorPrimary`).',
+    token: '--b-splitter-bg-active',
+    defaultValue: 'oklch(60% 0.18 264)',
+    description: 'Active / dragging / focused colour (maps to AntD `colorPrimary`).',
   },
   {
-    name: '--b-splitter-text-color',
-    def: 'oklch(40% 0 0)',
-    desc: 'Foreground colour for any text inside the splitter.',
+    token: '--b-splitter-text-color',
+    defaultValue: 'oklch(40% 0 0)',
+    description: 'Foreground colour for any text inside the splitter.',
   },
   {
-    name: '--b-splitter-color-bg-elevated',
-    def: '#fff',
-    desc: 'Elevated background (used for floating elements above panels).',
+    token: '--b-splitter-color-bg-elevated',
+    defaultValue: '#fff',
+    description: 'Elevated background (used for floating elements above panels).',
   },
   {
-    name: '--b-splitter-collapse-bar-bg',
-    def: 'oklch(94% 0 0)',
-    desc: 'Background of the collapse button.',
+    token: '--b-splitter-collapse-bar-bg',
+    defaultValue: 'oklch(94% 0 0)',
+    description: 'Background of the collapse button.',
   },
   {
-    name: '--b-splitter-collapse-bar-bg-hover',
-    def: 'oklch(60% 0.18 264)',
-    desc: 'Hover background of the collapse button.',
+    token: '--b-splitter-collapse-bar-bg-hover',
+    defaultValue: 'oklch(60% 0.18 264)',
+    description: 'Hover background of the collapse button.',
   },
   {
-    name: '--b-splitter-collapse-icon-color',
-    def: 'oklch(60% 0 0)',
-    desc: 'Icon colour inside the collapse button.',
+    token: '--b-splitter-collapse-icon-color',
+    defaultValue: 'oklch(60% 0 0)',
+    description: 'Icon colour inside the collapse button.',
   },
   {
-    name: '--b-splitter-collapse-icon-color-hover',
-    def: '#fff',
-    desc: 'Icon colour on hover.',
+    token: '--b-splitter-collapse-icon-color-hover',
+    defaultValue: '#fff',
+    description: 'Icon colour on hover.',
   },
   {
-    name: '--b-splitter-motion-duration',
-    def: '0.2s',
-    desc: 'Duration of the collapse / hover transitions.',
+    token: '--b-splitter-motion-duration',
+    defaultValue: '0.2s',
+    description: 'Duration of the collapse / hover transitions.',
   },
   {
-    name: '--b-splitter-z-index-base',
-    def: '1',
-    desc: 'Base z-index for the dragger; the lazy preview indicator stacks above.',
+    token: '--b-splitter-z-index-base',
+    defaultValue: '1',
+    description: 'Base z-index for the dragger; the lazy preview indicator stacks above.',
   },
 ];
 
@@ -487,23 +690,26 @@ export const DesignTokens: Story = {
     },
   },
   render: () => ({
-    setup: () => ({ tokens: TOKENS }),
+    setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
-      <div style="font-family:sans-serif;font-size:14px;">
-        <h3 style="margin:0 0 0.75rem;">BSplitter Design Tokens</h3>
-        <table style="border-collapse:collapse;width:100%;">
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BSplitter — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-splitter</code>. Override inline or via a CSS class.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
           <thead>
-            <tr style="background:oklch(96% 0.01 264);">
-              <th style="text-align:left;padding:8px;border:1px solid #d9d9d9;">Variable</th>
-              <th style="text-align:left;padding:8px;border:1px solid #d9d9d9;">Default</th>
-              <th style="text-align:left;padding:8px;border:1px solid #d9d9d9;">Description</th>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="t in tokens" :key="t.name">
-              <td style="padding:8px;border:1px solid #d9d9d9;font-family:monospace;white-space:nowrap;">{{ t.name }}</td>
-              <td style="padding:8px;border:1px solid #d9d9d9;font-family:monospace;white-space:nowrap;">{{ t.def }}</td>
-              <td style="padding:8px;border:1px solid #d9d9d9;">{{ t.desc }}</td>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
             </tr>
           </tbody>
         </table>

@@ -27,52 +27,66 @@ const meta = {
       control: 'select',
       options: Object.values(BCommonSize),
       description: 'Size of the textarea.',
-      table: { defaultValue: { summary: BCommonSize.Medium } },
+      table: { category: 'Props', defaultValue: { summary: BCommonSize.Medium } },
     },
     variant: {
       control: 'select',
       options: Object.values(BMentionsVariant),
       description: 'Visual variant.',
-      table: { defaultValue: { summary: BMentionsVariant.Outlined } },
+      table: { category: 'Props', defaultValue: { summary: BMentionsVariant.Outlined } },
     },
     status: {
       control: 'select',
       options: [undefined, ...Object.values(BMentionsStatus)],
       description: 'Validation status.',
+      table: { category: 'Props' },
     },
     disabled: {
       control: 'boolean',
       description: 'Whether the textarea is disabled.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     readOnly: {
       control: 'boolean',
       description: 'Whether the textarea is read-only.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     placeholder: {
       control: 'text',
       description: 'Placeholder text.',
+      table: { category: 'Props' },
     },
     allowClear: {
       control: 'boolean',
       description: 'Show clear button.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     rows: {
       control: 'number',
       description: 'Number of visible text lines.',
-      table: { defaultValue: { summary: '3' } },
+      table: { category: 'Props', defaultValue: { summary: '3' } },
     },
     prefix: {
       control: 'text',
       description: 'Trigger character(s) for mention lookup.',
-      table: { defaultValue: { summary: '"@"' } },
+      table: { category: 'Props', defaultValue: { summary: '"@"' } },
     },
     notFoundContent: {
       control: 'text',
       description: 'Content shown when no results match.',
-      table: { defaultValue: { summary: '"Not Found"' } },
+      table: { category: 'Props', defaultValue: { summary: '"Not Found"' } },
+    },
+    'onUpdate:modelValue': {
+      description: 'Emitted when the value changes.',
+      table: { category: 'Events' },
+    },
+    onSelect: {
+      description: 'Emitted when a mention option is selected.',
+      table: { category: 'Events' },
+    },
+    onSearch: {
+      description: 'Emitted while the user is typing inside a prefix trigger.',
+      table: { category: 'Events' },
     },
   },
   parameters: {
@@ -91,9 +105,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // ─────────────────────────────────────────────
-// 1. Playground
+// Usage
 // ─────────────────────────────────────────────
-export const Playground: Story = {
+
+export const Default: Story = {
   args: {
     placeholder: 'Type @ to mention someone...',
     size: 'md',
@@ -101,6 +116,11 @@ export const Playground: Story = {
     disabled: false,
     allowClear: true,
     rows: 3,
+  },
+  parameters: {
+    docs: {
+      source: { code: `<BMentions v-model="value" :options="options" placeholder="Type @..." />` },
+    },
   },
   render: (args) => ({
     components: { BMentions },
@@ -110,7 +130,7 @@ export const Playground: Story = {
       return { args, value, options };
     },
     template: `
-      <div style="padding: 40px; max-width: 400px;">
+      <div style="max-width: 400px;">
         <BMentions v-bind="args" v-model="value" :options="options" />
         <p style="margin-top: 12px; font-size: 12px; color: #666;">Value: "{{ value }}"</p>
       </div>
@@ -118,10 +138,18 @@ export const Playground: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 2. Variants
-// ─────────────────────────────────────────────
 export const Variants: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BMentions variant="outlined" :options="options" />
+<BMentions variant="filled" :options="options" />
+<BMentions variant="borderless" :options="options" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BMentions },
     setup: () => {
@@ -132,7 +160,7 @@ export const Variants: Story = {
       return { outlined, filled, borderless, options };
     },
     template: `
-      <div style="padding: 40px; display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
         <div>
           <p style="margin-bottom: 4px; font-size: 12px; color: #666;">Outlined (default)</p>
           <BMentions v-model="outlined" variant="outlined" :options="options" placeholder="Type @..." />
@@ -150,31 +178,17 @@ export const Variants: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 4. Multiple Prefixes
-// ─────────────────────────────────────────────
-export const MultiplePrefixes: Story = {
-  render: () => ({
-    components: { BMentions },
-    setup: () => {
-      const value = ref('');
-      const options = defaultOptions;
-      return { value, options };
-    },
-    template: `
-      <div style="padding: 40px; max-width: 400px;">
-        <p style="margin-bottom: 8px; font-size: 12px; color: #666;">Supports @ and # prefixes</p>
-        <BMentions v-model="value" :prefix="['@', '#']" :options="options" placeholder="Type @ or # ..." />
-        <p style="margin-top: 12px; font-size: 12px; color: #666;">Value: "{{ value }}"</p>
-      </div>
-    `,
-  }),
-};
-
-// ─────────────────────────────────────────────
-// 5. Status
-// ─────────────────────────────────────────────
 export const Status: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BMentions status="error" :options="options" />
+<BMentions status="warning" :options="options" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BMentions },
     setup: () => {
@@ -184,7 +198,7 @@ export const Status: Story = {
       return { err, warn, options };
     },
     template: `
-      <div style="padding: 40px; display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 400px;">
         <div>
           <p style="margin-bottom: 4px; font-size: 12px; color: #666;">Error</p>
           <BMentions v-model="err" status="error" :options="options" placeholder="Error state" />
@@ -198,18 +212,15 @@ export const Status: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 6. Disabled
-// ─────────────────────────────────────────────
 export const Disabled: Story = {
+  parameters: {
+    docs: { source: { code: `<BMentions disabled model-value="Hello @alice" :options="options" />` } },
+  },
   render: () => ({
     components: { BMentions },
-    setup: () => {
-      const options = defaultOptions;
-      return { options };
-    },
+    setup: () => ({ options: defaultOptions }),
     template: `
-      <div style="padding: 40px; max-width: 400px;">
+      <div style="max-width: 400px;">
         <BMentions model-value="Hello @alice, this is disabled" disabled :options="options" />
       </div>
     `,
@@ -217,9 +228,16 @@ export const Disabled: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 7. Accessibility
+// Examples
 // ─────────────────────────────────────────────
-export const Accessibility: Story = {
+
+export const MultiplePrefixes: Story = {
+  parameters: {
+    docs: {
+      description: { story: 'Configure multiple trigger characters via the <code>prefix</code> array.' },
+      source: { code: `<BMentions v-model="value" :prefix="['@', '#']" :options="options" />` },
+    },
+  },
   render: () => ({
     components: { BMentions },
     setup: () => {
@@ -228,7 +246,93 @@ export const Accessibility: Story = {
       return { value, options };
     },
     template: `
-      <div style="padding: 40px; max-width: 400px;">
+      <div style="max-width: 400px;">
+        <p style="margin-bottom: 8px; font-size: 12px; color: #666;">Supports @ and # prefixes</p>
+        <BMentions v-model="value" :prefix="['@', '#']" :options="options" placeholder="Type @ or # ..." />
+        <p style="margin-top: 12px; font-size: 12px; color: #666;">Value: "{{ value }}"</p>
+      </div>
+    `,
+  }),
+};
+
+export const InteractionTest: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Types a prefix, picks the first option with Enter, then types another prefix and selects again.',
+      },
+      source: { code: `<BMentions v-model="value" :options="options" allow-clear />` },
+    },
+  },
+  args: {
+    placeholder: 'Type @ to mention...',
+    allowClear: true,
+  },
+  render: (args) => ({
+    components: { BMentions },
+    setup: () => {
+      const value = ref('');
+      const options = defaultOptions;
+      return { args, value, options };
+    },
+    template: `
+      <div style="max-width: 400px;">
+        <BMentions v-bind="args" v-model="value" :options="options" />
+        <p data-testid="current-value" style="margin-top: 12px; font-size: 12px; color: #666;">Value: "{{ value }}"</p>
+      </div>
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const textarea = canvas.getByRole('textbox') as HTMLTextAreaElement;
+
+    await userEvent.type(textarea, 'Hello @');
+    await waitFor(() => {
+      const options = canvasElement.querySelectorAll('[role="option"]');
+      expect(options.length).toBeGreaterThan(0);
+    });
+
+    await userEvent.keyboard('{Enter}');
+    await waitFor(() => {
+      expect(canvas.getByTestId('current-value').textContent).toContain('@alice');
+    });
+
+    await userEvent.type(textarea, ' @b');
+    await waitFor(() => {
+      const options = canvasElement.querySelectorAll('[role="option"]');
+      expect(options.length).toBe(1);
+    });
+
+    await userEvent.keyboard('{Enter}');
+    await waitFor(() => {
+      expect(canvas.getByTestId('current-value').textContent).toContain('@bob');
+    });
+  },
+};
+
+// ─────────────────────────────────────────────
+// Accessibility
+// ─────────────────────────────────────────────
+
+export const Accessibility: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The wrapper has <code>role="combobox"</code> with <code>aria-haspopup="listbox"</code> and <code>aria-expanded</code>. ' +
+          'The textarea has <code>aria-autocomplete="list"</code> and updates <code>aria-activedescendant</code>.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BMentions },
+    setup: () => {
+      const value = ref('');
+      const options = defaultOptions;
+      return { value, options };
+    },
+    template: `
+      <div style="max-width: 400px;">
         <label for="mentions-a11y" style="display: block; margin-bottom: 4px; font-size: 14px;">Mention someone</label>
         <BMentions v-model="value" id="mentions-a11y" :options="options" placeholder="Type @ to mention..." />
       </div>
@@ -267,9 +371,32 @@ export const Accessibility: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 8. Theming
+// Theming
 // ─────────────────────────────────────────────
+
 export const Theming: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Override <code>--b-mentions-active-border-color</code>, <code>--b-mentions-active-shadow</code>, ' +
+          '<code>--b-mentions-border-radius</code>, and friends on the component root.',
+      },
+      source: {
+        code: `
+<BMentions
+  v-model="value"
+  :options="options"
+  style="
+    --b-mentions-active-border-color: #7c3aed;
+    --b-mentions-hover-border-color: #a78bfa;
+    --b-mentions-border-radius: 12px;
+  "
+/>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BMentions },
     setup: () => {
@@ -280,7 +407,7 @@ export const Theming: Story = {
       return { v1, v2, v3, options };
     },
     template: `
-      <div style="padding: 40px; display: flex; gap: 40px; flex-wrap: wrap;">
+      <div style="display: flex; gap: 40px; flex-wrap: wrap;">
         <div>
           <p style="margin-bottom: 8px; font-size: 12px; color: #666;">Default</p>
           <BMentions v-model="v1" :options="options" placeholder="Default theme" />
@@ -316,242 +443,74 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 9. Interaction Test
+// Design Tokens — MUST be the LAST story
 // ─────────────────────────────────────────────
-export const InteractionTest: Story = {
-  args: {
-    placeholder: 'Type @ to mention...',
-    allowClear: true,
-  },
-  render: (args) => ({
-    components: { BMentions },
-    setup: () => {
-      const value = ref('');
-      const options = defaultOptions;
-      return { args, value, options };
-    },
-    template: `
-      <div style="padding: 40px; max-width: 400px;">
-        <BMentions v-bind="args" v-model="value" :options="options" />
-        <p data-testid="current-value" style="margin-top: 12px; font-size: 12px; color: #666;">Value: "{{ value }}"</p>
-      </div>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const textarea = canvas.getByRole('textbox') as HTMLTextAreaElement;
+type TokenRow = { token: string; defaultValue: string; description: string };
 
-    // Type text with a prefix trigger
-    await userEvent.type(textarea, 'Hello @');
-    await waitFor(() => {
-      const options = canvasElement.querySelectorAll('[role="option"]');
-      expect(options.length).toBeGreaterThan(0);
-    });
+const DESIGN_TOKENS: TokenRow[] = [
+  { token: '--b-mentions-active-bg', defaultValue: '#ffffff', description: 'Background when textarea is focused.' },
+  { token: '--b-mentions-active-border-color', defaultValue: '#1677ff', description: 'Border color when focused.' },
+  { token: '--b-mentions-active-shadow', defaultValue: '0 0 0 2px rgba(5,145,255,0.1)', description: 'Box-shadow when focused.' },
+  { token: '--b-mentions-hover-bg', defaultValue: '#ffffff', description: 'Background on hover.' },
+  { token: '--b-mentions-hover-border-color', defaultValue: '#4096ff', description: 'Border color on hover.' },
+  { token: '--b-mentions-border-color', defaultValue: '#d9d9d9', description: 'Default border color.' },
+  { token: '--b-mentions-bg', defaultValue: '#ffffff', description: 'Default background color.' },
+  { token: '--b-mentions-color', defaultValue: 'rgba(0,0,0,0.88)', description: 'Text color.' },
+  { token: '--b-mentions-placeholder-color', defaultValue: 'rgba(0,0,0,0.25)', description: 'Placeholder text color.' },
+  { token: '--b-mentions-font-size', defaultValue: '14px', description: 'Standard font size.' },
+  { token: '--b-mentions-font-size-lg', defaultValue: '16px', description: 'Large variant font size.' },
+  { token: '--b-mentions-font-size-sm', defaultValue: '14px', description: 'Small variant font size.' },
+  { token: '--b-mentions-padding-block', defaultValue: '4px', description: 'Vertical padding (medium).' },
+  { token: '--b-mentions-padding-block-lg', defaultValue: '7px', description: 'Vertical padding (large).' },
+  { token: '--b-mentions-padding-block-sm', defaultValue: '0px', description: 'Vertical padding (small).' },
+  { token: '--b-mentions-padding-inline', defaultValue: '11px', description: 'Horizontal padding (medium).' },
+  { token: '--b-mentions-padding-inline-lg', defaultValue: '11px', description: 'Horizontal padding (large).' },
+  { token: '--b-mentions-padding-inline-sm', defaultValue: '7px', description: 'Horizontal padding (small).' },
+  { token: '--b-mentions-border-radius', defaultValue: '6px', description: 'Border radius.' },
+  { token: '--b-mentions-disabled-bg', defaultValue: 'rgba(0,0,0,0.04)', description: 'Background when disabled.' },
+  { token: '--b-mentions-disabled-color', defaultValue: 'rgba(0,0,0,0.25)', description: 'Text color when disabled.' },
+  { token: '--b-mentions-error-border-color', defaultValue: '#ff4d4f', description: 'Border color for error status.' },
+  { token: '--b-mentions-error-active-shadow', defaultValue: '0 0 0 2px rgba(255,38,5,0.06)', description: 'Shadow during error state focus.' },
+  { token: '--b-mentions-warning-border-color', defaultValue: '#faad14', description: 'Border color for warning status.' },
+  { token: '--b-mentions-warning-active-shadow', defaultValue: '0 0 0 2px rgba(255,215,5,0.1)', description: 'Shadow during warning state focus.' },
+  { token: '--b-mentions-dropdown-bg', defaultValue: '#ffffff', description: 'Dropdown popup background.' },
+  { token: '--b-mentions-dropdown-shadow', defaultValue: '0 6px 16px 0 rgba(0,0,0,0.08)', description: 'Dropdown box-shadow.' },
+  { token: '--b-mentions-dropdown-height', defaultValue: '250px', description: 'Maximum dropdown height.' },
+  { token: '--b-mentions-option-active-bg', defaultValue: 'rgba(0,0,0,0.04)', description: 'Background of active / hovered option.' },
+  { token: '--b-mentions-option-font-size', defaultValue: '14px', description: 'Option font size.' },
+  { token: '--b-mentions-clear-color', defaultValue: 'rgba(0,0,0,0.25)', description: 'Clear button icon color.' },
+  { token: '--b-mentions-z-index-popup', defaultValue: '1050', description: 'z-index of dropdown popup.' },
+];
 
-    // First item (Alice) is already active on open - Enter selects it
-    await userEvent.keyboard('{Enter}');
-    await waitFor(() => {
-      expect(canvas.getByTestId('current-value').textContent).toContain('@alice');
-    });
-
-    // Type another mention with filter
-    await userEvent.type(textarea, ' @b');
-    await waitFor(() => {
-      const options = canvasElement.querySelectorAll('[role="option"]');
-      expect(options.length).toBe(1);
-    });
-
-    // First (only) filtered option is active - Enter selects Bob
-    await userEvent.keyboard('{Enter}');
-    await waitFor(() => {
-      expect(canvas.getByTestId('current-value').textContent).toContain('@bob');
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// 10. Design Tokens (LAST)
-// ─────────────────────────────────────────────
 export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BMentions</code>. Override on the component root or any ancestor selector.',
+      },
+    },
+  },
   render: () => ({
+    setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
-      <div style="padding: 40px; font-family: monospace; font-size: 13px; max-width: 900px;">
-        <h3 style="margin-bottom: 16px; font-size: 16px; font-family: sans-serif;">BMentions Design Tokens</h3>
-        <p style="margin-bottom: 16px; font-size: 13px; font-family: sans-serif; color: #666;">
-          Override these CSS variables on <code>.b-mentions</code> or an ancestor to customize the component appearance.
-        </p>
-        <table style="width: 100%; border-collapse: collapse; background: #ffffff;">
-          <thead>
-            <tr style="border-bottom: 2px solid #e5e7eb;">
-              <th style="text-align: left; padding: 8px 12px;">Variable</th>
-              <th style="text-align: left; padding: 8px 12px;">Default</th>
-              <th style="text-align: left; padding: 8px 12px;">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-active-bg</td>
-              <td style="padding: 8px 12px;">#ffffff</td>
-              <td style="padding: 8px 12px;">Background when textarea is focused</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-active-border-color</td>
-              <td style="padding: 8px 12px;">#1677ff</td>
-              <td style="padding: 8px 12px;">Border color when focused</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-active-shadow</td>
-              <td style="padding: 8px 12px;">0 0 0 2px rgba(5,145,255,0.1)</td>
-              <td style="padding: 8px 12px;">Box-shadow when focused</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-hover-bg</td>
-              <td style="padding: 8px 12px;">#ffffff</td>
-              <td style="padding: 8px 12px;">Background on hover</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-hover-border-color</td>
-              <td style="padding: 8px 12px;">#4096ff</td>
-              <td style="padding: 8px 12px;">Border color on hover</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-border-color</td>
-              <td style="padding: 8px 12px;">#d9d9d9</td>
-              <td style="padding: 8px 12px;">Default border color</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-bg</td>
-              <td style="padding: 8px 12px;">#ffffff</td>
-              <td style="padding: 8px 12px;">Default background color</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-color</td>
-              <td style="padding: 8px 12px;">rgba(0,0,0,0.88)</td>
-              <td style="padding: 8px 12px;">Text color</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-placeholder-color</td>
-              <td style="padding: 8px 12px;">rgba(0,0,0,0.25)</td>
-              <td style="padding: 8px 12px;">Placeholder text color</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-font-size</td>
-              <td style="padding: 8px 12px;">14px</td>
-              <td style="padding: 8px 12px;">Standard font size</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-font-size-lg</td>
-              <td style="padding: 8px 12px;">16px</td>
-              <td style="padding: 8px 12px;">Large variant font size</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-font-size-sm</td>
-              <td style="padding: 8px 12px;">14px</td>
-              <td style="padding: 8px 12px;">Small variant font size</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-padding-block</td>
-              <td style="padding: 8px 12px;">4px</td>
-              <td style="padding: 8px 12px;">Vertical padding (medium)</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-padding-block-lg</td>
-              <td style="padding: 8px 12px;">7px</td>
-              <td style="padding: 8px 12px;">Vertical padding (large)</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-padding-block-sm</td>
-              <td style="padding: 8px 12px;">0px</td>
-              <td style="padding: 8px 12px;">Vertical padding (small)</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-padding-inline</td>
-              <td style="padding: 8px 12px;">11px</td>
-              <td style="padding: 8px 12px;">Horizontal padding (medium)</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-padding-inline-lg</td>
-              <td style="padding: 8px 12px;">11px</td>
-              <td style="padding: 8px 12px;">Horizontal padding (large)</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-padding-inline-sm</td>
-              <td style="padding: 8px 12px;">7px</td>
-              <td style="padding: 8px 12px;">Horizontal padding (small)</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-border-radius</td>
-              <td style="padding: 8px 12px;">6px</td>
-              <td style="padding: 8px 12px;">Border radius</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-disabled-bg</td>
-              <td style="padding: 8px 12px;">rgba(0,0,0,0.04)</td>
-              <td style="padding: 8px 12px;">Background when disabled</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-disabled-color</td>
-              <td style="padding: 8px 12px;">rgba(0,0,0,0.25)</td>
-              <td style="padding: 8px 12px;">Text color when disabled</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-error-border-color</td>
-              <td style="padding: 8px 12px;">#ff4d4f</td>
-              <td style="padding: 8px 12px;">Border color for error status</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-error-active-shadow</td>
-              <td style="padding: 8px 12px;">0 0 0 2px rgba(255,38,5,0.06)</td>
-              <td style="padding: 8px 12px;">Shadow during error state focus</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-warning-border-color</td>
-              <td style="padding: 8px 12px;">#faad14</td>
-              <td style="padding: 8px 12px;">Border color for warning status</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-warning-active-shadow</td>
-              <td style="padding: 8px 12px;">0 0 0 2px rgba(255,215,5,0.1)</td>
-              <td style="padding: 8px 12px;">Shadow during warning state focus</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-dropdown-bg</td>
-              <td style="padding: 8px 12px;">#ffffff</td>
-              <td style="padding: 8px 12px;">Dropdown popup background</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-dropdown-shadow</td>
-              <td style="padding: 8px 12px;">0 6px 16px 0 rgba(0,0,0,0.08)...</td>
-              <td style="padding: 8px 12px;">Dropdown box-shadow</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-dropdown-height</td>
-              <td style="padding: 8px 12px;">250px</td>
-              <td style="padding: 8px 12px;">Maximum dropdown height</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-option-active-bg</td>
-              <td style="padding: 8px 12px;">rgba(0,0,0,0.04)</td>
-              <td style="padding: 8px 12px;">Background of active/hovered option</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-option-font-size</td>
-              <td style="padding: 8px 12px;">14px</td>
-              <td style="padding: 8px 12px;">Option font size</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #f3f4f6;">
-              <td style="padding: 8px 12px;">--b-mentions-clear-color</td>
-              <td style="padding: 8px 12px;">rgba(0,0,0,0.25)</td>
-              <td style="padding: 8px 12px;">Clear button icon color</td>
-            </tr>
-            <tr>
-              <td style="padding: 8px 12px;">--b-mentions-z-index-popup</td>
-              <td style="padding: 8px 12px;">1050</td>
-              <td style="padding: 8px 12px;">z-index of dropdown popup</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:oklch(96% 0.002 260);">
+            <th style="text-align:left;padding:10px 12px;">CSS Variable</th>
+            <th style="text-align:left;padding:10px 12px;">Default</th>
+            <th style="text-align:left;padding:10px 12px;">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+            <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+            <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+            <td style="padding:8px 12px;">{{ t.description }}</td>
+          </tr>
+        </tbody>
+      </table>
     `,
   }),
 };

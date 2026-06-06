@@ -4,9 +4,12 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { ref } from 'vue';
 
-// ─────────────────────────────────────────────
-// Meta
-// ─────────────────────────────────────────────
+/**
+ * BSpin — loading indicator with optional tip, delay, fullscreen, and nested wrap modes.
+ *
+ * Story file follows `docs/STORY_FORMAT.md`:
+ *   Default → per-prop Usage → Examples → Accessibility → Theming → Design Tokens (LAST).
+ */
 const meta = {
   title: 'Feedback/Spin',
   component: BSpin,
@@ -15,28 +18,31 @@ const meta = {
     spinning: {
       control: 'boolean',
       description: 'Whether the spinner is active.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     size: {
       control: 'select',
       options: Object.values(BSpinSize),
       description: 'Size of the spinner indicator.',
-      table: { defaultValue: { summary: BSpinSize.Default } },
+      table: { category: 'Props', defaultValue: { summary: BSpinSize.Default } },
     },
     tip: {
       control: 'text',
       description: 'Descriptive text below the spinner.',
+      table: { category: 'Props' },
     },
     delay: {
       control: 'number',
       description: 'Delay in ms before spinner shows (prevents flicker).',
-      table: { defaultValue: { summary: '0' } },
+      table: { category: 'Props', defaultValue: { summary: '0' } },
     },
     fullscreen: {
       control: 'boolean',
       description: 'Display as a fullscreen overlay.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
+    default: { description: 'Content to wrap with a dimmed overlay while loading.', table: { category: 'Slots' } },
+    indicator: { description: 'Slot to override the default dot indicator.', table: { category: 'Slots' } },
   },
   parameters: {
     docs: {
@@ -46,7 +52,7 @@ const meta = {
           'It supports three <strong>sizes</strong> (small, default, large), an optional <strong>tip</strong> text, ' +
           'a <strong>delay</strong> to prevent flicker, <strong>fullscreen</strong> overlay mode, and a <strong>nested</strong> mode ' +
           'that wraps content with a dimmed overlay while loading.<br>' +
-          'The spinner is accessible with <code>role="status"</code> and respects <code>prefers-reduced-motion</code>.',
+          'Accessible with <code>role="status"</code> and respects <code>prefers-reduced-motion</code>.',
       },
     },
   },
@@ -56,12 +62,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // ─────────────────────────────────────────────
-// 1. Playground (all controls)
+// Usage
 // ─────────────────────────────────────────────
-/**
- * Interactive playground - tweak all props via the Controls panel.
- */
-export const Playground: Story = {
+
+/** Default — standalone spinner. */
+export const Default: Story = {
   args: {
     spinning: true,
     size: BSpinSize.Default,
@@ -69,24 +74,17 @@ export const Playground: Story = {
     delay: 0,
     fullscreen: false,
   },
+  parameters: { docs: { source: { code: `<BSpin />` } } },
   render: (args) => ({
     components: { BSpin },
-    setup() {
-      return { args };
-    },
+    setup: () => ({ args }),
     template: `<BSpin v-bind="args" />`,
   }),
 };
 
-// ─────────────────────────────────────────────
-// 2. All sizes
-// ─────────────────────────────────────────────
-/**
- * Demonstrates all three size variants.
- */
-export const AllSizes: Story = {
+/** Three sizes — `small`, `default`, `large`. */
+export const Sizes: Story = {
   parameters: {
-    controls: { disable: true },
     docs: {
       source: {
         code: `
@@ -118,21 +116,9 @@ export const AllSizes: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 3. With tip
-// ─────────────────────────────────────────────
-/**
- * Spinner with a descriptive tip below.
- */
+/** Spinner with a descriptive tip below. */
 export const WithTip: Story = {
-  parameters: {
-    controls: { disable: true },
-    docs: {
-      source: {
-        code: `<BSpin tip="Loading data..." />`,
-      },
-    },
-  },
+  parameters: { docs: { source: { code: `<BSpin tip="Loading data..." />` } } },
   render: () => ({
     components: { BSpin },
     template: `
@@ -145,54 +131,35 @@ export const WithTip: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 4. Nested (wrapping content)
-// ─────────────────────────────────────────────
-/**
- * Wraps child content with a translucent overlay and blur effect.
- * Toggle the spinner to see the content underneath.
- */
+/** Wrap content with a translucent overlay and blur while loading. */
 export const Nested: Story = {
   parameters: {
-    controls: { disable: true },
     docs: {
       source: {
         code: `
-<script setup>
-const loading = ref(true);
-</script>
-
-<template>
-  <button @click="loading = !loading">Toggle</button>
-  <BSpin :spinning="loading" tip="Loading...">
-    <div>Your content here</div>
-  </BSpin>
-</template>
+<BSpin :spinning="loading" tip="Loading...">
+  <div>Your content here</div>
+</BSpin>
         `,
       },
     },
   },
   render: () => ({
     components: { BSpin },
-    setup() {
-      const loading = ref(true);
-      return { loading };
-    },
+    setup: () => ({ loading: ref(true) }),
     template: `
       <div style="display:flex;flex-direction:column;gap:1rem;">
-        <div>
-          <button
-            data-testid="toggle-btn"
-            style="padding:0.25rem 0.75rem;border:1px solid #ccc;border-radius:0.375rem;cursor:pointer;"
-            @click="loading = !loading"
-          >
-            {{ loading ? 'Stop' : 'Start' }} loading
-          </button>
-        </div>
+        <button
+          data-testid="toggle-btn"
+          style="align-self:flex-start;padding:0.25rem 0.75rem;border:1px solid #ccc;border-radius:0.375rem;cursor:pointer;"
+          @click="loading = !loading"
+        >
+          {{ loading ? 'Stop' : 'Start' }} loading
+        </button>
         <BSpin :spinning="loading" tip="Loading...">
           <div style="padding:2rem;border:1px solid #e8e8e8;border-radius:0.5rem;background:#fafafa;">
             <p style="margin:0 0 0.5rem"><strong>Card Title</strong></p>
-            <p style="margin:0;color:#666;">Content is blurred and dimmed while loading. Click the button above to toggle.</p>
+            <p style="margin:0;color:#666;">Content is blurred and dimmed while loading.</p>
           </div>
         </BSpin>
       </div>
@@ -200,15 +167,9 @@ const loading = ref(true);
   }),
 };
 
-// ─────────────────────────────────────────────
-// 5. Delay (anti-flicker)
-// ─────────────────────────────────────────────
-/**
- * The spinner only appears after a 500ms delay to avoid flicker for fast operations.
- */
+/** Anti-flicker: spinner only appears after `delay` ms. */
 export const Delay: Story = {
   parameters: {
-    controls: { disable: true },
     docs: {
       source: {
         code: `<BSpin :spinning="loading" :delay="500" tip="Loading...">content</BSpin>`,
@@ -226,14 +187,12 @@ export const Delay: Story = {
     },
     template: `
       <div style="display:flex;flex-direction:column;gap:1rem;">
-        <div>
-          <button
-            style="padding:0.25rem 0.75rem;border:1px solid #ccc;border-radius:0.375rem;cursor:pointer;"
-            @click="toggle"
-          >
-            {{ loading ? 'Stop' : 'Start' }} loading (500ms delay)
-          </button>
-        </div>
+        <button
+          style="align-self:flex-start;padding:0.25rem 0.75rem;border:1px solid #ccc;border-radius:0.375rem;cursor:pointer;"
+          @click="toggle"
+        >
+          {{ loading ? 'Stop' : 'Start' }} loading (500ms delay)
+        </button>
         <BSpin :spinning="loading" :delay="500" tip="Loading...">
           <div style="padding:2rem;border:1px solid #e8e8e8;border-radius:0.5rem;background:#fafafa;">
             <p style="margin:0;">This spinner has a 500ms delay before appearing.</p>
@@ -245,14 +204,12 @@ export const Delay: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 6. Custom indicator
+// Examples
 // ─────────────────────────────────────────────
-/**
- * Replace the default dot indicator with a custom one using the `indicator` slot.
- */
+
+/** Replace the dot indicator with a custom SVG via the `indicator` slot. */
 export const CustomIndicator: Story = {
   parameters: {
-    controls: { disable: true },
     docs: {
       source: {
         code: `
@@ -284,30 +241,76 @@ export const CustomIndicator: Story = {
   }),
 };
 
+/** Toggle the nested spinner — `loading` flips overlay, blur, and `aria-busy`. */
+export const NestedToggle: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<button @click="loading = !loading">Toggle</button>
+<BSpin :spinning="loading" tip="Loading...">
+  <div>Card content</div>
+</BSpin>
+        `,
+      },
+    },
+  },
+  render: () => ({
+    components: { BSpin },
+    setup: () => ({ loading: ref(true) }),
+    template: `
+      <div>
+        <button data-testid="toggle" @click="loading = !loading" style="margin-bottom:1rem;padding:0.25rem 0.75rem;border:1px solid #ccc;border-radius:0.375rem;cursor:pointer;">
+          Toggle
+        </button>
+        <BSpin :spinning="loading" tip="Loading...">
+          <div data-testid="content" style="padding:2rem;border:1px solid #e8e8e8;border-radius:0.5rem;">
+            Card content
+          </div>
+        </BSpin>
+      </div>
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    // Initially spinning
+    expect(canvasElement.querySelector('.b-spin__overlay-container')).toBeTruthy();
+    expect(canvasElement.querySelector('.b-spin__content--blurred')).toBeTruthy();
+    expect(canvasElement.querySelector('.b-spin__content')?.getAttribute('aria-busy')).toBe('true');
+
+    // Stop
+    await userEvent.click(canvas.getByTestId('toggle'));
+    await waitFor(() => {
+      expect(canvasElement.querySelector('.b-spin__overlay-container')).toBeNull();
+      expect(canvasElement.querySelector('.b-spin__content--blurred')).toBeNull();
+    });
+
+    // Start again
+    await userEvent.click(canvas.getByTestId('toggle'));
+    await waitFor(() => {
+      expect(canvasElement.querySelector('.b-spin__overlay-container')).toBeTruthy();
+      expect(canvasElement.querySelector('.b-spin__content--blurred')).toBeTruthy();
+    });
+  },
+};
+
 // ─────────────────────────────────────────────
-// 7. Accessibility story
+// Accessibility
 // ─────────────────────────────────────────────
+
 /**
- * Demonstrates accessibility features:
- * - `role="status"` for the spinner region
- * - `aria-label="Loading"` when no tip
- * - `aria-describedby` referencing the tip element when tip is present
- * - `aria-busy` on nested content
- * - Indicator is `aria-hidden="true"` (decorative)
- * - Respects `prefers-reduced-motion`
+ * `role="status"` for the spinner region. `aria-label="Loading"` when no tip,
+ * or `aria-describedby` referencing the tip element when present.
+ * Nested content gets `aria-busy="true"`. Indicator is `aria-hidden="true"`.
+ * Animation respects `prefers-reduced-motion`.
  */
 export const Accessibility: Story = {
-  name: 'Accessibility (roles & ARIA)',
   parameters: {
-    controls: { disable: true },
     docs: {
       description: {
         story:
-          'The spinner uses `role="status"` to announce loading to screen readers. ' +
-          'When a tip is provided, `aria-describedby` links to it. ' +
-          'In nested mode, `aria-busy` is set on the content container. ' +
-          'The dot indicator carries `aria-hidden="true"` as it is decorative. ' +
-          'Animations respect `prefers-reduced-motion`.',
+          'The spinner uses <code>role="status"</code> to announce loading. With a tip, <code>aria-describedby</code> links to it. In nested mode, <code>aria-busy</code> is set on the content. The indicator is <code>aria-hidden</code> (decorative). Animations respect <code>prefers-reduced-motion</code>.',
       },
     },
   },
@@ -335,26 +338,21 @@ export const Accessibility: Story = {
     `,
   }),
   play: async ({ canvasElement }) => {
-    // Verify role="status" on all spinners
     const statusEls = canvasElement.querySelectorAll('[role="status"]');
     expect(statusEls.length).toBeGreaterThanOrEqual(3);
 
-    // Standalone: has aria-label
     const standalone = statusEls[0];
     expect(standalone.getAttribute('aria-label')).toBe('Loading');
 
-    // With tip: has aria-describedby
     const withTip = statusEls[1];
     const tipId = withTip.getAttribute('aria-describedby');
     expect(tipId).toBeTruthy();
     const tipEl = canvasElement.querySelector(`#${tipId}`);
     expect(tipEl?.textContent).toContain('Loading resources...');
 
-    // Nested: content has aria-busy
     const nestedContent = canvasElement.querySelector('.b-spin__content');
     expect(nestedContent?.getAttribute('aria-busy')).toBe('true');
 
-    // Indicators are aria-hidden
     const indicators = canvasElement.querySelectorAll('.b-spin__indicator');
     indicators.forEach((indicator) => {
       expect(indicator.getAttribute('aria-hidden')).toBe('true');
@@ -363,33 +361,22 @@ export const Accessibility: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 8. Theming (CSS vars override)
+// Theming
 // ─────────────────────────────────────────────
+
 /**
- * Override the CSS custom properties to customise the appearance.
- * Every token is prefixed `--b-spin-*`.
+ * Override `--b-spin-dot-color`, `--b-spin-tip-color`, and `--b-spin-animation-duration`
+ * (or any other token) to customise the spinner.
  */
 export const Theming: Story = {
-  name: 'Theming (CSS vars)',
   parameters: {
-    controls: { disable: true },
     docs: {
       description: {
         story:
-          'Override `--b-spin-*` CSS custom properties to customise the spinner appearance ' +
-          'without touching the component source.',
+          'Override <code>--b-spin-dot-color</code>, <code>--b-spin-tip-color</code>, and <code>--b-spin-animation-duration</code> on the component root.',
       },
       source: {
-        code: `
-<style>
-.my-custom-spin {
-  --b-spin-dot-color: #e94560;
-  --b-spin-tip-color: #e94560;
-}
-</style>
-
-<BSpin class="my-custom-spin" tip="Custom themed..." />
-        `,
+        code: `<BSpin tip="Custom themed..." style="--b-spin-dot-color:#e94560;--b-spin-tip-color:#e94560;--b-spin-animation-duration:0.8s;" />`,
       },
     },
   },
@@ -397,28 +384,23 @@ export const Theming: Story = {
     components: { BSpin },
     template: `
       <div style="display:flex;align-items:flex-start;gap:3rem;">
-        <!-- Default -->
         <div style="text-align:center;">
           <BSpin tip="Default theme" />
           <p style="margin-top:0.5rem;font-size:0.75rem;color:#666;">Default</p>
         </div>
-
-        <!-- Custom red -->
         <div style="text-align:center;">
           <BSpin
             tip="Red theme"
-            style="--b-spin-dot-color:#e94560;--b-spin-tip-color:#e94560;"
+            style="--b-spin-dot-color:#e94560;--b-spin-tip-color:#e94560;--b-spin-animation-duration:0.8s;"
           />
-          <p style="margin-top:0.5rem;font-size:0.75rem;color:#666;">Custom</p>
+          <p style="margin-top:0.5rem;font-size:0.75rem;color:#666;">Red, faster</p>
         </div>
-
-        <!-- Custom green -->
         <div style="text-align:center;">
           <BSpin
             tip="Green theme"
-            style="--b-spin-dot-color:#52c41a;--b-spin-tip-color:#52c41a;"
+            style="--b-spin-dot-color:#52c41a;--b-spin-tip-color:#52c41a;--b-spin-animation-duration:1.6s;"
           />
-          <p style="margin-top:0.5rem;font-size:0.75rem;color:#666;">Custom</p>
+          <p style="margin-top:0.5rem;font-size:0.75rem;color:#666;">Green, slower</p>
         </div>
       </div>
     `,
@@ -426,132 +408,22 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 9. Interaction test – nested toggle
-// ─────────────────────────────────────────────
-/**
- * Automated interaction test: toggles the spinner and asserts overlay visibility.
- */
-export const InteractionToggle: Story = {
-  name: 'Interaction – nested toggle',
-  parameters: {
-    controls: { disable: true },
-    docs: {
-      description: {
-        story:
-          'Automated play function: toggles the nested spinner and asserts overlay and blur state.',
-      },
-    },
-  },
-  render: () => ({
-    components: { BSpin },
-    setup() {
-      const loading = ref(true);
-      return { loading };
-    },
-    template: `
-      <div>
-        <button data-testid="toggle" @click="loading = !loading" style="margin-bottom:1rem;padding:0.25rem 0.75rem;border:1px solid #ccc;border-radius:0.375rem;cursor:pointer;">
-          Toggle
-        </button>
-        <BSpin :spinning="loading" tip="Loading...">
-          <div data-testid="content" style="padding:2rem;border:1px solid #e8e8e8;border-radius:0.5rem;">
-            Card content
-          </div>
-        </BSpin>
-      </div>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    // Initially spinning: overlay visible, content blurred
-    expect(canvasElement.querySelector('.b-spin__overlay-container')).toBeTruthy();
-    expect(canvasElement.querySelector('.b-spin__content--blurred')).toBeTruthy();
-    expect(canvasElement.querySelector('.b-spin__content')?.getAttribute('aria-busy')).toBe('true');
-
-    // Click toggle to stop
-    const toggleBtn = canvas.getByTestId('toggle');
-    await userEvent.click(toggleBtn);
-
-    await waitFor(() => {
-      expect(canvasElement.querySelector('.b-spin__overlay-container')).toBeNull();
-      expect(canvasElement.querySelector('.b-spin__content--blurred')).toBeNull();
-    });
-
-    // Click toggle to start again
-    await userEvent.click(toggleBtn);
-
-    await waitFor(() => {
-      expect(canvasElement.querySelector('.b-spin__overlay-container')).toBeTruthy();
-      expect(canvasElement.querySelector('.b-spin__content--blurred')).toBeTruthy();
-    });
-  },
-};
-
-// ─────────────────────────────────────────────
-// Design Tokens - MUST be the LAST story
+// Design Tokens — MUST be the LAST story
 // ─────────────────────────────────────────────
 type TokenRow = { token: string; defaultValue: string; description: string };
 
 const DESIGN_TOKENS: TokenRow[] = [
-  // ── AntD-aligned tokens ──
-  {
-    token: '--b-spin-dot-size-default',
-    defaultValue: '1.25rem',
-    description: 'Default spinner dot size (AntD: dotSize).',
-  },
-  {
-    token: '--b-spin-dot-size-large',
-    defaultValue: '2rem',
-    description: 'Large spinner dot size (AntD: dotSizeLG).',
-  },
-  {
-    token: '--b-spin-dot-size-small',
-    defaultValue: '0.875rem',
-    description: 'Small spinner dot size (AntD: dotSizeSM).',
-  },
-  // Note: AntD contentHeight is not yet implemented as a dedicated var.
-  // ── Local extras ──
-  {
-    token: '--b-spin-dot-color',
-    defaultValue: 'oklch(62.3% 0.214 259.815)',
-    description: 'Color of the spinner dots.',
-  },
-  {
-    token: '--b-spin-tip-color',
-    defaultValue: 'oklch(62.3% 0.214 259.815)',
-    description: 'Color of the loading tip text.',
-  },
-  {
-    token: '--b-spin-tip-font-size',
-    defaultValue: '0.875rem',
-    description: 'Font size of the loading tip text.',
-  },
-  {
-    token: '--b-spin-overlay-bg',
-    defaultValue: 'oklch(100% 0 0 / 50%)',
-    description: 'Background of the overlay shown over wrapped content while loading.',
-  },
-  {
-    token: '--b-spin-fullscreen-bg',
-    defaultValue: 'oklch(0% 0 0 / 45%)',
-    description: 'Background of the fullscreen mask.',
-  },
-  {
-    token: '--b-spin-content-blur',
-    defaultValue: '0.5px',
-    description: 'Blur applied to wrapped content while loading.',
-  },
-  {
-    token: '--b-spin-animation-duration',
-    defaultValue: '1.2s',
-    description: 'Duration of the dot rotation animation.',
-  },
-  {
-    token: '--b-spin-transition-duration',
-    defaultValue: '300ms',
-    description: 'Fade-in/out duration of the spinner overlay.',
-  },
+  { token: '--b-spin-dot-size-default', defaultValue: '1.25rem', description: 'Default spinner dot size.' },
+  { token: '--b-spin-dot-size-large', defaultValue: '2rem', description: 'Large spinner dot size.' },
+  { token: '--b-spin-dot-size-small', defaultValue: '0.875rem', description: 'Small spinner dot size.' },
+  { token: '--b-spin-dot-color', defaultValue: 'oklch(62.3% 0.214 259.815)', description: 'Color of the spinner dots.' },
+  { token: '--b-spin-tip-color', defaultValue: 'oklch(62.3% 0.214 259.815)', description: 'Color of the loading tip text.' },
+  { token: '--b-spin-tip-font-size', defaultValue: '0.875rem', description: 'Font size of the loading tip.' },
+  { token: '--b-spin-overlay-bg', defaultValue: 'oklch(100% 0 0 / 50%)', description: 'Background of the overlay shown over wrapped content.' },
+  { token: '--b-spin-fullscreen-bg', defaultValue: 'oklch(0% 0 0 / 45%)', description: 'Background of the fullscreen mask.' },
+  { token: '--b-spin-content-blur', defaultValue: '0.5px', description: 'Blur applied to wrapped content while loading.' },
+  { token: '--b-spin-animation-duration', defaultValue: '1.2s', description: 'Duration of the dot rotation animation.' },
+  { token: '--b-spin-transition-duration', defaultValue: '300ms', description: 'Fade-in/out duration of the spinner overlay.' },
 ];
 
 export const DesignTokens: Story = {
@@ -560,9 +432,7 @@ export const DesignTokens: Story = {
     controls: { disable: true },
     docs: {
       description: {
-        story:
-          'Reference table of every <code>--b-spin-*</code> CSS custom property ' +
-          'consumers can override to retheme the component.',
+        story: 'All scoped CSS variables exposed by <code>BSpin</code>. Override on the component root or any ancestor.',
       },
     },
   },
@@ -571,7 +441,7 @@ export const DesignTokens: Story = {
     setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
       <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
-        <h2 style="margin:0 0 8px;">BSpin - Design Tokens</h2>
+        <h2 style="margin:0 0 8px;">BSpin — Design Tokens</h2>
         <p style="margin:0 0 24px;color:#595959;">
           All tokens scoped to <code>.b-spin</code>. Override inline or via a CSS class.
         </p>
@@ -591,24 +461,6 @@ export const DesignTokens: Story = {
             </tr>
           </tbody>
         </table>
-
-        <h3 style="margin:32px 0 12px;">Override example</h3>
-        <p style="margin:0 0 12px;color:#595959;font-size:13px;">
-          Three tokens overridden inline (dot color, tip color, animation duration).
-        </p>
-        <BSpin
-          tip="Themed loading…"
-          :spinning="true"
-          style="
-            --b-spin-dot-color: oklch(50% 0.18 290);
-            --b-spin-tip-color: oklch(50% 0.18 290);
-            --b-spin-animation-duration: 0.8s;
-          "
-        >
-          <div style="padding:2rem;border:1px dashed oklch(85% 0.005 260);border-radius:8px;">
-            Wrapped content
-          </div>
-        </BSpin>
       </div>
     `,
   }),

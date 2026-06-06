@@ -15,8 +15,16 @@ const meta = {
   component: BBreadcrumb,
   tags: ['autodocs'],
   argTypes: {
-    separator: { control: 'text', description: 'Custom separator string' },
-    items: { control: 'object', description: 'Array of breadcrumb items' },
+    items: {
+      control: 'object',
+      description: 'Array of breadcrumb items.',
+      table: { category: 'Props' },
+    },
+    separator: {
+      control: 'text',
+      description: 'Separator string rendered between items.',
+      table: { category: 'Props', defaultValue: { summary: '/' } },
+    },
   },
   parameters: {
     docs: {
@@ -32,105 +40,124 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // ─────────────────────────────────────────────
-// Playground
+// Usage
 // ─────────────────────────────────────────────
-export const Playground: Story = {
-  args: {
-    items: SAMPLE_ITEMS,
-    separator: '/',
+
+/** Default breadcrumb with `/` separator. */
+export const Default: Story = {
+  args: { items: SAMPLE_ITEMS, separator: '/' },
+  parameters: {
+    docs: {
+      source: {
+        code: `<BBreadcrumb :items="items" />`,
+      },
+    },
   },
   render: (args) => ({
     components: { BBreadcrumb },
-    setup() {
-      return { args };
-    },
+    setup: () => ({ args }),
     template: `<BBreadcrumb v-bind="args" />`,
   }),
 };
 
-// ─────────────────────────────────────────────
-// Custom Separator
-// ─────────────────────────────────────────────
+/** Provide a custom string for the separator (e.g. `>`, `›`, `•`). */
 export const CustomSeparator: Story = {
-  args: {
-    items: SAMPLE_ITEMS,
-    separator: '>',
-  },
-  render: (args) => ({
-    components: { BBreadcrumb },
-    setup() {
-      return { args };
+  parameters: {
+    docs: {
+      source: {
+        code: `<BBreadcrumb :items="items" separator=">" />`,
+      },
     },
-    template: `<BBreadcrumb v-bind="args" />`,
+  },
+  render: () => ({
+    components: { BBreadcrumb },
+    setup: () => ({ items: SAMPLE_ITEMS }),
+    template: `<BBreadcrumb :items="items" separator=">" />`,
   }),
 };
 
-// ─────────────────────────────────────────────
-// With Icons
-// ─────────────────────────────────────────────
+/** Items can carry an `icon` name from the BIcon registry. */
 export const WithIcons: Story = {
-  args: {
-    items: [
-      { text: 'Home', href: '/', icon: 'house' },
-      { text: 'Products', href: '/products', icon: 'box' },
-      { text: 'Detail' },
-    ],
-    separator: '/',
-  },
-  render: (args) => ({
-    components: { BBreadcrumb },
-    setup() {
-      return { args };
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BBreadcrumb :items="[
+  { text: 'Home', href: '/', icon: 'house' },
+  { text: 'Products', href: '/products', icon: 'box' },
+  { text: 'Detail' },
+]" />
+        `,
+      },
     },
-    template: `<BBreadcrumb v-bind="args" />`,
+  },
+  render: () => ({
+    components: { BBreadcrumb },
+    setup: () => ({
+      items: [
+        { text: 'Home', href: '/', icon: 'house' },
+        { text: 'Products', href: '/products', icon: 'box' },
+        { text: 'Detail' },
+      ] satisfies BBreadcrumbItem[],
+    }),
+    template: `<BBreadcrumb :items="items" />`,
   }),
 };
 
 // ─────────────────────────────────────────────
-// Responsive Collapse (narrow container)
+// Examples
 // ─────────────────────────────────────────────
+
+/** When the container is too narrow, middle items collapse into a `•••` menu. */
 export const ResponsiveCollapse: Story = {
-  args: {
-    items: SAMPLE_ITEMS,
-    separator: '/',
-  },
-  render: (args) => ({
-    components: { BBreadcrumb },
-    setup() {
-      return { args };
-    },
-    template: `
-      <div style="width: 240px; border: 1px dashed #ccc; padding: 8px;">
-        <BBreadcrumb v-bind="args" />
-      </div>
-    `,
-  }),
   parameters: {
     docs: {
       description: {
         story:
           'In a narrow container, middle items collapse into a "•••" menu. Click to reveal them.',
       },
+      source: {
+        code: `
+<div style="width: 240px;">
+  <BBreadcrumb :items="items" />
+</div>
+        `,
+      },
     },
   },
+  render: () => ({
+    components: { BBreadcrumb },
+    setup: () => ({ items: SAMPLE_ITEMS }),
+    template: `
+      <div style="width: 240px; border: 1px dashed #ccc; padding: 8px;">
+        <BBreadcrumb :items="items" />
+      </div>
+    `,
+  }),
 };
 
-// ─────────────────────────────────────────────
-// Custom Item Slot
-// ─────────────────────────────────────────────
+/** Use the per-index `#item-N` slot to render any item with custom markup. */
 export const CustomItemSlot: Story = {
-  args: {
-    items: SAMPLE_ITEMS,
-  },
-  render: (args) => ({
-    components: { BBreadcrumb },
-    setup() {
-      return { args };
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BBreadcrumb :items="items">
+  <template #item-0="{ item }">
+    <span style="font-weight: 700;">🏠 {{ item.text }}</span>
+  </template>
+</BBreadcrumb>
+        `,
+      },
     },
+  },
+  render: () => ({
+    components: { BBreadcrumb },
+    setup: () => ({ items: SAMPLE_ITEMS }),
     template: `
-      <BBreadcrumb v-bind="args">
+      <BBreadcrumb :items="items">
         <template #item-0="{ item }">
-          <span style="font-weight:700; color: var(--b-breadcrumb-link-hover-color)">🏠 {{ item.text }}</span>
+          <span style="font-weight: 700; color: oklch(50% 0.18 290);">🏠 {{ item.text }}</span>
         </template>
       </BBreadcrumb>
     `,
@@ -138,91 +165,148 @@ export const CustomItemSlot: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Accessibility Story
+// Accessibility
 // ─────────────────────────────────────────────
+
+/**
+ * BBreadcrumb renders as `<nav aria-label="Breadcrumb">` containing an `<ol>` of links.
+ * The last item carries `aria-current="page"`; separators are `aria-hidden`.
+ */
 export const Accessibility: Story = {
-  args: {
-    items: SAMPLE_ITEMS,
-    separator: '/',
-  },
-  render: (args) => ({
-    components: { BBreadcrumb },
-    setup() {
-      return { args };
-    },
-    template: `<BBreadcrumb v-bind="args" />`,
-  }),
   parameters: {
     docs: {
       description: {
         story:
-          'Verifies semantic roles, aria attributes, and keyboard navigation. The last item carries <code>aria-current="page"</code>; separators are <code>aria-hidden</code>.',
+          'Verifies semantic roles, ARIA attributes, and keyboard reachability. The last item carries <code>aria-current="page"</code>; separators are <code>aria-hidden</code>.',
+      },
+      source: {
+        code: `<BBreadcrumb :items="items" />`,
       },
     },
   },
+  render: () => ({
+    components: { BBreadcrumb },
+    setup: () => ({ items: SAMPLE_ITEMS }),
+    template: `<BBreadcrumb :items="items" />`,
+  }),
   play: async ({ canvasElement }) => {
     within(canvasElement);
 
-    // Last item should be aria-current=page
     const links = canvasElement.querySelectorAll('a.b-breadcrumb__link');
     const lastLink = links[links.length - 1] as HTMLElement;
     expect(lastLink.getAttribute('aria-current')).toBe('page');
 
-    // nav has aria-label
     const nav = canvasElement.querySelector('nav.b-breadcrumb');
     expect(nav?.getAttribute('aria-label')).toBe('Breadcrumb');
 
-    // Separators are aria-hidden
     const seps = canvasElement.querySelectorAll('.b-breadcrumb__separator');
     seps.forEach((sep) => {
       expect(sep.closest('[aria-hidden="true"]') || sep.getAttribute('aria-hidden')).toBeTruthy();
     });
 
-    // First link is focusable
     (links[0] as HTMLElement).focus();
     expect(document.activeElement).toBe(links[0]);
   },
 };
 
 // ─────────────────────────────────────────────
-// Theming Story
+// Theming
 // ─────────────────────────────────────────────
+
+/**
+ * BBreadcrumb has no component-scoped `--b-breadcrumb-*` vars — it uses Tailwind utilities
+ * resolved against the global theme tokens. Override the global `--color-primary` family
+ * (and friends) on an ancestor to retheme breadcrumbs inside.
+ */
 export const Theming: Story = {
-  args: {
-    items: SAMPLE_ITEMS,
-    separator: '/',
-  },
-  render: (args) => ({
-    components: { BBreadcrumb },
-    setup() {
-      return { args };
-    },
-    // CSS variables must be bound via :style on the component itself so they
-    // land as inline styles on the <nav class="b-breadcrumb"> root element.
-    // Binding them on a wrapper <div> doesn't work because the component's own
-    // stylesheet declarations on .b-breadcrumb win the cascade over inherited
-    // custom properties from an ancestor element.
-    template: `
-      <div style="padding: 12px; border-radius: 8px; background: #f5f3ff;">
-        <BBreadcrumb
-          v-bind="args"
-          :style="{
-            '--b-breadcrumb-link-color':       '#5b21b6',
-            '--b-breadcrumb-link-hover-color': '#3b0764',
-            '--b-breadcrumb-separator-color':  '#6d28d9',
-            '--b-breadcrumb-last-item-color':  '#1e1b4b',
-            '--b-breadcrumb-ellipsis-bg':      '#ede9fe',
-          }"
-        />
-      </div>
-    `,
-  }),
   parameters: {
     docs: {
       description: {
         story:
-          "Override CSS variables via <code>:style</code> on the component (not a wrapper element) so inline styles beat the component's own stylesheet declarations. All colours pass WCAG AA contrast against the <code>#f5f3ff</code> background.",
+          'BBreadcrumb uses Tailwind utilities that resolve against the global <code>--color-*</code> tokens. Override <code>--color-primary</code>, <code>--color-primary-hover</code>, and <code>--color-black-base</code> on any ancestor to retheme breadcrumbs.',
+      },
+      source: {
+        code: `
+<div
+  style="
+    --color-primary: oklch(50% 0.18 290);
+    --color-primary-hover: oklch(42% 0.2 290);
+    --color-black-base: oklch(20% 0.04 290 / 0.85);
+  "
+>
+  <BBreadcrumb :items="items" />
+</div>
+        `,
       },
     },
   },
+  render: () => ({
+    components: { BBreadcrumb },
+    setup: () => ({ items: SAMPLE_ITEMS }),
+    template: `
+      <div
+        style="
+          padding: 12px;
+          border-radius: 8px;
+          background: oklch(97% 0.02 290);
+          --color-primary: oklch(50% 0.18 290);
+          --color-primary-hover: oklch(42% 0.2 290);
+          --color-black-base: oklch(20% 0.04 290 / 0.85);
+        "
+      >
+        <BBreadcrumb :items="items" />
+      </div>
+    `,
+  }),
+};
+
+// ─────────────────────────────────────────────
+// Design Tokens — MUST be the LAST story
+// ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+// BBreadcrumb has NO component-scoped `--b-breadcrumb-*` CSS vars.
+// It is styled with Tailwind utility classes resolving against the global theme tokens
+// in `src/assets/tailwind.css`. The themable surface is therefore the global tokens below.
+const DESIGN_TOKENS: TokenRow[] = [
+  { token: '--color-primary', defaultValue: 'oklch(55% 0.169 237.323)', description: 'Hover color of links and color of the ellipsis-toggle button.' },
+  { token: '--color-primary-hover', defaultValue: 'oklch(48% 0.158 241.966)', description: 'Hover color used in interactive states.' },
+  { token: '--color-black-base', defaultValue: 'oklch(0 0 0 / 0.8)', description: 'Default text color of breadcrumb items and separators.' },
+];
+
+export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story:
+          'BBreadcrumb has <strong>no component-scoped <code>--b-breadcrumb-*</code> CSS variables</strong>. ' +
+          'It is styled with Tailwind utility classes that resolve against the global theme tokens ' +
+          'defined in <code>src/assets/tailwind.css</code>. To retheme breadcrumbs, override the ' +
+          '<code>--color-*</code> tokens listed below at <code>:root</code> or any ancestor element.',
+      },
+    },
+  },
+  render: () => ({
+    setup: () => ({ tokens: DESIGN_TOKENS }),
+    template: `
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:oklch(96% 0.002 260);">
+            <th style="text-align:left;padding:10px 12px;">CSS Variable</th>
+            <th style="text-align:left;padding:10px 12px;">Default</th>
+            <th style="text-align:left;padding:10px 12px;">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+            <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+            <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+            <td style="padding:8px 12px;">{{ t.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    `,
+  }),
 };

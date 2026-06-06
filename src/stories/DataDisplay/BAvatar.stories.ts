@@ -15,44 +15,53 @@ const meta = {
       control: 'select',
       options: Object.values(BAvatarShape),
       description: 'Shape of the avatar.',
-      table: { defaultValue: { summary: BAvatarShape.Circle } },
+      table: { category: 'Props', defaultValue: { summary: BAvatarShape.Circle } },
     },
     size: {
       control: 'select',
       options: [...Object.values(BAvatarSize), 48, 64, 100],
       description: 'Size preset or custom pixel value.',
-      table: { defaultValue: { summary: BAvatarSize.Default } },
+      table: { category: 'Props', defaultValue: { summary: BAvatarSize.Default } },
     },
     src: {
       control: 'text',
       description: 'Image source URL.',
+      table: { category: 'Props' },
     },
     srcSet: {
       control: 'text',
       description: 'Responsive image srcset attribute.',
+      table: { category: 'Props' },
     },
     alt: {
       control: 'text',
       description: 'Alt text for the image avatar.',
+      table: { category: 'Props' },
     },
     icon: {
       control: 'boolean',
       description: 'Whether the slot content is an icon.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     gap: {
       control: 'number',
       description: 'Pixel gap for text auto-scaling.',
-      table: { defaultValue: { summary: '4' } },
+      table: { category: 'Props', defaultValue: { summary: '4' } },
     },
     crossOrigin: {
       control: 'select',
       options: ['', 'anonymous', 'use-credentials'],
       description: 'CORS setting for the image element.',
+      table: { category: 'Props' },
     },
     draggable: {
       control: 'boolean',
       description: 'Whether the image is draggable.',
+      table: { category: 'Props' },
+    },
+    default: {
+      description: 'Avatar content (text or icon).',
+      table: { category: 'Slots' },
     },
   },
   parameters: {
@@ -71,12 +80,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // ─────────────────────────────────────────────
-// 1. Playground (all controls)
+// Usage
 // ─────────────────────────────────────────────
 /**
- * Interactive playground - tweak all props via the Controls panel.
+ * The default avatar with an image.
  */
-export const Playground: Story = {
+export const Default: Story = {
   args: {
     shape: BAvatarShape.Circle,
     size: BAvatarSize.Default,
@@ -84,6 +93,9 @@ export const Playground: Story = {
     alt: 'User avatar',
     icon: false,
     gap: 4,
+  },
+  parameters: {
+    docs: { source: { code: `<BAvatar src="https://picsum.photos/id/40/300/300" alt="User avatar" />` } },
   },
   render: (args) => ({
     components: { BAvatar },

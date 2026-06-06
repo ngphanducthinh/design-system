@@ -233,6 +233,7 @@ defineExpose({ focus, blur });
       </span>
 
       <input
+        v-bind="$attrs"
         :id="inputId"
         ref="inputRef"
         :value="model"

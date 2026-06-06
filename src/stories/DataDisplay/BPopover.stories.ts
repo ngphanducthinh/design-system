@@ -15,52 +15,54 @@ const meta = {
     title: {
       control: 'text',
       description: 'The title shown at the top of the popover.',
+      table: { category: 'Props' },
     },
     content: {
       control: 'text',
       description: 'The main content of the popover.',
+      table: { category: 'Props' },
     },
     trigger: {
       control: 'select',
       options: Object.values(BPopoverTrigger),
       description: 'The event that triggers the popover.',
-      table: { defaultValue: { summary: BPopoverTrigger.Hover } },
+      table: { category: 'Props', defaultValue: { summary: BPopoverTrigger.Hover } },
     },
     placement: {
       control: 'select',
       options: Object.values(BPopoverPlacement),
       description: 'Placement of the popover relative to the target.',
-      table: { defaultValue: { summary: BPopoverPlacement.TopCenter } },
+      table: { category: 'Props', defaultValue: { summary: BPopoverPlacement.TopCenter } },
     },
     arrow: {
       control: 'boolean',
       description: 'Whether the popover has an arrow.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     mouseEnterDelay: {
       control: 'number',
       description: 'Delay in ms before showing on mouseenter.',
-      table: { defaultValue: { summary: '100' } },
+      table: { category: 'Props', defaultValue: { summary: '100' } },
     },
     mouseLeaveDelay: {
       control: 'number',
       description: 'Delay in ms before hiding on mouseleave.',
-      table: { defaultValue: { summary: '100' } },
+      table: { category: 'Props', defaultValue: { summary: '100' } },
     },
     destroyTooltipOnHide: {
       control: 'boolean',
       description: 'Destroy popover DOM when hidden.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     fresh: {
       control: 'boolean',
       description: 'Force re-render when popover is shown.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     zIndex: {
       control: 'number',
       description: 'z-index of the popover.',
-      table: { defaultValue: { summary: '1030' } },
+      table: { category: 'Props', defaultValue: { summary: '1030' } },
     },
     modelValue: {
       control: 'boolean',

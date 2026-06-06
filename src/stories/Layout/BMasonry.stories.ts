@@ -4,10 +4,13 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, userEvent } from 'storybook/test';
 import { ref } from 'vue';
 
-// ─────────────────────────────────────────────
-// Meta
-// ─────────────────────────────────────────────
-
+/**
+ * BMasonry — Pinterest-style masonry layout. Items distribute into columns
+ * using a "shortest column first" algorithm to keep heights balanced.
+ *
+ * Story file follows `docs/STORY_FORMAT.md`:
+ *   Default → per-prop Usage → Examples → Accessibility → Theming → Design Tokens (LAST)
+ */
 const meta = {
   title: 'Layout/Masonry',
   component: BMasonry,
@@ -16,18 +19,18 @@ const meta = {
     columns: {
       control: { type: 'number', min: 1, max: 6, step: 1 },
       description: 'Number of columns. Also accepts a responsive breakpoint map.',
-      table: { defaultValue: { summary: '3' }, category: 'Props' },
+      table: { category: 'Props', defaultValue: { summary: '3' } },
     },
     gutter: {
       control: { type: 'number', min: 0, max: 48, step: 4 },
       description:
         'Gap between items (px). Accepts a number, [colGap, rowGap] tuple, or a responsive map.',
-      table: { defaultValue: { summary: '0' }, category: 'Props' },
+      table: { category: 'Props', defaultValue: { summary: '0' } },
     },
     fresh: {
       control: 'boolean',
       description: "Monitor each item's size via ResizeObserver and reflow on change.",
-      table: { defaultValue: { summary: 'false' }, category: 'Props' },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     items: {
       control: 'object',
@@ -44,9 +47,17 @@ const meta = {
       description: 'Customise inline styles on `root`, `column`, or `item` semantic elements.',
       table: { category: 'Props' },
     },
+    item: {
+      description: 'Scoped slot rendered for each item. Receives `{ item, index, column }`.',
+      table: { category: 'Slots' },
+    },
+    default: {
+      description: 'Fallback slot used when no `items` prop is provided — raw children only.',
+      table: { category: 'Slots' },
+    },
     onLayoutChange: {
+      description: 'Fires with `{ columns, columnMap }` after each layout calculation.',
       table: { category: 'Events' },
-      description: 'Fires when the masonry layout recalculates.',
     },
   },
   parameters: {
@@ -112,14 +123,28 @@ const cardTemplate = `
 `;
 
 // ─────────────────────────────────────────────
-// Playground
+// Usage
 // ─────────────────────────────────────────────
 
-export const Playground: Story = {
+/** Default 3-column masonry with a uniform gutter. */
+export const Default: Story = {
   args: {
     columns: 3,
     gutter: 16,
     items: makeItems(9),
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BMasonry :columns="3" :gutter="16" :items="items">
+  <template #item="{ item }">
+    <Card :data="item.data" />
+  </template>
+</BMasonry>
+        `,
+      },
+    },
   },
   render: (args) => ({
     components: { BMasonry },
@@ -134,10 +159,7 @@ export const Playground: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// Responsive columns
-// ─────────────────────────────────────────────
-
+/** Pass a breakpoint map to `columns` to vary column count by viewport width. */
 export const ResponsiveColumns: Story = {
   name: 'Responsive Columns',
   parameters: {
@@ -145,6 +167,9 @@ export const ResponsiveColumns: Story = {
       description: {
         story:
           'Pass a breakpoint map to `columns` to change the column count at different viewport widths.',
+      },
+      source: {
+        code: `<BMasonry :columns="{ xs: 1, sm: 2, md: 3, lg: 4 }" :gutter="12" :items="items" />`,
       },
     },
   },
@@ -158,7 +183,7 @@ export const ResponsiveColumns: Story = {
     template: `
       <div style="padding: 24px; background: #f5f5f5; border-radius: 12px;">
         <p style="margin-bottom: 16px; font-size: 13px; color: #666;">
-          Columns: xs=1 / sm=2 / md=3 / lg=4 - resize the preview panel to see changes.
+          Columns: xs=1 / sm=2 / md=3 / lg=4 — resize the preview panel to see changes.
         </p>
         <BMasonry :columns="columns" :gutter="12" :items="items">${cardTemplate}</BMasonry>
       </div>
@@ -166,16 +191,20 @@ export const ResponsiveColumns: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// Gutter variants
-// ─────────────────────────────────────────────
-
+/** `gutter` accepts a number, a `[colGap, rowGap]` tuple, or a responsive map. */
 export const GutterVariants: Story = {
   name: 'Gutter Variants',
   parameters: {
     docs: {
       description: {
-        story: 'Show `gutter` as a fixed number, a `[colGap, rowGap]` tuple, or zero.',
+        story: 'Show `gutter` as zero, a uniform number, or a `[colGap, rowGap]` tuple.',
+      },
+      source: {
+        code: `
+<BMasonry :columns="3" :gutter="0" :items="items" />
+<BMasonry :columns="3" :gutter="16" :items="items" />
+<BMasonry :columns="3" :gutter="[24, 8]" :items="items" />
+        `,
       },
     },
   },
@@ -203,18 +232,23 @@ export const GutterVariants: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// Column pinning
-// ─────────────────────────────────────────────
-
+/** Use the per-item `column` property (1-based) to pin an item to a specific column. */
 export const ColumnPinning: Story = {
   name: 'Column Pinning',
   parameters: {
     docs: {
       description: {
         story:
-          'Use the `column` property on an item (1-based) to pin it to a specific column, ' +
-          'regardless of column heights.',
+          'Use the `column` property on an item (1-based) to pin it to a specific column, regardless of column heights.',
+      },
+      source: {
+        code: `
+const items = [
+  { key: 1, height: 120, column: 1 }, // pinned to column 1
+  { key: 2, height: 80 },              // auto
+  { key: 3, height: 160, column: 3 }, // pinned to column 3
+];
+        `,
       },
     },
   },
@@ -240,16 +274,27 @@ export const ColumnPinning: Story = {
 };
 
 // ─────────────────────────────────────────────
-// layoutChange event
+// Examples
 // ─────────────────────────────────────────────
 
+/** Listen for `layoutChange` to react to column / column-map updates. */
 export const LayoutChangeEvent: Story = {
-  name: 'layoutChange Event',
+  name: 'Listen To Layout Changes',
   parameters: {
     docs: {
       description: {
         story:
           'The `layoutChange` event fires with `{ columns, columnMap }` after each layout calculation.',
+      },
+      source: {
+        code: `
+<BMasonry
+  :columns="3"
+  :gutter="12"
+  :items="items"
+  @layout-change="(p) => console.log(p)"
+/>
+        `,
       },
     },
   },
@@ -272,18 +317,90 @@ export const LayoutChangeEvent: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// Accessibility
-// ─────────────────────────────────────────────
-
-export const Accessibility: Story = {
-  name: 'Accessibility',
+/** Image gallery — a typical real-world masonry use-case. */
+export const ImageGallery: Story = {
   parameters: {
     docs: {
       description: {
         story:
-          'Verify ARIA roles: the root carries `role="list"`, columns carry `role="presentation"`, ' +
-          'and each item carries `role="listitem"`. Tab through items to confirm focusability of inner content.',
+          'A typical Pinterest-style image gallery rendered with mixed-height cards. ' +
+          'Set `fresh` to true if your media loads asynchronously.',
+      },
+      source: {
+        code: `
+<BMasonry :columns="{ xs: 1, sm: 2, md: 3 }" :gutter="12" :items="photos" fresh>
+  <template #item="{ item }">
+    <figure>
+      <img :src="item.data.src" :alt="item.data.alt" />
+      <figcaption>{{ item.data.caption }}</figcaption>
+    </figure>
+  </template>
+</BMasonry>
+        `,
+      },
+    },
+  },
+  render: () => ({
+    components: { BMasonry },
+    setup() {
+      const photos: BMasonryItem[] = Array.from({ length: 9 }, (_, i) => ({
+        key: i,
+        height: 140 + ((i * 53) % 180),
+        data: {
+          color: COLORS[i % COLORS.length],
+          caption: `Photo ${i + 1}`,
+        },
+      }));
+      return { photos };
+    },
+    template: `
+      <div style="padding: 24px; background: #fafafa; border-radius: 12px;">
+        <BMasonry :columns="{ xs: 1, sm: 2, md: 3 }" :gutter="12" :items="photos">
+          <template #item="{ item }">
+            <figure
+              style="margin:0;border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 1px 3px oklch(0% 0 0 / 0.08);"
+            >
+              <div :style="{
+                background: item.data.color,
+                height: item.height + 'px',
+              }" />
+              <figcaption style="padding:8px 12px;font-size:12px;color:#595959;">
+                {{ item.data.caption }}
+              </figcaption>
+            </figure>
+          </template>
+        </BMasonry>
+      </div>
+    `,
+  }),
+};
+
+// ─────────────────────────────────────────────
+// Accessibility
+// ─────────────────────────────────────────────
+
+/**
+ * Root carries `role="list"`, columns carry `role="presentation"`, and each
+ * item wrapper carries `role="listitem"`. Item content remains focusable.
+ */
+export const Accessibility: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Verify ARIA roles: the root carries <code>role="list"</code>, columns carry <code>role="presentation"</code>, ' +
+          'and each item carries <code>role="listitem"</code>. Tab through items to confirm focusability of inner content.',
+      },
+      source: {
+        code: `
+<BMasonry :columns="2" :gutter="16" :items="items">
+  <template #item="{ item }">
+    <div role="img" tabindex="0" :aria-label="item.data.label">
+      {{ item.data.label }}
+    </div>
+  </template>
+</BMasonry>
+        `,
       },
     },
   },
@@ -337,6 +454,15 @@ export const Accessibility: Story = {
     await userEvent.tab();
     const focused = document.activeElement;
     expect(focused?.getAttribute('aria-label')).toBeTruthy();
+
+    // data-masonry-key set on each listitem
+    const withKey = canvasElement.querySelectorAll('[data-masonry-key]');
+    expect(withKey.length).toBe(4);
+
+    // CSS vars injected on root
+    const rootStyle = (list as HTMLElement)?.getAttribute('style') ?? '';
+    expect(rootStyle).toContain('--b-masonry-columns');
+    expect(rootStyle).toContain('--b-masonry-col-gap');
   },
 };
 
@@ -344,15 +470,34 @@ export const Accessibility: Story = {
 // Theming
 // ─────────────────────────────────────────────
 
+/**
+ * Override `--b-masonry-item-border-radius`, `--b-masonry-item-transition-duration`,
+ * and `--b-masonry-item-bg` on the component (or any ancestor) to retheme.
+ */
 export const Theming: Story = {
-  name: 'Theming (CSS Variables)',
   parameters: {
     docs: {
       description: {
         story:
-          'Override the scoped CSS variables on `.b-masonry` to customise the layout. ' +
-          'This story overrides `--b-masonry-item-border-radius`, `--b-masonry-item-transition-duration`, ' +
-          'and `--b-masonry-item-bg`.',
+          'Override the scoped CSS variables on <code>.b-masonry</code> to customise the layout. ' +
+          'This story overrides <code>--b-masonry-item-border-radius</code>, <code>--b-masonry-item-transition-duration</code>, ' +
+          'and <code>--b-masonry-item-bg</code>.',
+      },
+      source: {
+        code: `
+<BMasonry
+  :columns="3"
+  :gutter="20"
+  :items="items"
+  :styles="{
+    root: {
+      '--b-masonry-item-border-radius': '16px',
+      '--b-masonry-item-transition-duration': '400ms',
+      '--b-masonry-item-bg': 'oklch(25% 0.03 260)',
+    }
+  }"
+/>
+        `,
       },
     },
   },
@@ -400,88 +545,12 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Interaction tests
-// ─────────────────────────────────────────────
-
-export const InteractionTests: Story = {
-  name: 'Interaction Tests',
-  args: {
-    columns: 3,
-    gutter: 16,
-    items: makeItems(9),
-  },
-  render: (args) => ({
-    components: { BMasonry },
-    setup() {
-      const layoutPayload = ref<BMasonryLayoutChangePayload | null>(null);
-      return {
-        args,
-        layoutPayload,
-        onLayoutChange: (p: BMasonryLayoutChangePayload) => {
-          layoutPayload.value = p;
-        },
-      };
-    },
-    template: `
-      <div>
-        <BMasonry v-bind="args" @layout-change="onLayoutChange">
-          <template #item="{ item }">
-            <div
-              :data-testid="'item-' + item.key"
-              :style="{
-                background: item.data.color,
-                height: item.height + 'px',
-                borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'oklch(15% 0.02 260)',
-                fontWeight: 600,
-              }"
-            >{{ item.data.label }}</div>
-          </template>
-        </BMasonry>
-        <div data-testid="layout-output" style="display:none">{{ JSON.stringify(layoutPayload) }}</div>
-      </div>
-    `,
-  }),
-  play: async ({ canvasElement }) => {
-    // ── 1. Correct item count ─────────────────────────────────────────────────
-    const items = canvasElement.querySelectorAll('[role="listitem"]');
-    expect(items.length).toBe(9);
-
-    // ── 2. Three columns rendered ─────────────────────────────────────────────
-    const cols = canvasElement.querySelectorAll('[role="presentation"]');
-    expect(cols.length).toBe(3);
-
-    // ── 3. Each item is visible ───────────────────────────────────────────────
-    for (const item of Array.from(items)) {
-      expect(item).toBeVisible();
-    }
-
-    // ── 4. ARIA list structure ────────────────────────────────────────────────
-    const list = canvasElement.querySelector('[role="list"]');
-    expect(list).toBeTruthy();
-
-    // ── 5. data-masonry-key set on each listitem ──────────────────────────────
-    const withKey = canvasElement.querySelectorAll('[data-masonry-key]');
-    expect(withKey.length).toBe(9);
-
-    // ── 6. CSS vars injected on root ──────────────────────────────────────────
-    const rootStyle = (list as HTMLElement)?.getAttribute('style') ?? '';
-    expect(rootStyle).toContain('--b-masonry-columns');
-    expect(rootStyle).toContain('--b-masonry-col-gap');
-  },
-};
-
-// ─────────────────────────────────────────────
-// Design Tokens - MUST be the LAST story
+// Design Tokens — MUST be the LAST story
 // ─────────────────────────────────────────────
 type TokenRow = { token: string; defaultValue: string; description: string };
 
 const DESIGN_TOKENS: TokenRow[] = [
-  // BMasonry has no AntD equivalent - all tokens are local extras.
-  // ── Local extras ──
+  // BMasonry has no AntD equivalent — all tokens are local extras.
   {
     token: '--b-masonry-columns',
     defaultValue: '3',
@@ -543,7 +612,7 @@ export const DesignTokens: Story = {
     },
     template: `
       <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
-        <h2 style="margin:0 0 8px;">BMasonry - Design Tokens</h2>
+        <h2 style="margin:0 0 8px;">BMasonry — Design Tokens</h2>
         <p style="margin:0 0 24px;color:#595959;">
           All tokens scoped to <code>.b-masonry</code>. Override inline or via a CSS class.
         </p>

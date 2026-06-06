@@ -3,9 +3,6 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { ref } from 'vue';
 
-// ─────────────────────────────────────────────
-// Meta
-// ─────────────────────────────────────────────
 const meta = {
   title: 'Data Entry/Rate',
   component: BRate,
@@ -19,41 +16,47 @@ const meta = {
     count: {
       control: { type: 'number', min: 1, max: 10 },
       description: 'Total number of stars.',
-      table: { defaultValue: { summary: '5' } },
+      table: { category: 'Props', defaultValue: { summary: '5' } },
     },
     allowHalf: {
       control: 'boolean',
       description: 'Whether to allow half-star selection.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     allowClear: {
       control: 'boolean',
       description: 'Whether to allow clearing the value by clicking the same star again.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     disabled: {
       control: 'boolean',
       description: 'If true, the component is read-only.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     keyboard: {
       control: 'boolean',
       description: 'Whether keyboard navigation is enabled.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     size: {
       control: 'select',
       options: ['small', 'default', 'large'],
       description: 'Size of the stars.',
-      table: { defaultValue: { summary: "'default'" } },
+      table: { category: 'Props', defaultValue: { summary: "'default'" } },
     },
     tooltips: {
       control: 'object',
       description: 'Tooltip text for each star.',
+      table: { category: 'Props' },
     },
     character: {
       control: 'text',
       description: 'Custom character to use instead of stars.',
+      table: { category: 'Props' },
+    },
+    'onUpdate:modelValue': {
+      description: 'Emitted when the rating changes.',
+      table: { category: 'Events' },
     },
   },
   parameters: {
@@ -71,14 +74,11 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ═════════════════════════════════════════════
-//   STORIES
-// ═════════════════════════════════════════════
+// ─────────────────────────────────────────────
+// Usage
+// ─────────────────────────────────────────────
 
-// ─────────────────────────────────────────────
-// 1. Playground
-// ─────────────────────────────────────────────
-export const Playground: Story = {
+export const Default: Story = {
   args: {
     modelValue: 3,
     count: 5,
@@ -88,6 +88,7 @@ export const Playground: Story = {
     keyboard: true,
     size: 'default',
   },
+  parameters: { docs: { source: { code: `<BRate v-model="value" />` } } },
   render: (args) => ({
     components: { BRate },
     setup: () => {
@@ -95,7 +96,7 @@ export const Playground: Story = {
       return { args, value };
     },
     template: `
-      <div style="padding: 40px;">
+      <div>
         <BRate v-bind="args" v-model="value" />
         <p style="margin-top: 12px; font-size: 12px; color: #666;">Value: {{ value }}</p>
       </div>
@@ -109,33 +110,35 @@ export const Playground: Story = {
   },
 };
 
-// ─────────────────────────────────────────────
-// 2. Half Stars
-// ─────────────────────────────────────────────
 export const HalfStars: Story = {
-  args: {
-    modelValue: 2.5,
-    allowHalf: true,
-  },
-  render: (args) => ({
+  parameters: { docs: { source: { code: `<BRate v-model="value" allow-half />` } } },
+  render: () => ({
     components: { BRate },
     setup: () => {
-      const value = ref(args.modelValue);
-      return { args, value };
+      const value = ref(2.5);
+      return { value };
     },
     template: `
-      <div style="padding: 40px;">
-        <BRate v-bind="args" v-model="value" />
+      <div>
+        <BRate v-model="value" allow-half />
         <p style="margin-top: 12px; font-size: 12px; color: #666;">Value: {{ value }}</p>
       </div>
     `,
   }),
 };
 
-// ─────────────────────────────────────────────
-// 3. Sizes
-// ─────────────────────────────────────────────
 export const Sizes: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BRate size="small" />
+<BRate size="default" />
+<BRate size="large" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BRate },
     setup: () => {
@@ -145,7 +148,7 @@ export const Sizes: Story = {
       return { small, medium, large };
     },
     template: `
-      <div style="padding: 40px; display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
         <div>
           <span style="display: inline-block; width: 80px; font-size: 12px; color: #666;">Small:</span>
           <BRate v-model="small" size="small" />
@@ -163,32 +166,29 @@ export const Sizes: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 4. Disabled
-// ─────────────────────────────────────────────
 export const Disabled: Story = {
-  args: {
-    modelValue: 3,
-    disabled: true,
-  },
-  render: (args) => ({
+  parameters: { docs: { source: { code: `<BRate :model-value="3" disabled />` } } },
+  render: () => ({
     components: { BRate },
-    setup: () => {
-      const value = ref(args.modelValue);
-      return { args, value };
-    },
-    template: `
-      <div style="padding: 40px;">
-        <BRate v-bind="args" v-model="value" />
-      </div>
-    `,
+    template: `<BRate :model-value="3" disabled />`,
   }),
 };
 
 // ─────────────────────────────────────────────
-// 5. Custom Character
+// Examples
 // ─────────────────────────────────────────────
+
 export const CustomCharacter: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BRate v-model="value" character="♥" />
+<BRate v-model="value" character="A" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BRate },
     setup: () => {
@@ -197,7 +197,7 @@ export const CustomCharacter: Story = {
       return { heart, letter };
     },
     template: `
-      <div style="padding: 40px; display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
         <div>
           <span style="display: inline-block; width: 100px; font-size: 12px; color: #666;">Heart:</span>
           <BRate v-model="heart" character="♥" />
@@ -211,10 +211,19 @@ export const CustomCharacter: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 6. Tooltips
-// ─────────────────────────────────────────────
 export const Tooltips: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BRate
+  v-model="value"
+  :tooltips="['Terrible', 'Bad', 'Normal', 'Good', 'Wonderful']"
+/>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BRate },
     setup: () => {
@@ -223,7 +232,7 @@ export const Tooltips: Story = {
       return { value, tooltips };
     },
     template: `
-      <div style="padding: 40px;">
+      <div>
         <BRate v-model="value" :tooltips="tooltips" />
         <p style="margin-top: 12px; font-size: 12px; color: #666;">
           {{ tooltips[value - 1] || 'No rating' }}
@@ -234,9 +243,19 @@ export const Tooltips: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 7. Accessibility
+// Accessibility
 // ─────────────────────────────────────────────
+
 export const Accessibility: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Renders <code>role="slider"</code> with <code>aria-valuenow</code>/<code>aria-valuemin</code>/<code>aria-valuemax</code>. ' +
+          'Reachable via <kbd>Tab</kbd>; arrow keys change the value.',
+      },
+    },
+  },
   render: () => ({
     components: { BRate },
     setup: () => {
@@ -244,11 +263,7 @@ export const Accessibility: Story = {
       return { value };
     },
     template: `
-      <div style="padding: 40px;">
-        <h3 style="margin-bottom: 16px; font-size: 14px;">Keyboard Navigation Demo</h3>
-        <p style="margin-bottom: 12px; font-size: 12px; color: #666;">
-          Tab to focus, then use Arrow keys to change value. Enter/Space to clear.
-        </p>
+      <div>
         <BRate v-model="value" aria-label="Product rating" />
         <p style="margin-top: 12px; font-size: 12px; color: #666;">Value: {{ value }}</p>
       </div>
@@ -282,9 +297,27 @@ export const Accessibility: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 8. Theming
+// Theming
 // ─────────────────────────────────────────────
+
 export const Theming: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Override <code>--b-rate-star-color</code>, <code>--b-rate-star-bg</code>, ' +
+          '<code>--b-rate-star-size</code>, and <code>--b-rate-star-hover-scale</code> on the component root.',
+      },
+      source: {
+        code: `
+<BRate
+  v-model="value"
+  style="--b-rate-star-color: #ff4d4f; --b-rate-star-bg: rgba(255, 77, 79, 0.15);"
+/>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BRate },
     setup: () => {
@@ -294,7 +327,7 @@ export const Theming: Story = {
       return { v1, v2, v3 };
     },
     template: `
-      <div style="padding: 40px; display: flex; flex-direction: column; gap: 24px;">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
         <div>
           <p style="margin-bottom: 8px; font-size: 12px; color: #666;">Custom color (red)</p>
           <BRate
@@ -322,64 +355,46 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 9. Design Tokens
+// Design Tokens — MUST be the LAST story
 // ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  { token: '--b-rate-star-bg', defaultValue: 'rgba(0, 0, 0, 0.06)', description: 'Background color of unselected stars.' },
+  { token: '--b-rate-star-color', defaultValue: '#fadb14', description: 'Color of selected / active stars.' },
+  { token: '--b-rate-star-hover-scale', defaultValue: 'scale(1.1)', description: 'Transform applied on star hover.' },
+  { token: '--b-rate-star-size', defaultValue: '20px', description: 'Size of each star (width and height).' },
+];
+
 export const DesignTokens: Story = {
-  render: () => ({
-    components: { BRate },
-    setup: () => {
-      const tokens = [
-        {
-          variable: '--b-rate-star-bg',
-          default: 'rgba(0, 0, 0, 0.06)',
-          description: 'Background color of unselected stars',
-        },
-        {
-          variable: '--b-rate-star-color',
-          default: '#fadb14',
-          description: 'Color of selected/active stars',
-        },
-        {
-          variable: '--b-rate-star-hover-scale',
-          default: 'scale(1.1)',
-          description: 'Transform applied on star hover',
-        },
-        {
-          variable: '--b-rate-star-size',
-          default: '20px',
-          description: 'Size of each star (width & height)',
-        },
-      ];
-      const value = ref(3);
-      return { tokens, value };
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BRate</code>. Override on the component root or any ancestor selector.',
+      },
     },
+  },
+  render: () => ({
+    setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
-      <div style="padding: 40px;">
-        <h3 style="margin-bottom: 16px; font-size: 16px; font-weight: 600;">BRate Design Tokens</h3>
-        <p style="margin-bottom: 16px; font-size: 12px; color: #666;">
-          Override these CSS custom properties on <code>.b-rate</code> or via inline styles to theme the component.
-        </p>
-        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
-          <thead>
-            <tr style="border-bottom: 2px solid #eee; text-align: left;">
-              <th style="padding: 8px 12px;">Variable</th>
-              <th style="padding: 8px 12px;">Default</th>
-              <th style="padding: 8px 12px;">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="token in tokens" :key="token.variable" style="border-bottom: 1px solid #f0f0f0;">
-              <td style="padding: 8px 12px; font-family: monospace; color: #d4380d;">{{ token.variable }}</td>
-              <td style="padding: 8px 12px; font-family: monospace;">{{ token.default }}</td>
-              <td style="padding: 8px 12px;">{{ token.description }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div style="margin-top: 24px; padding: 16px; background: #fafafa; border-radius: 8px;">
-          <p style="margin-bottom: 8px; font-size: 12px; color: #666;">Live preview (default tokens):</p>
-          <BRate v-model="value" />
-        </div>
-      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:oklch(96% 0.002 260);">
+            <th style="text-align:left;padding:10px 12px;">CSS Variable</th>
+            <th style="text-align:left;padding:10px 12px;">Default</th>
+            <th style="text-align:left;padding:10px 12px;">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+            <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+            <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+            <td style="padding:8px 12px;">{{ t.description }}</td>
+          </tr>
+        </tbody>
+      </table>
     `,
   }),
 };

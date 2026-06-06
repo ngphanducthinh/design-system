@@ -20,33 +20,34 @@ const meta = {
       control: 'select',
       options: Object.values(BFormLayout),
       description: 'Form layout mode.',
-      table: { defaultValue: { summary: BFormLayout.Horizontal } },
+      table: { category: 'Props', defaultValue: { summary: BFormLayout.Horizontal } },
     },
     labelAlign: {
       control: 'select',
       options: Object.values(BFormLabelAlign),
       description: 'Label text alignment.',
-      table: { defaultValue: { summary: BFormLabelAlign.Right } },
+      table: { category: 'Props', defaultValue: { summary: BFormLabelAlign.Right } },
     },
     labelWidth: {
       control: 'text',
       description: 'Fixed width for all labels.',
+      table: { category: 'Props' },
     },
     colon: {
       control: 'boolean',
       description: 'Display colon after label (horizontal layout only).',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     disabled: {
       control: 'boolean',
       description: 'Disable all form controls.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     requiredMark: {
       control: 'select',
       options: [true, false, BFormRequiredMark.Optional],
       description: 'How required/optional marks are displayed.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     model: {
       control: 'object',
@@ -701,6 +702,15 @@ export const DirtyTouchedState: Story = {
 // 10. Design Tokens (LAST)
 // ─────────────────────────────────────────────
 export const DesignTokens: Story = {
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BForm</code>. Override on the component root or any ancestor selector.',
+      },
+    },
+  },
   render: () => ({
     template: `
       <div style="padding: 40px; font-family: monospace; font-size: 13px; max-width: 900px;">

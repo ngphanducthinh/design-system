@@ -6,9 +6,16 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, userEvent, within } from 'storybook/test';
 import { ref } from 'vue';
 
-// ─────────────────────────────────────────────
-// Meta
-// ─────────────────────────────────────────────
+/**
+ * BFloatButton — floating action button anchored to a viewport corner.
+ *
+ * Story file follows the canonical format described in `docs/STORY_FORMAT.md`:
+ *   Usage  → one story per prop value (granular, copy-pasteable)
+ *   Examples → composed real-world recipes
+ *   Accessibility → roles + keyboard play tests
+ *   Theming → CSS-token override demo
+ *   Design Tokens → reference table (LAST story)
+ */
 const meta = {
   title: 'General/FloatButton',
   component: BFloatButton,
@@ -17,21 +24,82 @@ const meta = {
     type: {
       control: 'select',
       options: Object.values(BFloatButtonType),
+      description: 'Visual type — `default` (light surface) or `primary` (brand color).',
+      table: { category: 'Props', defaultValue: { summary: 'default' } },
     },
     shape: {
       control: 'select',
       options: Object.values(BFloatButtonShape),
+      description: 'Outer shape — `circle` (icon-only) or `square` (supports description).',
+      table: { category: 'Props', defaultValue: { summary: 'circle' } },
     },
-    disabled: { control: 'boolean' },
-    tooltip: { control: 'text' },
-    description: { control: 'text' },
-    href: { control: 'text' },
-    target: { control: 'text' },
+    icon: {
+      control: 'text',
+      description: 'Icon name rendered inside the button.',
+      table: { category: 'Props' },
+    },
+    description: {
+      control: 'text',
+      description: 'Description label shown below the icon (only visible in `square` shape).',
+      table: { category: 'Props' },
+    },
+    tooltip: {
+      control: 'text',
+      description: 'Tooltip text shown on hover.',
+      table: { category: 'Props' },
+    },
+    href: {
+      control: 'text',
+      description: 'When set, renders the button as an `<a>` element with this href.',
+      table: { category: 'Props' },
+    },
+    target: {
+      control: 'text',
+      description: 'Anchor target attribute (only applied when `href` is set).',
+      table: { category: 'Props', defaultValue: { summary: '_blank' } },
+    },
     htmlType: {
       control: 'select',
       options: ['button', 'submit', 'reset'],
+      description: 'Native `type` attribute when rendered as a `<button>`.',
+      table: { category: 'Props', defaultValue: { summary: 'button' } },
     },
-    onClick: { action: 'click', table: { category: 'Events' } },
+    badge: {
+      control: 'object',
+      description:
+        'Badge configuration (`{ count, dot, overflowCount, showZero, color }`) shown in the top-right corner.',
+      table: { category: 'Props' },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disables interaction and applies the disabled visual.',
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
+    },
+    ariaLabel: {
+      control: 'text',
+      description: 'Accessible label — required when there is no visible text content.',
+      table: { category: 'Props' },
+    },
+    icon_slot: {
+      name: 'icon',
+      description: 'Custom icon content (overrides the default plus icon and the `icon` prop).',
+      table: { category: 'Slots' },
+    },
+    description_slot: {
+      name: 'description',
+      description: 'Custom description content (only visible in `square` shape).',
+      table: { category: 'Slots' },
+    },
+    tooltip_slot: {
+      name: 'tooltip',
+      description: 'Custom tooltip content.',
+      table: { category: 'Slots' },
+    },
+    onClick: {
+      action: 'click',
+      description: 'Emitted when the float button is clicked (no-op when disabled).',
+      table: { category: 'Events' },
+    },
   },
   parameters: {
     docs: {
@@ -50,23 +118,27 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // ─────────────────────────────────────────────
-// Playground
+// Usage
 // ─────────────────────────────────────────────
-/**
- * Interactive playground: tweak all props via Storybook Controls.
- */
-export const Playground: Story = {
+
+/** The default float button — circle shape, default type. */
+export const Default: Story = {
   args: {
     type: BFloatButtonType.Default,
     shape: BFloatButtonShape.Circle,
     tooltip: 'Float Button',
     disabled: false,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<BFloatButton tooltip="Float Button" />`,
+      },
+    },
+  },
   render: (args) => ({
     components: { BFloatButton },
-    setup() {
-      return { args };
-    },
+    setup: () => ({ args }),
     template: `
       <div style="position:relative; width:300px; height:200px; border:1px dashed #ccc; border-radius:8px; padding:1rem;">
         <p style="color:#767676;font-size:0.875rem;">Float button is positioned at bottom-right</p>
@@ -78,61 +150,110 @@ export const Playground: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// Types
-// ─────────────────────────────────────────────
-/**
- * Both button types side by side.
- */
-export const Types: Story = {
+/** Default type — neutral light surface for tertiary floating actions. */
+export const TypeDefault: Story = {
+  name: 'Type: Default',
+  parameters: {
+    docs: {
+      source: { code: `<BFloatButton type="default" tooltip="Default" />` },
+    },
+  },
   render: () => ({
     components: { BFloatButton },
-    template: `
-      <div style="display:flex; gap:1rem; align-items:center; padding:1rem;">
-        <div>
-          <p style="text-align:center; font-size:0.75rem; margin-bottom:0.5rem; color:#767676;">default</p>
-          <BFloatButton type="default" tooltip="Default" />
-        </div>
-        <div>
-          <p style="text-align:center; font-size:0.75rem; margin-bottom:0.5rem; color:#767676;">primary</p>
-          <BFloatButton type="primary" tooltip="Primary" />
-        </div>
-      </div>
-    `,
+    template: `<BFloatButton type="default" tooltip="Default" />`,
   }),
 };
 
-// ─────────────────────────────────────────────
-// Shapes
-// ─────────────────────────────────────────────
-/**
- * Circle and square shapes, with description only shown in square.
- */
-export const Shapes: Story = {
+/** Primary type — for the most prominent floating action on the page. */
+export const TypePrimary: Story = {
+  name: 'Type: Primary',
+  parameters: {
+    docs: {
+      source: { code: `<BFloatButton type="primary" tooltip="Primary" />` },
+    },
+  },
+  render: () => ({
+    components: { BFloatButton },
+    template: `<BFloatButton type="primary" tooltip="Primary" />`,
+  }),
+};
+
+/** Circle shape — icon-only, the default. */
+export const ShapeCircle: Story = {
+  name: 'Shape: Circle',
+  parameters: {
+    docs: {
+      source: { code: `<BFloatButton shape="circle" tooltip="Circle" />` },
+    },
+  },
+  render: () => ({
+    components: { BFloatButton },
+    template: `<BFloatButton shape="circle" tooltip="Circle" />`,
+  }),
+};
+
+/** Square shape — accommodates an additional `description` label below the icon. */
+export const ShapeSquare: Story = {
+  name: 'Shape: Square',
+  parameters: {
+    docs: {
+      source: {
+        code: `<BFloatButton shape="square" description="Help" tooltip="Square with description" />`,
+      },
+    },
+  },
+  render: () => ({
+    components: { BFloatButton },
+    template: `<BFloatButton shape="square" description="Help" tooltip="Square with description" />`,
+  }),
+};
+
+/** Disabled buttons receive reduced opacity and `cursor: not-allowed`. */
+export const Disabled: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BFloatButton tooltip="Disabled default" disabled />
+<BFloatButton type="primary" tooltip="Disabled primary" disabled />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BFloatButton },
     template: `
       <div style="display:flex; gap:1.5rem; align-items:center; padding:1rem;">
-        <div>
-          <p style="text-align:center; font-size:0.75rem; margin-bottom:0.5rem; color:#767676;">circle</p>
-          <BFloatButton shape="circle" tooltip="Circle" />
-        </div>
-        <div>
-          <p style="text-align:center; font-size:0.75rem; margin-bottom:0.5rem; color:#767676;">square</p>
-          <BFloatButton shape="square" description="Help" tooltip="Square with description" />
-        </div>
+        <BFloatButton tooltip="Enabled default" />
+        <BFloatButton tooltip="Disabled default" :disabled="true" />
+        <BFloatButton type="primary" tooltip="Enabled primary" />
+        <BFloatButton type="primary" tooltip="Disabled primary" :disabled="true" />
       </div>
     `,
   }),
 };
 
 // ─────────────────────────────────────────────
-// With Badge
+// Examples
 // ─────────────────────────────────────────────
+
 /**
- * Demonstrates badge configurations: count, overflow, dot, and zero.
+ * Badge configurations — count, overflow, dot, and zero-display.
+ * The badge is positioned in the top-right corner of the float button.
  */
 export const WithBadge: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BFloatButton :badge="{ count: 5 }" tooltip="5 items" />
+<BFloatButton :badge="{ count: 150, overflowCount: 99 }" tooltip="Many items" />
+<BFloatButton :badge="{ dot: true }" tooltip="Notification dot" />
+<BFloatButton :badge="{ count: 0, showZero: true }" tooltip="Zero count" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BFloatButton },
     template: `
@@ -158,13 +279,21 @@ export const WithBadge: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// Group (no trigger) - static arrangement
-// ─────────────────────────────────────────────
-/**
- * BFloatButtonGroup without a trigger simply arranges buttons vertically.
- */
+/** `BFloatButtonGroup` without a trigger arranges its children vertically. */
 export const GroupStatic: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BFloatButtonGroup>
+  <BFloatButton tooltip="Share" />
+  <BFloatButton tooltip="Edit" />
+  <BFloatButton type="primary" tooltip="Add" />
+</BFloatButtonGroup>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BFloatButton, BFloatButtonGroup },
     template: `
@@ -177,14 +306,24 @@ export const GroupStatic: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// Group with trigger (click)
-// ─────────────────────────────────────────────
 /**
- * BFloatButtonGroup with a click trigger that expands/collapses child buttons.
- * Supports controlled (v-model:open) usage.
+ * `BFloatButtonGroup` with a click trigger expands and collapses its child
+ * buttons. Supports controlled usage via `v-model:open`.
  */
 export const GroupWithTrigger: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BFloatButtonGroup v-model:open="open" trigger="click" placement="top">
+  <BFloatButton tooltip="Share" />
+  <BFloatButton tooltip="Edit" />
+  <BFloatButton tooltip="Delete" type="primary" />
+</BFloatButtonGroup>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BFloatButton, BFloatButtonGroup },
     setup() {
@@ -209,10 +348,23 @@ export const GroupWithTrigger: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// Group placement variants
-// ─────────────────────────────────────────────
+/**
+ * `BFloatButtonGroup` supports four placements — `top`, `bottom`, `left`,
+ * `right` — controlling the direction children expand from the trigger.
+ */
 export const GroupPlacements: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BFloatButtonGroup trigger="click" placement="top">…</BFloatButtonGroup>
+<BFloatButtonGroup trigger="click" placement="bottom">…</BFloatButtonGroup>
+<BFloatButtonGroup trigger="click" placement="left">…</BFloatButtonGroup>
+<BFloatButtonGroup trigger="click" placement="right">…</BFloatButtonGroup>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BFloatButton, BFloatButtonGroup },
     // Each cell wraps the group in a fixed-size spacer that pre-allocates room
@@ -262,14 +414,21 @@ export const GroupPlacements: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// BackTop
-// ─────────────────────────────────────────────
 /**
- * BFloatButtonBackTop appears when the user scrolls down past the threshold.
- * Clicking it smoothly scrolls back to the top.
+ * `BFloatButtonBackTop` listens to the scroll position of its `target` and
+ * appears once the user scrolls past `visibilityHeight`. Clicking it scrolls
+ * the target smoothly back to the top.
  */
 export const BackTop: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BFloatButtonBackTop :target="() => containerRef" :visibilityHeight="100" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BFloatButtonBackTop },
     setup() {
@@ -298,10 +457,23 @@ export const BackTop: Story = {
 // ─────────────────────────────────────────────
 // Accessibility
 // ─────────────────────────────────────────────
+
 /**
- * Verifies ARIA roles, labels, focus order, and keyboard interaction.
+ * BFloatButton renders a native `<button>` (or `<a>` when `href` is set), so
+ * it is keyboard-reachable via Tab. Group triggers expose `aria-expanded` and
+ * an `aria-label` that toggles between "Expand button group" and "Collapse
+ * button group" as the group opens and closes.
  */
 export const Accessibility: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Verifies ARIA roles, labels, focus order, and the group trigger ' +
+          '<code>aria-expanded</code> toggle on click.',
+      },
+    },
+  },
   render: () => ({
     components: { BFloatButton, BFloatButtonGroup },
     template: `
@@ -344,13 +516,54 @@ export const Accessibility: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Theming (CSS var overrides)
+// Theming
 // ─────────────────────────────────────────────
+
 /**
- * Demonstrates overriding CSS custom properties for custom theming.
- * Overrides: --b-float-button-bg, --b-float-button-shadow, --b-float-button-size.
+ * Override scoped CSS variables on the component root for custom theming.
+ * This story demonstrates four overrides — `--b-float-button-bg`,
+ * `--b-float-button-color`, `--b-float-button-bg-hover`,
+ * `--b-float-button-size`, `--b-float-button-icon-size`,
+ * and `--b-float-button-shadow`.
  */
 export const Theming: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Override <code>--b-float-button-bg</code>, <code>--b-float-button-color</code>, ' +
+          '<code>--b-float-button-bg-hover</code>, <code>--b-float-button-size</code>, ' +
+          '<code>--b-float-button-icon-size</code>, and <code>--b-float-button-shadow</code> ' +
+          'on the component root to retheme an instance.',
+      },
+      source: {
+        code: `
+<BFloatButton
+  tooltip="Custom background"
+  style="
+    --b-float-button-bg: oklch(75% 0.18 30);
+    --b-float-button-color: #fff;
+    --b-float-button-bg-hover: oklch(65% 0.18 30);
+  "
+/>
+
+<BFloatButton
+  tooltip="Larger button"
+  style="
+    --b-float-button-size: 56px;
+    --b-float-button-icon-size: 1.75rem;
+  "
+/>
+
+<BFloatButton
+  type="primary"
+  tooltip="Colored shadow"
+  style="--b-float-button-shadow: 0 8px 24px 0 rgba(99, 102, 241, 0.5);"
+/>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BFloatButton },
     template: `
@@ -390,24 +603,7 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// Disabled state
-// ─────────────────────────────────────────────
-export const Disabled: Story = {
-  render: () => ({
-    components: { BFloatButton },
-    template: `
-      <div style="display:flex; gap:1.5rem; align-items:center; padding:1rem;">
-        <BFloatButton tooltip="Enabled default" />
-        <BFloatButton tooltip="Disabled default" :disabled="true" />
-        <BFloatButton type="primary" tooltip="Enabled primary" />
-        <BFloatButton type="primary" tooltip="Disabled primary" :disabled="true" />
-      </div>
-    `,
-  }),
-};
-
-// ─────────────────────────────────────────────
-// Design Tokens - MUST be the LAST story
+// Design Tokens — MUST be the LAST story
 // ─────────────────────────────────────────────
 type TokenRow = { token: string; defaultValue: string; description: string };
 

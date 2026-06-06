@@ -10,9 +10,12 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { ref } from 'vue';
 
-// ─────────────────────────────────────────────
-// Meta
-// ─────────────────────────────────────────────
+/**
+ * BSkeleton — placeholder shown while content loads.
+ *
+ * Story file follows `docs/STORY_FORMAT.md`:
+ *   Default → per-prop Usage → Examples → Accessibility → Theming → Design Tokens (LAST).
+ */
 const meta = {
   title: 'Feedback/Skeleton',
   component: BSkeleton,
@@ -21,36 +24,34 @@ const meta = {
     active: {
       control: 'boolean',
       description: 'Show animated shimmer effect.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     avatar: {
       control: 'boolean',
       description: 'Show avatar placeholder. Pass an object to configure shape/size/active.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     title: {
       control: 'boolean',
       description: 'Show title placeholder. Pass an object to configure width.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     paragraph: {
       control: 'boolean',
       description: 'Show paragraph placeholder. Pass an object to configure rows / width.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     round: {
       control: 'boolean',
       description: 'Round corners on title and paragraph rows.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     loading: {
       control: 'boolean',
       description: 'When false, renders the default slot (real content) instead of placeholders.',
-      table: {
-        category: 'Two-Way Binding Props',
-        defaultValue: { summary: 'true' },
-      },
+      table: { category: 'Two-Way Binding Props', defaultValue: { summary: 'true' } },
     },
+    default: { description: 'Real content to render when `loading` is false.', table: { category: 'Slots' } },
   },
   parameters: {
     docs: {
@@ -59,9 +60,9 @@ const meta = {
           'The <code>BSkeleton</code> component shows a placeholder while content is loading.<br><br>' +
           'It supports an optional <strong>avatar</strong>, <strong>title</strong>, and <strong>paragraph</strong> ' +
           '(each individually configurable), an <strong>active</strong> shimmer effect, and <strong>round</strong> corners.<br>' +
-          'Sub-components are exported for placeholder primitives: <code>BSkeletonAvatar</code>, ' +
-          '<code>BSkeletonButton</code>, <code>BSkeletonInput</code>, <code>BSkeletonImage</code>, and <code>BSkeletonNode</code>.<br>' +
-          'The component exposes <code>role="status"</code> and respects <code>prefers-reduced-motion</code>.',
+          'Sub-components: <code>BSkeletonAvatar</code>, <code>BSkeletonButton</code>, <code>BSkeletonInput</code>, ' +
+          '<code>BSkeletonImage</code>, <code>BSkeletonNode</code>.<br>' +
+          'Exposes <code>role="status"</code> and respects <code>prefers-reduced-motion</code>.',
       },
     },
   },
@@ -71,9 +72,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // ─────────────────────────────────────────────
-// 1. Playground
+// Usage
 // ─────────────────────────────────────────────
-export const Playground: Story = {
+
+/** Default — title + paragraph placeholder. */
+export const Default: Story = {
   args: {
     active: false,
     avatar: false,
@@ -82,11 +85,10 @@ export const Playground: Story = {
     round: false,
     loading: true,
   },
+  parameters: { docs: { source: { code: `<BSkeleton />` } } },
   render: (args) => ({
     components: { BSkeleton },
-    setup() {
-      return { args };
-    },
+    setup: () => ({ args }),
     template: `
       <BSkeleton v-bind="args">
         <p>Real content shown when loading is false.</p>
@@ -95,33 +97,36 @@ export const Playground: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 2. Active vs static
-// ─────────────────────────────────────────────
-export const ActiveVsStatic: Story = {
-  parameters: { controls: { disable: true } },
+/** Static placeholder (no shimmer). */
+export const Static: Story = {
+  parameters: { docs: { source: { code: `<BSkeleton />` } } },
   render: () => ({
     components: { BSkeleton },
-    template: `
-      <div style="display:flex;flex-direction:column;gap:2rem;">
-        <div>
-          <h4 style="margin:0 0 0.5rem;">Static (no animation)</h4>
-          <BSkeleton />
-        </div>
-        <div>
-          <h4 style="margin:0 0 0.5rem;">Active (shimmer)</h4>
-          <BSkeleton active />
-        </div>
-      </div>
-    `,
+    template: `<BSkeleton />`,
   }),
 };
 
-// ─────────────────────────────────────────────
-// 3. With avatar
-// ─────────────────────────────────────────────
+/** Animated shimmer effect — default for visible loading states. */
+export const Active: Story = {
+  parameters: { docs: { source: { code: `<BSkeleton active />` } } },
+  render: () => ({
+    components: { BSkeleton },
+    template: `<BSkeleton active />`,
+  }),
+};
+
+/** Show an avatar placeholder alongside the text rows. */
 export const WithAvatar: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BSkeleton active avatar />
+<BSkeleton active :avatar="{ shape: 'square', size: 'large' }" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BSkeleton },
     template: `
@@ -133,36 +138,59 @@ export const WithAvatar: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 4. Custom title / paragraph
-// ─────────────────────────────────────────────
+/** Configure title width, paragraph row count, and per-row widths. */
 export const Configurable: Story = {
-  name: 'Configurable title / paragraph',
-  parameters: { controls: { disable: true } },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BSkeleton active :title="{ width: '40%' }" :paragraph="{ rows: 5 }" />
+<BSkeleton active :paragraph="{ rows: 3, width: [200, 300, '50%'] }" />
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BSkeleton },
     template: `
       <div style="display:flex;flex-direction:column;gap:2rem;">
         <BSkeleton active :title="{ width: '40%' }" :paragraph="{ rows: 5 }" />
         <BSkeleton active :paragraph="{ rows: 3, width: [200, 300, '50%'] }" />
-        <BSkeleton round active />
       </div>
     `,
   }),
 };
 
-// ─────────────────────────────────────────────
-// 5. Loading toggle
-// ─────────────────────────────────────────────
-export const LoadingToggle: Story = {
-  name: 'Loading toggle',
-  parameters: { controls: { disable: true } },
+/** Pill-rounded corners on title and paragraph rows. */
+export const Round: Story = {
+  parameters: { docs: { source: { code: `<BSkeleton round active />` } } },
   render: () => ({
     components: { BSkeleton },
-    setup() {
-      const loading = ref(true);
-      return { loading };
+    template: `<BSkeleton round active />`,
+  }),
+};
+
+// ─────────────────────────────────────────────
+// Examples
+// ─────────────────────────────────────────────
+
+/** Toggle `loading` to swap between placeholder and real content. */
+export const LoadingToggle: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<button @click="loading = !loading">{{ loading ? 'Stop' : 'Start' }} loading</button>
+<BSkeleton :loading="loading" active avatar>
+  <article>Real content shown when loading=false.</article>
+</BSkeleton>
+        `,
+      },
     },
+  },
+  render: () => ({
+    components: { BSkeleton },
+    setup: () => ({ loading: ref(true) }),
     template: `
       <div style="display:flex;flex-direction:column;gap:1rem;">
         <button
@@ -206,12 +234,22 @@ export const LoadingToggle: Story = {
   },
 };
 
-// ─────────────────────────────────────────────
-// 6. Sub-components
-// ─────────────────────────────────────────────
-export const SubComponents: Story = {
-  name: 'Skeleton primitives',
-  parameters: { controls: { disable: true } },
+/** Skeleton primitives — `Avatar`, `Button`, `Input`, `Image`, `Node` for ad-hoc placeholders. */
+export const SkeletonPrimitives: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BSkeletonAvatar active />
+<BSkeletonAvatar active shape="square" size="large" />
+<BSkeletonButton active />
+<BSkeletonInput active />
+<BSkeletonImage active />
+<BSkeletonNode active>📦</BSkeletonNode>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: {
       BSkeletonAvatar,
@@ -248,27 +286,50 @@ export const SubComponents: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 7. Accessibility
-// ─────────────────────────────────────────────
-export const Accessibility: Story = {
-  name: 'Accessibility (roles & ARIA)',
+/** Card-like layout: avatar + title + paragraph composing a list-row placeholder. */
+export const ListRowPlaceholder: Story = {
   parameters: {
-    controls: { disable: true },
     docs: {
-      description: {
-        story:
-          'The skeleton root has `role="status"` with `aria-live="polite"` and `aria-label="Loading"`. ' +
-          'Decorative shapes (title, paragraph rows, avatar, button, input, image, node) are `aria-hidden`. ' +
-          'When `loading` flips to false, the skeleton is replaced with real content (announced naturally by the live region change).',
+      source: {
+        code: `
+<div v-for="i in 3" :key="i">
+  <BSkeleton active avatar :paragraph="{ rows: 2 }" />
+</div>
+        `,
       },
     },
   },
   render: () => ({
     components: { BSkeleton },
     template: `
-      <BSkeleton data-testid="sk" active avatar :paragraph="{ rows: 3 }" />
+      <div style="display:flex;flex-direction:column;gap:1.5rem;">
+        <BSkeleton v-for="i in 3" :key="i" active avatar :paragraph="{ rows: 2 }" />
+      </div>
     `,
+  }),
+};
+
+// ─────────────────────────────────────────────
+// Accessibility
+// ─────────────────────────────────────────────
+
+/**
+ * Skeleton root has `role="status"` with `aria-live="polite"` and `aria-label="Loading"`.
+ * Decorative shapes (title, paragraph rows, avatar, button, input, image, node) are `aria-hidden`.
+ * When `loading` flips to false, the skeleton is replaced with real content (announced naturally).
+ */
+export const Accessibility: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The skeleton root has <code>role="status"</code> with <code>aria-live="polite"</code> and <code>aria-label="Loading"</code>. Decorative shapes are <code>aria-hidden</code>.',
+      },
+    },
+  },
+  render: () => ({
+    components: { BSkeleton },
+    template: `<BSkeleton data-testid="sk" active avatar :paragraph="{ rows: 3 }" />`,
   }),
   play: async ({ canvasElement }) => {
     const root = canvasElement.querySelector('.b-skeleton')!;
@@ -276,31 +337,39 @@ export const Accessibility: Story = {
     expect(root.getAttribute('aria-live')).toBe('polite');
     expect(root.getAttribute('aria-label')).toBe('Loading');
 
-    // Decorative bits should be aria-hidden
-    expect(canvasElement.querySelector('.b-skeleton__title')?.getAttribute('aria-hidden')).toBe(
-      'true',
-    );
-    expect(canvasElement.querySelector('.b-skeleton__paragraph')?.getAttribute('aria-hidden')).toBe(
-      'true',
-    );
-    expect(canvasElement.querySelector('.b-skeleton-avatar')?.getAttribute('aria-hidden')).toBe(
-      'true',
-    );
+    expect(canvasElement.querySelector('.b-skeleton__title')?.getAttribute('aria-hidden')).toBe('true');
+    expect(canvasElement.querySelector('.b-skeleton__paragraph')?.getAttribute('aria-hidden')).toBe('true');
+    expect(canvasElement.querySelector('.b-skeleton-avatar')?.getAttribute('aria-hidden')).toBe('true');
   },
 };
 
 // ─────────────────────────────────────────────
-// 8. Theming (CSS vars)
+// Theming
 // ─────────────────────────────────────────────
+
+/**
+ * Override `--b-skeleton-gradient-from-color`, `--b-skeleton-gradient-to-color`,
+ * and `--b-skeleton-title-height` (or any other token) on the component root.
+ */
 export const Theming: Story = {
-  name: 'Theming (CSS vars)',
   parameters: {
-    controls: { disable: true },
     docs: {
       description: {
         story:
-          'Override `--b-skeleton-*` CSS custom properties scoped to the component root to recolor / resize ' +
-          'the skeleton without touching its source.',
+          'Override <code>--b-skeleton-gradient-from-color</code>, <code>--b-skeleton-gradient-to-color</code>, <code>--b-skeleton-title-height</code>, and <code>--b-skeleton-paragraph-row-gap</code> on the component root to recolor / resize.',
+      },
+      source: {
+        code: `
+<BSkeleton
+  active
+  avatar
+  style="
+    --b-skeleton-gradient-from-color: #dbeafe;
+    --b-skeleton-gradient-to-color: #93c5fd;
+    --b-skeleton-title-height: 24px;
+  "
+/>
+        `,
       },
     },
   },
@@ -334,8 +403,33 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 9. Design Tokens - MUST be the LAST story
+// Design Tokens — MUST be the LAST story
 // ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  { token: '--b-skeleton-gradient-from-color', defaultValue: 'oklch(93% 0 0)', description: 'Base placeholder color.' },
+  { token: '--b-skeleton-gradient-to-color', defaultValue: 'oklch(85% 0 0)', description: 'Shimmer highlight color.' },
+  { token: '--b-skeleton-title-height', defaultValue: '16px', description: 'Height of the title bar.' },
+  { token: '--b-skeleton-paragraph-li-height', defaultValue: '16px', description: 'Height of each paragraph row.' },
+  { token: '--b-skeleton-paragraph-margin-top', defaultValue: '28px', description: 'Spacing between title and paragraph.' },
+  { token: '--b-skeleton-paragraph-row-gap', defaultValue: '16px', description: 'Vertical gap between paragraph rows.' },
+  { token: '--b-skeleton-block-radius', defaultValue: '4px', description: 'Corner radius for title/paragraph blocks.' },
+  { token: '--b-skeleton-border-radius', defaultValue: '6px', description: 'Default radius for buttons / inputs / images.' },
+  { token: '--b-skeleton-border-radius-sm', defaultValue: '4px', description: 'Smaller radius for small/square variants.' },
+  { token: '--b-skeleton-control-height', defaultValue: '32px', description: 'Default control height for Button / Input.' },
+  { token: '--b-skeleton-control-height-lg', defaultValue: '40px', description: 'Large control height.' },
+  { token: '--b-skeleton-control-height-sm', defaultValue: '24px', description: 'Small control height.' },
+  { token: '--b-skeleton-avatar-size-default', defaultValue: '32px', description: 'Avatar size (default).' },
+  { token: '--b-skeleton-avatar-size-small', defaultValue: '24px', description: 'Avatar size (small).' },
+  { token: '--b-skeleton-avatar-size-large', defaultValue: '40px', description: 'Avatar size (large).' },
+  { token: '--b-skeleton-image-size', defaultValue: '96px', description: 'Image / Node placeholder dimensions.' },
+  { token: '--b-skeleton-button-min-width', defaultValue: '64px', description: 'Minimum button placeholder width.' },
+  { token: '--b-skeleton-input-min-width', defaultValue: '160px', description: 'Minimum input placeholder width.' },
+  { token: '--b-skeleton-animation-duration', defaultValue: '1.4s', description: 'Shimmer animation duration.' },
+  { token: '--b-skeleton-content-gap', defaultValue: '16px', description: 'Gap between avatar column and content column.' },
+];
+
 export const DesignTokens: Story = {
   name: 'Design Tokens',
   parameters: {
@@ -343,44 +437,36 @@ export const DesignTokens: Story = {
     docs: {
       description: {
         story:
-          'Visual reference for every CSS custom property exposed by `BSkeleton`. ' +
-          'All tokens are scoped to `.b-skeleton` (or `.b-skeleton-element` for sub-components) and can be overridden by consumers.',
+          'All scoped CSS variables exposed by <code>BSkeleton</code> (and <code>.b-skeleton-element</code> for sub-components). Override on the component root.',
       },
     },
   },
   render: () => ({
+    components: { BSkeleton },
+    setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
-      <table style="width:100%;border-collapse:collapse;font-family:ui-monospace,monospace;font-size:0.85rem;">
-        <thead>
-          <tr style="background:#fafafa;border-bottom:1px solid #e5e7eb;text-align:left;">
-            <th style="padding:0.5rem 0.75rem;">CSS Variable</th>
-            <th style="padding:0.5rem 0.75rem;">Default</th>
-            <th style="padding:0.5rem 0.75rem;">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-gradient-from-color</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">oklch(93% 0 0)</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Base placeholder color (AntD <code>gradientFromColor</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-gradient-to-color</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">oklch(85% 0 0)</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Shimmer highlight color (AntD <code>gradientToColor</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-title-height</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">16px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Height of the title bar (AntD <code>titleHeight</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-paragraph-li-height</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">16px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Height of each paragraph row (AntD <code>paragraphLiHeight</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-paragraph-margin-top</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">28px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Spacing between title and paragraph (AntD <code>paragraphMarginTop</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-paragraph-row-gap</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">16px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Vertical gap between paragraph rows.</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-block-radius</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">4px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Corner radius for title/paragraph blocks (AntD <code>blockRadius</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-border-radius</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">6px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Default radius for buttons / inputs / images (AntD <code>borderRadius</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-border-radius-sm</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">4px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Smaller radius for small/square variants (AntD <code>borderRadiusSM</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-control-height</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">32px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Default control height for Button / Input (AntD <code>controlHeight</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-control-height-lg</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">40px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Large control height (AntD <code>controlHeightLG</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-control-height-sm</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">24px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Small control height (AntD <code>controlHeightSM</code>).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-avatar-size-default</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">32px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Avatar size (default preset).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-avatar-size-small</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">24px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Avatar size (small preset).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-avatar-size-large</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">40px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Avatar size (large preset).</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-image-size</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">96px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Image / Node placeholder dimensions.</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-button-min-width</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">64px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Minimum button placeholder width.</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-input-min-width</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">160px</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Minimum input placeholder width.</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">--b-skeleton-animation-duration</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">1.4s</td><td style="padding:0.5rem 0.75rem;border-bottom:1px solid #f0f0f0;">Shimmer animation duration.</td></tr>
-          <tr><td style="padding:0.5rem 0.75rem;">--b-skeleton-content-gap</td><td style="padding:0.5rem 0.75rem;">16px</td><td style="padding:0.5rem 0.75rem;">Gap between avatar column and content column.</td></tr>
-        </tbody>
-      </table>
+      <div style="font-family:sans-serif;padding:1rem;max-width:1100px;margin:0 auto;">
+        <h2 style="margin:0 0 8px;">BSkeleton — Design Tokens</h2>
+        <p style="margin:0 0 24px;color:#595959;">
+          All tokens scoped to <code>.b-skeleton</code> (and <code>.b-skeleton-element</code> for sub-components). Override on the component root.
+        </p>
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:oklch(96% 0.002 260);">
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">CSS Variable</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Default</th>
+              <th style="text-align:left;padding:10px 12px;border-bottom:1px solid oklch(85% 0.005 260);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+              <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+              <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+              <td style="padding:8px 12px;">{{ t.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     `,
   }),
 };

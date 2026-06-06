@@ -3,9 +3,6 @@ import type { Meta, StoryObj } from '@storybook/vue3-vite';
 import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { ref } from 'vue';
 
-// ─────────────────────────────────────────────
-// Meta
-// ─────────────────────────────────────────────
 const meta = {
   title: 'Data Entry/Slider',
   component: BSlider,
@@ -19,52 +16,56 @@ const meta = {
     min: {
       control: { type: 'number' },
       description: 'Minimum value.',
-      table: { defaultValue: { summary: '0' } },
+      table: { category: 'Props', defaultValue: { summary: '0' } },
     },
     max: {
       control: { type: 'number' },
       description: 'Maximum value.',
-      table: { defaultValue: { summary: '100' } },
+      table: { category: 'Props', defaultValue: { summary: '100' } },
     },
     step: {
       control: { type: 'number' },
       description: 'Step granularity. null = marks only.',
-      table: { defaultValue: { summary: '1' } },
+      table: { category: 'Props', defaultValue: { summary: '1' } },
     },
     disabled: {
       control: 'boolean',
       description: 'Whether the slider is disabled.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     vertical: {
       control: 'boolean',
       description: 'Whether the slider is vertical.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     range: {
       control: 'boolean',
       description: 'Whether to enable range mode (dual handles).',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     reverse: {
       control: 'boolean',
       description: 'Whether to reverse the slider direction.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     dots: {
       control: 'boolean',
       description: 'Whether to show step dots.',
-      table: { defaultValue: { summary: 'false' } },
+      table: { category: 'Props', defaultValue: { summary: 'false' } },
     },
     included: {
       control: 'boolean',
       description: 'Whether to show the track fill.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
     },
     keyboard: {
       control: 'boolean',
       description: 'Whether keyboard interaction is enabled.',
-      table: { defaultValue: { summary: 'true' } },
+      table: { category: 'Props', defaultValue: { summary: 'true' } },
+    },
+    'onUpdate:modelValue': {
+      description: 'Emitted continuously while the slider value changes.',
+      table: { category: 'Events' },
     },
   },
   parameters: {
@@ -72,8 +73,7 @@ const meta = {
       description: {
         component:
           '<code>BSlider</code> is a slider input for selecting a value or range from a fixed set. ' +
-          'Supports single and range modes, marks, dots, vertical orientation, tooltips, and full keyboard navigation.<br><br>' +
-          'Accessible with ARIA slider roles, keyboard support (Arrow keys, Home, End), and focus management.',
+          'Supports single and range modes, marks, dots, vertical orientation, tooltips, and full keyboard navigation.',
       },
     },
   },
@@ -82,14 +82,11 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// ═════════════════════════════════════════════
-//   STORIES
-// ═════════════════════════════════════════════
+// ─────────────────────────────────────────────
+// Usage
+// ─────────────────────────────────────────────
 
-// ─────────────────────────────────────────────
-// 1. Playground
-// ─────────────────────────────────────────────
-export const Playground: Story = {
+export const Default: Story = {
   args: {
     modelValue: 30,
     min: 0,
@@ -103,6 +100,7 @@ export const Playground: Story = {
     included: true,
     keyboard: true,
   },
+  parameters: { docs: { source: { code: `<BSlider v-model="value" />` } } },
   render: (args) => ({
     components: { BSlider },
     setup: () => {
@@ -110,7 +108,7 @@ export const Playground: Story = {
       return { args, value };
     },
     template: `
-      <div style="padding: 40px; width: 400px;">
+      <div style="width: 400px;">
         <BSlider v-bind="args" v-model="value" />
         <p style="margin-top: 16px; font-size: 12px; color: #666;">Value: {{ value }}</p>
       </div>
@@ -126,10 +124,8 @@ export const Playground: Story = {
   },
 };
 
-// ─────────────────────────────────────────────
-// 2. Range
-// ─────────────────────────────────────────────
 export const Range: Story = {
+  parameters: { docs: { source: { code: `<BSlider :range="true" v-model="value" />` } } },
   render: () => ({
     components: { BSlider },
     setup: () => {
@@ -137,7 +133,7 @@ export const Range: Story = {
       return { value };
     },
     template: `
-      <div style="padding: 40px; width: 400px;">
+      <div style="width: 400px;">
         <BSlider :range="true" v-model="value" />
         <p style="margin-top: 16px; font-size: 12px; color: #666;">Value: {{ value }}</p>
       </div>
@@ -152,49 +148,8 @@ export const Range: Story = {
   },
 };
 
-// ─────────────────────────────────────────────
-// 3. With Marks
-// ─────────────────────────────────────────────
-export const WithMarks: Story = {
-  render: () => ({
-    components: { BSlider },
-    setup: () => {
-      const value = ref(37);
-      const marks = { 0: '0°C', 25: '25°C', 50: '50°C', 75: '75°C', 100: '100°C' };
-      return { value, marks };
-    },
-    template: `
-      <div style="padding: 40px 40px 60px; width: 400px;">
-        <BSlider v-model="value" :marks="marks" :step="null" />
-        <p style="margin-top: 24px; font-size: 12px; color: #666;">Value: {{ value }}</p>
-      </div>
-    `,
-  }),
-};
-
-// ─────────────────────────────────────────────
-// 4. Steps with Dots
-// ─────────────────────────────────────────────
-export const StepsWithDots: Story = {
-  render: () => ({
-    components: { BSlider },
-    setup: () => {
-      const value = ref(40);
-      return { value };
-    },
-    template: `
-      <div style="padding: 40px; width: 400px;">
-        <BSlider v-model="value" :step="20" :dots="true" />
-        <p style="margin-top: 16px; font-size: 12px; color: #666;">Value: {{ value }}</p>
-      </div>
-    `,
-  }),
-};
-
-// ─────────────────────────────────────────────
-// 5. Vertical
-// ─────────────────────────────────────────────
 export const Vertical: Story = {
+  parameters: { docs: { source: { code: `<BSlider v-model="value" :vertical="true" />` } } },
   render: () => ({
     components: { BSlider },
     setup: () => {
@@ -204,7 +159,7 @@ export const Vertical: Story = {
       return { single, range, marks };
     },
     template: `
-      <div style="padding: 40px; display: flex; gap: 80px; height: 300px;">
+      <div style="display: flex; gap: 80px; height: 300px;">
         <BSlider v-model="single" :vertical="true" />
         <BSlider v-model="range" :vertical="true" :range="true" />
         <BSlider v-model="single" :vertical="true" :marks="marks" />
@@ -213,10 +168,8 @@ export const Vertical: Story = {
   }),
 };
 
-// ─────────────────────────────────────────────
-// 6. Disabled
-// ─────────────────────────────────────────────
 export const Disabled: Story = {
+  parameters: { docs: { source: { code: `<BSlider v-model="value" :disabled="true" />` } } },
   render: () => ({
     components: { BSlider },
     setup: () => {
@@ -224,7 +177,7 @@ export const Disabled: Story = {
       return { value };
     },
     template: `
-      <div style="padding: 40px; width: 400px;">
+      <div style="width: 400px;">
         <BSlider v-model="value" :disabled="true" />
       </div>
     `,
@@ -237,30 +190,8 @@ export const Disabled: Story = {
   },
 };
 
-// ─────────────────────────────────────────────
-// 7. Custom Tooltip
-// ─────────────────────────────────────────────
-export const CustomTooltip: Story = {
-  render: () => ({
-    components: { BSlider },
-    setup: () => {
-      const value = ref(50);
-      const tooltip = { formatter: (v: number) => `${v}%`, open: true };
-      return { value, tooltip };
-    },
-    template: `
-      <div style="padding: 60px 40px 40px; width: 400px;">
-        <BSlider v-model="value" :tooltip="tooltip" />
-        <p style="margin-top: 16px; font-size: 12px; color: #666;">Tooltip always visible with custom format</p>
-      </div>
-    `,
-  }),
-};
-
-// ─────────────────────────────────────────────
-// 8. Reversed
-// ─────────────────────────────────────────────
 export const Reversed: Story = {
+  parameters: { docs: { source: { code: `<BSlider v-model="value" :reverse="true" />` } } },
   render: () => ({
     components: { BSlider },
     setup: () => {
@@ -268,7 +199,7 @@ export const Reversed: Story = {
       return { value };
     },
     template: `
-      <div style="padding: 40px; width: 400px;">
+      <div style="width: 400px;">
         <BSlider v-model="value" :reverse="true" />
         <p style="margin-top: 16px; font-size: 12px; color: #666;">Value: {{ value }} (reversed)</p>
       </div>
@@ -277,9 +208,98 @@ export const Reversed: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 9. Accessibility
+// Examples
 // ─────────────────────────────────────────────
+
+export const WithMarks: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BSlider
+  v-model="value"
+  :marks="{ 0: '0°C', 25: '25°C', 50: '50°C', 75: '75°C', 100: '100°C' }"
+  :step="null"
+/>
+        `,
+      },
+    },
+  },
+  render: () => ({
+    components: { BSlider },
+    setup: () => {
+      const value = ref(37);
+      const marks = { 0: '0°C', 25: '25°C', 50: '50°C', 75: '75°C', 100: '100°C' };
+      return { value, marks };
+    },
+    template: `
+      <div style="padding-bottom: 32px; width: 400px;">
+        <BSlider v-model="value" :marks="marks" :step="null" />
+        <p style="margin-top: 24px; font-size: 12px; color: #666;">Value: {{ value }}</p>
+      </div>
+    `,
+  }),
+};
+
+export const StepsWithDots: Story = {
+  parameters: {
+    docs: {
+      source: { code: `<BSlider v-model="value" :step="20" :dots="true" />` },
+    },
+  },
+  render: () => ({
+    components: { BSlider },
+    setup: () => {
+      const value = ref(40);
+      return { value };
+    },
+    template: `
+      <div style="width: 400px;">
+        <BSlider v-model="value" :step="20" :dots="true" />
+        <p style="margin-top: 16px; font-size: 12px; color: #666;">Value: {{ value }}</p>
+      </div>
+    `,
+  }),
+};
+
+export const CustomTooltip: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `<BSlider v-model="value" :tooltip="{ formatter: (v) => v + '%', open: true }" />`,
+      },
+    },
+  },
+  render: () => ({
+    components: { BSlider },
+    setup: () => {
+      const value = ref(50);
+      const tooltip = { formatter: (v: number) => `${v}%`, open: true };
+      return { value, tooltip };
+    },
+    template: `
+      <div style="padding-top: 32px; width: 400px;">
+        <BSlider v-model="value" :tooltip="tooltip" />
+        <p style="margin-top: 16px; font-size: 12px; color: #666;">Tooltip always visible with custom format</p>
+      </div>
+    `,
+  }),
+};
+
+// ─────────────────────────────────────────────
+// Accessibility
+// ─────────────────────────────────────────────
+
 export const Accessibility: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Each handle has <code>role="slider"</code> with <code>aria-valuenow</code>/<code>min</code>/<code>max</code>/<code>orientation</code>. ' +
+          'Reachable via <kbd>Tab</kbd>; arrow keys nudge the value.',
+      },
+    },
+  },
   render: () => ({
     components: { BSlider },
     setup: () => {
@@ -288,7 +308,7 @@ export const Accessibility: Story = {
       return { single, range };
     },
     template: `
-      <div style="padding: 40px; width: 400px; display: flex; flex-direction: column; gap: 32px;">
+      <div style="width: 400px; display: flex; flex-direction: column; gap: 32px;">
         <div>
           <h4 style="margin-bottom: 12px; font-size: 13px;">Single Slider (Tab + Arrow keys)</h4>
           <BSlider v-model="single" aria-label="Temperature" />
@@ -306,17 +326,14 @@ export const Accessibility: Story = {
     const canvas = within(canvasElement);
     const sliders = canvas.getAllByRole('slider');
 
-    // First slider - single
     await expect(sliders[0]).toHaveAttribute('aria-label', 'Temperature');
     await expect(sliders[0]).toHaveAttribute('aria-orientation', 'horizontal');
     await expect(sliders[0]).toHaveAttribute('aria-valuenow', '40');
     await expect(sliders[0]).toHaveAttribute('tabindex', '0');
 
-    // Range sliders
     await expect(sliders[1]).toHaveAttribute('aria-label', 'Price range - minimum');
     await expect(sliders[2]).toHaveAttribute('aria-label', 'Price range');
 
-    // Keyboard navigation
     await userEvent.tab();
     await waitFor(() => expect(sliders[0]).toHaveFocus());
 
@@ -329,9 +346,31 @@ export const Accessibility: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 10. Theming
+// Theming
 // ─────────────────────────────────────────────
+
 export const Theming: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Override <code>--b-slider-track-bg</code>, <code>--b-slider-handle-color</code>, ' +
+          '<code>--b-slider-handle-size</code>, and friends on the component root.',
+      },
+      source: {
+        code: `
+<BSlider
+  v-model="value"
+  style="
+    --b-slider-track-bg: #52c41a;
+    --b-slider-handle-color: #52c41a;
+    --b-slider-handle-active-color: #389e0d;
+  "
+/>
+        `,
+      },
+    },
+  },
   render: () => ({
     components: { BSlider },
     setup: () => {
@@ -341,7 +380,7 @@ export const Theming: Story = {
       return { v1, v2, v3 };
     },
     template: `
-      <div style="padding: 60px 40px 40px; display: flex; flex-direction: column; gap: 40px; width: 400px;">
+      <div style="padding-top: 32px; display: flex; flex-direction: column; gap: 40px; width: 400px;">
         <div>
           <p style="margin-bottom: 12px; font-size: 12px; color: #666;">Custom track & handle (green)</p>
           <BSlider
@@ -373,62 +412,60 @@ export const Theming: Story = {
 };
 
 // ─────────────────────────────────────────────
-// 11. Design Tokens
+// Design Tokens — MUST be the LAST story
 // ─────────────────────────────────────────────
+type TokenRow = { token: string; defaultValue: string; description: string };
+
+const DESIGN_TOKENS: TokenRow[] = [
+  { token: '--b-slider-rail-bg', defaultValue: 'rgba(0, 0, 0, 0.04)', description: 'Background color of the rail.' },
+  { token: '--b-slider-rail-hover-bg', defaultValue: 'rgba(0, 0, 0, 0.06)', description: 'Background color of the rail on hover.' },
+  { token: '--b-slider-rail-size', defaultValue: '4px', description: 'Height (or width if vertical) of the rail.' },
+  { token: '--b-slider-track-bg', defaultValue: '#91caff', description: 'Background color of the track (filled portion).' },
+  { token: '--b-slider-track-bg-disabled', defaultValue: 'rgba(0, 0, 0, 0.04)', description: 'Track background when disabled.' },
+  { token: '--b-slider-track-hover-bg', defaultValue: '#69b1ff', description: 'Track background on hover.' },
+  { token: '--b-slider-handle-color', defaultValue: '#91caff', description: 'Border color of the handle.' },
+  { token: '--b-slider-handle-color-disabled', defaultValue: '#bfbfbf', description: 'Handle border color when disabled.' },
+  { token: '--b-slider-handle-active-color', defaultValue: '#1677ff', description: 'Handle border color when active / focused.' },
+  { token: '--b-slider-handle-active-outline-color', defaultValue: 'rgba(22, 119, 255, 0.2)', description: 'Outline (box-shadow) color when handle is active.' },
+  { token: '--b-slider-handle-line-width', defaultValue: '2px', description: 'Border width of the handle.' },
+  { token: '--b-slider-handle-line-width-hover', defaultValue: '2.5px', description: 'Border width of the handle on hover.' },
+  { token: '--b-slider-handle-size', defaultValue: '10px', description: 'Size of the handle (diameter).' },
+  { token: '--b-slider-handle-size-hover', defaultValue: '12px', description: 'Size of the handle on hover.' },
+  { token: '--b-slider-dot-border-color', defaultValue: '#f0f0f0', description: 'Border color of step dots.' },
+  { token: '--b-slider-dot-active-border-color', defaultValue: '#91caff', description: 'Border color of active step dots.' },
+  { token: '--b-slider-dot-size', defaultValue: '8px', description: 'Size of step dots.' },
+  { token: '--b-slider-control-size', defaultValue: '10px', description: 'Overall control height reference.' },
+];
+
 export const DesignTokens: Story = {
-  render: () => ({
-    components: { BSlider },
-    setup: () => {
-      const tokens = [
-        { variable: '--b-slider-rail-bg', default: 'rgba(0, 0, 0, 0.04)', description: 'Background color of the rail' },
-        { variable: '--b-slider-rail-hover-bg', default: 'rgba(0, 0, 0, 0.06)', description: 'Background color of the rail on hover' },
-        { variable: '--b-slider-rail-size', default: '4px', description: 'Height (or width if vertical) of the rail' },
-        { variable: '--b-slider-track-bg', default: '#91caff', description: 'Background color of the track (filled portion)' },
-        { variable: '--b-slider-track-bg-disabled', default: 'rgba(0, 0, 0, 0.04)', description: 'Track background when disabled' },
-        { variable: '--b-slider-track-hover-bg', default: '#69b1ff', description: 'Track background on hover' },
-        { variable: '--b-slider-handle-color', default: '#91caff', description: 'Border color of the handle' },
-        { variable: '--b-slider-handle-color-disabled', default: '#bfbfbf', description: 'Handle border color when disabled' },
-        { variable: '--b-slider-handle-active-color', default: '#1677ff', description: 'Handle border color when active/focused' },
-        { variable: '--b-slider-handle-active-outline-color', default: 'rgba(22, 119, 255, 0.2)', description: 'Outline (box-shadow) color when handle is active' },
-        { variable: '--b-slider-handle-line-width', default: '2px', description: 'Border width of the handle' },
-        { variable: '--b-slider-handle-line-width-hover', default: '2.5px', description: 'Border width of the handle on hover' },
-        { variable: '--b-slider-handle-size', default: '10px', description: 'Size of the handle (diameter)' },
-        { variable: '--b-slider-handle-size-hover', default: '12px', description: 'Size of the handle on hover' },
-        { variable: '--b-slider-dot-border-color', default: '#f0f0f0', description: 'Border color of step dots' },
-        { variable: '--b-slider-dot-active-border-color', default: '#91caff', description: 'Border color of active step dots' },
-        { variable: '--b-slider-dot-size', default: '8px', description: 'Size of step dots' },
-        { variable: '--b-slider-control-size', default: '10px', description: 'Overall control height reference' },
-      ];
-      const value = ref(50);
-      return { tokens, value };
+  name: 'Design Tokens',
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      description: {
+        story: 'All scoped CSS variables exposed by <code>BSlider</code>. Override on the component root or any ancestor selector.',
+      },
     },
+  },
+  render: () => ({
+    setup: () => ({ tokens: DESIGN_TOKENS }),
     template: `
-      <div style="padding: 40px;">
-        <h3 style="margin-bottom: 16px; font-size: 16px; font-weight: 600;">BSlider Design Tokens</h3>
-        <p style="margin-bottom: 16px; font-size: 12px; color: #666;">
-          Override these CSS custom properties on <code>.b-slider</code> or via inline styles to theme the component.
-        </p>
-        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
-          <thead>
-            <tr style="border-bottom: 2px solid #eee; text-align: left;">
-              <th style="padding: 8px 12px;">Variable</th>
-              <th style="padding: 8px 12px;">Default</th>
-              <th style="padding: 8px 12px;">Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="token in tokens" :key="token.variable" style="border-bottom: 1px solid #f0f0f0;">
-              <td style="padding: 8px 12px; font-family: monospace; color: #d4380d;">{{ token.variable }}</td>
-              <td style="padding: 8px 12px; font-family: monospace;">{{ token.default }}</td>
-              <td style="padding: 8px 12px;">{{ token.description }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div style="margin-top: 24px; padding: 16px; background: #fafafa; border-radius: 8px;">
-          <p style="margin-bottom: 8px; font-size: 12px; color: #666;">Live preview (default tokens):</p>
-          <BSlider v-model="value" />
-        </div>
-      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:oklch(96% 0.002 260);">
+            <th style="text-align:left;padding:10px 12px;">CSS Variable</th>
+            <th style="text-align:left;padding:10px 12px;">Default</th>
+            <th style="text-align:left;padding:10px 12px;">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="t in tokens" :key="t.token" style="border-bottom:1px solid oklch(94% 0.003 260);">
+            <td style="padding:8px 12px;font-family:monospace;color:oklch(40% 0.18 280);"><code>{{ t.token }}</code></td>
+            <td style="padding:8px 12px;font-family:monospace;color:#595959;">{{ t.defaultValue }}</td>
+            <td style="padding:8px 12px;">{{ t.description }}</td>
+          </tr>
+        </tbody>
+      </table>
     `,
   }),
 };
