@@ -166,6 +166,33 @@ export const Error: Story = {
   }),
 };
 
+/** All four `type` variants rendered together as a side-by-side regression reference. */
+export const AllTypes: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<BAlert type="success" message="Success" show-icon />
+<BAlert type="info" message="Info" show-icon />
+<BAlert type="warning" message="Warning" show-icon />
+<BAlert type="error" message="Error" show-icon />
+        `,
+      },
+    },
+  },
+  render: () => ({
+    components: { BAlert },
+    template: `
+      <div class="b:flex b:flex-col b:gap-2">
+        <BAlert type="success" message="Success" show-icon />
+        <BAlert type="info" message="Info" show-icon />
+        <BAlert type="warning" message="Warning" show-icon />
+        <BAlert type="error" message="Error" show-icon />
+      </div>
+    `,
+  }),
+};
+
 /**
  * The alert manages its own visibility. Clicking × triggers `close`, then `afterClose`
  * once the leave-transition finishes.
